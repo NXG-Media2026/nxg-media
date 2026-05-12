@@ -1,0 +1,143 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BreadcrumbNav from '../components/BreadcrumbNav.astro';
+import CTABand from '../components/CTABand.astro';
+import { siteConfig } from '../data/site';
+import { generateFounderPerson, generateProfilePage, generateBreadcrumbs } from '../data/schema';
+import { t } from '../i18n/utils';
+
+import portraitImage from '../assets/images/Founder/portrait-beach.jpg';
+import ctaBackground from '../assets/images/Founder/lifestyle-water.jpg';
+
+const { founder } = siteConfig;
+const initials = founder.name.split(' ').map(w => w[0]).join('').slice(0, 2);
+
+const breadcrumbs = [
+  { label: t('breadcrumb.home'), href: '/' },
+  { label: t('nav.about') },
+];
+
+const breadcrumbSchema = breadcrumbs.map((b) => ({
+  name: b.label,
+  url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}/ueber`,
+}));
+---
+
+<BaseLayout
+  title={`Über ${founder.name} | ${siteConfig.name}`}
+  description={founder.description}
+  schemas={[
+    generateFounderPerson(),
+    generateProfilePage(),
+    generateBreadcrumbs(breadcrumbSchema),
+  ]}
+  locale="de"
+>
+  <BreadcrumbNav items={breadcrumbs} />
+
+  <section class="py-16 md:py-24 lg:py-32 bg-bg" id={founder.slug}>
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-14 items-start">
+
+        <div class="md:col-span-2 flex justify-center md:sticky md:top-28">
+          <Image
+            src={portraitImage}
+            alt={`${founder.name} — ${founder.role}, Gründerin von doc.veri`}
+            width={400}
+            height={400}
+            class="w-56 h-56 md:w-72 md:h-72 rounded-full object-cover shadow-lg"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+
+        <div class="md:col-span-3">
+          <div class="w-12 h-1 bg-accent rounded-full mb-6"></div>
+          <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl text-text mb-2">
+            {founder.name}
+          </h1>
+          <p class="text-lg font-medium text-accent mb-8">{founder.role}</p>
+
+          <div class="prose prose-lg max-w-none prose-p:text-text-muted prose-p:leading-relaxed mb-12">
+            <p>{founder.description}</p>
+          </div>
+
+          {founder.qualifications.length > 0 && (
+            <div class="mb-10">
+              <h2 class="font-heading text-xl text-text mb-4">{t('about.credentials')}</h2>
+              <ul class="space-y-3">
+                {founder.qualifications.map((q) => (
+                  <li class="flex items-center gap-3 text-text-muted">
+                    <svg class="w-5 h-5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    {q}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {founder.education && founder.education.some(e => e.degree) && (
+            <div class="mb-10">
+              <h2 class="font-heading text-xl text-text mb-4">{t('about.education')}</h2>
+              <ul class="space-y-3">
+                {founder.education.filter(e => e.degree).map((e) => (
+                  <li class="flex items-start gap-3 text-text-muted">
+                    <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.62 48.62 0 0112 20.904a48.62 48.62 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.636 50.636 0 00-2.658-.813A59.906 59.906 0 0112 3.493a59.903 59.903 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0112 13.489a50.702 50.702 0 017.74-3.342" />
+                    </svg>
+                    <span>
+                      {e.degree}
+                      {e.institution && <span class="text-text-muted/70"> — {e.institution}</span>}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {founder.languages.length > 0 && (
+            <div class="mb-10">
+              <h2 class="font-heading text-xl text-text mb-4">{t('about.languages')}</h2>
+              <div class="flex flex-wrap gap-2">
+                {founder.languages.map((lang) => (
+                  <span class="inline-flex items-center px-3 py-1.5 text-sm bg-bg-alt border border-border rounded-full text-text-muted">
+                    {lang}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {founder.knowsAbout.length > 0 && (
+            <div class="mb-10">
+              <h2 class="font-heading text-xl text-text mb-4">Fachgebiete</h2>
+              <div class="flex flex-wrap gap-2">
+                {founder.knowsAbout.map((topic) => (
+                  <span class="inline-flex items-center px-3 py-1.5 text-sm bg-accent/5 border border-accent/20 rounded-full text-accent-dark">
+                    {topic}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABand
+    title="Bereit, deine Gesundheit in die Hand zu nehmen?"
+    subtitle="Entdecke meine Produkte und Coaching-Angebote — wissenschaftlich fundiert und auf dich zugeschnitten."
+    ctaText="Angebot entdecken"
+    ctaHref="/angebot"
+    backgroundImage={ctaBackground}
+    backgroundAlt="Dr. Verena Mann am Meer"
+    eventName="product_cta_click"
+    locale="de"
+    pageType="about"
+    pageSlug="/ueber"
+  />
+</BaseLayout>

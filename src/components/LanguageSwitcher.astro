@@ -1,0 +1,19 @@
+---
+import { siteConfig } from '../data/site';
+import { getTranslatedPath } from '../i18n/utils';
+import type { Locale } from '../data/site';
+
+interface Props {
+  locale: Locale;
+  currentPath: string;
+}
+
+const { locale, currentPath } = Astro.props;
+const showSwitcher = siteConfig.locales.length > 1;
+---
+
+{showSwitcher && (
+  <span class="text-xs text-text-muted">
+    {locale.toUpperCase()}
+  </span>
+)}

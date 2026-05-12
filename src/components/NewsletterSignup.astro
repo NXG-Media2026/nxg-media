@@ -1,0 +1,127 @@
+---
+import { siteConfig } from '../data/site';
+import { trackOnClick } from '../lib/analytics';
+import type { Locale } from '../data/site';
+import type { PageType } from '../lib/analytics';
+import { t } from '../i18n/utils';
+
+type Variant = 'inline' | 'band';
+
+interface Props {
+  variant?: Variant;
+  heading?: string;
+  description?: string;
+  locale?: Locale;
+  pageType?: PageType;
+  pageSlug?: string;
+}
+
+const {
+  variant = 'inline',
+  heading = t('newsletter.heading'),
+  description,
+  locale = 'de',
+  pageType = 'page',
+  pageSlug = '/',
+} = Astro.props;
+
+const formId = `newsletter-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+{variant === 'band' ? (
+  <section class="py-16 md:py-20 bg-primary-dark">
+    <div class="max-w-2xl mx-auto px-4 md:px-6 text-center">
+      <h2 class="font-heading text-2xl md:text-3xl text-white mb-3">
+        {heading}
+      </h2>
+      {description && (
+        <p class="text-white/80 mb-8 max-w-xl mx-auto">{description}</p>
+      )}
+      <form
+        id={formId}
+        class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+        data-page-type={pageType}
+        data-page-slug={pageSlug}
+        data-locale={locale}
+      >
+        <label for={`${formId}-email`} class="sr-only">{t('newsletter.placeholder')}</label>
+        <input
+          id={`${formId}-email`}
+          type="email"
+          name="email"
+          required
+          placeholder={t('newsletter.placeholder')}
+          class="flex-1 px-4 py-3 rounded-button text-sm text-text bg-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-accent"
+        />
+        <button
+          type="submit"
+          class="px-6 py-3 text-sm font-medium text-primary bg-white hover:bg-bg-alt rounded-button transition-colors"
+        >
+          {t('newsletter.button')}
+        </button>
+      </form>
+      <p class="newsletter-success hidden mt-4 text-white/90 text-sm" aria-live="polite">
+        {t('newsletter.success')}
+      </p>
+    </div>
+  </section>
+) : (
+  <div class="bg-bg-alt rounded-card p-6 md:p-8 border border-border">
+    <h3 class="font-heading text-xl text-text mb-2">{heading}</h3>
+    {description && (
+      <p class="text-sm text-text-muted mb-4">{description}</p>
+    )}
+    <form
+      id={formId}
+      class="flex flex-col sm:flex-row gap-3"
+      data-page-type={pageType}
+      data-page-slug={pageSlug}
+      data-locale={locale}
+    >
+      <label for={`${formId}-email`} class="sr-only">{t('newsletter.placeholder')}</label>
+      <input
+        id={`${formId}-email`}
+        type="email"
+        name="email"
+        required
+        placeholder={t('newsletter.placeholder')}
+        class="flex-1 px-4 py-3 rounded-button text-sm text-text bg-white border border-border focus:outline-none focus:ring-2 focus:ring-accent"
+      />
+      <button
+        type="submit"
+        class="px-6 py-3 text-sm font-medium text-text-inverse bg-primary hover:bg-primary-dark rounded-button transition-colors"
+      >
+        {t('newsletter.button')}
+      </button>
+    </form>
+    <p class="newsletter-success hidden mt-3 text-sm text-accent" aria-live="polite">
+      {t('newsletter.success')}
+    </p>
+  </div>
+)}
+
+<script is:inline>
+(function() {
+  document.querySelectorAll('form[id^="newsletter-"]').forEach(function(form) {
+    if (form.dataset.bound) return;
+    form.dataset.bound = '1';
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var email = form.querySelector('input[type="email"]').value;
+      if (!email) return;
+      var data = form.dataset;
+      if (typeof trackEvent === 'function') {
+        trackEvent('newsletter_signup', {
+          page_type: data.pageType || 'page',
+          page_slug: data.pageSlug || '/',
+          locale: data.locale || 'de',
+          provider: 'placeholder',
+        });
+      }
+      form.style.display = 'none';
+      var msg = form.parentElement.querySelector('.newsletter-success');
+      if (msg) msg.classList.remove('hidden');
+    });
+  });
+})();
+</script>

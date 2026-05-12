@@ -1,0 +1,52 @@
+# doc.veri
+
+> Frauen-Gesundheitsplattform von Dr. Verena Mann — Notaerztin und Ausdauer-Athletin.
+> Hormone, Training, Ernaehrung, Zyklus, Perimenopause — wissenschaftlich fundiert, ohne Bro-Science.
+> Sprache: Deutsch. Markt: DACH.
+
+## Gruenderin
+
+Dr. Verena Mann — approbierte Aerztin, Notaerztin, Ironman-Athletin.
+Expertise: Frauengesundheit, Hormonbalance, zyklusbewusstes Training, RED-S, Perimenopause, Ernaehrung fuer Sportlerinnen.
+
+## Angebote
+
+- /produkte — Digitale Guides, E-Books und Kurse
+  - /produkte/hormon-reset-guide — Hormon-Reset Guide (E-Book, 80+ Seiten, EUR 49)
+  - /produkte/erste-hilfe-histamin — Erste Hilfe bei Histamin (7 Audio-Module, E-Book, EUR 37)
+  - /produkte/perimenopause-protocol — Perimenopause Protocol (190+ Seiten, 6-Wochen-Plan, EUR 33)
+  - /produkte/food-guide — Food Guide (80+ Seiten, hormonfreundliche Rezepte, EUR 29.95)
+  - /produkte/smoothie-guide — Smoothie-Gids (30 Mahlzeit-Smoothies, EUR 14.95)
+  - /produkte/runners-guide — Von Null auf 10km (12-Wochen-Laufplan fuer Frauen, EUR 24.95)
+- /coaching — 1:1 und Gruppen-Coaching
+- /mitgliedschaft — Online-Community (in Planung)
+- /lead-magnet — Kostenlose Ressourcen
+
+## Wissen
+
+- /themen — Themen-Uebersichten (Pillar Pages)
+  - /themen/hormone — Oestrogen, Progesteron, Cortisol, Schilddruese, Insulin
+- /blog — Wissenschaftlich fundierte Artikel
+- /glossar — Fachbegriffe der Frauen-Gesundheit (Amenorrhoe, Cortisol, Follikelphase, HPA-Achse, Lutealphase, Menstruationszyklus, Oestrogen, Perimenopause, PMS, Progesteron, RED-S, Zyklusbewusstes Training)
+- /faq — Haeufig gestellte Fragen (Allgemein, Produkte, Coaching, Hormone & Zyklus, Ernaehrung & Training)
+
+## Interaktiv
+
+- /quiz — Hormon-Typ-Quiz (7 Fragen, 4 Ergebnis-Typen)
+  - /archetypen/die-stressgeplagte
+  - /archetypen/die-power-athletin
+  - /archetypen/die-zyklusbewusste
+  - /archetypen/die-perimenopausale
+
+## Weitere Seiten
+
+- /ueber — Ueber Dr. Verena Mann (Profil, Qualifikationen, Expertise)
+- /kontakt — Kontakt und Erstgespraech
+- /impressum — Impressum
+- /datenschutz — Datenschutzerklaerung
+- /agb — Allgemeine Geschaeftsbedingungen
+
+## Kontakt
+
+- E-Mail: info@docveri.de
+- Website: https://docveri.de

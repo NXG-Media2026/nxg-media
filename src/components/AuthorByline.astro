@@ -1,0 +1,47 @@
+---
+import { t } from '../i18n/utils';
+import type { Locale } from '../data/site';
+
+interface Props {
+  authorName: string;
+  authorSlug?: string;
+  publishedDate: string;
+  reviewedDate?: string;
+  locale?: Locale;
+}
+
+const { authorName, authorSlug, publishedDate, reviewedDate, locale = 'de' } = Astro.props;
+
+const profileHref = authorSlug ? `/ueber#${authorSlug}` : '/ueber';
+
+const fmt = (d: string) =>
+  new Date(d).toLocaleDateString('de-DE', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const dateToShow = reviewedDate ?? publishedDate;
+const reviewedLabel = reviewedDate ? t('eeat.lastReviewed', locale) : null;
+---
+
+<aside class="not-prose flex items-start gap-4 p-5 bg-bg-alt rounded-xl border border-border my-8">
+  <div class="w-12 h-12 rounded-full bg-accent-light flex items-center justify-center shrink-0" aria-hidden="true">
+    <span class="text-sm font-heading text-accent">
+      {authorName.split(' ').filter(Boolean).map(w => w[0]).join('').slice(0, 2)}
+    </span>
+  </div>
+
+  <div class="flex-1 min-w-0">
+    <p class="text-sm text-text">
+      <span class="text-text-muted">{t('eeat.writtenBy', locale)} </span>
+      <a href={profileHref} class="font-medium text-text hover:text-accent transition-colors">
+        {authorName}
+      </a>
+    </p>
+    <p class="text-xs text-text-muted mt-1">
+      {reviewedLabel
+        ? <>{reviewedLabel} <time datetime={reviewedDate}>{fmt(dateToShow)}</time></>
+        : <time datetime={publishedDate}>{fmt(publishedDate)}</time>
+      }
+      <span class="mx-1.5" aria-hidden="true">&middot;</span>
+      <a href={profileHref} class="hover:text-accent transition-colors">{t('eeat.viewProfile', locale)} &rarr;</a>
+    </p>
+  </div>
+</aside>

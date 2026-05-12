@@ -1,0 +1,61 @@
+{
+  "lastUpdated": "2026-05-12",
+  "period": "Mai 2026",
+  "scores": {
+    "overall": { "value": 45, "previousValue": 0, "status": "building" },
+    "layer1_technical": { "value": 82, "previousValue": 0, "status": "strong" },
+    "layer2_citability": { "value": 38, "previousValue": 0, "status": "building" },
+    "layer3_authority": { "value": 15, "previousValue": 0, "status": "building" }
+  },
+  "traffic": {
+    "organicClicks": [
+      { "month": "2026-05", "value": 0 }
+    ]
+  },
+  "topPages": [
+    { "page": "/", "title": "Homepage", "clicks": 0, "impressions": 0, "trend": "new" },
+    { "page": "/themen/hormone", "title": "Hormone (Pillar)", "clicks": 0, "impressions": 0, "trend": "new" },
+    { "page": "/blog/hormonbalance-grundlagen", "title": "Hormonbalance Grundlagen", "clicks": 0, "impressions": 0, "trend": "new" },
+    { "page": "/glossar", "title": "Glossar", "clicks": 0, "impressions": 0, "trend": "new" },
+    { "page": "/quiz", "title": "Hormon-Typ Quiz", "clicks": 0, "impressions": 0, "trend": "new" }
+  ],
+  "pageVisibility": [
+    { "page": "Hormone (Pillar)", "targetQuery": "hormone frauen balance", "googleStatus": "not_yet", "aiStatus": "not_found" },
+    { "page": "Hormonbalance Grundlagen", "targetQuery": "hormonbalance frauen grundlagen", "googleStatus": "not_yet", "aiStatus": "not_found" },
+    { "page": "Glossar", "targetQuery": "glossar frauen gesundheit hormone", "googleStatus": "not_yet", "aiStatus": "not_found" },
+    { "page": "Hormon-Typ Quiz", "targetQuery": "hormon typ quiz frauen", "googleStatus": "not_yet", "aiStatus": "not_found" }
+  ],
+  "events": {
+    "period": "2026-05",
+    "product_cta_clicks": 0,
+    "coaching_cta_clicks": 0,
+    "newsletter_signups": 0,
+    "lead_magnet_downloads": 0,
+    "quiz_completions": 0,
+    "discovery_calls": 0,
+    "previousMonth": {
+      "period": "—",
+      "product_cta_clicks": 0,
+      "coaching_cta_clicks": 0,
+      "newsletter_signups": 0,
+      "lead_magnet_downloads": 0,
+      "quiz_completions": 0,
+      "discovery_calls": 0
+    }
+  },
+  "actionsCompleted": [
+    { "date": "2026-05-01", "action": "Website-Launch: alle Seiten live" },
+    { "date": "2026-05-01", "action": "Pillar-Seite Hormone veröffentlicht" },
+    { "date": "2026-05-01", "action": "Erster Blog-Artikel: Hormonbalance Grundlagen" },
+    { "date": "2026-05-01", "action": "Glossar mit 12 Fachbegriffen erstellt" },
+    { "date": "2026-05-01", "action": "Hormon-Typ Quiz mit 4 Archetypen live" }
+  ],
+  "nextPriorities": [
+    { "priority": "Google Search Console einrichten und Sitemap einreichen", "status": "planned" },
+    { "priority": "GA4 Measurement ID konfigurieren", "status": "planned" },
+    { "priority": "3 weitere Blog-Artikel veröffentlichen", "status": "planned" },
+    { "priority": "2 weitere Pillar-Seiten erstellen (Training, Ernährung)", "status": "planned" },
+    { "priority": "Newsletter-Provider anbinden (z.B. ConvertKit)", "status": "planned" },
+    { "priority": "Social-Media-Profile verknüpfen", "status": "planned" }
+  ]
+}

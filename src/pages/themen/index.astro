@@ -1,0 +1,114 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BreadcrumbNav from '../../components/BreadcrumbNav.astro';
+import CTABand from '../../components/CTABand.astro';
+import { siteConfig } from '../../data/site';
+import { generateCollectionPage, generateBreadcrumbs } from '../../data/schema';
+import { t } from '../../i18n/utils';
+
+const pillars = await getCollection('pillars');
+
+const breadcrumbs = [
+  { label: t('breadcrumb.home'), href: '/' },
+  { label: t('breadcrumb.themen') },
+];
+
+const breadcrumbSchema = breadcrumbs.map((b) => ({
+  name: b.label,
+  url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}/themen`,
+}));
+---
+
+<BaseLayout
+  title={`Themen | ${siteConfig.name}`}
+  description="Alle Themen rund um Frauen-Gesundheit: Hormone, Ernährung, Training, Zyklus und mehr — wissenschaftlich fundiert von Dr. Verena."
+  schemas={[
+    generateCollectionPage({
+      name: 'Themen',
+      url: `${siteConfig.url}/themen`,
+      description: 'Alle Themen rund um Frauen-Gesundheit: Hormone, Ernährung, Training, Zyklus und mehr.',
+    }),
+    generateBreadcrumbs(breadcrumbSchema),
+  ]}
+  locale="de"
+>
+  <BreadcrumbNav items={breadcrumbs} />
+
+  <section class="py-16 md:py-24 lg:py-32 bg-bg">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <div class="text-center mb-14 md:mb-20">
+        <h1 class="font-heading text-4xl md:text-5xl text-text mb-4">
+          Themen
+        </h1>
+        <p class="text-lg text-text-muted max-w-2xl mx-auto">
+          Fundiertes Wissen zu den wichtigsten Themen der Frauen-Gesundheit — evidenzbasiert und verständlich aufbereitet.
+        </p>
+      </div>
+
+      {pillars.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {pillars.map((pillar, idx) => (
+            <a
+              href={`/themen/${pillar.data.pageSlug}`}
+              class:list={[
+                'group block bg-white border border-border rounded-card overflow-hidden',
+                'hover:border-accent/30 hover:shadow-xl transition-all duration-300',
+                'js-reveal',
+              ]}
+              style={`--reveal-delay: ${idx * 100}ms`}
+            >
+              {pillar.data.heroImage && (
+                <div class="aspect-[16/10] overflow-hidden">
+                  <img
+                    src={typeof pillar.data.heroImage === 'string' ? pillar.data.heroImage : pillar.data.heroImage.src}
+                    alt={pillar.data.title}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              )}
+              <div class="p-6 md:p-8">
+                <h2 class="font-heading text-xl md:text-2xl text-text mb-3 group-hover:text-accent transition-colors">
+                  {pillar.data.title}
+                </h2>
+                <p class="text-sm text-text-muted leading-relaxed mb-4">
+                  {pillar.data.citableDefinition.length > 160
+                    ? pillar.data.citableDefinition.slice(0, 160) + '…'
+                    : pillar.data.citableDefinition}
+                </p>
+                <div class="flex items-center justify-between">
+                  <span class="text-xs text-text-muted">
+                    {pillar.data.subtopics.length} Unterthemen
+                  </span>
+                  <span class="inline-flex items-center text-sm font-medium text-accent-dark group-hover:underline underline-offset-2">
+                    {t('cta.learnMore')}
+                    <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <div class="text-center py-12">
+          <p class="text-text-muted">Themen werden in Kürze veröffentlicht.</p>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <CTABand
+    title="Du möchtest tiefer einsteigen?"
+    subtitle="Entdecke meine Produkte und Coaching-Angebote — wissenschaftlich fundiert und auf dich zugeschnitten."
+    ctaText="Angebot entdecken"
+    ctaHref="/angebot"
+    eventName="product_cta_click"
+    locale="de"
+    pageType="pillar"
+    pageSlug="/themen"
+  />
+</BaseLayout>

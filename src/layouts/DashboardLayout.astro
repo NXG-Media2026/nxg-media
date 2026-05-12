@@ -1,0 +1,56 @@
+---
+import '../styles/global.css';
+import SEOHead from '../components/SEOHead.astro';
+import { siteConfig } from '../data/site';
+import { getTrackingScript } from '../lib/analytics';
+
+interface Props {
+  title: string;
+  description: string;
+  lastUpdated: string;
+}
+
+const { title, description, lastUpdated } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+  <SEOHead
+    title={title}
+    description={description}
+    noindex={true}
+    schemas={[]}
+  />
+  <script is:inline set:html={getTrackingScript()} />
+</head>
+<body class="bg-bg-alt text-text min-h-screen">
+  <header class="bg-white border-b border-border sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
+      <a href="/" class="font-heading text-lg text-text hover:text-accent transition-colors">
+        {siteConfig.name}
+      </a>
+      <div class="flex items-center gap-4">
+        <span class="text-xs text-text-muted">
+          Zuletzt aktualisiert: {new Date(lastUpdated).toLocaleDateString('de-DE', { day: 'numeric', month: 'long', year: 'numeric' })}
+        </span>
+        <span class="inline-flex items-center px-2.5 py-1 text-xs font-medium bg-amber-50 text-amber-700 rounded-full">
+          Intern
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-12">
+    <slot />
+  </main>
+
+  <footer class="border-t border-border mt-12">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 py-6 text-center">
+      <p class="text-xs text-text-muted">
+        {siteConfig.name} — Internes Sichtbarkeits-Dashboard. Nicht für die Öffentlichkeit bestimmt.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

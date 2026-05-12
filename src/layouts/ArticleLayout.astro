@@ -1,0 +1,125 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import BreadcrumbNav from '../components/BreadcrumbNav.astro';
+import AuthorByline from '../components/AuthorByline.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import CTABand from '../components/CTABand.astro';
+import { siteConfig } from '../data/site';
+import { generateArticle, generateBreadcrumbs } from '../data/schema';
+import { t } from '../i18n/utils';
+
+interface Props {
+  article: {
+    title: string;
+    pageSlug: string;
+    pillarSlug: string;
+    publishedDate: Date;
+    lastReviewedDate: Date;
+    excerpt: string;
+    readingTime: number;
+    relatedProductSlugs?: string[];
+    seo: { title: string; description: string };
+  };
+}
+
+const { article } = Astro.props;
+const pageUrl = `/blog/${article.pageSlug}`;
+
+const breadcrumbs = [
+  { label: t('breadcrumb.home'), href: '/' },
+  { label: t('breadcrumb.blog'), href: '/blog' },
+  { label: article.title },
+];
+
+const breadcrumbSchema = breadcrumbs.map((b) => ({
+  name: b.label,
+  url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}${pageUrl}`,
+}));
+
+const publishedISO = article.publishedDate.toISOString().split('T')[0];
+const reviewedISO = article.lastReviewedDate.toISOString().split('T')[0];
+
+const fmtDate = (d: Date) =>
+  d.toLocaleDateString('de-DE', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<BaseLayout
+  title={article.seo.title}
+  description={article.seo.description}
+  ogType="article"
+  schemas={[
+    generateArticle({
+      title: article.title,
+      description: article.seo.description,
+      url: `${siteConfig.url}${pageUrl}`,
+      datePublished: publishedISO,
+      dateModified: reviewedISO,
+    }),
+    generateBreadcrumbs(breadcrumbSchema),
+  ]}
+  locale="de"
+>
+  <BreadcrumbNav items={breadcrumbs} />
+
+  <article class="py-12 md:py-16 lg:py-20">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <div class="mb-10">
+        <div class="flex flex-wrap items-center gap-3 mb-4">
+          <a
+            href={`/themen/${article.pillarSlug}`}
+            class="inline-flex items-center px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full hover:bg-accent/20 transition-colors"
+          >
+            {article.pillarSlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}
+          </a>
+          <span class="text-sm text-text-muted">{article.readingTime} {t('blog.readingTime')}</span>
+        </div>
+
+        <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl text-text mb-6">
+          {article.title}
+        </h1>
+
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-text-muted">
+          <span>{t('blog.by')} {siteConfig.founder.name}</span>
+          <span aria-hidden="true">&middot;</span>
+          <time datetime={publishedISO}>{fmtDate(article.publishedDate)}</time>
+          {reviewedISO !== publishedISO && (
+            <>
+              <span aria-hidden="true">&middot;</span>
+              <span>{t('blog.updated')} {fmtDate(article.lastReviewedDate)}</span>
+            </>
+          )}
+        </div>
+      </div>
+
+      <AuthorByline
+        authorName={siteConfig.founder.name}
+        authorSlug={siteConfig.founder.slug}
+        publishedDate={publishedISO}
+        reviewedDate={reviewedISO}
+        locale="de"
+      />
+
+      <div class="prose prose-lg max-w-none
+        prose-headings:font-heading prose-headings:text-text prose-headings:font-normal
+        prose-p:text-text-muted prose-p:leading-relaxed
+        prose-a:text-accent prose-a:no-underline hover:prose-a:underline
+        prose-li:text-text-muted
+        prose-strong:text-text prose-strong:font-semibold
+        mb-12"
+      >
+        <slot />
+      </div>
+    </div>
+  </article>
+
+  <CTABand
+    title="Dieses Wissen in die Praxis umsetzen?"
+    subtitle="Entdecke meine Produkte und Coaching-Angebote — wissenschaftlich fundiert und auf dich zugeschnitten."
+    ctaText="Angebot entdecken"
+    ctaHref="/angebot"
+    eventName="product_cta_click"
+    locale="de"
+    pageType="article"
+    pageSlug={article.pageSlug}
+  />
+</BaseLayout>

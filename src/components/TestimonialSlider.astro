@@ -1,0 +1,144 @@
+---
+import { t } from '../i18n/utils';
+import type { Locale } from '../data/site';
+
+interface Testimonial {
+  name: string;
+  text: string;
+  rating?: number;
+  outcome?: string;
+}
+
+interface Props {
+  title?: string;
+  testimonials: Testimonial[];
+  locale?: Locale;
+}
+
+const { title, testimonials, locale = 'de' } = Astro.props;
+const heading = title ?? t('testimonial.heading', locale);
+
+function renderStars(rating: number): string {
+  return '★'.repeat(Math.round(rating)) + '☆'.repeat(5 - Math.round(rating));
+}
+
+function getInitials(name: string): string {
+  return name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+}
+
+const avatarColors = [
+  'bg-accent-light text-accent',
+  'bg-amber-100 text-amber-700',
+  'bg-emerald-100 text-emerald-700',
+  'bg-blue-100 text-blue-700',
+  'bg-rose-100 text-rose-700',
+];
+
+const featured = testimonials[0];
+const rest = testimonials.slice(1);
+---
+
+<section class="py-16 md:py-24 lg:py-32 bg-bg-alt">
+  <div class="max-w-7xl mx-auto px-4 md:px-6">
+    <div class="text-center mb-12 md:mb-16 js-reveal">
+      <h2 class="font-heading text-3xl md:text-4xl text-text">
+        {heading}
+      </h2>
+    </div>
+
+    {featured && (
+      <article
+        class="testimonial testimonial--featured max-w-3xl mx-auto mb-10 md:mb-14 js-reveal"
+        aria-label={`Erfahrungsbericht von ${featured.name}`}
+      >
+        <div class="bg-white rounded-card p-8 md:p-12 border-l-4 border-accent shadow-sm">
+          <svg class="w-10 h-10 md:w-12 md:h-12 text-accent/15 mb-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+          </svg>
+
+          {featured.rating && (
+            <div
+              class="text-accent text-lg tracking-wider mb-5"
+              role="img"
+              aria-label={`${featured.rating} von 5 Sternen`}
+            >
+              <span aria-hidden="true">{renderStars(featured.rating)}</span>
+            </div>
+          )}
+
+          <blockquote class="text-text text-lg md:text-xl leading-relaxed mb-8">
+            <p>"{featured.text}"</p>
+          </blockquote>
+
+          <footer class="flex items-center gap-4">
+            <div
+              class:list={[
+                'w-12 h-12 rounded-full flex items-center justify-center text-sm font-semibold shrink-0',
+                avatarColors[0],
+              ]}
+              aria-hidden="true"
+            >
+              {getInitials(featured.name)}
+            </div>
+            <div>
+              <cite class="not-italic font-medium text-text block">{featured.name}</cite>
+              {featured.outcome && (
+                <span class="text-sm text-text-muted">{featured.outcome}</span>
+              )}
+            </div>
+          </footer>
+        </div>
+      </article>
+    )}
+
+    {rest.length > 0 && (
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+        {rest.map((item, idx) => (
+          <article
+            class:list={[
+              'testimonial',
+              'bg-white rounded-card p-6 flex flex-col',
+              'border-l-4 border-accent/30',
+              'shadow-sm',
+              'js-reveal',
+            ]}
+            aria-label={`Erfahrungsbericht von ${item.name}`}
+            style={`--reveal-delay: ${idx * 120}ms`}
+          >
+            {item.rating && (
+              <div
+                class="text-accent text-sm tracking-wider mb-3"
+                role="img"
+                aria-label={`${item.rating} von 5 Sternen`}
+              >
+                <span aria-hidden="true">{renderStars(item.rating)}</span>
+              </div>
+            )}
+
+            <blockquote class="flex-1 text-text text-sm leading-relaxed mb-5">
+              <p>"{item.text}"</p>
+            </blockquote>
+
+            <footer class="flex items-center gap-3 pt-4 border-t border-border">
+              <div
+                class:list={[
+                  'w-9 h-9 rounded-full flex items-center justify-center text-xs font-semibold shrink-0',
+                  avatarColors[(idx + 1) % avatarColors.length],
+                ]}
+                aria-hidden="true"
+              >
+                {getInitials(item.name)}
+              </div>
+              <div class="min-w-0">
+                <cite class="not-italic text-sm font-medium text-text block">{item.name}</cite>
+                {item.outcome && (
+                  <span class="text-xs text-text-muted">{item.outcome}</span>
+                )}
+              </div>
+            </footer>
+          </article>
+        ))}
+      </div>
+    )}
+  </div>
+</section>

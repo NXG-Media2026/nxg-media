@@ -1,0 +1,170 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import TrustBar from '../components/TrustBar.astro';
+import ApproachSection from '../components/ApproachSection.astro';
+import ServicesGrid from '../components/ServicesGrid.astro';
+import FounderPreview from '../components/FounderPreview.astro';
+import TestimonialSlider from '../components/TestimonialSlider.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import CTABand from '../components/CTABand.astro';
+import { siteConfig } from '../data/site';
+import { getTestimonials } from '../data/testimonials';
+import { generateOrganization, generateFounderPerson, generateWebSite, generateFAQPage } from '../data/schema';
+
+import heroImage from '../assets/images/Founder/hero-ironman.jpg';
+import founderPortrait from '../assets/images/Founder/portrait-doctor.jpg';
+import ctaBackground from '../assets/images/Founder/lifestyle-laughing.jpg';
+
+const testimonials = getTestimonials();
+
+const trustItems = [
+  { value: 'MD', label: 'Approbierte\nÄrztin' },
+  { value: '100%', label: 'Evidenz-\nbasiert' },
+  { value: '♀', label: 'Von Frauen,\nfür Frauen' },
+];
+
+const approachItems = [
+  {
+    icon: 'evidence',
+    title: 'Wissenschaftlich fundiert',
+    description: 'Alle Inhalte basieren auf aktueller Studienlage und ärztlichem Fachwissen — keine Trends, keine Mythen.',
+  },
+  {
+    icon: 'personalized',
+    title: 'Individuell & praxisnah',
+    description: 'Keine Einheitsrezepte. Meine Angebote berücksichtigen deinen Zyklus, dein Training und deine Lebensphase.',
+  },
+  {
+    icon: 'nonsurgical',
+    title: 'Ganzheitlich',
+    description: 'Hormone, Training, Ernährung und Lebensstil — alles greift ineinander. Ich betrachte das große Ganze.',
+  },
+  {
+    icon: 'multilingual',
+    title: 'Verständlich erklärt',
+    description: 'Medizinisches Wissen, so aufbereitet, dass du es direkt umsetzen kannst — ohne Fach-Jargon.',
+  },
+];
+
+const angebotItems = [
+  {
+    title: 'Produkte',
+    slug: 'produkte',
+    href: '/produkte',
+    excerpt: 'Digitale Guides, E-Books und Kurse — wissenschaftlich fundiert und sofort umsetzbar. Für Hormone, Training, Ernährung und mehr.',
+  },
+  {
+    title: 'Coaching',
+    slug: 'coaching',
+    href: '/coaching',
+    excerpt: 'Individuelles Coaching für deine Gesundheitsziele — persönlich begleitet, evidenzbasiert und auf dich zugeschnitten.',
+  },
+  {
+    title: 'Mitgliedschaft',
+    slug: 'mitgliedschaft',
+    href: '/mitgliedschaft',
+    excerpt: 'Community, laufende Begleitung und exklusive Inhalte — gemeinsam stärker auf dem Weg zu deiner Gesundheit.',
+  },
+];
+
+const homepageFAQs = [
+  {
+    q: 'Was ist doc.veri?',
+    a: 'doc.veri ist die Plattform von Dr. Verena für wissenschaftlich fundierte Frauen-Gesundheit. Hier findest du Wissen, Produkte und Coaching rund um Hormone, Training, Ernährung und Zyklus — evidenzbasiert und praxisnah.',
+  },
+  {
+    q: 'Für wen sind die Angebote geeignet?',
+    a: 'Für alle Frauen, die ihre Gesundheit selbst in die Hand nehmen möchten — ob Sportlerin, Berufstätige oder Frau in der Perimenopause. Die Inhalte sind für jedes Fitness-Level und jede Lebensphase geeignet.',
+  },
+  {
+    q: 'Ist Dr. Verena wirklich Ärztin?',
+    a: 'Ja! Dr. Verena ist approbierte Ärztin mit Leidenschaft für Ausdauersport. Sie verbindet medizinisches Fachwissen mit praktischer Erfahrung als Ironman-Athletin.',
+  },
+  {
+    q: 'Wie unterscheidet sich doc.veri von anderen Gesundheitsplattformen?',
+    a: 'doc.veri setzt konsequent auf Wissenschaft statt Trends. Alle Inhalte basieren auf aktueller Studienlage und werden von einer Ärztin erstellt — ohne Bro-Science, ohne Schwurbel.',
+  },
+];
+---
+
+<BaseLayout
+  title={`Frauen-Gesundheit — wissenschaftlich fundiert | ${siteConfig.name}`}
+  description="Hormone, Training, Ernährung, Zyklus, Perimenopause — wissenschaftlich fundiert, ohne Bro-Science. Von Dr. Verena Mann, Notärztin und Ausdauer-Athletin."
+  schemas={[
+    generateOrganization(),
+    generateFounderPerson(),
+    generateWebSite(),
+    generateFAQPage(homepageFAQs),
+  ]}
+  locale="de"
+>
+  <HeroSection
+    title="Frauen-Gesundheit, wissenschaftlich fundiert."
+    subtitle="Hormone, Training, Ernährung, Zyklus, Perimenopause — ohne Bro-Science, ohne Schwurbel. Von Dr. Verena Mann, Notärztin und Ironman-Athletin."
+    backgroundImage={heroImage}
+    backgroundAlt="Dr. Verena Mann beim Ironman-Zieleinlauf"
+    ctaText="Angebot entdecken"
+    ctaHref="/angebot"
+    secondaryCtaText="Über Dr. Verena"
+    secondaryCtaHref="/ueber"
+    locale="de"
+    pageType="homepage"
+    pageSlug="/"
+    eventName="product_cta_click"
+  />
+
+  <TrustBar items={trustItems} />
+
+  <ApproachSection
+    title="Mein Ansatz"
+    items={approachItems}
+    locale="de"
+  />
+
+  <ServicesGrid
+    title="Was ich dir anbiete"
+    subtitle="Wissen und Begleitung für jede Phase deiner Gesundheitsreise."
+    services={angebotItems}
+    locale="de"
+    pageType="homepage"
+    pageSlug="/"
+    viewAllHref="/angebot"
+    viewAllLabel="Alle Angebote ansehen"
+  />
+
+  <FounderPreview locale="de" image={founderPortrait} />
+
+  {testimonials.length > 0 && (
+    <TestimonialSlider
+      testimonials={testimonials.map(t => ({
+        name: t.name,
+        text: t.text,
+        outcome: t.outcome,
+      }))}
+      locale="de"
+    />
+  )}
+
+  <FAQAccordion
+    items={homepageFAQs}
+    locale="de"
+    pageType="homepage"
+    pageSlug="/"
+    maxItems={4}
+    showMoreLink={true}
+  />
+
+  <CTABand
+    title="Bereit, deine Gesundheit in die Hand zu nehmen?"
+    subtitle="Entdecke meine Produkte, Coaching-Angebote und die Community — alles wissenschaftlich fundiert."
+    ctaText="Angebot entdecken"
+    ctaHref="/angebot"
+    backgroundImage={ctaBackground}
+    backgroundAlt="Dr. Verena Mann am Strand"
+    eventName="product_cta_click"
+    locale="de"
+    pageType="homepage"
+    pageSlug="/"
+  />
+</BaseLayout>

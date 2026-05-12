@@ -1,0 +1,78 @@
+---
+import { siteConfig } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  ogImage?: string;
+  ogType?: string;
+  hreflang?: Array<{ lang: string; href: string }>;
+  noindex?: boolean;
+  schemas?: string[];
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage,
+  ogType = 'website',
+  hreflang = [],
+  noindex = false,
+  schemas = [],
+} = Astro.props;
+
+const fullOgImage = ogImage
+  ? ogImage.startsWith('http') ? ogImage : `${siteConfig.url}${ogImage}`
+  : `${siteConfig.url}/images/og/default.jpg`;
+
+// x-default hreflang: points to the default-locale (EN) version of the page
+// when a translation exists. Only emitted when hreflang has entries.
+const xDefaultEntry = hreflang.find((h) => h.lang === siteConfig.defaultLocale);
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+{/* Preload primary fonts — LCP critical (heading + body). Browser fetches in parallel with HTML.
+   Stable paths because fonts are self-hosted in /public/fonts (not Vite-bundled). */}
+<link rel="preload" href="/fonts/playfair-display-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+{siteConfig.analytics.gscVerificationId && (
+  <meta name="google-site-verification" content={siteConfig.analytics.gscVerificationId} />
+)}
+
+<!-- Open Graph -->
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:type" content={ogType} />
+<meta property="og:image" content={fullOgImage} />
+<meta property="og:site_name" content={siteConfig.name} />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={fullOgImage} />
+
+<!-- Hreflang (self-referential per Google guidelines + x-default) -->
+{hreflang.map(({ lang, href }) => (
+  <link rel="alternate" hreflang={lang} href={href} />
+))}
+{xDefaultEntry && (
+  <link rel="alternate" hreflang="x-default" href={xDefaultEntry.href} />
+)}
+
+<!-- JSON-LD Structured Data -->
+{schemas.map((schema) => (
+  <script type="application/ld+json" set:html={schema} />
+))}
