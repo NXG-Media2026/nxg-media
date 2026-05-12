@@ -20,6 +20,7 @@ export const navigation: Record<Locale, NavItem[]> = {
     },
     { label: 'Themen', href: '/themen' },
     { label: 'Blog', href: '/blog' },
+    { label: 'Quiz', href: '/quiz' },
     { label: 'Über mich', href: '/ueber' },
     { label: 'FAQ', href: '/faq' },
     { label: 'Kontakt', href: '/kontakt' },

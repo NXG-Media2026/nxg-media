@@ -14,8 +14,8 @@ export const siteConfig = {
   email: 'info@docveri.de',
 
   socials: {
-    instagram: '',
-    linkedin: '',
+    instagram: 'https://www.instagram.com/doc.veri/',
+    linkedin: 'https://www.linkedin.com/in/dr-verena-anna-mann/',
     youtube: '',
   },
 

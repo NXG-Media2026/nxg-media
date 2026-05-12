@@ -7,7 +7,8 @@ import { siteConfig } from '../data/site';
 import { generateFounderPerson, generateProfilePage, generateBreadcrumbs } from '../data/schema';
 import { t } from '../i18n/utils';
 
-import portraitImage from '../assets/images/Founder/portrait-beach.jpg';
+import portraitImage from '../assets/images/Founder/verena-linkedin.png';
+import ironmanImage from '../assets/images/Founder/hero-ironman.jpg';
 import ctaBackground from '../assets/images/Founder/lifestyle-water.jpg';
 
 const { founder } = siteConfig;
@@ -123,6 +124,35 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
               </div>
             </div>
           )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 md:py-24 bg-bg-alt">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 items-center">
+        <div>
+          <Image
+            src={ironmanImage}
+            alt="Dr. Verena Mann beim Ironman-Zieleinlauf"
+            width={600}
+            height={400}
+            class="w-full h-auto rounded-card shadow-lg object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div>
+          <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">
+            Ärztin & Ironman-Athletin
+          </h2>
+          <p class="text-text-muted leading-relaxed mb-4">
+            Medizin und Ausdauersport — für Verena gehört beides zusammen. Als Ironman-Finisherin weiß sie aus eigener Erfahrung, was Frauenkörper unter Belastung brauchen.
+          </p>
+          <p class="text-text-muted leading-relaxed">
+            Dieses Wissen fließt in alles ein, was sie bei doc.veri macht: von zyklusbewussten Trainingsplänen bis zur Ernährung in der Perimenopause.
+          </p>
         </div>
       </div>
     </div>

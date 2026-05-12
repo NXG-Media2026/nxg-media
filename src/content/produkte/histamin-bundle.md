@@ -5,7 +5,7 @@ price: "59"
 currency: EUR
 plugAndPayUrl: "https://example.com/checkout/histamin-bundle"
 sortOrder: 0
-heroImage: ../../assets/images/products/erste-hilfe-histamin.png
+heroImage: ../../assets/images/products/histamin-bundle.png
 shortDescription: "Erste Hilfe + Food Guide + Smoothie-Guide: das komplette Histamin-Paket für nur 59 € statt einzeln über 80 €."
 longDescription: "Das Histamin-Bundle vereint alles, was du brauchst, um Histamin zu senken, deine Ernährung anzupassen und deinen Körper zu unterstützen — in einem Paket, zum besten Preis."
 includes:

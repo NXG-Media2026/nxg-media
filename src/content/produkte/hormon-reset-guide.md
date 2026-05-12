@@ -31,6 +31,13 @@ faq:
     a: "Ja, nach dem Kauf erhältst du sofortigen Zugang zum Download."
   - q: "Ersetzt der Guide eine ärztliche Beratung?"
     a: "Nein. Der Guide liefert fundiertes Wissen zur Selbsthilfe, ersetzt aber keine individuelle medizinische Beratung. Bei konkreten Beschwerden konsultiere bitte deine Ärztin."
+  - q: "Wie umfangreich ist der Guide?"
+    a: "Über 80 Seiten mit fundiertem Wissen, 20 hormonfreundlichen Rezepten, einem druckbaren Hormon-Tracker und einer Audio-Zusammenfassung — alles sofort nach dem Kauf verfügbar."
+  - q: "Geht der Guide auch auf die Perimenopause ein?"
+    a: "Ja, ein ganzes Kapitel behandelt die hormonellen Veränderungen in der Perimenopause und gibt dir konkrete Strategien für diese Lebensphase."
+relatedProductSlugs:
+  - "perimenopause-protocol"
+  - "food-guide"
 seo:
   title: "Hormon-Reset Guide | doc.veri"
   description: "Dein Leitfaden für natürliche Hormonbalance. Wissenschaftlich fundiert, praxisnah. Von Dr. Verena."
