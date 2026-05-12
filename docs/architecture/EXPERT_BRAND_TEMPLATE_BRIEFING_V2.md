@@ -274,7 +274,72 @@ Based on the proven 13-step conversion framework. The critical rule: **mastercla
 
 ---
 
-## 6. Product page templates
+## 6. Editorial content formatting rules
+
+Raw markdown is not acceptable as final visual output for expert sites. Every page type that renders markdown (blogs, products, coaching, masterclass, archetypes) must use the `@tailwindcss/typography` plugin with a brand-configured `prose` class.
+
+### Typography baseline
+
+| Property | Blog | Product |
+|---|---|---|
+| Base font size | 18px (`prose-lg`) | 18px (`prose-lg`) |
+| Line height | 1.8 | 1.8 |
+| Paragraph spacing | ~1.35em | ~1.35em |
+| H2 margin-top | ~2.5em | ~2.5em + border-top separator |
+| H3 margin-top | ~2em | ~2em |
+| Max width | `max-w-3xl` (720px) | `max-w-3xl` (720px) |
+
+### Heading hierarchy
+
+- H2s are Playfair Display (serif heading font), large, with strong top margin. They create clear section boundaries.
+- H3s are visually distinct from body text, smaller than H2 but still obviously headings.
+- H4s may use accent color for sub-sections (especially in product pages).
+- No heading should blend into body text.
+
+### Lists
+
+- Bullet and numbered lists have proper item spacing (not cramped single-spaced lines).
+- Bullet color uses the accent color for visual interest.
+- Long symptom lists, step lists, and "what to do" lists should be highly scannable.
+
+### Blockquotes as callouts
+
+Markdown blockquotes (`>`) must render as editorial callout boxes, not plain indented text:
+- Light background (`bg-alt`)
+- Left accent border (3px, `primary-light`)
+- Rounded right corners
+- Normal font-style (not italic)
+- Used for: key insights, expert notes, reality checks, practical next steps, warnings/nuance.
+
+### Product prose
+
+Product markdown uses a `prose-product` modifier that adds:
+- H2s with top border separator (visual section breaks for long sales pages)
+- H4s in accent color (for sub-item headings like "1. Module Name (Wert: 37 €)")
+
+Product pages should not render as one dense prose block. The structured sections (includes cards, for-you/not-for-you, FAQ) outside the markdown complement the prose content.
+
+### Blog prose
+
+Blog articles should feel like editorial guides. The prose plugin handles rhythm; the content author handles structure:
+- Short paragraphs (max 3–4 visual lines)
+- Frequent H2 section breaks
+- Bulleted symptom/step lists instead of inline enumeration
+- Blockquote callouts for key takeaways
+
+### Implementation
+
+All typography configuration lives in `tailwind.config.mjs` under the `typography` key. Brand colors, heading fonts, link styles, and spacing are centralized there — individual layouts only need `prose prose-lg max-w-none` (plus `prose-product` for product pages).
+
+Additional callout/product styling lives in `global.css` under `@layer components`.
+
+### Template rule
+
+Every markdown-rendered content area must use the typography plugin's `prose` class. No layout should attempt to style markdown with manual utility classes — that approach breaks when the plugin handles the same properties.
+
+---
+
+## 7. Product page templates
 
 ### Full / bundle product page
 
@@ -328,7 +393,7 @@ Rules:
 
 ---
 
-## 7. Calendly rules
+## 8. Calendly rules
 
 ### Strict placement
 
@@ -370,7 +435,7 @@ Quiz archetypes and masterclass post-watch segments can override the cluster def
 
 ---
 
-## 8. Lead capture architecture
+## 9. Lead capture architecture
 
 ### Email capture abstraction (`src/lib/emailCapture.ts`)
 
@@ -407,7 +472,7 @@ Every form has three states:
 
 ---
 
-## 9. Conversion asset visibility rules
+## 10. Conversion asset visibility rules
 
 A conversion asset is not finished when the page exists. It is finished when visitors can discover it from the right places in the site journey.
 
@@ -441,7 +506,7 @@ A masterclass page must be discoverable from:
 
 - Do not create hidden conversion pages that are only accessible by direct URL.
 - Do not rely only on paid ads to send traffic to a masterclass.
-- Do not place Calendly in the same visibility pattern as free assets — Calendly is for warm/hot leads only (see §7).
+- Do not place Calendly in the same visibility pattern as free assets — Calendly is for warm/hot leads only (see §8).
 - Do not show every asset everywhere; match visibility to funnel temperature.
 
 ### CTA tracking
@@ -462,7 +527,7 @@ Do not use signup events for link clicks.
 
 ---
 
-## 10. Social storytelling grid
+## 11. Social storytelling grid
 
 ### What it is
 
@@ -498,7 +563,7 @@ Live Instagram embeds hurt performance, introduce third-party tracking (GDPR fri
 
 ---
 
-## 11. Schema and AI citation rules
+## 12. Schema and AI citation rules
 
 ### Schema types used
 
@@ -547,7 +612,7 @@ Outside these slots: human prose. Not everything needs to be "optimized."
 
 ---
 
-## 12. Analytics event taxonomy
+## 13. Analytics event taxonomy
 
 ### Core events
 
@@ -582,7 +647,7 @@ Outside these slots: human prose. Not everything needs to be "optimized."
 
 ---
 
-## 13. Implementation standards
+## 14. Implementation standards
 
 Hard rules for Claude Code and future implementers.
 
@@ -606,9 +671,11 @@ Hard rules for Claude Code and future implementers.
 
 10. **No API keys in frontend.** Email capture, analytics, and third-party integrations that need secrets must route through a serverless endpoint.
 
+11. **Offer card visual anchors.** `ServicesGrid` cards must use visual anchors that match the offer type: product mockups (cover fan or stack) for digital products, expert/client imagery for coaching, group/community imagery for memberships. Images must be local assets processed through Astro `<Image>` (WebP, density variants, lazy loading). Never use external runtime image sources (CDN URLs, hotlinked images, Instagram embeds). If no suitable image exists yet, the card renders text-only — don't use generic stock placeholders.
+
 ---
 
-## 14. Reference implementation
+## 15. Reference implementation
 
 The Histamin Vertical Slice is the first proven implementation of this template. It demonstrates the full funnel:
 
@@ -628,7 +695,7 @@ Proven principles: source-of-truth split, hub-as-rendered-config, strict Calendl
 
 ---
 
-## 15. Multilingual / International Expert Sites
+## 16. Multilingual / International Expert Sites
 
 The current doc.veri implementation is German-only, but the expert-brand template must support multilingual sites (e.g. Joost's own future site in Dutch, Spanish, and English).
 
@@ -797,7 +864,7 @@ This allows dashboards to compare cluster performance per language.
 
 ---
 
-## 16. Future rollout order
+## 17. Future rollout order
 
 Recommended sequence after the Histamin slice is stable:
 

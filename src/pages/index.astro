@@ -19,6 +19,12 @@ import heroImage from '../assets/images/Founder/portrait-beach.jpg';
 import founderPortrait from '../assets/images/Founder/portrait-doctor.jpg';
 import ctaBackground from '../assets/images/Founder/lifestyle-laughing.jpg';
 
+import productHistamin from '../assets/images/products/histamin-bundle.png';
+import productPerimenopause from '../assets/images/products/perimenopause-protocol.png';
+import productSmoothie from '../assets/images/products/smoothie-guide.png';
+import coachingImage from '../assets/images/Founder/lifestyle-arms-up.jpg';
+import membershipImage from '../assets/images/Founder/verena-community.jpg';
+
 const testimonials = getTestimonials();
 const reviewSchemas = generateReviewArray(testimonials);
 const socialPosts = getSocialPosts(6);
@@ -58,18 +64,27 @@ const angebotItems = [
     slug: 'produkte',
     href: '/produkte',
     excerpt: 'Digitale Guides, E-Books und Kurse — wissenschaftlich fundiert und sofort umsetzbar. Für Hormone, Training, Ernährung und mehr.',
+    coverImages: [
+      { src: productHistamin, alt: 'Histamin Bundle' },
+      { src: productPerimenopause, alt: 'Perimenopause Protocol' },
+      { src: productSmoothie, alt: 'Smoothie Guide' },
+    ],
   },
   {
     title: 'Coaching',
     slug: 'coaching',
     href: '/coaching',
     excerpt: 'Individuelles Coaching für deine Gesundheitsziele — persönlich begleitet, evidenzbasiert und auf dich zugeschnitten.',
+    image: coachingImage,
+    imageAlt: 'Dr. Verena Mann — Coaching',
   },
   {
     title: 'Mitgliedschaft',
     slug: 'mitgliedschaft',
     href: '/mitgliedschaft',
     excerpt: 'Community, laufende Begleitung und exklusive Inhalte — gemeinsam stärker auf dem Weg zu deiner Gesundheit.',
+    image: membershipImage,
+    imageAlt: 'Community und Begleitung',
   },
 ];
 

@@ -81,6 +81,38 @@
   .link-accent:hover {
     text-decoration-color: var(--color-primary-dark);
   }
+
+  /* Editorial blockquote → callout box */
+  .prose blockquote {
+    font-style: normal;
+    border-left-width: 3px;
+    border-left-color: var(--color-primary-light);
+    background-color: var(--color-bg-alt);
+    border-radius: 0 8px 8px 0;
+    padding: 1.25rem 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  .prose blockquote p {
+    color: var(--color-text);
+    font-size: 0.9375em;
+    line-height: 1.7;
+  }
+  .prose blockquote p:first-child {
+    margin-top: 0;
+  }
+  .prose blockquote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Product prose — H2s as section dividers */
+  .prose-product h2 {
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .prose-product h4 {
+    color: #C17B5A;
+  }
 }
 
 @layer utilities {
