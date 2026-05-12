@@ -4,9 +4,12 @@ import type { ImageMetadata } from 'astro';
 import BaseLayout from './BaseLayout.astro';
 import BreadcrumbNav from '../components/BreadcrumbNav.astro';
 import FAQAccordion from '../components/FAQAccordion.astro';
+import TestimonialSlider from '../components/TestimonialSlider.astro';
 import CTABand from '../components/CTABand.astro';
 import { siteConfig } from '../data/site';
 import { generateProduct, generateBreadcrumbs, generateFAQPage } from '../data/schema';
+import { getProductTestimonials } from '../data/testimonials';
+import type { Testimonial } from '../data/testimonials';
 import { t } from '../i18n/utils';
 import { trackOnClick } from '../lib/analytics';
 
@@ -29,6 +32,9 @@ interface Props {
 
 const { product } = Astro.props;
 const pageUrl = `/produkte/${product.pageSlug}`;
+const ogImage = `/images/og/products/${product.pageSlug}.png`;
+
+const productTestimonials: Testimonial[] = getProductTestimonials(product.pageSlug, 4);
 
 const breadcrumbs = [
   { label: t('breadcrumb.home'), href: '/' },
@@ -46,6 +52,8 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
 <BaseLayout
   title={product.seo.title}
   description={product.seo.description}
+  ogImage={ogImage}
+  ogType="product"
   schemas={[
     generateProduct({
       name: product.title,
@@ -53,6 +61,7 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
       url: `${siteConfig.url}${pageUrl}`,
       price: product.price,
       currency: product.currency,
+      reviews: productTestimonials,
     }),
     generateBreadcrumbs(breadcrumbSchema),
     ...(product.faq.length > 0 ? [generateFAQPage(product.faq)] : []),
@@ -77,80 +86,120 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
     </div>
   )}
 
-  <article class="py-12 md:py-16 lg:py-20">
+  <!-- Hero header -->
+  <header class="py-12 md:py-16 lg:py-20 bg-bg">
+    <div class="max-w-3xl mx-auto px-4 md:px-6 text-center">
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl text-text mb-4 leading-tight">
+        {product.title}
+      </h1>
+      <p class="text-lg md:text-xl text-text-muted leading-relaxed mb-8 max-w-2xl mx-auto">
+        {product.shortDescription}
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+        <span class="text-3xl md:text-4xl font-heading font-bold text-text">{product.price} &euro;</span>
+        <a
+          href={product.plugAndPayUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center px-8 py-4 text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-lg"
+          onclick={trackOnClick('product_cta_click', { page_type: 'product', page_slug: product.pageSlug, locale: 'de', cta_location: 'hero' })}
+        >
+          {t('cta.buyNow')}
+          <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Long description highlight -->
+  <section class="py-10 md:py-14 bg-bg-alt">
     <div class="max-w-3xl mx-auto px-4 md:px-6">
-      <div class="mb-10 md:mb-14">
-        <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl text-text mb-4">
-          {product.title}
-        </h1>
-        <p class="text-lg text-text-muted leading-relaxed mb-6">
-          {product.shortDescription}
+      <div class="border-l-4 border-accent pl-6 md:pl-8">
+        <p class="text-lg md:text-xl text-text leading-relaxed italic">
+          {product.longDescription}
         </p>
-        <div class="flex items-center gap-6">
-          <span class="text-3xl font-heading font-bold text-text">{product.price} €</span>
-          <a
-            href={product.plugAndPayUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center px-6 py-3 text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button"
-            onclick={trackOnClick('product_cta_click', { page_type: 'product', page_slug: product.pageSlug, locale: 'de', cta_location: 'inline' })}
-          >
-            {t('cta.buyNow')}
-            <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-            </svg>
-          </a>
-        </div>
       </div>
+    </div>
+  </section>
 
-      <div class="prose prose-lg max-w-none prose-headings:font-heading prose-headings:text-text prose-p:text-text-muted prose-p:leading-relaxed mb-12">
-        <p>{product.longDescription}</p>
-      </div>
-
-      <div class="prose prose-lg max-w-none prose-headings:font-heading prose-headings:text-text prose-p:text-text-muted prose-p:leading-relaxed mb-12">
+  <!-- Markdown content: well-formatted prose -->
+  <article class="py-12 md:py-16 bg-bg">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <div class="
+        prose prose-lg max-w-none
+        prose-headings:font-heading prose-headings:text-text prose-headings:leading-tight
+        prose-h2:text-2xl prose-h2:md:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:pt-8 prose-h2:border-t prose-h2:border-border
+        prose-h3:text-xl prose-h3:md:text-2xl prose-h3:mt-10 prose-h3:mb-4
+        prose-h4:text-lg prose-h4:md:text-xl prose-h4:mt-8 prose-h4:mb-3 prose-h4:text-accent
+        prose-p:text-text-muted prose-p:leading-relaxed prose-p:mb-5
+        prose-li:text-text-muted prose-li:leading-relaxed
+        prose-strong:text-text prose-strong:font-semibold
+        prose-ul:my-4 prose-ul:space-y-2
+        prose-ol:my-4 prose-ol:space-y-2
+        prose-a:text-primary prose-a:underline prose-a:underline-offset-2 hover:prose-a:text-primary-dark
+      ">
         <slot />
       </div>
     </div>
-
-    {product.includes.length > 0 && (
-      <section class="py-12 md:py-16 bg-bg-alt">
-        <div class="max-w-3xl mx-auto px-4 md:px-6">
-          <h2 class="font-heading text-2xl md:text-3xl text-text mb-8">
-            {t('product.whatIsInside')}
-          </h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {product.includes.map((item) => (
-              <div class="bg-white rounded-card p-6 border border-border">
-                <h3 class="font-medium text-text mb-2">{item.title}</h3>
-                <p class="text-sm text-text-muted">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    )}
-
-    {product.targetAudience.length > 0 && (
-      <section class="py-12 md:py-16 bg-bg">
-        <div class="max-w-3xl mx-auto px-4 md:px-6">
-          <h2 class="font-heading text-2xl md:text-3xl text-text mb-8">
-            {t('product.whoIsThisFor')}
-          </h2>
-          <ul class="space-y-4">
-            {product.targetAudience.map((audience) => (
-              <li class="flex items-start gap-3 text-text-muted">
-                <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                </svg>
-                {audience}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-    )}
   </article>
 
+  <!-- What's included -->
+  {product.includes.length > 0 && (
+    <section class="py-12 md:py-16 bg-bg-alt">
+      <div class="max-w-3xl mx-auto px-4 md:px-6">
+        <h2 class="font-heading text-2xl md:text-3xl text-text mb-8 text-center">
+          {t('product.whatIsInside')}
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {product.includes.map((item) => (
+            <div class="bg-white rounded-card p-6 border border-border shadow-sm hover:shadow-md transition-shadow">
+              <h3 class="font-heading font-medium text-text mb-2">{item.title}</h3>
+              <p class="text-sm text-text-muted leading-relaxed">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Target audience -->
+  {product.targetAudience.length > 0 && (
+    <section class="py-12 md:py-16 bg-bg">
+      <div class="max-w-3xl mx-auto px-4 md:px-6">
+        <h2 class="font-heading text-2xl md:text-3xl text-text mb-8 text-center">
+          {t('product.whoIsThisFor')}
+        </h2>
+        <ul class="space-y-4 max-w-2xl mx-auto">
+          {product.targetAudience.map((audience) => (
+            <li class="flex items-start gap-3 text-text-muted">
+              <svg class="w-6 h-6 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+              <span class="text-base leading-relaxed">{audience}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <!-- Reviews / testimonials -->
+  {productTestimonials.length > 0 && (
+    <TestimonialSlider
+      title="Das sagen Kundinnen"
+      testimonials={productTestimonials.map(t => ({
+        name: t.name,
+        text: t.text,
+        rating: t.rating,
+        outcome: t.outcome,
+      }))}
+      locale="de"
+    />
+  )}
+
+  <!-- FAQ -->
   {product.faq.length > 0 && (
     <FAQAccordion
       items={product.faq}
@@ -160,16 +209,18 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
     />
   )}
 
-  <div class="py-8 bg-bg">
+  <!-- Bottom CTA -->
+  <div class="py-12 md:py-16 bg-bg">
     <div class="max-w-3xl mx-auto px-4 md:px-6 text-center">
+      <p class="text-text-muted mb-6 text-lg">Bereit loszulegen?</p>
       <a
         href={product.plugAndPayUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center px-8 py-4 text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-lg"
+        class="inline-flex items-center px-10 py-4 text-lg font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-lg"
         onclick={trackOnClick('product_cta_click', { page_type: 'product', page_slug: product.pageSlug, locale: 'de', cta_location: 'product_bottom' })}
       >
-        {t('cta.buyNow')} — {product.price} €
+        {t('cta.buyNow')} — {product.price} &euro;
         <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
         </svg>

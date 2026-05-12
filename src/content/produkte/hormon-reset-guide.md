@@ -4,6 +4,7 @@ pageSlug: "hormon-reset-guide"
 price: "49"
 currency: EUR
 plugAndPayUrl: "https://example.com/checkout"
+sortOrder: 2
 heroImage: ../../assets/images/products/hormon-reset-guide.png
 shortDescription: "Dein Leitfaden für natürliche Hormonbalance — wissenschaftlich fundiert, praxisnah und ohne Bro-Science."
 longDescription: "Der Hormon-Reset Guide gibt dir einen klaren Fahrplan, um deine Hormone auf natürliche Weise ins Gleichgewicht zu bringen. Basierend auf aktueller Studienlage und ärztlichem Fachwissen — ohne leere Versprechen, ohne Trends."

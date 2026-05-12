@@ -4,6 +4,7 @@ pageSlug: "perimenopause-protocol"
 price: "33"
 currency: EUR
 plugAndPayUrl: "https://example.com/checkout/perimenopause-protocol"
+sortOrder: 1
 heroImage: ../../assets/images/products/perimenopause-protocol.png
 shortDescription: "Dein 6-Wochen-Fahrplan für die Perimenopause: 190+ Seiten, Schritt-für-Schritt-Anleitung, Rezepte, Tracker und Übungen."
 longDescription: "Das Perimenopause Protocol gibt dir einen klaren, wissenschaftlich fundierten 6-Wochen-Plan, um deine Symptome zu verstehen und Schritt für Schritt unter Kontrolle zu bringen — mit Ernährung, Bewegung, Schlaf und Stressmanagement."
@@ -44,7 +45,7 @@ faq:
   - q: "Bekomme ich sofort Zugang?"
     a: "Ja, nach dem Kauf erhältst du sofortigen Zugang zum kompletten E-Book mit allen Rezepten, Trackern und Übungen."
   - q: "Gibt es auch ein Bundle?"
-    a: "Ja! Die Histamin-Bundel enthält das Erste Hilfe Programm, den Food Guide und die Smoothie-Gids — alles zusammen für nur 59 Euro. Das Perimenopause Protocol lässt sich ideal damit kombinieren."
+    a: "Ja! Die Histamin-Bundle enthält das Erste Hilfe Programm, den Food Guide und die Smoothie-Guide — alles zusammen für nur 59 Euro. Das Perimenopause Protocol lässt sich ideal damit kombinieren."
 seo:
   title: "Perimenopause Protocol | doc.veri"
   description: "6-Wochen-Plan für die Perimenopause: 190+ Seiten, Rezepte, Tracker & Übungen. Wissenschaftlich fundiert."

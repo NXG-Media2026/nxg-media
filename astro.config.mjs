@@ -15,7 +15,12 @@ export default defineConfig({
         !page.includes('/sichtbarkeit') &&
         !page.includes('/impressum') &&
         !page.includes('/datenschutz') &&
-        !page.includes('/agb'),
+        !page.includes('/agb') &&
+        !page.includes('/archetypen/'),
+      serialize: (item) => ({
+        ...item,
+        lastmod: new Date().toISOString().split('T')[0],
+      }),
       i18n: {
         defaultLocale: 'de',
         locales: { de: 'de' },

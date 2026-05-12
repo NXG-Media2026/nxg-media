@@ -4,6 +4,7 @@ pageSlug: "erste-hilfe-histamin"
 price: "37"
 currency: EUR
 plugAndPayUrl: "https://example.com/checkout/erste-hilfe-histamin"
+sortOrder: 3
 heroImage: ../../assets/images/products/erste-hilfe-histamin.png
 shortDescription: "Histamin-Overload erkennen und senken: 7 Audio-Module, E-Book mit Checklisten und Rezepten. Sofort umsetzbar."
 longDescription: "Das Programm hilft dir, Histamin zu senken und deine Symptome unter Kontrolle zu bringen — mit einfachen Anpassungen und einem praktischen Plan. Ohne strenge Regeln, ohne endloses Suchen, ohne Überforderung."
@@ -36,7 +37,7 @@ faq:
   - q: "Bekomme ich sofort Zugang?"
     a: "Ja, nach dem Kauf erhältst du sofort Zugang zu allen Audio-Modulen, dem E-Book und den Supplement-Übersichten."
   - q: "Gibt es auch ein Bundle?"
-    a: "Ja! Die Histamin-Bundel enthält das Erste Hilfe Programm, den Food Guide und die Smoothie-Gids — alles zusammen für nur 59 Euro statt einzeln über 200 Euro."
+    a: "Ja! Die Histamin-Bundle enthält das Erste Hilfe Programm, den Food Guide und die Smoothie-Guide — alles zusammen für nur 59 Euro statt einzeln über 200 Euro."
 seo:
   title: "Erste Hilfe bei Histamin | doc.veri"
   description: "Histamin senken & Symptome kontrollieren: 7 Audio-Module, E-Book & Rezepte. Sofort umsetzbar. Von Dr. Verena Mann."
@@ -77,12 +78,12 @@ Und wenn deine Hormone schwanken — durch PMS, Perimenopause oder Stress — wi
 - Es bringt schnelle Erleichterung, wodurch dein Körper zur Ruhe kommt
 - Die zugrundeliegenden Symptome werden durch Unterstützung von Darm, Hormonen und Verdauung angegangen — und wir stimulieren den Histaminabbau, damit dein Körper besser in Balance kommt
 
-### Die Histamin-Bundel
+### Die Histamin-Bundle
 
-Willst du das komplette Paket? Die **Histamin-Bundel** enthält:
+Willst du das komplette Paket? Die **Histamin-Bundle** enthält:
 
 - Das Erste Hilfe bei Histamin Programm (Wert: 149 Euro)
 - Den Food Guide: 80+ Seiten voller Rezepte und Tipps (Wert: 29,95 Euro)
-- Die Smoothie-Gids: 30 Mahlzeit-Smoothies, hormoonproof & histaminarm (Wert: 24,95 Euro)
+- Die Smoothie-Guide: 30 Mahlzeit-Smoothies, hormonfreundlich & histaminarm (Wert: 24,95 Euro)
 
 **Alles zusammen für nur 59 Euro.**

@@ -10,13 +10,14 @@ import FAQAccordion from '../components/FAQAccordion.astro';
 import CTABand from '../components/CTABand.astro';
 import { siteConfig } from '../data/site';
 import { getTestimonials } from '../data/testimonials';
-import { generateOrganization, generateFounderPerson, generateWebSite, generateFAQPage } from '../data/schema';
+import { generateOrganization, generateFounderPerson, generateWebSite, generateFAQPage, generateReviewArray } from '../data/schema';
 
 import heroImage from '../assets/images/Founder/hero-ironman.jpg';
 import founderPortrait from '../assets/images/Founder/portrait-doctor.jpg';
 import ctaBackground from '../assets/images/Founder/lifestyle-laughing.jpg';
 
 const testimonials = getTestimonials();
+const reviewSchemas = generateReviewArray(testimonials);
 
 const trustItems = [
   { value: 'MD', label: 'Approbierte\nÄrztin' },
@@ -96,6 +97,7 @@ const homepageFAQs = [
     generateFounderPerson(),
     generateWebSite(),
     generateFAQPage(homepageFAQs),
+    ...reviewSchemas,
   ]}
   locale="de"
 >
@@ -140,6 +142,7 @@ const homepageFAQs = [
       testimonials={testimonials.map(t => ({
         name: t.name,
         text: t.text,
+        rating: t.rating,
         outcome: t.outcome,
       }))}
       locale="de"

@@ -30,6 +30,7 @@ const produkte = defineCollection({
     faq: z.array(faqItem).default([]),
     featuredTestimonialIds: z.array(z.string()).optional(),
     relatedProductSlugs: z.array(z.string()).optional(),
+    sortOrder: z.number().default(50),
     seo: seoFields,
   }),
 });

@@ -1,12 +1,13 @@
 ---
-title: "Smoothie-Gids"
+title: "Smoothie-Guide"
 pageSlug: "smoothie-guide"
 price: "14.95"
 currency: EUR
 plugAndPayUrl: "https://example.com/checkout/smoothie-guide"
+sortOrder: 5
 heroImage: ../../assets/images/products/smoothie-guide.png
-shortDescription: "30 Mahlzeit-Smoothies — hormoonproof, histaminarm und als vollwertige Mahlzeit konzipiert. Schnell, lecker, nährstoffreich."
-longDescription: "Die Smoothie-Gids enthält 30 Mahlzeit-Smoothies, die deine Hormone unterstützen, histaminarm sind und als vollwertige Mahlzeit funktionieren — perfekt für Frauen, die wenig Zeit haben, aber trotzdem gut für sich sorgen wollen."
+shortDescription: "30 Mahlzeit-Smoothies — hormonfreundlich, histaminarm und als vollwertige Mahlzeit konzipiert. Schnell, lecker, nährstoffreich."
+longDescription: "Die Smoothie-Guide enthält 30 Mahlzeit-Smoothies, die deine Hormone unterstützen, histaminarm sind und als vollwertige Mahlzeit funktionieren — perfekt für Frauen, die wenig Zeit haben, aber trotzdem gut für sich sorgen wollen."
 includes:
   - title: "30 Mahlzeit-Smoothie-Rezepte"
     description: "Jeder Smoothie ist als vollwertige Mahlzeit konzipiert — mit ausreichend Protein, gesunden Fetten und Mikronährstoffen."
@@ -38,21 +39,21 @@ faq:
   - q: "Bekomme ich den Guide sofort?"
     a: "Ja, nach dem Kauf erhältst du sofortigen Zugang zum Download."
   - q: "Gibt es auch ein Bundle?"
-    a: "Ja! Die Histamin-Bundel enthält die Smoothie-Gids zusammen mit dem Erste Hilfe Programm und dem Food Guide — alles zusammen für nur 59 Euro."
+    a: "Ja! Die Histamin-Bundle enthält die Smoothie-Guide zusammen mit dem Erste Hilfe Programm und dem Food Guide — alles zusammen für nur 59 Euro."
 seo:
-  title: "Smoothie-Gids — 30 Mahlzeit-Smoothies | doc.veri"
-  description: "30 Mahlzeit-Smoothies: hormoonproof, histaminarm & in 5 Min. fertig. Von Dr. Verena Mann."
+  title: "Smoothie-Guide — 30 Mahlzeit-Smoothies | doc.veri"
+  description: "30 Mahlzeit-Smoothies: hormonfreundlich, histaminarm & in 5 Min. fertig. Von Dr. Verena Mann."
 ---
 
 ## Smoothies, die wirklich satt machen
 
-Vergiss wässrige Obst-Smoothies ohne Nährwert. Die Smoothie-Gids enthält 30 vollwertige Mahlzeit-Smoothies, die deine Hormone unterstützen, histaminarm sind und dich stundenlang satt halten.
+Vergiss wässrige Obst-Smoothies ohne Nährwert. Die Smoothie-Guide enthält 30 vollwertige Mahlzeit-Smoothies, die deine Hormone unterstützen, histaminarm sind und dich stundenlang satt halten.
 
 ### Warum Mahlzeit-Smoothies?
 
 - **Schnell** — in unter 5 Minuten fertig, perfekt für stressige Morgen
 - **Nährstoffreich** — jeder Smoothie enthält Protein, gesunde Fette, Ballaststoffe und Mikronährstoffe
-- **Hormoonproof** — die Zutaten unterstützen deine Hormonbalance
+- **Hormonfreundlich** — die Zutaten unterstützen deine Hormonbalance
 - **Histaminarm** — klar gekennzeichnet für Frauen mit Histamin-Empfindlichkeit
 - **Sättigend** — als vollwertige Mahlzeit konzipiert, kein Hungergefühl nach einer Stunde
 
@@ -64,9 +65,9 @@ Vergiss wässrige Obst-Smoothies ohne Nährwert. Die Smoothie-Gids enthält 30 v
 - **Einkaufsliste** — alles auf einen Blick, damit du immer vorbereitet bist
 - **Vorratstipps** — welche Zutaten du immer im Haus haben solltest
 
-### Für wen ist die Smoothie-Gids?
+### Für wen ist die Smoothie-Guide?
 
-Die Smoothie-Gids ist für dich, wenn du:
+Die Smoothie-Guide ist für dich, wenn du:
 
 - Morgens wenig Zeit hast, aber nährstoffreich starten willst
 - Eine schnelle Mahlzeit nach dem Training brauchst
@@ -74,6 +75,6 @@ Die Smoothie-Gids ist für dich, wenn du:
 - Deine Hormone über die Ernährung unterstützen möchtest
 - Einfache Rezepte liebst, die immer funktionieren
 
-### Teil der Histamin-Bundel
+### Teil der Histamin-Bundle
 
-Die Smoothie-Gids ist auch Teil der **Histamin-Bundel** — zusammen mit dem Erste Hilfe bei Histamin Programm und dem Food Guide, alles zusammen für nur 59 Euro statt über 200 Euro einzeln.
+Die Smoothie-Guide ist auch Teil der **Histamin-Bundle** — zusammen mit dem Erste Hilfe bei Histamin Programm und dem Food Guide, alles zusammen für nur 59 Euro statt über 200 Euro einzeln.

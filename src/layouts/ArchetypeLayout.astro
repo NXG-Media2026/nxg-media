@@ -40,6 +40,7 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
 <BaseLayout
   title={archetype.seo.title}
   description={archetype.seo.description}
+  noindex={true}
   schemas={[
     generateBreadcrumbs(breadcrumbSchema),
     ...(archetype.faq.length > 0 ? [generateFAQPage(archetype.faq)] : []),

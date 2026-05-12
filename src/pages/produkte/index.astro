@@ -8,7 +8,7 @@ import { siteConfig } from '../../data/site';
 import { generateCollectionPage, generateBreadcrumbs } from '../../data/schema';
 import { t } from '../../i18n/utils';
 
-const products = await getCollection('produkte');
+const products = (await getCollection('produkte')).sort((a, b) => (a.data.sortOrder ?? 50) - (b.data.sortOrder ?? 50));
 
 const breadcrumbs = [
   { label: t('breadcrumb.home'), href: '/' },

@@ -4,8 +4,9 @@ pageSlug: "food-guide"
 price: "29.95"
 currency: EUR
 plugAndPayUrl: "https://example.com/checkout/food-guide"
+sortOrder: 4
 heroImage: ../../assets/images/products/food-guide.png
-shortDescription: "80+ Seiten voller hormonfreundlicher Rezepte und Ernährungstipps — hormoonproof, histaminarm und alltagstauglich."
+shortDescription: "80+ Seiten voller hormonfreundlicher Rezepte und Ernährungstipps — hormonfreundlich, histaminarm und alltagstauglich."
 longDescription: "Der Food Guide gibt dir über 80 Seiten mit Rezepten, Einkaufslisten und Ernährungswissen, die deine Hormone unterstützen — angepasst an deinen Zyklus, histaminbewusst und ohne komplizierte Zutaten."
 includes:
   - title: "80+ Seiten E-Book (PDF)"
@@ -38,7 +39,7 @@ faq:
   - q: "Bekomme ich den Guide sofort?"
     a: "Ja, nach dem Kauf erhältst du sofortigen Zugang zum Download des gesamten E-Books."
   - q: "Gibt es auch ein Bundle?"
-    a: "Ja! Die Histamin-Bundel enthält den Food Guide zusammen mit dem Erste Hilfe Programm und der Smoothie-Gids — alles zusammen für nur 59 Euro."
+    a: "Ja! Die Histamin-Bundle enthält den Food Guide zusammen mit dem Erste Hilfe Programm und der Smoothie-Guide — alles zusammen für nur 59 Euro."
 seo:
   title: "Food Guide — Hormonfreundliche Rezepte | doc.veri"
   description: "80+ Seiten hormonfreundliche Rezepte, histaminarm & alltagstauglich. Einkaufslisten & Tipps. Von Dr. Verena Mann."
@@ -68,11 +69,11 @@ Der Food Guide ist für dich, wenn du:
 
 ### Was diesen Guide besonders macht
 
-- **Hormoonproof** — jedes Rezept ist auf Hormonbalance ausgelegt
+- **Hormonfreundlich** — jedes Rezept ist auf Hormonbalance ausgelegt
 - **Histaminbewusst** — klare Kennzeichnung für Frauen mit Histamin-Empfindlichkeit
 - **Alltagstauglich** — maximal 30 Minuten Zubereitungszeit, normale Zutaten
 - **Wissenschaftlich fundiert** — basiert auf aktueller Studienlage, zusammengestellt von einer Ärztin
 
-### Teil der Histamin-Bundel
+### Teil der Histamin-Bundle
 
-Der Food Guide ist auch Teil der **Histamin-Bundel** — zusammen mit dem Erste Hilfe bei Histamin Programm und der Smoothie-Gids, alles zusammen für nur 59 Euro statt über 200 Euro einzeln.
+Der Food Guide ist auch Teil der **Histamin-Bundle** — zusammen mit dem Erste Hilfe bei Histamin Programm und der Smoothie-Guide, alles zusammen für nur 59 Euro statt über 200 Euro einzeln.

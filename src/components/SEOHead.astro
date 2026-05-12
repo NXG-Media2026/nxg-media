@@ -38,6 +38,7 @@ const xDefaultEntry = hreflang.find((h) => h.lang === siteConfig.defaultLocale);
 <meta name="description" content={description} />
 <link rel="canonical" href={canonical} />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
 {/* Preload primary fonts — LCP critical (heading + body). Browser fetches in parallel with HTML.
    Stable paths because fonts are self-hosted in /public/fonts (not Vite-bundled). */}

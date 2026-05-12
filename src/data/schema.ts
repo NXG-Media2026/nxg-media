@@ -117,7 +117,35 @@ export function generateProduct(product: {
   price: string;
   currency?: string;
   image?: string;
+  reviews?: Testimonial[];
 }) {
+  const reviews = product.reviews ?? [];
+  const ratedReviews = reviews.filter((r) => r.rating && r.rating > 0);
+
+  const aggregateRating = ratedReviews.length > 0
+    ? {
+        '@type': 'AggregateRating',
+        ratingValue: (ratedReviews.reduce((sum, r) => sum + (r.rating ?? 5), 0) / ratedReviews.length).toFixed(1),
+        reviewCount: ratedReviews.length,
+        bestRating: 5,
+        worstRating: 1,
+      }
+    : undefined;
+
+  const reviewSchema = reviews.map((t) => ({
+    '@type': 'Review',
+    author: { '@type': 'Person', name: t.name },
+    reviewBody: t.text,
+    ...(t.rating && {
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: t.rating,
+        bestRating: 5,
+        worstRating: 1,
+      },
+    }),
+  }));
+
   return JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'Product',
@@ -133,6 +161,8 @@ export function generateProduct(product: {
     ...(product.image && {
       image: product.image.startsWith('http') ? product.image : `${siteConfig.url}${product.image}`,
     }),
+    ...(aggregateRating && { aggregateRating }),
+    ...(reviewSchema.length > 0 && { review: reviewSchema }),
   });
 }
 
