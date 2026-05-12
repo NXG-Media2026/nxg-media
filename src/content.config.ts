@@ -10,6 +10,11 @@ const seoFields = z.object({
   description: z.string().max(155),
 });
 
+const i18nFields = {
+  locale: z.enum(['de', 'en']).default('de'),
+  translationKey: z.string().optional(),
+};
+
 const produkte = defineCollection({
   type: 'content',
   schema: ({ image }) => z.object({
@@ -27,16 +32,15 @@ const produkte = defineCollection({
       icon: z.string().optional(),
     })),
     targetAudience: z.array(z.string()),
-    // Cluster membership (per CLUSTER_ARCHITECTURE_V1.2)
     cluster: z.string().optional(),
     productType: z.enum(['guide', 'bundle', 'course', 'membership', 'micro-product']).optional(),
-    // "Not for you if" — honest positioning (hybrid sales page)
     notForYou: z.array(z.string()).optional(),
     faq: z.array(faqItem).default([]),
     featuredTestimonialIds: z.array(z.string()).optional(),
     relatedProductSlugs: z.array(z.string()).optional(),
     sortOrder: z.number().default(50),
     seo: seoFields,
+    ...i18nFields,
   }),
 });
 
@@ -58,6 +62,7 @@ const coaching = defineCollection({
     faq: z.array(faqItem).default([]),
     ctaUrl: z.string(),
     seo: seoFields,
+    ...i18nFields,
   }),
 });
 
@@ -67,8 +72,6 @@ const artikel = defineCollection({
     title: z.string(),
     pageSlug: z.string(),
     pillarSlug: z.string(),
-    // Cluster membership (per CLUSTER_ARCHITECTURE_V1.2 §3.1)
-    // Content frontmatter owns cluster membership; cluster YAML owns strategy/routing.
     cluster: z.string().optional(),
     secondaryClusters: z.array(z.string()).optional(),
     publishedDate: z.date(),
@@ -80,6 +83,7 @@ const artikel = defineCollection({
     relatedArticleSlugs: z.array(z.string()).optional(),
     relatedProductSlugs: z.array(z.string()).optional(),
     seo: seoFields,
+    ...i18nFields,
   }),
 });
 
@@ -96,6 +100,7 @@ const pillars = defineCollection({
     })),
     faq: z.array(faqItem).default([]),
     seo: seoFields,
+    ...i18nFields,
   }),
 });
 
@@ -110,10 +115,10 @@ const archetypen = defineCollection({
     commonSymptoms: z.array(z.string()),
     recommendedProductSlugs: z.array(z.string()),
     recommendedCoachingSlugs: z.array(z.string()),
-    // Cluster bridging: quiz result → cluster hub (CLUSTER_ARCHITECTURE_V1.2)
     recommendedClusterSlugs: z.array(z.string()).optional(),
     faq: z.array(faqItem).default([]),
     seo: seoFields,
+    ...i18nFields,
   }),
 });
 
@@ -132,6 +137,7 @@ const mitgliedschaft = defineCollection({
     ctaUrl: z.string().optional(),
     seo: seoFields,
     isLive: z.boolean().default(false),
+    ...i18nFields,
   }),
 });
 
@@ -147,6 +153,7 @@ const glossar = defineCollection({
     relatedTerms: z.array(z.string()).optional(),
     linkedArticle: z.string().optional(),
     seo: seoFields.optional(),
+    ...i18nFields,
   }),
 });
 
@@ -163,6 +170,7 @@ const leadMagnets = defineCollection({
     tag: z.string(),
     deliveryFileUrl: z.string().url().optional(),
     seo: seoFields,
+    ...i18nFields,
   }),
 });
 

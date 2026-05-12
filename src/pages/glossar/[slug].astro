@@ -14,6 +14,8 @@ import { siteConfig } from '../../data/site';
 import { generateBreadcrumbs, generateDefinedTerm } from '../../data/schema';
 import { t } from '../../i18n/utils';
 
+const locale = 'de';
+
 export async function getStaticPaths() {
   const entries = await getCollection('glossar');
   return entries.map((entry) => ({
@@ -67,7 +69,7 @@ const seoDescription = seo?.description ?? definition.slice(0, 155);
   description={seoDescription}
   schemas={[
     generateBreadcrumbs(breadcrumbSchema),
-    generateDefinedTerm({ term, definition, slug }),
+    generateDefinedTerm({ term, definition, slug }, locale),
   ]}
   locale="de"
 >
@@ -95,7 +97,7 @@ const seoDescription = seo?.description ?? definition.slice(0, 155);
       {longDescription && (
         <section class="mb-12">
           <h2 class="font-heading text-xl md:text-2xl text-text mb-4">
-            Hintergrund
+            {t('glossar.background', locale)}
           </h2>
           <div class="prose prose-lg max-w-none">
             <p>{longDescription}</p>
@@ -107,7 +109,7 @@ const seoDescription = seo?.description ?? definition.slice(0, 155);
       {linkedArticleData && (
         <section class="mb-12">
           <h2 class="font-heading text-xl md:text-2xl text-text mb-4">
-            Vertiefender Artikel
+            {t('glossar.relatedArticle', locale)}
           </h2>
           <a
             href={`/blog/${linkedArticleData.slug}`}
@@ -120,7 +122,7 @@ const seoDescription = seo?.description ?? definition.slice(0, 155);
               {linkedArticleData.excerpt}
             </p>
             <span class="inline-flex items-center mt-3 text-sm font-medium text-accent-dark group-hover:underline underline-offset-2">
-              Artikel lesen
+              {t('glossar.readArticle', locale)}
               <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
               </svg>
@@ -133,7 +135,7 @@ const seoDescription = seo?.description ?? definition.slice(0, 155);
       {resolvedRelated.length > 0 && (
         <section class="mb-12">
           <h2 class="font-heading text-xl md:text-2xl text-text mb-4">
-            Verwandte Begriffe
+            {t('glossar.relatedTerms', locale)}
           </h2>
           <div class="flex flex-wrap gap-3">
             {resolvedRelated.map((related: any) => (
@@ -157,7 +159,7 @@ const seoDescription = seo?.description ?? definition.slice(0, 155);
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
           </svg>
-          Alle Glossar-Begriffe
+          {t('glossar.allTerms', locale)}
         </a>
       </div>
     </div>

@@ -1,8 +1,8 @@
 ---
-import { siteConfig } from '../data/site';
+import { siteConfig, type Locale } from '../data/site';
 import { navigation } from '../data/navigation';
 import { t } from '../i18n/utils';
-import type { Locale } from '../data/site';
+import { localizePath } from '../i18n/utils';
 import { buildNewsletterPayload, serializePayload } from '../lib/emailCapture';
 
 interface Props {
@@ -20,7 +20,7 @@ const nlPayloadJson = serializePayload(buildNewsletterPayload('', { route: 'foot
   <div class="max-w-7xl mx-auto px-4 md:px-6 pt-16 md:pt-24 pb-10">
     <div class="max-w-xl mx-auto text-center mb-14">
       <h3 class="font-heading text-xl text-white mb-2">{t('newsletter.heading')}</h3>
-      <p class="text-sm text-white/60 mb-5">Evidenzbasierte Impulse zu Hormonen, Training und Ernährung — direkt in dein Postfach.</p>
+      <p class="text-sm text-white/60 mb-5">{t('newsletter.subtitle', locale)}</p>
       <form
         id={nlFormId}
         class="flex flex-col sm:flex-row gap-3"
@@ -59,7 +59,7 @@ const nlPayloadJson = serializePayload(buildNewsletterPayload('', { route: 'foot
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-8">
 
       <div>
-        <a href="/" class="font-heading text-xl text-white hover:text-primary-light transition-colors">
+        <a href={localizePath('/', locale)} class="font-heading text-xl text-white hover:text-primary-light transition-colors">
           {siteConfig.name}
         </a>
         <p class="mt-3 text-sm text-white/60 leading-relaxed">
@@ -108,7 +108,7 @@ const nlPayloadJson = serializePayload(buildNewsletterPayload('', { route: 'foot
         </h3>
         <ul class="space-y-2.5">
           {navItems
-            .find((item) => item.href === '/angebot')
+            .find((item) => item.label === t('nav.angebot', locale))
             ?.children?.map((child) => (
               <li>
                 <a href={child.href} class="text-sm text-white/70 hover:text-primary-light transition-colors">
@@ -119,32 +119,32 @@ const nlPayloadJson = serializePayload(buildNewsletterPayload('', { route: 'foot
         </ul>
 
         <h3 class="text-sm font-semibold uppercase tracking-wider text-white/60 mb-4 mt-8">
-          Wissen
+          {t('general.wissen', locale)}
         </h3>
         <ul class="space-y-2.5">
           <li>
-            <a href="/themen" class="text-sm text-white/70 hover:text-primary-light transition-colors">
-              {t('nav.themen')}
+            <a href={localizePath('/themen', locale)} class="text-sm text-white/70 hover:text-primary-light transition-colors">
+              {t('nav.themen', locale)}
             </a>
           </li>
           <li>
-            <a href="/blog" class="text-sm text-white/70 hover:text-primary-light transition-colors">
-              {t('nav.blog')}
+            <a href={localizePath('/blog', locale)} class="text-sm text-white/70 hover:text-primary-light transition-colors">
+              {t('nav.blog', locale)}
             </a>
           </li>
           <li>
-            <a href="/glossar" class="text-sm text-white/70 hover:text-primary-light transition-colors">
-              {t('nav.glossar')}
+            <a href={localizePath('/glossar', locale)} class="text-sm text-white/70 hover:text-primary-light transition-colors">
+              {t('nav.glossar', locale)}
             </a>
           </li>
           <li>
-            <a href="/masterclass/hormone-histamin-zyklus-superpower" class="text-sm text-white/70 hover:text-primary-light transition-colors">
-              Kostenlose Masterclass
+            <a href={localizePath('/masterclass/hormone-histamin-zyklus-superpower', locale)} class="text-sm text-white/70 hover:text-primary-light transition-colors">
+              {t('general.freeMasterclass', locale)}
             </a>
           </li>
           <li>
-            <a href="/faq" class="text-sm text-white/70 hover:text-primary-light transition-colors">
-              {t('nav.faq')}
+            <a href={localizePath('/faq', locale)} class="text-sm text-white/70 hover:text-primary-light transition-colors">
+              {t('nav.faq', locale)}
             </a>
           </li>
         </ul>
@@ -152,23 +152,23 @@ const nlPayloadJson = serializePayload(buildNewsletterPayload('', { route: 'foot
 
       <div>
         <h3 class="text-sm font-semibold uppercase tracking-wider text-white/60 mb-4">
-          {t('nav.about')}
+          {t('nav.about', locale)}
         </h3>
         <ul class="space-y-2.5">
           <li>
-            <a href="/ueber" class="text-sm text-white/70 hover:text-primary-light transition-colors">
-              {t('nav.about')}
+            <a href={localizePath('/ueber', locale)} class="text-sm text-white/70 hover:text-primary-light transition-colors">
+              {t('nav.about', locale)}
             </a>
           </li>
           <li>
-            <a href="/kontakt" class="text-sm text-white/70 hover:text-primary-light transition-colors">
-              {t('nav.contact')}
+            <a href={localizePath('/kontakt', locale)} class="text-sm text-white/70 hover:text-primary-light transition-colors">
+              {t('nav.contact', locale)}
             </a>
           </li>
         </ul>
 
         <h3 class="text-sm font-semibold uppercase tracking-wider text-white/60 mb-4 mt-8">
-          Kontakt
+          {t('general.kontakt', locale)}
         </h3>
         <ul class="space-y-3">
           <li>
@@ -191,14 +191,14 @@ const nlPayloadJson = serializePayload(buildNewsletterPayload('', { route: 'foot
         &copy; {year} {siteConfig.name}. {t('footer.rights')}.
       </p>
       <div class="flex items-center gap-4">
-        <a href="/datenschutz" class="text-xs text-white/70 hover:text-white transition-colors">
-          {t('footer.privacy')}
+        <a href={localizePath('/datenschutz', locale)} class="text-xs text-white/70 hover:text-white transition-colors">
+          {t('footer.privacy', locale)}
         </a>
-        <a href="/impressum" class="text-xs text-white/70 hover:text-white transition-colors">
-          {t('footer.impressum')}
+        <a href={localizePath('/impressum', locale)} class="text-xs text-white/70 hover:text-white transition-colors">
+          {t('footer.impressum', locale)}
         </a>
-        <a href="/agb" class="text-xs text-white/70 hover:text-white transition-colors">
-          {t('footer.agb')}
+        <a href={localizePath('/agb', locale)} class="text-xs text-white/70 hover:text-white transition-colors">
+          {t('footer.agb', locale)}
         </a>
       </div>
     </div>

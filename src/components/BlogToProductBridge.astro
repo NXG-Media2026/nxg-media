@@ -16,13 +16,16 @@
 import { getCollection } from 'astro:content';
 import { getCluster } from '../lib/clusters';
 import { trackOnClick } from '../lib/analytics';
+import { t, getCollectionBasePath } from '../i18n/utils';
+import type { Locale } from '../data/site';
 
 interface Props {
   clusterSlug: string;
   sourcePageSlug: string;
+  locale?: Locale;
 }
 
-const { clusterSlug, sourcePageSlug } = Astro.props;
+const { clusterSlug, sourcePageSlug, locale = 'de' } = Astro.props;
 
 // Resolve cluster → primary product
 const cluster = getCluster(clusterSlug);
@@ -36,10 +39,12 @@ if (primaryProductSlug) {
 }
 
 // Analytics
+const productBasePath = getCollectionBasePath('produkte', locale);
+
 const analyticsProps = product ? {
   page_type: 'article' as const,
   page_slug: sourcePageSlug,
-  locale: 'de',
+  locale,
   product: product.data.pageSlug,
   product_type: product.data.productType || 'guide',
   product_cluster: clusterSlug,
@@ -67,11 +72,11 @@ const analyticsProps = product ? {
         <div class="flex flex-col items-start md:items-end gap-3 shrink-0">
           <span class="text-2xl font-heading font-bold text-text">{product.data.price} &euro;</span>
           <a
-            href={`/produkte/${product.data.pageSlug}`}
+            href={`${productBasePath}/${product.data.pageSlug}`}
             class="inline-flex items-center px-6 py-3 text-sm font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-md"
             onclick={trackOnClick('product_cta_click', analyticsProps!)}
           >
-            Mehr erfahren
+            {t('cta.learnMore', locale)}
             <svg class="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
             </svg>

@@ -1,7 +1,6 @@
 ---
-import { siteConfig } from '../data/site';
+import { siteConfig, type Locale } from '../data/site';
 import { getTranslatedPath } from '../i18n/utils';
-import type { Locale } from '../data/site';
 
 interface Props {
   locale: Locale;
@@ -9,11 +8,38 @@ interface Props {
 }
 
 const { locale, currentPath } = Astro.props;
-const showSwitcher = siteConfig.locales.length > 1;
+const showSwitcher = siteConfig.languageSwitcherEnabled;
+
+const localeLabels: Record<Locale, string> = {
+  de: 'DE',
+  en: 'EN',
+};
+
+const alternates = showSwitcher
+  ? siteConfig.locales
+      .filter((l) => l !== locale)
+      .map((targetLocale) => ({
+        locale: targetLocale,
+        label: localeLabels[targetLocale] ?? targetLocale.toUpperCase(),
+        href: getTranslatedPath(currentPath, targetLocale),
+      }))
+  : [];
 ---
 
 {showSwitcher && (
-  <span class="text-xs text-text-muted">
-    {locale.toUpperCase()}
-  </span>
+  <div class="flex items-center gap-1.5 text-xs">
+    <span class="font-medium text-text">{localeLabels[locale]}</span>
+    {alternates.map(({ label, href }) => (
+      <>
+        <span class="text-border">/</span>
+        <a
+          href={href}
+          class="text-text-muted hover:text-accent transition-colors"
+          hreflang={label.toLowerCase()}
+        >
+          {label}
+        </a>
+      </>
+    ))}
+  </div>
 )}

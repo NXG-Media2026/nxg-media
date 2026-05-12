@@ -14,6 +14,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { parse as parseYaml } from 'yaml';
 import { getCollection } from 'astro:content';
+import type { Locale } from '../data/site';
 
 // ─── Types ───────────────────────────────────────────────────────
 
@@ -49,6 +50,15 @@ export interface ClusterAnalytics {
   primarySuccessEvent: string;
   secondarySuccessEvents: string[];
   funnelOrder: string[];
+}
+
+export interface ClusterLocaleOverrides {
+  hubSlug: string;
+  title: string;
+  shortTitle: string;
+  citableDefinition: string;
+  hubIntro: string;
+  hubFaq: ClusterFaqItem[];
 }
 
 export interface ClusterConfig {
@@ -90,6 +100,9 @@ export interface ClusterConfig {
 
   // Analytics
   analytics: ClusterAnalytics;
+
+  // Locale overrides (optional)
+  locales?: Partial<Record<string, Partial<ClusterLocaleOverrides>>>;
 }
 
 // ─── YAML loading ────────────────────────────────────────────────
@@ -118,6 +131,27 @@ export function getCluster(slug: string): ClusterConfig | null {
   const config = parseYaml(raw) as ClusterConfig;
   clusterCache.set(slug, config);
   return config;
+}
+
+/**
+ * Load a cluster config with locale-specific overrides applied.
+ * Falls back to the base (German) fields if no locale override exists.
+ */
+export function getClusterLocalized(slug: string, locale: Locale = 'de'): ClusterConfig | null {
+  const base = getCluster(slug);
+  if (!base) return null;
+  if (locale === 'de' || !base.locales?.[locale]) return base;
+
+  const overrides = base.locales[locale]!;
+  return {
+    ...base,
+    ...(overrides.hubSlug !== undefined && { hubSlug: overrides.hubSlug }),
+    ...(overrides.title !== undefined && { title: overrides.title }),
+    ...(overrides.shortTitle !== undefined && { shortTitle: overrides.shortTitle }),
+    ...(overrides.citableDefinition !== undefined && { citableDefinition: overrides.citableDefinition }),
+    ...(overrides.hubIntro !== undefined && { hubIntro: overrides.hubIntro }),
+    ...(overrides.hubFaq !== undefined && { hubFaq: overrides.hubFaq }),
+  };
 }
 
 /**
@@ -150,27 +184,23 @@ export function getAllClusters(): ClusterConfig[] {
  * featuredArticles in cluster YAML controls ordering/highlighting only,
  * never membership.
  */
-export async function getClusterArticles(clusterSlug: string) {
+export async function getClusterArticles(clusterSlug: string, locale?: Locale) {
   const cluster = getCluster(clusterSlug);
   if (!cluster) return [];
 
   const articles = await getCollection('artikel');
 
-  // Match articles by explicit cluster membership in frontmatter
   const matched = articles.filter((article) => {
     const data = article.data as Record<string, unknown>;
-    // Primary cluster membership
+    if (locale && data.locale && data.locale !== locale) return false;
     if (data.cluster === clusterSlug) return true;
-    // Secondary cluster membership
     if (Array.isArray(data.secondaryClusters) && data.secondaryClusters.includes(clusterSlug)) return true;
     return false;
   });
 
-  // Exclude items explicitly excluded from hub
   const excluded = new Set(cluster.excludeFromHub);
   const filtered = matched.filter((a) => !excluded.has(a.data.pageSlug));
 
-  // Sort featured articles first
   const featuredSlugs = cluster.featuredArticles;
   return filtered.sort((a, b) => {
     const aIdx = featuredSlugs.indexOf(a.data.pageSlug);
@@ -185,21 +215,20 @@ export async function getClusterArticles(clusterSlug: string) {
  * Get glossary terms belonging to a cluster.
  * Reads from the glossar content collection (type: 'data', YAML files).
  */
-export async function getClusterGlossary(clusterSlug: string) {
+export async function getClusterGlossary(clusterSlug: string, locale?: Locale) {
   const cluster = getCluster(clusterSlug);
   if (!cluster) return [];
 
   const glossarEntries = await getCollection('glossar');
   if (!glossarEntries || glossarEntries.length === 0) return [];
 
-  // Match by primary or secondary cluster membership
   const matched = glossarEntries.filter((entry) => {
+    if (locale && entry.data.locale && entry.data.locale !== locale) return false;
     if (entry.data.cluster === clusterSlug) return true;
     if (Array.isArray(entry.data.secondaryClusters) && entry.data.secondaryClusters.includes(clusterSlug)) return true;
     return false;
   });
 
-  // Sort featured terms first (per cluster YAML ordering)
   const featuredSlugs = cluster.featuredGlossaryTerms;
   return matched.sort((a, b) => {
     const aIdx = featuredSlugs.indexOf(a.data.slug);
@@ -212,12 +241,19 @@ export async function getClusterGlossary(clusterSlug: string) {
  * Get the primary product for a cluster.
  * Returns the product collection entry or null.
  */
-export async function getClusterPrimaryProduct(clusterSlug: string) {
+export async function getClusterPrimaryProduct(clusterSlug: string, locale?: Locale) {
   const cluster = getCluster(clusterSlug);
   if (!cluster?.primaryProduct) return null;
 
   const products = await getCollection('produkte');
-  return products.find((p) => p.data.pageSlug === cluster.primaryProduct) ?? null;
+  const candidates = products.filter((p) => p.data.pageSlug === cluster.primaryProduct);
+
+  if (locale && candidates.length > 1) {
+    const localeMatch = candidates.find((p) => (p.data as Record<string, unknown>).locale === locale);
+    if (localeMatch) return localeMatch;
+  }
+
+  return candidates[0] ?? null;
 }
 
 /**
@@ -237,9 +273,9 @@ export function getClusterBridges(
 }
 
 /**
- * Get the hub FAQ items for a cluster.
+ * Get the hub FAQ items for a cluster, with locale support.
  */
-export function getClusterFaq(clusterSlug: string): ClusterFaqItem[] {
-  const cluster = getCluster(clusterSlug);
+export function getClusterFaq(clusterSlug: string, locale: Locale = 'de'): ClusterFaqItem[] {
+  const cluster = getClusterLocalized(clusterSlug, locale);
   return cluster?.hubFaq ?? [];
 }

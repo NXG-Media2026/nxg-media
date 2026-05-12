@@ -1,9 +1,8 @@
 ---
 import { navigation } from '../data/navigation';
-import { siteConfig } from '../data/site';
-import { t } from '../i18n/utils';
+import { siteConfig, type Locale } from '../data/site';
+import { t, localizePath } from '../i18n/utils';
 import LanguageSwitcher from './LanguageSwitcher.astro';
-import type { Locale } from '../data/site';
 
 interface Props {
   locale?: Locale;
@@ -12,7 +11,7 @@ interface Props {
 
 const { locale = 'de', currentPath = '/' } = Astro.props;
 const navItems = navigation[locale];
-const showLanguageSwitcher = siteConfig.locales.length > 1;
+const showLanguageSwitcher = siteConfig.languageSwitcherEnabled;
 
 function isActive(href: string): boolean {
   if (href === '/') return currentPath === href;
@@ -24,7 +23,7 @@ function isActive(href: string): boolean {
   <div class="max-w-7xl mx-auto px-4 md:px-6">
     <div class="flex items-center justify-between h-16 md:h-20">
 
-      <a href="/" class="font-heading text-xl md:text-2xl text-text hover:text-primary transition-colors py-3 -my-1 inline-flex items-center">
+      <a href={localizePath('/', locale)} class="font-heading text-xl md:text-2xl text-text hover:text-primary transition-colors py-3 -my-1 inline-flex items-center">
         {siteConfig.name}
       </a>
 
@@ -95,10 +94,10 @@ function isActive(href: string): boolean {
         )}
 
         <a
-          href="/angebot"
+          href={localizePath('/angebot', locale)}
           class="ml-3 inline-flex items-center px-4 py-2 text-sm font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button"
         >
-          {t('cta.discover')}
+          {t('cta.discover', locale)}
         </a>
       </nav>
 
@@ -195,10 +194,10 @@ function isActive(href: string): boolean {
       )}
 
       <a
-        href="/angebot"
+        href={localizePath('/angebot', locale)}
         class="block w-full mt-4 py-3 text-center text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button"
       >
-        {t('cta.discover')}
+        {t('cta.discover', locale)}
       </a>
     </div>
   </nav>

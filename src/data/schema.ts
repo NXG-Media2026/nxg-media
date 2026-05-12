@@ -1,8 +1,14 @@
-import { siteConfig } from './site';
+import { siteConfig, type Locale } from './site';
 import type { Testimonial } from './testimonials';
+import { t } from '../i18n/utils';
+import { localizePath } from '../i18n/utils';
 
 const founderUrl = `${siteConfig.url}/ueber#${siteConfig.founder.slug}`;
 const orgId = `${siteConfig.url}#org`;
+
+function localizeUrl(path: string, locale: Locale): string {
+  return `${siteConfig.url}${localizePath(path, locale)}`;
+}
 
 function baseSameAs(): string[] {
   return Object.values(siteConfig.socials).filter((url): url is string => Boolean(url));
@@ -72,13 +78,13 @@ export function generateOrganization() {
   });
 }
 
-export function generateWebSite() {
+export function generateWebSite(locale: Locale = 'de') {
   return JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: siteConfig.name,
     url: siteConfig.url,
-    inLanguage: 'de',
+    inLanguage: locale,
   });
 }
 
@@ -188,6 +194,7 @@ export function generateArticle(article: {
   datePublished: string;
   dateModified?: string;
   image?: string;
+  locale?: Locale;
 }) {
   return JSON.stringify({
     '@context': 'https://schema.org',
@@ -197,7 +204,7 @@ export function generateArticle(article: {
     url: article.url,
     datePublished: article.datePublished,
     dateModified: article.dateModified ?? article.datePublished,
-    inLanguage: 'de',
+    inLanguage: article.locale ?? 'de',
     mainEntityOfPage: { '@type': 'WebPage', '@id': article.url },
     author: { '@id': founderUrl },
     publisher: { '@id': orgId },
@@ -207,44 +214,45 @@ export function generateArticle(article: {
   });
 }
 
-export function generateDefinedTermSet(terms: Array<{
-  term: string;
-  definition: string;
-  slug: string;
-  hasPage?: boolean;
-}>) {
+export function generateDefinedTermSet(
+  terms: Array<{ term: string; definition: string; slug: string; hasPage?: boolean }>,
+  locale: Locale = 'de',
+) {
+  const glossaryName = t('schema.glossaryName', locale);
+  const glossaryUrl = localizeUrl('/glossar', locale);
+
   return JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'DefinedTermSet',
-    name: 'Glossar der Frauen-Gesundheit',
-    url: `${siteConfig.url}/glossar`,
-    hasDefinedTerm: terms.map((t) => ({
+    name: glossaryName,
+    url: glossaryUrl,
+    hasDefinedTerm: terms.map((term) => ({
       '@type': 'DefinedTerm',
-      name: t.term,
-      description: t.definition,
-      url: t.hasPage
-        ? `${siteConfig.url}/glossar/${t.slug}`
-        : `${siteConfig.url}/glossar#${t.slug}`,
+      name: term.term,
+      description: term.definition,
+      url: term.hasPage
+        ? localizeUrl(`/glossar/${term.slug}`, locale)
+        : `${glossaryUrl}#${term.slug}`,
     })),
   });
 }
 
-export function generateDefinedTerm(term: {
-  term: string;
-  definition: string;
-  slug: string;
-  url?: string;
-}) {
+export function generateDefinedTerm(
+  term: { term: string; definition: string; slug: string; url?: string },
+  locale: Locale = 'de',
+) {
+  const glossaryName = t('schema.glossaryName', locale);
+
   return JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'DefinedTerm',
     name: term.term,
     description: term.definition,
-    url: term.url || `${siteConfig.url}/glossar/${term.slug}`,
+    url: term.url || localizeUrl(`/glossar/${term.slug}`, locale),
     inDefinedTermSet: {
       '@type': 'DefinedTermSet',
-      name: 'Glossar der Frauen-Gesundheit',
-      url: `${siteConfig.url}/glossar`,
+      name: glossaryName,
+      url: localizeUrl('/glossar', locale),
     },
   });
 }

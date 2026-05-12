@@ -4,7 +4,8 @@ export const siteConfig = {
   tagline: 'Frauen-Gesundheit — wissenschaftlich fundiert, ohne Bro-Science',
   url: 'https://docveri.de',
   defaultLocale: 'de' as const,
-  locales: ['de'] as const,
+  locales: ['de', 'en'] as const,
+  languageSwitcherEnabled: false,
 
   analytics: {
     ga4MeasurementId: '',
