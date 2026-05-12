@@ -18,6 +18,8 @@ recommendedProductSlugs:
   - "food-guide"
 recommendedCoachingSlugs:
   - "eins-zu-eins"
+recommendedClusterSlugs:
+  - "histamin"
 faq:
   - q: "Ab wann beginnt die Perimenopause?"
     a: "Die Perimenopause kann bereits ab Mitte 30 beginnen. Viele Frauen bemerken die ersten Veränderungen zwischen 40 und 45. Die Dauer variiert — von wenigen Jahren bis zu einem Jahrzehnt."

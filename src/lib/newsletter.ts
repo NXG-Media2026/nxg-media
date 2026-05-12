@@ -1,3 +1,8 @@
+/**
+ * @deprecated Use emailCapture.ts instead. This file is kept for reference
+ * only and is no longer imported by any component.
+ * See src/lib/emailCapture.ts for the unified email capture abstraction.
+ */
 type NewsletterProvider = 'kit' | 'activecampaign' | 'mailerlite' | 'brevo' | 'placeholder';
 
 const provider = (import.meta.env.NEWSLETTER_PROVIDER || 'placeholder') as NewsletterProvider;

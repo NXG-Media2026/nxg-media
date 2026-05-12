@@ -2,6 +2,7 @@
 import BaseLayout from './BaseLayout.astro';
 import BreadcrumbNav from '../components/BreadcrumbNav.astro';
 import FAQAccordion from '../components/FAQAccordion.astro';
+import CalendlyEmbed from '../components/CalendlyEmbed.astro';
 import CTABand from '../components/CTABand.astro';
 import { siteConfig } from '../data/site';
 import { generateService, generateBreadcrumbs, generateFAQPage } from '../data/schema';
@@ -167,6 +168,11 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
       pageSlug={coaching.pageSlug}
     />
   )}
+
+  <CalendlyEmbed
+    pageType="coaching"
+    pageSlug={coaching.pageSlug}
+  />
 
   <CTABand
     title="Bereit für den nächsten Schritt?"

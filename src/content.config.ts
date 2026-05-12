@@ -27,6 +27,11 @@ const produkte = defineCollection({
       icon: z.string().optional(),
     })),
     targetAudience: z.array(z.string()),
+    // Cluster membership (per CLUSTER_ARCHITECTURE_V1.2)
+    cluster: z.string().optional(),
+    productType: z.enum(['guide', 'bundle', 'course', 'membership', 'micro-product']).optional(),
+    // "Not for you if" — honest positioning (hybrid sales page)
+    notForYou: z.array(z.string()).optional(),
     faq: z.array(faqItem).default([]),
     featuredTestimonialIds: z.array(z.string()).optional(),
     relatedProductSlugs: z.array(z.string()).optional(),
@@ -62,6 +67,10 @@ const artikel = defineCollection({
     title: z.string(),
     pageSlug: z.string(),
     pillarSlug: z.string(),
+    // Cluster membership (per CLUSTER_ARCHITECTURE_V1.2 §3.1)
+    // Content frontmatter owns cluster membership; cluster YAML owns strategy/routing.
+    cluster: z.string().optional(),
+    secondaryClusters: z.array(z.string()).optional(),
     publishedDate: z.date(),
     lastReviewedDate: z.date(),
     excerpt: z.string().max(200),
@@ -101,6 +110,8 @@ const archetypen = defineCollection({
     commonSymptoms: z.array(z.string()),
     recommendedProductSlugs: z.array(z.string()),
     recommendedCoachingSlugs: z.array(z.string()),
+    // Cluster bridging: quiz result → cluster hub (CLUSTER_ARCHITECTURE_V1.2)
+    recommendedClusterSlugs: z.array(z.string()).optional(),
     faq: z.array(faqItem).default([]),
     seo: seoFields,
   }),
@@ -121,6 +132,21 @@ const mitgliedschaft = defineCollection({
     ctaUrl: z.string().optional(),
     seo: seoFields,
     isLive: z.boolean().default(false),
+  }),
+});
+
+const glossar = defineCollection({
+  type: 'data',
+  schema: z.object({
+    term: z.string(),
+    slug: z.string(),
+    cluster: z.string().optional(),
+    secondaryClusters: z.array(z.string()).optional(),
+    definition: z.string(),
+    longDescription: z.string().optional(),
+    relatedTerms: z.array(z.string()).optional(),
+    linkedArticle: z.string().optional(),
+    seo: seoFields.optional(),
   }),
 });
 
@@ -148,4 +174,5 @@ export const collections = {
   archetypen,
   mitgliedschaft,
   leadMagnets,
+  glossar,
 };

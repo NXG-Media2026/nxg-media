@@ -6,6 +6,8 @@ currency: EUR
 plugAndPayUrl: "https://example.com/checkout/histamin-bundle"
 sortOrder: 0
 heroImage: ../../assets/images/products/histamin-bundle.png
+cluster: "histamin"
+productType: "bundle"
 shortDescription: "Erste Hilfe + Food Guide + Smoothie-Guide: das komplette Histamin-Paket für nur 59 € statt einzeln über 80 €."
 longDescription: "Das Histamin-Bundle vereint alles, was du brauchst, um Histamin zu senken, deine Ernährung anzupassen und deinen Körper zu unterstützen — in einem Paket, zum besten Preis."
 includes:
@@ -21,6 +23,10 @@ targetAudience:
   - "Frauen in der Perimenopause, deren Symptome durch Histamin verstärkt werden"
   - "Frauen, die Ernährung, Wissen und praktische Rezepte in einem Paket wollen"
   - "Alle, die beim Bundle-Preis über 20 € sparen möchten"
+notForYou:
+  - "Du suchst eine medizinische Diagnose oder ein Ersatz für ärztliche Behandlung"
+  - "Du erwartest eine Wunderlösung ohne eigene Umsetzung"
+  - "Du hast bereits ein umfassendes Histamin-Programm und brauchst nur einzelne Rezepte"
 relatedProductSlugs:
   - "perimenopause-protocol"
   - "hormon-reset-guide"

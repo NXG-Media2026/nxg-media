@@ -1,0 +1,293 @@
+---
+/**
+ * ClusterHubLayout — auto-rendered hub page for a content cluster.
+ * Reads from cluster YAML config + resolves content graph at build time.
+ *
+ * Based on CLUSTER_ARCHITECTURE_V1.2.md §4.1
+ */
+import BaseLayout from './BaseLayout.astro';
+import BreadcrumbNav from '../components/BreadcrumbNav.astro';
+import DefinitionBlock from '../components/DefinitionBlock.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import CTABand from '../components/CTABand.astro';
+import { siteConfig } from '../data/site';
+import { generateBreadcrumbs, generateFAQPage } from '../data/schema';
+import { t } from '../i18n/utils';
+
+import type { ClusterConfig, CrossClusterLink } from '../lib/clusters';
+import {
+  getCluster,
+  getClusterArticles,
+  getClusterGlossary,
+  getClusterPrimaryProduct,
+  getClusterBridges,
+  getClusterFaq,
+} from '../lib/clusters';
+
+interface Props {
+  cluster: ClusterConfig;
+}
+
+const { cluster } = Astro.props;
+const pageUrl = `/themen/${cluster.hubSlug}`;
+
+// ─── Resolve content graph ──────────────────────────────────────
+const articles = await getClusterArticles(cluster.slug);
+const glossaryTerms = await getClusterGlossary(cluster.slug);
+const primaryProduct = await getClusterPrimaryProduct(cluster.slug);
+const bridges = getClusterBridges(cluster.slug, 'hub');
+const faqItems = getClusterFaq(cluster.slug);
+
+// Resolve which cross-cluster bridges have existing hub pages
+const resolvedBridges = bridges.map((bridge) => {
+  const targetCluster = getCluster(bridge.cluster);
+  return {
+    ...bridge,
+    href: targetCluster ? `/themen/${targetCluster.hubSlug}` : null,
+  };
+});
+
+// Map cluster FAQ format { question, answer } → FAQAccordion format { q, a }
+const faqForComponent = faqItems.map((item) => ({
+  q: item.question,
+  a: item.answer,
+}));
+
+// ─── Breadcrumbs ────────────────────────────────────────────────
+const breadcrumbs = [
+  { label: t('breadcrumb.home'), href: '/' },
+  { label: t('breadcrumb.themen'), href: '/themen' },
+  { label: cluster.shortTitle || cluster.title },
+];
+
+const breadcrumbSchema = breadcrumbs.map((b) => ({
+  name: b.label,
+  url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}${pageUrl}`,
+}));
+
+// ─── SEO ────────────────────────────────────────────────────────
+const seoTitle = `${cluster.title} — wissenschaftlich fundiert | ${siteConfig.name}`;
+const seoDescription = cluster.citableDefinition.trim().slice(0, 155);
+---
+
+<BaseLayout
+  title={seoTitle}
+  description={seoDescription}
+  schemas={[
+    generateBreadcrumbs(breadcrumbSchema),
+    ...(faqForComponent.length > 0 ? [generateFAQPage(faqForComponent)] : []),
+  ]}
+  locale="de"
+>
+  <BreadcrumbNav items={breadcrumbs} />
+
+  {/* ─── Hero / Definition ─────────────────────────────────────── */}
+  <DefinitionBlock
+    term={cluster.title}
+    definition={cluster.citableDefinition}
+  />
+
+  {/* ─── Hub Intro (Verena's editorial voice) ──────────────────── */}
+  {cluster.hubIntro && cluster.hubIntro.trim() !== '' && (
+    <section class="py-12 md:py-16">
+      <div class="max-w-3xl mx-auto px-4 md:px-6">
+        <div class="prose prose-lg max-w-none prose-headings:font-heading prose-headings:text-text prose-p:text-text-muted prose-p:leading-relaxed">
+          <p set:html={cluster.hubIntro} />
+        </div>
+      </div>
+    </section>
+  )}
+
+  {/* ─── Featured Articles ─────────────────────────────────────── */}
+  {articles.length > 0 && (
+    <section class="py-12 md:py-16 lg:py-20 bg-bg-alt">
+      <div class="max-w-4xl mx-auto px-4 md:px-6">
+        <h2 class="font-heading text-2xl md:text-3xl text-text mb-8 md:mb-12">
+          Artikel zu {cluster.shortTitle || cluster.title}
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {articles.map((article, idx) => (
+            <a
+              href={`/blog/${article.data.pageSlug}`}
+              class:list={[
+                'group block bg-white border border-border rounded-card overflow-hidden',
+                'hover:border-accent/30 hover:shadow-lg transition-all duration-300',
+                'js-reveal',
+              ]}
+              style={`--reveal-delay: ${idx * 100}ms`}
+            >
+              {article.data.heroImage && (
+                <div class="aspect-[16/10] overflow-hidden">
+                  <img
+                    src={typeof article.data.heroImage === 'string' ? article.data.heroImage : article.data.heroImage.src}
+                    alt={article.data.title}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              )}
+              <div class="p-6">
+                <h3 class="font-heading text-lg md:text-xl text-text mb-2 group-hover:text-accent transition-colors">
+                  {article.data.title}
+                </h3>
+                <p class="text-sm text-text-muted leading-relaxed mb-3 line-clamp-3">
+                  {article.data.excerpt}
+                </p>
+                <div class="flex items-center justify-between">
+                  <span class="text-xs text-text-muted">
+                    {article.data.readingTime} Min. Lesezeit
+                  </span>
+                  <span class="inline-flex items-center text-sm font-medium text-accent-dark group-hover:underline underline-offset-2">
+                    Lesen
+                    <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {/* ─── Primary Product ───────────────────────────────────────── */}
+  {primaryProduct && (
+    <section class="py-12 md:py-16 lg:py-20">
+      <div class="max-w-4xl mx-auto px-4 md:px-6">
+        <div class="bg-white border border-border rounded-card overflow-hidden md:flex items-stretch js-reveal">
+          {primaryProduct.data.heroImage && (
+            <div class="md:w-2/5 overflow-hidden">
+              <img
+                src={typeof primaryProduct.data.heroImage === 'string' ? primaryProduct.data.heroImage : primaryProduct.data.heroImage.src}
+                alt={primaryProduct.data.title}
+                class="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          )}
+          <div class:list={['p-6 md:p-8 flex flex-col justify-center', primaryProduct.data.heroImage ? 'md:w-3/5' : 'w-full']}>
+            <span class="text-xs font-medium text-accent uppercase tracking-wider mb-2">Empfohlen</span>
+            <h2 class="font-heading text-xl md:text-2xl text-text mb-3">
+              {primaryProduct.data.title}
+            </h2>
+            <p class="text-sm text-text-muted leading-relaxed mb-4">
+              {primaryProduct.data.shortDescription}
+            </p>
+            <div class="flex items-center gap-4">
+              <a
+                href={`/produkte/${primaryProduct.data.pageSlug}`}
+                class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button"
+              >
+                Mehr erfahren
+              </a>
+              <span class="text-lg font-medium text-text">
+                {primaryProduct.data.price} &euro;
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {/* ─── Glossary Terms ────────────────────────────────────────── */}
+  {glossaryTerms.length > 0 && (
+    <section class="py-12 md:py-16 bg-bg-alt">
+      <div class="max-w-3xl mx-auto px-4 md:px-6">
+        <h2 class="font-heading text-2xl md:text-3xl text-text mb-8">
+          Glossar
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {glossaryTerms.map((entry) => (
+            <a
+              href={`/glossar/${entry.data.slug}`}
+              class="group block bg-white rounded-card p-5 border border-border hover:border-accent/30 hover:shadow-lg transition-all duration-300"
+            >
+              <h3 class="font-medium text-text mb-1 group-hover:text-accent transition-colors">
+                {entry.data.term}
+              </h3>
+              <p class="text-sm text-text-muted leading-relaxed line-clamp-3">
+                {entry.data.definition}
+              </p>
+              <span class="inline-flex items-center mt-2 text-xs font-medium text-accent-dark group-hover:underline underline-offset-2">
+                Definition lesen
+                <svg class="w-3 h-3 ml-1 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {/* ─── Cross-Cluster Bridges ─────────────────────────────────── */}
+  {resolvedBridges.length > 0 && (
+    <section class="py-12 md:py-16">
+      <div class="max-w-3xl mx-auto px-4 md:px-6">
+        <h2 class="font-heading text-2xl md:text-3xl text-text mb-8">
+          Verwandte Themen
+        </h2>
+        <div class="space-y-4">
+          {resolvedBridges.map((bridge) => {
+            const inner = (
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center shrink-0 mt-0.5">
+                  <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-medium text-text mb-1 capitalize">{bridge.cluster}</h3>
+                  <p class="text-sm text-text-muted leading-relaxed">
+                    {bridge.bridgeText}
+                  </p>
+                </div>
+              </div>
+            );
+
+            return bridge.href ? (
+              <a
+                href={bridge.href}
+                class="block bg-white border border-border rounded-card p-6 js-reveal hover:border-accent/30 hover:shadow-lg transition-all duration-300"
+              >
+                {inner}
+              </a>
+            ) : (
+              <div class="bg-white border border-border rounded-card p-6 js-reveal">
+                {inner}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {/* ─── FAQ ───────────────────────────────────────────────────── */}
+  {faqForComponent.length > 0 && (
+    <FAQAccordion
+      items={faqForComponent}
+      locale="de"
+      pageType="pillar"
+      pageSlug={cluster.hubSlug}
+    />
+  )}
+
+  {/* ─── CTA ───────────────────────────────────────────────────── */}
+  <CTABand
+    title={`Mehr zum Thema ${cluster.shortTitle || cluster.title}?`}
+    subtitle="Entdecke meine Produkte und Coaching-Angebote — wissenschaftlich fundiert und auf dich zugeschnitten."
+    ctaText="Angebot entdecken"
+    ctaHref="/angebot"
+    eventName="product_cta_click"
+    locale="de"
+    pageType="pillar"
+    pageSlug={cluster.hubSlug}
+  />
+</BaseLayout>

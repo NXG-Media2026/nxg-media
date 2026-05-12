@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { quizQuestions, calculateResult, archetypeLabels, type ArchetypeSlug } from '../data/quiz';
+import { buildQuizPayload, submitEmailCapture } from '../lib/emailCapture';
 
 type Phase = 'quiz' | 'email' | 'result';
 
@@ -9,6 +10,8 @@ export default function Quiz() {
   const [phase, setPhase] = useState<Phase>('quiz');
   const [email, setEmail] = useState('');
   const [result, setResult] = useState<ArchetypeSlug | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const question = quizQuestions[currentQ];
   const totalQuestions = quizQuestions.length;
@@ -18,12 +21,15 @@ export default function Quiz() {
     const newAnswers = { ...answers, [currentQ]: answerIdx };
     setAnswers(newAnswers);
 
-    if (typeof window !== 'undefined' && typeof (window as any).trackEvent === 'function') {
-      (window as any).trackEvent('quiz_started', {
-        page_type: 'quiz',
-        page_slug: '/quiz',
-        locale: 'de',
-      });
+    // Fire quiz_started only once — on the very first answered question
+    if (Object.keys(answers).length === 0) {
+      if (typeof window !== 'undefined' && typeof (window as any).trackEvent === 'function') {
+        (window as any).trackEvent('quiz_started', {
+          page_type: 'quiz',
+          page_slug: '/quiz',
+          locale: 'de',
+        });
+      }
     }
 
     if (currentQ < totalQuestions - 1) {
@@ -41,20 +47,40 @@ export default function Quiz() {
     }
   }
 
-  function handleEmailSubmit(e: React.FormEvent) {
+  async function handleEmailSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!email) return;
+    if (!email || isSubmitting) return;
 
-    if (typeof window !== 'undefined' && typeof (window as any).trackEvent === 'function') {
-      (window as any).trackEvent('quiz_email_captured', {
-        page_type: 'quiz',
-        page_slug: '/quiz',
-        locale: 'de',
-        provider: 'placeholder',
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      // Submit to email capture layer with archetype context
+      const payload = buildQuizPayload(email, {
+        archetype: result ?? undefined,
       });
-    }
+      const captureResult = await submitEmailCapture(payload);
 
-    setPhase('result');
+      if (!captureResult.ok) {
+        setSubmitError(captureResult.error || 'Etwas ist schiefgelaufen. Bitte versuche es erneut.');
+        setIsSubmitting(false);
+        return;
+      }
+
+      if (typeof window !== 'undefined' && typeof (window as any).trackEvent === 'function') {
+        (window as any).trackEvent('quiz_email_captured', {
+          page_type: 'quiz',
+          page_slug: '/quiz',
+          locale: 'de',
+          provider: captureResult.placeholder ? 'placeholder' : 'esp',
+        });
+      }
+
+      setPhase('result');
+    } catch {
+      setSubmitError('Etwas ist schiefgelaufen. Bitte versuche es erneut.');
+      setIsSubmitting(false);
+    }
   }
 
   function handleSkipEmail() {
@@ -118,19 +144,27 @@ export default function Quiz() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Deine E-Mail-Adresse"
             required
-            className="w-full px-4 py-3 rounded-button text-sm text-text bg-white border border-border focus:outline-none focus:ring-2 focus:ring-accent"
+            disabled={isSubmitting}
+            className="w-full px-4 py-3 rounded-button text-sm text-text bg-white border border-border focus:outline-none focus:ring-2 focus:ring-accent disabled:opacity-50"
           />
           <button
             type="submit"
-            className="w-full px-6 py-3 text-sm font-medium text-white bg-primary hover:bg-primary-dark rounded-button transition-colors"
+            disabled={isSubmitting}
+            className="w-full px-6 py-3 text-sm font-medium text-white bg-primary hover:bg-primary-dark rounded-button transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            Ergebnis anzeigen
+            {isSubmitting ? 'Einen Moment…' : 'Ergebnis anzeigen'}
           </button>
         </form>
+        {submitError && (
+          <p className="mt-3 text-sm text-red-600" role="alert">
+            {submitError}
+          </p>
+        )}
         <button
           type="button"
           onClick={handleSkipEmail}
-          className="mt-4 text-sm text-text-muted hover:text-text underline underline-offset-2 transition-colors"
+          disabled={isSubmitting}
+          className="mt-4 text-sm text-text-muted hover:text-text underline underline-offset-2 transition-colors disabled:opacity-50"
         >
           Ohne E-Mail fortfahren
         </button>

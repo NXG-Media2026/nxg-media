@@ -1,19 +1,61 @@
 ---
+/**
+ * Dynamic route for /themen/[slug]
+ *
+ * Generates pages from TWO sources:
+ * 1. Content collection: pillars (legacy, e.g. /themen/hormone)
+ * 2. Cluster YAML configs (new, e.g. /themen/histamin-und-hormone)
+ *
+ * Cluster hubs use hubSlug for the URL, pillar pages use pageSlug.
+ * If a slug collision ever occurs, the pillar takes precedence.
+ */
 import { getCollection } from 'astro:content';
 import PillarLayout from '../../layouts/PillarLayout.astro';
+import ClusterHubLayout from '../../layouts/ClusterHubLayout.astro';
+import { getAllClusters } from '../../lib/clusters';
 
 export async function getStaticPaths() {
+  const paths: Array<{
+    params: { slug: string };
+    props: { type: 'pillar' | 'cluster'; entry?: any; cluster?: any };
+  }> = [];
+
+  // 1. Pillar pages from content collection
   const pillars = await getCollection('pillars');
-  return pillars.map((pillar) => ({
-    params: { slug: pillar.data.pageSlug },
-    props: { entry: pillar },
-  }));
+  const pillarSlugs = new Set<string>();
+
+  for (const pillar of pillars) {
+    pillarSlugs.add(pillar.data.pageSlug);
+    paths.push({
+      params: { slug: pillar.data.pageSlug },
+      props: { type: 'pillar', entry: pillar },
+    });
+  }
+
+  // 2. Cluster hub pages from YAML configs
+  const clusters = getAllClusters();
+
+  for (const cluster of clusters) {
+    // Skip if a pillar already occupies this slug
+    if (pillarSlugs.has(cluster.hubSlug)) continue;
+
+    paths.push({
+      params: { slug: cluster.hubSlug },
+      props: { type: 'cluster', cluster },
+    });
+  }
+
+  return paths;
 }
 
-const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { type, entry, cluster } = Astro.props;
+const Content = type === 'pillar' ? (await entry.render()).Content : null;
 ---
 
-<PillarLayout pillar={entry.data}>
-  <Content />
-</PillarLayout>
+{type === 'pillar' && entry ? (
+  <PillarLayout pillar={entry.data}>
+    <Content />
+  </PillarLayout>
+) : type === 'cluster' && cluster ? (
+  <ClusterHubLayout cluster={cluster} />
+) : null}

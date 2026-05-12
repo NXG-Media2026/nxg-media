@@ -3,6 +3,7 @@ import { siteConfig } from '../data/site';
 import { navigation } from '../data/navigation';
 import { t } from '../i18n/utils';
 import type { Locale } from '../data/site';
+import { buildNewsletterPayload, serializePayload } from '../lib/emailCapture';
 
 interface Props {
   locale?: Locale;
@@ -12,6 +13,7 @@ const { locale = 'de' } = Astro.props;
 const navItems = navigation[locale];
 const year = new Date().getFullYear();
 const nlFormId = 'footer-newsletter';
+const nlPayloadJson = serializePayload(buildNewsletterPayload('', { route: 'footer' }));
 ---
 
 <footer class="bg-primary-dark text-white/90">
@@ -25,6 +27,7 @@ const nlFormId = 'footer-newsletter';
         data-page-type="page"
         data-page-slug="footer"
         data-locale={locale}
+        data-email-payload={nlPayloadJson}
       >
         <label for={`${nlFormId}-email`} class="sr-only">{t('newsletter.placeholder')}</label>
         <input
@@ -44,6 +47,9 @@ const nlFormId = 'footer-newsletter';
       </form>
       <p class="newsletter-success hidden mt-4 text-white/90 text-sm" aria-live="polite">
         {t('newsletter.success')}
+      </p>
+      <p class="newsletter-error hidden mt-4 text-red-300 text-sm" role="alert">
+        {t('newsletter.error')}
       </p>
     </div>
   </div>
@@ -198,21 +204,76 @@ const nlFormId = 'footer-newsletter';
     var form = document.getElementById('footer-newsletter');
     if (!form || form.dataset.bound) return;
     form.dataset.bound = '1';
+
+    var btn = form.querySelector('button[type="submit"]');
+    var btnText = btn ? btn.textContent : '';
+
+    function setLoading(on) {
+      if (!btn) return;
+      btn.disabled = on;
+      btn.textContent = on ? 'Einen Moment…' : btnText;
+      var input = form.querySelector('input[type="email"]');
+      if (input) input.disabled = on;
+    }
+
+    function showError() {
+      var el = form.parentElement.querySelector('.newsletter-error');
+      if (el) el.classList.remove('hidden');
+    }
+
+    function hideError() {
+      var el = form.parentElement.querySelector('.newsletter-error');
+      if (el) el.classList.add('hidden');
+    }
+
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       var email = form.querySelector('input[type="email"]').value;
       if (!email) return;
-      if (typeof trackEvent === 'function') {
-        trackEvent('newsletter_signup', {
-          page_type: 'page',
-          page_slug: 'footer',
-          locale: form.dataset.locale || 'de',
-          provider: 'placeholder',
+
+      hideError();
+      setLoading(true);
+
+      // Build payload from pre-serialized template
+      var payloadTemplate = form.dataset.emailPayload;
+      var payload = payloadTemplate ? JSON.parse(payloadTemplate) : {};
+      payload.email = email;
+
+      var provider = 'placeholder'; // TODO: read from env when ESP is configured
+
+      function onSuccess() {
+        if (typeof trackEvent === 'function') {
+          trackEvent('newsletter_signup', {
+            page_type: 'page',
+            page_slug: 'footer',
+            locale: form.dataset.locale || 'de',
+            provider: provider,
+          });
+        }
+        form.style.display = 'none';
+        var msg = form.parentElement.querySelector('.newsletter-success');
+        if (msg) msg.classList.remove('hidden');
+      }
+
+      function onError() {
+        setLoading(false);
+        showError();
+      }
+
+      if (provider === 'placeholder') {
+        console.log('[emailCapture:placeholder] newsletter_footer', JSON.stringify(payload, null, 2));
+        onSuccess();
+      } else {
+        fetch('/api/email-capture', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        }).then(function(res) {
+          if (res.ok) { onSuccess(); } else { onError(); }
+        }).catch(function() {
+          onError();
         });
       }
-      form.style.display = 'none';
-      var msg = form.parentElement.querySelector('.newsletter-success');
-      if (msg) msg.classList.remove('hidden');
     });
   })();
   </script>

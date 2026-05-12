@@ -211,6 +211,7 @@ export function generateDefinedTermSet(terms: Array<{
   term: string;
   definition: string;
   slug: string;
+  hasPage?: boolean;
 }>) {
   return JSON.stringify({
     '@context': 'https://schema.org',
@@ -221,8 +222,30 @@ export function generateDefinedTermSet(terms: Array<{
       '@type': 'DefinedTerm',
       name: t.term,
       description: t.definition,
-      url: `${siteConfig.url}/glossar#${t.slug}`,
+      url: t.hasPage
+        ? `${siteConfig.url}/glossar/${t.slug}`
+        : `${siteConfig.url}/glossar#${t.slug}`,
     })),
+  });
+}
+
+export function generateDefinedTerm(term: {
+  term: string;
+  definition: string;
+  slug: string;
+  url?: string;
+}) {
+  return JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'DefinedTerm',
+    name: term.term,
+    description: term.definition,
+    url: term.url || `${siteConfig.url}/glossar/${term.slug}`,
+    inDefinedTermSet: {
+      '@type': 'DefinedTermSet',
+      name: 'Glossar der Frauen-Gesundheit',
+      url: `${siteConfig.url}/glossar`,
+    },
   });
 }
 

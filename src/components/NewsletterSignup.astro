@@ -4,6 +4,7 @@ import { trackOnClick } from '../lib/analytics';
 import type { Locale } from '../data/site';
 import type { PageType } from '../lib/analytics';
 import { t } from '../i18n/utils';
+import { buildNewsletterPayload, serializePayload } from '../lib/emailCapture';
 
 type Variant = 'inline' | 'band';
 
@@ -26,6 +27,7 @@ const {
 } = Astro.props;
 
 const formId = `newsletter-${Math.random().toString(36).slice(2, 8)}`;
+const nlPayloadJson = serializePayload(buildNewsletterPayload('', { route: pageSlug }));
 ---
 
 {variant === 'band' ? (
@@ -43,6 +45,7 @@ const formId = `newsletter-${Math.random().toString(36).slice(2, 8)}`;
         data-page-type={pageType}
         data-page-slug={pageSlug}
         data-locale={locale}
+        data-email-payload={nlPayloadJson}
       >
         <label for={`${formId}-email`} class="sr-only">{t('newsletter.placeholder')}</label>
         <input
@@ -62,6 +65,9 @@ const formId = `newsletter-${Math.random().toString(36).slice(2, 8)}`;
       </form>
       <p class="newsletter-success hidden mt-4 text-white/90 text-sm" aria-live="polite">
         {t('newsletter.success')}
+      </p>
+      <p class="newsletter-error hidden mt-4 text-red-300 text-sm" role="alert">
+        {t('newsletter.error')}
       </p>
     </div>
   </section>
@@ -97,6 +103,9 @@ const formId = `newsletter-${Math.random().toString(36).slice(2, 8)}`;
     <p class="newsletter-success hidden mt-3 text-sm text-accent" aria-live="polite">
       {t('newsletter.success')}
     </p>
+    <p class="newsletter-error hidden mt-3 text-sm text-red-600" role="alert">
+      {t('newsletter.error')}
+    </p>
   </div>
 )}
 
@@ -105,22 +114,77 @@ const formId = `newsletter-${Math.random().toString(36).slice(2, 8)}`;
   document.querySelectorAll('form[id^="newsletter-"]').forEach(function(form) {
     if (form.dataset.bound) return;
     form.dataset.bound = '1';
+
+    var btn = form.querySelector('button[type="submit"]');
+    var btnText = btn ? btn.textContent : '';
+
+    function setLoading(on) {
+      if (!btn) return;
+      btn.disabled = on;
+      btn.textContent = on ? 'Einen Moment…' : btnText;
+      var input = form.querySelector('input[type="email"]');
+      if (input) input.disabled = on;
+    }
+
+    function showError() {
+      var el = form.parentElement.querySelector('.newsletter-error');
+      if (el) el.classList.remove('hidden');
+    }
+
+    function hideError() {
+      var el = form.parentElement.querySelector('.newsletter-error');
+      if (el) el.classList.add('hidden');
+    }
+
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       var email = form.querySelector('input[type="email"]').value;
       if (!email) return;
       var data = form.dataset;
-      if (typeof trackEvent === 'function') {
-        trackEvent('newsletter_signup', {
-          page_type: data.pageType || 'page',
-          page_slug: data.pageSlug || '/',
-          locale: data.locale || 'de',
-          provider: 'placeholder',
+
+      hideError();
+      setLoading(true);
+
+      // Build payload from pre-serialized template
+      var payloadTemplate = data.emailPayload;
+      var payload = payloadTemplate ? JSON.parse(payloadTemplate) : {};
+      payload.email = email;
+
+      var provider = 'placeholder'; // TODO: read from env when ESP is configured
+
+      function onSuccess() {
+        if (typeof trackEvent === 'function') {
+          trackEvent('newsletter_signup', {
+            page_type: data.pageType || 'page',
+            page_slug: data.pageSlug || '/',
+            locale: data.locale || 'de',
+            provider: provider,
+          });
+        }
+        form.style.display = 'none';
+        var msg = form.parentElement.querySelector('.newsletter-success');
+        if (msg) msg.classList.remove('hidden');
+      }
+
+      function onError() {
+        setLoading(false);
+        showError();
+      }
+
+      if (provider === 'placeholder') {
+        console.log('[emailCapture:placeholder] newsletter_inline', JSON.stringify(payload, null, 2));
+        onSuccess();
+      } else {
+        fetch('/api/email-capture', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        }).then(function(res) {
+          if (res.ok) { onSuccess(); } else { onError(); }
+        }).catch(function() {
+          onError();
         });
       }
-      form.style.display = 'none';
-      var msg = form.parentElement.querySelector('.newsletter-success');
-      if (msg) msg.classList.remove('hidden');
     });
   });
 })();

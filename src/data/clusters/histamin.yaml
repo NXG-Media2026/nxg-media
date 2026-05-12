@@ -1,0 +1,102 @@
+# src/data/clusters/histamin.yaml
+# Cluster config following CLUSTER_ARCHITECTURE_V1.2.md §3.1
+# Source of truth for: strategy, routing, conversion assets, analytics, audience
+# Content entries declare their own cluster membership in frontmatter.
+
+# === IDENTITY ===
+slug: histamin
+hubSlug: histamin-und-hormone
+title: "Histamin & Hormone"
+shortTitle: "Histamin"
+heroImage: "" # TBD — Verena provides
+
+# Citable definition — 25-50 words, standalone, AI-extractable
+citableDefinition: >
+  Histamin ist ein koerpereigener Botenstoff, der Immunreaktionen, Verdauung
+  und Schlaf-Wach-Rhythmus steuert. Bei vielen Frauen verstaerken sich
+  Histamin-Symptome im Zyklus, in der Perimenopause oder bei chronischem
+  Stress — weil Oestrogen, Cortisol und der Histamin-Abbau eng zusammenhaengen.
+
+# Optional editorial intro block for hub (Verena's voice)
+hubIntro: "" # TBD — Verena writes this
+
+# === CONTENT CURATION ===
+# Articles with `cluster: histamin` in frontmatter are auto-resolved.
+# featuredArticles controls ordering/highlighting on the hub.
+featuredArticles:
+  - histamin-und-hormone
+
+# Glossary entries with `cluster: histamin` in frontmatter are auto-resolved.
+featuredGlossaryTerms:
+  - histamin
+  - dao
+
+excludeFromHub: []
+
+# === HUB-LEVEL CURATED FAQ ===
+hubFaq:
+  - question: "Was ist eine Histaminintoleranz?"
+    answer: "Eine Histaminintoleranz beschreibt eine eingeschraenkte Faehigkeit, Histamin im Koerper abzubauen. Die Symptome reichen von Hautroetungen ueber Verdauungsbeschwerden bis zu Kopfschmerzen."
+  - question: "Warum veraendern sich Histamin-Symptome im weiblichen Zyklus?"
+    answer: "Oestrogen kann die Aktivitaet des Enzyms DAO senken, das Histamin im Darm abbaut. Bei vielen Frauen verstaerken sich Histamin-Symptome deshalb in der zweiten Zyklushaelfte oder in hormonellen Uebergangsphasen."
+
+# === COMMERCIAL CORE ===
+primaryProduct: histamin-bundle
+secondaryProducts:
+  - erste-hilfe-histamin
+
+crossSellProducts:
+  - perimenopause-protocol
+  - hormon-reset-guide
+
+# === CONVERSION ASSETS ===
+leadMagnets:
+  primary:
+    slug: "" # TBD — lead magnet not yet created
+    type: ""
+    title: ""
+    deliveryUrl: ""
+    emailTag: ""
+
+# === CROSS-CLUSTER LINKING ===
+crossClusters:
+  - cluster: perimenopause
+    relationship: "Histamin-Symptome koennen sich in hormonellen Uebergangsphasen veraendern."
+    bridgeText: >
+      Histamin-Symptome verstaerken sich bei manchen Frauen in der Perimenopause,
+      weil hormonelle Veraenderungen Schlaf, Stressresistenz und Histamin-Toleranz
+      beeinflussen koennen.
+    priority: 1
+    showOn: [hub, articles, product]
+
+  - cluster: ernaehrung
+    relationship: "Ernaehrung ist bei Histamin relevant, aber histaminarm und glutenfrei sind nicht dasselbe."
+    bridgeText: >
+      Histaminarme Ernaehrung und glutenfreie Ernaehrung sind nicht dasselbe.
+      Im Ernaehrungsbereich findest du allgemeine Grundlagen zu Energie,
+      Vertraeglichkeit und alltagstauglicher Umsetzung.
+    priority: 2
+    showOn: [hub]
+
+# === FUNNEL ROUTING ===
+calendlyContext: "coaching-only"
+
+# === AUDIENCE & TARGETING ===
+audience:
+  primaryICP: "Women 28-45 with cycle-dependent histamine symptoms"
+  metaPixelEvent: "ViewContent_Histamin"
+  emailListTag: "cluster_histamin"
+  retargetingAudienceId: "" # TBD
+
+# === MEASUREMENT ===
+analytics:
+  primarySuccessEvent: "histamin_bundle_purchase"
+  secondarySuccessEvents:
+    - "histamin_guide_download"
+    - "histamin_coaching_call_booked"
+  funnelOrder:
+    - "histamin_cluster_pageview"
+    - "histamin_guide_download"
+    - "histamin_bundle_view"
+    - "histamin_bundle_checkout_click"
+    - "histamin_bundle_purchase"

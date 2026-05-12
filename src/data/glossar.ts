@@ -42,12 +42,8 @@ export const glossarTerms: GlossarTerm[] = [
     definition: 'Der monatliche hormonelle Zyklus der Frau, der durchschnittlich 28 Tage dauert (normal: 21–35 Tage). Er umfasst die Menstruation, Follikelphase, Eisprung und Lutealphase. Der Zyklus beeinflusst Leistungsfähigkeit, Stimmung, Schlaf und Stoffwechsel.',
     relatedTermSlugs: ['follikelphase', 'lutealphase', 'oestrogen', 'progesteron'],
   },
-  {
-    term: 'Östrogen',
-    slug: 'oestrogen',
-    definition: 'Eine Gruppe weiblicher Sexualhormone, die vor allem in den Eierstöcken produziert werden. Östrogen ist wichtig für den Menstruationszyklus, die Knochengesundheit, das Herz-Kreislauf-System und die kognitive Funktion. In der Perimenopause sinkt der Östrogenspiegel.',
-    relatedTermSlugs: ['menstruationszyklus', 'perimenopause'],
-  },
+  // Östrogen moved to content collection (src/content/glossar/oestrogen.yaml)
+  // with cluster metadata for Histamin vertical slice.
   {
     term: 'Perimenopause',
     slug: 'perimenopause',

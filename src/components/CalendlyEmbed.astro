@@ -1,0 +1,106 @@
+---
+/**
+ * CalendlyEmbed — reusable Calendly inline widget.
+ *
+ * TEMPORARY: Uses NXG-Media Calendly account. Replace with Verena's own
+ * Calendly URL once her account is set up.
+ *
+ * Scoping: This component is ONLY used on coaching/trajectory pages.
+ * Do NOT add it to homepage, footer, product pages, bundles, micro-products,
+ * community, blogs, glossary, or standard product pages.
+ *
+ * The Calendly widget.js script is loaded async and only when this component
+ * renders — it is NOT in any global layout or head.
+ */
+import { trackOnClick } from '../lib/analytics';
+
+interface Props {
+  /** Page type for analytics */
+  pageType?: 'coaching';
+  /** Page slug for analytics */
+  pageSlug: string;
+  /** Section heading — set to empty string to hide */
+  title?: string;
+  /** Subtitle below heading */
+  subtitle?: string;
+}
+
+const {
+  pageType = 'coaching',
+  pageSlug,
+  title = 'Kostenloses Erstgespräch buchen',
+  subtitle = 'Wähle einen Termin, der dir passt — 15 Minuten, unverbindlich und persönlich.',
+} = Astro.props;
+
+// TODO: Replace with Verena's own Calendly URL once her account is set up
+const calendlyUrl = 'https://calendly.com/nxgmedia/gratis-15-minuten-strategiegesprek?hide_event_type_details=1&hide_gdpr_banner=1';
+---
+
+<section
+  id="calendly"
+  class="py-12 md:py-16 bg-bg-alt"
+  data-analytics-page-type={pageType}
+  data-analytics-page-slug={pageSlug}
+>
+  <div class="max-w-3xl mx-auto px-4 md:px-6">
+    {title && (
+      <div class="text-center mb-8">
+        <h2 class="font-heading text-2xl md:text-3xl text-text mb-3">
+          {title}
+        </h2>
+        {subtitle && (
+          <p class="text-text-muted max-w-xl mx-auto">
+            {subtitle}
+          </p>
+        )}
+      </div>
+    )}
+
+    <div
+      class="calendly-inline-widget rounded-card overflow-hidden bg-white shadow-sm"
+      data-url={calendlyUrl}
+      style="min-width:320px;height:700px;"
+    ></div>
+  </div>
+</section>
+
+{/* Calendly widget script — loaded async, only when this component renders */}
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+<script>
+  // TODO: `discovery_call_click` currently fires on widget scroll-into-view,
+  // NOT on an actual click or booking. Replace later with either:
+  //   - a dedicated `calendly_widget_view` event for the impression, or
+  //   - a true Calendly CTA click / booking callback (Calendly.initInlineWidget
+  //     supports a `data-calendly-event-listener` for real booking events).
+  // Until then, interpret this event as "widget impression", not "user intent".
+  (function () {
+    const section = document.getElementById('calendly');
+    if (!section || typeof IntersectionObserver === 'undefined') return;
+
+    const pageType = section.dataset.analyticsPageType || 'coaching';
+    const pageSlug = section.dataset.analyticsPageSlug || '';
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            if (typeof window.trackEvent === 'function') {
+              window.trackEvent('discovery_call_click', {
+                page_type: pageType,
+                page_slug: pageSlug,
+                locale: 'de',
+                cta_location: 'inline',
+                provider: 'calendly',
+              });
+            }
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.3 },
+    );
+
+    observer.observe(section);
+  })();
+</script>

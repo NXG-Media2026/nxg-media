@@ -9,7 +9,10 @@ export type EventName =
   | 'quiz_completed'
   | 'faq_expand'
   | 'external_link_click'
-  | 'discovery_call_click';
+  | 'discovery_call_click'
+  | 'social_card_click'
+  | 'masterclass_waitlist_signup'
+  | 'cross_cluster_link_click';
 
 export type PageType =
   | 'homepage'
@@ -25,6 +28,7 @@ export type PageType =
   | 'faq'
   | 'about'
   | 'contact'
+  | 'masterclass'
   | 'dashboard'
   | 'page';
 
@@ -43,6 +47,13 @@ export interface EventProperties {
   locale: string;
   cta_location?: CTALocation;
   provider?: string;
+  // Cluster-enhanced properties (CLUSTER_ARCHITECTURE_V1.2 §6)
+  product?: string;
+  product_type?: string;
+  product_cluster?: string;
+  source_page_type?: PageType;
+  source_cluster?: string;
+  target_cluster?: string;
 }
 
 export function getTrackingScript(): string {

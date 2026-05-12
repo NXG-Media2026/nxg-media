@@ -6,8 +6,13 @@ import CTABand from '../../components/CTABand.astro';
 import { siteConfig } from '../../data/site';
 import { generateCollectionPage, generateBreadcrumbs } from '../../data/schema';
 import { t } from '../../i18n/utils';
+import { getAllClusters } from '../../lib/clusters';
 
 const pillars = await getCollection('pillars');
+const clusters = getAllClusters();
+
+// Collect pillar slugs to avoid duplicate listings
+const pillarSlugs = new Set(pillars.map((p) => p.data.pageSlug));
 
 const breadcrumbs = [
   { label: t('breadcrumb.home'), href: '/' },
@@ -46,8 +51,9 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
         </p>
       </div>
 
-      {pillars.length > 0 ? (
+      {(pillars.length > 0 || clusters.length > 0) ? (
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Pillar pages */}
           {pillars.map((pillar, idx) => (
             <a
               href={`/themen/${pillar.data.pageSlug}`}
@@ -92,6 +98,51 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
               </div>
             </a>
           ))}
+
+          {/* Cluster hub pages (skip if already covered by a pillar) */}
+          {clusters
+            .filter((c) => !pillarSlugs.has(c.hubSlug))
+            .map((cluster, idx) => (
+              <a
+                href={`/themen/${cluster.hubSlug}`}
+                class:list={[
+                  'group block bg-white border border-border rounded-card overflow-hidden',
+                  'hover:border-accent/30 hover:shadow-xl transition-all duration-300',
+                  'js-reveal',
+                ]}
+                style={`--reveal-delay: ${(pillars.length + idx) * 100}ms`}
+              >
+                {cluster.heroImage && cluster.heroImage.trim() !== '' && (
+                  <div class="aspect-[16/10] overflow-hidden">
+                    <img
+                      src={cluster.heroImage}
+                      alt={cluster.title}
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                )}
+                <div class="p-6 md:p-8">
+                  <h2 class="font-heading text-xl md:text-2xl text-text mb-3 group-hover:text-accent transition-colors">
+                    {cluster.title}
+                  </h2>
+                  <p class="text-sm text-text-muted leading-relaxed mb-4">
+                    {cluster.citableDefinition.length > 160
+                      ? cluster.citableDefinition.slice(0, 160) + '…'
+                      : cluster.citableDefinition}
+                  </p>
+                  <div class="flex items-center justify-end">
+                    <span class="inline-flex items-center text-sm font-medium text-accent-dark group-hover:underline underline-offset-2">
+                      {t('cta.learnMore')}
+                      <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </a>
+            ))}
         </div>
       ) : (
         <div class="text-center py-12">

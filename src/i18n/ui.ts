@@ -86,6 +86,8 @@ export const ui = {
     'newsletter.placeholder': 'Deine E-Mail-Adresse',
     'newsletter.button': 'Anmelden',
     'newsletter.success': 'Willkommen! Prüfe dein Postfach.',
+    'newsletter.sending': 'Einen Moment…',
+    'newsletter.error': 'Etwas ist schiefgelaufen. Bitte versuche es erneut.',
 
     // General
     'general.readMore': 'Weiterlesen',
@@ -113,6 +115,7 @@ export const ui = {
     'breadcrumb.angebot': 'Angebot',
     'breadcrumb.glossar': 'Glossar',
     'breadcrumb.leadMagnet': 'Kostenlose Ressourcen',
+    'breadcrumb.masterclass': 'Masterclass',
   },
 } as const;
 

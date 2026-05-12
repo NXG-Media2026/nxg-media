@@ -2,6 +2,7 @@
 title: "Histamin und Hormone: Warum Frauen stärker betroffen sind"
 pageSlug: "histamin-und-hormone"
 pillarSlug: "hormone"
+cluster: "histamin"
 publishedDate: 2026-05-08
 lastReviewedDate: 2026-05-08
 excerpt: "Histamin und Östrogen hängen eng zusammen. Erfahre, warum Frauen häufiger unter Histamin-Intoleranz leiden und was du dagegen tun kannst."

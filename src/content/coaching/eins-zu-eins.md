@@ -30,7 +30,7 @@ faq:
     a: "Nein — das Coaching wird komplett auf dein Level und deine Ziele angepasst, egal ob Anfängerin oder erfahrene Sportlerin."
   - q: "Kann ich das Coaching mit anderen Angeboten kombinieren?"
     a: "Ja! Viele Kundinnen nutzen den Hormon-Reset Guide als Begleitmaterial zum Coaching."
-ctaUrl: "/kontakt"
+ctaUrl: "#calendly"
 seo:
   title: "1:1 Coaching mit Dr. Verena | doc.veri"
   description: "Individuelles 12-Wochen-Coaching für deine Gesundheitsziele. Persönlich begleitet von Dr. Verena, Ärztin und Ausdauer-Athletin."
