@@ -1,6 +1,7 @@
 ---
 title: "1:1 Coaching"
 pageSlug: "eins-zu-eins"
+translationKey: "eins-zu-eins"
 format: "1-on-1"
 duration: "12 Wochen"
 shortDescription: "Individuelles Coaching für deine Gesundheitsziele — persönlich begleitet von Dr. Verena, evidenzbasiert und auf dich zugeschnitten."

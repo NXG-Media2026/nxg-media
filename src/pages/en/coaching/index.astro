@@ -1,47 +1,49 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import BreadcrumbNav from '../../components/BreadcrumbNav.astro';
-import CTABand from '../../components/CTABand.astro';
-import { siteConfig } from '../../data/site';
-import { generateCollectionPage, generateBreadcrumbs } from '../../data/schema';
-import { t } from '../../i18n/utils';
-import { buildHreflangPair } from '../../i18n/hreflang';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BreadcrumbNav from '../../../components/BreadcrumbNav.astro';
+import CTABand from '../../../components/CTABand.astro';
+import { siteConfig } from '../../../data/site';
+import { generateCollectionPage, generateBreadcrumbs } from '../../../data/schema';
+import { t, localizePath, getTranslatedPath, getCollectionBasePath } from '../../../i18n/utils';
+import { buildHreflangPair } from '../../../i18n/hreflang';
 
+const locale = 'en';
+const coachingBase = getCollectionBasePath('coaching', locale);
 const allCoaching = await getCollection('coaching');
-const coachingItems = allCoaching.filter((c) => !c.data.locale || c.data.locale === 'de');
+const coachingItems = allCoaching.filter((c) => c.data.locale === 'en');
 
 const breadcrumbs = [
-  { label: t('breadcrumb.home'), href: '/' },
-  { label: t('breadcrumb.angebot'), href: '/angebot' },
-  { label: t('breadcrumb.coaching') },
+  { label: t('breadcrumb.home', locale), href: localizePath('/', locale) },
+  { label: t('breadcrumb.angebot', locale), href: getTranslatedPath('/angebot', locale) },
+  { label: t('breadcrumb.coaching', locale) },
 ];
 
 const breadcrumbSchema = breadcrumbs.map((b) => ({
   name: b.label,
-  url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}/coaching`,
+  url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}${coachingBase}`,
 }));
 
 const formatLabels: Record<string, string> = {
   '1-on-1': '1:1',
-  'group': 'Gruppe',
+  'group': 'Group',
   'hybrid': 'Hybrid',
 };
 ---
 
 <BaseLayout
   title={`Coaching | ${siteConfig.name}`}
-  description="Individuelles Coaching für Frauen-Gesundheit — persönlich begleitet von Dr. Verena, evidenzbasiert und auf dich zugeschnitten."
+  description={t('coaching.pageDescription', locale)}
   hreflang={buildHreflangPair('/coaching', '/en/coaching')}
   schemas={[
     generateCollectionPage({
       name: 'Coaching',
-      url: `${siteConfig.url}/coaching`,
-      description: 'Individuelles Coaching für Frauen-Gesundheit von Dr. Verena.',
+      url: `${siteConfig.url}${coachingBase}`,
+      description: t('coaching.pageDescription', locale),
     }),
     generateBreadcrumbs(breadcrumbSchema),
   ]}
-  locale="de"
+  locale="en"
 >
   <BreadcrumbNav items={breadcrumbs} />
 
@@ -49,10 +51,10 @@ const formatLabels: Record<string, string> = {
     <div class="max-w-4xl mx-auto px-4 md:px-6">
       <div class="text-center mb-14 md:mb-20">
         <h1 class="font-heading text-4xl md:text-5xl text-text mb-4">
-          Coaching
+          {t('coaching.pageTitle', locale)}
         </h1>
         <p class="text-lg text-text-muted max-w-2xl mx-auto">
-          Individuelles Coaching für deine Gesundheitsziele — persönlich begleitet, evidenzbasiert und auf dich zugeschnitten.
+          {t('coaching.pageDescription', locale)}
         </p>
       </div>
 
@@ -60,7 +62,7 @@ const formatLabels: Record<string, string> = {
         <div class="space-y-8">
           {coachingItems.map((item, idx) => (
             <a
-              href={`/coaching/${item.data.pageSlug}`}
+              href={`${coachingBase}/${item.data.pageSlug}`}
               class:list={[
                 'group block bg-white border border-border rounded-card overflow-hidden',
                 'hover:border-accent/30 hover:shadow-xl transition-all duration-300',
@@ -94,7 +96,7 @@ const formatLabels: Record<string, string> = {
                   </ul>
                 )}
                 <span class="inline-flex items-center text-sm font-medium text-accent-dark group-hover:underline underline-offset-2">
-                  {t('cta.learnMore')}
+                  {t('cta.learnMore', locale)}
                   <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                   </svg>
@@ -105,20 +107,20 @@ const formatLabels: Record<string, string> = {
         </div>
       ) : (
         <div class="text-center py-12">
-          <p class="text-text-muted">Coaching-Angebote werden in Kürze veröffentlicht.</p>
+          <p class="text-text-muted">{t('coaching.emptyState', locale)}</p>
         </div>
       )}
     </div>
   </section>
 
   <CTABand
-    title="Bereit für dein Erstgespräch?"
-    subtitle="In einem kostenlosen Call klären wir, ob und wie ich dich am besten unterstützen kann."
-    ctaText="Erstgespräch buchen"
-    ctaHref="/kontakt"
+    title={t('coaching.readyForNext', locale)}
+    subtitle={t('coaching.bookFreeSub', locale)}
+    ctaText={t('coaching.bookFreeBtn', locale)}
+    ctaHref={getTranslatedPath('/kontakt', locale)}
     eventName="discovery_call_click"
-    locale="de"
+    locale="en"
     pageType="coaching"
-    pageSlug="/coaching"
+    pageSlug="/en/coaching"
   />
 </BaseLayout>

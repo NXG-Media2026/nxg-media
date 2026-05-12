@@ -1,6 +1,7 @@
 ---
 title: "Histamin und Hormone: Warum Frauen stärker betroffen sind"
 pageSlug: "histamin-und-hormone"
+translationKey: "histamin-und-hormone"
 pillarSlug: "hormone"
 cluster: "histamin"
 publishedDate: 2026-05-08

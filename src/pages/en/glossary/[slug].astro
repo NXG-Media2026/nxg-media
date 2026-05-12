@@ -1,26 +1,21 @@
 ---
-/**
- * Individual glossary term page — /glossar/[slug]
- *
- * Generated from the glossar content collection (type: 'data', YAML).
- * Renders definition, long description, related terms, and linked article.
- * Includes DefinedTerm structured data for SEO.
- */
 import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import BreadcrumbNav from '../../components/BreadcrumbNav.astro';
-import CTABand from '../../components/CTABand.astro';
-import { siteConfig } from '../../data/site';
-import { generateBreadcrumbs, generateDefinedTerm } from '../../data/schema';
-import { t } from '../../i18n/utils';
-import { getHreflangForContent } from '../../i18n/hreflang';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BreadcrumbNav from '../../../components/BreadcrumbNav.astro';
+import CTABand from '../../../components/CTABand.astro';
+import { siteConfig } from '../../../data/site';
+import { generateBreadcrumbs, generateDefinedTerm } from '../../../data/schema';
+import { t, localizePath, getTranslatedPath, getCollectionBasePath } from '../../../i18n/utils';
+import { getHreflangForContent } from '../../../i18n/hreflang';
 
-const locale = 'de';
+const locale = 'en';
+const glossaryBase = getCollectionBasePath('glossar', locale);
+const blogBase = getCollectionBasePath('blog', locale);
 
 export async function getStaticPaths() {
   const entries = await getCollection('glossar');
-  const deEntries = entries.filter((e) => !e.data.locale || e.data.locale === 'de');
-  return deEntries.map((entry) => ({
+  const enEntries = entries.filter((e) => e.data.locale === 'en');
+  return enEntries.map((entry) => ({
     params: { slug: entry.data.slug },
     props: { entry },
   }));
@@ -29,17 +24,16 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { term, slug, definition, longDescription, relatedTerms, linkedArticle, cluster, seo } = entry.data;
 
-// Resolve related terms from the collection
 const allTerms = await getCollection('glossar');
+const enTerms = allTerms.filter((t) => t.data.locale === 'en');
 const resolvedRelated = (relatedTerms ?? [])
-  .map((relSlug: string) => allTerms.find((t) => t.data.slug === relSlug))
+  .map((relSlug: string) => enTerms.find((t) => t.data.slug === relSlug))
   .filter(Boolean);
 
-// Resolve linked article
 let linkedArticleData: { title: string; slug: string; excerpt: string } | null = null;
 if (linkedArticle) {
   const articles = await getCollection('artikel');
-  const found = articles.find((a) => a.data.pageSlug === linkedArticle);
+  const found = articles.find((a) => a.data.pageSlug === linkedArticle && a.data.locale === 'en');
   if (found) {
     linkedArticleData = {
       title: found.data.title,
@@ -49,11 +43,11 @@ if (linkedArticle) {
   }
 }
 
-const pageUrl = `/glossar/${slug}`;
+const pageUrl = `${glossaryBase}/${slug}`;
 
 const breadcrumbs = [
-  { label: t('breadcrumb.home'), href: '/' },
-  { label: t('breadcrumb.glossar'), href: '/glossar' },
+  { label: t('breadcrumb.home', locale), href: localizePath('/', locale) },
+  { label: t('breadcrumb.glossar', locale), href: glossaryBase },
   { label: term },
 ];
 
@@ -62,7 +56,7 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
   url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}${pageUrl}`,
 }));
 
-const seoTitle = seo?.title ?? `${term} — Glossar | ${siteConfig.name}`;
+const seoTitle = seo?.title ?? `${term} — Glossary | ${siteConfig.name}`;
 const seoDescription = seo?.description ?? definition.slice(0, 155);
 
 const hreflang = await getHreflangForContent(entry.data.translationKey, 'glossar', 'glossar');
@@ -76,14 +70,13 @@ const hreflang = await getHreflangForContent(entry.data.translationKey, 'glossar
     generateBreadcrumbs(breadcrumbSchema),
     generateDefinedTerm({ term, definition, slug }, locale),
   ]}
-  locale="de"
+  locale="en"
 >
   <BreadcrumbNav items={breadcrumbs} />
 
   <article class="py-16 md:py-24 lg:py-32 bg-bg">
     <div class="max-w-3xl mx-auto px-4 md:px-6">
 
-      {/* ─── Term heading ──────────────────────────────────────── */}
       <header class="mb-10 md:mb-14">
         {cluster && (
           <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full mb-4">
@@ -98,7 +91,6 @@ const hreflang = await getHreflangForContent(entry.data.translationKey, 'glossar
         </p>
       </header>
 
-      {/* ─── Long description ──────────────────────────────────── */}
       {longDescription && (
         <section class="mb-12">
           <h2 class="font-heading text-xl md:text-2xl text-text mb-4">
@@ -110,14 +102,13 @@ const hreflang = await getHreflangForContent(entry.data.translationKey, 'glossar
         </section>
       )}
 
-      {/* ─── Linked article ────────────────────────────────────── */}
       {linkedArticleData && (
         <section class="mb-12">
           <h2 class="font-heading text-xl md:text-2xl text-text mb-4">
             {t('glossar.relatedArticle', locale)}
           </h2>
           <a
-            href={`/blog/${linkedArticleData.slug}`}
+            href={`${blogBase}/${linkedArticleData.slug}`}
             class="group block bg-bg-alt border border-border rounded-card p-6 hover:border-accent/30 hover:shadow-lg transition-all duration-300"
           >
             <h3 class="font-heading text-lg text-text mb-2 group-hover:text-accent transition-colors">
@@ -136,7 +127,6 @@ const hreflang = await getHreflangForContent(entry.data.translationKey, 'glossar
         </section>
       )}
 
-      {/* ─── Related terms ─────────────────────────────────────── */}
       {resolvedRelated.length > 0 && (
         <section class="mb-12">
           <h2 class="font-heading text-xl md:text-2xl text-text mb-4">
@@ -145,7 +135,7 @@ const hreflang = await getHreflangForContent(entry.data.translationKey, 'glossar
           <div class="flex flex-wrap gap-3">
             {resolvedRelated.map((related: any) => (
               <a
-                href={`/glossar/${related.data.slug}`}
+                href={`${glossaryBase}/${related.data.slug}`}
                 class="inline-flex items-center px-4 py-2 text-sm font-medium bg-accent/10 text-accent rounded-full hover:bg-accent/20 transition-colors"
               >
                 {related.data.term}
@@ -155,10 +145,9 @@ const hreflang = await getHreflangForContent(entry.data.translationKey, 'glossar
         </section>
       )}
 
-      {/* ─── Back link ─────────────────────────────────────────── */}
       <div class="pt-8 border-t border-border">
         <a
-          href="/glossar"
+          href={glossaryBase}
           class="inline-flex items-center gap-2 text-sm text-text-muted hover:text-text transition-colors"
         >
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -171,12 +160,12 @@ const hreflang = await getHreflangForContent(entry.data.translationKey, 'glossar
   </article>
 
   <CTABand
-    title="Du möchtest diese Begriffe in der Praxis anwenden?"
-    subtitle="Entdecke meine Produkte und Coaching-Angebote — wissenschaftlich fundiert und auf dich zugeschnitten."
-    ctaText="Angebot entdecken"
-    ctaHref="/angebot"
+    title={t('layout.applyKnowledge', locale)}
+    subtitle={t('layout.applyKnowledgeSub', locale)}
+    ctaText={t('layout.discoverOffers', locale)}
+    ctaHref={getTranslatedPath('/angebot', locale)}
     eventName="product_cta_click"
-    locale="de"
+    locale="en"
     pageType="glossar"
     pageSlug={pageUrl}
   />

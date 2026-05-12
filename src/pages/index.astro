@@ -13,6 +13,7 @@ import { siteConfig } from '../data/site';
 import { getTestimonials } from '../data/testimonials';
 import { getSocialPosts } from '../data/socialPosts';
 import { generateOrganization, generateFounderPerson, generateWebSite, generateFAQPage, generateReviewArray } from '../data/schema';
+import { buildHreflangPair } from '../i18n/hreflang';
 import { trackOnClick } from '../lib/analytics';
 
 import heroImage from '../assets/images/Founder/portrait-beach.jpg';
@@ -111,6 +112,7 @@ const homepageFAQs = [
 <BaseLayout
   title={`Frauen-Gesundheit — wissenschaftlich fundiert | ${siteConfig.name}`}
   description="Hormone, Training, Ernährung, Zyklus, Perimenopause — wissenschaftlich fundiert, ohne Bro-Science. Von Dr. Verena Mann, Notärztin und Ausdauer-Athletin."
+  hreflang={buildHreflangPair('/', '/en')}
   schemas={[
     generateOrganization(),
     generateFounderPerson(),

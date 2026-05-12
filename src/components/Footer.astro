@@ -1,8 +1,7 @@
 ---
 import { siteConfig, type Locale } from '../data/site';
 import { navigation } from '../data/navigation';
-import { t } from '../i18n/utils';
-import { localizePath } from '../i18n/utils';
+import { t, localizePath, getTranslatedPath, getCollectionBasePath } from '../i18n/utils';
 import { buildNewsletterPayload, serializePayload } from '../lib/emailCapture';
 
 interface Props {
@@ -14,6 +13,19 @@ const navItems = navigation[locale];
 const year = new Date().getFullYear();
 const nlFormId = 'footer-newsletter';
 const nlPayloadJson = serializePayload(buildNewsletterPayload('', { route: 'footer' }));
+
+const topicsHref = getCollectionBasePath('themen', locale);
+const blogHref = getCollectionBasePath('blog', locale);
+const glossaryHref = getCollectionBasePath('glossar', locale);
+const masterclassHref = locale === 'en'
+  ? '/en/masterclass/hormones-histamine-cycle-superpower'
+  : '/masterclass/hormone-histamin-zyklus-superpower';
+const faqHref = getTranslatedPath('/faq', locale);
+const aboutHref = getTranslatedPath('/ueber', locale);
+const contactHref = getTranslatedPath('/kontakt', locale);
+const privacyHref = getTranslatedPath('/datenschutz', locale);
+const impressumHref = getTranslatedPath('/impressum', locale);
+const agbHref = getTranslatedPath('/agb', locale);
 ---
 
 <footer class="bg-primary-dark text-white/90">
@@ -123,30 +135,32 @@ const nlPayloadJson = serializePayload(buildNewsletterPayload('', { route: 'foot
         </h3>
         <ul class="space-y-2.5">
           <li>
-            <a href={localizePath('/themen', locale)} class="text-sm text-white/70 hover:text-primary-light transition-colors">
+            <a href={topicsHref} class="text-sm text-white/70 hover:text-primary-light transition-colors">
               {t('nav.themen', locale)}
             </a>
           </li>
           <li>
-            <a href={localizePath('/blog', locale)} class="text-sm text-white/70 hover:text-primary-light transition-colors">
+            <a href={blogHref} class="text-sm text-white/70 hover:text-primary-light transition-colors">
               {t('nav.blog', locale)}
             </a>
           </li>
           <li>
-            <a href={localizePath('/glossar', locale)} class="text-sm text-white/70 hover:text-primary-light transition-colors">
+            <a href={glossaryHref} class="text-sm text-white/70 hover:text-primary-light transition-colors">
               {t('nav.glossar', locale)}
             </a>
           </li>
           <li>
-            <a href={localizePath('/masterclass/hormone-histamin-zyklus-superpower', locale)} class="text-sm text-white/70 hover:text-primary-light transition-colors">
+            <a href={masterclassHref} class="text-sm text-white/70 hover:text-primary-light transition-colors">
               {t('general.freeMasterclass', locale)}
             </a>
           </li>
-          <li>
-            <a href={localizePath('/faq', locale)} class="text-sm text-white/70 hover:text-primary-light transition-colors">
-              {t('nav.faq', locale)}
-            </a>
-          </li>
+          {locale === 'de' && (
+            <li>
+              <a href={faqHref} class="text-sm text-white/70 hover:text-primary-light transition-colors">
+                {t('nav.faq', locale)}
+              </a>
+            </li>
+          )}
         </ul>
       </div>
 
@@ -156,12 +170,12 @@ const nlPayloadJson = serializePayload(buildNewsletterPayload('', { route: 'foot
         </h3>
         <ul class="space-y-2.5">
           <li>
-            <a href={localizePath('/ueber', locale)} class="text-sm text-white/70 hover:text-primary-light transition-colors">
+            <a href={aboutHref} class="text-sm text-white/70 hover:text-primary-light transition-colors">
               {t('nav.about', locale)}
             </a>
           </li>
           <li>
-            <a href={localizePath('/kontakt', locale)} class="text-sm text-white/70 hover:text-primary-light transition-colors">
+            <a href={contactHref} class="text-sm text-white/70 hover:text-primary-light transition-colors">
               {t('nav.contact', locale)}
             </a>
           </li>
@@ -191,13 +205,13 @@ const nlPayloadJson = serializePayload(buildNewsletterPayload('', { route: 'foot
         &copy; {year} {siteConfig.name}. {t('footer.rights')}.
       </p>
       <div class="flex items-center gap-4">
-        <a href={localizePath('/datenschutz', locale)} class="text-xs text-white/70 hover:text-white transition-colors">
+        <a href={privacyHref} class="text-xs text-white/70 hover:text-white transition-colors">
           {t('footer.privacy', locale)}
         </a>
-        <a href={localizePath('/impressum', locale)} class="text-xs text-white/70 hover:text-white transition-colors">
+        <a href={impressumHref} class="text-xs text-white/70 hover:text-white transition-colors">
           {t('footer.impressum', locale)}
         </a>
-        <a href={localizePath('/agb', locale)} class="text-xs text-white/70 hover:text-white transition-colors">
+        <a href={agbHref} class="text-xs text-white/70 hover:text-white transition-colors">
           {t('footer.agb', locale)}
         </a>
       </div>

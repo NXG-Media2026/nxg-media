@@ -1,6 +1,7 @@
 ---
 title: "Histamin-Bundle"
 pageSlug: "histamin-bundle"
+translationKey: "histamin-bundle"
 price: "59"
 currency: EUR
 plugAndPayUrl: "https://example.com/checkout/histamin-bundle"

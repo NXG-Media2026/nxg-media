@@ -19,6 +19,7 @@ import { Image } from 'astro:assets';
 import { siteConfig } from '../../data/site';
 import { generateBreadcrumbs, generateFAQPage } from '../../data/schema';
 import { t } from '../../i18n/utils';
+import { buildHreflangPair } from '../../i18n/hreflang';
 import { trackOnClick } from '../../lib/analytics';
 import { buildMasterclassPayload, serializePayload } from '../../lib/emailCapture';
 
@@ -113,6 +114,7 @@ const waitlistPayloadJson = serializePayload(waitlistPayload);
 <BaseLayout
   title={`${pageTitle} — Masterclass | ${siteConfig.name}`}
   description="Verstehe endlich, warum dein Körper sich verändert hat. Kostenlose Masterclass über Hormone, Histamin und zyklusbewusstes Leben — von Dr. Verena Mann."
+  hreflang={buildHreflangPair('/masterclass/hormone-histamin-zyklus-superpower', '/en/masterclass/hormones-histamine-cycle-superpower')}
   schemas={[
     generateBreadcrumbs(breadcrumbSchema),
     generateFAQPage(faqs),

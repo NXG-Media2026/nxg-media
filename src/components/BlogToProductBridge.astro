@@ -13,8 +13,7 @@
  * If none of these conditions are met, renders nothing.
  * No hardcoded slugs — everything resolved from cluster graph.
  */
-import { getCollection } from 'astro:content';
-import { getCluster } from '../lib/clusters';
+import { getCluster, getClusterPrimaryProduct } from '../lib/clusters';
 import { trackOnClick } from '../lib/analytics';
 import { t, getCollectionBasePath } from '../i18n/utils';
 import type { Locale } from '../data/site';
@@ -27,16 +26,8 @@ interface Props {
 
 const { clusterSlug, sourcePageSlug, locale = 'de' } = Astro.props;
 
-// Resolve cluster → primary product
 const cluster = getCluster(clusterSlug);
-const primaryProductSlug = cluster?.primaryProduct;
-
-// If no cluster or no primary product, render nothing
-let product: any = null;
-if (primaryProductSlug) {
-  const allProducts = await getCollection('produkte');
-  product = allProducts.find((p) => p.data.pageSlug === primaryProductSlug) ?? null;
-}
+const product = await getClusterPrimaryProduct(clusterSlug, locale);
 
 // Analytics
 const productBasePath = getCollectionBasePath('produkte', locale);

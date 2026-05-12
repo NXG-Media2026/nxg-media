@@ -246,14 +246,26 @@ export async function getClusterPrimaryProduct(clusterSlug: string, locale?: Loc
   if (!cluster?.primaryProduct) return null;
 
   const products = await getCollection('produkte');
-  const candidates = products.filter((p) => p.data.pageSlug === cluster.primaryProduct);
 
-  if (locale && candidates.length > 1) {
-    const localeMatch = candidates.find((p) => (p.data as Record<string, unknown>).locale === locale);
-    if (localeMatch) return localeMatch;
+  // Direct match by pageSlug
+  const directMatch = products.find(
+    (p) => p.data.pageSlug === cluster.primaryProduct && (!locale || !p.data.locale || p.data.locale === locale),
+  );
+  if (directMatch) return directMatch;
+
+  // Cross-locale: find DE product, then look up translated version via translationKey
+  if (locale && locale !== 'de') {
+    const deProduct = products.find((p) => p.data.pageSlug === cluster.primaryProduct);
+    if (deProduct?.data.translationKey) {
+      const translated = products.find(
+        (p) => (p.data as Record<string, unknown>).translationKey === deProduct.data.translationKey
+          && (p.data as Record<string, unknown>).locale === locale,
+      );
+      if (translated) return translated;
+    }
   }
 
-  return candidates[0] ?? null;
+  return products.find((p) => p.data.pageSlug === cluster.primaryProduct) ?? null;
 }
 
 /**

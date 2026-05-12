@@ -1,11 +1,11 @@
 ---
 import { getCollection } from 'astro:content';
-import CoachingLayout from '../../layouts/CoachingLayout.astro';
+import CoachingLayout from '../../../layouts/CoachingLayout.astro';
 
 export async function getStaticPaths() {
   const coachingItems = await getCollection('coaching');
-  const deItems = coachingItems.filter((c) => !c.data.locale || c.data.locale === 'de');
-  return deItems.map((item) => ({
+  const enItems = coachingItems.filter((c) => c.data.locale === 'en');
+  return enItems.map((item) => ({
     params: { slug: item.data.pageSlug },
     props: { entry: item },
   }));
@@ -15,6 +15,6 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<CoachingLayout coaching={entry.data}>
+<CoachingLayout coaching={entry.data} locale="en">
   <Content />
 </CoachingLayout>

@@ -1,7 +1,7 @@
 ---
 import { navigation } from '../data/navigation';
 import { siteConfig, type Locale } from '../data/site';
-import { t, localizePath } from '../i18n/utils';
+import { t, localizePath, getTranslatedPath } from '../i18n/utils';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 
 interface Props {
@@ -94,7 +94,7 @@ function isActive(href: string): boolean {
         )}
 
         <a
-          href={localizePath('/angebot', locale)}
+          href={getTranslatedPath('/angebot', locale)}
           class="ml-3 inline-flex items-center px-4 py-2 text-sm font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button"
         >
           {t('cta.discover', locale)}
@@ -194,7 +194,7 @@ function isActive(href: string): boolean {
       )}
 
       <a
-        href={localizePath('/angebot', locale)}
+        href={getTranslatedPath('/angebot', locale)}
         class="block w-full mt-4 py-3 text-center text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button"
       >
         {t('cta.discover', locale)}

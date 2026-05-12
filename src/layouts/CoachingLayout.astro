@@ -4,9 +4,10 @@ import BreadcrumbNav from '../components/BreadcrumbNav.astro';
 import FAQAccordion from '../components/FAQAccordion.astro';
 import CalendlyEmbed from '../components/CalendlyEmbed.astro';
 import CTABand from '../components/CTABand.astro';
-import { siteConfig } from '../data/site';
+import { siteConfig, type Locale } from '../data/site';
 import { generateService, generateBreadcrumbs, generateFAQPage } from '../data/schema';
-import { t } from '../i18n/utils';
+import { t, localizePath, getTranslatedPath, getCollectionBasePath } from '../i18n/utils';
+import { getHreflangForContent } from '../i18n/hreflang';
 import { trackOnClick } from '../lib/analytics';
 
 interface Props {
@@ -22,23 +23,25 @@ interface Props {
     includes: string[];
     faq: Array<{ q: string; a: string }>;
     ctaUrl: string;
+    translationKey?: string;
     seo: { title: string; description: string };
   };
+  locale?: Locale;
 }
 
-const { coaching } = Astro.props;
-const pageUrl = `/coaching/${coaching.pageSlug}`;
+const { coaching, locale = 'de' } = Astro.props;
+const coachingBase = getCollectionBasePath('coaching', locale);
+const pageUrl = `${coachingBase}/${coaching.pageSlug}`;
 
-const formatLabels: Record<string, string> = {
-  '1-on-1': '1:1',
-  'group': 'Gruppe',
-  'hybrid': 'Hybrid',
+const formatLabels: Record<string, Record<string, string>> = {
+  de: { '1-on-1': '1:1', 'group': 'Gruppe', 'hybrid': 'Hybrid' },
+  en: { '1-on-1': '1:1', 'group': 'Group', 'hybrid': 'Hybrid' },
 };
 
 const breadcrumbs = [
-  { label: t('breadcrumb.home'), href: '/' },
-  { label: t('breadcrumb.angebot'), href: '/angebot' },
-  { label: t('breadcrumb.coaching'), href: '/coaching' },
+  { label: t('breadcrumb.home', locale), href: localizePath('/', locale) },
+  { label: t('breadcrumb.angebot', locale), href: getTranslatedPath('/angebot', locale) },
+  { label: t('breadcrumb.coaching', locale), href: coachingBase },
   { label: coaching.title },
 ];
 
@@ -46,11 +49,14 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
   name: b.label,
   url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}${pageUrl}`,
 }));
+
+const hreflang = await getHreflangForContent(coaching.translationKey, 'coaching', 'coaching');
 ---
 
 <BaseLayout
   title={coaching.seo.title}
   description={coaching.seo.description}
+  hreflang={hreflang}
   schemas={[
     generateService({
       name: coaching.title,
@@ -60,7 +66,7 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
     generateBreadcrumbs(breadcrumbSchema),
     ...(coaching.faq.length > 0 ? [generateFAQPage(coaching.faq)] : []),
   ]}
-  locale="de"
+  locale={locale}
 >
   <BreadcrumbNav items={breadcrumbs} />
 
@@ -69,7 +75,7 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
       <div class="mb-10 md:mb-14">
         <div class="flex flex-wrap items-center gap-3 mb-4">
           <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full">
-            {formatLabels[coaching.format] ?? coaching.format}
+            {(formatLabels[locale] ?? formatLabels.de)[coaching.format] ?? coaching.format}
           </span>
           <span class="text-sm text-text-muted">{coaching.duration}</span>
         </div>
@@ -82,9 +88,9 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
         <a
           href={coaching.ctaUrl}
           class="inline-flex items-center px-6 py-3 text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button"
-          onclick={trackOnClick('coaching_cta_click', { page_type: 'coaching', page_slug: coaching.pageSlug, locale: 'de', cta_location: 'inline' })}
+          onclick={trackOnClick('coaching_cta_click', { page_type: 'coaching', page_slug: coaching.pageSlug, locale, cta_location: 'inline' })}
         >
-          {t('cta.bookCall')}
+          {t('cta.bookCall', locale)}
           <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
@@ -100,7 +106,7 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
       <section class="py-12 md:py-16 bg-bg-alt">
         <div class="max-w-3xl mx-auto px-4 md:px-6">
           <h2 class="font-heading text-2xl md:text-3xl text-text mb-8">
-            {t('coaching.outcomes')}
+            {t('coaching.outcomes', locale)}
           </h2>
           <ul class="space-y-4">
             {coaching.outcomes.map((outcome) => (
@@ -120,7 +126,7 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
       <section class="py-12 md:py-16 bg-bg">
         <div class="max-w-3xl mx-auto px-4 md:px-6">
           <h2 class="font-heading text-2xl md:text-3xl text-text mb-8">
-            {t('coaching.methodology')}
+            {t('coaching.methodology', locale)}
           </h2>
           <div class="space-y-8">
             {coaching.methodology.map((step, idx) => (
@@ -143,7 +149,7 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
       <section class="py-12 md:py-16 bg-bg-alt">
         <div class="max-w-3xl mx-auto px-4 md:px-6">
           <h2 class="font-heading text-2xl md:text-3xl text-text mb-8">
-            {t('coaching.includes')}
+            {t('coaching.includes', locale)}
           </h2>
           <ul class="space-y-3">
             {coaching.includes.map((item) => (
@@ -163,7 +169,7 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
   {coaching.faq.length > 0 && (
     <FAQAccordion
       items={coaching.faq}
-      locale="de"
+      locale={locale}
       pageType="coaching"
       pageSlug={coaching.pageSlug}
     />
@@ -175,12 +181,12 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
   />
 
   <CTABand
-    title="Bereit für den nächsten Schritt?"
-    subtitle="Buche dein kostenloses Erstgespräch — unverbindlich und persönlich."
-    ctaText="Erstgespräch buchen"
+    title={t('coaching.readyForNext', locale)}
+    subtitle={t('coaching.bookFreeSub', locale)}
+    ctaText={t('coaching.bookFreeBtn', locale)}
     ctaHref={coaching.ctaUrl}
     eventName="coaching_cta_click"
-    locale="de"
+    locale={locale}
     pageType="coaching"
     pageSlug={coaching.pageSlug}
   />

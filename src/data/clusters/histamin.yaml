@@ -88,6 +88,25 @@ audience:
   emailListTag: "cluster_histamin"
   retargetingAudienceId: "" # TBD
 
+# === LOCALE OVERRIDES ===
+locales:
+  en:
+    hubSlug: histamine-and-hormones
+    title: "Histamine & Hormones"
+    shortTitle: "Histamine"
+    citableDefinition: >
+      Histamine is an endogenous chemical messenger that regulates immune
+      responses, digestion, and the sleep-wake cycle. In many women, histamine
+      symptoms intensify with the cycle, during perimenopause, or under chronic
+      stress — because estrogen, cortisol, and histamine breakdown are closely
+      connected.
+    hubIntro: ""
+    hubFaq:
+      - question: "What is histamine intolerance?"
+        answer: "Histamine intolerance describes a reduced ability to break down histamine in the body. Symptoms range from skin flushing and digestive issues to headaches."
+      - question: "Why do histamine symptoms change during the menstrual cycle?"
+        answer: "Estrogen can reduce the activity of the enzyme DAO, which breaks down histamine in the gut. In many women, histamine symptoms intensify in the second half of the cycle or during hormonal transition phases."
+
 # === MEASUREMENT ===
 analytics:
   primarySuccessEvent: "histamin_bundle_purchase"

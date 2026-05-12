@@ -6,9 +6,10 @@ import AuthorByline from '../components/AuthorByline.astro';
 import BlogToProductBridge from '../components/BlogToProductBridge.astro';
 import FAQAccordion from '../components/FAQAccordion.astro';
 import CTABand from '../components/CTABand.astro';
-import { siteConfig } from '../data/site';
+import { siteConfig, type Locale } from '../data/site';
 import { generateArticle, generateBreadcrumbs } from '../data/schema';
-import { t } from '../i18n/utils';
+import { t, localizePath, getTranslatedPath, getCollectionBasePath } from '../i18n/utils';
+import { getHreflangForContent } from '../i18n/hreflang';
 
 interface Props {
   article: {
@@ -22,16 +23,19 @@ interface Props {
     excerpt: string;
     readingTime: number;
     relatedProductSlugs?: string[];
+    translationKey?: string;
     seo: { title: string; description: string };
   };
+  locale?: Locale;
 }
 
-const { article } = Astro.props;
-const pageUrl = `/blog/${article.pageSlug}`;
+const { article, locale = 'de' } = Astro.props;
+const blogBase = getCollectionBasePath('blog', locale);
+const pageUrl = `${blogBase}/${article.pageSlug}`;
 
 const breadcrumbs = [
-  { label: t('breadcrumb.home'), href: '/' },
-  { label: t('breadcrumb.blog'), href: '/blog' },
+  { label: t('breadcrumb.home', locale), href: localizePath('/', locale) },
+  { label: t('breadcrumb.blog', locale), href: blogBase },
   { label: article.title },
 ];
 
@@ -40,23 +44,41 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
   url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}${pageUrl}`,
 }));
 
-// Fetch related products for internal linking
+// Check if pillar/topic page exists for this locale
+const pillars = await getCollection('pillars');
+const pillarExists = locale === 'de'
+  ? pillars.some((p) => p.data.pageSlug === article.pillarSlug)
+  : false;
+// For EN, check if there's a cluster with this pillar slug as hubSlug (after localization)
+import { getAllClusters } from '../lib/clusters';
+const allClusters = getAllClusters();
+const clusterTopicExists = locale !== 'de' && allClusters.some((c) => {
+  const enOverride = c.locales?.[locale];
+  return enOverride?.hubSlug === article.pillarSlug || c.hubSlug === article.pillarSlug;
+});
+const pillarPageExists = pillarExists || clusterTopicExists;
+
+// Fetch related products for internal linking (same locale)
 const allProducts = await getCollection('produkte');
 const relatedProducts = (article.relatedProductSlugs ?? [])
-  .map((slug) => allProducts.find((p) => p.data.pageSlug === slug))
+  .map((slug) => allProducts.find((p) => p.data.pageSlug === slug && (!p.data.locale || p.data.locale === locale)))
   .filter((p): p is NonNullable<typeof p> => p != null);
 
 const publishedISO = article.publishedDate.toISOString().split('T')[0];
 const reviewedISO = article.lastReviewedDate.toISOString().split('T')[0];
 
+const dateLocaleMap: Record<string, string> = { de: 'de-DE', en: 'en-US' };
 const fmtDate = (d: Date) =>
-  d.toLocaleDateString('de-DE', { year: 'numeric', month: 'long', day: 'numeric' });
+  d.toLocaleDateString(dateLocaleMap[locale] ?? 'de-DE', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const hreflang = await getHreflangForContent(article.translationKey, 'artikel', 'blog');
 ---
 
 <BaseLayout
   title={article.seo.title}
   description={article.seo.description}
   ogType="article"
+  hreflang={hreflang}
   schemas={[
     generateArticle({
       title: article.title,
@@ -64,10 +86,10 @@ const fmtDate = (d: Date) =>
       url: `${siteConfig.url}${pageUrl}`,
       datePublished: publishedISO,
       dateModified: reviewedISO,
-    }),
+    }, locale),
     generateBreadcrumbs(breadcrumbSchema),
   ]}
-  locale="de"
+  locale={locale}
 >
   <BreadcrumbNav items={breadcrumbs} />
 
@@ -75,13 +97,19 @@ const fmtDate = (d: Date) =>
     <div class="max-w-3xl mx-auto px-4 md:px-6">
       <div class="mb-10">
         <div class="flex flex-wrap items-center gap-3 mb-4">
-          <a
-            href={`/themen/${article.pillarSlug}`}
-            class="inline-flex items-center px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full hover:bg-accent/20 transition-colors"
-          >
-            {article.pillarSlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}
-          </a>
-          <span class="text-sm text-text-muted">{article.readingTime} {t('blog.readingTime')}</span>
+          {pillarPageExists ? (
+            <a
+              href={`${getCollectionBasePath('themen', locale)}/${article.pillarSlug}`}
+              class="inline-flex items-center px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full hover:bg-accent/20 transition-colors"
+            >
+              {article.pillarSlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}
+            </a>
+          ) : (
+            <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full">
+              {article.pillarSlug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}
+            </span>
+          )}
+          <span class="text-sm text-text-muted">{article.readingTime} {t('blog.readingTime', locale)}</span>
         </div>
 
         <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl text-text mb-6">
@@ -89,13 +117,13 @@ const fmtDate = (d: Date) =>
         </h1>
 
         <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-text-muted">
-          <span>{t('blog.by')} {siteConfig.founder.name}</span>
+          <span>{t('blog.by', locale)} {siteConfig.founder.name}</span>
           <span aria-hidden="true">&middot;</span>
           <time datetime={publishedISO}>{fmtDate(article.publishedDate)}</time>
           {reviewedISO !== publishedISO && (
             <>
               <span aria-hidden="true">&middot;</span>
-              <span>{t('blog.updated')} {fmtDate(article.lastReviewedDate)}</span>
+              <span>{t('blog.updated', locale)} {fmtDate(article.lastReviewedDate)}</span>
             </>
           )}
         </div>
@@ -106,7 +134,7 @@ const fmtDate = (d: Date) =>
         authorSlug={siteConfig.founder.slug}
         publishedDate={publishedISO}
         reviewedDate={reviewedISO}
-        locale="de"
+        locale={locale}
       />
 
       <div class="prose prose-lg max-w-none mb-12">
@@ -118,6 +146,7 @@ const fmtDate = (d: Date) =>
         <BlogToProductBridge
           clusterSlug={article.cluster}
           sourcePageSlug={article.pageSlug}
+          locale={locale}
         />
       )}
     </div>
@@ -127,12 +156,12 @@ const fmtDate = (d: Date) =>
     <section class="py-12 md:py-16 bg-bg-alt">
       <div class="max-w-3xl mx-auto px-4 md:px-6">
         <h2 class="font-heading text-2xl md:text-3xl text-text mb-8 text-center">
-          {t('blog.relatedProducts')}
+          {t('blog.relatedProducts', locale)}
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {relatedProducts.map((rp) => (
             <a
-              href={`/produkte/${rp.data.pageSlug}`}
+              href={`${getCollectionBasePath('produkte', locale)}/${rp.data.pageSlug}`}
               class="block bg-white rounded-card p-6 border border-border shadow-sm hover:shadow-md hover:border-accent/30 transition-all group"
             >
               <h3 class="font-heading font-medium text-text group-hover:text-accent transition-colors mb-2">
@@ -148,12 +177,12 @@ const fmtDate = (d: Date) =>
   )}
 
   <CTABand
-    title="Dieses Wissen in die Praxis umsetzen?"
-    subtitle="Entdecke meine Produkte und Coaching-Angebote — wissenschaftlich fundiert und auf dich zugeschnitten."
-    ctaText="Angebot entdecken"
-    ctaHref="/angebot"
+    title={t('layout.applyKnowledge', locale)}
+    subtitle={t('layout.applyKnowledgeSub', locale)}
+    ctaText={t('layout.discoverOffers', locale)}
+    ctaHref={getTranslatedPath('/angebot', locale)}
     eventName="product_cta_click"
-    locale="de"
+    locale={locale}
     pageType="article"
     pageSlug={article.pageSlug}
   />
