@@ -20,6 +20,7 @@ export const navigation: Record<Locale, NavItem[]> = {
     },
     { label: 'Themen', href: '/themen' },
     { label: 'Blog', href: '/blog' },
+    { label: 'Masterclass', href: '/masterclass/hormone-histamin-zyklus-superpower' },
     { label: 'Quiz', href: '/quiz' },
     { label: 'Über mich', href: '/ueber' },
     { label: 'FAQ', href: '/faq' },

@@ -12,6 +12,7 @@ export type EventName =
   | 'discovery_call_click'
   | 'social_card_click'
   | 'masterclass_waitlist_signup'
+  | 'masterclass_cta_click'
   | 'cross_cluster_link_click';
 
 export type PageType =
@@ -54,6 +55,7 @@ export interface EventProperties {
   source_page_type?: PageType;
   source_cluster?: string;
   target_cluster?: string;
+  masterclass_slug?: string;
 }
 
 export function getTrackingScript(): string {

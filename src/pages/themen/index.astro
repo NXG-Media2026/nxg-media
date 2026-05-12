@@ -7,6 +7,7 @@ import { siteConfig } from '../../data/site';
 import { generateCollectionPage, generateBreadcrumbs } from '../../data/schema';
 import { t } from '../../i18n/utils';
 import { getAllClusters } from '../../lib/clusters';
+import { trackOnClick } from '../../lib/analytics';
 
 const pillars = await getCollection('pillars');
 const clusters = getAllClusters();
@@ -149,6 +150,38 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
           <p class="text-text-muted">Themen werden in Kürze veröffentlicht.</p>
         </div>
       )}
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <div class="bg-primary-dark rounded-card p-8 md:p-10 text-center">
+        <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-accent/20 text-accent-light rounded-full mb-4">
+          Kostenlose Masterclass
+        </span>
+        <h2 class="font-heading text-2xl md:text-3xl text-white mb-3">
+          Hormone, Histamin &amp; Zyklus als Superpower
+        </h2>
+        <p class="text-white/70 max-w-2xl mx-auto mb-6">
+          Wie Hormone, Zyklus, Histamin und Stress zusammenh&auml;ngen — und welche ersten Schritte wirklich sinnvoll sind. Kostenlos.
+        </p>
+        <a
+          href="/masterclass/hormone-histamin-zyklus-superpower"
+          class="inline-flex items-center px-6 py-3 text-sm font-medium text-primary bg-white hover:bg-bg-alt rounded-button transition-colors"
+          onclick={trackOnClick('masterclass_cta_click', {
+            page_type: 'pillar',
+            page_slug: '/themen',
+            locale: 'de',
+            masterclass_slug: 'hormone-histamin-zyklus-superpower',
+            cta_location: 'inline',
+          })}
+        >
+          Masterclass vormerken
+          <svg class="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
     </div>
   </section>
 
