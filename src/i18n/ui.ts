@@ -33,6 +33,10 @@ export const ui = {
 
     // FAQ
     'faq.heading': 'Häufig gestellte Fragen',
+    'faq.moreLink': 'Mehr Fragen? Besuche unsere FAQ-Seite',
+
+    // Social
+    'social.followCta': '@doc.veri auf Instagram folgen',
 
     // Product pages
     'product.whatIsInside': 'Das steckt drin',
@@ -202,6 +206,10 @@ export const ui = {
 
     // FAQ
     'faq.heading': 'Frequently asked questions',
+    'faq.moreLink': 'More questions? Visit our FAQ page',
+
+    // Social
+    'social.followCta': 'Follow @doc.veri on Instagram',
 
     // Product pages
     'product.whatIsInside': "What's inside",
