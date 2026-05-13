@@ -5,7 +5,7 @@ export const siteConfig = {
   url: 'https://docveri.de',
   defaultLocale: 'de' as const,
   locales: ['de', 'en'] as const,
-  languageSwitcherEnabled: false,
+  languageSwitcherEnabled: true,
 
   analytics: {
     ga4MeasurementId: '',

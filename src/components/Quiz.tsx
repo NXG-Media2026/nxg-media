@@ -1,10 +1,52 @@
 import { useState } from 'react';
 import { quizQuestions, calculateResult, archetypeLabels, type ArchetypeSlug } from '../data/quiz';
+import { quizQuestionsEn, archetypeLabelsEn, archetypeSlugsEn } from '../data/quiz-en';
 import { buildQuizPayload, submitEmailCapture } from '../lib/emailCapture';
 
 type Phase = 'quiz' | 'email' | 'result';
 
-export default function Quiz() {
+interface QuizProps {
+  locale?: 'de' | 'en';
+}
+
+const uiStrings = {
+  de: {
+    yourResult: 'Dein Ergebnis',
+    resultCta: 'Erfahre jetzt, was dein Hormon-Typ bedeutet und welche konkreten Schritte dir helfen.',
+    viewResult: 'Mein Ergebnis ansehen',
+    almostDone: 'Fast geschafft!',
+    emailPrompt: 'Trage deine E-Mail-Adresse ein, um dein personalisiertes Ergebnis mit konkreten Tipps zu erhalten.',
+    emailPlaceholder: 'Deine E-Mail-Adresse',
+    showResult: 'Ergebnis anzeigen',
+    submitting: 'Einen Moment…',
+    skipEmail: 'Ohne E-Mail fortfahren',
+    back: 'Zurück',
+    errorGeneric: 'Etwas ist schiefgelaufen. Bitte versuche es erneut.',
+    archetypesBase: '/archetypen',
+    quizSlug: '/quiz',
+  },
+  en: {
+    yourResult: 'Your Result',
+    resultCta: 'Find out what your hormone type means and which steps will help you.',
+    viewResult: 'View my result',
+    almostDone: 'Almost done!',
+    emailPrompt: 'Enter your email to receive your personalized result with actionable tips.',
+    emailPlaceholder: 'Your email address',
+    showResult: 'Show result',
+    submitting: 'One moment…',
+    skipEmail: 'Continue without email',
+    back: 'Back',
+    errorGeneric: 'Something went wrong. Please try again.',
+    archetypesBase: '/en/archetypes',
+    quizSlug: '/en/quiz',
+  },
+};
+
+export default function Quiz({ locale = 'de' }: QuizProps) {
+  const strings = uiStrings[locale];
+  const questions = locale === 'en' ? quizQuestionsEn : quizQuestions;
+  const labels = locale === 'en' ? archetypeLabelsEn : archetypeLabels;
+  const slugMap = locale === 'en' ? archetypeSlugsEn : null;
   const [currentQ, setCurrentQ] = useState(0);
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [phase, setPhase] = useState<Phase>('quiz');
@@ -13,8 +55,8 @@ export default function Quiz() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const question = quizQuestions[currentQ];
-  const totalQuestions = quizQuestions.length;
+  const question = questions[currentQ];
+  const totalQuestions = questions.length;
   const progress = Math.round(((currentQ + (phase === 'quiz' ? 0 : 1)) / totalQuestions) * 100);
 
   function handleAnswer(answerIdx: number) {
@@ -26,8 +68,8 @@ export default function Quiz() {
       if (typeof window !== 'undefined' && typeof (window as any).trackEvent === 'function') {
         (window as any).trackEvent('quiz_started', {
           page_type: 'quiz',
-          page_slug: '/quiz',
-          locale: 'de',
+          page_slug: strings.quizSlug,
+          locale,
         });
       }
     }
@@ -62,7 +104,7 @@ export default function Quiz() {
       const captureResult = await submitEmailCapture(payload);
 
       if (!captureResult.ok) {
-        setSubmitError(captureResult.error || 'Etwas ist schiefgelaufen. Bitte versuche es erneut.');
+        setSubmitError(captureResult.error || strings.errorGeneric);
         setIsSubmitting(false);
         return;
       }
@@ -70,15 +112,15 @@ export default function Quiz() {
       if (typeof window !== 'undefined' && typeof (window as any).trackEvent === 'function') {
         (window as any).trackEvent('quiz_email_captured', {
           page_type: 'quiz',
-          page_slug: '/quiz',
-          locale: 'de',
+          page_slug: strings.quizSlug,
+          locale,
           provider: captureResult.placeholder ? 'placeholder' : 'esp',
         });
       }
 
       setPhase('result');
     } catch {
-      setSubmitError('Etwas ist schiefgelaufen. Bitte versuche es erneut.');
+      setSubmitError(strings.errorGeneric);
       setIsSubmitting(false);
     }
   }
@@ -91,10 +133,12 @@ export default function Quiz() {
     if (typeof window !== 'undefined' && typeof (window as any).trackEvent === 'function') {
       (window as any).trackEvent('quiz_completed', {
         page_type: 'quiz',
-        page_slug: '/quiz',
-        locale: 'de',
+        page_slug: strings.quizSlug,
+        locale,
       });
     }
+
+    const resultSlug = slugMap ? slugMap[result] : result;
 
     return (
       <div className="max-w-2xl mx-auto text-center">
@@ -104,19 +148,19 @@ export default function Quiz() {
           </svg>
         </div>
         <p className="text-sm font-medium text-accent uppercase tracking-wider mb-2">
-          Dein Ergebnis
+          {strings.yourResult}
         </p>
         <h2 className="font-heading text-3xl md:text-4xl text-text mb-4">
-          {archetypeLabels[result]}
+          {labels[result]}
         </h2>
         <p className="text-text-muted leading-relaxed mb-8 max-w-lg mx-auto">
-          Erfahre jetzt, was dein Hormon-Typ bedeutet und welche konkreten Schritte dir helfen.
+          {strings.resultCta}
         </p>
         <a
-          href={`/archetypen/${result}`}
+          href={`${strings.archetypesBase}/${resultSlug}`}
           className="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-white bg-primary hover:bg-primary-dark transition-colors rounded-button"
         >
-          Mein Ergebnis ansehen
+          {strings.viewResult}
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
@@ -132,17 +176,17 @@ export default function Quiz() {
           <div className="bg-accent h-2 rounded-full transition-all duration-500" style={{ width: '100%' }} />
         </div>
         <h2 className="font-heading text-2xl text-text mb-3">
-          Fast geschafft!
+          {strings.almostDone}
         </h2>
         <p className="text-text-muted mb-6">
-          Trage deine E-Mail-Adresse ein, um dein personalisiertes Ergebnis mit konkreten Tipps zu erhalten.
+          {strings.emailPrompt}
         </p>
         <form onSubmit={handleEmailSubmit} className="space-y-3">
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Deine E-Mail-Adresse"
+            placeholder={strings.emailPlaceholder}
             required
             disabled={isSubmitting}
             className="w-full px-4 py-3 rounded-button text-sm text-text bg-white border border-border focus:outline-none focus:ring-2 focus:ring-accent disabled:opacity-50"
@@ -152,7 +196,7 @@ export default function Quiz() {
             disabled={isSubmitting}
             className="w-full px-6 py-3 text-sm font-medium text-white bg-primary hover:bg-primary-dark rounded-button transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            {isSubmitting ? 'Einen Moment…' : 'Ergebnis anzeigen'}
+            {isSubmitting ? strings.submitting : strings.showResult}
           </button>
         </form>
         {submitError && (
@@ -166,7 +210,7 @@ export default function Quiz() {
           disabled={isSubmitting}
           className="mt-4 text-sm text-text-muted hover:text-text underline underline-offset-2 transition-colors disabled:opacity-50"
         >
-          Ohne E-Mail fortfahren
+          {strings.skipEmail}
         </button>
       </div>
     );
@@ -214,7 +258,7 @@ export default function Quiz() {
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
           </svg>
-          Zurück
+          {strings.back}
         </button>
       )}
     </div>

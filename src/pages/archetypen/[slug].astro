@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import ArchetypeLayout from '../../layouts/ArchetypeLayout.astro';
 
 export async function getStaticPaths() {
-  const archetypes = await getCollection('archetypen');
+  const archetypes = (await getCollection('archetypen')).filter((a) => !a.data.locale || a.data.locale === 'de');
   return archetypes.map((archetype) => ({
     params: { slug: archetype.data.pageSlug },
     props: { entry: archetype },

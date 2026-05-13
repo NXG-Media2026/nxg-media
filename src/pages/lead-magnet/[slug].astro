@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import LeadMagnetLayout from '../../layouts/LeadMagnetLayout.astro';
 
 export async function getStaticPaths() {
-  const leadMagnets = await getCollection('leadMagnets');
+  const leadMagnets = (await getCollection('leadMagnets')).filter((lm) => !lm.data.locale || lm.data.locale === 'de');
   return leadMagnets.map((lm) => ({
     params: { slug: lm.data.pageSlug },
     props: { entry: lm },

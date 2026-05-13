@@ -7,6 +7,7 @@ import NewsletterSignup from '../components/NewsletterSignup.astro';
 import { siteConfig } from '../data/site';
 import { generateBreadcrumbs, generateFAQPage } from '../data/schema';
 import { t } from '../i18n/utils';
+import { buildHreflangPair } from '../i18n/hreflang';
 
 const entries = await getCollection('mitgliedschaft');
 const entry = entries[0];
@@ -28,6 +29,7 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
 <BaseLayout
   title={community?.seo.title ?? `Mitgliedschaft | ${siteConfig.name}`}
   description={community?.seo.description ?? 'Die doc.veri Community — bald verfügbar.'}
+  hreflang={buildHreflangPair('/mitgliedschaft', '/en/membership')}
   schemas={[
     generateBreadcrumbs(breadcrumbSchema),
     ...(community?.faq && community.faq.length > 0 ? [generateFAQPage(community.faq)] : []),

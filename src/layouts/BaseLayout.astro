@@ -62,7 +62,7 @@ const {
     {t('general.skipToContent', locale)}
   </a>
 
-  <Header locale={locale} currentPath={Astro.url.pathname} />
+  <Header locale={locale} currentPath={Astro.url.pathname} hreflang={hreflang} />
 
   <main id="main-content" class="flex-1">
     <slot />

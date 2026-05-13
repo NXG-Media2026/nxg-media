@@ -6,6 +6,7 @@ import CTABand from '../../components/CTABand.astro';
 import { siteConfig } from '../../data/site';
 import { generateCollectionPage, generateBreadcrumbs } from '../../data/schema';
 import { t } from '../../i18n/utils';
+import { buildHreflangPair } from '../../i18n/hreflang';
 import { getAllClusters } from '../../lib/clusters';
 import { trackOnClick } from '../../lib/analytics';
 
@@ -37,6 +38,7 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
     }),
     generateBreadcrumbs(breadcrumbSchema),
   ]}
+  hreflang={buildHreflangPair('/themen', '/en/topics')}
   locale="de"
 >
   <BreadcrumbNav items={breadcrumbs} />

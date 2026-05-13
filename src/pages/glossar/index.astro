@@ -18,9 +18,10 @@ import { siteConfig } from '../../data/site';
 import { generateDefinedTermSet, generateBreadcrumbs } from '../../data/schema';
 import { glossarTerms } from '../../data/glossar';
 import { t } from '../../i18n/utils';
+import { buildHreflangPair } from '../../i18n/hreflang';
 
-// 1. Load content collection entries
-const collectionEntries = await getCollection('glossar');
+// 1. Load content collection entries (DE only)
+const collectionEntries = (await getCollection('glossar')).filter((e) => !e.data.locale || e.data.locale === 'de');
 const collectionSlugs = new Set(collectionEntries.map((e) => e.data.slug));
 
 // 2. Merge: unified shape { term, slug, definition, hasPage, relatedSlugs }
@@ -83,6 +84,7 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
     generateDefinedTermSet(sortedTerms.map((t) => ({ ...t, hasPage: t.hasPage }))),
     generateBreadcrumbs(breadcrumbSchema),
   ]}
+  hreflang={buildHreflangPair('/glossar', '/en/glossary')}
   locale="de"
 >
   <BreadcrumbNav items={breadcrumbs} />

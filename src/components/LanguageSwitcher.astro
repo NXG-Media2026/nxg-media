@@ -1,41 +1,38 @@
 ---
 import { siteConfig, type Locale } from '../data/site';
-import { getTranslatedPath } from '../i18n/utils';
 
 interface Props {
   locale: Locale;
   currentPath: string;
+  hreflang?: Array<{ lang: string; href: string }>;
 }
 
-const { locale, currentPath } = Astro.props;
-const showSwitcher = siteConfig.languageSwitcherEnabled;
+const { locale, currentPath, hreflang } = Astro.props;
 
-const localeLabels: Record<Locale, string> = {
+const localeLabels: Record<string, string> = {
   de: 'DE',
   en: 'EN',
 };
 
-const alternates = showSwitcher
-  ? siteConfig.locales
-      .filter((l) => l !== locale)
-      .map((targetLocale) => ({
-        locale: targetLocale,
-        label: localeLabels[targetLocale] ?? targetLocale.toUpperCase(),
-        href: getTranslatedPath(currentPath, targetLocale),
-      }))
-  : [];
+const alternates = (hreflang ?? [])
+  .filter((h) => h.lang !== locale && h.lang !== 'x-default')
+  .map((h) => ({
+    locale: h.lang,
+    label: localeLabels[h.lang] ?? h.lang.toUpperCase(),
+    href: h.href.replace(siteConfig.url, ''),
+  }));
 ---
 
-{showSwitcher && (
+{alternates.length > 0 && (
   <div class="flex items-center gap-1.5 text-xs">
     <span class="font-medium text-text">{localeLabels[locale]}</span>
-    {alternates.map(({ label, href }) => (
+    {alternates.map(({ label, href, locale: targetLocale }) => (
       <>
         <span class="text-border">/</span>
         <a
           href={href}
           class="text-text-muted hover:text-accent transition-colors"
-          hreflang={label.toLowerCase()}
+          hreflang={targetLocale}
         >
           {label}
         </a>

@@ -1,35 +1,36 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import BreadcrumbNav from '../components/BreadcrumbNav.astro';
-import CTABand from '../components/CTABand.astro';
-import { siteConfig } from '../data/site';
-import { generateFAQPage, generateBreadcrumbs } from '../data/schema';
-import { faqCategories, getAllFAQs } from '../data/faq';
-import { t } from '../i18n/utils';
-import { buildHreflangPair } from '../i18n/hreflang';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BreadcrumbNav from '../../components/BreadcrumbNav.astro';
+import CTABand from '../../components/CTABand.astro';
+import { siteConfig } from '../../data/site';
+import { generateFAQPage, generateBreadcrumbs } from '../../data/schema';
+import { faqCategoriesEn, getAllFAQsEn } from '../../data/faq-en';
+import { t, localizePath, getTranslatedPath } from '../../i18n/utils';
+import { buildHreflangPair } from '../../i18n/hreflang';
 
-const allFaqs = getAllFAQs();
+const locale = 'en';
+const allFaqs = getAllFAQsEn();
 
 const breadcrumbs = [
-  { label: t('breadcrumb.home'), href: '/' },
-  { label: t('nav.faq') },
+  { label: t('breadcrumb.home', locale), href: localizePath('/', locale) },
+  { label: t('nav.faq', locale) },
 ];
 
 const breadcrumbSchema = breadcrumbs.map((b) => ({
   name: b.label,
-  url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}/faq`,
+  url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}/en/faq`,
 }));
 ---
 
 <BaseLayout
   title={`FAQ | ${siteConfig.name}`}
-  description="Häufig gestellte Fragen zu doc.veri — Produkte, Coaching, Hormone, Ernährung und Training."
+  description="Frequently asked questions about doc.veri — products, coaching, hormones, nutrition, and training."
   hreflang={buildHreflangPair('/faq', '/en/faq')}
   schemas={[
     generateFAQPage(allFaqs),
     generateBreadcrumbs(breadcrumbSchema),
   ]}
-  locale="de"
+  locale="en"
 >
   <BreadcrumbNav items={breadcrumbs} />
 
@@ -37,15 +38,15 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
     <div class="max-w-3xl mx-auto px-4 md:px-6">
       <div class="text-center mb-14 md:mb-20">
         <h1 class="font-heading text-4xl md:text-5xl text-text mb-4">
-          {t('faq.heading')}
+          {t('faq.heading', locale)}
         </h1>
         <p class="text-lg text-text-muted max-w-2xl mx-auto">
-          Hier findest du Antworten auf die häufigsten Fragen rund um doc.veri, meine Angebote und die Themen Hormone, Ernährung und Training.
+          Find answers to the most common questions about doc.veri, my offerings, and the topics of hormones, nutrition, and training.
         </p>
       </div>
 
-      <nav class="flex flex-wrap gap-2 mb-12" aria-label="FAQ-Kategorien">
-        {faqCategories.map((cat) => (
+      <nav class="flex flex-wrap gap-2 mb-12" aria-label="FAQ categories">
+        {faqCategoriesEn.map((cat) => (
           <a
             href={`#${cat.slug}`}
             class="inline-flex items-center px-4 py-2 text-sm font-medium bg-white border border-border rounded-full hover:border-accent/30 hover:text-accent transition-colors"
@@ -55,7 +56,7 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
         ))}
       </nav>
 
-      {faqCategories.map((category) => (
+      {faqCategoriesEn.map((category) => (
         <section id={category.slug} class="mb-12 last:mb-0 scroll-mt-24">
           <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">
             {category.title}
@@ -87,13 +88,13 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
   </section>
 
   <CTABand
-    title="Noch Fragen? Schreib mir!"
-    subtitle="Ich helfe dir gerne persönlich weiter."
-    ctaText="Kontakt aufnehmen"
-    ctaHref="/kontakt"
+    title="Still have questions? Get in touch!"
+    subtitle="I'm happy to help you personally."
+    ctaText="Contact me"
+    ctaHref={getTranslatedPath('/kontakt', locale)}
     eventName="discovery_call_click"
-    locale="de"
+    locale="en"
     pageType="faq"
-    pageSlug="/faq"
+    pageSlug="/en/faq"
   />
 </BaseLayout>

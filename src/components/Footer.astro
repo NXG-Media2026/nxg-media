@@ -154,13 +154,11 @@ const agbHref = getTranslatedPath('/agb', locale);
               {t('general.freeMasterclass', locale)}
             </a>
           </li>
-          {locale === 'de' && (
-            <li>
-              <a href={faqHref} class="text-sm text-white/70 hover:text-primary-light transition-colors">
-                {t('nav.faq', locale)}
-              </a>
-            </li>
-          )}
+          <li>
+            <a href={faqHref} class="text-sm text-white/70 hover:text-primary-light transition-colors">
+              {t('nav.faq', locale)}
+            </a>
+          </li>
         </ul>
       </div>
 

@@ -22,7 +22,7 @@ const isHybrid = Boolean(entry.data.cluster);
     <Content />
   </HybridProductLayout>
 ) : (
-  <ProductLayout product={entry.data}>
+  <ProductLayout product={entry.data} locale="en">
     <Content />
   </ProductLayout>
 )}

@@ -7,8 +7,11 @@ import CTABand from '../../components/CTABand.astro';
 import { siteConfig } from '../../data/site';
 import { generateCollectionPage, generateBreadcrumbs } from '../../data/schema';
 import { t } from '../../i18n/utils';
+import { buildHreflangPair } from '../../i18n/hreflang';
 
-const products = (await getCollection('produkte')).sort((a, b) => (a.data.sortOrder ?? 50) - (b.data.sortOrder ?? 50));
+const products = (await getCollection('produkte'))
+  .filter((p) => !p.data.locale || p.data.locale === 'de')
+  .sort((a, b) => (a.data.sortOrder ?? 50) - (b.data.sortOrder ?? 50));
 
 const breadcrumbs = [
   { label: t('breadcrumb.home'), href: '/' },
@@ -33,6 +36,7 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
     }),
     generateBreadcrumbs(breadcrumbSchema),
   ]}
+  hreflang={buildHreflangPair('/produkte', '/en/products')}
   locale="de"
 >
   <BreadcrumbNav items={breadcrumbs} />

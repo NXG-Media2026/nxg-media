@@ -4,6 +4,7 @@ import BreadcrumbNav from '../components/BreadcrumbNav.astro';
 import { siteConfig } from '../data/site';
 import { generateBreadcrumbs } from '../data/schema';
 import { t } from '../i18n/utils';
+import { buildHreflangPair } from '../i18n/hreflang';
 
 const breadcrumbs = [
   { label: t('breadcrumb.home'), href: '/' },
@@ -19,6 +20,7 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
 <BaseLayout
   title={`Kontakt | ${siteConfig.name}`}
   description="Kontaktiere Dr. Verena — Fragen zu Produkten, Coaching oder Zusammenarbeit."
+  hreflang={buildHreflangPair('/kontakt', '/en/contact')}
   schemas={[generateBreadcrumbs(breadcrumbSchema)]}
   locale="de"
 >

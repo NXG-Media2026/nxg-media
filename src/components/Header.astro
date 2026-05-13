@@ -7,9 +7,10 @@ import LanguageSwitcher from './LanguageSwitcher.astro';
 interface Props {
   locale?: Locale;
   currentPath?: string;
+  hreflang?: Array<{ lang: string; href: string }>;
 }
 
-const { locale = 'de', currentPath = '/' } = Astro.props;
+const { locale = 'de', currentPath = '/', hreflang } = Astro.props;
 const navItems = navigation[locale];
 const showLanguageSwitcher = siteConfig.languageSwitcherEnabled;
 
@@ -87,9 +88,9 @@ function isActive(href: string): boolean {
           )
         ))}
 
-        {showLanguageSwitcher && (
+        {showLanguageSwitcher && hreflang && hreflang.length > 0 && (
           <div class="ml-2">
-            <LanguageSwitcher locale={locale} currentPath={currentPath} />
+            <LanguageSwitcher locale={locale} currentPath={currentPath} hreflang={hreflang} />
           </div>
         )}
 
@@ -186,10 +187,10 @@ function isActive(href: string): boolean {
         )
       ))}
 
-      {showLanguageSwitcher && (
+      {showLanguageSwitcher && hreflang && hreflang.length > 0 && (
         <div class="pt-4 mt-4 border-t border-border flex items-center gap-3">
           <span class="text-sm text-text-muted">{t('general.language')}:</span>
-          <LanguageSwitcher locale={locale} currentPath={currentPath} />
+          <LanguageSwitcher locale={locale} currentPath={currentPath} hreflang={hreflang} />
         </div>
       )}
 

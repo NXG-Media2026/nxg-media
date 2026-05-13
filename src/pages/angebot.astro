@@ -5,6 +5,7 @@ import CTABand from '../components/CTABand.astro';
 import { siteConfig } from '../data/site';
 import { generateCollectionPage, generateBreadcrumbs } from '../data/schema';
 import { t } from '../i18n/utils';
+import { buildHreflangPair } from '../i18n/hreflang';
 
 const breadcrumbs = [
   { label: t('breadcrumb.home'), href: '/' },
@@ -44,6 +45,7 @@ const offerings = [
 <BaseLayout
   title={`Angebot | ${siteConfig.name}`}
   description="Produkte, Coaching und Mitgliedschaft — wissenschaftlich fundierte Frauen-Gesundheit von Dr. Verena."
+  hreflang={buildHreflangPair('/angebot', '/en/offers')}
   schemas={[
     generateCollectionPage({
       name: 'Angebot',

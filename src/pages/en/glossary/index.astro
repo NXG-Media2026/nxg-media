@@ -6,6 +6,7 @@ import CTABand from '../../../components/CTABand.astro';
 import { siteConfig } from '../../../data/site';
 import { generateDefinedTermSet, generateBreadcrumbs } from '../../../data/schema';
 import { t, localizePath, getCollectionBasePath } from '../../../i18n/utils';
+import { buildHreflangPair } from '../../../i18n/hreflang';
 
 const locale = 'en';
 const glossaryBase = getCollectionBasePath('glossar', locale);
@@ -41,6 +42,7 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
 <BaseLayout
   title={`Glossary | ${siteConfig.name}`}
   description="Women's health glossary: key terms on hormones, cycle, nutrition, and training — clearly explained and evidence-based."
+  hreflang={buildHreflangPair('/glossar', '/en/glossary')}
   schemas={[
     generateDefinedTermSet(sortedTerms.map((t) => ({ ...t, hasPage: t.hasPage }))),
     generateBreadcrumbs(breadcrumbSchema),

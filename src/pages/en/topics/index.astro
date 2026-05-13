@@ -5,6 +5,7 @@ import CTABand from '../../../components/CTABand.astro';
 import { siteConfig } from '../../../data/site';
 import { generateCollectionPage, generateBreadcrumbs } from '../../../data/schema';
 import { t, localizePath, getCollectionBasePath } from '../../../i18n/utils';
+import { buildHreflangPair } from '../../../i18n/hreflang';
 import { getAllClusters, getClusterLocalized } from '../../../lib/clusters';
 import { trackOnClick } from '../../../lib/analytics';
 
@@ -31,6 +32,7 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
 <BaseLayout
   title={`Topics | ${siteConfig.name}`}
   description="Evidence-based topics on women's health: hormones, nutrition, training, cycle, and more — by Dr. Verena."
+  hreflang={buildHreflangPair('/themen', '/en/topics')}
   schemas={[
     generateCollectionPage({
       name: 'Topics',

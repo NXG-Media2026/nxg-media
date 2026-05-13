@@ -7,6 +7,7 @@ import CTABand from '../../../components/CTABand.astro';
 import { siteConfig } from '../../../data/site';
 import { generateCollectionPage, generateBreadcrumbs } from '../../../data/schema';
 import { t, localizePath, getTranslatedPath, getCollectionBasePath } from '../../../i18n/utils';
+import { buildHreflangPair } from '../../../i18n/hreflang';
 
 const locale = 'en';
 const productsBase = getCollectionBasePath('produkte', locale);
@@ -30,6 +31,7 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
 <BaseLayout
   title={`Products | ${siteConfig.name}`}
   description="Digital guides, e-books, and courses for evidence-based women's health — by Dr. Verena."
+  hreflang={buildHreflangPair('/produkte', '/en/products')}
   schemas={[
     generateCollectionPage({
       name: 'Products',

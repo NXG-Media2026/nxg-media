@@ -6,6 +6,7 @@ import CTABand from '../../../components/CTABand.astro';
 import { siteConfig } from '../../../data/site';
 import { generateCollectionPage, generateBreadcrumbs } from '../../../data/schema';
 import { t, localizePath, getTranslatedPath, getCollectionBasePath } from '../../../i18n/utils';
+import { buildHreflangPair } from '../../../i18n/hreflang';
 
 const locale = 'en';
 const blogBase = getCollectionBasePath('blog', locale);
@@ -31,6 +32,7 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
 <BaseLayout
   title={`Blog | ${siteConfig.name}`}
   description="Evidence-based articles on women's health, hormones, nutrition, and training — by Dr. Verena."
+  hreflang={buildHreflangPair('/blog', '/en/blog')}
   schemas={[
     generateCollectionPage({
       name: 'Blog',

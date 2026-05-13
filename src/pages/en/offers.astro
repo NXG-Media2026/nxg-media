@@ -5,6 +5,7 @@ import CTABand from '../../components/CTABand.astro';
 import { siteConfig } from '../../data/site';
 import { generateCollectionPage, generateBreadcrumbs } from '../../data/schema';
 import { t, localizePath, getTranslatedPath } from '../../i18n/utils';
+import { buildHreflangPair } from '../../i18n/hreflang';
 
 const locale = 'en';
 
@@ -39,6 +40,7 @@ const offerings = [
 <BaseLayout
   title={`Offers | ${siteConfig.name}`}
   description="Products, coaching, and more — evidence-based women's health by Dr. Verena."
+  hreflang={buildHreflangPair('/angebot', '/en/offers')}
   schemas={[
     generateCollectionPage({
       name: 'Offers',
