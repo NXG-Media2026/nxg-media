@@ -156,6 +156,23 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
+
+  /* Language switcher — mobile-friendly tap targets */
+  .lang-switcher-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.125rem 0.25rem;
+  }
+
+  @media (max-width: 1023px) {
+    .lang-switcher-item {
+      min-height: 44px;
+      min-width: 44px;
+      padding: 0.5rem;
+      font-size: 0.875rem;
+    }
+  }
 }
 
 @layer utilities {

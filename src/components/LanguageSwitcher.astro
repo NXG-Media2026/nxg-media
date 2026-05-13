@@ -24,14 +24,14 @@ const alternates = (hreflang ?? [])
 ---
 
 {alternates.length > 0 && (
-  <div class="flex items-center gap-1.5 text-xs">
-    <span class="font-medium text-text">{localeLabels[locale]}</span>
+  <div class="flex items-center text-xs">
+    <span class="font-medium text-text lang-switcher-item">{localeLabels[locale]}</span>
     {alternates.map(({ label, href, locale: targetLocale }) => (
       <>
-        <span class="text-border">/</span>
+        <span class="text-border mx-1">/</span>
         <a
           href={href}
-          class="text-text-muted hover:text-accent transition-colors"
+          class="text-text-muted hover:text-accent transition-colors lang-switcher-item"
           hreflang={targetLocale}
         >
           {label}

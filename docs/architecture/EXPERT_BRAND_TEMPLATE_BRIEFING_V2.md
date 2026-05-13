@@ -337,6 +337,94 @@ Additional callout/product styling lives in `global.css` under `@layer component
 
 Every markdown-rendered content area must use the typography plugin's `prose` class. No layout should attempt to style markdown with manual utility classes — that approach breaks when the plugin handles the same properties.
 
+### Blog expert-lens rules
+
+In expert-brand sites, blog articles must not read like generic SEO encyclopedia entries. An article can be structurally correct, SEO-friendly, and AI-citable while still feeling generic if it lacks the expert's lived observations, client patterns, or point of view.
+
+Every commercially relevant blog article should include at least one of:
+
+- **Expert observation** — something the expert sees repeatedly that contradicts common assumptions
+- **Personal mini-story** — a brief, specific moment from the expert's practice or athletic life
+- **Client/patient pattern** — "What I keep seeing is…" framing that builds authority through specificity
+- **Myth-to-reframe block** — names a common misconception, then reframes it with the expert's clinical lens
+- **"What generic advice misses" section** — explicitly calls out what standard health content gets wrong for this audience
+- **Recognition opening** — a felt moment the reader identifies with before the educational explanation begins
+
+The article still needs AI-citable structure, clear H2/H3 headings, and factual definitions. The expert layer is what makes it belong to this expert rather than any other health site.
+
+#### Recognition opening rule
+
+Commercially relevant blog articles should not open like encyclopedia entries. Instead of:
+
+> "Hormone beeinflussen viele Prozesse im weiblichen Körper…"
+
+Start with a moment the reader recognizes:
+
+> "Du machst eigentlich vieles richtig — isst gesund, trainierst, schläfst genug — und trotzdem bleibt die Müdigkeit."
+
+Then move into the educational explanation. The recognition opening validates the reader's experience before explaining the biology.
+
+#### Expert-lens callout
+
+Where appropriate, articles should include a subtle editorial callout using the `personal-lens-callout` CSS class (rendered via `<aside>` in markdown). Suitable labels:
+
+- "Verena's perspective" / "Verenas Perspektive" (default)
+- "What I keep seeing" / "Was mir immer wieder auffällt"
+- "What most advice misses" / "Was die meisten Ratgeber übersehen"
+- "The reframe" / "Der andere Blickwinkel"
+- "In practice" / "In der Praxis"
+
+Use for: patient/client patterns, personal observations, myth-to-reframe moments, expert POV, anti-generic-advice framing. The callout should feel calm, premium, and editorial — not loud, salesy, or confessional.
+
+In `.md` articles, use this HTML pattern:
+
+```html
+<aside class="personal-lens-callout" role="note">
+
+**Verenas Perspektive:** Callout text here.
+
+</aside>
+```
+
+In `.mdx` articles, import the `PersonalLensCallout.astro` component instead.
+
+#### Blog conversion balance
+
+Blogs should not become hard landing pages. The balance:
+
+**Keep unchanged:**
+- Educational depth and factual accuracy
+- AI citation slots (definitions, structured answers)
+- Schema.org Article markup
+- Clear H2/H3 hierarchy
+- Product bridge at the end (via `BlogToProductBridge` or `relatedProducts`)
+
+**Strengthen with expert lens:**
+- Recognition opening (felt moment → education)
+- Expert point of view (what generic advice misses)
+- Soft reframe (what the reader wrongly blames herself for)
+- Anti-generic advice angle (why this topic is different for women)
+- Soft product bridge (logical next step, not pressure)
+
+A good expert-brand article should answer:
+
+1. What does this expert see that generic advice misses?
+2. What pattern does the expert notice repeatedly?
+3. What does the reader wrongly blame herself for?
+4. What is the calmer, more accurate reframe?
+5. What is the logical next step if the reader wants structure?
+
+#### Blog expert-lens anti-patterns
+
+- Do not turn every article into a personal diary
+- Do not add dramatic medical claims for attention
+- Do not replace factual explanation with Instagram-style punchlines
+- Do not use expert callouts as disguised sales blocks
+- Do not remove AI-citable definitions or schema-relevant headings
+- Do not rewrite articles entirely — layer the expert lens onto existing structure
+
+The target tone balance: hooks/callouts are human, specific, and recognizable. Body copy is calm, medically grounded, and clear. CTAs and product bridges are practical and soft.
+
 ---
 
 ## 7. Product page templates
@@ -678,6 +766,8 @@ Hard rules for Claude Code and future implementers.
 13. **Anti-generic copy rule.** Avoid generic AI-style wellness copy. Do not use vague phrases like "unlock your full potential", "take control of your health", "balance your hormones naturally", "become the best version of yourself", "holistic wellness journey", "nourish your body and mind", "transform your life", or "optimize your health." Before accepting any headline, section intro, or product copy, ask: could this sentence appear on any generic women's health website? If yes, rewrite it with a concrete moment, the expert's point of view, or specific female physiology. The site should feel like a real person with a real opinion — not a template with wellness fill-in-the-blanks. Heroes and hooks should be human and recognizable. Body copy should be calm, medical, and clear. CTAs should be concrete, practical, and not pushy.
 
 14. **Product pages should not create pressure.** Conversion blocks must not make the product feel like another system the visitor has to perform perfectly. The product should feel like clarity and structure — not another strict rulebook. Add copy that reassures: you don't need to do everything perfectly, this is practical and self-paced, the goal is understanding patterns, not controlling every detail.
+
+15. **Mobile tap targets must be at least 44×44px.** Every interactive element (links, buttons, form inputs) must meet the 44×44px minimum tap target on viewports below `lg` (1024px). This applies to navigation links, language switcher items, icon buttons, footer links, and inline text links in mobile menus. Use `min-h-[44px] min-w-[44px]` or a responsive CSS class with a `@media (max-width: 1023px)` rule. Desktop can stay compact. Common offender: small utility links (language switcher, social icons, breadcrumbs) that render at `text-xs` with no padding — technically visible but impossible to tap accurately on a phone.
 
 ---
 
