@@ -3,6 +3,9 @@ title: "Zyklusbewusstes Training: So trainierst du mit deinen Hormonen"
 pageSlug: "zyklusbewusstes-training"
 translationKey: "zyklusbewusstes-training"
 pillarSlug: "hormone"
+cluster: "training"
+secondaryClusters:
+  - "hormone-zyklus"
 publishedDate: 2026-05-05
 lastReviewedDate: 2026-05-05
 excerpt: "Dein Zyklus beeinflusst deine Leistungsfähigkeit. Lerne, wie du dein Training an deine Hormone anpasst — für bessere Ergebnisse und weniger Verletzungen."
@@ -17,6 +20,8 @@ seo:
   title: "Zyklusbewusstes Training für Frauen | doc.veri"
   description: "Trainiere mit deinem Zyklus: wann Intensität, wann Regeneration. Zyklusbewusstes Training erklärt von einer Ärztin."
 ---
+
+Zyklusbewusstes Training passt dein Workout an die vier Phasen deines Menstruationszyklus an — Intensität, Umfang und Regeneration orientieren sich an deinen Hormonschwankungen statt sie zu ignorieren.
 
 ## Warum die meisten Trainingspläne für Frauen nicht funktionieren
 

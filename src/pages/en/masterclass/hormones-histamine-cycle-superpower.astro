@@ -67,7 +67,7 @@ const learnings = [
 const faqs = [
   {
     q: 'When does the masterclass take place?',
-    a: 'The exact date hasn\'t been set yet. Sign up for the waitlist and you\'ll be the first to know — with an exclusive early-bird benefit.',
+    a: 'The date hasn\'t been set yet. Sign up for the waitlist and you\'ll be the first to know — including an exclusive early-bird benefit.',
   },
   {
     q: 'Is the masterclass free?',
@@ -75,7 +75,7 @@ const faqs = [
   },
   {
     q: 'Do I need prior knowledge?',
-    a: 'No. The masterclass is structured so you can understand everything — whether you\'re exploring hormones for the first time or have been researching for a while.',
+    a: 'No, you don\'t need any prior knowledge. The masterclass is structured so you can understand everything — whether you\'re exploring hormones for the first time or have been researching for a while.',
   },
   {
     q: 'Will there be a recording?',
@@ -83,11 +83,11 @@ const faqs = [
   },
   {
     q: 'Who is the masterclass for?',
-    a: 'For all women who feel their body isn\'t working the way it used to — and want to understand why. Especially relevant if you\'re between 28 and 52.',
+    a: 'The masterclass is designed for women between 28 and 52 who feel their body isn\'t working the way it used to. You\'ll learn why that is and what you can do about it.',
   },
   {
     q: 'How is this different from a YouTube video?',
-    a: 'The masterclass connects three topics (hormones, histamine, cycle) that are usually covered separately. You get the full picture — from a physician, not an influencer.',
+    a: 'The masterclass connects hormones, histamine, and the cycle into one complete picture — three topics usually covered separately. The knowledge comes from a physician, not an influencer.',
   },
 ];
 
@@ -108,7 +108,7 @@ const waitlistPayloadJson = serializePayload(waitlistPayload);
 ---
 
 <BaseLayout
-  title={`${pageTitle} — Masterclass | ${siteConfig.name}`}
+  title={`Hormones, Histamine & Cycle — Masterclass | ${siteConfig.name}`}
   description="Finally understand why your body has changed. Masterclass on hormones, histamine, and cycle-aware living — by Dr. Verena Mann."
   hreflang={buildHreflangPair('/masterclass/hormone-histamin-zyklus-superpower', '/en/masterclass/hormones-histamine-cycle-superpower')}
   schemas={[
@@ -301,6 +301,33 @@ const waitlistPayloadJson = serializePayload(waitlistPayload);
             </li>
           </ul>
         </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ──────────────────────────────────────────────
+      PROOF / RECOGNITION
+      Demo testimonials for template evaluation.
+      Replace with real testimonials before production launch.
+      ────────────────────────────────────────────── */}
+  <section class="py-14 md:py-20 bg-bg-alt">
+    <div class="max-w-3xl mx-auto px-4 md:px-6 text-center">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">
+        What women who work with me say
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <blockquote class="bg-white rounded-card p-6 text-left border border-border">
+          <p class="text-text-muted text-sm leading-relaxed italic mb-4">
+            &ldquo;Finally someone who explained why my symptoms always come at the same cycle phase. That changed everything.&rdquo;
+          </p>
+          <footer class="text-xs text-text-muted font-medium">&mdash; Coaching client, 38</footer>
+        </blockquote>
+        <blockquote class="bg-white rounded-card p-6 text-left border border-border">
+          <p class="text-text-muted text-sm leading-relaxed italic mb-4">
+            &ldquo;I had visited three doctors before I found Dr. Verena. She was the first one who saw the full picture.&rdquo;
+          </p>
+          <footer class="text-xs text-text-muted font-medium">&mdash; Coaching client, 44</footer>
+        </blockquote>
       </div>
     </div>
   </section>

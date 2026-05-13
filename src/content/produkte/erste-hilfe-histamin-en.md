@@ -5,6 +5,9 @@ price: "37"
 currency: EUR
 plugAndPayUrl: "https://example.com/checkout/erste-hilfe-histamin"
 sortOrder: 3
+cluster: "histamin"
+secondaryClusters:
+  - "perimenopause"
 heroImage: ../../assets/images/products/erste-hilfe-histamin.png
 locale: en
 translationKey: "erste-hilfe-histamin"
@@ -38,6 +41,9 @@ ctaBullets:
   - "Instant access"
   - "Self-paced"
   - "One-time payment — €37"
+partOfBundle:
+  product: "histamine-bundle"
+  reason: "If you do not just want a quick starting point, but want to understand the full pattern behind histamine, cycle and nutrition, the Histamine Bundle is the better next step."
 relatedProductSlugs:
   - "food-guide"
   - "smoothie-guide"
@@ -46,17 +52,17 @@ faq:
   - q: "What is histamine intolerance?"
     a: "Histamine is a substance your body produces naturally. When there's too much, it can cause a wide range of symptoms — from skin reactions to headaches to sleep problems. With histamine intolerance, your body can't break down histamine fast enough."
   - q: "How quickly does the program work?"
-    a: "Many participants report feeling better within days once they implement the first adjustments."
+    a: "Initial improvements are often noticeable within days once you implement the first adjustments. The lasting effect builds systematically over the weeks."
   - q: "Do I need prior knowledge?"
-    a: "No. The program is designed so you understand everything from the ground up and can take action right away — even if you've never dealt with histamine before."
+    a: "No, you don't need any prior knowledge. The program is designed so you understand everything from the ground up and can take action right away."
   - q: "Is the program suitable for perimenopause?"
-    a: "Especially so. When your hormones fluctuate — due to PMS, perimenopause, or stress — your body becomes more sensitive to histamine. The program addresses exactly this connection."
+    a: "The program is especially relevant during perimenopause. Hormonal fluctuations make the body more sensitive to histamine — the program addresses exactly this connection."
   - q: "Do I get immediate access?"
     a: "Yes, after purchase you get instant access to all audio modules, the e-book, and the supplement overviews."
   - q: "Is there a bundle option?"
     a: "Yes! The Histamine Bundle includes the First Aid program, the Food Guide, and the Smoothie Guide — all together for just €59 instead of over €80 separately."
 seo:
-  title: "First Aid for Histamine | doc.veri"
+  title: "First Aid for Histamine — Audio Course & Guide | doc.veri"
   description: "Lower histamine & control symptoms: 7 audio modules, e-book & recipes. Immediately actionable. By Dr. Verena Mann."
 ---
 

@@ -158,6 +158,7 @@ export function generateProduct(product: {
     name: product.name,
     description: product.description,
     url: product.url,
+    brand: { '@id': orgId },
     offers: {
       '@type': 'Offer',
       price: product.price.replace(/[^0-9.,]/g, ''),

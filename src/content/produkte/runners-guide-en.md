@@ -5,6 +5,9 @@ price: "24.95"
 currency: EUR
 plugAndPayUrl: "https://example.com/checkout/runners-guide"
 sortOrder: 6
+cluster: "training"
+secondaryClusters:
+  - "hormone-zyklus"
 heroImage: ../../assets/images/products/runners-guide.png
 locale: en
 translationKey: "runners-guide"

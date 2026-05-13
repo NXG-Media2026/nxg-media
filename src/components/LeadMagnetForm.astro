@@ -20,9 +20,9 @@ const formId = `lm-form-${pageSlug}`;
 ---
 
 <div class="bg-bg-alt rounded-card p-6 md:p-8 border border-border" id={`${formId}-wrapper`}>
-  <h3 class="font-heading text-xl text-text mb-2">
+  <p class="font-heading text-xl text-text mb-2">
     {t('leadMagnet.downloadHeading', locale)}
-  </h3>
+  </p>
   <p class="text-sm text-text-muted mb-5">
     {t('leadMagnet.downloadSubtext', locale)}
   </p>
@@ -59,7 +59,7 @@ const formId = `lm-form-${pageSlug}`;
         <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
       </svg>
     </div>
-    <h4 class="font-heading text-lg text-text mb-1">{t('leadMagnet.successHeading', locale)}</h4>
+    <p class="font-heading text-lg text-text mb-1">{t('leadMagnet.successHeading', locale)}</p>
     <p class="text-sm text-text-muted" aria-live="polite">{t('leadMagnet.successMessage', locale)}</p>
   </div>
 </div>

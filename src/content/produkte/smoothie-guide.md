@@ -6,6 +6,9 @@ price: "14.95"
 currency: EUR
 plugAndPayUrl: "https://example.com/checkout/smoothie-guide"
 sortOrder: 5
+cluster: "ernaehrung"
+secondaryClusters:
+  - "histamin"
 heroImage: ../../assets/images/products/smoothie-guide.png
 shortDescription: "30 Mahlzeit-Smoothies — hormonfreundlich, histaminarm und als vollwertige Mahlzeit konzipiert. Schnell, lecker, nährstoffreich."
 longDescription: "Die Smoothie-Guide enthält 30 Mahlzeit-Smoothies, die deine Hormone unterstützen, histaminarm sind und als vollwertige Mahlzeit funktionieren — perfekt für Frauen, die wenig Zeit haben, aber trotzdem gut für sich sorgen wollen."
@@ -37,6 +40,9 @@ expertPOV: "Ein Smoothie kann gesund aussehen und trotzdem nicht für deinen Kö
 ctaBullets:
   - "Sofortiger Zugriff"
   - "14,95 €"
+partOfBundle:
+  product: "histamin-bundle"
+  reason: "Der Smoothie Guide ist Teil des Histamin Bundles. Wenn du neben schnellen Mahlzeiten auch den vollstaendigen Histamin-Fahrplan willst, bekommst du im Bundle alles zusammen — und sparst dabei."
 relatedProductSlugs:
   - "food-guide"
   - "erste-hilfe-histamin"

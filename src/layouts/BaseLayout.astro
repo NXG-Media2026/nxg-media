@@ -6,7 +6,7 @@ import Footer from '../components/Footer.astro';
 import StickyMobileCTA from '../components/StickyMobileCTA.astro';
 import { siteConfig, type Locale } from '../data/site';
 import type { PageType } from '../lib/analytics';
-import { getTrackingScript, getGA4Script } from '../lib/analytics';
+import { getTrackingScript, getGA4Script, getMetaPixelScript } from '../lib/analytics';
 import { t } from '../i18n/utils';
 
 interface Props {
@@ -52,6 +52,9 @@ const {
   <script is:inline set:html={getTrackingScript()} />
   {siteConfig.analytics.ga4MeasurementId && (
     <Fragment set:html={getGA4Script(siteConfig.analytics.ga4MeasurementId)} />
+  )}
+  {siteConfig.analytics.metaPixelId && (
+    <Fragment set:html={getMetaPixelScript(siteConfig.analytics.metaPixelId)} />
   )}
 </head>
 <body class="bg-bg text-text min-h-screen flex flex-col">

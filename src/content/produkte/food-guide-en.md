@@ -5,6 +5,9 @@ price: "29.95"
 currency: EUR
 plugAndPayUrl: "https://example.com/checkout/food-guide"
 sortOrder: 4
+cluster: "ernaehrung"
+secondaryClusters:
+  - "histamin"
 heroImage: ../../assets/images/products/food-guide.png
 locale: en
 translationKey: "food-guide"
@@ -40,6 +43,9 @@ ctaBullets:
   - "Instant access"
   - "Self-paced"
   - "One-time payment — €29.95"
+partOfBundle:
+  product: "histamine-bundle"
+  reason: "The Food Guide is part of the Histamine Bundle. If you want not just recipes, but also to understand how histamine, your cycle and nutrition connect, the bundle gives you everything in one package."
 relatedProductSlugs:
   - "first-aid-histamine"
   - "smoothie-guide"

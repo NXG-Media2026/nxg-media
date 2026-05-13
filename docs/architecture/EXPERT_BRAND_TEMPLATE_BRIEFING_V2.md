@@ -469,6 +469,25 @@ Rules:
 - Clear upsell path to the cluster's main product
 - Can be referenced as checkout bump from other products
 
+### Bundle upsell logic
+
+If a standalone product is part of a larger bundle or naturally leads into a fuller product, the product page shows a clear bundle upsell block. This is different from generic related products.
+
+- **Generic related products** answer: "What else might be relevant?"
+- **Bundle upsell** answers: "Would the fuller package be a better next step?"
+
+Use this for: mini-products, quick-start guides, single-topic products included in a larger bundle, entry offers that lead to a complete method.
+
+Implementation:
+- `partOfBundle` field in product frontmatter: `{ product, reason, label?, ctaLabel? }`
+- `BundleUpsellBlock.astro` component — renders after "What's included", before target audience
+- Resolves bundle product from content collection, renders nothing if target doesn't exist
+- Does NOT render on the bundle page itself
+- Analytics: `bundle_upsell_click` event with `target_product` property
+- Localized URLs and copy via `product.bundleEyebrow`, `product.bundleHeadline`, `product.bundleCta`
+
+Do not render bundle upsells when: the product IS the bundle, the target bundle does not exist, or the relationship is weak/artificial.
+
 ### High-ticket / trajectory page
 
 For coaching packages or programs over ~500 EUR.
@@ -481,7 +500,65 @@ Rules:
 
 ---
 
-## 8. Calendly rules
+## 8. Expert E-E-A-T / About page
+
+The About page is not a simple biography. For expert-brand websites, it is a core trust and authority page that directly affects conversion, AI citability, and E-E-A-T signals.
+
+### Purpose
+
+The About page answers:
+1. Why should this expert be trusted?
+2. What does this expert see that generic advice misses?
+3. Why does this expert care about this problem?
+4. What is their point of view?
+5. What qualifies them to teach or guide this topic?
+6. Where are the boundaries of their advice?
+
+### Required sections
+
+1. **Hero with positioning** — not just "about [name]", but why this expert is the right person for this topic
+2. **Why the brand exists** — origin story: the pattern the expert kept seeing, what generic advice gets wrong
+3. **What they noticed in practice** — patient/client patterns: real symptoms, normal lab values, self-blame, fragmented treatment
+4. **Expert point of view** — specific beliefs and positions, not generic "passionate about helping" copy
+5. **Medical/professional background** — credentials, qualifications, education. Only what is real and verifiable.
+6. **Expertise areas** — cards or tags showing topic coverage
+7. **How the method works** — 3-4 step framework: recognize patterns, understand mechanisms, choose next step, take action
+8. **Personal / real-life lens** — the expert as a human: sport, life outside protocols, anti-overoptimization
+9. **Boundaries / disclaimer** — educational content, not medical treatment. Coaching as complement, not replacement.
+10. **CTA** — primary: quiz or offers. Secondary: coaching or contact. Locale-aware.
+
+### Copy rules
+
+Avoid generic expert-bio copy:
+- "passionate about helping women"
+- "empowering women to take control of their health"
+- "holistic wellness journey"
+- "unlock your potential"
+
+Use specific expert-brand copy instead:
+- what the expert repeatedly sees
+- what generic advice misses
+- what the reader wrongly blames themselves for
+- what the expert believes should change
+- why their approach is different
+
+The About page should make the visitor feel: "This expert understands the problem more deeply than generic advice."
+
+### Schema guidance
+
+Required:
+- `ProfilePage`
+- `Person` or relevant professional subtype (`MedicalProfessional`)
+- `BreadcrumbList`
+- `sameAs` (social links if available)
+- `knowsAbout` (expertise topics)
+- `image`, `jobTitle`, `description`
+
+Do not add fake credential schema. Only mark up credentials actually represented in the content.
+
+---
+
+## 9. Calendly rules
 
 ### Strict placement
 
@@ -523,7 +600,7 @@ Quiz archetypes and masterclass post-watch segments can override the cluster def
 
 ---
 
-## 9. Lead capture architecture
+## 10. Lead capture architecture
 
 ### Email capture abstraction (`src/lib/emailCapture.ts`)
 
@@ -560,7 +637,7 @@ Every form has three states:
 
 ---
 
-## 10. Conversion asset visibility rules
+## 11. Conversion asset visibility rules
 
 A conversion asset is not finished when the page exists. It is finished when visitors can discover it from the right places in the site journey.
 
@@ -615,7 +692,7 @@ Do not use signup events for link clicks.
 
 ---
 
-## 11. Social storytelling grid
+## 12. Social storytelling grid
 
 ### What it is
 
@@ -651,7 +728,7 @@ Live Instagram embeds hurt performance, introduce third-party tracking (GDPR fri
 
 ---
 
-## 12. Schema and AI citation rules
+## 13. Schema and AI citation rules
 
 ### Schema types used
 
@@ -695,12 +772,81 @@ Outside these slots: human prose. Not everything needs to be "optimized."
 ### Anti-patterns
 
 - Don't stack `HowTo` on every article — only when explicit numbered steps exist
-- Don't add `Review` schema without real reviews
 - Don't force ExpertPerson onto schema types that don't have an attribution property
 
 ---
 
-## 13. Analytics event taxonomy
+## 14. Proof assets: testimonials, reviews and case studies
+
+Expert-brand websites need proof assets to make trust concrete.
+
+### Supported proof assets
+
+- Short testimonials (name, text, rating, outcome)
+- Product reviews (product-specific testimonials with star rating)
+- Coaching/client quotes (featured testimonials)
+- Transformation stories (before/after context)
+- Case studies (deeper narrative)
+- Expert credibility markers (qualifications, credentials)
+
+### Where proof appears
+
+| Page type | Proof function |
+|---|---|
+| **Homepage** | Broad trust and recognition (TestimonialSlider + Review schema) |
+| **Product pages** | Product-specific proof (product testimonials via TestimonialSlider) |
+| **Coaching pages** | Fit, trust and outcome proof (featured coaching testimonials) |
+| **Masterclass pages** | Recognition and authority (inline blockquotes) |
+| **Case study pages** | Deeper transformation stories (future content type) |
+
+### Strong proof includes
+
+- Before-state (what the person was struggling with)
+- What the person had tried before
+- What changed
+- Why this method felt different
+- Specific language from the ICP (ideal customer profile)
+
+### Data model
+
+Testimonials live in `src/data/testimonials.ts` with this interface:
+
+```typescript
+interface Testimonial {
+  id: string;
+  name: string;
+  outcome?: string;
+  photo?: string;
+  text: string;
+  rating?: number;
+  productSlug?: string;
+  featured?: boolean;
+  locale?: Locale;
+}
+```
+
+Product pages use `getProductTestimonials(slug, max, locale)` which returns product-specific reviews plus general coaching reviews to fill the section.
+
+### Schema approach
+
+- `Product` schema includes `Review` and `AggregateRating` when testimonials with ratings exist
+- Homepage uses standalone `Review` schema objects referencing the Organization
+- `Service` schema for coaching pages (testimonials are visual-only, no Review schema on Service yet)
+- `FAQPage` only when visible FAQ accordion exists
+
+### Case studies (future content type)
+
+Case studies can be added as a content collection when the expert has deeper transformation stories. Recommended structure:
+
+- Routes: `/erfahrungen/[slug]` (DE) / `/en/cases/[slug]` (EN)
+- Schema: `Article` or `CreativeWork` + `BreadcrumbList`
+- Content model: title, client (anonymized), before-state, intervention, outcome, timeline, quote
+
+Do not overbuild this until real case study content exists.
+
+---
+
+## 15. Analytics event taxonomy
 
 ### Core events
 
@@ -735,7 +881,7 @@ Outside these slots: human prose. Not everything needs to be "optimized."
 
 ---
 
-## 14. Implementation standards
+## 16. Implementation standards
 
 Hard rules for Claude Code and future implementers.
 
@@ -769,9 +915,19 @@ Hard rules for Claude Code and future implementers.
 
 15. **Mobile tap targets must be at least 44×44px.** Every interactive element (links, buttons, form inputs) must meet the 44×44px minimum tap target on viewports below `lg` (1024px). This applies to navigation links, language switcher items, icon buttons, footer links, and inline text links in mobile menus. Use `min-h-[44px] min-w-[44px]` or a responsive CSS class with a `@media (max-width: 1023px)` rule. Desktop can stay compact. Common offender: small utility links (language switcher, social icons, breadcrumbs) that render at `text-xs` with no padding — technically visible but impossible to tap accurately on a phone.
 
+16. **SEO/GEO audit rules.** Run `node scripts/seo-audit.mjs` after every build that changes page structure, titles, descriptions, headings, or schema. The audit must pass with **0 critical issues**. Rules enforced:
+
+    - **Titles:** Every page must have a unique `<title>` between 20–60 characters. Listing/index pages must include a keyword descriptor after the section name (e.g. "Produkte — Digitale Guides & Kurse | doc.veri", not just "Produkte | doc.veri"). Never duplicate the same title across DE/EN — the German page needs a German title.
+    - **Descriptions:** Every public page must have a unique `<meta name="description">` between 50–155 characters. Don't use long `siteConfig` fields (like `founder.description`) as page descriptions — write a dedicated short version.
+    - **Heading hierarchy:** Every page must have exactly one `<h1>`. Headings must not skip levels (H1→H3 or H1→H4 is invalid). Components that render headings (forms, cards, CTAs) must not use heading tags for decorative/label text — use `<p>` with heading-like styling instead. The `DefinitionBlock` component must render `<h1>`, not `<h2>`, since it's the only title on hub/topic pages.
+    - **Canonicals:** Every page must have a `<link rel="canonical">` and a matching `<meta property="og:url">`. Layouts that set `noindex` still need canonicals.
+    - **Hreflang:** Every page with a translation pair must have bidirectional `<link rel="alternate" hreflang>` tags. If page A links to page B, page B must link back to A.
+    - **Structured data:** Every public content page must have at least one JSON-LD schema block. Legal/admin pages are exempt.
+    - **`html lang`:** Must match the page's actual language (`de` or `en`).
+
 ---
 
-## 15. Reference implementation
+## 17. Reference implementation
 
 The Histamin Vertical Slice is the first proven implementation of this template. It demonstrates the full funnel:
 
@@ -791,7 +947,7 @@ Proven principles: source-of-truth split, hub-as-rendered-config, strict Calendl
 
 ---
 
-## 16. Multilingual / International Expert Sites
+## 18. Multilingual / International Expert Sites
 
 The current doc.veri implementation is German-only, but the expert-brand template must support multilingual sites (e.g. Joost's own future site in Dutch, Spanish, and English).
 
@@ -960,7 +1116,7 @@ This allows dashboards to compare cluster performance per language.
 
 ---
 
-## 17. Multilingual QA and Localization Completeness
+## 19. Multilingual QA and Localization Completeness
 
 Multilingual implementation is not complete when translated routes exist. A locale is only complete when the full visitor experience is localized: routes, content, shared components, testimonials, forms, schema, CTAs, navigation and offer journeys.
 
@@ -1362,9 +1518,195 @@ A locale is complete only when all of the following pass:
 
 ---
 
-## 18. Future rollout order
+## 20. Pre-launch external integration readiness
 
-Recommended sequence after the Histamin slice is stable:
+The site must be launch-ready without external accounts already existing. Every client project will have missing pieces at launch time (no GA, no Meta Pixel, no ESP, no payment pages, no real reviews). The template handles this through env-driven configuration and conditional rendering.
+
+### Principle
+
+**No external service should block the site from being deployed.** Empty env vars = silent no-op. Placeholder URLs = safe fallback. Demo content = clearly marked.
+
+### Environment variable architecture
+
+All external service configuration lives in `.env` (gitignored) with a documented `.env.example`. Two categories:
+
+| Category | Prefix | Where used | Example |
+|---|---|---|---|
+| **Public** | `PUBLIC_` | `site.ts`, components, layouts | `PUBLIC_GA_MEASUREMENT_ID`, `PUBLIC_CALENDLY_URL` |
+| **Server-only** | no prefix | Serverless functions only | `MAILERLITE_API_KEY`, `PLUGANDPAY_WEBHOOK_SECRET` |
+
+**Never put API keys, tokens, or secrets in `site.ts` or any frontend-accessible file.** Only public IDs and URLs belong in the frontend config. Server-only secrets are read by Cloudflare Workers / API routes at runtime.
+
+### Conditional script rendering
+
+External scripts must only render when their env var is set:
+
+- **GA4:** `siteConfig.analytics.ga4MeasurementId && ...` — no ID, no gtag script in HTML
+- **Meta Pixel:** `siteConfig.analytics.metaPixelId && ...` — no ID, no fbevents script in HTML
+- **GSC verification:** `siteConfig.analytics.gscVerificationId && ...` — no ID, no meta tag
+- **Calendly:** `siteConfig.external.calendlyUrl && ...` — empty URL hides the booking section on contact pages. The `CalendlyEmbed` component on coaching pages has its own URL (separate refactor when client has their own Calendly account).
+- **Webinar:** `siteConfig.external.webinarUrl` — empty means masterclass stays in waitlist-only mode
+
+### Payment URL fallbacks
+
+Product checkout CTAs detect placeholder URLs (`example.com`, `#`, empty) and swap to a contact-page fallback:
+
+```
+isPlaceholderCheckout = url.includes('example.com') || url === '#' || !url
+→ CTA links to /kontakt (DE) or /en/contact (EN)
+→ Button text changes to "Kontakt aufnehmen" / "Get in touch"
+→ No broken external links in the rendered HTML
+```
+
+This is locale-aware and applies to all CTA positions (hero, mid-page, bottom). When real Plug&Pay URLs are added to product frontmatter, the buy button automatically switches back.
+
+### Email capture placeholder mode
+
+The `emailCapture.ts` abstraction supports a `placeholder` provider that logs submissions to the console instead of calling an external API. This is the default when `PUBLIC_EMAIL_PROVIDER` is unset. Switching to a real ESP (MailerLite, Kit) requires:
+
+1. Set `PUBLIC_EMAIL_PROVIDER=mailerlite` in `.env`
+2. Create a serverless endpoint at `/api/email-capture` that reads `MAILERLITE_API_KEY` server-side
+3. No frontend code changes needed — the abstraction handles routing
+
+### Testimonial/review placeholder rules
+
+Demo testimonials are clearly marked with a TODO comment in `src/data/testimonials.ts`. Rules:
+
+- Demo testimonials are acceptable for design/staging but must be replaced with real ones before paid traffic or official public launch
+- Each real testimonial requires explicit consent and attribution
+- Never use `Review` schema on pages with demo testimonials — only add structured review data when reviews are genuine
+- The `TestimonialSlider` component renders nothing when the testimonials array is empty (graceful fallback)
+
+### Launch checklist
+
+Before sending paid traffic or announcing publicly:
+
+- [ ] Replace `example.com` checkout URLs with real Plug&Pay links
+- [ ] Replace demo testimonials with real, consented testimonials
+- [ ] Set `PUBLIC_GA_MEASUREMENT_ID` in `.env`
+- [ ] Set `PUBLIC_META_PIXEL_ID` in `.env` (if running Meta ads)
+- [ ] Set `PUBLIC_CALENDLY_URL` in `.env` (if offering coaching calls)
+- [ ] Configure real ESP: set `PUBLIC_EMAIL_PROVIDER`, deploy serverless endpoint
+- [ ] Replace NXG-Media Calendly in `CalendlyEmbed.astro` with client's own URL
+- [ ] Set custom domain and update `siteConfig.url`
+- [ ] Verify no `example.com` URLs remain in built HTML
+- [ ] Run SEO audit (`node scripts/seo-audit.mjs`) — 0 critical issues
+
+---
+
+## 21. FAQ and schema coverage rules
+
+### Four-layer FAQ strategy
+
+FAQ content serves four distinct purposes. Every FAQ item must fit at least one layer:
+
+| Layer | Purpose | Where |
+|---|---|---|
+| **Conversion / objection** | Remove purchase hesitation | Product pages, coaching, masterclass |
+| **SEO / AI authority** | Citable answers for search and LLM systems | Cluster hubs, site-wide FAQ, product pages |
+| **Trust / safety** | Build credibility and reduce risk perception | About, site-wide FAQ, coaching |
+| **Product clarity** | Explain what's included, formats, access | Product pages |
+
+### FAQ content rules
+
+1. **First sentence must be standalone and citeable.** It should make sense without reading the question. AI systems extract the first sentence as the answer — never start with "Yes", "No", "It depends", or a pronoun.
+2. **2–5 sentences per answer.** Long FAQ answers dilute authority and hurt scannability.
+3. **Include the topic noun explicitly.** Write "The Hormone Reset Guide covers..." not "It covers..."
+4. **No marketing fluff.** FAQ answers are factual, not persuasive. They should feel like doctor-patient Q&A.
+5. **Each product page: 5–8 FAQ items.** Micro-products can have 4–6.
+6. **Coaching pages: 5–6 FAQ items.** Must include pricing/logistics/trust objections.
+7. **Site-wide FAQ: organized by category.** Categories: General, Products, Coaching, Trust & Safety, Hormones & Cycle, Nutrition & Training.
+
+### Schema coverage rules
+
+- `FAQPage` schema **only** on pages that have visible FAQ content (accordion details/summary elements)
+- `FAQPage` schema must match visible FAQ exactly — same questions, same answers
+- Never add `FAQPage` schema to pages without visible FAQ (orphan schema)
+- Product pages: `Product` + `Offer` + `FAQPage` + `BreadcrumbList`
+- Coaching pages: `Service` + `FAQPage` + `BreadcrumbList`
+- Masterclass: `BreadcrumbList` + `FAQPage`
+- Cluster hubs: `CollectionPage` + `FAQPage` + `BreadcrumbList`
+
+### Audit tooling
+
+`scripts/faq-audit.mjs` checks all built pages for:
+- Visible FAQ items (details/summary with h3 headings)
+- FAQPage JSON-LD schema presence
+- Match between visible FAQ count and schema
+- Orphan schemas (schema without visible FAQ)
+
+Run after every content change: `node scripts/faq-audit.mjs`
+
+### Anti-patterns
+
+- Don't add 20 FAQ items to every page — premium brands are concise
+- Don't duplicate FAQ items across product pages (each product has unique questions)
+- Don't use FAQ for marketing copy disguised as questions
+- Don't start answers with "Ja!" / "Yes!" — start with the substantive statement
+- Don't use the `<details>` element for non-FAQ content (navigation, disclaimers) — the audit script counts them
+
+---
+
+## 22. Cluster rollout patterns
+
+Five clusters are now live. Each follows one of three patterns. Use these when creating new clusters for other expert-brand projects.
+
+### Pattern A: Product-led cluster (reference)
+
+**Examples:** `histamin` (primaryProduct: histamin-bundle), `perimenopause` (primaryProduct: perimenopause-protocol)
+
+- `primaryProduct` is set — the hub CTA drives to a product page
+- Secondary products exist for cross-sell
+- `calendlyContext` typically `"coaching-only"` — coaching is positioned as upsell, not default entry point
+- Hub FAQ: 5–8 items combining SEO/authority + conversion objections
+- Cross-cluster bridges: 2–4, linking to related topic clusters
+
+### Pattern B: Masterclass-led cluster
+
+**Example:** `hormone-zyklus` (primaryProduct: "", primaryConversionAsset.type: masterclass)
+
+- No primary product — the masterclass is the conversion asset
+- `primaryConversionAsset.type: masterclass` with slug, title, and CTA text
+- Products listed under `secondaryProducts` or `crossSellProducts` for post-masterclass follow-up
+- `calendlyContext: "complex-case-only"` — coaching only for edge cases
+- Hub FAQ: 5–8 items, heavier on education and authority
+
+### Pattern C: Light / support cluster
+
+**Examples:** `ernaehrung` (primaryProduct: food-guide), `training` (primaryProduct: runners-guide)
+
+- Minimal content footprint — 1–2 articles, 1–2 products
+- Serves as product-support context, not standalone conversion funnel
+- `calendlyContext: "off"` — no coaching routing
+- Hub FAQ: 4–6 items, focused on product scope and audience fit
+- Cross-cluster bridges: 2–3, linking back to heavier clusters
+- Fine to defer or keep light until enough content exists to justify a full cluster
+
+### Cluster creation checklist
+
+For every new cluster, complete in order:
+
+1. **YAML config** — Create `src/data/clusters/{slug}.yaml` following the reference pattern. Include `locales.en` block if the site is multilingual.
+2. **Content tagging** — Add `cluster: "{slug}"` and `secondaryClusters` to all articles, products, and glossary entries that belong.
+3. **Cross-cluster bridges** — Update both the new YAML and existing cluster YAMLs with bidirectional bridge objects.
+4. **Hub FAQ** — Write 4–8 curated FAQ items for the hub page (DE + EN if multilingual).
+5. **Build verification** — Run `npm run build` and confirm the hub route generates at `/themen/{hubSlug}` (DE) and `/en/topics/{hubSlug}` (EN).
+6. **FAQ audit** — Run `node scripts/faq-audit.mjs` and confirm hub pages show correct FAQ count and schema.
+7. **No pillar collision** — Verify that `hubSlug` doesn't match any existing pillar `pageSlug`.
+
+### Current cluster inventory
+
+| Cluster | Pattern | Primary product / asset | Hub DE | Hub EN |
+|---|---|---|---|---|
+| `histamin` | Product-led | histamin-bundle | `/themen/histamin-und-hormone` | `/en/topics/histamine-and-hormones` |
+| `hormone-zyklus` | Masterclass-led | masterclass | `/themen/hormone-und-zyklus` | `/en/topics/hormones-and-cycle` |
+| `perimenopause` | Product-led | perimenopause-protocol | `/themen/perimenopause-erkennen` | `/en/topics/perimenopause` |
+| `ernaehrung` | Light | food-guide | `/themen/ernaehrung` | `/en/topics/nutrition` |
+| `training` | Light | runners-guide | `/themen/zyklusbewusstes-training` | `/en/topics/cycle-aware-training` |
+
+---
+
+## 23. Future rollout order
 
 **For multilingual client sites:** Decide default locale, secondary locales, route pattern, and translation scope during intake — before building the first cluster.
 
@@ -1376,25 +1718,199 @@ Recommended sequence after the Histamin slice is stable:
 2. **Replace placeholder content**
    - Real Instagram post URLs in `socialPosts.ts`
    - Real OG image for Glutenfrei Superpower
-   - Real testimonials on masterclass page (currently marked ⚠ PLACEHOLDER)
+   - Real testimonials with consent before production launch
 
-3. **Build Hormone/Zyklus cluster**
-   - New `hormone-zyklus.yaml` (masterclass-led, different routing pattern)
-   - Tag existing hormone/zyklus articles
-   - Hub auto-renders
-
-4. **Build Perimenopause cluster**
-   - New `perimenopause.yaml`
-   - Tag existing perimenopause content
-   - Cross-cluster bridges from Histamin already defined in YAML
-
-5. **Build Ernährung cluster**
-   - Only when enough content exists (currently just the micro-product)
-   - `ernaehrung.yaml` placeholder exists as TODO reminder
-
-6. **Polish**
+3. **Polish**
    - `discovery_call_click` → real Calendly booking callback
    - Dashboard / visibility page if needed
    - Webhook integrations (Plug-and-Pay, Calendly) for server-side revenue events
 
 Each cluster follows the same vertical-slice pattern: YAML → hub → tag content → verify funnel → verify build. Don't start the next cluster until the current one is stable.
+
+---
+
+## 24. Internal visibility dashboard
+
+### Purpose
+
+Expert-brand websites can include an optional internal visibility dashboard. This is not a public marketing page — it is an internal reporting layer for the expert, client, or agency to track progress across technical SEO, content citability, brand authority, and conversion events.
+
+### When to include
+
+Recommended for any Expert Brand OS / SEO / AI visibility project. The dashboard makes the system feel measurable and professional from day one, even before real integrations are connected.
+
+### Why noindex
+
+The dashboard shows internal metrics, source labels, and pending-integration status. None of this is for search engines or public visitors. The route must be `noindex` and excluded from `robots.txt` (via `Disallow`). It should never appear in public navigation, sitemaps, or internal linking.
+
+### Why English-only
+
+The dashboard is an internal/agency reporting layer, not public marketing content. English is the standard working language for SEO/analytics reporting across international projects. The dashboard always renders in English regardless of the site's public locale(s).
+
+### Data architecture
+
+Two data sources work together:
+
+1. **`src/lib/visibilityMetrics.ts`** — Build-time metrics computed automatically from content collections, cluster configs, and filesystem checks. No manual maintenance needed.
+2. **`src/data/visibility.ts`** — Manually maintained data for things that cannot be computed: authority scores, organic traffic, conversion events, completed actions, next priorities.
+
+Build-time metrics include:
+- Content inventory (articles, products, glossary, archetypes, pillars, coaching, lead magnets, clusters)
+- Bilingual coverage (translation pairs per content type)
+- Content quality signals (value propositions, CTA bullets, expert POV, FAQ coverage, cluster membership)
+- Technical infrastructure (sitemap, robots.txt, dashboard blocked, hreflang pairs)
+
+Manual/external data includes:
+- `updatedAt` — last manual update date
+- `reportMonth` — human-readable period label
+- `authorityScore` — manually assessed until real backlinks/citations exist
+- `organicTraffic` — monthly click data (requires Search Console)
+- `topPages` — page performance (requires Search Console)
+- `pageVisibility` — Google ranking + AI citation status (Google: external, AI: manual)
+- `conversionEvents` — current + previous month (requires GA4/webhooks)
+- `completedActions` — timestamped action log (manual)
+- `nextPriorities` — upcoming tasks with status (manual)
+
+### Build-time visibility scores
+
+Technical and Citability scores are computed from the codebase at build time. This means they update automatically as content is added, clusters are configured, and the site structure grows.
+
+**Technical score (0–100)** — Structural readiness. Weighted checklist:
+- Sitemap configured, robots.txt exists, dashboard blocked
+- Content volume and diversity (multiple content types)
+- Cluster configuration coverage
+- Bilingual content pairs and hreflang coverage
+- Product-to-cluster membership
+
+**Citability score (0–100)** — Content depth for AI/search extraction:
+- Glossary terms, pillar pages, archetypes
+- FAQ coverage (content-level + cluster hub FAQs)
+- Expert POV, value propositions, CTA bullets on products
+- Cluster definitions
+
+**Authority score** — Remains manual/placeholder until real backlinks, external citations, reviews, or AI visibility results exist.
+
+**Overall score** — Weighted average: Technical 35% + Citability 35% + Authority 30%.
+
+### Source type system
+
+Every dashboard metric declares its source type:
+
+| Source type        | Meaning                                        | Badge color |
+|--------------------|------------------------------------------------|-------------|
+| `build-measured`   | Computed from codebase at build time           | Green       |
+| `manual-check`     | Verified manually (e.g. AI visibility)         | Blue        |
+| `placeholder`      | Demo/zero data, not yet measured               | Amber       |
+| `external-pending` | Requires integration not yet connected         | Amber       |
+
+Source labels are visible in the dashboard UI on every section header. This prevents anyone from mistaking placeholder data for real measured performance.
+
+### Metrics shown
+
+| Section                 | Source type        | What it tracks                                  |
+|-------------------------|--------------------|-------------------------------------------------|
+| Visibility scores       | build-measured / manual | Overall, Technical, Citability, Authority (0–100) |
+| Content inventory       | build-measured     | Articles, products, glossary, archetypes, pillars, coaching, lead magnets, clusters |
+| Bilingual coverage      | build-measured     | Translation pairs per content type              |
+| Content quality signals | build-measured     | Value props, CTA bullets, expert POV, FAQ coverage, cluster membership |
+| Technical infrastructure| build-measured     | Sitemap, robots.txt, dashboard blocked, cluster configs, hreflang pairs |
+| Organic traffic         | external-pending   | Monthly organic clicks from Search Console      |
+| Top pages               | external-pending   | Pages ranked by clicks, impressions, trend      |
+| Page visibility         | external + manual  | Per-page Google ranking + AI citation status     |
+| Conversion events       | placeholder        | Product CTAs, Coaching CTAs, Newsletter, Lead magnets, Quiz completions, Discovery calls |
+| Completed actions       | manual             | Timestamped log of what was done                |
+| Next priorities         | manual             | Upcoming tasks with status                      |
+
+### Future integration points
+
+The dashboard is designed to later connect to:
+
+- Google Search Console (organic clicks, impressions, ranking data)
+- GA4 (conversion events, traffic sources)
+- Meta Pixel / events
+- Email capture provider (newsletter signups)
+- Payment webhooks (Plug-and-Pay, Stripe)
+- Calendly webhooks (discovery call bookings)
+- Manual AI visibility checks (ChatGPT, Perplexity, Gemini)
+- Rank tracking tools
+
+### What not to claim
+
+Do not display data as "measured" or "tracked" when it is manually entered or placeholder. Every section must show its source type badge. The dashboard should be honest about what is real vs. what is aspirational structure. Build-measured metrics are real and update automatically — external metrics require real integrations before they can show real numbers.
+
+---
+
+## 25. Final SEO/GEO polish pass
+
+Pre-publish checklist for search and AI citation readiness. Run this pass after all content, clusters, i18n, and schema are in place.
+
+### SEO title and meta description rules
+
+| Requirement | Standard |
+|---|---|
+| Title structure | `Topic — Qualifier | brand` (e.g. "Perimenopause Protocol — 6-Week Plan for Women 35+ | doc.veri") |
+| Title length | Under 60 characters preferred, max 70 |
+| Description length | 120-155 characters, explain value not just topic |
+| Product descriptions | Must include: what's inside (page count, modules, recipes), format, and author attribution |
+| Content descriptions | Must include: who it's for, what the core topic is, author attribution |
+| Legal pages | Minimal: `Page Type | brand` |
+
+### AI-citable opening paragraphs
+
+Every article and content page must have an **entity-mentioning first paragraph** before the first H2. This paragraph:
+- Names the core topic/entity explicitly in the first sentence
+- Is standalone and factual (AI systems can extract it without surrounding context)
+- Is 1-2 sentences, under 50 words
+- Does NOT replace the existing editorial narrative — it precedes it
+
+Example pattern:
+```
+---
+(frontmatter)
+---
+
+Cycle-aware training adapts your exercise to the four phases of your
+menstrual cycle — matching intensity, volume and recovery to your
+hormonal fluctuations instead of ignoring them.
+
+## Why most training plans don't work for women
+
+(narrative hook continues...)
+```
+
+### Schema coverage per page type
+
+| Page type | Required schemas |
+|---|---|
+| Homepage | Organization, Person/MedicalProfessional, WebSite, FAQPage |
+| About | ProfilePage, Person/MedicalProfessional, BreadcrumbList |
+| Cluster hub | BreadcrumbList, DefinedTerm, FAQPage (if FAQ exists) |
+| Article | BlogPosting, BreadcrumbList |
+| Product | Product/Offer (with brand ref), BreadcrumbList, FAQPage |
+| Glossary index | DefinedTermSet, BreadcrumbList |
+| Glossary term | DefinedTerm, BreadcrumbList |
+| Collection pages | CollectionPage, BreadcrumbList |
+| Coaching | Service, BreadcrumbList |
+
+### Internal linking requirements
+
+- Every article must have `cluster` membership in frontmatter
+- Every article must have `relatedProductSlugs` (1-3 products)
+- Every article must have `relatedArticleSlugs` (0-2 articles, never empty for articles with a natural pair)
+- Every product must have `relatedProductSlugs` (2-3 products)
+- BlogToProductBridge auto-renders for cluster-aware articles
+- Cluster hubs auto-aggregate articles + glossary + primary product
+
+### Language parity checks
+
+- All shared components (Header, BlogToProductBridge, etc.) must use locale-conditional strings for aria-labels and UI text
+- No hardcoded German strings in components that render on EN pages
+- DashboardLayout must pass `locale="en"` to SEOHead
+- EN and DE article pairs must have matching `relatedArticleSlugs` structure (EN slugs for EN, DE slugs for DE)
+
+### What NOT to do
+
+- Do NOT keyword-stuff: titles use natural topic + qualifier, not keyword lists
+- Do NOT make copy generic: every description should reference specific content (page counts, module counts, recipe counts)
+- Do NOT add inline links to article markdown body — internal linking is handled by layout components (BlogToProductBridge, relatedProducts, CTA bands)
+- Do NOT invent Verena's editorial voice — hubIntro and expertPOV fields are written by the founder

@@ -6,6 +6,9 @@ price: "29.95"
 currency: EUR
 plugAndPayUrl: "https://example.com/checkout/food-guide"
 sortOrder: 4
+cluster: "ernaehrung"
+secondaryClusters:
+  - "histamin"
 heroImage: ../../assets/images/products/food-guide.png
 shortDescription: "80+ Seiten voller hormonfreundlicher Rezepte und Ernährungstipps — hormonfreundlich, histaminarm und alltagstauglich."
 longDescription: "Der Food Guide gibt dir über 80 Seiten mit Rezepten, Einkaufslisten und Ernährungswissen, die deine Hormone unterstützen — angepasst an deinen Zyklus, histaminbewusst und ohne komplizierte Zutaten."
@@ -39,6 +42,9 @@ ctaBullets:
   - "Sofortiger Zugriff"
   - "In deinem Tempo"
   - "Einmalzahlung — 29,95 €"
+partOfBundle:
+  product: "histamin-bundle"
+  reason: "Der Food Guide ist Teil des Histamin Bundles. Wenn du neben Rezepten auch verstehen willst, wie Histamin, Zyklus und Ernaehrung zusammenhaengen, bekommst du im Bundle alles in einem Paket."
 relatedProductSlugs:
   - "erste-hilfe-histamin"
   - "smoothie-guide"

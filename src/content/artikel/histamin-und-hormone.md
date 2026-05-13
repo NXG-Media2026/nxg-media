@@ -4,6 +4,8 @@ pageSlug: "histamin-und-hormone"
 translationKey: "histamin-und-hormone"
 pillarSlug: "hormone"
 cluster: "histamin"
+secondaryClusters:
+  - "hormone-zyklus"
 publishedDate: 2026-05-08
 lastReviewedDate: 2026-05-08
 excerpt: "Histamin und Östrogen hängen eng zusammen. Erfahre, warum Frauen häufiger unter Histamin-Intoleranz leiden und was du dagegen tun kannst."
@@ -18,6 +20,8 @@ seo:
   title: "Histamin & Hormone bei Frauen | doc.veri"
   description: "Warum Frauen stärker von Histamin betroffen sind, wie Östrogen und Histamin zusammenhängen und was du tun kannst."
 ---
+
+Histamin und Hormone hängen bei Frauen eng zusammen: Östrogen stimuliert die Histaminfreisetzung, während Histamin die Östrogenproduktion antreibt — ein Kreislauf, der erklärt, warum viele Symptome zyklusabhängig sind.
 
 ## Histamin — mehr als nur Allergie
 

@@ -2,6 +2,9 @@
 title: "Recognizing Perimenopause: 8 Signs Many Women Overlook"
 pageSlug: "recognizing-perimenopause"
 pillarSlug: "hormones"
+cluster: "perimenopause"
+secondaryClusters:
+  - "hormone-zyklus"
 locale: en
 translationKey: "perimenopause-erkennen"
 publishedDate: 2026-05-10
@@ -19,6 +22,8 @@ seo:
   title: "Recognizing Perimenopause: 8 Signs | doc.veri"
   description: "Perimenopause can start in your mid-30s. 8 signs many women overlook — and what you can do."
 ---
+
+Perimenopause — the hormonal transition before menopause — can begin as early as the mid-30s. Recognizing the signs early helps you take targeted action instead of spending years treating symptoms in isolation.
 
 ## "You're too young for that"
 

@@ -2,6 +2,9 @@
 title: "Hormone Balance for Women: What You Really Need to Know"
 pageSlug: "hormone-balance-basics"
 pillarSlug: "hormones"
+cluster: "hormone-zyklus"
+secondaryClusters:
+  - "perimenopause"
 locale: en
 translationKey: "hormonbalance-grundlagen"
 publishedDate: 2026-05-01
@@ -15,6 +18,8 @@ seo:
   title: "Hormone Balance for Women | doc.veri"
   description: "The fundamentals of female hormone balance: estrogen, progesterone, cortisol, and how to support them naturally."
 ---
+
+Hormone balance is the foundation of female health. Estrogen, progesterone and cortisol regulate your energy, mood, sleep and menstrual cycle — and when they're off, your body lets you know.
 
 ## Why hormone balance matters
 

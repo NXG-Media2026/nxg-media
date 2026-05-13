@@ -6,6 +6,9 @@ price: "49"
 currency: EUR
 plugAndPayUrl: "https://example.com/checkout"
 sortOrder: 2
+cluster: "hormone-zyklus"
+secondaryClusters:
+  - "perimenopause"
 heroImage: ../../assets/images/products/hormon-reset-guide.png
 shortDescription: "Dein Leitfaden für natürliche Hormonbalance — wissenschaftlich fundiert, praxisnah und ohne Bro-Science."
 longDescription: "Der Hormon-Reset Guide gibt dir einen klaren Fahrplan, um deine Hormone auf natürliche Weise ins Gleichgewicht zu bringen. Basierend auf aktueller Studienlage und ärztlichem Fachwissen — ohne leere Versprechen, ohne Trends."
@@ -55,8 +58,8 @@ relatedProductSlugs:
   - "perimenopause-protocol"
   - "food-guide"
 seo:
-  title: "Hormon-Reset Guide | doc.veri"
-  description: "Dein Leitfaden für natürliche Hormonbalance. Wissenschaftlich fundiert, praxisnah. Von Dr. Verena."
+  title: "Hormon-Reset Guide — Weibliche Hormonbalance | doc.veri"
+  description: "80+ Seiten Guide für weibliche Hormonbalance: Östrogen, Progesteron, Cortisol, 20 Zyklusrezepte und ein Hormon-Tracker. Von Dr. Verena Mann."
 ---
 
 ## Deine Hormone im Gleichgewicht

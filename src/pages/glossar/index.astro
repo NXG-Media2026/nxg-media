@@ -78,7 +78,7 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
 ---
 
 <BaseLayout
-  title={`Glossar | ${siteConfig.name}`}
+  title={`Glossar — Fachbegriffe der Frauen-Gesundheit | ${siteConfig.name}`}
   description="Glossar der Frauen-Gesundheit: Fachbegriffe zu Hormonen, Zyklus, Ernährung und Training einfach erklärt."
   schemas={[
     generateDefinedTermSet(sortedTerms.map((t) => ({ ...t, hasPage: t.hasPage }))),

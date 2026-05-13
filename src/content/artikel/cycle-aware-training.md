@@ -2,6 +2,9 @@
 title: "Cycle-Aware Training: How to Train With Your Hormones"
 pageSlug: "cycle-aware-training"
 pillarSlug: "hormones"
+cluster: "training"
+secondaryClusters:
+  - "hormone-zyklus"
 locale: en
 translationKey: "zyklusbewusstes-training"
 publishedDate: 2026-05-05
@@ -18,6 +21,8 @@ seo:
   title: "Cycle-Aware Training for Women | doc.veri"
   description: "Train with your cycle: when to push intensity, when to recover. Cycle-aware training explained by a physician."
 ---
+
+Cycle-aware training adapts your exercise to the four phases of your menstrual cycle — matching intensity, volume and recovery to your hormonal fluctuations instead of ignoring them.
 
 ## Why most training plans don't work for women
 

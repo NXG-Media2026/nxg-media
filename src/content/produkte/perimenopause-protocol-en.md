@@ -5,6 +5,9 @@ price: "33"
 currency: EUR
 plugAndPayUrl: "https://example.com/checkout/perimenopause-protocol"
 sortOrder: 1
+cluster: "perimenopause"
+secondaryClusters:
+  - "hormone-zyklus"
 heroImage: ../../assets/images/products/perimenopause-protocol.png
 locale: en
 translationKey: "perimenopause-protocol"
@@ -64,8 +67,8 @@ faq:
   - q: "Is there a bundle option?"
     a: "Yes! The Histamine Bundle includes the First Aid program, the Food Guide, and the Smoothie Guide — all together for just €59. The Perimenopause Protocol pairs perfectly with it."
 seo:
-  title: "Perimenopause Protocol | doc.veri"
-  description: "6-week plan for perimenopause: 190+ pages, recipes, trackers & exercises. Science-based."
+  title: "Perimenopause Protocol — 6-Week Plan | doc.veri"
+  description: "6-week plan for perimenopause: 190+ pages, 50+ recipes, symptom trackers & exercises. Science-based, by Dr. Verena Mann."
 ---
 
 ## Perimenopause — when everything changes

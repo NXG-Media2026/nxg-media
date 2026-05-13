@@ -2,6 +2,7 @@
 import BaseLayout from './BaseLayout.astro';
 import BreadcrumbNav from '../components/BreadcrumbNav.astro';
 import FAQAccordion from '../components/FAQAccordion.astro';
+import TestimonialSlider from '../components/TestimonialSlider.astro';
 import CalendlyEmbed from '../components/CalendlyEmbed.astro';
 import CTABand from '../components/CTABand.astro';
 import { siteConfig, type Locale } from '../data/site';
@@ -9,6 +10,8 @@ import { generateService, generateBreadcrumbs, generateFAQPage } from '../data/s
 import { t, localizePath, getTranslatedPath, getCollectionBasePath } from '../i18n/utils';
 import { getHreflangForContent } from '../i18n/hreflang';
 import { trackOnClick } from '../lib/analytics';
+import { getTestimonials } from '../data/testimonials';
+import type { Testimonial } from '../data/testimonials';
 
 interface Props {
   coaching: {
@@ -51,6 +54,9 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
 }));
 
 const hreflang = await getHreflangForContent(coaching.translationKey, 'coaching', 'coaching');
+
+// Coaching testimonials — featured coaching reviews
+const coachingTestimonials: Testimonial[] = getTestimonials({ featuredOnly: true, locale });
 ---
 
 <BaseLayout
@@ -165,6 +171,20 @@ const hreflang = await getHreflangForContent(coaching.translationKey, 'coaching'
       </section>
     )}
   </article>
+
+  {/* Testimonials / proof */}
+  {coachingTestimonials.length > 0 && (
+    <TestimonialSlider
+      title={t('testimonial.heading', locale)}
+      testimonials={coachingTestimonials.map(t => ({
+        name: t.name,
+        text: t.text,
+        rating: t.rating,
+        outcome: t.outcome,
+      }))}
+      locale={locale}
+    />
+  )}
 
   {coaching.faq.length > 0 && (
     <FAQAccordion

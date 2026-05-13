@@ -12,6 +12,8 @@ export interface Testimonial {
   locale?: Locale;
 }
 
+// Demo testimonials for template evaluation and design review.
+// Replace with real testimonials (with consent) before production launch.
 export const testimonials: Testimonial[] = [
   // ─── DE: Coaching ───
   {

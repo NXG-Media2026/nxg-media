@@ -19,9 +19,9 @@ const { term, definition, image, imageAlt = '' } = Astro.props;
         {/* Text — 60% */}
         <div class="lg:col-span-3 js-reveal">
           <div class="w-12 h-1 bg-accent rounded-full mb-6"></div>
-          <h2 class="font-heading text-3xl md:text-4xl text-text mb-6">
+          <h1 class="font-heading text-3xl md:text-4xl text-text mb-6">
             {term}
-          </h2>
+          </h1>
           <p class="text-lg text-text-muted leading-relaxed">
             {definition}
           </p>
@@ -54,9 +54,9 @@ const { term, definition, image, imageAlt = '' } = Astro.props;
       </div>
     ) : (
       <div class="max-w-3xl js-reveal">
-        <h2 class="font-heading text-3xl md:text-4xl text-text mb-6">
+        <h1 class="font-heading text-3xl md:text-4xl text-text mb-6">
           {term}
-        </h2>
+        </h1>
         <p class="text-lg text-text-muted leading-relaxed">
           {definition}
         </p>

@@ -5,6 +5,9 @@ price: "49"
 currency: EUR
 plugAndPayUrl: "https://example.com/checkout"
 sortOrder: 2
+cluster: "hormone-zyklus"
+secondaryClusters:
+  - "perimenopause"
 heroImage: ../../assets/images/products/hormon-reset-guide.png
 locale: en
 translationKey: "hormon-reset-guide"
@@ -56,8 +59,8 @@ relatedProductSlugs:
   - "perimenopause-protocol"
   - "food-guide"
 seo:
-  title: "Hormone Reset Guide | doc.veri"
-  description: "Your guide to natural hormone balance. Science-based, practical. By Dr. Verena."
+  title: "Hormone Reset Guide — Female Hormone Balance | doc.veri"
+  description: "80+ page guide to female hormone balance: estrogen, progesterone, cortisol, 20 cycle-phase recipes and a hormone tracker. By Dr. Verena Mann."
 ---
 
 ## Your hormones in balance

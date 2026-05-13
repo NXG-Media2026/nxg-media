@@ -3,6 +3,8 @@ title: "Histamine and Hormones: Why Women Are More Affected"
 pageSlug: "histamine-and-hormones"
 pillarSlug: "hormone"
 cluster: "histamin"
+secondaryClusters:
+  - "hormone-zyklus"
 publishedDate: 2026-05-08
 lastReviewedDate: 2026-05-08
 excerpt: "Histamine and estrogen are closely linked. Learn why women are more prone to histamine intolerance and what you can do about it."
@@ -12,11 +14,14 @@ locale: en
 translationKey: "histamin-und-hormone"
 relatedProductSlugs:
   - "histamine-bundle"
-relatedArticleSlugs: []
+relatedArticleSlugs:
+  - "hormone-balance-basics"
 seo:
   title: "Histamine & Hormones in Women | doc.veri"
   description: "Why women are more affected by histamine, how estrogen and histamine interact, and what you can do about it."
 ---
+
+Histamine and hormones are closely connected in women: estrogen stimulates histamine release while histamine drives estrogen production — a feedback loop that explains why many women's symptoms are cycle-dependent.
 
 ## Histamine — more than just allergies
 

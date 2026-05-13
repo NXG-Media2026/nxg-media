@@ -5,6 +5,9 @@ price: "14.95"
 currency: EUR
 plugAndPayUrl: "https://example.com/checkout/smoothie-guide"
 sortOrder: 5
+cluster: "ernaehrung"
+secondaryClusters:
+  - "histamin"
 heroImage: ../../assets/images/products/smoothie-guide.png
 locale: en
 translationKey: "smoothie-guide"
@@ -38,6 +41,9 @@ expertPOV: "A smoothie can look healthy and still not work for your body. These 
 ctaBullets:
   - "Instant access"
   - "€14.95"
+partOfBundle:
+  product: "histamine-bundle"
+  reason: "The Smoothie Guide is part of the Histamine Bundle. If you want not just quick meals, but the complete histamine roadmap, the bundle gives you everything together — and saves you money."
 relatedProductSlugs:
   - "food-guide"
   - "first-aid-histamine"

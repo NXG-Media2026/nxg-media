@@ -69,13 +69,31 @@ crossClusters:
     priority: 1
     showOn: [hub, articles, product]
 
+  - cluster: hormone-zyklus
+    relationship: "Histamin-Symptome haengen eng mit dem weiblichen Zyklus zusammen."
+    bridgeText: >
+      Oestrogen und Histamin beeinflussen sich gegenseitig. Im Bereich
+      Hormone & Zyklus findest du mehr dazu, wie dein Zyklus und deine
+      Hormonbalance den Histaminhaushalt beeinflussen.
+    priority: 2
+    showOn: [hub, articles]
+
   - cluster: ernaehrung
     relationship: "Ernaehrung ist bei Histamin relevant, aber histaminarm und glutenfrei sind nicht dasselbe."
     bridgeText: >
       Histaminarme Ernaehrung und glutenfreie Ernaehrung sind nicht dasselbe.
       Im Ernaehrungsbereich findest du allgemeine Grundlagen zu Energie,
       Vertraeglichkeit und alltagstauglicher Umsetzung.
-    priority: 2
+    priority: 3
+    showOn: [hub]
+
+  - cluster: training
+    relationship: "Bewegung beeinflusst den Histaminspiegel und die Stressreaktion."
+    bridgeText: >
+      Moderates Training kann den Histaminabbau unterstuetzen, waehrend
+      Uebertraining Histamin-Symptome verschlimmern kann. Im Bereich Training
+      findest du zyklusbewusste Bewegungsempfehlungen.
+    priority: 4
     showOn: [hub]
 
 # === FUNNEL ROUTING ===

@@ -14,13 +14,15 @@ const { title, description, lastUpdated } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="de" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
   <SEOHead
     title={title}
     description={description}
+    canonical={`${siteConfig.url}/sichtbarkeit`}
     noindex={true}
     schemas={[]}
+    locale="en"
   />
   <script is:inline set:html={getTrackingScript()} />
 </head>
@@ -32,10 +34,10 @@ const { title, description, lastUpdated } = Astro.props;
       </a>
       <div class="flex items-center gap-4">
         <span class="text-xs text-text-muted">
-          Zuletzt aktualisiert: {new Date(lastUpdated).toLocaleDateString('de-DE', { day: 'numeric', month: 'long', year: 'numeric' })}
+          Last updated: {new Date(lastUpdated).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
         </span>
         <span class="inline-flex items-center px-2.5 py-1 text-xs font-medium bg-amber-50 text-amber-700 rounded-full">
-          Intern
+          Internal
         </span>
       </div>
     </div>
@@ -48,7 +50,7 @@ const { title, description, lastUpdated } = Astro.props;
   <footer class="border-t border-border mt-12">
     <div class="max-w-7xl mx-auto px-4 md:px-6 py-6 text-center">
       <p class="text-xs text-text-muted">
-        {siteConfig.name} — Internes Sichtbarkeits-Dashboard. Nicht für die Öffentlichkeit bestimmt.
+        {siteConfig.name} — Internal visibility dashboard. Not intended for public access.
       </p>
     </div>
   </footer>

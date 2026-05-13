@@ -11,7 +11,7 @@ import DefinitionBlock from '../components/DefinitionBlock.astro';
 import FAQAccordion from '../components/FAQAccordion.astro';
 import CTABand from '../components/CTABand.astro';
 import { siteConfig, type Locale } from '../data/site';
-import { generateBreadcrumbs, generateFAQPage } from '../data/schema';
+import { generateBreadcrumbs, generateFAQPage, generateDefinedTerm } from '../data/schema';
 import { t, localizePath, getTranslatedPath, getCollectionBasePath } from '../i18n/utils';
 import { getHreflangForCluster } from '../i18n/hreflang';
 
@@ -89,6 +89,12 @@ const hreflang = getHreflangForCluster(deHubSlug, enHubSlug);
   hreflang={hreflang}
   schemas={[
     generateBreadcrumbs(breadcrumbSchema),
+    generateDefinedTerm({
+      term: cluster.title,
+      definition: cluster.citableDefinition.trim(),
+      slug: cluster.hubSlug,
+      url: `${siteConfig.url}${pageUrl}`,
+    }, locale),
     ...(faqForComponent.length > 0 ? [generateFAQPage(faqForComponent)] : []),
   ]}
   locale={locale}

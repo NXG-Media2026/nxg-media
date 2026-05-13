@@ -6,6 +6,9 @@ price: "24.95"
 currency: EUR
 plugAndPayUrl: "https://example.com/checkout/runners-guide"
 sortOrder: 6
+cluster: "training"
+secondaryClusters:
+  - "hormone-zyklus"
 heroImage: ../../assets/images/products/runners-guide.png
 shortDescription: "Dein zyklusbewusster Laufplan von Null auf deine ersten 10km — wissenschaftlich fundiert und auf Frauen abgestimmt."
 longDescription: "Der Runners Guide begleitet dich von Null auf deine ersten 10 Kilometer — mit einem Trainingsplan, der deinen Zyklus berücksichtigt, Verletzungen vorbeugt und dich Schritt für Schritt aufbaut. Von einer Ärztin und Ironman-Athletin entwickelt."

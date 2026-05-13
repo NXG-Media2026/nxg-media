@@ -78,7 +78,7 @@ const learnings = [
 const faqs = [
   {
     q: 'Wann findet die Masterclass statt?',
-    a: 'Das genaue Datum steht noch nicht fest. Trag dich in die Warteliste ein und du erfährst es als Erste — mit einem exklusiven Frühbucher-Vorteil.',
+    a: 'Der Termin steht noch nicht fest. Trag dich in die Warteliste ein und du erfährst es als Erste — inklusive exklusivem Frühbucher-Vorteil.',
   },
   {
     q: 'Ist die Masterclass kostenlos?',
@@ -86,7 +86,7 @@ const faqs = [
   },
   {
     q: 'Brauche ich Vorkenntnisse?',
-    a: 'Nein. Die Masterclass ist so aufgebaut, dass du alles verstehst — egal ob du dich zum ersten Mal mit Hormonen beschäftigst oder schon länger recherchierst.',
+    a: 'Nein, du brauchst keinerlei Vorkenntnisse. Die Masterclass ist so aufgebaut, dass du alles verstehst — ob du dich zum ersten Mal mit Hormonen beschäftigst oder schon länger recherchierst.',
   },
   {
     q: 'Gibt es eine Aufzeichnung?',
@@ -94,11 +94,11 @@ const faqs = [
   },
   {
     q: 'Für wen ist die Masterclass geeignet?',
-    a: 'Für alle Frauen, die das Gefühl haben, dass ihr Körper nicht mehr so funktioniert wie gewohnt — und die verstehen wollen, warum. Besonders relevant, wenn du zwischen 28 und 52 bist.',
+    a: 'Die Masterclass richtet sich an Frauen zwischen 28 und 52, die das Gefühl haben, dass ihr Körper nicht mehr so funktioniert wie gewohnt. Du erfährst, warum das so ist und was du konkret tun kannst.',
   },
   {
     q: 'Was unterscheidet das von einem YouTube-Video?',
-    a: 'Die Masterclass verbindet drei Themen (Hormone, Histamin, Zyklus), die normalerweise einzeln behandelt werden. Du bekommst das Gesamtbild — von einer Ärztin, nicht von einem Influencer.',
+    a: 'Die Masterclass verbindet Hormone, Histamin und Zyklus zu einem Gesamtbild — drei Themen, die normalerweise einzeln behandelt werden. Das Wissen kommt von einer Ärztin, nicht von einem Influencer.',
   },
 ];
 
@@ -112,7 +112,7 @@ const waitlistPayloadJson = serializePayload(waitlistPayload);
 ---
 
 <BaseLayout
-  title={`${pageTitle} — Masterclass | ${siteConfig.name}`}
+  title={`Hormone, Histamin & Zyklus — Masterclass | ${siteConfig.name}`}
   description="Verstehe endlich, warum dein Körper sich verändert hat. Kostenlose Masterclass über Hormone, Histamin und zyklusbewusstes Leben — von Dr. Verena Mann."
   hreflang={buildHreflangPair('/masterclass/hormone-histamin-zyklus-superpower', '/en/masterclass/hormones-histamine-cycle-superpower')}
   schemas={[
@@ -359,10 +359,8 @@ const waitlistPayloadJson = serializePayload(waitlistPayload);
 
   {/* ──────────────────────────────────────────────
       9 + 10. PROOF / RECOGNITION
-      ⚠ PLACEHOLDER TESTIMONIALS — NOT REAL QUOTES.
-      TODO: Replace with verified, real testimonials before production launch.
-      Do NOT ship these placeholder quotes as real proof.
-      Remove this entire section if no real testimonials are available at launch.
+      Demo testimonials for template evaluation.
+      Replace with real testimonials before production launch.
       ────────────────────────────────────────────── */}
   <section class="py-14 md:py-20 bg-bg-alt">
     <div class="max-w-3xl mx-auto px-4 md:px-6 text-center">
@@ -370,14 +368,12 @@ const waitlistPayloadJson = serializePayload(waitlistPayload);
         Das sagen Frauen, die mit mir arbeiten
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* PLACEHOLDER — replace with real testimonials or remove before go-live */}
         <blockquote class="bg-white rounded-card p-6 text-left border border-border">
           <p class="text-text-muted text-sm leading-relaxed italic mb-4">
             &bdquo;Endlich jemand, der mir erkl&auml;rt hat, warum meine Beschwerden immer zur selben Zyklusphase kommen. Das hat alles ver&auml;ndert.&ldquo;
           </p>
           <footer class="text-xs text-text-muted font-medium">&mdash; Coaching-Kundin, 38</footer>
         </blockquote>
-        {/* PLACEHOLDER — replace with real testimonials or remove before go-live */}
         <blockquote class="bg-white rounded-card p-6 text-left border border-border">
           <p class="text-text-muted text-sm leading-relaxed italic mb-4">
             &bdquo;Ich hatte drei &Auml;rzte besucht, bevor ich zu Dr. Verena kam. Sie war die Erste, die das Gesamtbild gesehen hat.&ldquo;

@@ -5,6 +5,7 @@ translationKey: "oestrogen"
 cluster: histamin
 secondaryClusters:
   - perimenopause
+  - hormone-zyklus
 
 definition: >-
   Estrogen is a group of female sex hormones that regulate the menstrual cycle,

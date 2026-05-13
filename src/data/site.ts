@@ -1,3 +1,15 @@
+// ─── Env-var resolution (build-time) ────────────────────────────
+// Public env vars use the PUBLIC_ prefix (Astro convention).
+// Server-only secrets (API keys) are NEVER read here — they belong
+// in serverless functions / Cloudflare Workers.
+const ga4Id = import.meta.env.PUBLIC_GA_MEASUREMENT_ID ?? '';
+const gscId = import.meta.env.PUBLIC_GSC_VERIFICATION_ID ?? '';
+const metaPixelId = import.meta.env.PUBLIC_META_PIXEL_ID ?? '';
+const calendlyUrl = import.meta.env.PUBLIC_CALENDLY_URL ?? '';
+const skoolUrl = import.meta.env.PUBLIC_SKOOL_URL ?? '';
+const webinarUrl = import.meta.env.PUBLIC_WEBINAR_URL ?? '';
+const emailProvider = import.meta.env.PUBLIC_EMAIL_PROVIDER ?? 'placeholder';
+
 export const siteConfig = {
   name: 'doc.veri',
   shortName: 'doc.veri',
@@ -11,8 +23,9 @@ export const siteConfig = {
   languageSwitcherEnabled: true,
 
   analytics: {
-    ga4MeasurementId: '',
-    gscVerificationId: '',
+    ga4MeasurementId: ga4Id,
+    gscVerificationId: gscId,
+    metaPixelId,
   },
 
   email: 'info@docveri.de',
@@ -56,14 +69,14 @@ export const siteConfig = {
   },
 
   external: {
-    plugandpayBase: '',
-    calendlyUrl: '',
-    skoolUrl: '',
+    plugandpayBase: '',              // stays product-level for now
+    calendlyUrl,
+    skoolUrl,
+    webinarUrl,
   },
 
   newsletter: {
-    provider: 'placeholder' as const,
-    listId: '',
+    provider: emailProvider as 'placeholder' | 'mailerlite' | 'kit',
   },
 
   legal: {

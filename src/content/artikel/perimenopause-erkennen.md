@@ -3,6 +3,9 @@ title: "Perimenopause erkennen: 8 Anzeichen, die viele Frauen übersehen"
 pageSlug: "perimenopause-erkennen"
 translationKey: "perimenopause-erkennen"
 pillarSlug: "hormone"
+cluster: "perimenopause"
+secondaryClusters:
+  - "hormone-zyklus"
 publishedDate: 2026-05-10
 lastReviewedDate: 2026-05-10
 excerpt: "Die Perimenopause beginnt oft früher als gedacht — und zeigt sich anders als erwartet. Diese 8 Anzeichen solltest du kennen."
@@ -18,6 +21,8 @@ seo:
   title: "Perimenopause erkennen: 8 Anzeichen | doc.veri"
   description: "Perimenopause beginnt oft ab Mitte 30. 8 Anzeichen, die viele Frauen übersehen — und was du tun kannst."
 ---
+
+Die Perimenopause — die hormonelle Übergangsphase vor der Menopause — kann bereits ab Mitte 30 beginnen. Die Anzeichen frühzeitig zu erkennen hilft dir, gezielt zu handeln statt jahrelang Einzelsymptome zu behandeln.
 
 ## „Dafür bist du noch zu jung"
 

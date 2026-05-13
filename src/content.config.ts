@@ -33,7 +33,14 @@ const produkte = defineCollection({
     })),
     targetAudience: z.array(z.string()),
     cluster: z.string().optional(),
+    secondaryClusters: z.array(z.string()).optional(),
     productType: z.enum(['guide', 'bundle', 'course', 'membership', 'micro-product']).optional(),
+    partOfBundle: z.object({
+      product: z.string(),
+      reason: z.string(),
+      label: z.string().optional(),
+      ctaLabel: z.string().optional(),
+    }).optional(),
     notForYou: z.array(z.string()).optional(),
     valueProposition: z.object({
       doThis: z.string(),

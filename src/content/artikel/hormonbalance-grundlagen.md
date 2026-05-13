@@ -3,6 +3,9 @@ title: "Hormonbalance für Frauen: Was du wirklich wissen musst"
 pageSlug: "hormonbalance-grundlagen"
 translationKey: "hormonbalance-grundlagen"
 pillarSlug: "hormone"
+cluster: "hormone-zyklus"
+secondaryClusters:
+  - "perimenopause"
 publishedDate: 2026-05-01
 lastReviewedDate: 2026-05-01
 excerpt: "Deine Hormone beeinflussen alles — von Schlaf und Stimmung bis Training und Stoffwechsel. Ein Überblick über die wichtigsten Grundlagen der weiblichen Hormonbalance."
@@ -14,6 +17,8 @@ seo:
   title: "Hormonbalance für Frauen | doc.veri"
   description: "Die Grundlagen der weiblichen Hormonbalance: Östrogen, Progesteron, Cortisol und wie du sie natürlich unterstützen kannst."
 ---
+
+Hormonbalance ist die Grundlage weiblicher Gesundheit. Östrogen, Progesteron und Cortisol regulieren Energie, Stimmung, Schlaf und Zyklus — und wenn sie aus dem Gleichgewicht geraten, spürst du es überall.
 
 ## Warum Hormonbalance so wichtig ist
 
