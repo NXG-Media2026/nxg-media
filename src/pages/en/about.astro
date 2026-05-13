@@ -13,7 +13,32 @@ import ironmanImage from '../../assets/images/Founder/hero-ironman.jpg';
 import ctaBackground from '../../assets/images/Founder/lifestyle-water.jpg';
 
 const locale = 'en';
-const { founder } = siteConfig;
+const { founder: founderDe } = siteConfig;
+
+// EN overrides for founder data (siteConfig.founder is DE)
+const founder = {
+  ...founderDe,
+  role: 'Emergency Physician & Endurance Athlete',
+  description:
+    'Dr. Verena Mann is a licensed physician and emergency doctor as well as a passionate endurance athlete. She founded doc.veri to give women access to evidence-based knowledge about hormones, training, nutrition and cycle-aware living — no bro-science, no pseudoscience.',
+  qualifications: [
+    'Licensed Physician (Approbation)',
+    'Emergency Medicine Specialist',
+  ],
+  education: [
+    { institution: '', degree: 'Medical State Examination (Staatsexamen)', year: 0 },
+  ],
+  languages: ['German', 'English'],
+  knowsAbout: [
+    "Women's Health",
+    'Hormone Balance',
+    'Endurance Training for Women',
+    'Cycle-Aware Training',
+    'RED-S (Relative Energy Deficiency in Sport)',
+    'Perimenopause',
+    'Sports Nutrition for Women',
+  ],
+};
 
 const breadcrumbs = [
   { label: t('breadcrumb.home', locale), href: localizePath('/', locale) },

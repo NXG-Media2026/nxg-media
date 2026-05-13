@@ -91,7 +91,15 @@ const faqs = [
   },
 ];
 
-const { founder } = siteConfig;
+const { founder: founderDe } = siteConfig;
+const founder = {
+  ...founderDe,
+  role: 'Emergency Physician & Endurance Athlete',
+  qualifications: [
+    'Licensed Physician (Approbation)',
+    'Emergency Medicine Specialist',
+  ],
+};
 
 const waitlistPayload = buildMasterclassPayload('', {
   masterclassSlug: pageSlug,

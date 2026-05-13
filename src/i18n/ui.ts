@@ -111,6 +111,7 @@ export const ui = {
     // Lead magnet
     'leadMagnet.whatYouGet': 'Das bekommst du',
     'leadMagnet.downloadHeading': 'Jetzt kostenlos sichern',
+    'leadMagnet.downloadSubtext': 'Trage deine E-Mail-Adresse ein und erhalte den kostenlosen Download direkt in dein Postfach.',
     'leadMagnet.emailPlaceholder': 'Deine E-Mail-Adresse',
     'leadMagnet.successHeading': 'Geschafft!',
     'leadMagnet.successMessage': 'Prüfe dein Postfach — der Download ist unterwegs.',
@@ -157,6 +158,8 @@ export const ui = {
     'coaching.readyForNext': 'Bereit für den nächsten Schritt?',
     'coaching.bookFreeSub': 'Buche dein kostenloses Erstgespräch — unverbindlich und persönlich.',
     'coaching.bookFreeBtn': 'Erstgespräch buchen',
+    'coaching.calendlyTitle': 'Kostenloses Erstgespräch buchen',
+    'coaching.calendlySub': 'Wähle einen Termin, der dir passt — 15 Minuten, unverbindlich und persönlich.',
     'coaching.emptyState': 'Coaching-Angebote werden in Kürze veröffentlicht.',
     'coaching.pageTitle': 'Coaching',
     'coaching.pageDescription': 'Individuelles Coaching für deine Gesundheitsziele — persönlich begleitet, evidenzbasiert und auf dich zugeschnitten.',
@@ -277,6 +280,7 @@ export const ui = {
     // Lead magnet
     'leadMagnet.whatYouGet': "What you'll get",
     'leadMagnet.downloadHeading': 'Get it for free',
+    'leadMagnet.downloadSubtext': 'Enter your email address and get the free download straight to your inbox.',
     'leadMagnet.emailPlaceholder': 'Your email address',
     'leadMagnet.successHeading': 'Done!',
     'leadMagnet.successMessage': 'Check your inbox — your download is on its way.',
@@ -323,6 +327,8 @@ export const ui = {
     'coaching.readyForNext': 'Ready for the next step?',
     'coaching.bookFreeSub': 'Book your free initial call — no obligation, completely personal.',
     'coaching.bookFreeBtn': 'Book a free call',
+    'coaching.calendlyTitle': 'Book a free initial call',
+    'coaching.calendlySub': 'Pick a time that works for you — 15 minutes, no obligation, completely personal.',
     'coaching.emptyState': 'Coaching offerings will be published soon.',
     'coaching.pageTitle': 'Coaching',
     'coaching.pageDescription': 'Individual coaching for your health goals — personally guided, evidence-based, and tailored to you.',

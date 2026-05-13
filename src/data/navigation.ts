@@ -34,6 +34,7 @@ export const navigation: Record<Locale, NavItem[]> = {
       children: [
         { label: 'Products', href: '/en/products' },
         { label: 'Coaching', href: '/en/coaching' },
+        { label: 'Membership', href: '/en/membership' },
       ],
     },
     { label: 'Topics', href: '/en/topics' },

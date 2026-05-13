@@ -41,7 +41,7 @@ const productsBase = getCollectionBasePath('produkte', locale);
 const pageUrl = `${productsBase}/${product.pageSlug}`;
 const ogImage = `/images/og/products/${product.pageSlug}.png`;
 
-const productTestimonials: Testimonial[] = getProductTestimonials(product.pageSlug, 4);
+const productTestimonials: Testimonial[] = getProductTestimonials(product.pageSlug, 4, locale);
 
 const allProducts = await getCollection('produkte');
 const sameLocaleProducts = allProducts.filter((p) => !p.data.locale || p.data.locale === locale);

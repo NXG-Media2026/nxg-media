@@ -71,7 +71,7 @@ export function generateOrganization() {
     '@type': 'Organization',
     '@id': orgId,
     name: siteConfig.name,
-    description: siteConfig.tagline,
+    description: siteConfig.tagline.de,
     url: siteConfig.url,
     founder: { '@id': founderUrl },
     ...(sameAs.length > 0 && { sameAs }),
@@ -195,7 +195,8 @@ export function generateArticle(article: {
   dateModified?: string;
   image?: string;
   locale?: Locale;
-}) {
+}, locale?: Locale) {
+  const lang = locale ?? article.locale ?? 'de';
   return JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -204,7 +205,7 @@ export function generateArticle(article: {
     url: article.url,
     datePublished: article.datePublished,
     dateModified: article.dateModified ?? article.datePublished,
-    inLanguage: article.locale ?? 'de',
+    inLanguage: lang,
     mainEntityOfPage: { '@type': 'WebPage', '@id': article.url },
     author: { '@id': founderUrl },
     publisher: { '@id': orgId },

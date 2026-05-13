@@ -89,7 +89,7 @@ const leadMagnetSlug = cluster?.leadMagnets?.primary?.slug || '';
 const hasLeadMagnet = leadMagnetSlug.trim() !== '';
 
 // ─── Testimonials ───────────────────────────────────────────────
-const productTestimonials: Testimonial[] = getProductTestimonials(product.pageSlug, 4);
+const productTestimonials: Testimonial[] = getProductTestimonials(product.pageSlug, 4, locale);
 
 // ─── Analytics props ────────────────────────────────────────────
 const analyticsBase = {

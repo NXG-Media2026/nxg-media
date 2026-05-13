@@ -1,6 +1,7 @@
 ---
 title: "Perimenopause erkennen: 8 Anzeichen, die viele Frauen übersehen"
 pageSlug: "perimenopause-erkennen"
+translationKey: "perimenopause-erkennen"
 pillarSlug: "hormone"
 publishedDate: 2026-05-10
 lastReviewedDate: 2026-05-10

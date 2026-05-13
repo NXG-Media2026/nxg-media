@@ -1,6 +1,7 @@
 ---
 title: "Hormonbalance für Frauen: Was du wirklich wissen musst"
 pageSlug: "hormonbalance-grundlagen"
+translationKey: "hormonbalance-grundlagen"
 pillarSlug: "hormone"
 publishedDate: 2026-05-01
 lastReviewedDate: 2026-05-01

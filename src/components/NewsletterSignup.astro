@@ -19,12 +19,14 @@ interface Props {
 
 const {
   variant = 'inline',
-  heading = t('newsletter.heading'),
+  heading,
   description,
   locale = 'de',
   pageType = 'page',
   pageSlug = '/',
 } = Astro.props;
+
+const resolvedHeading = heading ?? t('newsletter.heading', locale);
 
 const formId = `newsletter-${Math.random().toString(36).slice(2, 8)}`;
 const nlPayloadJson = serializePayload(buildNewsletterPayload('', { route: pageSlug }));
@@ -34,7 +36,7 @@ const nlPayloadJson = serializePayload(buildNewsletterPayload('', { route: pageS
   <section class="py-16 md:py-20 bg-primary-dark">
     <div class="max-w-2xl mx-auto px-4 md:px-6 text-center">
       <h2 class="font-heading text-2xl md:text-3xl text-white mb-3">
-        {heading}
+        {resolvedHeading}
       </h2>
       {description && (
         <p class="text-white/80 mb-8 max-w-xl mx-auto">{description}</p>
@@ -46,34 +48,35 @@ const nlPayloadJson = serializePayload(buildNewsletterPayload('', { route: pageS
         data-page-slug={pageSlug}
         data-locale={locale}
         data-email-payload={nlPayloadJson}
+        data-sending-text={t('newsletter.sending', locale)}
       >
-        <label for={`${formId}-email`} class="sr-only">{t('newsletter.placeholder')}</label>
+        <label for={`${formId}-email`} class="sr-only">{t('newsletter.placeholder', locale)}</label>
         <input
           id={`${formId}-email`}
           type="email"
           name="email"
           required
-          placeholder={t('newsletter.placeholder')}
+          placeholder={t('newsletter.placeholder', locale)}
           class="flex-1 px-4 py-3 rounded-button text-sm text-text bg-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-accent"
         />
         <button
           type="submit"
           class="px-6 py-3 text-sm font-medium text-primary bg-white hover:bg-bg-alt rounded-button transition-colors"
         >
-          {t('newsletter.button')}
+          {t('newsletter.button', locale)}
         </button>
       </form>
       <p class="newsletter-success hidden mt-4 text-white/90 text-sm" aria-live="polite">
-        {t('newsletter.success')}
+        {t('newsletter.success', locale)}
       </p>
       <p class="newsletter-error hidden mt-4 text-red-300 text-sm" role="alert">
-        {t('newsletter.error')}
+        {t('newsletter.error', locale)}
       </p>
     </div>
   </section>
 ) : (
   <div class="bg-bg-alt rounded-card p-6 md:p-8 border border-border">
-    <h3 class="font-heading text-xl text-text mb-2">{heading}</h3>
+    <h3 class="font-heading text-xl text-text mb-2">{resolvedHeading}</h3>
     {description && (
       <p class="text-sm text-text-muted mb-4">{description}</p>
     )}
@@ -83,28 +86,29 @@ const nlPayloadJson = serializePayload(buildNewsletterPayload('', { route: pageS
       data-page-type={pageType}
       data-page-slug={pageSlug}
       data-locale={locale}
+      data-sending-text={t('newsletter.sending', locale)}
     >
-      <label for={`${formId}-email`} class="sr-only">{t('newsletter.placeholder')}</label>
+      <label for={`${formId}-email`} class="sr-only">{t('newsletter.placeholder', locale)}</label>
       <input
         id={`${formId}-email`}
         type="email"
         name="email"
         required
-        placeholder={t('newsletter.placeholder')}
+        placeholder={t('newsletter.placeholder', locale)}
         class="flex-1 px-4 py-3 rounded-button text-sm text-text bg-white border border-border focus:outline-none focus:ring-2 focus:ring-accent"
       />
       <button
         type="submit"
         class="px-6 py-3 text-sm font-medium text-text-inverse bg-primary hover:bg-primary-dark rounded-button transition-colors"
       >
-        {t('newsletter.button')}
+        {t('newsletter.button', locale)}
       </button>
     </form>
     <p class="newsletter-success hidden mt-3 text-sm text-accent" aria-live="polite">
-      {t('newsletter.success')}
+      {t('newsletter.success', locale)}
     </p>
     <p class="newsletter-error hidden mt-3 text-sm text-red-600" role="alert">
-      {t('newsletter.error')}
+      {t('newsletter.error', locale)}
     </p>
   </div>
 )}
@@ -121,7 +125,7 @@ const nlPayloadJson = serializePayload(buildNewsletterPayload('', { route: pageS
     function setLoading(on) {
       if (!btn) return;
       btn.disabled = on;
-      btn.textContent = on ? 'Einen Moment…' : btnText;
+      btn.textContent = on ? (form.dataset.sendingText || 'One moment…') : btnText;
       var input = form.querySelector('input[type="email"]');
       if (input) input.disabled = on;
     }

@@ -673,6 +673,8 @@ Hard rules for Claude Code and future implementers.
 
 11. **Offer card visual anchors.** `ServicesGrid` cards must use visual anchors that match the offer type: product mockups (cover fan or stack) for digital products, expert/client imagery for coaching, group/community imagery for memberships. Images must be local assets processed through Astro `<Image>` (WebP, density variants, lazy loading). Never use external runtime image sources (CDN URLs, hotlinked images, Instagram embeds). If no suitable image exists yet, the card renders text-only — don't use generic stock placeholders.
 
+12. **Multilingual QA is mandatory.** Do not mark a locale complete after route creation only. Route parity, component localization, form localization, testimonial localization, journey/offer parity, schema language correctness, and a built-HTML audit for source-language leaks must all pass. Every `t()` call in shared components must receive the active locale. Global site data (`siteConfig.tagline`, founder credentials, navigation labels) must be locale-aware. See §17 for the full checklist and common leak sources.
+
 ---
 
 ## 15. Reference implementation
@@ -864,7 +866,319 @@ This allows dashboards to compare cluster performance per language.
 
 ---
 
-## 17. Future rollout order
+## 17. Multilingual QA and Localization Completeness
+
+Multilingual implementation is not complete when translated routes exist. A locale is only complete when the full visitor experience is localized: routes, content, shared components, testimonials, forms, schema, CTAs, navigation and offer journeys.
+
+Route parity is the first layer. Localization completeness is the second layer.
+
+### 1. Route parity is not enough
+
+A German and English page can both exist, but the English page is still incomplete if it contains:
+
+- German testimonials or review copy
+- German form placeholders
+- German CTA labels
+- German breadcrumbs
+- German FAQ answers
+- German product-card labels
+- German global taglines
+- German schema text
+- missing offer blocks
+- missing community/membership blocks
+- broken or missing language switcher
+- primary CTAs linking back to German pages
+
+A multilingual site must pass both checks:
+
+1. **Route parity** — every important public page has a counterpart.
+2. **Content and journey parity** — the translated experience contains the same core sections, CTAs, trust elements and offer paths.
+
+### 2. Shared components must be locale-aware
+
+Every shared component must accept or infer `locale`.
+
+This includes:
+
+- Header
+- Footer
+- Newsletter forms
+- CTA bands
+- Product cards
+- Blog-to-product bridges
+- Product layouts
+- Hybrid product layouts
+- Coaching layouts
+- Testimonial sliders
+- FAQ accordions
+- Breadcrumbs
+- Language switcher
+- Social/storytelling grids
+- Lead magnet forms
+- Masterclass forms
+- Calendly embed
+- Quiz email gate
+
+Do not hardcode German or English strings inside reusable components.
+
+Every `t()` call inside a shared component must receive the active locale:
+
+```ts
+t('newsletter.placeholder', locale)   // correct
+```
+
+Avoid this inside shared components:
+
+```ts
+t('newsletter.placeholder')           // wrong — defaults to source language
+```
+
+because it will usually default to the source language and leak German into English pages.
+
+### 3. Global site data must be localized
+
+Global objects such as `siteConfig`, founder data, taglines, credentials and navigation labels must be locale-aware.
+
+Common leak sources:
+
+- `siteConfig.tagline`
+- `siteConfig.founder.role`
+- `siteConfig.founder.description`
+- `siteConfig.founder.qualifications`
+- global footer text
+- global schema descriptions
+- organization/founder schema
+- navigation data
+
+Allowed patterns:
+
+```ts
+tagline: {
+  de: "Frauen-Gesundheit — wissenschaftlich fundiert, ohne Bro-Science",
+  en: "Women's health — evidence-based, practical and without bro-science"
+}
+```
+
+or locale-specific override objects for founder/about content.
+
+### 4. Testimonials and reviews must be locale-aware
+
+Testimonials must be localized.
+
+Allowed patterns:
+- separate testimonial sets per locale
+- testimonial objects with a `locale` field
+- translated placeholder testimonials for demo/template sites
+
+Rules:
+- German pages show German testimonials.
+- English pages show English testimonials.
+- Do not show German reviews on English pages unless explicitly labelled as original-language reviews.
+- Do not remove testimonials from one locale if the other locale has them, unless there is a strategic reason.
+- Product layouts and homepage testimonial sliders must pass the active locale into testimonial getters.
+
+Example:
+
+```ts
+getProductTestimonials(productSlug, locale)
+getTestimonials(locale)
+```
+
+### 5. Forms must be fully localized
+
+All form UI must be localized:
+
+- input placeholders
+- labels, including screen-reader-only labels
+- button labels
+- loading states
+- success messages
+- error messages
+- consent text
+- helper text
+
+Example:
+
+DE:
+```
+Deine E-Mail-Adresse
+Anmelden
+Einen Moment…
+Danke!
+Ein Fehler ist aufgetreten.
+```
+
+EN:
+```
+Your email address
+Sign up
+One moment…
+Thank you!
+Something went wrong.
+```
+
+This applies to:
+- Footer newsletter form
+- NewsletterSignup component
+- Masterclass waitlist form
+- Lead magnet form
+- Quiz email gate
+- Contact forms
+- Checkout/email capture forms
+
+If inline scripts change button text during submission, pass localized text via a data attribute instead of hardcoding the source language.
+
+Example:
+
+```html
+<form data-sending-text={t('form.sending', locale)}>
+```
+
+### 6. Offer and journey parity
+
+If an offer appears in one locale's homepage, navigation or offer page, it should appear in the other locale too unless intentionally excluded.
+
+Check parity for:
+- product cards
+- coaching cards
+- membership/community cards
+- quiz cards
+- masterclass cards
+- lead magnet cards
+- footer resource links
+- navigation entries
+- homepage offer grids
+- `/angebot` / `/en/offers`
+- `/mitgliedschaft` / `/en/membership`
+
+Do not silently remove a major offer from one locale.
+
+Example: if the German homepage shows Produkte, Coaching and Mitgliedschaft, the English homepage should show Products, Coaching and Membership unless there is a documented strategic reason not to.
+
+### 7. Language switcher rule
+
+The language switcher should only appear when the current page has a valid alternate in the other locale.
+
+For translated page pairs:
+- DE page must link to EN counterpart.
+- EN page must link back to DE counterpart.
+- The switcher must not disappear on one side of a translated pair.
+- The switcher must never link to a missing page.
+- `translationKey` must be set on both content entries.
+
+Common issue:
+
+```yaml
+# EN article has translationKey
+translationKey: perimenopause-erkennen
+
+# DE article missing translationKey
+# result: no hreflang, no language switcher
+```
+
+Every translated content pair must share the same `translationKey`.
+
+### 8. Schema must use the active locale
+
+Schema must not leak source-language text into translated pages.
+
+Check:
+- `inLanguage`
+- `headline`
+- `description`
+- `BreadcrumbList`
+- `FAQPage`
+- `Product`
+- `Offer`
+- `BlogPosting`
+- `DefinedTerm`
+- `Organization`
+- `Person` / founder schema
+
+The global `@id` can remain stable, but text fields should match the active locale when used on localized pages.
+
+Common issue:
+
+```json
+"inLanguage": "de"
+```
+
+on an English article page.
+
+### 9. Built HTML localization audit
+
+After adding or updating a locale, run a built-output scan for source-language leaks.
+
+For German → English projects, scan `/en/` HTML for strings such as:
+
+```
+Mehr erfahren
+Jetzt kaufen
+Anmelden
+Deine E-Mail-Adresse
+Einen Moment
+Danke
+Ein Fehler
+Häufig
+Über mich
+Kundinnen
+Das sagen
+Bereit
+Kostenlos
+Zum Produkt
+Weiterlesen
+Sprache
+Alle ansehen
+Termin
+Erstgespräch
+Postfach
+Geschafft
+```
+
+Some proper nouns are allowed, but UI copy should not leak.
+
+Also scan for source-language text inside JSON-LD schema if SEO completeness matters.
+
+### 10. QA checklist before enabling a locale
+
+Before exposing a new locale or enabling the language switcher:
+
+- Build passes.
+- Zero broken internal links.
+- No mixed-language primary CTAs.
+- No German UI strings on English pages.
+- Reviews/testimonials are localized.
+- Forms are localized.
+- Header/footer are localized.
+- Offer blocks match across locales.
+- Membership/community visibility matches across locales.
+- Language switcher works both ways on translated pairs.
+- Hreflang only points to existing pages.
+- Canonical URLs are correct.
+- Schema uses the active locale.
+- Analytics events include `locale`.
+- Content collections are filtered by locale, so EN entries do not generate under DE routes and vice versa.
+
+### 11. Implementation standard
+
+Do not mark a locale complete after route creation only.
+
+A locale is complete only when all of the following pass:
+
+1. route parity
+2. content parity
+3. component localization
+4. form localization
+5. testimonial localization
+6. journey/offer parity
+7. language switcher QA
+8. hreflang/canonical QA
+9. schema language QA
+10. built-output source-language leak audit
+
+---
+
+## 18. Future rollout order
 
 Recommended sequence after the Histamin slice is stable:
 

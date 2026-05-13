@@ -1,6 +1,7 @@
 ---
 title: "Zyklusbewusstes Training: So trainierst du mit deinen Hormonen"
 pageSlug: "zyklusbewusstes-training"
+translationKey: "zyklusbewusstes-training"
 pillarSlug: "hormone"
 publishedDate: 2026-05-05
 lastReviewedDate: 2026-05-05

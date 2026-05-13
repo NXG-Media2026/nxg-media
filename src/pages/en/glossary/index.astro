@@ -44,7 +44,7 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
   description="Women's health glossary: key terms on hormones, cycle, nutrition, and training — clearly explained and evidence-based."
   hreflang={buildHreflangPair('/glossar', '/en/glossary')}
   schemas={[
-    generateDefinedTermSet(sortedTerms.map((t) => ({ ...t, hasPage: t.hasPage }))),
+    generateDefinedTermSet(sortedTerms.map((t) => ({ ...t, hasPage: t.hasPage })), locale),
     generateBreadcrumbs(breadcrumbSchema),
   ]}
   locale="en"

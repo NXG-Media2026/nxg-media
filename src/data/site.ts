@@ -1,7 +1,10 @@
 export const siteConfig = {
   name: 'doc.veri',
   shortName: 'doc.veri',
-  tagline: 'Frauen-Gesundheit — wissenschaftlich fundiert, ohne Bro-Science',
+  tagline: {
+    de: 'Frauen-Gesundheit — wissenschaftlich fundiert, ohne Bro-Science',
+    en: "Women's health — evidence-based, no bro-science",
+  },
   url: 'https://docveri.de',
   defaultLocale: 'de' as const,
   locales: ['de', 'en'] as const,
