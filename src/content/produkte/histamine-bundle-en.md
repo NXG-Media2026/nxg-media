@@ -29,6 +29,21 @@ notForYou:
   - "You're looking for a medical diagnosis or a substitute for medical treatment"
   - "You expect a miracle solution without putting in the work"
   - "You already have a comprehensive histamine program and only need individual recipes"
+valueProposition:
+  doThis: "Start with the First Aid program and work through the Food Guide and Smoothie Guide."
+  getThis:
+    - "Understand why your body reacts to histamine."
+    - "Get 80+ low-histamine recipes for everyday life."
+    - "Save over €20 compared to buying separately."
+  howItWorks:
+    - "3 products, 1 package"
+    - "Instant access"
+    - "Self-paced"
+expertPOV: "Histamine is the invisible trigger behind headaches, skin reactions and sleep problems for many women — especially when hormones fluctuate. This bundle gives you everything you need to understand the connections and start making changes."
+ctaBullets:
+  - "Instant access"
+  - "Save over €20"
+  - "One-time payment — €59"
 relatedProductSlugs: []
 faq:
   - q: "How much do I save with the bundle?"

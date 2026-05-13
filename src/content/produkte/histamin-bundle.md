@@ -28,6 +28,21 @@ notForYou:
   - "Du suchst eine medizinische Diagnose oder ein Ersatz für ärztliche Behandlung"
   - "Du erwartest eine Wunderlösung ohne eigene Umsetzung"
   - "Du hast bereits ein umfassendes Histamin-Programm und brauchst nur einzelne Rezepte"
+valueProposition:
+  doThis: "Starte mit dem Erste-Hilfe-Programm und arbeite dich durch Food Guide und Smoothie-Guide."
+  getThis:
+    - "Verstehe, warum dein Körper auf Histamin reagiert."
+    - "Bekomme über 80 histaminarme Rezepte für den Alltag."
+    - "Spare über 20 € gegenüber dem Einzelkauf."
+  howItWorks:
+    - "3 Produkte, 1 Paket"
+    - "Sofortiger Zugriff"
+    - "In deinem Tempo"
+expertPOV: "Histamin ist für viele Frauen der unsichtbare Auslöser hinter Kopfschmerzen, Hautreaktionen und Schlafproblemen — besonders wenn Hormone schwanken. Das Bundle gibt dir alles, was du brauchst, um die Zusammenhänge zu verstehen und direkt etwas zu verändern."
+ctaBullets:
+  - "Sofortiger Zugriff"
+  - "Über 20 € sparen"
+  - "Einmalzahlung — 59 €"
 relatedProductSlugs:
   - "perimenopause-protocol"
   - "hormon-reset-guide"

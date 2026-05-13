@@ -1,6 +1,7 @@
 ---
 title: "Erste Hilfe bei Histamin"
 pageSlug: "erste-hilfe-histamin"
+translationKey: "erste-hilfe-histamin"
 price: "37"
 currency: EUR
 plugAndPayUrl: "https://example.com/checkout/erste-hilfe-histamin"
@@ -21,6 +22,21 @@ targetAudience:
   - "Frauen mit Magen-Darm-Beschwerden, Sodbrennen oder Blähungen"
   - "Frauen mit PMS- oder Perimenopause-Symptomen, die durch Histamin verstärkt werden"
   - "Frauen mit Unruhegefühl, Herzrasen oder Angstgefühlen"
+valueProposition:
+  doThis: "Höre die 7 Audio-Module und setze die ersten Schritte sofort um."
+  getThis:
+    - "Verstehe, warum dein Körper auf Histamin überreagiert."
+    - "Bekomme einen klaren Plan, um Histamin zu senken — Darm, Leber, Nervensystem."
+    - "Nutze histaminarme Rezepte und praktische Checklisten."
+  howItWorks:
+    - "7 Audio-Module"
+    - "E-Book mit Rezepten"
+    - "Sofortiger Zugriff"
+expertPOV: "Deine Beschwerden sind nicht zufällig. Wenn Haut, Schlaf, Kopf und Darm gleichzeitig rebellieren, steckt oft Histamin dahinter — besonders bei Frauen mit Hormonschwankungen. Dieses Programm hilft dir, die Zusammenhänge zu sehen und gezielt etwas zu verändern."
+ctaBullets:
+  - "Sofortiger Zugriff"
+  - "In deinem Tempo"
+  - "Einmalzahlung — 37 €"
 relatedProductSlugs:
   - "food-guide"
   - "smoothie-guide"

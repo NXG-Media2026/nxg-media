@@ -1,6 +1,7 @@
 ---
 title: "Smoothie-Guide"
 pageSlug: "smoothie-guide"
+translationKey: "smoothie-guide"
 price: "14.95"
 currency: EUR
 plugAndPayUrl: "https://example.com/checkout/smoothie-guide"
@@ -23,6 +24,19 @@ targetAudience:
   - "Sportlerinnen, die eine schnelle Mahlzeit vor oder nach dem Training brauchen"
   - "Frauen, die ihre Hormonbalance über die Ernährung unterstützen möchten"
   - "Alle, die eine gesunde Mahlzeit in unter 5 Minuten zubereiten wollen"
+valueProposition:
+  doThis: "Wähle einen Smoothie, mixe ihn in 5 Minuten — fertige Mahlzeit."
+  getThis:
+    - "30 vollwertige Mahlzeit-Smoothies mit Protein, Fetten und Mikronährstoffen."
+    - "Histamin-Kennzeichnung für jedes Rezept."
+    - "Einkaufsliste, damit alles immer griffbereit ist."
+  howItWorks:
+    - "5 Minuten Zubereitung"
+    - "Sofortiger Zugriff"
+expertPOV: "Ein Smoothie kann gesund aussehen und trotzdem nicht für deinen Körper funktionieren. Diese Rezepte sind keine Instagram-Smoothies — sie sind als vollwertige Mahlzeiten konzipiert, die deine Hormone unterstützen."
+ctaBullets:
+  - "Sofortiger Zugriff"
+  - "14,95 €"
 relatedProductSlugs:
   - "food-guide"
   - "erste-hilfe-histamin"

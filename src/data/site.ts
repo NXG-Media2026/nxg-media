@@ -27,7 +27,7 @@ export const siteConfig = {
     slug: 'dr-verena',
     name: 'Dr. Verena Mann',
     role: 'Notärztin & Ausdauer-Athletin',
-    bio: 'Notärztin, Ironman-Athletin und Gründerin von doc.veri. Dr. Verena Mann verbindet medizinisches Fachwissen mit praktischer Erfahrung im Ausdauersport, um Frauen zu helfen, ihre Gesundheit selbst in die Hand zu nehmen.',
+    bio: 'Notärztin, Ironman-Athletin und Gründerin von doc.veri. Dr. Verena Mann verbindet medizinisches Fachwissen mit jahrelanger Ausdauersport-Erfahrung, um zu erklären, was generischer Gesundheitsrat am weiblichen Körper falsch macht.',
     description: 'Dr. Verena Mann ist eine approbierte Ärztin und Notärztin sowie leidenschaftliche Ausdauer-Athletin. Sie hat doc.veri gegründet, um Frauen wissenschaftlich fundiertes Wissen über Hormone, Training, Ernährung und Zyklus-bewusste Lebensführung zugänglich zu machen — ohne Bro-Science, ohne Schwurbel.',
     qualifications: [
       'Approbierte Ärztin',

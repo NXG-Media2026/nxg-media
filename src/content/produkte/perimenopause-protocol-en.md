@@ -27,6 +27,21 @@ targetAudience:
   - "Women who have gained weight and feel like nothing works anymore"
   - "Athletes who want to maintain performance despite hormonal changes"
   - "Women who want to understand what's happening in their body — without fear, with a plan"
+valueProposition:
+  doThis: "Follow the 6-week protocol at your own pace."
+  getThis:
+    - "Understand what's behind hot flashes, sleep problems and weight gain."
+    - "Get a clear plan for nutrition, movement, sleep and stress."
+    - "Start immediately — with recipes, trackers and weekly plans."
+  howItWorks:
+    - "Self-paced"
+    - "190+ pages"
+    - "Instant access"
+expertPOV: "Most women in perimenopause don't need another generic health guide. They need someone who explains what's changing — and what they can actually do about it. No panic, just a plan."
+ctaBullets:
+  - "Instant access"
+  - "Self-paced"
+  - "One-time payment — €33"
 relatedProductSlugs:
   - "hormone-reset-guide"
   - "first-aid-histamine"
@@ -105,4 +120,4 @@ The Perimenopause Protocol is for you if you:
 - Want to understand what's happening hormonally — without fear, with a plan
 - Are looking for concrete steps you can take right away
 - Have had enough of contradictory information online
-- Want to take your health into your own hands
+- Want to finally understand what your body is telling you — instead of guessing

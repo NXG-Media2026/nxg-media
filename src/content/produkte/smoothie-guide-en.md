@@ -25,6 +25,19 @@ targetAudience:
   - "Athletes who need a quick meal before or after training"
   - "Women who want to support their hormone balance through nutrition"
   - "Anyone who wants a healthy meal in under 5 minutes"
+valueProposition:
+  doThis: "Pick a smoothie, blend it in 5 minutes — complete meal done."
+  getThis:
+    - "30 complete meal smoothies with protein, fats and micronutrients."
+    - "Histamine rating for every recipe."
+    - "Shopping list so everything is always ready."
+  howItWorks:
+    - "5-minute prep"
+    - "Instant access"
+expertPOV: "A smoothie can look healthy and still not work for your body. These recipes aren't Instagram smoothies — they're designed as complete meals that support your hormones."
+ctaBullets:
+  - "Instant access"
+  - "€14.95"
 relatedProductSlugs:
   - "food-guide"
   - "first-aid-histamine"

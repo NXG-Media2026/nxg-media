@@ -20,6 +20,8 @@ seo:
 
 ## Histamine — more than just allergies
 
+Your doctor says everything looks fine — but you still flush, sleep badly, and react to foods you've eaten for years without problems. Maybe it's not the food. Maybe it's your hormones.
+
 When you think of histamine, you probably think of hay fever. But histamine is much more than that. It's a chemical messenger produced by your own body, involved in hundreds of processes — from digestion and sleep to immune defense.
 
 The problem starts when your body produces or absorbs more histamine than it can break down. That's when histamine overload occurs — and it can show up in many different ways.
@@ -39,6 +41,12 @@ Conversely, histamine stimulates the ovaries to produce more estrogen. This crea
 ### When symptoms get worse
 
 Many women notice that their histamine symptoms are cycle-dependent. A typical pattern: worsening in the second half of the cycle or around menstruation — exactly when the estrogen-progesterone ratio shifts.
+
+<aside class="personal-lens-callout" role="note">
+
+**Verena's perspective:** What keeps surprising me in practice: most women with histamine problems have been treating individual symptoms for years — antihistamines for the skin, painkillers for the headaches, sleep aids for the nights. Nobody asked about the pattern underneath. But when you look at skin, sleep, and headaches together, a very different picture often emerges.
+
+</aside>
 
 ## Perimenopause: the perfect storm
 

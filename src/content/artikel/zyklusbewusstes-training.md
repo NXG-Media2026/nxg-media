@@ -20,6 +20,8 @@ seo:
 
 ## Warum die meisten Trainingspläne für Frauen nicht funktionieren
 
+Ich habe jahrelang jede Woche gleich trainiert und dachte, die zufällig guten und schlechten Wochen bedeuten, dass ich nicht konstant genug bin. Bis ich verstanden habe, dass es nie Zufall war — es war mein Zyklus. Seitdem trainiere ich nicht weniger hart. Ich trainiere klüger.
+
 Die meisten Trainingspläne basieren auf Studien mit männlichen Probanden. Männer haben einen relativ stabilen Hormonspiegel — Frauen nicht. Dein Zyklus sorgt für monatliche Schwankungen in Östrogen, Progesteron, Testosteron und weiteren Hormonen. Das beeinflusst deine Kraft, Ausdauer, Regeneration und sogar dein Verletzungsrisiko.
 
 Zyklusbewusstes Training bedeutet, diese natürlichen Schwankungen zu nutzen statt gegen sie zu arbeiten.
@@ -49,6 +51,12 @@ Deine Hormone sind auf dem niedrigsten Stand. Viele Frauen fühlen sich müde od
 Progesteron dominiert. Die Körpertemperatur ist leicht erhöht, die Regeneration dauert länger. Viele Frauen fühlen sich schwerer und weniger motiviert.
 
 **Training:** Moderate Intensität ist effektiver als Maximalleistung. Steady-State-Cardio, moderates Krafttraining, Yoga, Pilates. Längere Erholungspausen zwischen den Sätzen. Dein Körper arbeitet im Hintergrund hart — respektiere das.
+
+<aside class="personal-lens-callout" role="note">
+
+**Verenas Perspektive:** Zyklusbewusstes Training heißt nicht, weniger zu trainieren. Es heißt, zur richtigen Zeit das Richtige zu tun. Dein Zyklus ist kein Hindernis — er ist ein Werkzeug. Wenn du ihn nutzt, statt gegen ihn zu arbeiten, werden die „schlechten Wochen" seltener und die Ergebnisse konstanter. Das ist keine Einschränkung. Das ist Physiologie, die für dich arbeitet.
+
+</aside>
 
 ## Ernährung nach Zyklusphase
 

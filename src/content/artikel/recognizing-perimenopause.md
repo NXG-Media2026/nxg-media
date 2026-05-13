@@ -22,7 +22,9 @@ seo:
 
 ## "You're too young for that"
 
-Many women hear this when they bring up their symptoms with their doctor. But the truth is: perimenopause can begin as early as your mid-30s — years before your cycle actually stops.
+You're still functioning. Working, training, taking care of everything — but quietly, you've noticed that something has changed. Sleep is different. Energy is different. Your body feels like yours, just with different rules. And when you ask your doctor, you hear: "You're too young for that."
+
+But the truth is: perimenopause can begin as early as your mid-30s — years before your cycle actually stops.
 
 Perimenopause is the transition phase before menopause. Your hormones — especially estrogen and progesterone — begin to fluctuate. And these fluctuations can cause symptoms that aren't immediately associated with hormones.
 
@@ -59,6 +61,12 @@ Suddenly you can't tolerate certain foods anymore — especially histamine-rich 
 ### 8. Changed libido
 
 Less desire, altered sensations, or dryness. Declining estrogen and testosterone levels affect sexual desire and circulation.
+
+<aside class="personal-lens-callout" role="note">
+
+**Verena's perspective:** What I see in the ER and in practice: women in their late 30s and early 40s who come in with heart palpitations, panic attacks, or unexplained exhaustion. Diagnostics show — nothing remarkable. The problem isn't that these women are imagining things. The problem is that perimenopause as a differential diagnosis barely exists for women under 45. Yet it would often be the simplest explanation.
+
+</aside>
 
 ## What you should know
 

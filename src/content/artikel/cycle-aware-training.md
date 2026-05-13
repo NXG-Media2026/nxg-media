@@ -21,6 +21,8 @@ seo:
 
 ## Why most training plans don't work for women
 
+I trained the same way every week for years and thought the random good and bad weeks meant I wasn't consistent enough. Until I realized it was never random — it was my cycle. Since then, I don't train less hard. I train smarter.
+
 Most training plans are based on studies with male participants. Men have a relatively stable hormone level — women don't. Your cycle creates monthly fluctuations in estrogen, progesterone, testosterone, and other hormones. This influences your strength, endurance, recovery, and even your injury risk.
 
 Cycle-aware training means using these natural fluctuations instead of working against them.
@@ -50,6 +52,12 @@ Estrogen reaches its peak. Testosterone is also elevated. You're at your most ca
 Progesterone dominates. Body temperature is slightly elevated, recovery takes longer. Many women feel heavier and less motivated.
 
 **Training:** Moderate intensity is more effective than maximal effort. Steady-state cardio, moderate strength training, yoga, Pilates. Longer rest periods between sets. Your body is working hard in the background — respect that.
+
+<aside class="personal-lens-callout" role="note">
+
+**Verena's perspective:** Cycle-aware training doesn't mean training less. It means doing the right thing at the right time. Your cycle isn't an obstacle — it's a tool. When you use it instead of working against it, the "bad weeks" become rarer and results become more consistent. That's not a limitation. That's physiology working for you.
+
+</aside>
 
 ## Nutrition by cycle phase
 

@@ -19,7 +19,7 @@ export const faqCategories: FAQCategory[] = [
       },
       {
         q: 'Für wen sind die Angebote geeignet?',
-        a: 'Für alle Frauen, die ihre Gesundheit selbst in die Hand nehmen möchten — ob Sportlerin, Berufstätige oder Frau in der Perimenopause. Die Inhalte sind für jedes Fitness-Level und jede Lebensphase geeignet.',
+        a: 'Für Frauen, die vieles richtig machen und sich trotzdem nicht richtig fühlen — ob Sportlerin, Berufstätige oder Frau in der Perimenopause. Die Inhalte passen zu jedem Fitness-Level und jeder Lebensphase.',
       },
       {
         q: 'Wie unterscheidet sich doc.veri von anderen Gesundheitsplattformen?',

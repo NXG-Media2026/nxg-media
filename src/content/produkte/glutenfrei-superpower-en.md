@@ -29,6 +29,19 @@ notForYou:
   - "You have a diagnosed celiac disease and need medical guidance"
   - "You're looking for a comprehensive nutrition program with coaching"
   - "You want a 200-page handbook — this is intentionally compact"
+valueProposition:
+  doThis: "Read the guide and apply the tips to your everyday life."
+  getThis:
+    - "Understand whether gluten-free makes sense for you — honestly and without dogma."
+    - "Get 15 everyday recipes the whole family will enjoy."
+    - "Know what to look for at the supermarket."
+  howItWorks:
+    - "Instant access"
+    - "Compact guide"
+expertPOV: "Going gluten-free doesn't have to mean deprivation. And it doesn't have to be a lifestyle statement. This guide simply shows you if and how gluten-free works for your body — no hype, no fear."
+ctaBullets:
+  - "Instant access"
+  - "€7.99"
 relatedProductSlugs:
   - "food-guide"
   - "histamine-bundle"

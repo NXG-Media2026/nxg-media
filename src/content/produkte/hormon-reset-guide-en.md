@@ -37,6 +37,21 @@ faq:
     a: "Over 80 pages of evidence-based knowledge, 20 hormone-friendly recipes, a printable hormone tracker, and an audio summary — all available immediately after purchase."
   - q: "Does the guide cover perimenopause?"
     a: "Yes, an entire chapter covers the hormonal changes during perimenopause and gives you concrete strategies for this life phase."
+valueProposition:
+  doThis: "Work through the guide at your own pace and learn to understand your hormones."
+  getThis:
+    - "Understand how your hormones interact and what throws them off balance."
+    - "Get 20 hormone-friendly recipes for every cycle phase."
+    - "Use the hormone tracker to recognize your own patterns."
+  howItWorks:
+    - "Self-paced"
+    - "80+ pages"
+    - "Instant access"
+expertPOV: "Your hormones are not a mystery. They follow patterns — but nobody ever explained them to you. This guide gives you the knowledge to see your own connections and make targeted changes."
+ctaBullets:
+  - "Instant access"
+  - "Self-paced"
+  - "One-time payment — €49"
 relatedProductSlugs:
   - "perimenopause-protocol"
   - "food-guide"

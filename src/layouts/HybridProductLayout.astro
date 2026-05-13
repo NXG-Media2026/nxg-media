@@ -21,6 +21,9 @@ import BreadcrumbNav from '../components/BreadcrumbNav.astro';
 import FAQAccordion from '../components/FAQAccordion.astro';
 import TestimonialSlider from '../components/TestimonialSlider.astro';
 import CTABand from '../components/CTABand.astro';
+import ValueProposition from '../components/ValueProposition.astro';
+import ExpertPOV from '../components/ExpertPOV.astro';
+import CTAReassurance from '../components/CTAReassurance.astro';
 import { siteConfig, type Locale } from '../data/site';
 import { generateProduct, generateBreadcrumbs, generateFAQPage } from '../data/schema';
 import { getProductTestimonials } from '../data/testimonials';
@@ -45,6 +48,13 @@ interface Props {
     notForYou?: string[];
     cluster?: string;
     productType?: string;
+    valueProposition?: {
+      doThis: string;
+      getThis: string[];
+      howItWorks: string[];
+    };
+    expertPOV?: string;
+    ctaBullets?: string[];
     faq: Array<{ q: string; a: string }>;
     relatedProductSlugs?: string[];
     translationKey?: string;
@@ -117,6 +127,37 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
 }));
 
 const hreflang = await getHreflangForContent(product.translationKey, 'produkte', 'produkte');
+
+// ─── Value proposition (explicit or fallback) ──────────────────
+const valueProp = product.valueProposition || (() => {
+  const isMicro = product.productType === 'micro-product';
+  const firstIncludes = product.includes.slice(0, 3).map(i => i.title);
+  return {
+    doThis: locale === 'en'
+      ? (isMicro ? 'Read the guide and apply it right away.' : 'Follow the program at your own pace.')
+      : (isMicro ? 'Lies den Guide und setze ihn direkt um.' : 'Arbeite das Programm in deinem Tempo durch.'),
+    getThis: firstIncludes.length > 0
+      ? firstIncludes
+      : [locale === 'en' ? 'Clear, evidence-based guidance.' : 'Klare, evidenzbasierte Anleitung.'],
+    howItWorks: locale === 'en'
+      ? (isMicro ? ['Instant access', 'Compact guide'] : ['Self-paced', 'Practical steps', 'Instant access'])
+      : (isMicro ? ['Sofortiger Zugriff', 'Kompakter Guide'] : ['In deinem Tempo', 'Praktische Schritte', 'Sofortiger Zugriff']),
+  };
+})();
+
+// ─── CTA reassurance bullets (explicit or fallback) ────────────
+const ctaBullets = product.ctaBullets || (() => {
+  const isMicro = product.productType === 'micro-product';
+  const isBundle = product.productType === 'bundle';
+  if (locale === 'en') {
+    if (isMicro) return ['Instant access', `€${product.price}`];
+    if (isBundle) return ['Instant access', 'Save over €20', 'One-time payment'];
+    return ['Instant access', 'Self-paced', 'One-time payment'];
+  }
+  if (isMicro) return ['Sofortiger Zugriff', `${product.price} €`];
+  if (isBundle) return ['Sofortiger Zugriff', 'Über 20 € sparen', 'Einmalzahlung'];
+  return ['Sofortiger Zugriff', 'In deinem Tempo', 'Einmalzahlung'];
+})();
 ---
 
 <BaseLayout
@@ -190,8 +231,17 @@ const hreflang = await getHreflangForContent(product.translationKey, 'produkte',
           </svg>
         </a>
       </div>
+      <CTAReassurance bullets={ctaBullets} />
     </div>
   </header>
+
+  {/* ─── Value Proposition ───────────────────────────────────── */}
+  <ValueProposition
+    doThis={valueProp.doThis}
+    getThis={valueProp.getThis}
+    howItWorks={valueProp.howItWorks}
+    locale={locale}
+  />
 
   {/* ─── Long Description Callout ────────────────────────────── */}
   <section class="py-10 md:py-14 bg-bg-alt">
@@ -203,6 +253,11 @@ const hreflang = await getHreflangForContent(product.translationKey, 'produkte',
       </div>
     </div>
   </section>
+
+  {/* ─── Expert POV ───────────────────────────────────────────── */}
+  {product.expertPOV && (
+    <ExpertPOV text={product.expertPOV} locale={locale} />
+  )}
 
   {/* ─── Markdown Content (sales narrative) ──────────────────── */}
   <article class="py-12 md:py-16 bg-bg">
@@ -298,6 +353,7 @@ const hreflang = await getHreflangForContent(product.translationKey, 'produkte',
           <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
         </svg>
       </a>
+      <CTAReassurance bullets={ctaBullets} />
     </div>
   </div>
 
@@ -398,6 +454,7 @@ const hreflang = await getHreflangForContent(product.translationKey, 'produkte',
           <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
         </svg>
       </a>
+      <CTAReassurance bullets={ctaBullets} />
 
       {/* Lead magnet alt-CTA — only if it actually exists */}
       {hasLeadMagnet && (

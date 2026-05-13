@@ -35,6 +35,13 @@ const produkte = defineCollection({
     cluster: z.string().optional(),
     productType: z.enum(['guide', 'bundle', 'course', 'membership', 'micro-product']).optional(),
     notForYou: z.array(z.string()).optional(),
+    valueProposition: z.object({
+      doThis: z.string(),
+      getThis: z.array(z.string()),
+      howItWorks: z.array(z.string()),
+    }).optional(),
+    expertPOV: z.string().optional(),
+    ctaBullets: z.array(z.string()).optional(),
     faq: z.array(faqItem).default([]),
     featuredTestimonialIds: z.array(z.string()).optional(),
     relatedProductSlugs: z.array(z.string()).optional(),

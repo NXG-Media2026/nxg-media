@@ -1,6 +1,7 @@
 ---
 title: "Von Null auf 10km"
 pageSlug: "runners-guide"
+translationKey: "runners-guide"
 price: "24.95"
 currency: EUR
 plugAndPayUrl: "https://example.com/checkout/runners-guide"
@@ -23,6 +24,21 @@ targetAudience:
   - "Sportlerinnen, die ihren Zyklus beim Training berücksichtigen möchten"
   - "Frauen in der Perimenopause, die eine sanfte, aufbauende Bewegungsform suchen"
   - "Alle, die einen strukturierten Plan statt Rätselraten wollen"
+valueProposition:
+  doThis: "Folge dem 12-Wochen-Plan — 3x pro Woche, 30–45 Minuten."
+  getThis:
+    - "Lerne, wie du dein Training an deinen Zyklus anpasst."
+    - "Baue dich sanft auf — von Gehpausen bis 10km."
+    - "Bekomme Ernährungstipps, Aufwärm- und Dehnroutinen."
+  howItWorks:
+    - "12-Wochen-Plan"
+    - "Zyklusbewusst"
+    - "Sofortiger Zugriff"
+expertPOV: "Ich habe jahrelang jeden Tag gleich trainiert und mich gefragt, warum manche Wochen so viel schwerer sind. Dann habe ich angefangen, meinen Zyklus mitzuverfolgen. Dieser Guide gibt dir das Wissen, das ich mir damals gewünscht hätte."
+ctaBullets:
+  - "Sofortiger Zugriff"
+  - "In deinem Tempo"
+  - "Einmalzahlung — 24,95 €"
 relatedProductSlugs:
   - "hormon-reset-guide"
   - "perimenopause-protocol"

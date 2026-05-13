@@ -18,6 +18,8 @@ seo:
 
 ## Why hormone balance matters
 
+You're doing everything right — eating well, training consistently, trying to get enough sleep. And still: the fatigue stays, your cycle is off, and your body feels like it belongs to someone else. The problem usually isn't a lack of discipline. It's a lack of information about how your body actually works.
+
 Hormones are the conductors of your body. They control hundreds of processes — often without you consciously noticing. It's only when something falls out of balance that you feel the effects: fatigue, sleep disturbances, cycle irregularities, or unexplained weight fluctuations.
 
 ## The most important hormones at a glance
@@ -33,6 +35,12 @@ Progesterone dominates the second half of your cycle (luteal phase). It has a ca
 ### Cortisol
 
 The stress hormone is essential for survival — but chronically elevated levels can throw your entire hormonal system out of balance. Cortisol directly influences the production of estrogen and progesterone.
+
+<aside class="personal-lens-callout" role="note">
+
+**Verena's perspective:** Most women who come to me don't need more discipline. They need better information. They've often spent years training and eating against their own hormonal status — not because they did it wrong, but because the recommendations they followed were never designed for the female body.
+
+</aside>
 
 ## What you can do
 
@@ -50,4 +58,4 @@ Sleep is the most important recovery factor. Chronic stress and sleep deprivatio
 
 ## Conclusion
 
-Hormone balance isn't a matter of luck — you can actively do something about it. The first step is knowledge. The second is action. That's exactly what I support you with through my offerings at doc.veri.
+You're not broken. You probably don't need a new diet or a harder training plan. You need information that was made for your body — not for a textbook based on male data. Hormone balance starts with understanding.

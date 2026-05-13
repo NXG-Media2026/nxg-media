@@ -1,6 +1,7 @@
 ---
 title: "Food Guide"
 pageSlug: "food-guide"
+translationKey: "food-guide"
 price: "29.95"
 currency: EUR
 plugAndPayUrl: "https://example.com/checkout/food-guide"
@@ -23,6 +24,21 @@ targetAudience:
   - "Sportlerinnen, die ihre Ernährung an ihren Zyklus anpassen möchten"
   - "Frauen in der Perimenopause, die wissen wollen, was sie essen sollten"
   - "Alle, die einfache, gesunde Rezepte ohne komplizierte Zutaten suchen"
+valueProposition:
+  doThis: "Nutze die Rezepte und Einkaufslisten für deinen Alltag — flexibel und ohne strenge Regeln."
+  getThis:
+    - "Über 80 Seiten mit hormonfreundlichen Rezepten und Ernährungswissen."
+    - "Histamin-Ampelsystem für jedes Rezept."
+    - "Fertige Einkaufslisten und Meal-Prep-Tipps."
+  howItWorks:
+    - "In deinem Tempo"
+    - "Praktische Rezepte"
+    - "Sofortiger Zugriff"
+expertPOV: "Ernährung muss keine Tabelle sein. Aber sie kann ein kraftvoller Hebel sein, wenn du weißt, welche Lebensmittel deine Hormone unterstützen — und welche nicht. Dieser Guide zeigt dir beides, ohne Verbote."
+ctaBullets:
+  - "Sofortiger Zugriff"
+  - "In deinem Tempo"
+  - "Einmalzahlung — 29,95 €"
 relatedProductSlugs:
   - "erste-hilfe-histamin"
   - "smoothie-guide"

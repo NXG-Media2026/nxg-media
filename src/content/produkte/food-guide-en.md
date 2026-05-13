@@ -25,6 +25,21 @@ targetAudience:
   - "Athletes who want to adapt their nutrition to their cycle"
   - "Women in perimenopause who want to know what they should eat"
   - "Anyone looking for simple, healthy recipes without complicated ingredients"
+valueProposition:
+  doThis: "Use the recipes and shopping lists for your everyday life — flexible and without strict rules."
+  getThis:
+    - "Over 80 pages of hormone-friendly recipes and nutrition knowledge."
+    - "Histamine traffic light system for every recipe."
+    - "Ready-made shopping lists and meal prep tips."
+  howItWorks:
+    - "Self-paced"
+    - "Practical recipes"
+    - "Instant access"
+expertPOV: "Food shouldn't become a spreadsheet. But it can be a powerful lever when you know which foods support your hormones — and which don't. This guide shows you both, without restrictions."
+ctaBullets:
+  - "Instant access"
+  - "Self-paced"
+  - "One-time payment — €29.95"
 relatedProductSlugs:
   - "first-aid-histamine"
   - "smoothie-guide"

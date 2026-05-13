@@ -25,6 +25,21 @@ targetAudience:
   - "Athletes who want to consider their cycle in training"
   - "Women in perimenopause looking for a gentle, progressive form of exercise"
   - "Anyone who wants a structured plan instead of guesswork"
+valueProposition:
+  doThis: "Follow the 12-week plan — 3x per week, 30–45 minutes."
+  getThis:
+    - "Learn how to adapt your training to your cycle."
+    - "Build up gently — from walk breaks to 10K."
+    - "Get nutrition tips, warm-up and stretching routines."
+  howItWorks:
+    - "12-week plan"
+    - "Cycle-aware"
+    - "Instant access"
+expertPOV: "I trained the same way every single day for years and wondered why some weeks felt so much harder. Then I started tracking my cycle. This guide gives you the knowledge I wish I had back then."
+ctaBullets:
+  - "Instant access"
+  - "Self-paced"
+  - "One-time payment — €24.95"
 relatedProductSlugs:
   - "hormone-reset-guide"
   - "perimenopause-protocol"

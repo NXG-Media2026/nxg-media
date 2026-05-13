@@ -675,6 +675,10 @@ Hard rules for Claude Code and future implementers.
 
 12. **Multilingual QA is mandatory.** Do not mark a locale complete after route creation only. Route parity, component localization, form localization, testimonial localization, journey/offer parity, schema language correctness, and a built-HTML audit for source-language leaks must all pass. Every `t()` call in shared components must receive the active locale. Global site data (`siteConfig.tagline`, founder credentials, navigation labels) must be locale-aware. See §17 for the full checklist and common leak sources.
 
+13. **Anti-generic copy rule.** Avoid generic AI-style wellness copy. Do not use vague phrases like "unlock your full potential", "take control of your health", "balance your hormones naturally", "become the best version of yourself", "holistic wellness journey", "nourish your body and mind", "transform your life", or "optimize your health." Before accepting any headline, section intro, or product copy, ask: could this sentence appear on any generic women's health website? If yes, rewrite it with a concrete moment, the expert's point of view, or specific female physiology. The site should feel like a real person with a real opinion — not a template with wellness fill-in-the-blanks. Heroes and hooks should be human and recognizable. Body copy should be calm, medical, and clear. CTAs should be concrete, practical, and not pushy.
+
+14. **Product pages should not create pressure.** Conversion blocks must not make the product feel like another system the visitor has to perform perfectly. The product should feel like clarity and structure — not another strict rulebook. Add copy that reassures: you don't need to do everything perfectly, this is practical and self-paced, the goal is understanding patterns, not controlling every detail.
+
 ---
 
 ## 15. Reference implementation
@@ -1055,7 +1059,97 @@ Do not silently remove a major offer from one locale.
 
 Example: if the German homepage shows Produkte, Coaching and Mitgliedschaft, the English homepage should show Products, Coaching and Membership unless there is a documented strategic reason not to.
 
-### 7. Language switcher rule
+### 7. Homepage parity
+
+For multilingual expert-brand sites, the translated homepage must not become a simplified or structurally different MVP page once full parity is the goal.
+
+The homepage is usually the primary routing layer of the site. If its section order or CTA hierarchy differs between locales, the funnel logic becomes inconsistent.
+
+When full multilingual parity is required, every locale homepage should follow the same journey architecture unless a strategic reason is documented.
+
+Check parity for:
+
+- hero CTA hierarchy
+- trust bar
+- approach / methodology section
+- offer cards
+- founder preview
+- testimonials
+- quiz section
+- masterclass section
+- social storytelling grid
+- FAQ
+- final CTA
+- newsletter/footer
+
+#### Hero CTA parity
+
+Hero CTAs must preserve the same funnel logic across locales.
+
+Example:
+
+DE:
+- Primary: Angebot entdecken
+- Secondary: Quiz starten
+
+EN:
+- Primary: Explore offers
+- Secondary: Take the quiz
+
+Do not replace a quiz CTA with a masterclass CTA in one locale unless the funnel strategy intentionally differs.
+
+#### Conversion asset visibility parity
+
+If a conversion asset is important in one locale, it should not disappear in another locale.
+
+Check especially:
+
+- quiz CTA sections
+- masterclass CTA sections
+- lead magnets
+- membership/community offer cards
+- coaching cards
+- product cards
+
+A translated homepage should not silently remove quiz, masterclass, community, testimonials or founder trust sections.
+
+#### Shared homepage components must be locale-aware
+
+Homepage components often contain hidden hardcoded strings.
+
+Audit these components for locale leaks:
+
+- FounderPreview
+- TestimonialSlider
+- SocialStorytellingGrid
+- FAQAccordion
+- ServicesGrid
+- TrustBar
+- CTABand
+- NewsletterSignup
+
+Every shared homepage component must accept or infer `locale` and pass it to:
+
+- `t()` translation calls
+- localized route helpers
+- analytics events
+- CTA labels
+- link URLs
+
+#### Homepage parity QA
+
+Before marking a multilingual homepage complete:
+
+1. Compare section order across locales.
+2. Verify hero CTA targets.
+3. Verify all conversion assets appear in the same funnel role.
+4. Verify no source-language UI strings remain.
+5. Verify all internal links resolve.
+6. Verify hreflang works both ways.
+7. Verify analytics includes the active locale.
+8. Verify the original locale homepage did not regress.
+
+### 8. Language switcher rule
 
 The language switcher should only appear when the current page has a valid alternate in the other locale.
 
@@ -1078,7 +1172,7 @@ translationKey: perimenopause-erkennen
 
 Every translated content pair must share the same `translationKey`.
 
-### 8. Schema must use the active locale
+### 9. Schema must use the active locale
 
 Schema must not leak source-language text into translated pages.
 
@@ -1105,7 +1199,7 @@ Common issue:
 
 on an English article page.
 
-### 9. Built HTML localization audit
+### 10. Built HTML localization audit
 
 After adding or updating a locale, run a built-output scan for source-language leaks.
 
@@ -1139,7 +1233,7 @@ Some proper nouns are allowed, but UI copy should not leak.
 
 Also scan for source-language text inside JSON-LD schema if SEO completeness matters.
 
-### 10. QA checklist before enabling a locale
+### 11. QA checklist before enabling a locale
 
 Before exposing a new locale or enabling the language switcher:
 
@@ -1159,7 +1253,7 @@ Before exposing a new locale or enabling the language switcher:
 - Analytics events include `locale`.
 - Content collections are filtered by locale, so EN entries do not generate under DE routes and vice versa.
 
-### 11. Implementation standard
+### 12. Implementation standard
 
 Do not mark a locale complete after route creation only.
 

@@ -2,6 +2,7 @@
 # TODO: Replace placeholder OG image (public/images/og/products/glutenfrei-superpower.png) with custom design
 title: "Glutenfrei als Superpower"
 pageSlug: "glutenfrei-superpower"
+translationKey: "glutenfrei-superpower"
 price: "7.99"
 currency: EUR
 plugAndPayUrl: "https://example.com/checkout/glutenfrei-superpower"
@@ -28,6 +29,19 @@ notForYou:
   - "Du hast eine diagnostizierte Zöliakie und brauchst medizinische Begleitung"
   - "Du suchst ein umfassendes Ernährungsprogramm mit Coaching"
   - "Du willst einen 200-Seiten-Ratgeber — das hier ist bewusst kompakt"
+valueProposition:
+  doThis: "Lies den Guide und setze die Tipps direkt im Alltag um."
+  getThis:
+    - "Verstehe, ob glutenfrei für dich sinnvoll ist — ehrlich und ohne Dogma."
+    - "Bekomme 15 alltagstaugliche Rezepte für die ganze Familie."
+    - "Wisse, worauf du im Supermarkt achten musst."
+  howItWorks:
+    - "Sofortiger Zugriff"
+    - "Kompakter Guide"
+expertPOV: "Glutenfrei muss nicht Verzicht bedeuten. Und es muss auch kein Lifestyle-Statement sein. Dieser Guide zeigt dir einfach, ob und wie glutenfrei für deinen Körper funktioniert — ohne Hype, ohne Panik."
+ctaBullets:
+  - "Sofortiger Zugriff"
+  - "7,99 €"
 relatedProductSlugs:
   - "food-guide"
   - "histamin-bundle"

@@ -21,6 +21,8 @@ seo:
 
 ## Histamin — mehr als nur Allergie
 
+Deine Ärztin sagt, alles sei in Ordnung — aber du wirst trotzdem rot, schläfst schlecht und reagierst auf Lebensmittel, die du jahrelang problemlos gegessen hast. Vielleicht liegt es nicht an den Lebensmitteln. Vielleicht liegt es an deinen Hormonen.
+
 Wenn du an Histamin denkst, denkst du wahrscheinlich an Heuschnupfen. Aber Histamin ist viel mehr als das. Es ist ein körpereigener Botenstoff, der an Hunderten von Prozessen beteiligt ist — von der Verdauung über den Schlaf bis zur Immunabwehr.
 
 Das Problem beginnt, wenn dein Körper mehr Histamin produziert oder aufnimmt, als er abbauen kann. Dann entsteht ein Histamin-Overload — und der kann sich auf vielfältige Weise zeigen.
@@ -40,6 +42,12 @@ Umgekehrt regt Histamin die Eierstöcke an, mehr Östrogen zu produzieren. So en
 ### Wann die Symptome schlimmer werden
 
 Viele Frauen bemerken, dass ihre Histamin-Symptome zyklusabhängig sind. Typisch: eine Verschlechterung in der zweiten Zyklushälfte oder rund um die Menstruation — genau dann, wenn das Östrogen-Progesteron-Verhältnis sich verschiebt.
+
+<aside class="personal-lens-callout" role="note">
+
+**Verenas Perspektive:** Was mich in der Praxis immer wieder überrascht: Die meisten Frauen mit Histamin-Problemen haben jahrelang einzelne Symptome behandelt — Antihistaminika gegen die Haut, Schmerzmittel gegen die Kopfschmerzen, Schlafmittel gegen die Nacht. Niemand hat nach dem Muster dahinter gefragt. Aber wenn du Haut, Schlaf und Kopfschmerzen zusammen betrachtest, ergibt sich oft ein ganz anderes Bild.
+
+</aside>
 
 ## Perimenopause: der perfekte Sturm
 

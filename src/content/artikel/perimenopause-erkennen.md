@@ -21,7 +21,9 @@ seo:
 
 ## „Dafür bist du noch zu jung"
 
-Diesen Satz hören viele Frauen, wenn sie ihre Symptome bei der Ärztin ansprechen. Aber die Wahrheit ist: Die Perimenopause kann bereits ab Mitte 30 beginnen — Jahre, bevor dein Zyklus tatsächlich ausbleibt.
+Du funktionierst. Du arbeitest, trainierst, kümmerst dich um alles — aber im Stillen merkst du, dass sich etwas verändert hat. Der Schlaf ist anders. Die Energie ist anders. Dein Körper fühlt sich an wie deiner, nur mit anderen Regeln. Und wenn du deine Ärztin fragst, hörst du: „Dafür bist du noch zu jung."
+
+Aber die Wahrheit ist: Die Perimenopause kann bereits ab Mitte 30 beginnen — Jahre, bevor dein Zyklus tatsächlich ausbleibt.
 
 Die Perimenopause ist die Übergangsphase vor der Menopause. Deine Hormone — vor allem Östrogen und Progesteron — beginnen zu schwanken. Und diese Schwankungen können Symptome verursachen, die oft nicht sofort mit den Hormonen in Verbindung gebracht werden.
 
@@ -58,6 +60,12 @@ Plötzlich verträgst du bestimmte Lebensmittel nicht mehr — besonders histami
 ### 8. Veränderte Libido
 
 Weniger Lust, verändertes Empfinden oder Trockenheit. Sinkende Östrogen- und Testosteronspiegel beeinflussen das sexuelle Verlangen und die Durchblutung.
+
+<aside class="personal-lens-callout" role="note">
+
+**Verenas Perspektive:** Was ich in der Notaufnahme und in der Praxis sehe: Frauen Ende 30, Anfang 40, die mit Herzrasen, Panikattacken oder unerklärlicher Erschöpfung kommen. Die Diagnostik zeigt — nichts Auffälliges. Das Problem ist nicht, dass diese Frauen sich etwas einbilden. Das Problem ist, dass Perimenopause als Differentialdiagnose bei unter 45-Jährigen praktisch nicht vorkommt. Dabei wäre sie oft die einfachste Erklärung.
+
+</aside>
 
 ## Was du wissen solltest
 

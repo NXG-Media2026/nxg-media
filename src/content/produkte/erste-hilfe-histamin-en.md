@@ -23,6 +23,21 @@ targetAudience:
   - "Women with digestive problems, heartburn, or bloating"
   - "Women with PMS or perimenopause symptoms amplified by histamine"
   - "Women experiencing restlessness, heart palpitations, or anxiety"
+valueProposition:
+  doThis: "Listen to the 7 audio modules and start making changes right away."
+  getThis:
+    - "Understand why your body overreacts to histamine."
+    - "Get a clear plan to lower histamine — gut, liver, nervous system."
+    - "Use low-histamine recipes and practical checklists."
+  howItWorks:
+    - "7 audio modules"
+    - "E-book with recipes"
+    - "Instant access"
+expertPOV: "Your symptoms are not random. When skin, sleep, head and gut all flare up at once, histamine is often the hidden trigger — especially for women with hormonal fluctuations. This program helps you connect the dots and start making targeted changes."
+ctaBullets:
+  - "Instant access"
+  - "Self-paced"
+  - "One-time payment — €37"
 relatedProductSlugs:
   - "food-guide"
   - "smoothie-guide"

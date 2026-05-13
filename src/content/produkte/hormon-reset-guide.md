@@ -1,6 +1,7 @@
 ---
 title: "Hormon-Reset Guide"
 pageSlug: "hormon-reset-guide"
+translationKey: "hormon-reset-guide"
 price: "49"
 currency: EUR
 plugAndPayUrl: "https://example.com/checkout"
@@ -35,6 +36,21 @@ faq:
     a: "Über 80 Seiten mit fundiertem Wissen, 20 hormonfreundlichen Rezepten, einem druckbaren Hormon-Tracker und einer Audio-Zusammenfassung — alles sofort nach dem Kauf verfügbar."
   - q: "Geht der Guide auch auf die Perimenopause ein?"
     a: "Ja, ein ganzes Kapitel behandelt die hormonellen Veränderungen in der Perimenopause und gibt dir konkrete Strategien für diese Lebensphase."
+valueProposition:
+  doThis: "Arbeite den Guide in deinem Tempo durch und lerne, deine Hormone zu verstehen."
+  getThis:
+    - "Verstehe, wie deine Hormone zusammenspielen und was sie aus dem Gleichgewicht bringt."
+    - "Bekomme 20 hormonfreundliche Rezepte für jede Zyklusphase."
+    - "Nutze den Hormon-Tracker, um deine eigenen Muster zu erkennen."
+  howItWorks:
+    - "In deinem Tempo"
+    - "80+ Seiten"
+    - "Sofortiger Zugriff"
+expertPOV: "Deine Hormone sind kein Rätsel. Sie folgen Mustern — aber die hat dir nie jemand erklärt. Dieser Guide gibt dir das Wissen, um deine eigenen Zusammenhänge zu sehen und gezielt etwas zu verändern."
+ctaBullets:
+  - "Sofortiger Zugriff"
+  - "In deinem Tempo"
+  - "Einmalzahlung — 49 €"
 relatedProductSlugs:
   - "perimenopause-protocol"
   - "food-guide"

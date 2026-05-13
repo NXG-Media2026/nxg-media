@@ -105,13 +105,56 @@
     margin-bottom: 0;
   }
 
-  /* Product prose — H2s as section dividers */
+  /* Product prose — premium readability */
+  .prose-product {
+    max-width: 42rem;
+    line-height: 1.8;
+  }
   .prose-product h2 {
-    padding-top: 2rem;
+    padding-top: 2.5rem;
+    margin-bottom: 1rem;
     border-top: 1px solid var(--color-border);
+  }
+  .prose-product h3 {
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
   }
   .prose-product h4 {
     color: #C17B5A;
+  }
+  .prose-product ul,
+  .prose-product ol {
+    margin-top: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .prose-product li {
+    margin-top: 0.375rem;
+    margin-bottom: 0.375rem;
+  }
+  .prose-product p {
+    margin-bottom: 1.25rem;
+  }
+
+  /* Personal-lens callout — expert-perspective block for articles */
+  .prose .personal-lens-callout {
+    background-color: color-mix(in srgb, var(--color-accent) 5%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-accent) 15%, transparent);
+    border-radius: 0.5rem;
+    padding: 1.25rem 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  .prose .personal-lens-callout p {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin-bottom: 0;
+  }
+  .prose .personal-lens-callout p strong {
+    color: color-mix(in srgb, var(--color-accent) 80%, var(--color-text));
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 }
 

@@ -17,6 +17,8 @@ seo:
 
 ## Warum Hormonbalance so wichtig ist
 
+Du machst eigentlich alles richtig — du achtest auf deine Ernährung, du trainierst, du versuchst genug zu schlafen. Und trotzdem: die Müdigkeit bleibt, der Zyklus spinnt, und dein Körper fühlt sich an wie ein anderer. Das Problem ist meistens nicht mangelnde Disziplin. Es ist mangelnde Information darüber, wie dein Körper tatsächlich funktioniert.
+
 Hormone sind die Dirigenten deines Körpers. Sie steuern Hunderte von Prozessen — oft ohne dass du es bewusst merkst. Erst wenn etwas aus dem Gleichgewicht gerät, spürst du die Auswirkungen: Müdigkeit, Schlafstörungen, Zyklusunregelmäßigkeiten oder unerklärliche Gewichtsschwankungen.
 
 ## Die wichtigsten Hormone im Überblick
@@ -32,6 +34,12 @@ Progesteron dominiert die zweite Zyklushälfte (Lutealphase). Es hat eine beruhi
 ### Cortisol
 
 Das Stresshormon ist lebenswichtig — aber chronisch erhöhte Werte können den gesamten Hormonhaushalt durcheinanderbringen. Cortisol beeinflusst direkt die Produktion von Östrogen und Progesteron.
+
+<aside class="personal-lens-callout" role="note">
+
+**Verenas Perspektive:** Die meisten Frauen, die zu mir kommen, brauchen nicht noch mehr Disziplin. Sie brauchen bessere Informationen. Sie haben oft jahrelang gegen ihren eigenen Hormonstatus trainiert und gegessen — nicht weil sie es falsch gemacht haben, sondern weil die Empfehlungen, denen sie gefolgt sind, nie für den weiblichen Körper entwickelt wurden.
+
+</aside>
 
 ## Was du tun kannst
 
@@ -49,4 +57,4 @@ Schlaf ist der wichtigste Regenerationsfaktor. Chronischer Stress und Schlafmang
 
 ## Fazit
 
-Hormonbalance ist kein Zufall — du kannst aktiv etwas dafür tun. Der erste Schritt ist Wissen. Der zweite ist Umsetzung. Genau dabei unterstütze ich dich mit meinen Angeboten bei doc.veri.
+Du bist nicht kaputt. Du brauchst wahrscheinlich keine neue Diät und keinen härteren Trainingsplan. Du brauchst Informationen, die für deinen Körper gemacht sind — nicht für ein Lehrbuch, das auf Männerdaten basiert. Hormonbalance beginnt mit Verstehen.

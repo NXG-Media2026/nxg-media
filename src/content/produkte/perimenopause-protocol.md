@@ -1,6 +1,7 @@
 ---
 title: "Perimenopause Protocol"
 pageSlug: "perimenopause-protocol"
+translationKey: "perimenopause-protocol"
 price: "33"
 currency: EUR
 plugAndPayUrl: "https://example.com/checkout/perimenopause-protocol"
@@ -25,6 +26,21 @@ targetAudience:
   - "Frauen, die zugenommen haben und das Gefühl haben, dass nichts mehr funktioniert"
   - "Sportlerinnen, die ihre Leistung trotz hormoneller Veränderungen erhalten möchten"
   - "Frauen, die verstehen wollen, was in ihrem Körper passiert — ohne Angst, mit einem Plan"
+valueProposition:
+  doThis: "Arbeite das 6-Wochen-Protokoll in deinem Tempo durch."
+  getThis:
+    - "Verstehe, was hinter Hitzewallungen, Schlafproblemen und Gewichtszunahme steckt."
+    - "Bekomme einen klaren Plan für Ernährung, Bewegung, Schlaf und Stress."
+    - "Setze sofort um — mit Rezepten, Trackern und Wochenplänen."
+  howItWorks:
+    - "In deinem Tempo"
+    - "190+ Seiten"
+    - "Sofortiger Zugriff"
+expertPOV: "Die meisten Frauen in der Perimenopause brauchen keinen weiteren generischen Gesundheitsratgeber. Sie brauchen jemanden, der ihnen erklärt, was sich verändert — und was sie konkret tun können. Ohne Panik, mit einem Plan."
+ctaBullets:
+  - "Sofortiger Zugriff"
+  - "In deinem Tempo"
+  - "Einmalzahlung — 33 €"
 relatedProductSlugs:
   - "hormon-reset-guide"
   - "erste-hilfe-histamin"
@@ -103,4 +119,4 @@ Das Perimenopause Protocol ist für dich, wenn du:
 - Verstehen willst, was hormonell passiert — ohne Angst, mit einem Plan
 - Konkrete Schritte suchst, die du sofort umsetzen kannst
 - Genug hast von widersprüchlichen Informationen im Internet
-- Deine Gesundheit selbst in die Hand nehmen möchtest
+- Endlich verstehen willst, was dein Körper dir sagt — statt zu raten

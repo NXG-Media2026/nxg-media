@@ -7,7 +7,7 @@ whatYouGet:
   - title: "Exklusive Inhalte"
     description: "Vertiefende Materialien, Worksheets und Rezepte — nur für Community-Mitglieder."
   - title: "Austausch mit Gleichgesinnten"
-    description: "Eine geschlossene Gruppe von Frauen, die ihre Gesundheit selbst in die Hand nehmen."
+    description: "Eine geschlossene Gruppe von Frauen, die verstehen wollen, wie ihr Körper wirklich funktioniert."
   - title: "Monatliche Challenges"
     description: "Gemeinsam dranbleiben: Ernährungs-, Bewegungs- und Mindset-Challenges."
 format: "Online-Community (Skool)"
