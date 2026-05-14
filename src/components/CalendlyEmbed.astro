@@ -21,12 +21,6 @@ const {
 } = Astro.props;
 
 const calendlyUrl = 'https://calendly.com/nxgmedia/gratis-15-minuten-strategiegesprek?hide_event_type_details=1&hide_gdpr_banner=1';
-
-const loadLabel: Record<string, string> = {
-  nl: 'Klik om de agenda te laden',
-  en: 'Click to load the calendar',
-  es: 'Haz clic para cargar el calendario',
-};
 ---
 
 <section
@@ -56,38 +50,37 @@ const loadLabel: Record<string, string> = {
       data-calendly-url={calendlyUrl}
       style="min-width:320px;min-height:700px;"
     >
-      <button
-        id="calendly-load-btn"
-        type="button"
-        class="w-full h-full flex flex-col items-center justify-center gap-4 py-16 text-center cursor-pointer hover:bg-bg-alt/50 transition-colors"
-      >
-        <svg class="w-12 h-12 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+      {/* Loading spinner shown until Calendly loads */}
+      <div id="calendly-loading" class="w-full flex flex-col items-center justify-center gap-4 py-16 text-center">
+        <svg class="w-10 h-10 text-accent animate-spin" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
         </svg>
-        <span class="text-base font-medium text-accent">{loadLabel[locale] ?? loadLabel.nl}</span>
-        <span class="text-sm text-text-muted">Calendly</span>
-      </button>
+        <span class="text-sm text-text-muted">Agenda laden...</span>
+      </div>
     </div>
   </div>
 </section>
 
 <script>
   (function () {
-    const btn = document.getElementById('calendly-load-btn');
     const container = document.getElementById('calendly-container');
-    if (!btn || !container) return;
+    if (!container) return;
 
     let loaded = false;
 
-    btn.addEventListener('click', function () {
+    function loadCalendly() {
       if (loaded) return;
       loaded = true;
 
       const url = container.dataset.calendlyUrl;
       if (!url) return;
 
-      btn.remove();
+      // Remove loading spinner
+      const loading = document.getElementById('calendly-loading');
+      if (loading) loading.remove();
 
+      // Create Calendly widget
       const widget = document.createElement('div');
       widget.className = 'calendly-inline-widget';
       widget.dataset.url = url;
@@ -95,24 +88,44 @@ const loadLabel: Record<string, string> = {
       widget.style.height = '700px';
       container.appendChild(widget);
 
+      // Load Calendly script
       const script = document.createElement('script');
       script.src = 'https://assets.calendly.com/assets/external/widget.js';
       script.async = true;
       document.head.appendChild(script);
 
+      // Track event
       const section = document.getElementById('calendly');
       if (section && typeof window.trackEvent === 'function') {
         const pageType = section.dataset.analyticsPageType || 'contact';
         const pageSlug = section.dataset.analyticsPageSlug || '';
         const locale = section.dataset.analyticsLocale || 'nl';
-        window.trackEvent('discovery_call_click', {
+        window.trackEvent('discovery_call_view', {
           page_type: pageType,
           page_slug: pageSlug,
           locale: locale,
-          cta_location: 'inline',
           provider: 'calendly',
         });
       }
-    });
+    }
+
+    // Auto-load when section scrolls into view
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              loadCalendly();
+              observer.disconnect();
+            }
+          });
+        },
+        { rootMargin: '200px' } // Start loading 200px before visible
+      );
+      observer.observe(container);
+    } else {
+      // Fallback: load immediately for older browsers
+      loadCalendly();
+    }
   })();
 </script>
