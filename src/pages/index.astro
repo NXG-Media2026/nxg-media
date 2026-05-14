@@ -26,9 +26,9 @@ const hreflang = buildHreflangTrilingual('/', '/en/', '/es/');
 const testimonials = getTestimonials({ locale: 'nl' });
 const socialPosts = getSocialPosts(6);
 
-const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.webp', { eager: true });
+const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
 const logos = Object.entries(logoFiles).map(([path, mod]) => {
-  const filename = path.split('/').pop()!.replace('.webp', '');
+  const filename = path.split('/').pop()!.replace(/\.(webp|avif|png|jpg)$/, '');
   const name = filename.replace('-logo', '').replace(/-/g, ' ');
   return { src: mod.default, alt: name };
 });

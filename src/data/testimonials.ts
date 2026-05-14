@@ -4,6 +4,8 @@ export interface Testimonial {
   id: string;
   name: string;
   outcome?: string;
+  website?: string;
+  logo?: string; // filename in /src/assets/images/logos/
   photo?: string;
   text: string;
   rating?: number;
@@ -18,6 +20,8 @@ export const testimonials: Testimonial[] = [
     id: 'rolf-happywithyoga',
     name: 'Rolf',
     outcome: 'Happy With Yoga',
+    website: 'https://www.happywithyoga.com',
+    logo: 'happywithyoga-logo.webp',
     text: 'Joost heeft een compleet systeem gebouwd dat onze bezoekers stap voor stap omzet in betalende leden. Van quiz-funnel tot webinar tot mini-cursus — alles werkt samen. We zitten nu op 30.000+ leads en 2.000 betalende platformleden.',
     rating: 5,
     featured: true,
@@ -28,6 +32,8 @@ export const testimonials: Testimonial[] = [
     id: 'tessa-youlife',
     name: 'Tessa',
     outcome: 'Youlife',
+    website: 'https://www.youlife.nl',
+    logo: 'youlife-logo.avif',
     text: 'We zijn in vier maanden van nul naar zo\'n €10.000 per maand aan online productomzet gegaan. Zes producten gelanceerd en gemiddeld tien coachingklanten per maand die binnenkomen via de productleads. Het systeem draait nu grotendeels automatisch.',
     rating: 5,
     locale: 'nl',
@@ -37,34 +43,38 @@ export const testimonials: Testimonial[] = [
     id: 'josine-coachjosine',
     name: 'Josine',
     outcome: 'Coach Josine',
+    website: 'https://www.coachjosine.nl',
+    logo: 'coachjosine-logo.avif',
     text: 'Mijn eerste digitale product — de Eetstrijdguide — was in de eerste week al 600 keer verkocht. Daarnaast 80 aanmeldingen voor de masterclass. Ik had niet verwacht dat het zo snel zou gaan met de juiste lanceringsstructuur.',
     rating: 5,
     locale: 'nl',
     cluster: 'expert-growth',
   },
   {
-    id: 'mark-tandarts',
-    name: 'Mark',
-    outcome: 'Tandartspraktijk, regio Utrecht',
-    text: 'Sinds de optimalisatie worden we daadwerkelijk genoemd door ChatGPT als iemand zoekt naar een tandarts in onze regio. Dat was voorheen ondenkbaar — en het levert ons nu echt nieuwe patiënten op.',
+    id: 'claire-ikrouwvanje',
+    name: 'Claire',
+    outcome: 'ikrouwvanje.nl',
+    website: 'https://www.ikrouwvanje.nl',
+    logo: 'ikrouwvanje-logo.webp',
+    text: '+25% meer klanten. Vanaf maand 3 werd het verschil echt duidelijk — en het mooiste: ik ben veel minder afhankelijk geworden van betaald adverteren.',
     rating: 5,
     locale: 'nl',
-    cluster: 'ai-vindbaarheid',
-  },
-  {
-    id: 'sandra-advocatenkantoor',
-    name: 'Sandra',
-    outcome: 'Advocatenkantoor, Amsterdam',
-    text: 'De AI-vindbaarheidsscan maakte pijnlijk duidelijk waar we stonden: nergens. Na de aanpassingen worden we nu wél geciteerd in AI-antwoorden. Concreet en meetbaar resultaat, precies wat ik zocht.',
-    rating: 5,
-    locale: 'nl',
-    cluster: 'ai-vindbaarheid',
+    cluster: 'expert-growth',
   },
   {
     id: 'kim-fitnesscoach',
     name: 'Kim',
     outcome: 'Fitness coach',
     text: 'Het masterclass-systeem draait nu volledig. 90 aanmeldingen, 350 verkochte gidsen en een conversie van 8% naar mijn trajecten — in twee maanden. Eindelijk een voorspelbare instroom.',
+    rating: 5,
+    locale: 'nl',
+    cluster: 'expert-growth',
+  },
+  {
+    id: 'andrew-coreprogression',
+    name: 'Andrew',
+    outcome: 'Core Progression',
+    text: 'Joost heeft ons geholpen om een compleet online traject neer te zetten. Van content strategie tot ads — alles werkt nu als één systeem. De resultaten spreken voor zich.',
     rating: 5,
     locale: 'nl',
     cluster: 'expert-growth',

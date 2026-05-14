@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import type { Testimonial } from '../data/testimonials';
 
 interface Props {
@@ -9,6 +11,18 @@ interface Props {
 const { testimonials, locale = 'nl' } = Astro.props;
 const [featured, ...rest] = testimonials;
 const colors = ['bg-accent', 'bg-primary', 'bg-amber-500', 'bg-emerald-500', 'bg-rose-500'];
+
+// Load all logo images
+const logoFiles = import.meta.glob<{ default: ImageMetadata }>(
+  '/src/assets/images/logos/*.{webp,avif,png,jpg}',
+  { eager: true },
+);
+
+function getLogoImage(logoFilename?: string): ImageMetadata | undefined {
+  if (!logoFilename) return undefined;
+  const key = `/src/assets/images/logos/${logoFilename}`;
+  return logoFiles[key]?.default;
+}
 
 function getInitials(name: string): string {
   return name
@@ -31,17 +45,35 @@ function renderStars(rating: number = 5): string {
     {featured && (
       <div class="mb-12 border-l-4 border-accent bg-bg-alt rounded-card p-8 md:p-10">
         <div class="flex items-center gap-4 mb-6">
-          <div class:list={[
-            'w-14 h-14 rounded-full flex items-center justify-center text-white font-bold text-lg shrink-0',
-            colors[0],
-          ]}>
-            {getInitials(featured.name)}
-          </div>
+          {/* Logo or initials */}
+          {getLogoImage(featured.logo) ? (
+            <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center overflow-hidden border border-border shrink-0 p-1.5">
+              <Image
+                src={getLogoImage(featured.logo)!}
+                alt={featured.outcome ?? featured.name}
+                width={48}
+                height={48}
+                class="w-full h-full object-contain"
+                loading="lazy"
+              />
+            </div>
+          ) : (
+            <div class:list={[
+              'w-14 h-14 rounded-full flex items-center justify-center text-white font-bold text-lg shrink-0',
+              colors[0],
+            ]}>
+              {getInitials(featured.name)}
+            </div>
+          )}
           <div>
             <p class="font-heading text-lg text-text">{featured.name}</p>
-            {featured.outcome && (
+            {featured.outcome && featured.website ? (
+              <a href={featured.website} target="_blank" rel="noopener noreferrer" class="text-sm text-accent hover:text-accent-dark transition-colors underline underline-offset-2">
+                {featured.outcome}
+              </a>
+            ) : featured.outcome ? (
               <p class="text-sm text-text-muted">{featured.outcome}</p>
-            )}
+            ) : null}
           </div>
         </div>
         <div class="text-accent text-xl mb-4 tracking-wide" aria-label={`${featured.rating ?? 5} van 5 sterren`}>
@@ -59,17 +91,35 @@ function renderStars(rating: number = 5): string {
         {rest.map((t, i) => (
           <div class="bg-bg-alt border border-border rounded-card p-6">
             <div class="flex items-center gap-3 mb-4">
-              <div class:list={[
-                'w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0',
-                colors[(i + 1) % colors.length],
-              ]}>
-                {getInitials(t.name)}
-              </div>
+              {/* Logo or initials */}
+              {getLogoImage(t.logo) ? (
+                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden border border-border shrink-0 p-1">
+                  <Image
+                    src={getLogoImage(t.logo)!}
+                    alt={t.outcome ?? t.name}
+                    width={36}
+                    height={36}
+                    class="w-full h-full object-contain"
+                    loading="lazy"
+                  />
+                </div>
+              ) : (
+                <div class:list={[
+                  'w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0',
+                  colors[(i + 1) % colors.length],
+                ]}>
+                  {getInitials(t.name)}
+                </div>
+              )}
               <div>
                 <p class="font-heading text-base text-text">{t.name}</p>
-                {t.outcome && (
+                {t.outcome && t.website ? (
+                  <a href={t.website} target="_blank" rel="noopener noreferrer" class="text-xs text-accent hover:text-accent-dark transition-colors underline underline-offset-2">
+                    {t.outcome}
+                  </a>
+                ) : t.outcome ? (
                   <p class="text-xs text-text-muted">{t.outcome}</p>
-                )}
+                ) : null}
               </div>
             </div>
             <div class="text-accent text-base mb-3 tracking-wide" aria-label={`${t.rating ?? 5} van 5 sterren`}>
