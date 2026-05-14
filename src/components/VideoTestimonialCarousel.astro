@@ -18,6 +18,7 @@ export interface VideoTestimonial {
   rating: number;
   thumbnail: ImageMetadata;
   videoUrl?: string; // YouTube/Vimeo URL or local path — empty = thumbnail only
+  uploadDate?: string; // ISO date e.g. '2024-06-15'
 }
 
 interface Props {
@@ -48,7 +49,7 @@ const videoSchemaScripts = testimonials
       description: v.quote,
       contentUrl: v.videoUrl!.startsWith('http') ? v.videoUrl : `${baseUrl}${v.videoUrl}`,
       thumbnailUrl: `${baseUrl}${v.thumbnail.src}`,
-      uploadDate: '2025-01-01',
+      uploadDate: v.uploadDate ?? '2024-01-01',
       inLanguage: /[a-z]{4,}/i.test(v.quote) && !/[àáâãäåèéêëìíîïòóôõöùúûü]/i.test(v.quote) ? 'en' : 'nl',
       publisher: { '@type': 'Organization', name: siteConfig.name, url: baseUrl },
     };

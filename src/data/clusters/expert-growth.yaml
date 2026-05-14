@@ -9,28 +9,30 @@ locales:
 brandFocus: personal
 citableDefinition:
   nl: >
-    De Coach Accelerator is een vast traject voor coaches en
-    experts die hun expertise willen vertalen naar een online
-    instaproute — met storytelling, masterclasses, mini-producten,
-    emailflows en advertenties die samen leiden naar kopers, klanten
-    of leden.
+    De Coach Accelerator is een compleet groeisysteem voor coaches
+    en experts — van een snelle, AI-vindbare website tot storytelling,
+    mini-producten, emailflows en ads. Alles werkt samen als één
+    machine die zichtbaarheid, leads en klanten oplevert. AI-vindbaarheid
+    is geen extra, het is het fundament.
   en: >
-    The Coach Accelerator is a structured engagement for
-    coaches and experts who want to turn their expertise into an
-    online entry route — with storytelling, masterclasses, mini-products,
-    email flows and ads working together to create buyers, clients
-    or members.
+    The Coach Accelerator is a complete growth system for coaches
+    and experts — from a fast, AI-visible website to storytelling,
+    micro-products, email flows and ads. Everything works together as
+    one machine that delivers visibility, leads and clients. AI visibility
+    isn't an add-on, it's the foundation.
 hubIntro:
   nl: >
     Veel coaches en experts hebben de kennis al binnen. Wat ontbreekt
     is een systeem dat die kennis omzet in voorspelbare leads,
-    productverkoop en coaching-aanvragen. Hier laat ik zien hoe ik dat
-    bouw, met cases van klanten die dit al doen.
+    productverkoop en coaching-aanvragen — gebouwd op een snelle website
+    die niet alleen converteert, maar ook vindbaar is in ChatGPT,
+    Gemini en Perplexity. Hier laat ik zien hoe ik dat bouw.
   en: >
     Many coaches and experts already have the expertise. What is often
     missing is a system that turns that expertise into predictable leads,
-    product sales and coaching enquiries. This hub shows how I build
-    that system, with cases from clients already using it.
+    product sales and coaching enquiries — built on a fast website that
+    not only converts, but is also visible in ChatGPT, Gemini and
+    Perplexity. This hub shows how I build that system.
 featuredCases:
   - cases/coach-josine
   - cases/tessa-youlife

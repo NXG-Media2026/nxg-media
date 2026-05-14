@@ -294,6 +294,62 @@ Example: `<a href="/voorwaarden/">/voorwaarden/</a>` from EN/ES terms pages.
 
 If the business sells AI visibility services and its own site lacks `llms.txt`, that's a credibility gap. Treat it as a launch blocker, not a nice-to-have.
 
+### llms.txt must match actual routes
+
+The `public/llms.txt` file is manually maintained. When pages are renamed, routes change, or new pages are added, `llms.txt` URLs will silently go stale. After any route restructuring, verify every URL in `llms.txt` matches an actual built page.
+
+Example mistake: `llms.txt` referenced `/expert-growth-accelerator/` but the actual page was `/coach-accelerator/`.
+
+### astro.config.mjs site URL must match production domain
+
+The `site` field in `astro.config.mjs` drives ALL canonical URLs, sitemap entries, and hreflang tags. When forking from another project, this is the #1 critical field to update. A wrong domain here makes the entire sitemap, all canonicals, and all OG URLs point to the wrong site — breaking SEO completely while the build still passes green.
+
+Also update the `i18n` config inside the sitemap integration: `defaultLocale` and `locales` must match `siteConfig.locales`. The old docveri.de template used `de`/`en`; NXG Media uses `nl`/`en`/`es`.
+
+### SEOHead.astro fallback locale
+
+The OG locale fallback in `SEOHead.astro` was `de_DE` from the docveri.de template. When forking, change the fallback to match the new default locale (e.g., `nl_NL`).
+
+### Hero images must have descriptive alt text
+
+Background/hero images with `alt=""` are a common oversight. These images are the most prominent visual on the page and should have keyword-rich alt text describing what is shown, not empty strings. Each locale should have a locale-appropriate alt text.
+
+### Navigation parity across locales
+
+When NL has a nav item (e.g., "Producten"), EN and ES must also have the equivalent link. Missing nav items in one locale mean those pages are only reachable via direct URL — effectively orphaned for that locale's users.
+
+### About page: expert.md §8 requires 10 sections
+
+The About page is not a short bio + Calendly. Per expert.md §8, it requires: (1) Hero with positioning, (2) Origin story, (3) Client patterns, (4) Expert POV, (5) Professional background, (6) Expertise areas, (7) Method framework, (8) Personal lens, (9) Boundaries/disclaimer, (10) CTA. A thin About page is a critical audit finding.
+
+### Breadcrumbs on all non-home pages
+
+Every non-homepage should have both visual breadcrumbs (`BreadcrumbNav`) and a `BreadcrumbList` schema. Pages commonly missed: About, Contact, service landing pages.
+
+### Service schema needs areaServed
+
+The `generateService()` function should include `areaServed` with the countries the business serves. A bare Service schema (name + description + provider) misses geo-targeting signals.
+
+### Organization schema needs ContactPoint and address
+
+`generateOrganization()` should include `contactPoint` (email, phone, languages) and `address` (structured PostalAddress). These are required for local SEO and help AI systems provide accurate contact information.
+
+### VideoObject uploadDate must be realistic
+
+Hardcoded dates like `2025-01-01` for all videos signal low data quality to search engines. Each video should have an approximate real upload date.
+
+### HowTo schema on service method steps
+
+Service pages with step-by-step methods benefit from HowTo schema. This enables rich results for "how to" queries and makes the service methodology visible in SERP.
+
+### FAQ expansion: 10 items per service
+
+Per expert.md §21, major services should have 8-10 FAQ items covering conversion objections, trust/safety, and product clarity. Three items is too thin for AI citation and FAQ rich snippets.
+
+### siteConfig founder data must be locale-keyed
+
+Founder fields (bio, description, qualifications, knowsAbout) should be `{ nl: ..., en: ..., es: ... }` objects, not flat strings. All consumers (pages, schema.ts) must use `[locale]` access. Flat strings leak Dutch content into EN/ES pages.
+
 ### Image handling for SEO & AI visibility
 
 Images are not decoration — they are structured data that AI crawlers and search engines index. Every image on the site must follow these rules. Do not wait for the human to ask; apply them by default on every build.

@@ -10,6 +10,7 @@ import LogoMarquee from '../components/LogoMarquee.astro';
 import SocialStorytellingGrid from '../components/SocialStorytellingGrid.astro';
 import FounderPreview from '../components/FounderPreview.astro';
 import FAQAccordion from '../components/FAQAccordion.astro';
+import ScannerChooser from '../components/ScannerChooser.astro';
 import { siteConfig } from '../data/site';
 import { generateOrganization, generateWebSite, generateFounderPerson, generateFAQPage } from '../data/schema';
 import { buildHreflangTrilingual } from '../i18n/hreflang';
@@ -50,15 +51,15 @@ const trustItems = [
 const homepageFaq = [
   {
     q: 'Wat kost het om met NXG Media te werken?',
-    a: 'Dat hangt af van je situatie. Onze micro-producten beginnen bij €6,99 als je zelf aan de slag wilt. Het Coach Accelerator traject is een vast traject met setup + maandelijkse optimalisatie. <a href="/contact/">Neem contact op</a> voor een vrijblijvend gesprek.',
+    a: 'NXG Media biedt micro-producten vanaf €6,99 voor ondernemers die zelf aan de slag willen. Het Coach Accelerator traject is een vast programma met setup + maandelijkse optimalisatie. <a href="/contact/">Neem contact op</a> voor een vrijblijvend gesprek over de investering die bij jouw situatie past.',
   },
   {
     q: 'Werken jullie alleen met coaches?',
-    a: 'Nee. We werken met twee clusters: Coach Accelerator (coaches, kennisondernemers, experts) en AI Vindbaarheid (lokale praktijken, MKB). De aanpak verschilt, maar het uitgangspunt is hetzelfde: bouw een systeem, geen losse campagnes.',
+    a: 'NXG Media werkt met twee clusters: Coach Accelerator (coaches, kennisondernemers, experts) en AI Vindbaarheid (lokale praktijken, MKB). De aanpak verschilt, maar het uitgangspunt is hetzelfde: bouw een systeem, geen losse campagnes.',
   },
   {
     q: 'Hoe snel zie ik resultaat?',
-    a: 'De eerste resultaten bij de Coach Accelerator zie je meestal binnen 2-4 weken (eerste leads, eerste productverkopen). Een volledig draaiend systeem kost 2-3 maanden. Bij AI Vindbaarheid kun je na het toepassen van de kits direct opnieuw scannen en het verschil zien.',
+    a: 'De eerste Coach Accelerator resultaten zijn er meestal binnen 2-4 weken — eerste leads, eerste productverkopen. Een volledig draaiend systeem kost 2-3 maanden. Bij AI Vindbaarheid kun je na het toepassen van de kits direct opnieuw scannen en het verschil zien.',
   },
   {
     q: 'Wat is het verschil tussen NXG Media en een gewoon marketingbureau?',
@@ -87,7 +88,7 @@ const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
     <div class="absolute inset-0">
       <Image
         src={heroPhoto}
-        alt=""
+        alt="Joost van Putten werkt aan online groeisystemen voor coaches en experts — NXG Media"
         widths={[800, 1200, 1600]}
         sizes="100vw"
         class="w-full h-full object-cover"
@@ -104,17 +105,16 @@ const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
         Voor coaches en experts die hun kennis willen vertalen naar voorspelbare leads, productverkoop en coaching-aanvragen. En voor lokale praktijken die zichtbaar willen zijn in AI-tools.
       </p>
       <div class="flex flex-col sm:flex-row items-start gap-4">
-        <a
-          href="https://scanner.nxg-media.com"
-          class="inline-flex items-center px-8 py-4 text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-lg"
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          type="button"
+          data-scanner-open
+          class="inline-flex items-center px-8 py-4 text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-lg cursor-pointer"
         >
-          Doe de AI-vindbaarheidsscan
+          Doe de groeiscan
           <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
-        </a>
+        </button>
         <a
           href="/diensten/coach-accelerator/"
           class="inline-flex items-center px-8 py-4 text-base font-medium text-primary border-2 border-primary hover:bg-primary/5 transition-colors rounded-button"
@@ -179,7 +179,7 @@ const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
           <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full mb-4">expert-growth</span>
           <h2 class="font-heading text-xl text-text mb-3">Coach Accelerator</h2>
           <p class="text-text-muted text-sm leading-relaxed mb-6">
-            Een vast traject voor coaches en experts die hun expertise willen vertalen naar een online instaproute — met storytelling, masterclasses, mini-producten, emailflows en advertenties die samen leiden naar kopers, klanten of leden.
+            Een compleet groeisysteem voor coaches en experts — van een snelle, AI-vindbare website tot storytelling, mini-producten, emailflows en ads. Alles werkt samen als één machine die zichtbaarheid, leads en klanten oplevert.
           </p>
           <a href="/diensten/coach-accelerator/" class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium text-sm">
             Meer over Coach Accelerator
@@ -327,10 +327,10 @@ const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
   <FounderPreview
     name={siteConfig.founder.name}
     role={siteConfig.founder.role}
-    bio={siteConfig.founder.bio}
+    bio={siteConfig.founder.bio[locale]}
     image={founderPhoto}
     credentials={siteConfig.founder.credentials.map((c) => ({ name: c.name, issuer: c.issuer }))}
-    knowsAbout={siteConfig.founder.knowsAbout}
+    knowsAbout={siteConfig.founder.knowsAbout[locale]}
     aboutHref="/over-joost/"
     aboutLabel="Meer over Joost"
     locale="nl"
@@ -346,5 +346,7 @@ const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
       pageSlug="/"
     />
   </div>
+
+  <ScannerChooser locale="nl" />
 
 </BaseLayout>

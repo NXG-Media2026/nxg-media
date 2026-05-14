@@ -14,7 +14,7 @@ function baseSameAs(): string[] {
   return Object.values(siteConfig.socials).filter((url): url is string => Boolean(url));
 }
 
-export function generateFounderPerson() {
+export function generateFounderPerson(locale: Locale = 'nl') {
   const { founder } = siteConfig;
   const fullImage = founder.image
     ? (founder.image.startsWith('http') ? founder.image : `${siteConfig.url}${founder.image}`)
@@ -29,6 +29,9 @@ export function generateFounderPerson() {
       }))
     : undefined;
 
+  const description = typeof founder.description === 'string' ? founder.description : founder.description[locale] ?? founder.description.nl;
+  const knowsAbout = Array.isArray(founder.knowsAbout) ? founder.knowsAbout : (founder.knowsAbout[locale] ?? founder.knowsAbout.nl);
+
   return JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'Person',
@@ -36,10 +39,10 @@ export function generateFounderPerson() {
     name: founder.name,
     url: founderUrl,
     jobTitle: founder.role,
-    description: founder.description,
+    description,
     worksFor: { '@id': orgId },
     ...(founder.languages.length > 0 && { knowsLanguage: [...founder.languages] }),
-    ...(founder.knowsAbout.length > 0 && { knowsAbout: [...founder.knowsAbout] }),
+    ...(knowsAbout.length > 0 && { knowsAbout: [...knowsAbout] }),
     ...(fullImage && { image: fullImage }),
     ...(credentials && { hasCredential: credentials }),
   });
@@ -55,6 +58,20 @@ export function generateOrganization() {
     description: siteConfig.tagline.nl,
     url: siteConfig.url,
     founder: { '@id': founderUrl },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      email: siteConfig.email,
+      telephone: siteConfig.legal.phone,
+      contactType: 'customer service',
+      availableLanguage: ['Dutch', 'English', 'Spanish'],
+    },
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: siteConfig.legal.street,
+      postalCode: siteConfig.legal.postalCode,
+      addressLocality: siteConfig.legal.city,
+      addressCountry: 'NL',
+    },
     ...(sameAs.length > 0 && { sameAs }),
   });
 }
@@ -162,6 +179,8 @@ export function generateService(service: {
   name: string;
   description: string;
   url: string;
+  serviceType?: string;
+  areaServed?: string[];
 }) {
   return JSON.stringify({
     '@context': 'https://schema.org',
@@ -170,6 +189,12 @@ export function generateService(service: {
     description: service.description,
     url: service.url,
     provider: { '@id': orgId },
+    ...(service.serviceType && { serviceType: service.serviceType }),
+    areaServed: service.areaServed ?? [
+      { '@type': 'Country', name: 'Netherlands' },
+      { '@type': 'Country', name: 'Belgium' },
+      { '@type': 'Country', name: 'Spain' },
+    ],
   });
 }
 
@@ -317,5 +342,24 @@ export function generatePerson(member: {
     worksFor: { '@id': orgId },
     ...(member.languages && member.languages.length > 0 && { knowsLanguage: [...member.languages] }),
     ...(fullImage && { image: fullImage }),
+  });
+}
+
+export function generateHowTo(howTo: {
+  name: string;
+  description: string;
+  steps: Array<{ title: string; description: string }>;
+}) {
+  return JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: howTo.name,
+    description: howTo.description,
+    step: howTo.steps.map((step, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: step.title,
+      text: step.description,
+    })),
   });
 }

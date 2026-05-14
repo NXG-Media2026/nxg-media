@@ -1,0 +1,191 @@
+---
+import type { Locale } from '../data/site';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'nl' } = Astro.props;
+
+const copy = {
+  nl: {
+    title: 'Welke scan past bij jou?',
+    coachLabel: 'Coach of expert',
+    coachDesc: 'Je wilt jouw kennis vertalen naar een online groeisysteem met producten, leads en coaching-aanvragen.',
+    mkbLabel: 'MKB of lokale praktijk',
+    mkbDesc: 'Je wilt dat AI-tools zoals ChatGPT en Google jouw bedrijf aanbevelen aan potentiële klanten.',
+    close: 'Sluiten',
+  },
+  en: {
+    title: 'Which scan is right for you?',
+    coachLabel: 'Coach or expert',
+    coachDesc: 'You want to turn your expertise into an online growth system with products, leads and coaching enquiries.',
+    mkbLabel: 'SMB or local practice',
+    mkbDesc: 'You want AI tools like ChatGPT and Google to recommend your business to potential clients.',
+    close: 'Close',
+  },
+  es: {
+    title: '¿Qué análisis es para ti?',
+    coachLabel: 'Coach o experto',
+    coachDesc: 'Quieres convertir tu experiencia en un sistema de crecimiento online con productos, leads y consultas de coaching.',
+    mkbLabel: 'PYME o clínica local',
+    mkbDesc: 'Quieres que herramientas de IA como ChatGPT y Google recomienden tu negocio a clientes potenciales.',
+    close: 'Cerrar',
+  },
+};
+
+const t = copy[locale];
+---
+
+<div
+  id="scanner-chooser"
+  class="fixed inset-0 z-[100] hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="scanner-chooser-title"
+>
+  <div class="absolute inset-0 bg-black/50 backdrop-blur-sm scanner-chooser-backdrop"></div>
+
+  <div class="relative flex items-center justify-center min-h-full p-4">
+    <div class="scanner-chooser-panel bg-bg rounded-card shadow-2xl max-w-lg w-full p-8 relative">
+      <button
+        type="button"
+        class="absolute top-4 right-4 text-text-muted hover:text-text transition-colors"
+        aria-label={t.close}
+        data-scanner-close
+      >
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <h2 id="scanner-chooser-title" class="font-heading text-2xl md:text-3xl text-text mb-8 text-center pr-8">
+        {t.title}
+      </h2>
+
+      <div class="space-y-4">
+        <a
+          href="https://scanner.nxg-media.com/coaches"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group block rounded-card border-2 border-border p-6 hover:border-accent hover:shadow-lg transition-all"
+        >
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
+              <svg class="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-heading text-lg text-text group-hover:text-accent transition-colors mb-1">
+                {t.coachLabel}
+              </h3>
+              <p class="text-sm text-text-muted leading-relaxed">{t.coachDesc}</p>
+            </div>
+            <svg class="flex-shrink-0 w-5 h-5 text-text-muted group-hover:text-accent transition-colors mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+          </div>
+        </a>
+
+        <a
+          href="https://scanner.nxg-media.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group block rounded-card border-2 border-border p-6 hover:border-primary hover:shadow-lg transition-all"
+        >
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+              <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.15c0 .415.336.75.75.75z" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-heading text-lg text-text group-hover:text-primary transition-colors mb-1">
+                {t.mkbLabel}
+              </h3>
+              <p class="text-sm text-text-muted leading-relaxed">{t.mkbDesc}</p>
+            </div>
+            <svg class="flex-shrink-0 w-5 h-5 text-text-muted group-hover:text-primary transition-colors mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .scanner-chooser-backdrop {
+    opacity: 0;
+    transition: opacity 0.25s ease-out;
+  }
+
+  .scanner-chooser-panel {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+    transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+  }
+
+  #scanner-chooser.is-open .scanner-chooser-backdrop {
+    opacity: 1;
+  }
+
+  #scanner-chooser.is-open .scanner-chooser-panel {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scanner-chooser-backdrop,
+    .scanner-chooser-panel {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  function initScannerChooser() {
+    const dialog = document.getElementById('scanner-chooser');
+    if (!dialog) return;
+
+    const closeBtn = dialog.querySelector('[data-scanner-close]');
+    const backdrop = dialog.querySelector('.scanner-chooser-backdrop');
+
+    function open() {
+      dialog.classList.remove('hidden');
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          dialog.classList.add('is-open');
+        });
+      });
+      document.body.style.overflow = 'hidden';
+    }
+
+    function close() {
+      dialog.classList.remove('is-open');
+      document.body.style.overflow = '';
+      setTimeout(() => dialog.classList.add('hidden'), 250);
+    }
+
+    document.querySelectorAll('[data-scanner-open]').forEach((trigger) => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        open();
+      });
+    });
+
+    closeBtn?.addEventListener('click', close);
+    backdrop?.addEventListener('click', close);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !dialog.classList.contains('hidden')) {
+        close();
+      }
+    });
+  }
+
+  initScannerChooser();
+  document.addEventListener('astro:after-swap', initScannerChooser);
+</script>

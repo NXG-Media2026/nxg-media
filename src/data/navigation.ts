@@ -28,6 +28,7 @@ export const navigation: Record<Locale, NavItem[]> = {
     { label: 'Coach Accelerator', href: '/es/coach-accelerator/' },
     { label: 'Visibilidad IA', href: '/es/visibilidad-ia/' },
     { label: 'Casos', href: '/es/casos/' },
+    { label: 'Productos', href: '/es/productos/' },
     { label: 'Sobre Joost', href: '/es/sobre-joost/' },
     { label: 'Contacto', href: '/es/contacto/', isButton: true },
   ],

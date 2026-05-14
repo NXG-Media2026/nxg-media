@@ -23,6 +23,7 @@ export const videoTestimonials: VideoTestimonial[] = [
     rating: 5,
     thumbnail: bartThumb,
     videoUrl: '/videos/testimonials/mcm-research-testimonial-video.mp4',
+    uploadDate: '2023-09-15',
   },
   {
     id: 'jeroen-stekkies',
@@ -32,6 +33,7 @@ export const videoTestimonials: VideoTestimonial[] = [
     rating: 5,
     thumbnail: jeroenThumb,
     videoUrl: '/videos/testimonials/stekkies-testimonial-video.mp4',
+    uploadDate: '2023-06-20',
   },
   {
     id: 'narayan-nederlandeet',
@@ -41,6 +43,7 @@ export const videoTestimonials: VideoTestimonial[] = [
     rating: 5,
     thumbnail: narayanThumb,
     videoUrl: '/videos/testimonials/narayan-eetclubnl-testimonial-video.mp4',
+    uploadDate: '2024-02-10',
   },
   {
     id: 'cat-howell',
@@ -50,6 +53,7 @@ export const videoTestimonials: VideoTestimonial[] = [
     rating: 5,
     thumbnail: catThumb,
     videoUrl: '/videos/testimonials/cathowell-8loops-testimonial-video.mp4',
+    uploadDate: '2022-11-05',
   },
   {
     id: 'julian-jagtenberg',
@@ -59,5 +63,6 @@ export const videoTestimonials: VideoTestimonial[] = [
     rating: 5,
     thumbnail: julianThumb,
     videoUrl: '/videos/testimonials/somnox-testimonial-video.mp4',
+    uploadDate: '2023-03-18',
   },
 ];

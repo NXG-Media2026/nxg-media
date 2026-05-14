@@ -1,21 +1,410 @@
 ---
-import ClusterHubLayout from '../../layouts/ClusterHubLayout.astro';
-import CTABand from '../../components/CTABand.astro';
-import { getCluster } from '../../lib/clusters';
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BreadcrumbNav from '../../components/BreadcrumbNav.astro';
+import TrustBar from '../../components/TrustBar.astro';
+import LogoMarquee from '../../components/LogoMarquee.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+import ScannerChooser from '../../components/ScannerChooser.astro';
+import { siteConfig } from '../../data/site';
+import { generateBreadcrumbs, generateFAQPage } from '../../data/schema';
+import { getCluster, getClusterFaqLocalized } from '../../lib/clusters';
+import { getTestimonials } from '../../data/testimonials';
 
-const cluster = getCluster('ai-vindbaarheid')!;
+import heroPhoto from '../../assets/images/Founder/joost-sitting-laptop-lookingfront.webp';
+import founderPhoto from '../../assets/images/Founder/joost-standing-relaxed.webp';
+
 const locale = 'es';
+const cluster = getCluster('ai-vindbaarheid')!;
+const faqItems = getClusterFaqLocalized(cluster, locale);
+const faqForComponent = faqItems.map((item) => ({ q: item.question, a: item.answer }));
+
+const testimonials = getTestimonials({ locale: 'es' });
+const claireTestimonial = testimonials.find((t) => t.id === 'claire-ikrouwvanje');
+
+const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
+const logos = Object.entries(logoFiles)
+  .filter(([path]) => /logo/i.test(path.split('/').pop()!))
+  .map(([path, mod]) => {
+    const filename = path.split('/').pop()!.replace(/\.(webp|avif|png|jpg)$/, '');
+    const name = filename.replace(/[-_]?logo[-_]?/gi, '').replace(/[-_]/g, ' ').trim();
+    return { src: mod.default, alt: name };
+  });
+
+const breadcrumbs = [
+  { label: 'Inicio', href: '/es/' },
+  { label: 'Visibilidad IA' },
+];
+
+const trustItems = [
+  { value: '+60%', label: 'crecimiento del tráfico IA por año' },
+  { value: '40%', label: 'de Gen Z busca via IA, no Google' },
+  { value: '4 de 5', label: 'herramientas IA citan las mismas 3 fuentes' },
+  { value: '0%', label: 'de PYMES optimiza para esto' },
+];
 ---
 
-<ClusterHubLayout cluster={cluster} locale={locale}>
-  <CTABand
-    title="Solicita un análisis de visibilidad IA"
-    subtitle="Descubre cómo de visible es tu negocio en los asistentes de IA."
-    ctaText="Solicitar análisis"
-    ctaHref="https://scanner.nxg-media.com"
-    eventName="scanner_request_submitted"
-    locale={locale}
-    pageType="cluster_hub"
-    pageSlug="visibilidad-ia"
-  />
-</ClusterHubLayout>
+<BaseLayout
+  title="Visibilidad IA — Aparece en ChatGPT, Gemini y Perplexity | NXG Media"
+  description="El tráfico de búsqueda IA crece un 60% al año. ¿Tu negocio ya aparece en ChatGPT, Gemini y Perplexity? Haz el análisis gratuito y descúbrelo."
+  schemas={[generateBreadcrumbs(breadcrumbs.map((b) => ({ name: b.label, url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}/es/visibilidad-ia/` }))), generateFAQPage(faqItems)]}
+  locale={locale}
+>
+  <BreadcrumbNav items={breadcrumbs} />
+
+  {/* ── Hero ── */}
+  <section class="relative py-20 md:py-28 lg:py-36 overflow-hidden">
+    <div class="absolute inset-0">
+      <Image
+        src={heroPhoto}
+        alt="Joost van Putten — especialista en visibilidad ante IA, ayuda a negocios locales a ser visibles en ChatGPT y Gemini"
+        widths={[800, 1200, 1600]}
+        sizes="100vw"
+        class="w-full h-full object-cover"
+        loading="eager"
+        decoding="async"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/40"></div>
+    </div>
+    <div class="relative max-w-4xl mx-auto px-4 md:px-6">
+      <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full mb-6">
+        Ventaja de early adopter
+      </span>
+      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl text-text mb-6 leading-tight max-w-2xl">
+        Aparece en las recomendaciones de ChatGPT, Gemini y Perplexity
+      </h1>
+      <p class="text-lg md:text-xl text-text-muted leading-relaxed mb-10 max-w-xl">
+        El tráfico de búsqueda IA crece un 60% al año. Cada vez más personas piden recomendaciones a la IA en lugar de buscar en Google. ¿Tu negocio ya aparece?
+      </p>
+      <div class="flex flex-col sm:flex-row items-start gap-4">
+        <button
+          type="button"
+          data-scanner-open
+          class="inline-flex items-center px-8 py-4 text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-lg cursor-pointer"
+        >
+          Haz el análisis gratuito
+          <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </button>
+        <a
+          href="/es/contacto/"
+          class="inline-flex items-center px-8 py-4 text-base font-medium text-primary border-2 border-primary hover:bg-primary/5 transition-colors rounded-button"
+        >
+          Reserva una llamada
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Trust Bar ── */}
+  <section class="bg-bg-alt border-y border-border">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <TrustBar items={trustItems} />
+    </div>
+  </section>
+
+  {/* ── Recognition / Pain ── */}
+  <section class="py-16 md:py-20 bg-primary">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-white mb-8">¿Te suena familiar?</h2>
+      <div class="space-y-4">
+        <div class="flex items-start gap-3">
+          <span class="text-white/60 text-lg mt-0.5">&ldquo;</span>
+          <p class="text-white/80 leading-relaxed">Estamos en la página 1 de Google, pero cada vez suenan menos el teléfono.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-white/60 text-lg mt-0.5">&ldquo;</span>
+          <p class="text-white/80 leading-relaxed">Le pregunté a ChatGPT por un especialista en mi zona — mencionó a mi competencia, no a mí.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-white/60 text-lg mt-0.5">&ldquo;</span>
+          <p class="text-white/80 leading-relaxed">Invertimos en SEO, pero las herramientas de IA nos ignoran por completo.</p>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-white/60 text-lg mt-0.5">&ldquo;</span>
+          <p class="text-white/80 leading-relaxed">Mis competidores no hacen nada al respecto todavía — pero no quiero llegar tarde como pasó con Google.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── FOMO / Early Adopter ── */}
+  <section class="py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <div class="max-w-3xl">
+        <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">
+          El cambio ya empezó
+        </h2>
+        <p class="text-lg text-text-muted leading-relaxed mb-6">
+          ChatGPT, Gemini, Perplexity, Claude — juntos ya procesan cientos de millones de consultas de búsqueda al día. Y ese volumen crece más de un 60% por año.
+        </p>
+        <p class="text-lg text-text-muted leading-relaxed mb-6">
+          El 40% de la Gen Z ya usa la IA como buscador principal. No Google. Preguntan: <em>"¿Cuál es el mejor fisio en Madrid?"</em> o <em>"¿Qué osteópata recomiendas en Barcelona?"</em> — y la IA da tres nombres. Siempre los mismos tres.
+        </p>
+        <p class="text-lg text-text leading-relaxed font-medium mb-10">
+          Tal vez llegaste tarde para posicionarte en Google. Pero con la visibilidad ante IA tienes una segunda oportunidad — y la mayoría de tu competencia aún duerme.
+        </p>
+      </div>
+
+      {/* Stats grid */}
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+        <div class="bg-white rounded-card p-5 border border-border text-center">
+          <div class="font-heading text-2xl md:text-3xl text-primary mb-1">ChatGPT</div>
+          <p class="text-xs text-text-muted">400M+ usuarios por semana</p>
+        </div>
+        <div class="bg-white rounded-card p-5 border border-border text-center">
+          <div class="font-heading text-2xl md:text-3xl text-primary mb-1">Gemini</div>
+          <p class="text-xs text-text-muted">Integrado en Google Search</p>
+        </div>
+        <div class="bg-white rounded-card p-5 border border-border text-center">
+          <div class="font-heading text-2xl md:text-3xl text-primary mb-1">Perplexity</div>
+          <p class="text-xs text-text-muted">15M+ consultas diarias</p>
+        </div>
+        <div class="bg-white rounded-card p-5 border border-border text-center">
+          <div class="font-heading text-2xl md:text-3xl text-primary mb-1">Claude</div>
+          <p class="text-xs text-text-muted">Asistente IA de mayor crecimiento</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Google vs AI Comparison ── */}
+  <section class="py-16 md:py-20 bg-bg-alt">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4 text-center">
+        Búsqueda en Google vs. búsqueda con IA
+      </h2>
+      <p class="text-text-muted text-center mb-10 max-w-2xl mx-auto">
+        La misma pregunta, un juego completamente diferente. Por eso tu estrategia SEO sola ya no es suficiente.
+      </p>
+
+      <div class="overflow-x-auto">
+        <table class="w-full bg-white rounded-card border border-border text-sm md:text-base">
+          <thead>
+            <tr class="border-b border-border">
+              <th class="text-left px-5 py-4 font-medium text-text-muted"></th>
+              <th class="text-left px-5 py-4 font-medium text-text-muted">Google (clásico)</th>
+              <th class="text-left px-5 py-4 font-medium text-primary">Búsqueda IA</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-border">
+            <tr>
+              <td class="px-5 py-4 font-medium text-text">Resultado</td>
+              <td class="px-5 py-4 text-text-muted">10 enlaces azules</td>
+              <td class="px-5 py-4 text-text">1 respuesta directa con 2-3 recomendaciones</td>
+            </tr>
+            <tr>
+              <td class="px-5 py-4 font-medium text-text">Factores de ranking</td>
+              <td class="px-5 py-4 text-text-muted">Backlinks, keywords, SEO técnico</td>
+              <td class="px-5 py-4 text-text">Citabilidad, autoridad, contexto, reseñas</td>
+            </tr>
+            <tr>
+              <td class="px-5 py-4 font-medium text-text">Posición #4+</td>
+              <td class="px-5 py-4 text-text-muted">Menos clics, pero aún visible</td>
+              <td class="px-5 py-4 text-text">No existe — te mencionan o no</td>
+            </tr>
+            <tr>
+              <td class="px-5 py-4 font-medium text-text">Competencia</td>
+              <td class="px-5 py-4 text-text-muted">Todos optimizan desde hace 20 años</td>
+              <td class="px-5 py-4 text-text">Casi nadie optimiza para esto aún</td>
+            </tr>
+            <tr>
+              <td class="px-5 py-4 font-medium text-text">Coste</td>
+              <td class="px-5 py-4 text-text-muted">€1.000+/mes por buen SEO</td>
+              <td class="px-5 py-4 text-text">Bajo — la estructura correcta es suficiente</td>
+            </tr>
+            <tr>
+              <td class="px-5 py-4 font-medium text-text">Tiempo</td>
+              <td class="px-5 py-4 text-text-muted">6-12 meses para ver resultados</td>
+              <td class="px-5 py-4 text-text">Semanas — la IA re-indexa continuamente</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Mid-page CTA ── */}
+  <section class="py-16 md:py-20 bg-accent">
+    <div class="max-w-4xl mx-auto px-4 md:px-6 text-center">
+      <h2 class="font-heading text-3xl md:text-4xl text-white mb-4">
+        Comprueba si la IA ya recomienda tu negocio
+      </h2>
+      <p class="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+        Nuestro análisis gratuito revisa tu visibilidad en ChatGPT, Gemini, Perplexity y Google. En 2 minutos sabrás dónde estás.
+      </p>
+      <button
+        type="button"
+        data-scanner-open
+        class="inline-flex items-center px-8 py-4 text-base font-medium bg-white text-accent hover:bg-bg-alt transition-colors rounded-button cursor-pointer"
+      >
+        Haz el análisis gratuito
+        <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  {/* ── How it works ── */}
+  <section class="py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">¿Cómo funciona?</h2>
+      <p class="text-lg text-text-muted leading-relaxed mb-10 max-w-3xl">
+        No empezamos con promesas, sino con datos. El análisis muestra dónde estás hoy — y qué necesitas para que las herramientas de IA te recomienden.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-card p-6 border border-border">
+          <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+            <span class="text-primary font-heading text-lg">1</span>
+          </div>
+          <h3 class="font-heading text-lg text-text mb-2">Análisis</h3>
+          <p class="text-sm text-text-muted leading-relaxed">Recibes un informe completo sobre tu visibilidad en Google, ChatGPT, Gemini y Perplexity. Con puntos de acción concretos.</p>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+            <span class="text-primary font-heading text-lg">2</span>
+          </div>
+          <h3 class="font-heading text-lg text-text mb-2">Optimización</h3>
+          <p class="text-sm text-text-muted leading-relaxed">Basado en el análisis ajustamos tu web, datos estructurados, contenido citable y señales locales — para que la IA te reconozca.</p>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+            <span class="text-primary font-heading text-lg">3</span>
+          </div>
+          <h3 class="font-heading text-lg text-text mb-2">Monitoreo</h3>
+          <p class="text-sm text-text-muted leading-relaxed">Los modelos de IA se actualizan continuamente. Monitoreamos tu posición y ajustamos donde sea necesario — para que sigas visible.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Testimonial — Claire ── */}
+  {claireTestimonial && (
+    <section class="py-16 md:py-20 bg-bg-alt">
+      <div class="max-w-3xl mx-auto px-4 md:px-6">
+        <div class="bg-white rounded-card p-8 md:p-10 border border-border">
+          <div class="flex items-center gap-4 mb-6">
+            {claireTestimonial.photo && (
+              <div class="w-14 h-14 rounded-full overflow-hidden bg-bg-alt shrink-0">
+                <img
+                  src={`/images/testimonials/${claireTestimonial.photo}`}
+                  alt={claireTestimonial.name}
+                  width="56"
+                  height="56"
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+            )}
+            <div>
+              <p class="font-medium text-text">{claireTestimonial.name}</p>
+              {claireTestimonial.outcome && (
+                <p class="text-sm text-text-muted">{claireTestimonial.outcome}</p>
+              )}
+            </div>
+            {claireTestimonial.rating && (
+              <div class="ml-auto flex gap-0.5">
+                {Array.from({ length: claireTestimonial.rating }).map(() => (
+                  <svg class="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+            )}
+          </div>
+          <blockquote class="text-text-muted leading-relaxed text-lg italic">
+            &ldquo;{claireTestimonial.text}&rdquo;
+          </blockquote>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {/* ── Founder ── */}
+  <section class="py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-10 md:gap-14 items-center">
+        <div class="flex justify-center md:justify-start">
+          <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden shadow-lg ring-4 ring-bg-alt shrink-0">
+            <Image
+              src={founderPhoto}
+              alt="Joost van Putten — Fundador NXG Media"
+              widths={[224, 320]}
+              sizes="(max-width: 768px) 192px, 224px"
+              class="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+        <div>
+          <div class="w-12 h-1 bg-accent rounded-full mb-4"></div>
+          <h2 class="font-heading text-2xl md:text-3xl text-text mb-1">Joost van Putten</h2>
+          <p class="text-sm text-text-muted mb-4">Fundador & Estratega de Crecimiento Online</p>
+          <p class="text-text-muted leading-relaxed mb-6">
+            7+ años de experiencia construyendo sistemas de crecimiento online. Más de €5 millones en inversión publicitaria gestionada. Ayudo a coaches y PYMES a ser visibles no solo en Google, sino también en las herramientas de IA que lo están reemplazando rápidamente.
+          </p>
+          <a
+            href="/es/sobre-joost/"
+            class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium"
+          >
+            Más sobre Joost
+            <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Logo Marquee ── */}
+  {logos.length > 0 && (
+    <LogoMarquee
+      logos={logos}
+      label="Confiado por coaches, expertos y empresas"
+      speed={35}
+    />
+  )}
+
+  {/* ── FAQ ── */}
+  {faqForComponent.length > 0 && (
+    <div class="bg-bg-alt">
+      <FAQAccordion
+        title="Preguntas frecuentes sobre visibilidad ante IA"
+        items={faqForComponent}
+        locale={locale}
+        pageType="cluster_hub"
+        pageSlug="visibilidad-ia"
+      />
+    </div>
+  )}
+
+  {/* ── Final CTA ── */}
+  <section class="py-16 md:py-20 bg-primary">
+    <div class="max-w-4xl mx-auto px-4 md:px-6 text-center">
+      <h2 class="font-heading text-3xl md:text-4xl text-white mb-4">
+        No esperes a que tu competencia lo descubra
+      </h2>
+      <p class="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+        Los negocios que invierten en visibilidad IA ahora serán los primeros en ser recomendados. Empieza hoy con el análisis gratuito.
+      </p>
+      <button
+        type="button"
+        data-scanner-open
+        class="inline-flex items-center px-8 py-4 text-base font-medium bg-accent hover:bg-accent-dark text-white transition-all duration-300 rounded-button shadow-lg shadow-accent/25 hover:shadow-xl cursor-pointer"
+      >
+        Haz el análisis gratuito
+        <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <ScannerChooser locale="es" />
+
+</BaseLayout>

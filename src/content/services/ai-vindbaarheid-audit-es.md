@@ -38,6 +38,20 @@ faq:
     answer: "La visibilidad ante IA es un terreno nuevo. Por eso empezamos con un análisis y auditoría prácticos en lugar de grandes garantías. El análisis muestra dónde estás ahora y qué mejoras tienen sentido."
   - question: "¿Para qué sectores es relevante?"
     answer: "Sobre todo para proveedores de servicios locales: fisioterapeutas, quiroprácticos, dermatólogos, dentistas cosméticos, clínicas y otras consultas donde la gente pide recomendaciones a la IA."
+  - question: "¿Cuál es la diferencia entre SEO y visibilidad ante IA?"
+    answer: "El SEO optimiza para el algoritmo de ranking de Google — backlinks, palabras clave, puntuaciones técnicas. La visibilidad ante IA trata de citabilidad: ¿tu sitio ofrece respuestas claras y estructuradas que las herramientas de IA pueden captar y citar en sus respuestas? Ambos se complementan, pero requieren un enfoque diferente."
+  - question: "¿Qué tan rápido veré resultados después de la auditoría?"
+    answer: "La auditoría entrega un informe con mejoras concretas en 1-2 semanas. La implementación depende del alcance — algunos ajustes técnicos se hacen en días, las mejoras estructurales en contenido y autoridad llevan semanas o meses."
+  - question: "¿Qué herramientas de IA se prueban en la auditoría?"
+    answer: "Probamos tu visibilidad en ChatGPT, Google Gemini, Perplexity y Claude. Verificamos si eres recomendado, citado o mencionado cuando alguien hace una pregunta relevante para tu campo y región."
+  - question: "¿Puedo implementar las mejoras yo mismo?"
+    answer: "La auditoría entrega un informe claro con prioridades para que tú o tu desarrollador web puedan empezar. Si prefieres que nosotros nos encarguemos de la implementación, lo discutimos como siguiente paso."
+  - question: "Ya tengo buenas reseñas en Google. ¿No es suficiente?"
+    answer: "Las buenas reseñas ayudan, pero las herramientas de IA miran más: datos estructurados en tu web, contenido citable, menciones en fuentes externas y el contexto en que se describe tu experiencia. Las reseñas solas no bastan para ser recomendado."
+  - question: "¿Funciona para negocios fuera de los Países Bajos?"
+    answer: "La visibilidad ante IA no está limitada a un país. Trabajamos con clínicas y negocios en Países Bajos, Bélgica, España y más allá. Los principios son universales — la auditoría se adapta a tu mercado y región."
+  - question: "¿Qué pasa si ya trabajo SEO con otra agencia?"
+    answer: "Sin problema. La auditoría de visibilidad IA es complementaria al SEO existente. Nos enfocamos específicamente en lo que las herramientas de IA necesitan — eso es una capa diferente al SEO clásico. Puedes compartir los resultados con tu partner de SEO."
 ---
 
 La visibilidad ante IA es el grado en que tu negocio o clínica es recomendado por herramientas como ChatGPT, Perplexity y Gemini cuando alguien busca ayuda en tu zona.

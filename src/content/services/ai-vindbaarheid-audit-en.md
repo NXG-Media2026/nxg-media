@@ -38,6 +38,20 @@ faq:
     answer: "AI visibility is a new playing field. That's why we start with a practical scan and audit instead of big guarantees. The audit shows where you stand today and which improvements make sense."
   - question: "Which sectors is this relevant for?"
     answer: "Especially for local service providers: physiotherapists, chiropractors, skin therapists, cosmetic dentists, clinics and other practices where people ask AI for a recommendation."
+  - question: "What's the difference between SEO and AI visibility?"
+    answer: "SEO optimises for Google's ranking algorithm — backlinks, keywords, technical scores. AI visibility is about citability: does your site provide clear, structured answers that AI tools can pick up and cite in their responses? The two complement each other, but require a different approach."
+  - question: "How quickly will I see results after the audit?"
+    answer: "The audit itself delivers a report with concrete improvements within 1-2 weeks. Implementation depends on the scope — some technical fixes are done within days, structural improvements in content and authority take weeks to months."
+  - question: "Which AI tools are tested in the audit?"
+    answer: "We test your visibility in ChatGPT, Google Gemini, Perplexity and Claude. We check whether you're recommended, cited or mentioned when someone asks a relevant question for your field and region."
+  - question: "Can I implement the improvements myself?"
+    answer: "The audit delivers a clear report with priorities, so you or your web developer can get started. If you want us to handle the implementation, we discuss that as a follow-up."
+  - question: "I already have good Google reviews. Isn't that enough?"
+    answer: "Good reviews help, but AI tools look at more: structured data on your site, citable content, mentions on external sources and the context in which your expertise is described. Reviews alone aren't enough to be recommended."
+  - question: "Does this work for businesses outside the Netherlands?"
+    answer: "AI visibility isn't tied to a country. We work with practices and businesses in the Netherlands, Belgium, Spain and beyond. The principles are universal — the audit is tailored to your market and region."
+  - question: "What if I'm already doing SEO with another agency?"
+    answer: "No problem. The AI visibility audit is complementary to existing SEO. We focus specifically on what AI tools need — that's a different layer than classic SEO. You can share the results with your SEO partner."
 ---
 
 AI visibility is the extent to which your business or practice is recommended by AI tools such as ChatGPT, Perplexity and Gemini when someone searches for help in your area.

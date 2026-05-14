@@ -10,6 +10,7 @@ import LogoMarquee from '../../components/LogoMarquee.astro';
 import SocialStorytellingGrid from '../../components/SocialStorytellingGrid.astro';
 import FounderPreview from '../../components/FounderPreview.astro';
 import FAQAccordion from '../../components/FAQAccordion.astro';
+import ScannerChooser from '../../components/ScannerChooser.astro';
 import { siteConfig } from '../../data/site';
 import { generateOrganization, generateWebSite, generateFounderPerson, generateFAQPage } from '../../data/schema';
 import { buildHreflangTrilingual } from '../../i18n/hreflang';
@@ -50,11 +51,11 @@ const trustItems = [
 const homepageFaq = [
   {
     q: '¿Cuánto cuesta trabajar con NXG Media?',
-    a: 'Depende de tu situación. Nuestros micro-productos empiezan en €6,99 si quieres empezar por tu cuenta. El Coach Accelerator es un programa fijo con setup + optimización mensual. <a href="/es/contacto/">Contáctanos</a> para una conversación sin compromiso.',
+    a: 'NXG Media ofrece micro-productos desde €6,99 para emprendedores que quieren empezar por su cuenta. El Coach Accelerator es un programa fijo con setup + optimización mensual. <a href="/es/contacto/">Contáctanos</a> para una conversación sin compromiso sobre la inversión adecuada para tu situación.',
   },
   {
     q: '¿Solo trabajáis con coaches?',
-    a: 'No. Trabajamos con dos áreas: Coach Accelerator (coaches, expertos, emprendedores del conocimiento) y Visibilidad ante IA (clínicas locales, PYMES). El enfoque es diferente, pero el principio es el mismo: construir un sistema, no campañas aisladas.',
+    a: 'NXG Media trabaja con dos áreas: Coach Accelerator (coaches, expertos, emprendedores del conocimiento) y Visibilidad ante IA (clínicas locales, PYMES). El enfoque es diferente, pero el principio es el mismo: construir un sistema, no campañas aisladas.',
   },
   {
     q: '¿Qué tan rápido veré resultados?',
@@ -77,7 +78,7 @@ const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
   title={`${siteConfig.name} — ${siteConfig.tagline.es}`}
   description="Construye un sistema de crecimiento online alrededor de tu experiencia. Coach Accelerator para coaches y expertos. Visibilidad ante IA para clínicas y negocios locales."
   hreflang={hreflang}
-  schemas={[generateOrganization(), generateWebSite(locale), generateFounderPerson(), generateFAQPage(faqForSchema)]}
+  schemas={[generateOrganization(), generateWebSite(locale), generateFounderPerson(locale), generateFAQPage(faqForSchema)]}
   locale={locale}
 >
 
@@ -86,7 +87,7 @@ const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
     <div class="absolute inset-0">
       <Image
         src={heroPhoto}
-        alt=""
+        alt="Joost van Putten construyendo sistemas de crecimiento online para coaches y expertos — NXG Media"
         widths={[800, 1200, 1600]}
         sizes="100vw"
         class="w-full h-full object-cover"
@@ -103,17 +104,16 @@ const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
         Para coaches y expertos que quieren convertir su conocimiento en leads predecibles, ventas de productos y consultas de coaching. Y para clínicas locales que quieren ser visibles en herramientas de IA.
       </p>
       <div class="flex flex-col sm:flex-row items-start gap-4">
-        <a
-          href="https://scanner.nxg-media.com"
-          class="inline-flex items-center px-8 py-4 text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-lg"
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          type="button"
+          data-scanner-open
+          class="inline-flex items-center px-8 py-4 text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-lg cursor-pointer"
         >
-          Solicita un análisis de visibilidad IA
+          Haz el análisis de crecimiento
           <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
-        </a>
+        </button>
         <a
           href="/es/servicios/coach-accelerator/"
           class="inline-flex items-center px-8 py-4 text-base font-medium text-primary border-2 border-primary hover:bg-primary/5 transition-colors rounded-button"
@@ -178,7 +178,7 @@ const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
           <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full mb-4">expert-growth</span>
           <h2 class="font-heading text-xl text-text mb-3">Coach Accelerator</h2>
           <p class="text-text-muted text-sm leading-relaxed mb-6">
-            Un programa fijo para coaches y expertos que quieren convertir su experiencia en un motor de crecimiento online — con storytelling, masterclasses, micro-productos, flujos de email y anuncios que juntos generan compradores, clientes o miembros.
+            Un sistema de crecimiento completo para coaches y expertos — desde un sitio web rápido y visible para IA hasta storytelling, micro-productos, flujos de email y anuncios. Todo funciona como una sola máquina que genera visibilidad, leads y clientes.
           </p>
           <a href="/es/servicios/coach-accelerator/" class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium text-sm">
             Conoce Coach Accelerator
@@ -326,10 +326,10 @@ const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
   <FounderPreview
     name={siteConfig.founder.name}
     role={siteConfig.founder.role}
-    bio="Fundador de NXG Media. Más de 7 años de experiencia en sistemas de crecimiento online. Gestión de más de €5 millones en inversión publicitaria para coaches y expertos. Construye sistemas que típicamente logran 5-7x de retorno — con storytelling, escaleras de productos, flujos de email, anuncios y visibilidad ante IA como pilares fundamentales."
+    bio={siteConfig.founder.bio[locale]}
     image={founderPhoto}
     credentials={siteConfig.founder.credentials.map((c) => ({ name: c.name, issuer: c.issuer }))}
-    knowsAbout={['Sistemas de crecimiento online para expertos', 'Storytelling y estrategia de contenido', 'Micro-productos y escaleras de productos', 'Meta Ads para coaches y expertos']}
+    knowsAbout={siteConfig.founder.knowsAbout[locale]}
     aboutHref="/es/sobre-joost/"
     aboutLabel="Más sobre Joost"
     locale="es"
@@ -345,5 +345,7 @@ const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
       pageSlug="/es/"
     />
   </div>
+
+  <ScannerChooser locale="es" />
 
 </BaseLayout>

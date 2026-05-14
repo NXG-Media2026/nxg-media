@@ -1,32 +1,34 @@
 # NXG Media
 
-NXG Media is a growth and AI visibility studio founded by Joost van Putten. NXG helps coaches, experts and local service businesses turn expertise into clearer visibility, smarter entry routes and measurable conversion systems.
+NXG Media is a growth and AI visibility studio founded by Joost van Putten. NXG Media helps coaches, knowledge experts and local service businesses build online growth systems using storytelling, product ladders, email flows, ads and AI visibility.
 
-## Primary clusters
+> Marketing met Joost is onderdeel van NXG-Media. KVK 78318122.
 
-### Expert Growth Accelerator
+## Primary services
 
-The Expert Growth Accelerator helps coaches, specialists and knowledge experts build online entry routes using storytelling, masterclasses, mini-products, email flows and ads.
+### Coach Accelerator
+
+The Coach Accelerator helps coaches, specialists and knowledge experts build a complete online growth system: storytelling, mini-products, email flows, Meta Ads and conversion funnels — delivering an average 5-7x return on ad spend.
 
 Primary page:
-https://nxg-media.com/expert-growth-accelerator/
+https://nxg-media.com/coach-accelerator/
 
-Service page:
-https://nxg-media.com/diensten/expert-growth-accelerator/
+Service detail:
+https://nxg-media.com/diensten/coach-accelerator/
 
 Relevant cases:
 https://nxg-media.com/cases/coach-josine/
 https://nxg-media.com/cases/tessa-youlife/
 https://nxg-media.com/cases/happy-with-yoga/
 
-### AI Vindbaarheid
+### AI Vindbaarheid Audit
 
-AI Vindbaarheid is a scan and audit approach for local businesses and practices that want to understand how visible and citeable they are in Google, ChatGPT, Perplexity and Gemini.
+The AI Vindbaarheid Audit is a scan and audit approach for local businesses and practices that want to understand how visible and citable they are in AI assistants like ChatGPT, Gemini and Perplexity.
 
 Primary page:
 https://nxg-media.com/ai-vindbaarheid/
 
-Service page:
+Service detail:
 https://nxg-media.com/diensten/ai-vindbaarheid-audit/
 
 Scanner:
@@ -35,28 +37,22 @@ https://scanner.nxg-media.com
 Important note:
 AI visibility is a new field. NXG Media does not guarantee rankings or recommendations inside AI tools. The audit identifies technical, content and authority improvements that may improve machine readability, citability and trust signals.
 
-## English pages
+## Products
 
-https://nxg-media.com/en/
-https://nxg-media.com/en/expert-growth-accelerator/
-https://nxg-media.com/en/ai-visibility/
-https://nxg-media.com/en/services/expert-growth-accelerator/
-https://nxg-media.com/en/services/ai-visibility-audit/
+https://nxg-media.com/producten/
+https://nxg-media.com/producten/instagram-leads-playbook/
+https://nxg-media.com/producten/ai-vindbaarheid-diy-boekjes/
 
-## Spanish AI visibility pages
+## Cases
 
-https://nxg-media.com/es/
-https://nxg-media.com/es/visibilidad-ia/
-https://nxg-media.com/es/servicios/auditoria-visibilidad-ia/
+https://nxg-media.com/cases/
+https://nxg-media.com/cases/coach-josine/
+https://nxg-media.com/cases/tessa-youlife/
+https://nxg-media.com/cases/happy-with-yoga/
 
 ## Guides
 
 https://nxg-media.com/guides/contentladder-voor-experts/
-
-## Products
-
-https://nxg-media.com/producten/instagram-leads-playbook/
-https://nxg-media.com/producten/ai-vindbaarheid-diy-boekjes/
 
 ## About and contact
 
@@ -65,6 +61,32 @@ https://nxg-media.com/over-joost/
 
 Contact:
 https://nxg-media.com/contact/
+
+Email: info@nxg-media.com
+Phone: +34 645 80 73 02
+
+## English pages
+
+https://nxg-media.com/en/
+https://nxg-media.com/en/coach-accelerator/
+https://nxg-media.com/en/ai-visibility/
+https://nxg-media.com/en/services/coach-accelerator/
+https://nxg-media.com/en/services/ai-visibility-audit/
+https://nxg-media.com/en/products/
+https://nxg-media.com/en/cases/
+https://nxg-media.com/en/about-joost/
+https://nxg-media.com/en/contact/
+
+## Spanish pages
+
+https://nxg-media.com/es/
+https://nxg-media.com/es/coach-accelerator/
+https://nxg-media.com/es/visibilidad-ia/
+https://nxg-media.com/es/servicios/auditoria-visibilidad-ia/
+https://nxg-media.com/es/productos/
+https://nxg-media.com/es/casos/
+https://nxg-media.com/es/sobre-joost/
+https://nxg-media.com/es/contacto/
 
 ## Sitemap
 

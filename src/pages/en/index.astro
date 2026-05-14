@@ -10,6 +10,7 @@ import LogoMarquee from '../../components/LogoMarquee.astro';
 import SocialStorytellingGrid from '../../components/SocialStorytellingGrid.astro';
 import FounderPreview from '../../components/FounderPreview.astro';
 import FAQAccordion from '../../components/FAQAccordion.astro';
+import ScannerChooser from '../../components/ScannerChooser.astro';
 import { siteConfig } from '../../data/site';
 import { generateOrganization, generateWebSite, generateFounderPerson, generateFAQPage } from '../../data/schema';
 import { buildHreflangTrilingual } from '../../i18n/hreflang';
@@ -50,15 +51,15 @@ const trustItems = [
 const homepageFaq = [
   {
     q: 'What does it cost to work with NXG Media?',
-    a: 'It depends on your situation. Our micro-products start at €6.99 if you want to get started yourself. The Coach Accelerator is a fixed programme with setup + monthly optimisation. <a href="/en/contact/">Get in touch</a> for a no-obligation conversation.',
+    a: 'NXG Media offers micro-products starting at €6.99 for entrepreneurs who want to get started themselves. The Coach Accelerator is a fixed programme with setup + monthly optimisation. <a href="/en/contact/">Get in touch</a> for a no-obligation conversation about the right investment for your situation.',
   },
   {
     q: 'Do you only work with coaches?',
-    a: 'No. We work with two clusters: Coach Accelerator (coaches, knowledge entrepreneurs, experts) and AI Visibility (local practices, SMBs). The approach differs, but the principle is the same: build a system, not isolated campaigns.',
+    a: 'NXG Media works with two clusters: Coach Accelerator (coaches, knowledge entrepreneurs, experts) and AI Visibility (local practices, SMBs). The approach differs, but the principle is the same: build a system, not isolated campaigns.',
   },
   {
     q: 'How quickly will I see results?',
-    a: 'The first Coach Accelerator results typically appear within 2-4 weeks (first leads, first product sales). A fully running system takes 2-3 months. With AI Visibility, you can rescan immediately after applying the kits and see the difference.',
+    a: 'The first Coach Accelerator results typically appear within 2-4 weeks — first leads, first product sales. A fully running system takes 2-3 months. With AI Visibility, you can rescan immediately after applying the kits and see the difference.',
   },
   {
     q: "What makes NXG Media different from a regular marketing agency?",
@@ -77,7 +78,7 @@ const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
   title={`${siteConfig.name} — ${siteConfig.tagline.en}`}
   description="Build an online growth system around your expertise. Coach Accelerator for coaches and experts. AI visibility for local practices."
   hreflang={hreflang}
-  schemas={[generateOrganization(), generateWebSite(locale), generateFounderPerson(), generateFAQPage(faqForSchema)]}
+  schemas={[generateOrganization(), generateWebSite(locale), generateFounderPerson(locale), generateFAQPage(faqForSchema)]}
   locale={locale}
 >
 
@@ -86,7 +87,7 @@ const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
     <div class="absolute inset-0">
       <Image
         src={heroPhoto}
-        alt=""
+        alt="Joost van Putten building online growth systems for coaches and experts — NXG Media"
         widths={[800, 1200, 1600]}
         sizes="100vw"
         class="w-full h-full object-cover"
@@ -103,17 +104,16 @@ const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
         For coaches and experts who want to turn their knowledge into predictable leads, product sales and coaching enquiries. And for local practices that want to be visible in AI tools.
       </p>
       <div class="flex flex-col sm:flex-row items-start gap-4">
-        <a
-          href="https://scanner.nxg-media.com"
-          class="inline-flex items-center px-8 py-4 text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-lg"
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          type="button"
+          data-scanner-open
+          class="inline-flex items-center px-8 py-4 text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-lg cursor-pointer"
         >
-          Run the AI visibility scan
+          Take the growth scan
           <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
-        </a>
+        </button>
         <a
           href="/en/services/coach-accelerator/"
           class="inline-flex items-center px-8 py-4 text-base font-medium text-primary border-2 border-primary hover:bg-primary/5 transition-colors rounded-button"
@@ -178,7 +178,7 @@ const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
           <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full mb-4">expert-growth</span>
           <h2 class="font-heading text-xl text-text mb-3">Coach Accelerator</h2>
           <p class="text-text-muted text-sm leading-relaxed mb-6">
-            A fixed programme for coaches and experts who want to turn their expertise into an online growth engine — with storytelling, masterclasses, micro-products, email flows and ads that together drive buyers, clients or members.
+            A complete growth system for coaches and experts — from a fast, AI-visible website to storytelling, micro-products, email flows and ads. Everything works together as one machine that delivers visibility, leads and clients.
           </p>
           <a href="/en/services/coach-accelerator/" class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium text-sm">
             Learn about Coach Accelerator
@@ -326,10 +326,10 @@ const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
   <FounderPreview
     name={siteConfig.founder.name}
     role={siteConfig.founder.role}
-    bio="Founder of NXG Media. 7+ years of experience in online growth systems. Managed over €5 million in ad spend for coaches and experts. Builds systems that typically achieve 5-7x return on ad spend — with storytelling, product ladders, email flows, ads and AI visibility as core pillars."
+    bio={siteConfig.founder.bio[locale]}
     image={founderPhoto}
     credentials={siteConfig.founder.credentials.map((c) => ({ name: c.name, issuer: c.issuer }))}
-    knowsAbout={['Online growth systems for experts', 'Storytelling & content strategy', 'Micro-products & product ladders', 'Meta Ads for coaches & experts']}
+    knowsAbout={siteConfig.founder.knowsAbout[locale]}
     aboutHref="/en/about-joost/"
     aboutLabel="More about Joost"
     locale="en"
@@ -345,5 +345,7 @@ const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
       pageSlug="/en/"
     />
   </div>
+
+  <ScannerChooser locale="en" />
 
 </BaseLayout>

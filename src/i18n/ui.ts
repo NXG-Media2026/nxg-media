@@ -88,6 +88,7 @@ export const ui = {
 
     // Footer
     'footer.rights': 'Alle rechten voorbehouden',
+    'footer.partOf': 'is onderdeel van',
     'footer.privacy': 'Privacy',
     'footer.voorwaarden': 'Voorwaarden',
 
@@ -209,6 +210,7 @@ export const ui = {
 
     // Footer
     'footer.rights': 'All rights reserved',
+    'footer.partOf': 'is part of',
     'footer.privacy': 'Privacy',
     'footer.voorwaarden': 'Terms',
 
@@ -331,6 +333,7 @@ export const ui = {
 
     // Footer
     'footer.rights': 'Todos los derechos reservados',
+    'footer.partOf': 'es parte de',
     'footer.privacy': 'Privacidad',
     'footer.voorwaarden': 'Términos',
 

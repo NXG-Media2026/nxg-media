@@ -1,20 +1,34 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import BreadcrumbNav from '../components/BreadcrumbNav.astro';
 import CalendlyEmbed from '../components/CalendlyEmbed.astro';
 import { siteConfig } from '../data/site';
-import { generateProfilePage, generateFounderPerson } from '../data/schema';
-import founderPhoto from '../assets/images/founder/joost-sitting-laptop-looking-working.webp';
+import { generateProfilePage, generateFounderPerson, generateBreadcrumbs } from '../data/schema';
+import { t, localizePath } from '../i18n/utils';
+import founderPhoto from '../assets/images/Founder/joost-sitting-laptop-looking-working.webp';
+import founderRelaxed from '../assets/images/Founder/joost-standing-relaxed.webp';
 
 const locale = 'nl';
+const breadcrumbs = [
+  { label: t('breadcrumb.home', locale), href: localizePath('/', locale) },
+  { label: 'Over Joost' },
+];
+const breadcrumbSchema = [
+  { name: t('breadcrumb.home', locale), url: `${siteConfig.url}${localizePath('/', locale)}` },
+  { name: 'Over Joost', url: `${siteConfig.url}/over-joost` },
+];
 ---
 
 <BaseLayout
   title={`Over Joost | ${siteConfig.name}`}
-  description="Joost van Putten — founder van NXG Media. Bouwt online groeisystemen voor coaches, experts en lokale praktijken."
-  schemas={[generateProfilePage(), generateFounderPerson()]}
+  description="Joost van Putten — founder van NXG Media. Bouwt online groeisystemen voor coaches, experts en lokale praktijken. 7+ jaar ervaring, €5M+ ads beheerd."
+  schemas={[generateProfilePage(), generateFounderPerson(locale), generateBreadcrumbs(breadcrumbSchema)]}
   locale={locale}
 >
+  <BreadcrumbNav items={breadcrumbs} />
+
+  {/* ── 1. Hero with positioning ── */}
   <section class="py-12 md:py-16 lg:py-20">
     <div class="max-w-3xl mx-auto px-4 md:px-6">
       <div class="flex flex-col md:flex-row gap-8 items-start mb-10">
@@ -27,23 +41,217 @@ const locale = 'nl';
           loading="eager"
         />
         <div>
-          <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl text-text mb-6">Over Joost</h1>
-          <p class="text-lg text-text-muted leading-relaxed">{siteConfig.founder.description}</p>
+          <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl text-text mb-4">Over Joost</h1>
+          <p class="text-xl text-accent font-medium mb-4">De persoon achter het systeem dat 50+ coaches voorspelbare groei geeft.</p>
+          <p class="text-lg text-text-muted leading-relaxed">{siteConfig.founder.description[locale]}</p>
         </div>
       </div>
-      <h2 class="font-heading text-xl text-text mb-4 mt-10">Expertise</h2>
-      <ul class="space-y-2">
-        {siteConfig.founder.knowsAbout.map((item) => (
-          <li class="flex items-start gap-3 text-text-muted">
-            <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-            </svg>
-            {item}
-          </li>
-        ))}
-      </ul>
     </div>
   </section>
 
+  {/* ── 2. Why NXG Media exists — origin story ── */}
+  <section class="py-10 md:py-14 bg-bg-alt">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">Waarom NXG Media bestaat</h2>
+      <p class="text-text-muted leading-relaxed mb-4">
+        NXG Media is ontstaan vanuit een patroon dat Joost jarenlang zag: coaches en experts die briljant waren in hun vak, maar online vastliepen. Ze probeerden social media, huurden een freelancer in voor ads, of kochten een online cursus over funnels — maar niets hing samen. Elke nieuwe poging was een losse tactiek zonder systeem erachter.
+      </p>
+      <p class="text-text-muted leading-relaxed mb-4">
+        Het probleem was niet dat ze te weinig deden. Het probleem was dat niemand hen een compleet groeisysteem bouwde — afgestemd op hoe hun klanten werkelijk beslissingen nemen. Geen agency die snapte hoe een coachingklant denkt. Geen marketeer die begreep dat een €3.000-traject niet verkocht wordt met een simpele advertentie.
+      </p>
+      <p class="text-text-muted leading-relaxed">
+        NXG Media is gebouwd om dat gat te dichten: één partner die storytelling, productladders, emailflows, ads en AI-vindbaarheid combineert tot een systeem dat structureel klanten oplevert — zonder dat de expert zelf marketeer hoeft te worden.
+      </p>
+    </div>
+  </section>
+
+  {/* ── 3. What he noticed — client patterns ── */}
+  <section class="py-10 md:py-14">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">Wat ik steeds weer zie bij coaches en experts</h2>
+      <div class="space-y-4">
+        <div class="flex items-start gap-4 p-4 bg-bg-alt rounded-card">
+          <span class="text-accent text-xl font-bold shrink-0 mt-0.5">→</span>
+          <p class="text-text-muted">Geweldige expertise, maar een website die niets oplevert. Geen duidelijke route van bezoeker naar klant. De site vertelt wat de coach doet, maar niet waarom iemand nú actie zou ondernemen.</p>
+        </div>
+        <div class="flex items-start gap-4 p-4 bg-bg-alt rounded-card">
+          <span class="text-accent text-xl font-bold shrink-0 mt-0.5">→</span>
+          <p class="text-text-muted">Advertenties die draaien zonder systeem erachter. Geld naar Meta Ads zonder emailflow, zonder opwarmproduct, zonder retargeting. De kosten lopen op, maar de conversie blijft uit.</p>
+        </div>
+        <div class="flex items-start gap-4 p-4 bg-bg-alt rounded-card">
+          <span class="text-accent text-xl font-bold shrink-0 mt-0.5">→</span>
+          <p class="text-text-muted">Content maken zonder strategie. Elke week posten op Instagram, maar zonder dat het bijdraagt aan vindbaarheid, autoriteit of verkoop. Het voelt als plicht, niet als groeimotor.</p>
+        </div>
+        <div class="flex items-start gap-4 p-4 bg-bg-alt rounded-card">
+          <span class="text-accent text-xl font-bold shrink-0 mt-0.5">→</span>
+          <p class="text-text-muted">Onzichtbaar voor AI-assistenten. ChatGPT, Gemini en Perplexity bevelen concurrenten aan, terwijl de expert met meer ervaring niet eens verschijnt in de antwoorden.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── 4. Expert point of view ── */}
+  <section class="py-10 md:py-14 bg-bg-alt">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">Waar ik in geloof</h2>
+      <div class="space-y-6">
+        <div>
+          <h3 class="font-heading text-lg text-text mb-2">Systemen boven losse tactieken</h3>
+          <p class="text-text-muted leading-relaxed">Een enkele goede advertentie of virale post verandert niets structureel. Groei komt uit de combinatie: storytelling die aanspreekt, een productladder die past bij de klantreis, emailflows die vertrouwen opbouwen, en ads die het systeem versnellen.</p>
+        </div>
+        <div>
+          <h3 class="font-heading text-lg text-text mb-2">Storytelling boven pushen</h3>
+          <p class="text-text-muted leading-relaxed">Mensen kopen niet van experts omdat ze "de beste" zijn. Ze kopen omdat ze zich herkend voelen. De marketingboodschap moet beginnen bij wat de klant voelt — niet bij wat de coach kan.</p>
+        </div>
+        <div>
+          <h3 class="font-heading text-lg text-text mb-2">AI-vindbaarheid is nu, niet straks</h3>
+          <p class="text-text-muted leading-relaxed">Steeds meer mensen vragen hun antwoord aan ChatGPT of Google AI in plaats van te Googlen. Wie nu niet vindbaar is voor AI, mist een groeiend deel van zijn markt — en dat gat wordt alleen maar groter.</p>
+        </div>
+        <div>
+          <h3 class="font-heading text-lg text-text mb-2">Geen eenmalige projecten, maar partnerschap</h3>
+          <p class="text-text-muted leading-relaxed">Een website bouwen en dan verdwijnen werkt niet. Online groei is een doorlopend proces van testen, optimaliseren en uitbreiden. NXG Media werkt als strategische partner, niet als leverancier die een factuur stuurt en klaar is.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── 5. Professional background ── */}
+  <section class="py-10 md:py-14">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">Achtergrond & cijfers</h2>
+      <div class="grid md:grid-cols-2 gap-6 mb-8">
+        {siteConfig.founder.qualifications[locale].map((q) => (
+          <div class="flex items-start gap-3 p-4 bg-bg-alt rounded-card">
+            <svg class="w-6 h-6 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span class="text-text">{q}</span>
+          </div>
+        ))}
+      </div>
+      {siteConfig.founder.credentials.length > 0 && (
+        <div>
+          <h3 class="font-heading text-lg text-text mb-3">Certificeringen</h3>
+          <ul class="space-y-2">
+            {siteConfig.founder.credentials.map((c) => (
+              <li class="flex items-center gap-3 text-text-muted">
+                <svg class="w-5 h-5 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342" />
+                </svg>
+                <span>{c.name} — {c.issuer} ({c.year})</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  </section>
+
+  {/* ── 6. Expertise areas ── */}
+  <section class="py-10 md:py-14 bg-bg-alt">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">Expertise</h2>
+      <div class="flex flex-wrap gap-3">
+        {siteConfig.founder.knowsAbout[locale].map((item) => (
+          <span class="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full text-text shadow-sm border border-gray-100">
+            <svg class="w-4 h-4 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+            </svg>
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ── 7. How the method works ── */}
+  <section class="py-10 md:py-14">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">Hoe het werkt — de NXG-methode</h2>
+      <p class="text-text-muted leading-relaxed mb-8">Elk traject bij NXG Media volgt dezelfde logica. Geen magic bullets, maar een bewezen aanpak in vier stappen.</p>
+      <div class="space-y-6">
+        <div class="flex items-start gap-4">
+          <span class="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white font-bold shrink-0">1</span>
+          <div>
+            <h3 class="font-heading text-lg text-text mb-1">Diagnose</h3>
+            <p class="text-text-muted">Analyse van je huidige online aanwezigheid: website, funnel, content, vindbaarheid en conversiepad. Waar lekt het? Wat ontbreekt?</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white font-bold shrink-0">2</span>
+          <div>
+            <h3 class="font-heading text-lg text-text mb-1">Systeemontwerp</h3>
+            <p class="text-text-muted">Op basis van de diagnose bouwen we een groeisysteem: storytelling, productladder, emailflows en advertentiestrategie — afgestemd op jouw klant.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white font-bold shrink-0">3</span>
+          <div>
+            <h3 class="font-heading text-lg text-text mb-1">Implementatie</h3>
+            <p class="text-text-muted">NXG Media bouwt het systeem: landingspagina's, emailreeksen, advertenties, tracking en AI-vindbaarheid. Alles in samenhang, niet als losse projecten.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="flex items-center justify-center w-10 h-10 rounded-full bg-primary text-white font-bold shrink-0">4</span>
+          <div>
+            <h3 class="font-heading text-lg text-text mb-1">Optimalisatie</h3>
+            <p class="text-text-muted">Data-gedreven bijsturen: welke ads presteren, welke mails converteren, waar haken mensen af? Continue verbetering levert structureel betere resultaten.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── 8. Personal / real-life lens ── */}
+  <section class="py-10 md:py-14 bg-bg-alt">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <div class="flex flex-col md:flex-row gap-8 items-start">
+        <Image
+          src={founderRelaxed}
+          alt="Joost van Putten — werkt vanuit Valencia en Nederland"
+          widths={[200, 300]}
+          sizes="(max-width: 768px) 200px, 250px"
+          class="rounded-card shadow-lg w-44 md:w-56 shrink-0"
+          loading="lazy"
+        />
+        <div>
+          <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">Buiten het werk</h2>
+          <p class="text-text-muted leading-relaxed mb-4">
+            Joost werkt vanuit Valencia en Nederland — een combinatie die past bij hoe hij naar marketing kijkt: flexibel, internationaal en zonder onnodige overhead. Geen kantoor met tien mensen, maar een lean team dat snel beweegt.
+          </p>
+          <p class="text-text-muted leading-relaxed">
+            Buiten het werk is hij te vinden op de padelbaan, in de bergen rond Valencia, of aan het experimenteren met nieuwe AI-tools. Die nieuwsgierigheid naar technologie zit ook in het werk: NXG Media test continu nieuwe manieren om coaches en experts zichtbaarder en vindbaar te maken.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── 9. Boundaries / disclaimer ── */}
+  <section class="py-10 md:py-14">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">Wat NXG Media niet is</h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="p-4 border border-gray-200 rounded-card">
+          <p class="text-text font-medium mb-1">Geen generiek webbureau</p>
+          <p class="text-text-muted text-sm">NXG Media bouwt geen losse websites. Elk project is een groeisysteem met strategie, techniek en content in samenhang.</p>
+        </div>
+        <div class="p-4 border border-gray-200 rounded-card">
+          <p class="text-text font-medium mb-1">Geen beloftes zonder onderbouwing</p>
+          <p class="text-text-muted text-sm">Resultaten variëren per situatie. De genoemde ROAS-cijfers zijn gemiddelden over 50+ klanten — geen garantie voor elk individueel traject.</p>
+        </div>
+        <div class="p-4 border border-gray-200 rounded-card">
+          <p class="text-text font-medium mb-1">Geen one-size-fits-all</p>
+          <p class="text-text-muted text-sm">Elk systeem wordt aangepast aan de markt, doelgroep en prijspunt van de expert. Een yogacoach heeft een ander systeem nodig dan een businessmentor.</p>
+        </div>
+        <div class="p-4 border border-gray-200 rounded-card">
+          <p class="text-text font-medium mb-1">Geen vervanging voor jouw expertise</p>
+          <p class="text-text-muted text-sm">NXG Media bouwt het online systeem — maar de inhoud, het aanbod en de klantrelatie blijven van jou. Marketing versterkt wat er al is.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── 10. CTA — Calendly ── */}
   <CalendlyEmbed pageType="about" pageSlug="over-joost" locale={locale} />
 </BaseLayout>

@@ -6,7 +6,7 @@ import CalendlyEmbed from '../components/CalendlyEmbed.astro';
 import CTABand from '../components/CTABand.astro';
 import ClientResults from '../components/ClientResults.astro';
 import { siteConfig, type Locale } from '../data/site';
-import { generateService, generateBreadcrumbs, generateFAQPage } from '../data/schema';
+import { generateService, generateBreadcrumbs, generateFAQPage, generateHowTo } from '../data/schema';
 import { t, localizePath, getCollectionBasePath } from '../i18n/utils';
 import { trackOnClick } from '../lib/analytics';
 import { getTestimonials } from '../data/testimonials';
@@ -116,6 +116,11 @@ const casesBase = locale === 'en' ? '/en/cases/' : locale === 'es' ? '/es/casos/
     }),
     generateBreadcrumbs(breadcrumbSchema),
     ...(faqForSchema.length > 0 ? [generateFAQPage(faqForSchema)] : []),
+    ...(service.method.length > 0 ? [generateHowTo({
+      name: service.title,
+      description: seoDescription,
+      steps: service.method,
+    })] : []),
   ]}
   locale={locale}
 >

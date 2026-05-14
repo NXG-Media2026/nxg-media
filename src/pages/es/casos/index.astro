@@ -2,12 +2,22 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import BreadcrumbNav from '../../../components/BreadcrumbNav.astro';
+import ClientResults from '../../../components/ClientResults.astro';
+import VideoTestimonialCarousel from '../../../components/VideoTestimonialCarousel.astro';
+import CTABand from '../../../components/CTABand.astro';
+import ScannerChooser from '../../../components/ScannerChooser.astro';
 import { siteConfig } from '../../../data/site';
 import { t } from '../../../i18n/utils';
+import { getTestimonials } from '../../../data/testimonials';
+import { videoTestimonials } from '../../../data/videoTestimonials';
 
 const locale = 'es';
 const cases = (await getCollection('cases')).filter((c) => c.data.locale === locale).sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 const nlCases = cases.length === 0 ? (await getCollection('cases')).filter((c) => c.data.locale === 'nl').sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99)) : [];
+const displayCases = cases.length > 0 ? cases : nlCases;
+const casesBasePath = cases.length > 0 ? '/es/casos' : '/cases';
+
+const testimonials = getTestimonials({ locale: 'es' });
 
 const breadcrumbs = [
   { label: t('breadcrumb.home', locale), href: '/es/' },
@@ -15,29 +25,139 @@ const breadcrumbs = [
 ];
 ---
 
-<BaseLayout title={`Casos | ${siteConfig.name}`} description="Descubre cómo clínicas y negocios locales mejoran su visibilidad con NXG Media." locale={locale}>
+<BaseLayout
+  title={`Casos y Resultados | ${siteConfig.name}`}
+  description="Descubre cómo coaches, expertos y PYMES crecen con NXG Media. Resultados reales, clientes reales, números reales."
+  locale={locale}
+>
   <BreadcrumbNav items={breadcrumbs} />
+
+  {/* ── Page Intro ── */}
   <section class="py-12 md:py-16 lg:py-20">
     <div class="max-w-4xl mx-auto px-4 md:px-6">
-      <h1 class="font-heading text-3xl md:text-4xl text-text mb-10">Casos</h1>
-      {cases.length > 0 ? (
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl text-text mb-4">Casos y Resultados</h1>
+      <p class="text-lg text-text-muted leading-relaxed max-w-2xl">
+        Sin promesas vagas — solo números concretos. Esto es lo que pasa cuando dejas de hacer campañas aisladas y construyes un sistema que trabaja para ti.
+      </p>
+    </div>
+  </section>
+
+  {/* ── Featured Cases (same visual style as homepage) ── */}
+  <ClientResults
+    title="Casos destacados"
+    featuredCases={[
+      {
+        testimonial: testimonials.find((t) => t.id === 'rolf-happywithyoga')!,
+        period: 'Desde 2022',
+        stats: [
+          { value: '30.000+', label: 'leads de webinar' },
+          { value: '1.700+', label: 'ventas de mini-curso' },
+          { value: '2.000', label: 'miembros de pago' },
+        ],
+        caseHref: '/cases/happy-with-yoga/',
+      },
+      {
+        testimonial: testimonials.find((t) => t.id === 'tessa-youlife')!,
+        period: 'Desde feb 2025',
+        stats: [
+          { value: '±€10k/mes', label: 'productos online' },
+          { value: '6', label: 'productos lanzados' },
+          { value: '±10/mes', label: 'clientes de coaching' },
+        ],
+        caseHref: '/cases/youlife/',
+      },
+      {
+        testimonial: testimonials.find((t) => t.id === 'josine-coachjosine')!,
+        period: 'Desde oct 2025',
+        stats: [
+          { value: '600×', label: 'guías vendidas' },
+          { value: '80', label: 'inscripciones masterclass' },
+        ],
+        caseHref: '/cases/coach-josine/',
+      },
+    ]}
+    smallResults={[
+      {
+        name: 'Manon van Bakel',
+        period: 'Primer mes',
+        stats: [
+          { value: '120', label: 'inscripciones en 2 semanas' },
+          { value: '±10%', label: 'conversión a programas' },
+        ],
+      },
+      {
+        name: 'Kim Bongers',
+        period: '2 meses',
+        stats: [
+          { value: '90', label: 'inscripciones masterclass' },
+          { value: '350×', label: 'guías vendidas' },
+          { value: '8%', label: 'conversión' },
+        ],
+      },
+      {
+        name: 'MCM Research',
+        logo: 'mcm-research-logo.webp',
+        period: 'Cliente desde 2022',
+        stats: [
+          { value: '2.500+', label: 'leads en Países Bajos' },
+          { value: '500', label: 'candidatos NL' },
+          { value: '1.500+', label: 'leads en Bélgica' },
+          { value: '250', label: 'candidatos BE' },
+        ],
+      },
+    ]}
+    otherTestimonials={testimonials.filter((t) => ['claire-ikrouwvanje', 'andrew-coreprogression'].includes(t.id))}
+    caseLabel="Leer el caso"
+    allCasesHref=""
+    allCasesLabel=""
+    locale="es"
+  />
+
+  {/* ── All Case Studies ── */}
+  {displayCases.length > 0 && (
+    <section class="py-12 md:py-16">
+      <div class="max-w-4xl mx-auto px-4 md:px-6">
+        <h2 class="font-heading text-2xl md:text-3xl text-text mb-8">Todos los casos</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {cases.map((c) => (
-            <a href={`/es/casos/${c.data.pageSlug}/`} class="group block bg-white border border-border rounded-card p-6 hover:border-accent/30 hover:shadow-lg transition-all">
+          {displayCases.map((c) => (
+            <a href={`${casesBasePath}/${c.data.pageSlug}/`} class="group block bg-white border border-border rounded-card p-6 hover:border-accent/30 hover:shadow-lg transition-all duration-300">
               <span class="text-xs font-medium text-accent uppercase tracking-wider mb-2 block">{c.data.clientType}</span>
-              <h2 class="font-heading text-lg text-text group-hover:text-accent transition-colors">{c.data.title}</h2>
+              <h3 class="font-heading text-lg text-text mb-2 group-hover:text-accent transition-colors">{c.data.title}</h3>
+              {c.data.proofStats.length > 0 && (
+                <div class="flex flex-wrap gap-2 mt-3">
+                  {c.data.proofStats.slice(0, 3).map((stat) => (
+                    <span class="inline-flex items-center px-2 py-1 text-xs bg-bg-alt rounded-full">
+                      <strong class="text-accent mr-1">{stat.value}</strong> {stat.label}
+                    </span>
+                  ))}
+                </div>
+              )}
             </a>
           ))}
         </div>
-      ) : (
-        <div class="bg-bg-alt rounded-card p-8 text-center">
-          <p class="text-text-muted">{t('case.comingSoon', locale)}</p>
-          <p class="text-sm text-text-muted mt-2">
-            Mientras tanto, puedes ver nuestros
-            <a href="/cases/" class="text-accent hover:text-accent-dark"> casos en neerlandés</a>.
-          </p>
-        </div>
-      )}
-    </div>
-  </section>
+      </div>
+    </section>
+  )}
+
+  {/* ── Video Testimonials ── */}
+  <VideoTestimonialCarousel
+    title="Lo que dicen los clientes sobre trabajar con Joost"
+    subtitle="Experiencias reales de emprendedores que colaboran exitosamente con Joost"
+    testimonials={videoTestimonials}
+  />
+
+  {/* ── CTA ── */}
+  <CTABand
+    title="¿Listo para construir tu sistema de crecimiento?"
+    subtitle="Empieza con el análisis gratuito y descubre lo que es posible."
+    ctaText="Haz el análisis de crecimiento"
+    openChooser
+    eventName="scanner_request_submitted"
+    locale={locale}
+    pageType="overview"
+    pageSlug="casos"
+  />
+
+  <ScannerChooser locale="es" />
+
 </BaseLayout>

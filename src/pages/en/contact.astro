@@ -1,12 +1,30 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import BreadcrumbNav from '../../components/BreadcrumbNav.astro';
 import CalendlyEmbed from '../../components/CalendlyEmbed.astro';
 import { siteConfig } from '../../data/site';
+import { generateBreadcrumbs } from '../../data/schema';
+import { t, localizePath } from '../../i18n/utils';
 
 const locale = 'en';
+const breadcrumbs = [
+  { label: t('breadcrumb.home', locale), href: localizePath('/', locale) },
+  { label: 'Contact' },
+];
+const breadcrumbSchema = [
+  { name: t('breadcrumb.home', locale), url: `${siteConfig.url}${localizePath('/', locale)}` },
+  { name: 'Contact', url: `${siteConfig.url}/en/contact` },
+];
 ---
 
-<BaseLayout title={`Contact | ${siteConfig.name}`} description="Get in touch with NXG Media or book a call with Joost." locale={locale}>
+<BaseLayout
+  title={`Contact | ${siteConfig.name}`}
+  description="Get in touch with NXG Media or book a call with Joost."
+  schemas={[generateBreadcrumbs(breadcrumbSchema)]}
+  locale={locale}
+>
+  <BreadcrumbNav items={breadcrumbs} />
+
   <section class="py-12 md:py-16 lg:py-20">
     <div class="max-w-3xl mx-auto px-4 md:px-6">
       <h1 class="font-heading text-3xl md:text-4xl text-text mb-6">Contact</h1>

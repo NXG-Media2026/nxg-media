@@ -2,11 +2,18 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BreadcrumbNav from '../../components/BreadcrumbNav.astro';
+import ClientResults from '../../components/ClientResults.astro';
+import VideoTestimonialCarousel from '../../components/VideoTestimonialCarousel.astro';
+import CTABand from '../../components/CTABand.astro';
+import ScannerChooser from '../../components/ScannerChooser.astro';
 import { siteConfig } from '../../data/site';
 import { t, localizePath } from '../../i18n/utils';
+import { getTestimonials } from '../../data/testimonials';
+import { videoTestimonials } from '../../data/videoTestimonials';
 
 const locale = 'nl';
 const cases = (await getCollection('cases')).filter((c) => c.data.locale === locale).sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+const testimonials = getTestimonials({ locale: 'nl' });
 
 const breadcrumbs = [
   { label: t('breadcrumb.home', locale), href: localizePath('/', locale) },
@@ -14,29 +21,139 @@ const breadcrumbs = [
 ];
 ---
 
-<BaseLayout title={`Cases | ${siteConfig.name}`} description="Bekijk hoe coaches, experts en praktijken groeien met NXG Media." locale={locale}>
+<BaseLayout
+  title={`Cases & Resultaten | ${siteConfig.name}`}
+  description="Bekijk hoe coaches, experts en MKB-bedrijven groeien met NXG Media. Echte resultaten, echte klanten, echte cijfers."
+  locale={locale}
+>
   <BreadcrumbNav items={breadcrumbs} />
 
+  {/* ── Page Intro ── */}
   <section class="py-12 md:py-16 lg:py-20">
     <div class="max-w-4xl mx-auto px-4 md:px-6">
-      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl text-text mb-10">Cases</h1>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {cases.map((c) => (
-          <a href={`/cases/${c.data.pageSlug}/`} class="group block bg-white border border-border rounded-card p-6 hover:border-accent/30 hover:shadow-lg transition-all duration-300">
-            <span class="text-xs font-medium text-accent uppercase tracking-wider mb-2 block">{c.data.clientType}</span>
-            <h2 class="font-heading text-lg text-text mb-2 group-hover:text-accent transition-colors">{c.data.title}</h2>
-            {c.data.proofStats.length > 0 && (
-              <div class="flex flex-wrap gap-2 mt-3">
-                {c.data.proofStats.slice(0, 3).map((stat) => (
-                  <span class="inline-flex items-center px-2 py-1 text-xs bg-bg-alt rounded-full">
-                    <strong class="text-accent mr-1">{stat.value}</strong> {stat.label}
-                  </span>
-                ))}
-              </div>
-            )}
-          </a>
-        ))}
-      </div>
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl text-text mb-4">Cases & Resultaten</h1>
+      <p class="text-lg text-text-muted leading-relaxed max-w-2xl">
+        Geen vage beloftes, maar concrete cijfers. Dit is wat er gebeurt als je stopt met losse campagnes en een systeem bouwt dat voor je werkt.
+      </p>
     </div>
   </section>
+
+  {/* ── Featured Cases (same visual style as homepage) ── */}
+  <ClientResults
+    title="Uitgelichte cases"
+    featuredCases={[
+      {
+        testimonial: testimonials.find((t) => t.id === 'rolf-happywithyoga')!,
+        period: 'Sinds 2022',
+        stats: [
+          { value: '30.000+', label: 'webinarleads' },
+          { value: '1.700+', label: 'mini-cursusverkopen' },
+          { value: '2.000', label: 'betalende leden' },
+        ],
+        caseHref: '/cases/happy-with-yoga/',
+      },
+      {
+        testimonial: testimonials.find((t) => t.id === 'tessa-youlife')!,
+        period: 'Sinds feb 2025',
+        stats: [
+          { value: '±€10k/mnd', label: 'online producten' },
+          { value: '6', label: 'producten gelanceerd' },
+          { value: '±10/mnd', label: 'coachingklanten' },
+        ],
+        caseHref: '/cases/youlife/',
+      },
+      {
+        testimonial: testimonials.find((t) => t.id === 'josine-coachjosine')!,
+        period: 'Sinds okt 2025',
+        stats: [
+          { value: '600×', label: 'gids verkocht' },
+          { value: '80', label: 'masterclass-aanmeldingen' },
+        ],
+        caseHref: '/cases/coach-josine/',
+      },
+    ]}
+    smallResults={[
+      {
+        name: 'Manon van Bakel',
+        period: 'Eerste maand',
+        stats: [
+          { value: '120', label: 'aanmeldingen in 2 weken' },
+          { value: '±10%', label: 'conversie naar trajecten' },
+        ],
+      },
+      {
+        name: 'Kim Bongers',
+        period: '2 maanden',
+        stats: [
+          { value: '90', label: 'masterclass-aanmeldingen' },
+          { value: '350×', label: 'gids verkocht' },
+          { value: '8%', label: 'conversie' },
+        ],
+      },
+      {
+        name: 'MCM Research',
+        logo: 'mcm-research-logo.webp',
+        period: 'Klant sinds 2022',
+        stats: [
+          { value: '2.500+', label: 'leads in Nederland' },
+          { value: '500', label: 'sollicitanten NL' },
+          { value: '1.500+', label: 'leads in België' },
+          { value: '250', label: 'sollicitanten BE' },
+        ],
+      },
+    ]}
+    otherTestimonials={testimonials.filter((t) => ['claire-ikrouwvanje', 'andrew-coreprogression'].includes(t.id))}
+    caseLabel="Lees de case"
+    allCasesHref=""
+    allCasesLabel=""
+    locale="nl"
+  />
+
+  {/* ── All Case Studies (if there are more beyond featured) ── */}
+  {cases.length > 0 && (
+    <section class="py-12 md:py-16">
+      <div class="max-w-4xl mx-auto px-4 md:px-6">
+        <h2 class="font-heading text-2xl md:text-3xl text-text mb-8">Alle cases</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {cases.map((c) => (
+            <a href={`/cases/${c.data.pageSlug}/`} class="group block bg-white border border-border rounded-card p-6 hover:border-accent/30 hover:shadow-lg transition-all duration-300">
+              <span class="text-xs font-medium text-accent uppercase tracking-wider mb-2 block">{c.data.clientType}</span>
+              <h3 class="font-heading text-lg text-text mb-2 group-hover:text-accent transition-colors">{c.data.title}</h3>
+              {c.data.proofStats.length > 0 && (
+                <div class="flex flex-wrap gap-2 mt-3">
+                  {c.data.proofStats.slice(0, 3).map((stat) => (
+                    <span class="inline-flex items-center px-2 py-1 text-xs bg-bg-alt rounded-full">
+                      <strong class="text-accent mr-1">{stat.value}</strong> {stat.label}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {/* ── Video Testimonials ── */}
+  <VideoTestimonialCarousel
+    title="Wat klanten zeggen over werken met Joost"
+    subtitle="Echte ervaringen van ondernemers die succesvol samenwerken met Joost"
+    testimonials={videoTestimonials}
+  />
+
+  {/* ── CTA ── */}
+  <CTABand
+    title="Klaar om jouw groeisysteem te bouwen?"
+    subtitle="Start met de gratis scan en ontdek wat er mogelijk is."
+    ctaText="Doe de groeiscan"
+    openChooser
+    eventName="scanner_request_submitted"
+    locale={locale}
+    pageType="overview"
+    pageSlug="cases"
+  />
+
+  <ScannerChooser locale="nl" />
+
 </BaseLayout>
