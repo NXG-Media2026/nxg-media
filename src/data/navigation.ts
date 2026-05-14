@@ -9,7 +9,7 @@ export interface NavItem {
 
 export const navigation: Record<Locale, NavItem[]> = {
   nl: [
-    { label: 'Expert Growth', href: '/expert-growth-accelerator/' },
+    { label: 'Coach Accelerator', href: '/coach-accelerator/' },
     { label: 'AI Vindbaarheid', href: '/ai-vindbaarheid/' },
     { label: 'Cases', href: '/cases/' },
     { label: 'Producten', href: '/producten/' },
@@ -17,7 +17,7 @@ export const navigation: Record<Locale, NavItem[]> = {
     { label: 'Contact', href: '/contact/', isButton: true },
   ],
   en: [
-    { label: 'Expert Growth', href: '/en/expert-growth-accelerator/' },
+    { label: 'Coach Accelerator', href: '/en/coach-accelerator/' },
     { label: 'AI Visibility', href: '/en/ai-visibility/' },
     { label: 'Cases', href: '/en/cases/' },
     { label: 'Products', href: '/en/products/' },
@@ -25,6 +25,7 @@ export const navigation: Record<Locale, NavItem[]> = {
     { label: 'Contact', href: '/en/contact/', isButton: true },
   ],
   es: [
+    { label: 'Coach Accelerator', href: '/es/coach-accelerator/' },
     { label: 'Visibilidad IA', href: '/es/visibilidad-ia/' },
     { label: 'Casos', href: '/es/casos/' },
     { label: 'Sobre Joost', href: '/es/sobre-joost/' },

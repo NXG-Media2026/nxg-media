@@ -2,7 +2,7 @@ export const ui = {
   nl: {
     // Navigation
     'nav.home': 'Home',
-    'nav.expertGrowth': 'Expert Growth',
+    'nav.expertGrowth': 'Coach Accelerator',
     'nav.aiVindbaarheid': 'AI Vindbaarheid',
     'nav.cases': 'Cases',
     'nav.producten': 'Producten',
@@ -23,7 +23,7 @@ export const ui = {
     'cta.viewCases': 'Bekijk cases',
     'cta.viewAudit': 'Bekijk de audit-aanpak',
     'cta.discussGrowth': 'Bespreek jouw groeiroute',
-    'cta.exploreExpertGrowth': 'Bekijk Expert Growth',
+    'cta.exploreExpertGrowth': 'Bekijk Coach Accelerator',
 
     // Testimonials / Proof
     'testimonial.heading': 'Wat klanten zeggen',
@@ -123,7 +123,7 @@ export const ui = {
   en: {
     // Navigation
     'nav.home': 'Home',
-    'nav.expertGrowth': 'Expert Growth',
+    'nav.expertGrowth': 'Coach Accelerator',
     'nav.aiVindbaarheid': 'AI Visibility',
     'nav.cases': 'Cases',
     'nav.producten': 'Products',
@@ -144,7 +144,7 @@ export const ui = {
     'cta.viewCases': 'View cases',
     'cta.viewAudit': 'View the audit approach',
     'cta.discussGrowth': 'Discuss your growth route',
-    'cta.exploreExpertGrowth': 'Explore Expert Growth',
+    'cta.exploreExpertGrowth': 'Explore Coach Accelerator',
 
     // Testimonials / Proof
     'testimonial.heading': 'What clients say',
@@ -244,7 +244,7 @@ export const ui = {
   es: {
     // Navigation
     'nav.home': 'Inicio',
-    'nav.expertGrowth': 'Expert Growth',
+    'nav.expertGrowth': 'Coach Accelerator',
     'nav.aiVindbaarheid': 'Visibilidad IA',
     'nav.cases': 'Casos',
     'nav.producten': 'Productos',
@@ -265,7 +265,7 @@ export const ui = {
     'cta.viewCases': 'Ver casos',
     'cta.viewAudit': 'Ver el enfoque de auditoría',
     'cta.discussGrowth': 'Habla sobre tu ruta de crecimiento',
-    'cta.exploreExpertGrowth': 'Descubre Expert Growth',
+    'cta.exploreExpertGrowth': 'Descubre Coach Accelerator',
 
     // Testimonials / Proof
     'testimonial.heading': 'Lo que dicen los clientes',

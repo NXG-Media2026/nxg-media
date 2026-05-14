@@ -124,5 +124,5 @@ Dit is niet theorie. Dit systeem draait al jaren bij coaches en kennisondernemer
 - Je geen bestaand aanbod hebt (bouw eerst je dienst of product)
 - Je niet bereid bent om €5-10 per dag aan ads uit te geven (organisch kan ook, maar langzamer)
 - Je zoekt naar een "snel rijk worden" truc (dit is een systeem, geen hack)
-- Je al structureel €10k+ per maand omzet draait en een volledig managed service zoekt (kijk dan naar het [Expert Growth Accelerator programma](/diensten/expert-growth-accelerator/))
+- Je al structureel €10k+ per maand omzet draait en een volledig managed service zoekt (kijk dan naar het [Coach Accelerator programma](/diensten/coach-accelerator/))
 

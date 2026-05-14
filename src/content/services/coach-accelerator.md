@@ -1,6 +1,6 @@
 ---
-title: "Expert Growth Accelerator"
-pageSlug: expert-growth-accelerator
+title: "Coach Accelerator"
+pageSlug: coach-accelerator
 locale: nl
 cluster: expert-growth
 brandFocus: personal
@@ -36,14 +36,14 @@ notForYouIf:
   - "Je wilt alles zelf doen en zoekt alleen advies"
 faq:
   - question: "Hoelang duurt het traject?"
-    answer: "De Expert Growth Accelerator is een doorlopend traject. De eerste resultaten — een werkend instapproduct en email-flow — zijn er meestal binnen 4-8 weken. Het volledige systeem bouwt zich op over 3-6 maanden."
+    answer: "De Coach Accelerator is een doorlopend traject. De eerste resultaten — een werkend instapproduct en email-flow — zijn er meestal binnen 4-8 weken. Het volledige systeem bouwt zich op over 3-6 maanden."
   - question: "Wat kost het?"
     answer: "De investering hangt af van de scope. We bespreken dit in een vrijblijvend gesprek waarin we kijken wat er al staat en wat er nodig is."
   - question: "Moet ik zelf ook aan de slag?"
     answer: "Ja. Jij brengt de expertise, verhalen en klantinzichten. Joost bouwt daar de structuur, copy, pagina's, emails en advertenties omheen."
 ---
 
-De Expert Growth Accelerator is een vast traject voor coaches en experts die hun expertise willen vertalen naar een online instaproute — met storytelling, masterclasses, mini-producten, emailflows en advertenties die samen leiden naar kopers, klanten of leden.
+De Coach Accelerator is een vast traject voor coaches en experts die hun expertise willen vertalen naar een online instaproute — met storytelling, masterclasses, mini-producten, emailflows en advertenties die samen leiden naar kopers, klanten of leden.
 
 ## Herken je dit?
 

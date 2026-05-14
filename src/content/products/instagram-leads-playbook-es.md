@@ -124,4 +124,4 @@ Esto no es teoría. Este sistema lleva años funcionando con coaches y expertos:
 - No tienes una oferta existente (primero construye tu servicio o producto)
 - No estás dispuesto a invertir €5-10 al día en anuncios (lo orgánico también funciona, pero más lento)
 - Buscas un truco para "hacerte rico rápido" (esto es un sistema, no un hack)
-- Ya facturas más de €10k al mes de forma constante y buscas un servicio gestionado completo (echa un vistazo al [programa Expert Growth Accelerator](/es/servicios/expert-growth-accelerator/))
+- Ya facturas más de €10k al mes de forma constante y buscas un servicio gestionado completo (echa un vistazo al [programa Coach Accelerator](/es/servicios/coach-accelerator/))

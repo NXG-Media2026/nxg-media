@@ -124,5 +124,5 @@ This isn't theory. This system has been running for years with coaches and knowl
 - You don't have an existing offer yet (build your service or product first)
 - You're not willing to spend €5-10 per day on ads (organic works too, but slower)
 - You're looking for a "get rich quick" trick (this is a system, not a hack)
-- You're already consistently earning €10k+ per month and want a fully managed service (check the [Expert Growth Accelerator programme](/en/services/expert-growth-accelerator/))
+- You're already consistently earning €10k+ per month and want a fully managed service (check the [Coach Accelerator programme](/en/services/coach-accelerator/))
 

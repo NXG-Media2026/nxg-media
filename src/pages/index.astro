@@ -50,15 +50,15 @@ const trustItems = [
 const homepageFaq = [
   {
     q: 'Wat kost het om met NXG Media te werken?',
-    a: 'Dat hangt af van je situatie. Onze micro-producten beginnen bij €6,99 als je zelf aan de slag wilt. Het Expert Growth Accelerator traject is een vast traject met setup + maandelijkse optimalisatie. <a href="/contact/">Neem contact op</a> voor een vrijblijvend gesprek.',
+    a: 'Dat hangt af van je situatie. Onze micro-producten beginnen bij €6,99 als je zelf aan de slag wilt. Het Coach Accelerator traject is een vast traject met setup + maandelijkse optimalisatie. <a href="/contact/">Neem contact op</a> voor een vrijblijvend gesprek.',
   },
   {
     q: 'Werken jullie alleen met coaches?',
-    a: 'Nee. We werken met twee clusters: Expert Growth (coaches, kennisondernemers, experts) en AI Vindbaarheid (lokale praktijken, MKB). De aanpak verschilt, maar het uitgangspunt is hetzelfde: bouw een systeem, geen losse campagnes.',
+    a: 'Nee. We werken met twee clusters: Coach Accelerator (coaches, kennisondernemers, experts) en AI Vindbaarheid (lokale praktijken, MKB). De aanpak verschilt, maar het uitgangspunt is hetzelfde: bouw een systeem, geen losse campagnes.',
   },
   {
     q: 'Hoe snel zie ik resultaat?',
-    a: 'De eerste resultaten bij Expert Growth zie je meestal binnen 2-4 weken (eerste leads, eerste productverkopen). Een volledig draaiend systeem kost 2-3 maanden. Bij AI Vindbaarheid kun je na het toepassen van de kits direct opnieuw scannen en het verschil zien.',
+    a: 'De eerste resultaten bij de Coach Accelerator zie je meestal binnen 2-4 weken (eerste leads, eerste productverkopen). Een volledig draaiend systeem kost 2-3 maanden. Bij AI Vindbaarheid kun je na het toepassen van de kits direct opnieuw scannen en het verschil zien.',
   },
   {
     q: 'Wat is het verschil tussen NXG Media en een gewoon marketingbureau?',
@@ -76,7 +76,7 @@ const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
 
 <BaseLayout
   title={`${siteConfig.name} — ${siteConfig.tagline.nl}`}
-  description="Bouw een online groeisysteem rond jouw expertise. Expert Growth voor coaches en experts. AI-vindbaarheid voor lokale praktijken."
+  description="Bouw een online groeisysteem rond jouw expertise. Coach Accelerator voor coaches en experts. AI-vindbaarheid voor lokale praktijken."
   hreflang={hreflang}
   schemas={[generateOrganization(), generateWebSite(locale), generateFounderPerson(), generateFAQPage(faqForSchema)]}
   locale={locale}
@@ -116,10 +116,10 @@ const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
           </svg>
         </a>
         <a
-          href="/diensten/expert-growth-accelerator/"
+          href="/diensten/coach-accelerator/"
           class="inline-flex items-center px-8 py-4 text-base font-medium text-primary border-2 border-primary hover:bg-primary/5 transition-colors rounded-button"
         >
-          Bekijk Expert Growth
+          Bekijk Coach Accelerator
         </a>
       </div>
     </div>
@@ -177,12 +177,12 @@ const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div class="bg-white rounded-card p-8 border border-border hover:border-accent/30 hover:shadow-lg transition-all">
           <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full mb-4">expert-growth</span>
-          <h2 class="font-heading text-xl text-text mb-3">Expert Growth Accelerator</h2>
+          <h2 class="font-heading text-xl text-text mb-3">Coach Accelerator</h2>
           <p class="text-text-muted text-sm leading-relaxed mb-6">
             Een vast traject voor coaches en experts die hun expertise willen vertalen naar een online instaproute — met storytelling, masterclasses, mini-producten, emailflows en advertenties die samen leiden naar kopers, klanten of leden.
           </p>
-          <a href="/diensten/expert-growth-accelerator/" class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium text-sm">
-            Meer over Expert Growth
+          <a href="/diensten/coach-accelerator/" class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium text-sm">
+            Meer over Coach Accelerator
             <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
           </a>
         </div>

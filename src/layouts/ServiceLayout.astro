@@ -4,10 +4,12 @@ import BreadcrumbNav from '../components/BreadcrumbNav.astro';
 import FAQAccordion from '../components/FAQAccordion.astro';
 import CalendlyEmbed from '../components/CalendlyEmbed.astro';
 import CTABand from '../components/CTABand.astro';
+import ClientResults from '../components/ClientResults.astro';
 import { siteConfig, type Locale } from '../data/site';
 import { generateService, generateBreadcrumbs, generateFAQPage } from '../data/schema';
 import { t, localizePath, getCollectionBasePath } from '../i18n/utils';
 import { trackOnClick } from '../lib/analytics';
+import { getTestimonials } from '../data/testimonials';
 
 interface Props {
   service: {
@@ -89,6 +91,18 @@ const calendlySubtitleMap: Record<string, Record<string, string>> = {
 
 const calendlyTitle = calendlyTitleMap[service.cluster]?.[locale] ?? t('calendly.title', locale);
 const calendlySubtitle = calendlySubtitleMap[service.cluster]?.[locale] ?? t('calendly.subtitle', locale);
+
+// Client results for Coach Accelerator service page
+const isCoachAccelerator = service.cluster === 'expert-growth' && service.productType === 'service';
+const testimonials = isCoachAccelerator ? getTestimonials({ locale }) : [];
+
+const clientResultsLabels: Record<string, Record<string, string>> = {
+  title: { nl: 'Resultaten van klanten', en: 'Client results', es: 'Resultados de clientes' },
+  caseLabel: { nl: 'Lees de case', en: 'Read the case', es: 'Leer el caso' },
+  allCasesLabel: { nl: 'Bekijk alle cases', en: 'View all cases', es: 'Ver todos los casos' },
+};
+
+const casesBase = locale === 'en' ? '/en/cases/' : locale === 'es' ? '/es/casos/' : '/cases/';
 ---
 
 <BaseLayout
@@ -243,6 +257,79 @@ const calendlySubtitle = calendlySubtitleMap[service.cluster]?.[locale] ?? t('ca
       </div>
     </section>
   </article>
+
+  {/* Client Results (Coach Accelerator only) */}
+  {isCoachAccelerator && testimonials.length > 0 && (
+    <ClientResults
+      title={clientResultsLabels.title[locale] ?? 'Client results'}
+      featuredCases={[
+        {
+          testimonial: testimonials.find((t) => t.id === 'rolf-happywithyoga')!,
+          period: locale === 'es' ? 'Desde 2022' : locale === 'en' ? 'Since 2022' : 'Sinds 2022',
+          stats: [
+            { value: '30.000+', label: locale === 'es' ? 'leads de webinar' : locale === 'en' ? 'webinar leads' : 'webinarleads' },
+            { value: '1.700+', label: locale === 'es' ? 'ventas de mini-curso' : locale === 'en' ? 'mini-course sales' : 'mini-cursus verkopen' },
+            { value: '2.000', label: locale === 'es' ? 'miembros de pago' : locale === 'en' ? 'paying members' : 'betalende leden' },
+          ],
+          caseHref: `${casesBase}happy-with-yoga/`,
+        },
+        {
+          testimonial: testimonials.find((t) => t.id === 'tessa-youlife')!,
+          period: locale === 'es' ? 'Desde feb 2025' : locale === 'en' ? 'Since Feb 2025' : 'Sinds feb 2025',
+          stats: [
+            { value: '~€10k/' + (locale === 'es' ? 'mes' : locale === 'en' ? 'mo' : 'mnd'), label: locale === 'es' ? 'productos online' : locale === 'en' ? 'online products' : 'online producten' },
+            { value: '6', label: locale === 'es' ? 'productos lanzados' : locale === 'en' ? 'products launched' : 'producten gelanceerd' },
+            { value: '~10/' + (locale === 'es' ? 'mes' : locale === 'en' ? 'mo' : 'mnd'), label: locale === 'es' ? 'clientes de coaching' : locale === 'en' ? 'coaching clients' : 'coachingklanten' },
+          ],
+          caseHref: `${casesBase}youlife/`,
+        },
+        {
+          testimonial: testimonials.find((t) => t.id === 'josine-coachjosine')!,
+          period: locale === 'es' ? 'Desde oct 2025' : locale === 'en' ? 'Since Oct 2025' : 'Sinds okt 2025',
+          stats: [
+            { value: '600×', label: locale === 'es' ? 'guía vendida' : locale === 'en' ? 'guide sold' : 'gids verkocht' },
+            { value: '80', label: locale === 'es' ? 'inscripciones masterclass' : locale === 'en' ? 'masterclass signups' : 'masterclass-aanmeldingen' },
+          ],
+          caseHref: `${casesBase}coach-josine/`,
+        },
+      ].filter((c) => c.testimonial)}
+      smallResults={[
+        {
+          name: 'Manon van Bakel',
+          period: locale === 'es' ? 'Primer mes' : locale === 'en' ? 'First month' : 'Eerste maand',
+          stats: [
+            { value: '120', label: locale === 'es' ? 'inscripciones en 2 semanas' : locale === 'en' ? 'signups in 2 weeks' : 'aanmeldingen in 2 weken' },
+            { value: '~10%', label: locale === 'es' ? 'conversión a programas' : locale === 'en' ? 'conversion to programmes' : 'conversie naar trajecten' },
+          ],
+        },
+        {
+          name: 'Kim Bongers',
+          period: locale === 'es' ? '2 meses' : locale === 'en' ? '2 months' : '2 maanden',
+          stats: [
+            { value: '90', label: locale === 'es' ? 'inscripciones masterclass' : locale === 'en' ? 'masterclass signups' : 'masterclass-aanmeldingen' },
+            { value: '350×', label: locale === 'es' ? 'guía vendida' : locale === 'en' ? 'guide sold' : 'gids verkocht' },
+            { value: '8%', label: locale === 'es' ? 'conversión' : locale === 'en' ? 'conversion' : 'conversie' },
+          ],
+        },
+        {
+          name: 'MCM Research',
+          logo: 'mcm-research-logo.webp',
+          period: locale === 'es' ? 'Cliente desde 2022' : locale === 'en' ? 'Client since 2022' : 'Klant sinds 2022',
+          stats: [
+            { value: '2.500+', label: locale === 'es' ? 'leads en Países Bajos' : locale === 'en' ? 'leads in Netherlands' : 'leads in Nederland' },
+            { value: '500', label: locale === 'es' ? 'candidatos NL' : locale === 'en' ? 'applicants NL' : 'sollicitanten NL' },
+            { value: '1.500+', label: locale === 'es' ? 'leads en Bélgica' : locale === 'en' ? 'leads in Belgium' : 'leads in België' },
+            { value: '250', label: locale === 'es' ? 'candidatos BE' : locale === 'en' ? 'applicants BE' : 'sollicitanten BE' },
+          ],
+        },
+      ]}
+      otherTestimonials={testimonials.filter((t) => ['claire-ikrouwvanje', 'andrew-coreprogression'].includes(t.id))}
+      caseLabel={clientResultsLabels.caseLabel[locale] ?? 'Read the case'}
+      allCasesHref={casesBase}
+      allCasesLabel={clientResultsLabels.allCasesLabel[locale] ?? 'View all cases'}
+      locale={locale}
+    />
+  )}
 
   {/* FAQ */}
   {service.faq.length > 0 && (

@@ -1,7 +1,7 @@
 slug: expert-growth
-hubSlug: expert-growth-accelerator
-title: "Expert Growth Accelerator"
-shortTitle: "Expert Growth"
+hubSlug: coach-accelerator
+title: "Coach Accelerator"
+shortTitle: "Coach Accelerator"
 heroImage: "clusters/expert-growth-hero.webp"
 locales:
   - nl
@@ -9,13 +9,13 @@ locales:
 brandFocus: personal
 citableDefinition:
   nl: >
-    De Expert Growth Accelerator is een vast traject voor coaches en
+    De Coach Accelerator is een vast traject voor coaches en
     experts die hun expertise willen vertalen naar een online
     instaproute — met storytelling, masterclasses, mini-producten,
     emailflows en advertenties die samen leiden naar kopers, klanten
     of leden.
   en: >
-    The Expert Growth Accelerator is a structured engagement for
+    The Coach Accelerator is a structured engagement for
     coaches and experts who want to turn their expertise into an
     online entry route — with storytelling, masterclasses, mini-products,
     email flows and ads working together to create buyers, clients
@@ -38,7 +38,7 @@ featuredCases:
 featuredGuides:
   - guides/contentladder-voor-experts
   - guides/email-flow-architectuur
-primaryProduct: services/expert-growth-accelerator
+primaryProduct: services/coach-accelerator
 secondaryProducts: []
 crossSellProducts:
   - products/instagram-leads-playbook
@@ -85,11 +85,11 @@ analytics:
     - "expert_growth_call_booked"
 hubFaq:
   - question:
-      nl: "Voor wie is de Expert Growth Accelerator?"
-      en: "Who is the Expert Growth Accelerator for?"
+      nl: "Voor wie is de Coach Accelerator?"
+      en: "Who is the Coach Accelerator for?"
     answer:
-      nl: "De Expert Growth Accelerator is voor coaches, specialisten en kennisondernemers die al expertise of een aanbod hebben, maar nog geen online systeem dat voorspelbaar leads, kopers of klanten oplevert."
-      en: "The Expert Growth Accelerator is for coaches, specialists and knowledge experts who already have expertise or an offer, but not yet an online system that predictably creates leads, buyers or clients."
+      nl: "De Coach Accelerator is voor coaches, specialisten en kennisondernemers die al expertise of een aanbod hebben, maar nog geen online systeem dat voorspelbaar leads, kopers of klanten oplevert."
+      en: "The Coach Accelerator is for coaches, specialists and knowledge experts who already have expertise or an offer, but not yet an online system that predictably creates leads, buyers or clients."
   - question:
       nl: "Is dit alleen marketing of ook strategie?"
       en: "Is this only marketing or also strategy?"

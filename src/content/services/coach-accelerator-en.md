@@ -1,6 +1,6 @@
 ---
-title: "Expert Growth Accelerator"
-pageSlug: expert-growth-accelerator
+title: "Coach Accelerator"
+pageSlug: coach-accelerator
 locale: en
 cluster: expert-growth
 brandFocus: personal
@@ -36,14 +36,14 @@ notForYouIf:
   - "You want to do everything yourself and only need advice"
 faq:
   - question: "How long does the engagement take?"
-    answer: "The Expert Growth Accelerator is an ongoing engagement. The first results — a working entry product and email flow — are usually in place within 4-8 weeks. The full system builds over 3-6 months."
+    answer: "The Coach Accelerator is an ongoing engagement. The first results — a working entry product and email flow — are usually in place within 4-8 weeks. The full system builds over 3-6 months."
   - question: "What does it cost?"
     answer: "The investment depends on the scope. We discuss this in a no-obligation call where we look at what's already in place and what's needed."
   - question: "Do I need to contribute myself?"
     answer: "Yes. You bring the expertise, stories and client insights. Joost builds the structure, copy, pages, emails and ads around that."
 ---
 
-The Expert Growth Accelerator is a structured engagement for coaches and experts who want to turn their expertise into an online entry route — with storytelling, masterclasses, mini-products, email flows and ads working together to create buyers, clients or members.
+The Coach Accelerator is a structured engagement for coaches and experts who want to turn their expertise into an online entry route — with storytelling, masterclasses, mini-products, email flows and ads working together to create buyers, clients or members.
 
 ## Do you recognise this?
 

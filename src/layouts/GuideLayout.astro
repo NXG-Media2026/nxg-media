@@ -42,8 +42,8 @@ const seoDescription = guide.contentSchema.primaryAnswer.slice(0, 155);
 
 const clusterCtaMap: Record<string, { text: string; href: string }> = {
   'expert-growth': {
-    text: locale === 'en' ? 'Explore Expert Growth' : 'Bekijk Expert Growth',
-    href: locale === 'en' ? '/en/expert-growth-accelerator/' : '/expert-growth-accelerator/',
+    text: locale === 'en' ? 'Explore Coach Accelerator' : locale === 'es' ? 'Descubre Coach Accelerator' : 'Bekijk Coach Accelerator',
+    href: locale === 'en' ? '/en/coach-accelerator/' : locale === 'es' ? '/es/coach-accelerator/' : '/coach-accelerator/',
   },
   'ai-vindbaarheid': {
     text: locale === 'en' ? 'Run the AI visibility scan' : 'Doe de AI-vindbaarheidsscan',

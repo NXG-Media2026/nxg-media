@@ -1,6 +1,6 @@
 ---
-title: "Expert Growth Accelerator"
-pageSlug: expert-growth-accelerator
+title: "Coach Accelerator"
+pageSlug: coach-accelerator
 locale: es
 cluster: expert-growth
 brandFocus: personal
@@ -36,14 +36,14 @@ notForYouIf:
   - "Quieres hacerlo todo tú mismo y solo buscas asesoramiento"
 faq:
   - question: "¿Cuánto dura el programa?"
-    answer: "El Expert Growth Accelerator es un programa continuo. Los primeros resultados — un producto de entrada funcionando y un email-flow — suelen llegar en 4-8 semanas. El sistema completo se construye en 3-6 meses."
+    answer: "El Coach Accelerator es un programa continuo. Los primeros resultados — un producto de entrada funcionando y un email-flow — suelen llegar en 4-8 semanas. El sistema completo se construye en 3-6 meses."
   - question: "¿Cuánto cuesta?"
     answer: "La inversión depende del alcance. Lo discutimos en una conversación sin compromiso donde evaluamos qué ya tienes y qué necesitas."
   - question: "¿Tengo que trabajar yo también?"
     answer: "Sí. Tú aportas la experiencia, historias e insights de clientes. Joost construye la estructura, copy, páginas, emails y anuncios alrededor de eso."
 ---
 
-El Expert Growth Accelerator es un programa para coaches y expertos que quieren convertir su experiencia en una ruta de crecimiento online — con storytelling, masterclasses, mini-productos, flujos de email y anuncios que juntos generan compradores, clientes o miembros.
+El Coach Accelerator es un programa para coaches y expertos que quieren convertir su experiencia en una ruta de crecimiento online — con storytelling, masterclasses, mini-productos, flujos de email y anuncios que juntos generan compradores, clientes o miembros.
 
 ## ¿Te suena familiar?
 

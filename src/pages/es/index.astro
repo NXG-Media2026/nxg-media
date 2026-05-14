@@ -50,15 +50,15 @@ const trustItems = [
 const homepageFaq = [
   {
     q: '¿Cuánto cuesta trabajar con NXG Media?',
-    a: 'Depende de tu situación. Nuestros micro-productos empiezan en €6,99 si quieres empezar por tu cuenta. El Expert Growth Accelerator es un programa fijo con setup + optimización mensual. <a href="/es/contacto/">Contáctanos</a> para una conversación sin compromiso.',
+    a: 'Depende de tu situación. Nuestros micro-productos empiezan en €6,99 si quieres empezar por tu cuenta. El Coach Accelerator es un programa fijo con setup + optimización mensual. <a href="/es/contacto/">Contáctanos</a> para una conversación sin compromiso.',
   },
   {
     q: '¿Solo trabajáis con coaches?',
-    a: 'No. Trabajamos con dos áreas: Expert Growth (coaches, expertos, emprendedores del conocimiento) y Visibilidad ante IA (clínicas locales, PYMES). El enfoque es diferente, pero el principio es el mismo: construir un sistema, no campañas aisladas.',
+    a: 'No. Trabajamos con dos áreas: Coach Accelerator (coaches, expertos, emprendedores del conocimiento) y Visibilidad ante IA (clínicas locales, PYMES). El enfoque es diferente, pero el principio es el mismo: construir un sistema, no campañas aisladas.',
   },
   {
     q: '¿Qué tan rápido veré resultados?',
-    a: 'Los primeros resultados de Expert Growth suelen aparecer en 2-4 semanas (primeros leads, primeras ventas de producto). Un sistema completamente operativo toma 2-3 meses. Con Visibilidad ante IA, puedes re-escanear inmediatamente después de aplicar los kits y ver la diferencia.',
+    a: 'Los primeros resultados del Coach Accelerator suelen aparecer en 2-4 semanas (primeros leads, primeras ventas de producto). Un sistema completamente operativo toma 2-3 meses. Con Visibilidad ante IA, puedes re-escanear inmediatamente después de aplicar los kits y ver la diferencia.',
   },
   {
     q: '¿Qué hace diferente a NXG Media de una agencia de marketing normal?',
@@ -75,7 +75,7 @@ const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
 
 <BaseLayout
   title={`${siteConfig.name} — ${siteConfig.tagline.es}`}
-  description="Construye un sistema de crecimiento online alrededor de tu experiencia. Expert Growth para coaches y expertos. Visibilidad ante IA para clínicas y negocios locales."
+  description="Construye un sistema de crecimiento online alrededor de tu experiencia. Coach Accelerator para coaches y expertos. Visibilidad ante IA para clínicas y negocios locales."
   hreflang={hreflang}
   schemas={[generateOrganization(), generateWebSite(locale), generateFounderPerson(), generateFAQPage(faqForSchema)]}
   locale={locale}
@@ -115,10 +115,10 @@ const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
           </svg>
         </a>
         <a
-          href="/es/servicios/expert-growth-accelerator/"
+          href="/es/servicios/coach-accelerator/"
           class="inline-flex items-center px-8 py-4 text-base font-medium text-primary border-2 border-primary hover:bg-primary/5 transition-colors rounded-button"
         >
-          Descubre Expert Growth
+          Descubre Coach Accelerator
         </a>
       </div>
     </div>
@@ -176,12 +176,12 @@ const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div class="bg-white rounded-card p-8 border border-border hover:border-accent/30 hover:shadow-lg transition-all">
           <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full mb-4">expert-growth</span>
-          <h2 class="font-heading text-xl text-text mb-3">Expert Growth Accelerator</h2>
+          <h2 class="font-heading text-xl text-text mb-3">Coach Accelerator</h2>
           <p class="text-text-muted text-sm leading-relaxed mb-6">
             Un programa fijo para coaches y expertos que quieren convertir su experiencia en un motor de crecimiento online — con storytelling, masterclasses, micro-productos, flujos de email y anuncios que juntos generan compradores, clientes o miembros.
           </p>
-          <a href="/es/servicios/expert-growth-accelerator/" class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium text-sm">
-            Conoce Expert Growth
+          <a href="/es/servicios/coach-accelerator/" class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium text-sm">
+            Conoce Coach Accelerator
             <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
           </a>
         </div>
