@@ -14,6 +14,7 @@ import { getTestimonials } from '../../data/testimonials';
 
 import heroPhoto from '../../assets/images/founder/joost-sitting-laptop-lookingfront.webp';
 import founderPhoto from '../../assets/images/founder/joost-standing-relaxed.webp';
+import clairePhoto from '../../assets/images/logos/claire-profile-photo.png';
 
 const locale = 'es';
 const cluster = getCluster('ai-vindbaarheid')!;
@@ -248,34 +249,60 @@ const trustItems = [
     </div>
   </section>
 
-  {/* ── How it works ── */}
+  {/* ── De invisible a recomendado ── */}
   <section class="py-16 md:py-20">
     <div class="max-w-4xl mx-auto px-4 md:px-6">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">¿Cómo funciona?</h2>
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">De invisible a recomendado</h2>
       <p class="text-lg text-text-muted leading-relaxed mb-10 max-w-3xl">
-        No empezamos con promesas, sino con datos. El análisis muestra dónde estás hoy — y qué necesitas para que las herramientas de IA te recomienden.
+        Tres pasos — desde tu primer análisis hasta el momento en que las herramientas de IA empiecen a recomendar tu negocio a sus usuarios.
       </p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="bg-white rounded-card p-6 border border-border">
           <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-4">
             <span class="text-primary font-heading text-lg">1</span>
           </div>
-          <h3 class="font-heading text-lg text-text mb-2">Análisis</h3>
-          <p class="text-sm text-text-muted leading-relaxed">Recibes un informe completo sobre tu visibilidad en Google, ChatGPT, Gemini y Perplexity. Con puntos de acción concretos.</p>
+          <h3 class="font-heading text-lg text-text mb-2">Descubre tu puntuación</h3>
+          <p class="text-sm text-text-muted leading-relaxed">El análisis gratuito evalúa tu visibilidad en ChatGPT, Gemini, Perplexity y Google. Recibes una puntuación personal con mejoras aplicables de inmediato.</p>
         </div>
         <div class="bg-white rounded-card p-6 border border-border">
           <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-4">
             <span class="text-primary font-heading text-lg">2</span>
           </div>
-          <h3 class="font-heading text-lg text-text mb-2">Optimización</h3>
-          <p class="text-sm text-text-muted leading-relaxed">Basado en el análisis ajustamos tu web, datos estructurados, contenido citable y señales locales — para que la IA te reconozca.</p>
+          <h3 class="font-heading text-lg text-text mb-2">Sé recomendado</h3>
+          <p class="text-sm text-text-muted leading-relaxed">Basándonos en tus resultados optimizamos tu presencia online — para que las herramientas de IA mencionen tu negocio cuando alguien busque tu especialidad.</p>
         </div>
         <div class="bg-white rounded-card p-6 border border-border">
           <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-4">
             <span class="text-primary font-heading text-lg">3</span>
           </div>
-          <h3 class="font-heading text-lg text-text mb-2">Monitoreo</h3>
-          <p class="text-sm text-text-muted leading-relaxed">Los modelos de IA se actualizan continuamente. Monitoreamos tu posición y ajustamos donde sea necesario — para que sigas visible.</p>
+          <h3 class="font-heading text-lg text-text mb-2">Más clientes, menos publicidad</h3>
+          <p class="text-sm text-text-muted leading-relaxed">Tus clientes te encuentran automáticamente a través de recomendaciones de IA — sin coste publicitario. Como Claire: +25% más clientes, menos dependencia de publicidad pagada.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Resultados ── */}
+  <section class="py-16 md:py-20 bg-primary">
+    <div class="max-w-4xl mx-auto px-4 md:px-6 text-center">
+      <h2 class="font-heading text-2xl md:text-3xl text-white mb-10">
+        Resultados que importan
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white/10 backdrop-blur rounded-card p-6 border border-white/20">
+          <div class="font-heading text-3xl md:text-4xl text-accent mb-2">+25%</div>
+          <p class="font-medium text-white mb-1">Más clientes</p>
+          <p class="text-sm text-white/70">Sin presupuesto publicitario extra — únicamente a través de recomendaciones de IA.</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-card p-6 border border-white/20">
+          <div class="font-heading text-3xl md:text-4xl text-accent mb-2">24/7</div>
+          <p class="font-medium text-white mb-1">Visible</p>
+          <p class="text-sm text-white/70">Las herramientas de IA trabajan día y noche. Cada consulta es una oportunidad para ser recomendado.</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-card p-6 border border-white/20">
+          <div class="font-heading text-3xl md:text-4xl text-accent mb-2">€0</div>
+          <p class="font-medium text-white mb-1">Costes publicitarios</p>
+          <p class="text-sm text-white/70">Las recomendaciones de IA son tráfico gratuito. Sin presupuesto de clics, sin campañas.</p>
         </div>
       </div>
     </div>
@@ -287,18 +314,17 @@ const trustItems = [
       <div class="max-w-3xl mx-auto px-4 md:px-6">
         <div class="bg-white rounded-card p-8 md:p-10 border border-border">
           <div class="flex items-center gap-4 mb-6">
-            {claireTestimonial.photo && (
-              <div class="w-14 h-14 rounded-full overflow-hidden bg-bg-alt shrink-0">
-                <img
-                  src={`/images/testimonials/${claireTestimonial.photo}`}
-                  alt={claireTestimonial.name}
-                  width="56"
-                  height="56"
-                  class="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-            )}
+            <div class="w-14 h-14 rounded-full overflow-hidden bg-bg-alt shrink-0">
+              <Image
+                src={clairePhoto}
+                alt={claireTestimonial.name}
+                width={56}
+                height={56}
+                class="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
             <div>
               <p class="font-medium text-text">{claireTestimonial.name}</p>
               {claireTestimonial.outcome && (

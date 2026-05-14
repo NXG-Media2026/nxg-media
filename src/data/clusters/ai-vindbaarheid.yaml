@@ -106,13 +106,21 @@ hubFaq:
       en: "AI visibility is the extent to which your business is mentioned or recommended by AI tools such as ChatGPT, Perplexity and Gemini when people search for help, services or specialists."
       es: "La visibilidad ante IA es el grado en que tu clínica o negocio aparece mencionado o recomendado por herramientas como ChatGPT, Perplexity y Gemini cuando alguien busca ayuda, servicios o especialistas."
   - question:
-      nl: "Is AI-vindbaarheid al bewezen?"
-      en: "Is AI visibility proven already?"
-      es: "¿La visibilidad ante IA ya está probada?"
+      nl: "Hoe snel zie ik resultaat?"
+      en: "How quickly will I see results?"
+      es: "¿Qué tan rápido veré resultados?"
     answer:
-      nl: "AI-vindbaarheid is een nieuw speelveld, daarom starten we met een praktische scan en audit in plaats van grote garanties. De scan laat zien waar je nu staat en welke verbeteringen logisch zijn."
-      en: "AI visibility is a new playing field, which is why we start with a practical scan and audit instead of big guarantees. The audit shows where you stand today and which improvements make sense."
-      es: "La visibilidad ante IA es un terreno nuevo, por eso empezamos con una auditoría práctica en lugar de grandes garantías. El análisis muestra dónde estás hoy y qué mejoras tienen sentido."
+      nl: "AI-modellen worden veel sneller bijgewerkt dan Google. Na optimalisatie zien de meeste bedrijven binnen 2 tot 6 weken veranderingen in hoe ze door AI-tools worden genoemd. Bij Google duurt SEO-resultaat gemiddeld 6 tot 12 maanden."
+      en: "AI models update much faster than Google. After optimisation most businesses see changes in how AI tools mention them within 2 to 6 weeks. With Google, SEO results typically take 6 to 12 months."
+      es: "Los modelos de IA se actualizan mucho más rápido que Google. Tras la optimización, la mayoría de negocios ven cambios en cómo las herramientas de IA los mencionan en 2 a 6 semanas. Con Google, los resultados SEO suelen tardar de 6 a 12 meses."
+  - question:
+      nl: "Moet ik een nieuwe website laten bouwen?"
+      en: "Do I need a new website?"
+      es: "¿Necesito un nuevo sitio web?"
+    answer:
+      nl: "AI-vindbaarheid draait om de juiste structuur, content en signalen — niet om een compleet nieuw design. Bij de meeste bedrijven optimaliseren we de bestaande website. Alleen als de technische basis echt te zwak is (geen SSL, geen mobiel-vriendelijke layout, geen mogelijkheden voor structured data), adviseren we een upgrade."
+      en: "AI visibility is about the right structure, content and signals — not a completely new design. For most businesses we optimise the existing website. Only when the technical foundation is truly too weak (no SSL, no mobile-friendly layout, no structured data capabilities) do we recommend an upgrade."
+      es: "La visibilidad ante IA se trata de la estructura, contenido y señales correctas — no de un diseño completamente nuevo. En la mayoría de negocios optimizamos el sitio web existente. Solo cuando la base técnica es realmente muy débil (sin SSL, sin diseño móvil, sin capacidad para datos estructurados) recomendamos una actualización."
   - question:
       nl: "Voor wie is de AI-vindbaarheidsscan?"
       en: "Who is the AI visibility scan for?"
@@ -121,3 +129,19 @@ hubFaq:
       nl: "De AI-vindbaarheidsscan is voor lokale bedrijven, klinieken, praktijken en MKB-bedrijven die willen weten hoe zichtbaar ze zijn in Google, ChatGPT, Perplexity en Gemini."
       en: "The AI visibility scan is for local businesses, clinics, practices and service providers that want to know how visible they are in Google, ChatGPT, Perplexity and Gemini."
       es: "El análisis de visibilidad ante IA es para clínicas, consultas y negocios locales que quieren saber cómo aparecen en Google, ChatGPT, Perplexity y Gemini."
+  - question:
+      nl: "Werkt dit ook als ik al aan SEO doe?"
+      en: "Does this work if I already do SEO?"
+      es: "¿Funciona si ya hago SEO?"
+    answer:
+      nl: "AI-vindbaarheid en SEO versterken elkaar, maar het zijn verschillende disciplines. Een goede Google-ranking helpt, maar AI-tools kijken naar andere signalen: citeerbaarheid, contextuele autoriteit en gestructureerde data. De scan laat zien welke AI-specifieke verbeterpunten er zijn — ongeacht je huidige Google-positie."
+      en: "AI visibility and SEO complement each other, but they are different disciplines. A strong Google ranking helps, but AI tools look at different signals: citability, contextual authority and structured data. The scan reveals which AI-specific improvements are needed — regardless of your current Google position."
+      es: "La visibilidad ante IA y el SEO se complementan, pero son disciplinas diferentes. Un buen posicionamiento en Google ayuda, pero las herramientas de IA buscan señales distintas: citabilidad, autoridad contextual y datos estructurados. El análisis revela qué mejoras específicas para IA se necesitan — independientemente de tu posición actual en Google."
+  - question:
+      nl: "Wat kost AI-vindbaarheid?"
+      en: "What does AI visibility cost?"
+      es: "¿Cuánto cuesta la visibilidad ante IA?"
+    answer:
+      nl: "De gratis scan geeft direct inzicht in je huidige AI-zichtbaarheid. Op basis van je scanresultaat adviseren we een traject dat past bij je situatie — van eenmalige optimalisatie tot doorlopende monitoring. Neem contact op voor een vrijblijvend adviesgesprek."
+      en: "The free scan gives immediate insight into your current AI visibility. Based on your scan results we recommend an approach that fits your situation — from one-time optimisation to ongoing monitoring. Get in touch for a no-obligation consultation."
+      es: "El análisis gratuito ofrece una visión inmediata de tu visibilidad actual ante IA. Según tus resultados, recomendamos un enfoque que se adapte a tu situación — desde una optimización única hasta monitoreo continuo. Contáctanos para una consulta sin compromiso."

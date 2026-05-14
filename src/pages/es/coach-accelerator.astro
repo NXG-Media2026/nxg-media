@@ -1,21 +1,597 @@
 ---
-import ClusterHubLayout from '../../layouts/ClusterHubLayout.astro';
-import CTABand from '../../components/CTABand.astro';
-import { getCluster } from '../../lib/clusters';
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BreadcrumbNav from '../../components/BreadcrumbNav.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+import LogoMarquee from '../../components/LogoMarquee.astro';
+import { siteConfig } from '../../data/site';
+import { generateBreadcrumbs, generateFAQPage } from '../../data/schema';
+import { getCluster, getClusterFaqLocalized } from '../../lib/clusters';
 
-const cluster = getCluster('expert-growth')!;
+import heroPhoto from '../../assets/images/founder/joost-standing-workinglaptop.webp';
+import founderPhoto from '../../assets/images/founder/joost-standing-relaxed.webp';
+
+import josineScreenshot from '../../assets/images/cases/eetgids-coachjosine-product-proof.webp';
+import tessaScreenshot from '../../assets/images/cases/tessa-youlife-meta-ads-proof.webp';
+import hwyScreenshot from '../../assets/images/cases/autenthicoffers-lander-happywithyoga-funnel-proof.webp';
+
+import claireWhatsApp from '../../assets/images/cases/ikrouwvanje-claire-whatsapp-proof.webp';
+import tessaWhatsApp from '../../assets/images/cases/tessa-youlife-whatsapp-proof.webp';
+import rolfWhatsApp from '../../assets/images/cases/rolf-happywithyoga-whatsapp-proof.webp';
+
 const locale = 'es';
+const cluster = getCluster('expert-growth')!;
+const faqItems = getClusterFaqLocalized(cluster, locale);
+const faqForComponent = faqItems.map((item) => ({ q: item.question, a: item.answer }));
+
+const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
+const logos = Object.entries(logoFiles)
+  .filter(([path]) => /logo/i.test(path.split('/').pop()!))
+  .map(([path, mod]) => {
+    const filename = path.split('/').pop()!.replace(/\.(webp|avif|png|jpg)$/, '');
+    const name = filename.replace(/[-_]?logo[-_]?/gi, '').replace(/[-_]/g, ' ').trim();
+    return { src: mod.default, alt: name };
+  });
+
+const breadcrumbs = [
+  { label: 'Inicio', href: '/es/' },
+  { label: 'Coach Accelerator' },
+];
 ---
 
-<ClusterHubLayout cluster={cluster} locale={locale}>
-  <CTABand
-    title="Habla sobre tu ruta de crecimiento"
-    subtitle="Reserva una llamada sin compromiso con Joost."
-    ctaText="Reservar una llamada"
-    ctaHref="/es/servicios/coach-accelerator/"
-    eventName="expert_growth_calendly_open"
-    locale={locale}
-    pageType="cluster_hub"
-    pageSlug="coach-accelerator"
-  />
-</ClusterHubLayout>
+<BaseLayout
+  title="Coach Accelerator — Crecimiento predecible para coaches y expertos | NXG Media"
+  description="De referidos a un sistema que trabaja por ti. Mini-productos, emails automatizados, publicidad y visibilidad IA — construido como una sola maquina que genera leads y clientes."
+  schemas={[generateBreadcrumbs(breadcrumbs.map((b) => ({ name: b.label, url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}/es/coach-accelerator/` }))), generateFAQPage(faqItems)]}
+  locale={locale}
+>
+  <BreadcrumbNav items={breadcrumbs} />
+
+  {/* ── Hero ── */}
+  <section class="relative py-20 md:py-28 lg:py-36 overflow-hidden">
+    <div class="absolute inset-0">
+      <Image
+        src={heroPhoto}
+        alt="Joost van Putten — estratega de crecimiento online para coaches y expertos"
+        widths={[800, 1200, 1600]}
+        sizes="100vw"
+        class="w-full h-full object-cover"
+        loading="eager"
+        decoding="async"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/40"></div>
+    </div>
+    <div class="relative max-w-4xl mx-auto px-4 md:px-6">
+      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl text-text mb-6 leading-tight max-w-2xl">
+        Conversaciones con clientes cada mes — sin depender de referidos
+      </h1>
+      <p class="text-lg md:text-xl text-text-muted leading-relaxed mb-10 max-w-xl">
+        La mayoria de coaches no saben de donde vendra su proximo cliente. Un mes todo va bien, al siguiente hay silencio. Con un sistema que trabaja por ti, dejas de adivinar.
+      </p>
+      <div class="flex flex-col sm:flex-row items-start gap-4">
+        <a
+          href="/es/servicios/coach-accelerator/"
+          class="inline-flex items-center px-8 py-4 text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-lg"
+        >
+          Descubre como funciona
+          <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+        <a
+          href="/es/contacto/"
+          class="inline-flex items-center px-8 py-4 text-base font-medium text-primary border-2 border-primary hover:bg-primary/5 transition-colors rounded-button"
+        >
+          Agenda una llamada
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Proof Stats ── */}
+  <section class="bg-bg-alt border-y border-border">
+    <div class="max-w-4xl mx-auto px-4 md:px-6 py-8 md:py-10">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div>
+          <div class="font-heading text-2xl md:text-3xl text-primary">600x</div>
+          <p class="text-xs text-text-muted mt-1">guias vendidas en semana 1</p>
+        </div>
+        <div>
+          <div class="font-heading text-2xl md:text-3xl text-primary">€10k/mes</div>
+          <p class="text-xs text-text-muted mt-1">ingresos por productos online</p>
+        </div>
+        <div>
+          <div class="font-heading text-2xl md:text-3xl text-primary">2.000</div>
+          <p class="text-xs text-text-muted mt-1">miembros de pago en plataforma</p>
+        </div>
+        <div>
+          <div class="font-heading text-2xl md:text-3xl text-primary">7.2x</div>
+          <p class="text-xs text-text-muted mt-1">ROAS en publicidad</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Pain Recognition ── */}
+  <section class="py-16 md:py-20 bg-primary">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-white mb-8">Asi se siente ahora mismo</h2>
+      <div class="space-y-5">
+        <div class="flex items-start gap-4">
+          <span class="text-2xl shrink-0" aria-hidden="true">😓</span>
+          <p class="text-white/80 leading-relaxed">Dependes de referidos y el boca a boca. Funciona... hasta que deja de funcionar.</p>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="text-2xl shrink-0" aria-hidden="true">🤷</span>
+          <p class="text-white/80 leading-relaxed">Sabes que "deberias hacer algo de marketing" pero nunca encuentras el momento.</p>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="text-2xl shrink-0" aria-hidden="true">⏰</span>
+          <p class="text-white/80 leading-relaxed">El trabajo con clientes siempre va primero. Y cuando todo se calma, ya es tarde para empezar.</p>
+        </div>
+        <div class="flex items-start gap-4">
+          <span class="text-2xl shrink-0" aria-hidden="true">😴</span>
+          <p class="text-white/80 leading-relaxed">Por las noches te preguntas: de donde vendra la facturacion del proximo mes?</p>
+        </div>
+      </div>
+      <p class="text-white font-medium mt-8 text-lg">
+        No eres mal emprendedor. Solo te falta un sistema que trabaje por ti, incluso cuando estas ocupado con clientes.
+      </p>
+    </div>
+  </section>
+
+  {/* ── Old Approach ── */}
+  <section class="py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-10">El enfoque antiguo ya no funciona</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-card p-6 border border-border">
+          <div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center mb-4">
+            <span class="text-red-400 text-lg">✗</span>
+          </div>
+          <h3 class="font-heading text-lg text-text mb-2">E-books y descargas gratis</h3>
+          <p class="text-sm text-text-muted leading-relaxed">Compartes tus mejores consejos en un PDF. De 100 descargas, quiza 1 se convierte en cliente. Del resto nunca vuelves a saber.</p>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center mb-4">
+            <span class="text-red-400 text-lg">✗</span>
+          </div>
+          <h3 class="font-heading text-lg text-text mb-2">"Reserva una llamada gratis"</h3>
+          <p class="text-sm text-text-muted leading-relaxed">Llegan personas que quieren "consultarte algo rapido", no tienen presupuesto, o directamente no aparecen.</p>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center mb-4">
+            <span class="text-red-400 text-lg">✗</span>
+          </div>
+          <h3 class="font-heading text-lg text-text mb-2">Esperar referidos</h3>
+          <p class="text-sm text-text-muted leading-relaxed">Funciona... hasta que se detiene. No tienes control sobre cuando llega el proximo cliente.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── The System ── */}
+  <section class="py-16 md:py-20 bg-bg-alt">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <div class="max-w-3xl">
+        <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">
+          Una ruta del clic al cliente
+        </h2>
+        <p class="text-lg text-text-muted leading-relaxed mb-8">
+          Sin campanas sueltas. Sin "mas visibilidad." Un sistema donde contenido, productos, emails y publicidad trabajan juntos como un solo camino — del primer clic al cliente que paga.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-card p-6 border border-border">
+          <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="font-heading text-lg text-text mb-2">Producto de entrada que se paga solo</h3>
+          <p class="text-sm text-text-muted leading-relaxed">Tu primer producto online — una guia, mini-curso o masterclass — cubre tus costes publicitarios desde el dia 1. Sin esperar meses para ver resultados.</p>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+            </svg>
+          </div>
+          <h3 class="font-heading text-lg text-text mb-2">Leads que se califican solos</h3>
+          <p class="text-sm text-text-muted leading-relaxed">Los visitantes recorren una ruta interactiva y muestran lo que necesitan. Solo hablas con personas que ya saben por que quieren trabajar contigo.</p>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <h3 class="font-heading text-lg text-text mb-2">Seguimiento que genera confianza</h3>
+          <p class="text-sm text-text-muted leading-relaxed">Despues de registrarse, los leads reciben una serie de emails personales. Cuando ven tu programa, ya no necesitas convencerlos.</p>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center mb-4">
+            <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+            </svg>
+          </div>
+          <h3 class="font-heading text-lg text-text mb-2">Crecimiento predecible, sin altibajos</h3>
+          <p class="text-sm text-text-muted leading-relaxed">Contenido, productos, emails y publicidad forman un solo camino. Esa es la diferencia entre "mas visibilidad" y crecimiento predecible.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Mid CTA ── */}
+  <section class="py-16 md:py-20 bg-accent">
+    <div class="max-w-4xl mx-auto px-4 md:px-6 text-center">
+      <h2 class="font-heading text-3xl md:text-4xl text-white mb-4">
+        Quieres saber si encaja con tu fase?
+      </h2>
+      <p class="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+        En 30 minutos miramos donde estas y cual es el siguiente paso logico. Sin discurso de ventas.
+      </p>
+      <a
+        href="/es/contacto/"
+        class="inline-flex items-center px-8 py-4 text-base font-medium bg-white text-accent hover:bg-bg-alt transition-colors rounded-button"
+      >
+        Agenda una llamada
+        <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  {/* ── Timeline ── */}
+  <section class="py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">Tres fases hacia el crecimiento predecible</h2>
+      <p class="text-lg text-text-muted leading-relaxed mb-12 max-w-3xl">
+        No todo a la vez. Cada fase se construye sobre la anterior — para que solo inviertas en lo que esta demostrado que funciona.
+      </p>
+
+      <div class="relative">
+        <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-border -translate-x-1/2"></div>
+
+        <div class="space-y-8 md:space-y-12">
+          {/* Phase 1 */}
+          <div class="relative md:grid md:grid-cols-2 md:gap-12 items-start">
+            <div class="md:text-right md:pr-8">
+              <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full mb-3">
+                Mes 1–3
+              </span>
+              <h3 class="font-heading text-xl text-text mb-2">Construir los cimientos</h3>
+            </div>
+            <div class="md:pl-8 mt-3 md:mt-0">
+              <div class="bg-white rounded-card p-5 border border-border">
+                <ul class="space-y-2 text-sm text-text-muted">
+                  <li class="flex items-start gap-2"><span class="text-accent mt-0.5">→</span> Afinar posicionamiento — de generalista a especialista</li>
+                  <li class="flex items-start gap-2"><span class="text-accent mt-0.5">→</span> Lanzar primer producto o masterclass</li>
+                  <li class="flex items-start gap-2"><span class="text-accent mt-0.5">→</span> Secuencia de emails tras el registro — seguimiento automatico</li>
+                  <li class="flex items-start gap-2"><span class="text-accent mt-0.5">→</span> Primera prueba de publicidad — medir que mensaje funciona</li>
+                </ul>
+                <p class="text-xs text-accent font-medium mt-4">Objetivo: primeros clientes de pago a traves del nuevo sistema</p>
+              </div>
+            </div>
+            <div class="hidden md:flex absolute left-1/2 top-3 -translate-x-1/2 w-8 h-8 rounded-full bg-primary text-white items-center justify-center text-sm font-heading">1</div>
+          </div>
+
+          {/* Phase 2 */}
+          <div class="relative md:grid md:grid-cols-2 md:gap-12 items-start">
+            <div class="md:text-right md:pr-8">
+              <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full mb-3">
+                Mes 3–6
+              </span>
+              <h3 class="font-heading text-xl text-text mb-2">Crecer y escalar</h3>
+            </div>
+            <div class="md:pl-8 mt-3 md:mt-0">
+              <div class="bg-white rounded-card p-5 border border-border">
+                <ul class="space-y-2 text-sm text-text-muted">
+                  <li class="flex items-start gap-2"><span class="text-accent mt-0.5">→</span> Mas productos y ventas adicionales — mayor valor por pedido</li>
+                  <li class="flex items-start gap-2"><span class="text-accent mt-0.5">→</span> Optimizar publicidad con mensajes que ya funcionan</li>
+                  <li class="flex items-start gap-2"><span class="text-accent mt-0.5">→</span> Convertir compradores de productos en clientes de coaching o programas</li>
+                </ul>
+                <p class="text-xs text-accent font-medium mt-4">Objetivo: flujo predecible de leads e ingresos escalables</p>
+              </div>
+            </div>
+            <div class="hidden md:flex absolute left-1/2 top-3 -translate-x-1/2 w-8 h-8 rounded-full bg-accent text-white items-center justify-center text-sm font-heading">2</div>
+          </div>
+
+          {/* Phase 3 */}
+          <div class="relative md:grid md:grid-cols-2 md:gap-12 items-start">
+            <div class="md:text-right md:pr-8">
+              <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full mb-3">
+                Mes 6+
+              </span>
+              <h3 class="font-heading text-xl text-text mb-2">Autoridad y ventaja competitiva</h3>
+            </div>
+            <div class="md:pl-8 mt-3 md:mt-0">
+              <div class="bg-white rounded-card p-5 border border-border">
+                <ul class="space-y-2 text-sm text-text-muted">
+                  <li class="flex items-start gap-2"><span class="text-accent mt-0.5">→</span> Plataforma o comunidad — ingresos recurrentes</li>
+                  <li class="flex items-start gap-2"><span class="text-accent mt-0.5">→</span> Visibilidad IA — aparecer en ChatGPT y Gemini</li>
+                  <li class="flex items-start gap-2"><span class="text-accent mt-0.5">→</span> Autoridad en tu sector que la competencia ya no puede alcanzar</li>
+                </ul>
+                <p class="text-xs text-accent font-medium mt-4">Objetivo: lider en tu nicho — online y offline</p>
+              </div>
+            </div>
+            <div class="hidden md:flex absolute left-1/2 top-3 -translate-x-1/2 w-8 h-8 rounded-full bg-primary text-white items-center justify-center text-sm font-heading">3</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Social Proof — WhatsApp ── */}
+  <section class="py-16 md:py-20 bg-primary">
+    <div class="max-w-4xl mx-auto px-4 md:px-6 text-center">
+      <h2 class="font-heading text-2xl md:text-3xl text-white mb-10">
+        Resultados de clientes actuales
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white/10 backdrop-blur rounded-card overflow-hidden border border-white/20">
+          <div class="aspect-[3/4] overflow-hidden">
+            <Image
+              src={claireWhatsApp}
+              alt="Mensaje de WhatsApp de Claire — dia record con 26 pedidos"
+              widths={[300, 400]}
+              sizes="(max-width: 768px) 100vw, 33vw"
+              class="w-full h-full object-cover object-top"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="p-4">
+            <p class="font-medium text-white">Claire — ikrouwvanje.nl</p>
+            <p class="text-sm text-white/70">+25% mas clientes</p>
+          </div>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-card overflow-hidden border border-white/20">
+          <div class="aspect-[3/4] overflow-hidden">
+            <Image
+              src={tessaWhatsApp}
+              alt="Mensaje de WhatsApp de Tessa — 7.2x ROAS en campanas"
+              widths={[300, 400]}
+              sizes="(max-width: 768px) 100vw, 33vw"
+              class="w-full h-full object-cover object-top"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="p-4">
+            <p class="font-medium text-white">Tessa — Youlife</p>
+            <p class="text-sm text-white/70">7.2x ROAS en publicidad</p>
+          </div>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-card overflow-hidden border border-white/20">
+          <div class="aspect-[3/4] overflow-hidden">
+            <Image
+              src={rolfWhatsApp}
+              alt="Mensaje de WhatsApp de Rolf — resultados Happy With Yoga"
+              widths={[300, 400]}
+              sizes="(max-width: 768px) 100vw, 33vw"
+              class="w-full h-full object-cover object-top"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="p-4">
+            <p class="font-medium text-white">Rolf — Happy With Yoga</p>
+            <p class="text-sm text-white/70">2.000 miembros de pago</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Cases ── */}
+  <section class="py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">
+        Tres clientes, tres fases en la misma curva de crecimiento
+      </h2>
+      <p class="text-lg text-text-muted leading-relaxed mb-10 max-w-3xl">
+        Nichos diferentes, mismo principio: convertir experiencia en productos, publicidad e ingresos recurrentes. Solo estan en puntos diferentes de la curva.
+      </p>
+
+      <div class="space-y-6">
+        {/* Josine */}
+        <div class="bg-white rounded-card border border-border overflow-hidden hover:shadow-lg transition-shadow">
+          <div class="md:grid md:grid-cols-[280px_1fr]">
+            <div class="aspect-[4/3] md:aspect-auto overflow-hidden bg-bg-alt">
+              <Image
+                src={josineScreenshot}
+                alt="Coach Josine — pagina de producto Guia Eetstijd"
+                widths={[280, 400]}
+                sizes="(max-width: 768px) 100vw, 280px"
+                class="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="inline-flex items-center px-2.5 py-0.5 text-xs font-medium bg-primary/10 text-primary rounded-full">Primera traccion</span>
+                <span class="text-xs text-text-muted">Desde oct 2025</span>
+              </div>
+              <h3 class="font-heading text-lg text-text mb-2">Coach Josine — 600x guias vendidas en semana 1</h3>
+              <p class="text-sm text-text-muted leading-relaxed mb-4">
+                La experiencia y el publico ya existian. Lo que faltaba: un producto digital y una estructura de lanzamiento. En 7 semanas: guia en vivo, 80 inscripciones a masterclass, primeros clientes recurrentes.
+              </p>
+              <div class="flex flex-wrap gap-3">
+                <span class="inline-flex items-center px-3 py-1 text-xs bg-bg-alt rounded-full"><strong class="text-accent mr-1">600x</strong> guias vendidas</span>
+                <span class="inline-flex items-center px-3 py-1 text-xs bg-bg-alt rounded-full"><strong class="text-accent mr-1">80</strong> inscripciones masterclass</span>
+              </div>
+              <a href="/es/casos/coach-josine/" class="inline-flex items-center text-accent hover:text-accent-dark transition-colors text-sm font-medium mt-4">
+                Leer el caso
+                <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Tessa */}
+        <div class="bg-white rounded-card border border-border overflow-hidden hover:shadow-lg transition-shadow">
+          <div class="md:grid md:grid-cols-[280px_1fr]">
+            <div class="aspect-[4/3] md:aspect-auto overflow-hidden bg-bg-alt">
+              <Image
+                src={tessaScreenshot}
+                alt="Tessa / Youlife — resultados Meta Ads"
+                widths={[280, 400]}
+                sizes="(max-width: 768px) 100vw, 280px"
+                class="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="inline-flex items-center px-2.5 py-0.5 text-xs font-medium bg-accent/10 text-accent rounded-full">Crecimiento de productos</span>
+                <span class="text-xs text-text-muted">Desde feb 2025</span>
+              </div>
+              <h3 class="font-heading text-lg text-text mb-2">Tessa / Youlife — De cero a €10k/mes con mini-productos</h3>
+              <p class="text-sm text-text-muted leading-relaxed mb-4">
+                Sin productos online, sin lista de email, sin publicidad. En 15 meses: 6 productos lanzados, ventas adicionales, y una media de 10 clientes de coaching al mes desde leads de productos.
+              </p>
+              <div class="flex flex-wrap gap-3">
+                <span class="inline-flex items-center px-3 py-1 text-xs bg-bg-alt rounded-full"><strong class="text-accent mr-1">±€10k/mes</strong> ingresos productos</span>
+                <span class="inline-flex items-center px-3 py-1 text-xs bg-bg-alt rounded-full"><strong class="text-accent mr-1">6</strong> productos</span>
+                <span class="inline-flex items-center px-3 py-1 text-xs bg-bg-alt rounded-full"><strong class="text-accent mr-1">±10/mes</strong> coaching</span>
+              </div>
+              <a href="/es/casos/tessa-youlife/" class="inline-flex items-center text-accent hover:text-accent-dark transition-colors text-sm font-medium mt-4">
+                Leer el caso
+                <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Happy With Yoga */}
+        <div class="bg-white rounded-card border border-border overflow-hidden hover:shadow-lg transition-shadow">
+          <div class="md:grid md:grid-cols-[280px_1fr]">
+            <div class="aspect-[4/3] md:aspect-auto overflow-hidden bg-bg-alt">
+              <Image
+                src={hwyScreenshot}
+                alt="Happy With Yoga — landing page Authentic Offers"
+                widths={[280, 400]}
+                sizes="(max-width: 768px) 100vw, 280px"
+                class="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="inline-flex items-center px-2.5 py-0.5 text-xs font-medium bg-primary/10 text-primary rounded-full">Plataforma madura</span>
+                <span class="text-xs text-text-muted">Desde 2022</span>
+              </div>
+              <h3 class="font-heading text-lg text-text mb-2">Happy With Yoga — De blog a 2.000 miembros de pago</h3>
+              <p class="text-sm text-text-muted leading-relaxed mb-4">
+                Gran alcance pero sin sistema de conversion. Ahora: quiz-funnel, webinars, mini-curso de Chakra como entrada de pago, y una plataforma con 2.000 miembros de pago e ingresos recurrentes.
+              </p>
+              <div class="flex flex-wrap gap-3">
+                <span class="inline-flex items-center px-3 py-1 text-xs bg-bg-alt rounded-full"><strong class="text-accent mr-1">30.000+</strong> leads de webinar</span>
+                <span class="inline-flex items-center px-3 py-1 text-xs bg-bg-alt rounded-full"><strong class="text-accent mr-1">1.700+</strong> mini-curso vendido</span>
+                <span class="inline-flex items-center px-3 py-1 text-xs bg-bg-alt rounded-full"><strong class="text-accent mr-1">2.000</strong> miembros de pago</span>
+              </div>
+              <a href="/es/casos/happy-with-yoga/" class="inline-flex items-center text-accent hover:text-accent-dark transition-colors text-sm font-medium mt-4">
+                Leer el caso
+                <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Founder ── */}
+  <section class="py-16 md:py-20 bg-bg-alt">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-10 md:gap-14 items-center">
+        <div class="flex justify-center md:justify-start">
+          <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden shadow-lg ring-4 ring-white shrink-0">
+            <Image
+              src={founderPhoto}
+              alt="Joost van Putten — Fundador NXG Media"
+              widths={[224, 320]}
+              sizes="(max-width: 768px) 192px, 224px"
+              class="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+        <div>
+          <div class="w-12 h-1 bg-accent rounded-full mb-4"></div>
+          <h2 class="font-heading text-2xl md:text-3xl text-text mb-1">Joost van Putten</h2>
+          <p class="text-sm text-text-muted mb-4">Fundador y Estratega de Crecimiento Online</p>
+          <p class="text-text-muted leading-relaxed mb-6">
+            Mas de 7 anos de experiencia construyendo sistemas de crecimiento online para coaches y expertos. Mas de 5 millones de euros en presupuesto publicitario gestionado. Desde quiz-funnels y mini-productos hasta plataformas completas — construyo sistemas que convierten experiencia en crecimiento predecible.
+          </p>
+          <a
+            href="/es/sobre-joost/"
+            class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium"
+          >
+            Mas sobre Joost
+            <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Logo Marquee ── */}
+  {logos.length > 0 && (
+    <LogoMarquee
+      logos={logos}
+      label="Confianza de coaches, expertos y empresas"
+      speed={35}
+    />
+  )}
+
+  {/* ── FAQ ── */}
+  {faqForComponent.length > 0 && (
+    <div class="bg-bg-alt">
+      <FAQAccordion
+        title="Preguntas frecuentes sobre el Coach Accelerator"
+        items={faqForComponent}
+        locale={locale}
+        pageType="cluster_hub"
+        pageSlug="coach-accelerator"
+      />
+    </div>
+  )}
+
+  {/* ── Final CTA ── */}
+  <section class="py-16 md:py-20 bg-primary">
+    <div class="max-w-4xl mx-auto px-4 md:px-6 text-center">
+      <h2 class="font-heading text-3xl md:text-4xl text-white mb-4">
+        Listo para un crecimiento predecible?
+      </h2>
+      <p class="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+        En 30 minutos miramos donde estas, cual es el siguiente paso logico y si encajamos. Sin discurso de ventas — solo una conversacion honesta.
+      </p>
+      <a
+        href="/es/contacto/"
+        class="inline-flex items-center px-8 py-4 text-base font-medium bg-accent hover:bg-accent-dark text-white transition-all duration-300 rounded-button shadow-lg shadow-accent/25 hover:shadow-xl"
+      >
+        Agenda una llamada
+        <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </section>
+
+</BaseLayout>

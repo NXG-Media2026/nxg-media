@@ -6,33 +6,41 @@ heroImage: "clusters/expert-growth-hero.webp"
 locales:
   - nl
   - en
+  - es
 brandFocus: personal
 citableDefinition:
   nl: >
     De Coach Accelerator is een compleet groeisysteem voor coaches
-    en experts — van een snelle, AI-vindbare website tot storytelling,
-    mini-producten, emailflows en ads. Alles werkt samen als één
-    machine die zichtbaarheid, leads en klanten oplevert. AI-vindbaarheid
-    is geen extra, het is het fundament.
+    en experts — van positionering en mini-producten tot emailflows
+    en ads. Alles werkt samen als één machine die expertise omzet
+    in voorspelbare leads, kopers en klanten.
   en: >
     The Coach Accelerator is a complete growth system for coaches
-    and experts — from a fast, AI-visible website to storytelling,
-    micro-products, email flows and ads. Everything works together as
-    one machine that delivers visibility, leads and clients. AI visibility
-    isn't an add-on, it's the foundation.
+    and experts — from positioning and micro-products to email flows
+    and ads. Everything works together as one machine that turns
+    expertise into predictable leads, buyers and clients.
+  es: >
+    El Coach Accelerator es un sistema de crecimiento completo para
+    coaches y expertos — desde posicionamiento y mini-productos hasta
+    emails automatizados y publicidad. Todo funciona como una sola
+    máquina que convierte experiencia en leads, compradores y clientes
+    de forma predecible.
 hubIntro:
   nl: >
-    Veel coaches en experts hebben de kennis al binnen. Wat ontbreekt
-    is een systeem dat die kennis omzet in voorspelbare leads,
-    productverkoop en coaching-aanvragen — gebouwd op een snelle website
-    die niet alleen converteert, maar ook vindbaar is in ChatGPT,
-    Gemini en Perplexity. Hier laat ik zien hoe ik dat bouw.
+    De meeste coaches hebben de expertise al. Wat ontbreekt is een
+    systeem dat die expertise omzet in voorspelbare klantgesprekken,
+    productverkoop en coaching-aanvragen — zonder te leven van referrals
+    of te hopen dat de volgende klant vanzelf komt.
   en: >
-    Many coaches and experts already have the expertise. What is often
-    missing is a system that turns that expertise into predictable leads,
-    product sales and coaching enquiries — built on a fast website that
-    not only converts, but is also visible in ChatGPT, Gemini and
-    Perplexity. This hub shows how I build that system.
+    Most coaches already have the expertise. What's missing is a
+    system that turns that expertise into predictable client conversations,
+    product sales and coaching enquiries — without relying on referrals
+    or hoping the next client shows up on their own.
+  es: >
+    La mayoría de coaches ya tienen la experiencia. Lo que falta es un
+    sistema que convierta esa experiencia en conversaciones predecibles
+    con clientes, ventas de productos y solicitudes de coaching — sin
+    depender de referidos o esperar que el próximo cliente aparezca solo.
 featuredCases:
   - cases/coach-josine
   - cases/tessa-youlife
@@ -89,18 +97,56 @@ hubFaq:
   - question:
       nl: "Voor wie is de Coach Accelerator?"
       en: "Who is the Coach Accelerator for?"
+      es: "¿Para quién es el Coach Accelerator?"
     answer:
-      nl: "De Coach Accelerator is voor coaches, specialisten en kennisondernemers die al expertise of een aanbod hebben, maar nog geen online systeem dat voorspelbaar leads, kopers of klanten oplevert."
-      en: "The Coach Accelerator is for coaches, specialists and knowledge experts who already have expertise or an offer, but not yet an online system that predictably creates leads, buyers or clients."
+      nl: "De Coach Accelerator is voor coaches, specialisten en kennisondernemers die al expertise of een aanbod hebben, maar nog geen systeem dat voorspelbaar leads en klanten oplevert."
+      en: "The Coach Accelerator is for coaches, specialists and knowledge entrepreneurs who already have expertise or an offer, but not yet a system that predictably generates leads and clients."
+      es: "El Coach Accelerator es para coaches, especialistas y emprendedores del conocimiento que ya tienen experiencia o una oferta, pero aún no un sistema que genere leads y clientes de forma predecible."
+  - question:
+      nl: "Moet ik alle onderdelen uit het traject afnemen?"
+      en: "Do I have to use every part of the programme?"
+      es: "¿Tengo que usar todas las partes del programa?"
+    answer:
+      nl: "Het traject is volledig maatwerk. We beginnen met wat bij jouw fase past — of dat nu een eerste mini-product is, emailflows, of advertenties. Er is geen vast pakket dat je verplicht afneemt."
+      en: "The programme is fully customised. We start with what fits your current phase — whether that's a first mini-product, email flows, or ads. There is no fixed package you're required to take."
+      es: "El programa es completamente personalizado. Empezamos con lo que se ajuste a tu fase actual — ya sea un primer mini-producto, emails automatizados o publicidad. No hay un paquete fijo obligatorio."
+  - question:
+      nl: "Wat kost de Coach Accelerator?"
+      en: "What does the Coach Accelerator cost?"
+      es: "¿Cuánto cuesta el Coach Accelerator?"
+    answer:
+      nl: "De investering wordt aangepast aan jouw fase en groeidoelen. Huidige klanten investeren tussen €500 en €2.500 per maand — een bedrag dat geen probleem is zodra het systeem oplevert wat het moet opleveren. In het kennismakingsgesprek bespreken we wat bij jouw situatie past."
+      en: "The investment is tailored to your phase and growth goals. Current clients invest between €500 and €2,500 per month — an amount that's easily justified once the system delivers. During the introduction call we discuss what fits your situation."
+      es: "La inversión se adapta a tu fase y objetivos de crecimiento. Los clientes actuales invierten entre €500 y €2.500 al mes — una cantidad que se justifica fácilmente cuando el sistema entrega resultados. En la llamada de introducción hablamos de lo que se ajusta a tu situación."
+  - question:
+      nl: "Hoe weet ik of het voor mij gaat werken?"
+      en: "How do I know if it will work for me?"
+      es: "¿Cómo sé si funcionará para mí?"
+    answer:
+      nl: "Samenwerkingen starten alleen wanneer de kans op succes reëel is. Het kennismakingsgesprek is er om eerlijk te kijken of jouw expertise, doelgroep en fase passen bij het systeem dat ik bouw. Geen match? Dan zeg ik dat."
+      en: "Collaborations only start when there is a realistic chance of success. The introduction call exists to honestly assess whether your expertise, audience and phase fit the system I build. No match? I'll say so."
+      es: "Las colaboraciones solo comienzan cuando hay una posibilidad real de éxito. La llamada de introducción existe para evaluar honestamente si tu experiencia, audiencia y fase encajan con el sistema que construyo. ¿No encajamos? Te lo digo."
+  - question:
+      nl: "Ik heb al een masterclass of mini-product. Wat dan?"
+      en: "I already have a masterclass or mini-product. What then?"
+      es: "Ya tengo una masterclass o mini-producto. ¿Qué pasa entonces?"
+    answer:
+      nl: "Bestaande producten beoordelen we eerst op positionering, doelgroep en conversie. Als het product goed is maar de verkeerde mensen aantrekt, optimaliseren we het. Als het al werkt, plaatsen we het beter in je funnel en systeem — zodat het meer oplevert."
+      en: "Existing products are first assessed on positioning, target audience and conversion. If the product is good but attracts the wrong people, we optimise it. If it already works, we position it better within your funnel and system — so it delivers more."
+      es: "Los productos existentes se evalúan primero en posicionamiento, público objetivo y conversión. Si el producto es bueno pero atrae a las personas equivocadas, lo optimizamos. Si ya funciona, lo posicionamos mejor dentro de tu funnel y sistema — para que rinda más."
   - question:
       nl: "Is dit alleen marketing of ook strategie?"
       en: "Is this only marketing or also strategy?"
+      es: "¿Es solo marketing o también estrategia?"
     answer:
-      nl: "Dit traject combineert strategie en uitvoering: positionering, storytelling, aanbodstructuur, mini-producten, masterclasses, emailflows, ads en meetbaarheid worden als één systeem gebouwd."
-      en: "This engagement combines strategy and execution: positioning, storytelling, offer architecture, mini-products, masterclasses, email flows, ads and measurement are built as one system."
+      nl: "Strategie en uitvoering gaan altijd samen. Positionering, storytelling, aanbodstructuur, mini-producten, masterclasses, emailflows, ads en meetbaarheid worden als één systeem gebouwd — niet als losse campagnes."
+      en: "Strategy and execution always go together. Positioning, storytelling, offer architecture, mini-products, masterclasses, email flows, ads and measurement are built as one system — not as separate campaigns."
+      es: "Estrategia y ejecución van siempre juntas. Posicionamiento, storytelling, estructura de oferta, mini-productos, masterclasses, emails automatizados, publicidad y medición se construyen como un solo sistema — no como campañas sueltas."
   - question:
       nl: "Moet ik zelf ook input leveren?"
       en: "Do I need to provide input myself?"
+      es: "¿Tengo que aportar contenido yo también?"
     answer:
-      nl: "Ja. Jij brengt de expertise, verhalen, klantinzichten en inhoud. Joost bouwt daar de structuur, copy, pagina's, emails en advertenties omheen."
-      en: "Yes. You bring the expertise, stories, client insights and substance. Joost builds the structure, copy, pages, emails and ads around that."
+      nl: "Jouw expertise, verhalen, klantinzichten en inhoud zijn de brandstof. Joost bouwt daar de structuur, copy, pagina's, emails en advertenties omheen."
+      en: "Your expertise, stories, client insights and substance are the fuel. Joost builds the structure, copy, pages, emails and ads around that."
+      es: "Tu experiencia, historias, insights de clientes y contenido son el combustible. Joost construye la estructura, el copy, las páginas, los emails y la publicidad alrededor de eso."

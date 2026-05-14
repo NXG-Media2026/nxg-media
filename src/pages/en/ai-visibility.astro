@@ -14,6 +14,7 @@ import { getTestimonials } from '../../data/testimonials';
 
 import heroPhoto from '../../assets/images/founder/joost-sitting-laptop-lookingfront.webp';
 import founderPhoto from '../../assets/images/founder/joost-standing-relaxed.webp';
+import clairePhoto from '../../assets/images/logos/claire-profile-photo.png';
 
 const locale = 'en';
 const cluster = getCluster('ai-vindbaarheid')!;
@@ -248,34 +249,60 @@ const trustItems = [
     </div>
   </section>
 
-  {/* ── How it works ── */}
+  {/* ── From invisible to recommended ── */}
   <section class="py-16 md:py-20">
     <div class="max-w-4xl mx-auto px-4 md:px-6">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">How does it work?</h2>
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">From invisible to recommended</h2>
       <p class="text-lg text-text-muted leading-relaxed mb-10 max-w-3xl">
-        We don't start with promises — we start with data. The scan shows where you stand today, and what's needed to get recommended by AI tools.
+        Three steps — from your first scan to the moment AI tools start recommending your business to their users.
       </p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="bg-white rounded-card p-6 border border-border">
           <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-4">
             <span class="text-primary font-heading text-lg">1</span>
           </div>
-          <h3 class="font-heading text-lg text-text mb-2">Scan</h3>
-          <p class="text-sm text-text-muted leading-relaxed">You receive a full report on your visibility in Google, ChatGPT, Gemini and Perplexity. Including concrete action points.</p>
+          <h3 class="font-heading text-lg text-text mb-2">Discover your score</h3>
+          <p class="text-sm text-text-muted leading-relaxed">The free scan analyses your visibility in ChatGPT, Gemini, Perplexity and Google. You receive a personal score with actionable improvements.</p>
         </div>
         <div class="bg-white rounded-card p-6 border border-border">
           <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-4">
             <span class="text-primary font-heading text-lg">2</span>
           </div>
-          <h3 class="font-heading text-lg text-text mb-2">Optimise</h3>
-          <p class="text-sm text-text-muted leading-relaxed">Based on the scan we adjust your website, structured data, citable content and local signals — so AI tools start recognising you.</p>
+          <h3 class="font-heading text-lg text-text mb-2">Get recommended</h3>
+          <p class="text-sm text-text-muted leading-relaxed">Based on your scan results we optimise your online presence — so AI tools start mentioning your business when someone searches for your specialism.</p>
         </div>
         <div class="bg-white rounded-card p-6 border border-border">
           <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-4">
             <span class="text-primary font-heading text-lg">3</span>
           </div>
-          <h3 class="font-heading text-lg text-text mb-2">Monitor</h3>
-          <p class="text-sm text-text-muted leading-relaxed">AI models are continuously updated. We monitor your position and adjust where needed — so you stay visible.</p>
+          <h3 class="font-heading text-lg text-text mb-2">More clients, fewer ads</h3>
+          <p class="text-sm text-text-muted leading-relaxed">Clients find you automatically through AI recommendations — without ad spend. Just like Claire: +25% more clients, less dependent on paid advertising.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Results ── */}
+  <section class="py-16 md:py-20 bg-primary">
+    <div class="max-w-4xl mx-auto px-4 md:px-6 text-center">
+      <h2 class="font-heading text-2xl md:text-3xl text-white mb-10">
+        Results that matter
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white/10 backdrop-blur rounded-card p-6 border border-white/20">
+          <div class="font-heading text-3xl md:text-4xl text-accent mb-2">+25%</div>
+          <p class="font-medium text-white mb-1">More clients</p>
+          <p class="text-sm text-white/70">Without extra ad spend — purely through AI recommendations.</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-card p-6 border border-white/20">
+          <div class="font-heading text-3xl md:text-4xl text-accent mb-2">24/7</div>
+          <p class="font-medium text-white mb-1">Visible</p>
+          <p class="text-sm text-white/70">AI tools work day and night. Every search query is an opportunity to be recommended.</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-card p-6 border border-white/20">
+          <div class="font-heading text-3xl md:text-4xl text-accent mb-2">€0</div>
+          <p class="font-medium text-white mb-1">Ad costs</p>
+          <p class="text-sm text-white/70">AI recommendations are free traffic. No click budget, no campaigns.</p>
         </div>
       </div>
     </div>
@@ -287,18 +314,17 @@ const trustItems = [
       <div class="max-w-3xl mx-auto px-4 md:px-6">
         <div class="bg-white rounded-card p-8 md:p-10 border border-border">
           <div class="flex items-center gap-4 mb-6">
-            {claireTestimonial.photo && (
-              <div class="w-14 h-14 rounded-full overflow-hidden bg-bg-alt shrink-0">
-                <img
-                  src={`/images/testimonials/${claireTestimonial.photo}`}
-                  alt={claireTestimonial.name}
-                  width="56"
-                  height="56"
-                  class="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-            )}
+            <div class="w-14 h-14 rounded-full overflow-hidden bg-bg-alt shrink-0">
+              <Image
+                src={clairePhoto}
+                alt={claireTestimonial.name}
+                width={56}
+                height={56}
+                class="w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
             <div>
               <p class="font-medium text-text">{claireTestimonial.name}</p>
               {claireTestimonial.outcome && (
