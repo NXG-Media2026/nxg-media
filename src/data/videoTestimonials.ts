@@ -1,21 +1,18 @@
 import type { ImageMetadata } from 'astro';
 import type { VideoTestimonial } from '../components/VideoTestimonialCarousel.astro';
 
-// Placeholder thumbnails — replace with actual video screenshots
-// from /src/assets/images/testimonials/ when available.
-import placeholder1 from '../assets/images/founder/joost-sitting-laptop-lookingfront.webp';
-import placeholder2 from '../assets/images/founder/joost-standing-relaxed.webp';
-import placeholder3 from '../assets/images/founder/joost-standing-playfull.webp';
-import placeholder4 from '../assets/images/founder/joost-standing-workinglaptop.webp';
-import placeholder5 from '../assets/images/founder/joost-profielfoto-portrait.webp';
+// Real video frame thumbnails extracted from testimonial videos
+import bartThumb from '../assets/images/testimonials/mcm-research-thumb.webp';
+import jeroenThumb from '../assets/images/testimonials/stekkies-thumb.webp';
+import narayanThumb from '../assets/images/testimonials/narayan-eetclubnl-thumb.webp';
+import catThumb from '../assets/images/testimonials/cathowell-8loops-thumb.webp';
+import julianThumb from '../assets/images/testimonials/somnox-thumb.webp';
 
 /**
  * Video testimonials — horizontal carousel on homepage.
  *
- * Videos are served from /public/videos/testimonials/ (static).
- * Thumbnails are placeholders — replace with real video screenshots:
- *   1. Save screenshot from video as .webp in /src/assets/images/testimonials/
- *   2. Import it above and replace the placeholder
+ * Thumbnails are extracted frames from the actual videos.
+ * Videos served from /public/videos/testimonials/ (static).
  */
 export const videoTestimonials: VideoTestimonial[] = [
   {
@@ -24,7 +21,7 @@ export const videoTestimonials: VideoTestimonial[] = [
     company: 'MCM Research',
     quote: "It's really great to work with Joost, he helps us with every aspect to reach our target audience",
     rating: 5,
-    thumbnail: placeholder1,
+    thumbnail: bartThumb,
     videoUrl: '/videos/testimonials/mcm-research-testimonial-video.mp4',
   },
   {
@@ -33,7 +30,7 @@ export const videoTestimonials: VideoTestimonial[] = [
     company: 'Stekkies',
     quote: 'Joost helped us to go from zero ad budget euros in our account to now thousands of euros per month. He has a lot of valuable ideas for our company.',
     rating: 5,
-    thumbnail: placeholder2,
+    thumbnail: jeroenThumb,
     videoUrl: '/videos/testimonials/stekkies-testimonial-video.mp4',
   },
   {
@@ -42,7 +39,7 @@ export const videoTestimonials: VideoTestimonial[] = [
     company: 'CEO Nederland Eetgroep',
     quote: 'Joost is altijd proactief met het opzetten van ads, en helpt ons maandelijks om onze doelstellingen te behalen',
     rating: 5,
-    thumbnail: placeholder3,
+    thumbnail: narayanThumb,
     videoUrl: '/videos/testimonials/narayan-eetclubnl-testimonial-video.mp4',
   },
   {
@@ -51,7 +48,7 @@ export const videoTestimonials: VideoTestimonial[] = [
     company: 'Author, Agency Owner',
     quote: 'Joost is one of the only marketers that passed our yearly E-commerce challenge for digital marketers and he did so with a great result',
     rating: 5,
-    thumbnail: placeholder4,
+    thumbnail: catThumb,
     videoUrl: '/videos/testimonials/cathowell-8loops-testimonial-video.mp4',
   },
   {
@@ -60,7 +57,7 @@ export const videoTestimonials: VideoTestimonial[] = [
     company: 'Somnox',
     quote: 'Dankzij Joost zijn we van 0 euro in ad spend naar enkele duizenden euros per maand gegaan die we winstgevend uitgeven via het Facebook/Meta ads platform',
     rating: 5,
-    thumbnail: placeholder5,
+    thumbnail: julianThumb,
     videoUrl: '/videos/testimonials/somnox-testimonial-video.mp4',
   },
 ];

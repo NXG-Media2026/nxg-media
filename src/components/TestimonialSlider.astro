@@ -12,15 +12,15 @@ const { testimonials, locale = 'nl' } = Astro.props;
 const [featured, ...rest] = testimonials;
 const colors = ['bg-accent', 'bg-primary', 'bg-amber-500', 'bg-emerald-500', 'bg-rose-500'];
 
-// Load all logo images
+// Load all logo/photo images from logos dir
 const logoFiles = import.meta.glob<{ default: ImageMetadata }>(
   '/src/assets/images/logos/*.{webp,avif,png,jpg}',
   { eager: true },
 );
 
-function getLogoImage(logoFilename?: string): ImageMetadata | undefined {
-  if (!logoFilename) return undefined;
-  const key = `/src/assets/images/logos/${logoFilename}`;
+function getImage(filename?: string): ImageMetadata | undefined {
+  if (!filename) return undefined;
+  const key = `/src/assets/images/logos/${filename}`;
   return logoFiles[key]?.default;
 }
 
@@ -45,11 +45,22 @@ function renderStars(rating: number = 5): string {
     {featured && (
       <div class="mb-12 border-l-4 border-accent bg-bg-alt rounded-card p-8 md:p-10">
         <div class="flex items-center gap-4 mb-6">
-          {/* Logo or initials */}
-          {getLogoImage(featured.logo) ? (
+          {/* Photo > Logo > Initials */}
+          {getImage(featured.photo) ? (
+            <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-border shrink-0">
+              <Image
+                src={getImage(featured.photo)!}
+                alt={featured.name}
+                width={56}
+                height={56}
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          ) : getImage(featured.logo) ? (
             <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center overflow-hidden border border-border shrink-0 p-1.5">
               <Image
-                src={getLogoImage(featured.logo)!}
+                src={getImage(featured.logo)!}
                 alt={featured.outcome ?? featured.name}
                 width={48}
                 height={48}
@@ -91,11 +102,22 @@ function renderStars(rating: number = 5): string {
         {rest.map((t, i) => (
           <div class="bg-bg-alt border border-border rounded-card p-6">
             <div class="flex items-center gap-3 mb-4">
-              {/* Logo or initials */}
-              {getLogoImage(t.logo) ? (
+              {/* Photo > Logo > Initials */}
+              {getImage(t.photo) ? (
+                <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-border shrink-0">
+                  <Image
+                    src={getImage(t.photo)!}
+                    alt={t.name}
+                    width={40}
+                    height={40}
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              ) : getImage(t.logo) ? (
                 <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden border border-border shrink-0 p-1">
                   <Image
-                    src={getLogoImage(t.logo)!}
+                    src={getImage(t.logo)!}
                     alt={t.outcome ?? t.name}
                     width={36}
                     height={36}
