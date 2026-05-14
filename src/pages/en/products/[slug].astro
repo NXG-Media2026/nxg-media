@@ -1,28 +1,110 @@
 ---
 import { getCollection } from 'astro:content';
-import ProductLayout from '../../../layouts/ProductLayout.astro';
-import HybridProductLayout from '../../../layouts/HybridProductLayout.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BreadcrumbNav from '../../../components/BreadcrumbNav.astro';
+import { siteConfig } from '../../../data/site';
+import { generateProduct, generateBreadcrumbs } from '../../../data/schema';
+import { t } from '../../../i18n/utils';
+import { trackOnClick } from '../../../lib/analytics';
 
 export async function getStaticPaths() {
-  const products = await getCollection('produkte');
-  const enProducts = products.filter((p) => p.data.locale === 'en');
-  return enProducts.map((product) => ({
-    params: { slug: product.data.pageSlug },
-    props: { entry: product },
-  }));
+  const products = await getCollection('products');
+  return products
+    .filter((p) => p.data.locale === 'en')
+    .map((p) => ({ params: { slug: p.data.pageSlug }, props: { entry: p } }));
 }
 
 const { entry } = Astro.props;
+const product = entry.data;
+const locale = 'en';
 const { Content } = await entry.render();
-const isHybrid = Boolean(entry.data.cluster);
+
+const breadcrumbs = [
+  { label: t('breadcrumb.home', locale), href: '/en/' },
+  { label: t('breadcrumb.producten', locale), href: '/en/products/' },
+  { label: product.title },
+];
+
+const breadcrumbSchema = breadcrumbs.map((b) => ({
+  name: b.label,
+  url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}/en/products/${product.pageSlug}/`,
+}));
+
+const isPlaceholder = !product.checkoutUrl || product.checkoutUrl.includes('TBD');
+const checkoutHref = isPlaceholder ? '/en/contact/' : product.checkoutUrl;
+const checkoutLabel = isPlaceholder ? t('cta.contact', locale) : t('cta.buyNow', locale);
 ---
 
-{isHybrid ? (
-  <HybridProductLayout product={entry.data} locale="en">
-    <Content />
-  </HybridProductLayout>
-) : (
-  <ProductLayout product={entry.data} locale="en">
-    <Content />
-  </ProductLayout>
-)}
+<BaseLayout
+  title={`${product.title} | ${siteConfig.name}`}
+  description={product.shortDescription}
+  ogType="product"
+  schemas={[
+    generateProduct({ name: product.title, description: product.shortDescription, url: `${siteConfig.url}/en/products/${product.pageSlug}/`, price: product.price }),
+    generateBreadcrumbs(breadcrumbSchema),
+  ]}
+  locale={locale}
+>
+  <BreadcrumbNav items={breadcrumbs} />
+
+  <header class="py-12 md:py-16 lg:py-20">
+    <div class="max-w-3xl mx-auto px-4 md:px-6 text-center">
+      <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full mb-4">{product.cluster}</span>
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl text-text mb-4">{product.title}</h1>
+      <p class="text-lg text-text-muted leading-relaxed mb-8 max-w-2xl mx-auto">{product.shortDescription}</p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+        <span class="text-3xl font-heading font-bold text-text">&euro;{product.price}</span>
+        <a
+          href={checkoutHref}
+          target={isPlaceholder ? '_self' : '_blank'}
+          rel={isPlaceholder ? undefined : 'noopener noreferrer'}
+          class="inline-flex items-center px-8 py-4 text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-lg"
+          onclick={trackOnClick('product_checkout_click', { page_type: 'product', page_slug: product.pageSlug, locale, cluster: product.cluster })}
+        >
+          {checkoutLabel}
+        </a>
+      </div>
+      <p class="text-sm text-text-muted mt-4">{product.format}</p>
+    </div>
+  </header>
+
+  <article class="py-12 md:py-16">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <div class="prose prose-lg max-w-none mb-12">
+        <Content />
+      </div>
+
+      {product.whatsInside.length > 0 && (
+        <section class="mb-12">
+          <h2 class="font-heading text-2xl text-text mb-6">{t('product.whatIsInside', locale)}</h2>
+          <ul class="space-y-3">
+            {product.whatsInside.map((item) => (
+              <li class="flex items-start gap-3 text-text-muted">
+                <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {product.forWhom.length > 0 && (
+        <section class="mb-12">
+          <h2 class="font-heading text-2xl text-text mb-6">{t('product.whoIsThisFor', locale)}</h2>
+          <ul class="space-y-3">
+            {product.forWhom.map((item) => (
+              <li class="flex items-start gap-3 text-text-muted">
+                <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+    </div>
+  </article>
+</BaseLayout>

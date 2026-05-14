@@ -1,267 +1,209 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import HeroSection from '../components/HeroSection.astro';
-import TrustBar from '../components/TrustBar.astro';
-import ApproachSection from '../components/ApproachSection.astro';
-import ServicesGrid from '../components/ServicesGrid.astro';
-import FounderPreview from '../components/FounderPreview.astro';
-import TestimonialSlider from '../components/TestimonialSlider.astro';
-import FAQAccordion from '../components/FAQAccordion.astro';
-import SocialStorytellingGrid from '../components/SocialStorytellingGrid.astro';
-import CTABand from '../components/CTABand.astro';
 import { siteConfig } from '../data/site';
-import { getTestimonials } from '../data/testimonials';
-import { getSocialPosts } from '../data/socialPosts';
-import { generateOrganization, generateFounderPerson, generateWebSite, generateFAQPage, generateReviewArray } from '../data/schema';
-import { buildHreflangPair } from '../i18n/hreflang';
-import { trackOnClick } from '../lib/analytics';
+import { generateOrganization, generateWebSite, generateFounderPerson } from '../data/schema';
+import { buildHreflangTrilingual } from '../i18n/hreflang';
 
-import heroImage from '../assets/images/Founder/portrait-beach.jpg';
-import founderPortrait from '../assets/images/Founder/portrait-doctor.jpg';
-import ctaBackground from '../assets/images/Founder/lifestyle-laughing.jpg';
-
-import productHistamin from '../assets/images/products/histamin-bundle.png';
-import productPerimenopause from '../assets/images/products/perimenopause-protocol.png';
-import productSmoothie from '../assets/images/products/smoothie-guide.png';
-import coachingImage from '../assets/images/Founder/lifestyle-arms-up.jpg';
-import membershipImage from '../assets/images/Founder/verena-community.jpg';
-
-const testimonials = getTestimonials();
-const reviewSchemas = generateReviewArray(testimonials);
-const socialPosts = getSocialPosts(6);
-
-const trustItems = [
-  { value: 'MD', label: 'Approbierte\nÄrztin' },
-  { value: '100%', label: 'Evidenz-\nbasiert' },
-  { value: '♀', label: 'Von Frauen,\nfür Frauen' },
-];
-
-const approachItems = [
-  {
-    icon: 'evidence',
-    title: 'Wissenschaftlich fundiert',
-    description: 'Alle Inhalte basieren auf aktueller Studienlage und ärztlichem Fachwissen — keine Trends, keine Mythen.',
-  },
-  {
-    icon: 'personalized',
-    title: 'Individuell & praxisnah',
-    description: 'Keine Einheitsrezepte. Meine Angebote berücksichtigen deinen Zyklus, dein Training und deine Lebensphase.',
-  },
-  {
-    icon: 'nonsurgical',
-    title: 'Ganzheitlich',
-    description: 'Hormone, Training, Ernährung und Lebensstil — alles greift ineinander. Ich betrachte das große Ganze.',
-  },
-  {
-    icon: 'multilingual',
-    title: 'Verständlich erklärt',
-    description: 'Medizinisches Wissen, so aufbereitet, dass du es direkt umsetzen kannst — ohne Fach-Jargon.',
-  },
-];
-
-const angebotItems = [
-  {
-    title: 'Produkte',
-    slug: 'produkte',
-    href: '/produkte',
-    excerpt: 'Digitale Guides, E-Books und Kurse — wissenschaftlich fundiert und sofort umsetzbar. Für Hormone, Training, Ernährung und mehr.',
-    coverImages: [
-      { src: productHistamin, alt: 'Histamin Bundle' },
-      { src: productPerimenopause, alt: 'Perimenopause Protocol' },
-      { src: productSmoothie, alt: 'Smoothie Guide' },
-    ],
-  },
-  {
-    title: 'Coaching',
-    slug: 'coaching',
-    href: '/coaching',
-    excerpt: 'Individuelles Coaching für deine Gesundheitsziele — persönlich begleitet, evidenzbasiert und auf dich zugeschnitten.',
-    image: coachingImage,
-    imageAlt: 'Dr. Verena Mann — Coaching',
-  },
-  {
-    title: 'Mitgliedschaft',
-    slug: 'mitgliedschaft',
-    href: '/mitgliedschaft',
-    excerpt: 'Community, laufende Begleitung und exklusive Inhalte — gemeinsam stärker auf dem Weg zu deiner Gesundheit.',
-    image: membershipImage,
-    imageAlt: 'Community und Begleitung',
-  },
-];
-
-const homepageFAQs = [
-  {
-    q: 'Was ist doc.veri?',
-    a: 'doc.veri ist die Plattform von Dr. Verena für wissenschaftlich fundierte Frauen-Gesundheit. Hier findest du Wissen, Produkte und Coaching rund um Hormone, Training, Ernährung und Zyklus — evidenzbasiert und praxisnah.',
-  },
-  {
-    q: 'Für wen sind die Angebote geeignet?',
-    a: 'Für Frauen, die vieles richtig machen und sich trotzdem nicht richtig fühlen — ob Sportlerin, Berufstätige oder Frau in der Perimenopause. Die Inhalte passen zu jedem Fitness-Level und jeder Lebensphase.',
-  },
-  {
-    q: 'Ist Dr. Verena wirklich Ärztin?',
-    a: 'Ja! Dr. Verena ist approbierte Ärztin mit Leidenschaft für Ausdauersport. Sie verbindet medizinisches Fachwissen mit praktischer Erfahrung als Ironman-Athletin.',
-  },
-  {
-    q: 'Wie unterscheidet sich doc.veri von anderen Gesundheitsplattformen?',
-    a: 'doc.veri setzt konsequent auf Wissenschaft statt Trends. Alle Inhalte basieren auf aktueller Studienlage und werden von einer Ärztin erstellt — ohne Bro-Science, ohne Schwurbel.',
-  },
-];
+const locale = 'nl';
+const hreflang = buildHreflangTrilingual('/', '/en/', '/es/');
 ---
 
 <BaseLayout
-  title={`Frauen-Gesundheit — wissenschaftlich fundiert | ${siteConfig.name}`}
-  description="Hormone, Training, Ernährung, Zyklus, Perimenopause — wissenschaftlich fundiert, ohne Bro-Science. Von Dr. Verena Mann, Notärztin und Ausdauer-Athletin."
-  hreflang={buildHreflangPair('/', '/en')}
-  schemas={[
-    generateOrganization(),
-    generateFounderPerson(),
-    generateWebSite('de'),
-    generateFAQPage(homepageFAQs),
-    ...reviewSchemas,
-  ]}
-  locale="de"
+  title={`${siteConfig.name} — ${siteConfig.tagline.nl}`}
+  description="Bouw een online groeisysteem rond jouw expertise. Expert Growth voor coaches en experts. AI-vindbaarheid voor lokale praktijken."
+  hreflang={hreflang}
+  schemas={[generateOrganization(), generateWebSite(locale), generateFounderPerson()]}
+  locale={locale}
 >
-  <HeroSection
-    title="Du bist nicht kaputt. Der Rat war nur nie für deinen Körper gemacht."
-    subtitle="doc.veri hilft dir zu verstehen, wie Hormone, Zyklus, Histamin, Ernährung und Training zusammenspielen — wissenschaftlich fundiert, praktisch und für Frauen gedacht."
-    backgroundImage={heroImage}
-    backgroundAlt="Dr. Verena Mann — Ärztin und Gründerin von doc.veri"
-    ctaText="Quiz starten"
-    ctaHref="/quiz"
-    secondaryCtaText="Angebote entdecken"
-    secondaryCtaHref="/angebot"
-    locale="de"
-    pageType="homepage"
-    pageSlug="/"
-    eventName="product_cta_click"
-  />
-
-  <TrustBar items={trustItems} />
-
-  <ApproachSection
-    title="Mein Ansatz"
-    items={approachItems}
-    locale="de"
-  />
-
-  <ServicesGrid
-    title="Was ich dir anbiete"
-    subtitle="Wissen und Begleitung für jede Phase deiner Gesundheitsreise."
-    services={angebotItems}
-    locale="de"
-    pageType="homepage"
-    pageSlug="/"
-    viewAllHref="/angebot"
-    viewAllLabel="Alle Angebote ansehen"
-  />
-
-  <FounderPreview locale="de" image={founderPortrait} />
-
-  {testimonials.length > 0 && (
-    <TestimonialSlider
-      testimonials={testimonials.map(t => ({
-        name: t.name,
-        text: t.text,
-        rating: t.rating,
-        outcome: t.outcome,
-      }))}
-      locale="de"
-    />
-  )}
-
-  <section class="py-16 md:py-20 bg-primary-dark text-white">
+  {/* Hero */}
+  <section class="py-16 md:py-24 lg:py-32">
     <div class="max-w-4xl mx-auto px-4 md:px-6 text-center">
-      <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-accent/20 text-accent-light rounded-full mb-6">
-        Kostenlos &middot; 2 Minuten
-      </span>
-      <h2 class="font-heading text-3xl md:text-4xl text-white mb-4">
-        Welcher Hormon-Typ bist du?
-      </h2>
-      <p class="text-lg text-white/70 max-w-2xl mx-auto mb-8">
-        7 kurze Fragen — und du bekommst personalisierte Empfehlungen für Ernährung, Training und Produkte, die zu dir passen.
+      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl text-text mb-6 leading-tight">
+        Bouw een online groeisysteem rond jouw expertise
+      </h1>
+      <p class="text-lg md:text-xl text-text-muted leading-relaxed mb-10 max-w-2xl mx-auto">
+        Voor coaches en experts die hun kennis willen vertalen naar voorspelbare leads, productverkoop en coaching-aanvragen. En voor lokale praktijken die zichtbaar willen zijn in AI-tools.
       </p>
-      <a
-        href="/quiz"
-        class="inline-flex items-center px-8 py-4 text-base font-medium bg-accent hover:bg-accent-dark text-white transition-all duration-300 rounded-button shadow-lg shadow-accent/25"
-      >
-        Quiz starten
-        <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-        </svg>
-      </a>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href="https://scanner.nxg-media.com"
+          class="inline-flex items-center px-8 py-4 text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-lg"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Doe de AI-vindbaarheidsscan
+          <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+          </svg>
+        </a>
+        <a
+          href="/expert-growth-accelerator/"
+          class="inline-flex items-center px-8 py-4 text-base font-medium text-primary border-2 border-primary hover:bg-primary/5 transition-colors rounded-button"
+        >
+          Bekijk Expert Growth
+        </a>
+      </div>
     </div>
   </section>
 
-  <section class="py-16 md:py-20 bg-bg-alt">
-    <div class="max-w-4xl mx-auto px-4 md:px-6">
-      <div class="md:flex items-center gap-10 lg:gap-14">
-        <div class="md:w-3/5 mb-8 md:mb-0">
-          <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full mb-4">
-            Kostenlose Masterclass
-          </span>
-          <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">
-            Hormone, Histamin &amp; Zyklus als Superpower
-          </h2>
-          <p class="text-text-muted leading-relaxed mb-6">
-            Du machst eigentlich vieles richtig — und f&uuml;hlst dich trotzdem nicht wie du selbst? In dieser kostenlosen Masterclass zeigt dir Dr. Verena Mann, wie Hormone, Zyklus, Histamin und Stress zusammenh&auml;ngen — und welche ersten Schritte wirklich sinnvoll sind.
-          </p>
-          <a
-            href="/masterclass/hormone-histamin-zyklus-superpower"
-            class="inline-flex items-center px-6 py-3 text-sm font-medium text-text-inverse bg-primary hover:bg-primary-dark rounded-button transition-colors"
-            onclick={trackOnClick('masterclass_cta_click', {
-              page_type: 'homepage',
-              page_slug: '/',
-              locale: 'de',
-              masterclass_slug: 'hormone-histamin-zyklus-superpower',
-              cta_location: 'inline',
-            })}
-          >
-            Masterclass vormerken
-            <svg class="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </a>
+  {/* Recognition */}
+  <section class="py-12 md:py-16 bg-bg-alt">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-8">Herken je dit?</h2>
+      <div class="space-y-6">
+        <p class="text-text-muted leading-relaxed">Je hebt al een goedlopend coachprogramma, maar je leadflow piekt en zakt. De ene maand drie nieuwe klanten, de andere maand nul — en je weet niet waarom.</p>
+        <p class="text-text-muted leading-relaxed">Of je praktijk draait goed, maar als iemand aan ChatGPT vraagt naar een specialist in jouw regio, word je niet genoemd.</p>
+      </div>
+    </div>
+  </section>
+
+  {/* Principle */}
+  <section class="py-12 md:py-16">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">Wat NXG Media bouwt</h2>
+      <p class="text-lg text-text-muted leading-relaxed mb-8">
+        NXG Media bouwt online groeisystemen rond expertise. Geen losse websites of ads-campagnes, maar geïntegreerde systemen waar storytelling, producten, emailflows en advertenties samenwerken.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div class="bg-white rounded-card p-6 border border-border">
+          <h3 class="font-heading text-lg text-text mb-2">Storytelling & Content</h3>
+          <p class="text-sm text-text-muted">Verhalen die resoneren met je ideale klant — geen generieke taglines.</p>
         </div>
-        <div class="md:w-2/5">
-          <div class="bg-white rounded-card border border-border p-6 text-center">
-            <div class="w-14 h-14 mx-auto rounded-full bg-accent/10 flex items-center justify-center mb-4">
-              <svg class="w-7 h-7 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z" />
-              </svg>
-            </div>
-            <p class="text-sm font-medium text-text mb-1">Kostenlos</p>
-            <p class="text-xs text-text-muted">Trag dich in die Warteliste ein und erfahre als Erste, wann es losgeht.</p>
-          </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <h3 class="font-heading text-lg text-text mb-2">Productladder</h3>
+          <p class="text-sm text-text-muted">Van gratis naar betaald — elk product kwalificeert leads voor het volgende.</p>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <h3 class="font-heading text-lg text-text mb-2">Email & Automatisering</h3>
+          <p class="text-sm text-text-muted">Geautomatiseerde flows die leads onboarden en kopers opvolgen.</p>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <h3 class="font-heading text-lg text-text mb-2">Ads & Meetbaarheid</h3>
+          <p class="text-sm text-text-muted">Meta Ads die het systeem voeden, met tracking die laat zien wat converteert.</p>
         </div>
       </div>
     </div>
   </section>
 
-  {socialPosts.length > 0 && (
-    <SocialStorytellingGrid posts={socialPosts} />
-  )}
+  {/* Proof Wall */}
+  <section class="py-12 md:py-16 lg:py-20 bg-bg-alt">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-10 text-center">Resultaten van klanten</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white rounded-card p-6 border border-border">
+          <h3 class="font-heading text-lg text-text mb-1">Happy With Yoga</h3>
+          <p class="text-xs text-text-muted mb-3">Sinds 2022</p>
+          <div class="space-y-2">
+            <p class="text-sm"><strong class="text-accent">30.000+</strong> webinarleads</p>
+            <p class="text-sm"><strong class="text-accent">1.700+</strong> mini-cursusverkopen</p>
+            <p class="text-sm"><strong class="text-accent">2.000</strong> betalende platformleden</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <h3 class="font-heading text-lg text-text mb-1">Tessa / Youlife</h3>
+          <p class="text-xs text-text-muted mb-3">Sinds feb 2025</p>
+          <div class="space-y-2">
+            <p class="text-sm"><strong class="text-accent">±€10k/mnd</strong> online producten</p>
+            <p class="text-sm"><strong class="text-accent">6</strong> producten gelanceerd</p>
+            <p class="text-sm"><strong class="text-accent">±10/mnd</strong> coachingklanten</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <h3 class="font-heading text-lg text-text mb-1">Coach Josine</h3>
+          <p class="text-xs text-text-muted mb-3">Sinds okt 2025</p>
+          <div class="space-y-2">
+            <p class="text-sm"><strong class="text-accent">600×</strong> gids verkocht</p>
+            <p class="text-sm"><strong class="text-accent">80</strong> masterclass-aanmeldingen</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <h3 class="font-heading text-lg text-text mb-1">Manon van Bakel</h3>
+          <p class="text-xs text-text-muted mb-3">Eerste maand</p>
+          <div class="space-y-2">
+            <p class="text-sm"><strong class="text-accent">120</strong> aanmeldingen in 2 weken</p>
+            <p class="text-sm"><strong class="text-accent">±10%</strong> conversie naar trajecten</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <h3 class="font-heading text-lg text-text mb-1">Kim Bongers</h3>
+          <p class="text-xs text-text-muted mb-3">2 maanden</p>
+          <div class="space-y-2">
+            <p class="text-sm"><strong class="text-accent">90</strong> masterclass-aanmeldingen</p>
+            <p class="text-sm"><strong class="text-accent">350×</strong> gids verkocht</p>
+            <p class="text-sm"><strong class="text-accent">8%</strong> conversie</p>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-8">
+        <a href="/cases/" class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium">
+          Bekijk alle cases
+          <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
 
-  <FAQAccordion
-    items={homepageFAQs}
-    locale="de"
-    pageType="homepage"
-    pageSlug="/"
-    maxItems={4}
-    showMoreLink={true}
-  />
+  {/* Expert Growth preview */}
+  <section class="py-12 md:py-16">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">Expert Growth Accelerator</h2>
+      <p class="text-text-muted leading-relaxed mb-6">
+        Een vast traject voor coaches en experts die hun expertise willen vertalen naar een online instaproute — met storytelling, masterclasses, mini-producten, emailflows en advertenties die samen leiden naar kopers, klanten of leden.
+      </p>
+      <a href="/expert-growth-accelerator/" class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium">
+        Meer over Expert Growth
+        <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </section>
 
-  <CTABand
-    title="Bereit, deinen Körper wirklich zu verstehen?"
-    subtitle="Produkte, Coaching und Community — evidenzbasiert und gemacht für den weiblichen Körper."
-    ctaText="Angebot entdecken"
-    ctaHref="/angebot"
-    backgroundImage={ctaBackground}
-    backgroundAlt="Dr. Verena Mann am Strand"
-    eventName="product_cta_click"
-    locale="de"
-    pageType="homepage"
-    pageSlug="/"
-  />
+  {/* AI Vindbaarheid secondary route */}
+  <section class="py-12 md:py-16 bg-bg-alt">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">AI Vindbaarheid</h2>
+      <p class="text-text-muted leading-relaxed mb-6">
+        AI-vindbaarheid is nog een nieuw speelveld. Daarom beginnen we niet met grote beloftes, maar met een praktische scan: waar sta je nu, wat ontbreekt er en welke verbeteringen zijn logisch?
+      </p>
+      <a href="/ai-vindbaarheid/" class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium">
+        Meer over AI Vindbaarheid
+        <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  {/* About Joost */}
+  <section class="py-12 md:py-16">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">Over Joost</h2>
+      <p class="text-text-muted leading-relaxed mb-4">
+        {siteConfig.founder.bio}
+      </p>
+      <a href="/over-joost/" class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium">
+        Meer over Joost
+        <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  {/* Newsletter */}
+  <section class="py-12 md:py-16 bg-primary text-text-inverse">
+    <div class="max-w-xl mx-auto px-4 md:px-6 text-center">
+      <h2 class="font-heading text-2xl md:text-3xl mb-4">Nieuwsbrief</h2>
+      <p class="text-text-inverse/80 mb-6">Praktische inzichten over online groei, AI-vindbaarheid en expertpositionering — direct in je inbox.</p>
+      <form class="flex flex-col sm:flex-row gap-3">
+        <input type="email" placeholder="Je e-mailadres" class="flex-1 px-4 py-3 rounded-button text-text bg-white" />
+        <button type="submit" class="px-6 py-3 bg-accent hover:bg-accent-dark text-white font-medium rounded-button transition-colors">
+          Aanmelden
+        </button>
+      </form>
+    </div>
+  </section>
 </BaseLayout>
