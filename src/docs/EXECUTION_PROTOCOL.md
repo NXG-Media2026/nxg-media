@@ -394,3 +394,17 @@ Images are not decoration — they are structured data that AI crawlers and sear
 - [ ] Founder portrait exists in both `src/assets/images/founder/` (for pages) and `public/images/` (for JSON-LD)
 - [ ] Schema.org `image` fields are populated for Product, Person, and Article types
 - [ ] No broken image references (build will catch missing imports, but check public/ paths manually)
+
+### Case-sensitive import paths break on Linux/Cloudflare
+
+Windows is case-insensitive; Linux (Cloudflare Pages, GitHub Actions) is case-sensitive. If git tracks a directory as `founder/` (lowercase), importing from `Founder/` (capital) works locally on Windows but breaks on deploy.
+
+**Prevention:** Always match the exact case that `git ls-tree -r HEAD --name-only` reports. After any file or directory rename, grep all imports for the old casing.
+
+Example mistake: `import from '../../assets/images/Founder/joost-sitting-laptop-looking-working.webp'` — git tracked the directory as `founder/`. Build passed on Windows, failed on Cloudflare.
+
+### Video carousel: overflow-hidden blocks horizontal scroll
+
+A parent element with `overflow-hidden` clips the horizontal scroll of child elements with `overflow-x-auto`. This makes carousels appear stuck even though the scroll container is technically scrollable.
+
+Additionally, carousels need visual scroll affordances: navigation arrows on desktop, dot indicators, and grab-to-drag behavior. A hidden scrollbar with no arrows makes the carousel appear non-interactive.

@@ -58,7 +58,7 @@ const videoSchemaScripts = testimonials
   .join('\n');
 ---
 
-<section class="py-16 md:py-24 overflow-hidden">
+<section class="py-16 md:py-24">
   <div class="max-w-6xl mx-auto px-4 md:px-6">
 
     {/* Heading */}
@@ -67,57 +67,87 @@ const videoSchemaScripts = testimonials
       {subtitle && <p class="text-text-muted max-w-xl mx-auto">{subtitle}</p>}
     </div>
 
-    {/* Scroll indicator */}
-    <p class="text-sm text-text-muted text-center mb-6 md:hidden">
-      ← Scroll horizontaal voor meer testimonials →
-    </p>
+    {/* Carousel wrapper with nav arrows */}
+    <div class="relative">
+      {/* Nav arrows — desktop only */}
+      <button
+        type="button"
+        class="vtc-prev hidden md:flex absolute -left-4 lg:-left-6 top-1/2 -translate-y-1/2 z-10 w-10 h-10 items-center justify-center rounded-full bg-white border border-border shadow-md hover:shadow-lg hover:border-accent/40 transition-all disabled:opacity-30 disabled:cursor-default"
+        aria-label="Vorige"
+      >
+        <svg class="w-5 h-5 text-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <button
+        type="button"
+        class="vtc-next hidden md:flex absolute -right-4 lg:-right-6 top-1/2 -translate-y-1/2 z-10 w-10 h-10 items-center justify-center rounded-full bg-white border border-border shadow-md hover:shadow-lg hover:border-accent/40 transition-all disabled:opacity-30 disabled:cursor-default"
+        aria-label="Volgende"
+      >
+        <svg class="w-5 h-5 text-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
 
-    {/* Carousel */}
-    <div class="vtc-track flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 -mx-4 px-4 md:-mx-0 md:px-0">
-      {testimonials.map((t) => (
-        <div class="vtc-card snap-start shrink-0 w-[280px] md:w-[300px] bg-bg-alt rounded-card border border-border flex flex-col overflow-hidden">
+      {/* Carousel track */}
+      <div class="vtc-track flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 scroll-smooth">
+        {testimonials.map((t) => (
+          <div class="vtc-card snap-start shrink-0 w-[280px] md:w-[300px] bg-bg-alt rounded-card border border-border flex flex-col overflow-hidden">
 
-          {/* Thumbnail */}
-          <div class="relative aspect-video bg-text/5 overflow-hidden group cursor-pointer" data-video-url={t.videoUrl ?? ''} data-video-title={`Testimonial ${t.name} — ${t.company}`}>
-            <Image
-              src={t.thumbnail}
-              alt={`Video testimonial van ${t.name}, ${t.company}`}
-              widths={[300, 450]}
-              sizes="300px"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              loading="lazy"
-              decoding="async"
-            />
-            {/* Play button overlay */}
-            {t.videoUrl && (
-              <div class="absolute inset-0 flex items-center justify-center">
-                <div class="w-14 h-14 rounded-full bg-white/90 shadow-lg flex items-center justify-center group-hover:bg-white transition-colors">
-                  <svg class="w-6 h-6 text-accent ml-0.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
+            {/* Thumbnail */}
+            <div class="relative aspect-video bg-text/5 overflow-hidden group cursor-pointer" data-video-url={t.videoUrl ?? ''} data-video-title={`Testimonial ${t.name} — ${t.company}`}>
+              <Image
+                src={t.thumbnail}
+                alt={`Video testimonial van ${t.name}, ${t.company}`}
+                widths={[300, 450]}
+                sizes="300px"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+                decoding="async"
+              />
+              {/* Play button overlay */}
+              {t.videoUrl && (
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="w-14 h-14 rounded-full bg-white/90 shadow-lg flex items-center justify-center group-hover:bg-white transition-colors">
+                    <svg class="w-6 h-6 text-accent ml-0.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
-
-          {/* Content */}
-          <div class="p-5 flex flex-col flex-1">
-            {/* Stars */}
-            <div class="text-accent text-lg tracking-wide mb-3" aria-label={`${t.rating} van 5 sterren`}>
-              {renderStars(t.rating)}
+              )}
             </div>
 
-            {/* Name + company */}
-            <p class="font-heading text-base text-text font-semibold">{t.name}</p>
-            <p class="text-xs text-text-muted mb-3">{t.company}</p>
+            {/* Content */}
+            <div class="p-5 flex flex-col flex-1">
+              {/* Stars */}
+              <div class="text-accent text-lg tracking-wide mb-3" aria-label={`${t.rating} van 5 sterren`}>
+                {renderStars(t.rating)}
+              </div>
 
-            {/* Quote */}
-            <blockquote class="text-sm text-text-muted leading-relaxed italic flex-1">
-              &ldquo;{t.quote}&rdquo;
-            </blockquote>
+              {/* Name + company */}
+              <p class="font-heading text-base text-text font-semibold">{t.name}</p>
+              <p class="text-xs text-text-muted mb-3">{t.company}</p>
+
+              {/* Quote */}
+              <blockquote class="text-sm text-text-muted leading-relaxed italic flex-1">
+                &ldquo;{t.quote}&rdquo;
+              </blockquote>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
+
+      {/* Dot indicators */}
+      <div class="vtc-dots flex justify-center gap-2 mt-4">
+        {testimonials.map((_, i) => (
+          <button
+            type="button"
+            class={`w-2.5 h-2.5 rounded-full transition-colors ${i === 0 ? 'bg-accent' : 'bg-border hover:bg-accent/50'}`}
+            aria-label={`Ga naar testimonial ${i + 1}`}
+            data-dot-index={i}
+          />
+        ))}
+      </div>
     </div>
 
   </div>
@@ -145,6 +175,11 @@ const videoSchemaScripts = testimonials
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+  @media (pointer: fine) {
+    .vtc-track {
+      cursor: grab;
+    }
+  }
 </style>
 
 <script>
@@ -154,7 +189,114 @@ const videoSchemaScripts = testimonials
     const closeBtn = document.getElementById('vtc-close');
     if (!lightbox || !player || !closeBtn) return;
 
-    // Click on thumbnail opens video
+    // ── Carousel navigation ──
+    const track = document.querySelector('.vtc-track') as HTMLElement | null;
+    const prevBtn = document.querySelector('.vtc-prev') as HTMLButtonElement | null;
+    const nextBtn = document.querySelector('.vtc-next') as HTMLButtonElement | null;
+    const dots = document.querySelectorAll('[data-dot-index]') as NodeListOf<HTMLButtonElement>;
+    const cards = document.querySelectorAll('.vtc-card') as NodeListOf<HTMLElement>;
+
+    function getCardWidth(): number {
+      if (!cards.length || !track) return 300;
+      return cards[0].offsetWidth + 24; // card width + gap (gap-6 = 24px)
+    }
+
+    function getActiveIndex(): number {
+      if (!track) return 0;
+      const scrollLeft = track.scrollLeft;
+      const cardW = getCardWidth();
+      return Math.round(scrollLeft / cardW);
+    }
+
+    function updateDots(index: number) {
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('bg-accent', i === index);
+        dot.classList.toggle('bg-border', i !== index);
+        dot.classList.toggle('hover:bg-accent/50', i !== index);
+      });
+    }
+
+    function updateArrows() {
+      if (!track || !prevBtn || !nextBtn) return;
+      const atStart = track.scrollLeft <= 4;
+      const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+      prevBtn.disabled = atStart;
+      nextBtn.disabled = atEnd;
+    }
+
+    function scrollToIndex(index: number) {
+      if (!track) return;
+      const cardW = getCardWidth();
+      track.scrollTo({ left: index * cardW, behavior: 'smooth' });
+    }
+
+    if (track) {
+      // Arrow buttons
+      prevBtn?.addEventListener('click', () => {
+        const idx = Math.max(0, getActiveIndex() - 1);
+        scrollToIndex(idx);
+      });
+
+      nextBtn?.addEventListener('click', () => {
+        const maxIdx = cards.length - 1;
+        const idx = Math.min(maxIdx, getActiveIndex() + 1);
+        scrollToIndex(idx);
+      });
+
+      // Dot buttons
+      dots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+          const idx = parseInt(dot.dataset.dotIndex ?? '0', 10);
+          scrollToIndex(idx);
+        });
+      });
+
+      // Update on scroll
+      let scrollTimer: ReturnType<typeof setTimeout>;
+      track.addEventListener('scroll', () => {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(() => {
+          updateDots(getActiveIndex());
+          updateArrows();
+        }, 50);
+      }, { passive: true });
+
+      // Enable mouse drag to scroll on desktop
+      let isDragging = false;
+      let startX = 0;
+      let scrollLeft = 0;
+
+      track.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.pageX - track.offsetLeft;
+        scrollLeft = track.scrollLeft;
+        track.style.cursor = 'grabbing';
+        track.style.userSelect = 'none';
+      });
+
+      track.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.pageX - track.offsetLeft;
+        const walk = (x - startX) * 1.5;
+        track.scrollLeft = scrollLeft - walk;
+      });
+
+      const stopDrag = () => {
+        isDragging = false;
+        track.style.cursor = '';
+        track.style.userSelect = '';
+      };
+
+      track.addEventListener('mouseup', stopDrag);
+      track.addEventListener('mouseleave', stopDrag);
+
+      // Initial state
+      updateArrows();
+      updateDots(0);
+    }
+
+    // ── Lightbox (video playback) ──
     document.querySelectorAll('[data-video-url]').forEach((el) => {
       const url = (el as HTMLElement).dataset.videoUrl;
       const videoTitle = (el as HTMLElement).dataset.videoTitle || 'Video testimonial';
