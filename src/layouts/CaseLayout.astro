@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import BaseLayout from './BaseLayout.astro';
 import BreadcrumbNav from '../components/BreadcrumbNav.astro';
 import CTABand from '../components/CTABand.astro';
@@ -20,11 +22,17 @@ interface Props {
     whatWeBuilt: string[];
     proofStats: Array<{ value: string; label: string }>;
     strategicLesson: string;
+    screenshots?: string[];
   };
   locale?: Locale;
 }
 
 const { caseData, locale = 'nl' } = Astro.props;
+
+const caseImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/cases/*.webp', { eager: true });
+const screenshots = (caseData.screenshots ?? [])
+  .map((filename) => caseImages[`/src/assets/images/cases/${filename}`]?.default)
+  .filter((img): img is ImageMetadata => !!img);
 const casesBase = getCollectionBasePath('cases', locale);
 const pageUrl = `${casesBase}/${caseData.pageSlug}`;
 
@@ -123,6 +131,31 @@ const cta = clusterCtaMap[caseData.cluster] ?? clusterCtaMap['expert-growth'];
               </li>
             ))}
           </ul>
+        </section>
+      )}
+
+      {/* Screenshots */}
+      {screenshots.length > 0 && (
+        <section class="mb-12">
+          <h2 class="font-heading text-xl md:text-2xl text-text mb-6">
+            {locale === 'en' ? 'Results in practice' : 'Resultaten in de praktijk'}
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {screenshots.map((img, i) => {
+              const filename = Object.entries(caseImages).find(([, mod]) => mod.default === img)?.[0] ?? '';
+              const shortName = filename.split('/').pop()?.replace('.webp', '').replace(/-/g, ' ') ?? `screenshot ${i + 1}`;
+              return (
+              <Image
+                src={img}
+                alt={`${caseData.title} — ${shortName}`}
+                widths={[300, 500, 600]}
+                sizes="(max-width: 640px) 90vw, 45vw"
+                class="rounded-card border border-border shadow-sm"
+                loading="lazy"
+              />
+              );
+            })}
+          </div>
         </section>
       )}
 

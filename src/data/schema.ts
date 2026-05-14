@@ -20,6 +20,15 @@ export function generateFounderPerson() {
     ? (founder.image.startsWith('http') ? founder.image : `${siteConfig.url}${founder.image}`)
     : undefined;
 
+  const credentials = founder.credentials.length > 0
+    ? founder.credentials.map((c) => ({
+        '@type': 'EducationalOccupationalCredential',
+        credentialCategory: 'Certificate',
+        name: c.name,
+        recognizedBy: { '@type': 'Organization', name: c.issuer },
+      }))
+    : undefined;
+
   return JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'Person',
@@ -32,6 +41,7 @@ export function generateFounderPerson() {
     ...(founder.languages.length > 0 && { knowsLanguage: [...founder.languages] }),
     ...(founder.knowsAbout.length > 0 && { knowsAbout: [...founder.knowsAbout] }),
     ...(fullImage && { image: fullImage }),
+    ...(credentials && { hasCredential: credentials }),
   });
 }
 

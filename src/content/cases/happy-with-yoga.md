@@ -24,7 +24,11 @@ proofStats:
   - value: "2.000"
     label: "betalende platformleden"
 strategicLesson: "Een groot bereik vertalen naar betalende klanten vereist een gelaagd systeem: gratis content → webinar → betaald product → lidmaatschap. Zonder die ladder blijft bereik onbenut."
-screenshots: []
+screenshots:
+  - "autenthicoffers-lander-happywithyoga-funnel-proof.webp"
+  - "autenthicoffers-upsell-happywithyoga-funnel-proof.webp"
+  - "nicheguide-lander-happywithyoga-funnel-proof.webp"
+  - "rolf-happywithyoga-whatsapp-proof.webp"
 featured: true
 order: 1
 ---

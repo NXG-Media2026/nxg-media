@@ -20,7 +20,9 @@ proofStats:
   - value: "80"
     label: "masterclass-aanmeldingen in week 1"
 strategicLesson: "Een eerste product hoeft niet perfect te zijn — het moet relevant zijn en snel gelanceerd worden. De snelheid van de eerste tractie geeft momentum voor alles wat daarna komt."
-screenshots: []
+screenshots:
+  - "eetgids-coachjosine-product-proof.webp"
+  - "masterclass-coachjosine-lander-proof.webp"
 featured: true
 order: 3
 ---

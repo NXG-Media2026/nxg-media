@@ -30,7 +30,7 @@ export const siteConfig = {
 
   socials: {
     linkedin: 'https://www.linkedin.com/in/joostvanputten/',
-    instagram: 'https://www.instagram.com/joost.van.putten/',
+    instagram: 'https://www.instagram.com/joostvanputten',
     youtube: '',
   },
 
@@ -41,7 +41,10 @@ export const siteConfig = {
     bio: 'Founder van NXG Media. Bouwt online groeisystemen voor coaches, experts en lokale praktijken — met storytelling, productladders, emailflows, ads en AI-vindbaarheid als kern.',
     description: 'Joost van Putten is de oprichter van NXG Media. Hij helpt coaches en experts hun expertise te vertalen naar een online groeisysteem dat voorspelbaar leads, kopers en klanten oplevert. Daarnaast bouwt NXG Media aan AI-vindbaarheid voor lokale praktijken en MKB.',
     qualifications: [] as string[],
-    credentials: [] as Array<{ name: string; issuer: string; year: number }>,
+    credentials: [
+      { name: 'Facebook Certified Media Buying Professional', issuer: 'Meta', year: 2019 },
+      { name: 'Google Analytics Academy', issuer: 'Google', year: 2019 },
+    ] as Array<{ name: string; issuer: string; year: number }>,
     education: [] as Array<{ institution: string; degree: string; year: number }>,
     languages: ['Nederlands', 'Engels', 'Spaans'],
     memberships: [] as string[],

@@ -1,8 +1,10 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CalendlyEmbed from '../components/CalendlyEmbed.astro';
 import { siteConfig } from '../data/site';
 import { generateProfilePage, generateFounderPerson } from '../data/schema';
+import founderPhoto from '../assets/images/founder/joost-sitting-laptop-lookingfront.webp';
 
 const locale = 'nl';
 ---
@@ -15,8 +17,20 @@ const locale = 'nl';
 >
   <section class="py-12 md:py-16 lg:py-20">
     <div class="max-w-3xl mx-auto px-4 md:px-6">
-      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl text-text mb-6">Over Joost</h1>
-      <p class="text-lg text-text-muted leading-relaxed mb-6">{siteConfig.founder.description}</p>
+      <div class="flex flex-col md:flex-row gap-8 items-start mb-10">
+        <Image
+          src={founderPhoto}
+          alt="Joost van Putten — founder NXG Media, bouwt online groeisystemen voor coaches en experts"
+          widths={[200, 300, 400]}
+          sizes="(max-width: 768px) 200px, 300px"
+          class="rounded-card shadow-lg w-48 md:w-64 shrink-0"
+          loading="eager"
+        />
+        <div>
+          <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl text-text mb-6">Over Joost</h1>
+          <p class="text-lg text-text-muted leading-relaxed">{siteConfig.founder.description}</p>
+        </div>
+      </div>
       <h2 class="font-heading text-xl text-text mb-4 mt-10">Expertise</h2>
       <ul class="space-y-2">
         {siteConfig.founder.knowsAbout.map((item) => (

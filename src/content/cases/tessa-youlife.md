@@ -24,7 +24,11 @@ proofStats:
   - value: "±10/mnd"
     label: "coachingklanten uit productleads"
 strategicLesson: "Mini-producten zijn niet alleen omzet — ze zijn een kwalificatiemechanisme. Kopers van een product van €7 zijn warmere leads dan iemand die alleen een gratis gids download."
-screenshots: []
+screenshots:
+  - "tessa-youlife-meta-ads-proof.webp"
+  - "foodguide-youlife-funnel-proof.webp"
+  - "histamineguide-youlife-upsell-funnel-proof.webp"
+  - "tessa-youlife-whatsapp-proof.webp"
 featured: true
 order: 2
 ---

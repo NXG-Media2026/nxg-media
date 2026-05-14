@@ -214,3 +214,127 @@ A site is launch-ready when:
 6. The deploy URL renders correctly on a real device
 
 If any of these are not met, report the completion level honestly and list what's missing.
+
+---
+
+## Hard-won lessons (NXG Media build, May 2025)
+
+These specific mistakes occurred during real builds and must be prevented in every future adaptation.
+
+### Route translation: localizePath() vs getCollectionBasePath()
+
+`localizePath('/privacy', 'es')` returns `/es/privacy` — it does NOT translate the URL segment.
+For translated slugs (privacy → privacidad, voorwaarden → terms), use `getCollectionBasePath()` or `getRouteSegment()`.
+
+**Affected areas:** Footer legal links, breadcrumbs, any cross-locale navigation.
+**Validation:** Click every footer link in every language. If a legal page 404s, this is the cause.
+
+When adding new route-translated paths, remember to:
+1. Add the route key to `routeSegments` in `src/i18n/routes.ts`
+2. Expand the `getCollectionBasePath()` type union in `src/i18n/utils.ts`
+3. Use `getCollectionBasePath()` in Footer.astro, not `localizePath()`
+
+### Cookie consent must gate ALL tracking scripts
+
+Analytics and marketing scripts (GA4, Meta Pixel) must NOT appear in BaseLayout `<head>`.
+They must load ONLY via the CookieConsent component AFTER the user clicks "Accept all".
+
+Pattern:
+- BaseLayout `<head>`: only `getTrackingScript()` (the `window.trackEvent` wrapper — fires to console, no external requests)
+- CookieConsent: on accept, dynamically creates `<script>` elements for GA4 and Meta Pixel
+- On reload: checks `localStorage` for prior consent before loading any tracking
+
+If you find GA4 or Meta Pixel `<script>` tags in BaseLayout, that's a GDPR violation.
+
+### Click-to-load for third-party embeds
+
+Calendly, YouTube, Vimeo, and any other third-party widget must NOT load on page render.
+Show a placeholder button. On click: remove the button, create the widget container, dynamically load the script.
+
+CalendlyEmbed.astro pattern:
+- Renders a `<button>` with calendar icon and locale-aware label
+- On click: removes button, creates `.calendly-inline-widget` div, appends `<script src="assets.calendly.com/assets/external/widget.js">`
+
+### NEVER run npm audit fix --force
+
+`npm audit fix --force` upgrades Astro across major versions and breaks the build. The error looks like:
+`require is not defined in ES module scope` at `tailwind.config.mjs`
+
+Fix: `git checkout -- package.json package-lock.json && rm -rf node_modules && npm install`
+
+Prevention: tell the human/VA explicitly that npm audit warnings are normal and should be ignored.
+
+### Homepage language parity
+
+Adding a section to one locale's homepage and forgetting the others is the #1 recurring regression across all builds.
+
+After any homepage change, compare section counts across all locales. Each locale's homepage should have the same sections in the same order (translated, not identical).
+
+### Content collection cache
+
+Astro caches content collections in `node_modules/.astro/`. After adding a new collection or renaming one, the dev server may show 0 entries.
+
+Fix: delete `node_modules/.astro/` and restart.
+
+### Git worktree confusion
+
+When working in `.claude/worktrees/<name>/`, all changes are local to the worktree. Changes must be committed AND pushed from the worktree. Running `git status` from the main project will not show worktree changes.
+
+Before pushing to a new repo, always verify that all NXG Media / client-specific changes are committed (not just the original template code).
+
+### Legal pages: binding version pattern
+
+Privacy and Terms pages follow this pattern:
+- Primary language: FULL legal text (this is the binding version)
+- Secondary languages: summary/translation with a link back to the primary-language binding version
+
+Example: `<a href="/voorwaarden/">/voorwaarden/</a>` from EN/ES terms pages.
+
+### llms.txt is required for AI visibility businesses
+
+If the business sells AI visibility services and its own site lacks `llms.txt`, that's a credibility gap. Treat it as a launch blocker, not a nice-to-have.
+
+### Image handling for SEO & AI visibility
+
+Images are not decoration — they are structured data that AI crawlers and search engines index. Every image on the site must follow these rules. Do not wait for the human to ask; apply them by default on every build.
+
+**Filenames**
+- Descriptive, kebab-case, keyword-rich: `coach-josine-eetgids-resultaat.webp` not `IMG_3847.webp`
+- Include the subject AND context: `joost-van-putten-founder-portrait.webp` not `portrait.webp`
+- Never use generic names like `image1`, `screenshot`, `photo`, `banner`
+
+**Alt text**
+- Every image MUST have a meaningful `alt` attribute — this is how AI "sees" your images
+- Describe WHAT is shown AND WHY it matters: `"Joost van Putten — founder NXG Media, bouwt online groeisystemen voor coaches"` not `"foto van Joost"`
+- Product images: include product name + key benefit: `"AI Vindbaarheid Complete Kit — 3 praktische kits voor ChatGPT-zichtbaarheid"`
+- Case screenshots: include client name + what is proven: `"Coach Josine — 600 eetgidsen verkocht in week 1, Plug & Pay dashboard"`
+- Logo images: just the company name: `"Happy With Yoga"` or `"ANWB"`
+- Decorative images (dividers, patterns): use `alt=""` with `aria-hidden="true"`
+
+**Loading strategy**
+- Above-the-fold images (hero, founder on about page, product cover): `loading="eager"`
+- Everything else: `loading="lazy"` — this includes case screenshots, logo bars, footer images
+- Never lazy-load the first visible image on a page — causes layout shift and hurts LCP
+
+**Format & sizing**
+- All images in `src/assets/images/` as WebP — Astro's `<Image>` component handles optimization
+- Use `widths` + `sizes` for responsive images (hero, full-width): `widths={[400, 800, 1200]} sizes="100vw"`
+- Use `width` + fixed dimensions for constrained images (logos, thumbnails)
+- Source images must be at least as large as the largest `width` you specify — Astro does not upscale
+- OG images stay in `public/images/og/` as JPG at 1200×630
+
+**Schema.org image fields**
+- Product schema: always include the `image` field with the product cover URL
+- Person schema: always include the `image` field with the founder portrait URL
+- Article/BlogPosting schema: include `image` if a featured image exists
+- Use absolute URLs in schema: `https://domain.com/images/...`
+
+**Checklist (apply on every build)**
+- [ ] Every `<Image>` and `<img>` tag has a descriptive `alt`
+- [ ] Above-the-fold images use `loading="eager"`, rest use `loading="lazy"`
+- [ ] All image filenames are descriptive kebab-case (no IMG_, DSC_, screenshot_)
+- [ ] Product cover images are wired into both frontmatter (`cover` field) and page template
+- [ ] Case study screenshots are listed in frontmatter and rendered in CaseLayout
+- [ ] Founder portrait exists in both `src/assets/images/founder/` (for pages) and `public/images/` (for JSON-LD)
+- [ ] Schema.org `image` fields are populated for Product, Person, and Article types
+- [ ] No broken image references (build will catch missing imports, but check public/ paths manually)
