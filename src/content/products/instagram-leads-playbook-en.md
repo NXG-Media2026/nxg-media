@@ -29,6 +29,17 @@ forWhom:
   - "Entrepreneurs who want a predictable system instead of hoping for viral content"
 checkoutUrl: "TBD-plug-and-pay-url"
 bumpOffers: []
+faq:
+  - q: "How much ad budget do I need to start?"
+    a: "You can start with €5-10 per day (€150-300 per month). The system is designed to scale — start small, optimise, and increase your budget when you see what works."
+  - q: "I don't have many followers yet. Will this still work?"
+    a: "Yes, especially then. Module 5 shows you how to attract 20-50 qualified followers per day with simple ads. You build your audience and your lead flow at the same time."
+  - q: "What if I have no experience with ads?"
+    a: "Every module includes video walkthroughs. I show you step by step what to set up, where to click, and which settings to choose. No ad experience required."
+  - q: "How is this different from all the free Instagram tips online?"
+    a: "Free tips give you isolated tactics. This playbook gives you a complete system — from profile to ads to automation to retargeting. The pieces work together. That's the difference between 'posting more' and 'building a machine'."
+  - q: "Can I do this without Manychat?"
+    a: "Yes. Manychat makes the automation easier, but you can run the DM flows manually too. The playbook explains both options."
 calendlyContext: "off"
 featured: true
 cover: "instagram-coaches-product-mockup.webp"
@@ -115,19 +126,3 @@ This isn't theory. This system has been running for years with coaches and knowl
 - You're looking for a "get rich quick" trick (this is a system, not a hack)
 - You're already consistently earning €10k+ per month and want a fully managed service (check the [Expert Growth Accelerator programme](/en/services/expert-growth-accelerator/))
 
-## Frequently asked questions
-
-### How much ad budget do I need to start?
-You can start with €5-10 per day (€150-300 per month). The system is designed to scale — start small, optimise, and increase your budget when you see what works.
-
-### I don't have many followers yet. Will this still work?
-Yes, especially then. Module 5 shows you how to attract 20-50 qualified followers per day with simple ads. You build your audience and your lead flow at the same time.
-
-### What if I have no experience with ads?
-Every module includes video walkthroughs. I show you step by step what to set up, where to click, and which settings to choose. No ad experience required.
-
-### How is this different from all the free Instagram tips online?
-Free tips give you isolated tactics. This playbook gives you a complete system — from profile to ads to automation to retargeting. The pieces work together. That's the difference between "posting more" and "building a machine".
-
-### Can I do this without Manychat?
-Yes. Manychat makes the automation easier, but you can run the DM flows manually too. The playbook explains both options.

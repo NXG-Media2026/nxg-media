@@ -25,11 +25,11 @@ export const siteConfig = {
     gtm: '',
   },
 
-  email: 'joost@nxg-media.com',
+  email: 'info@nxg-media.com',
   phone: '',
 
   socials: {
-    linkedin: 'https://www.linkedin.com/in/joostvanputten/',
+    linkedin: 'https://www.linkedin.com/in/joost-van-putten/',
     instagram: 'https://www.instagram.com/joostvanputten',
     youtube: '',
   },
@@ -37,10 +37,15 @@ export const siteConfig = {
   founder: {
     slug: 'joost-van-putten',
     name: 'Joost van Putten',
-    role: 'Founder',
-    bio: 'Founder van NXG Media. Bouwt online groeisystemen voor coaches, experts en lokale praktijken — met storytelling, productladders, emailflows, ads en AI-vindbaarheid als kern.',
-    description: 'Joost van Putten is de oprichter van NXG Media. Hij helpt coaches en experts hun expertise te vertalen naar een online groeisysteem dat voorspelbaar leads, kopers en klanten oplevert. Daarnaast bouwt NXG Media aan AI-vindbaarheid voor lokale praktijken en MKB.',
-    qualifications: [] as string[],
+    role: 'Founder & Online Growth Strategist',
+    bio: 'Founder van NXG Media. 7+ jaar ervaring in online groeisystemen. Meer dan €5 miljoen aan advertentiebudget beheerd voor coaches en experts. Bouwt systemen die gemiddeld 5-7x return on ad spend opleveren — met storytelling, productladders, emailflows, ads en AI-vindbaarheid als kern.',
+    description: 'Joost van Putten is de oprichter van NXG Media en heeft 7+ jaar ervaring in het bouwen van online groeisystemen voor coaches, kennisondernemers en lokale praktijken. Hij heeft meer dan €5 miljoen aan advertentiebudget beheerd en werkt met 50+ coaches aan systemen die gemiddeld 5-7x return on ad spend realiseren. Daarnaast bouwt NXG Media aan AI-vindbaarheid voor lokale praktijken en MKB.',
+    qualifications: [
+      '7+ jaar ervaring in online marketing & funnelstrategie',
+      '50+ coaches en experts begeleid naar voorspelbare leadflow',
+      '€5M+ aan Meta Ads budget beheerd',
+      'Gemiddeld 5-7x ROAS voor klanten',
+    ] as string[],
     credentials: [
       { name: 'Facebook Certified Media Buying Professional', issuer: 'Meta', year: 2019 },
       { name: 'Google Analytics Academy', issuer: 'Google', year: 2019 },

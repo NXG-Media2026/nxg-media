@@ -236,6 +236,29 @@ export function generateReviewArray(set: Testimonial[]): string[] {
   );
 }
 
+export function generateCaseStudy(caseData: {
+  title: string;
+  url: string;
+  description: string;
+  clientName: string;
+  results: Array<{ value: string; label: string }>;
+}) {
+  return JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: caseData.title,
+    description: caseData.description,
+    url: caseData.url,
+    articleSection: 'Case Study',
+    author: { '@id': founderUrl },
+    publisher: { '@id': orgId },
+    about: {
+      '@type': 'Organization',
+      name: caseData.clientName,
+    },
+  });
+}
+
 export function generatePerson(member: {
   slug?: string;
   name: string;

@@ -5,10 +5,12 @@ import type { ImageMetadata } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BreadcrumbNav from '../../components/BreadcrumbNav.astro';
 import FAQAccordion from '../../components/FAQAccordion.astro';
+import TestimonialSlider from '../../components/TestimonialSlider.astro';
 import { siteConfig } from '../../data/site';
-import { generateProduct, generateBreadcrumbs } from '../../data/schema';
+import { generateProduct, generateBreadcrumbs, generateFAQPage } from '../../data/schema';
 import { t, localizePath } from '../../i18n/utils';
 import { trackOnClick } from '../../lib/analytics';
+import { getProductTestimonials } from '../../data/testimonials';
 
 export async function getStaticPaths() {
   const products = await getCollection('products');
@@ -25,6 +27,8 @@ const { Content } = await entry.render();
 const productImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/products/*.webp', { eager: true });
 const coverImage = product.cover ? productImages[`/src/assets/images/products/${product.cover}`]?.default : undefined;
 
+const testimonials = getProductTestimonials(product.pageSlug, 4, locale);
+
 const breadcrumbs = [
   { label: t('breadcrumb.home', locale), href: localizePath('/', locale) },
   { label: t('breadcrumb.producten', locale), href: '/producten/' },
@@ -35,6 +39,8 @@ const breadcrumbSchema = breadcrumbs.map((b) => ({
   name: b.label,
   url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}/producten/${product.pageSlug}/`,
 }));
+
+const faqForSchema = product.faq.map((f) => ({ question: f.q, answer: f.a }));
 
 const isPlaceholder = !product.checkoutUrl || product.checkoutUrl.includes('TBD');
 const checkoutHref = isPlaceholder ? '/contact/' : product.checkoutUrl;
@@ -48,6 +54,7 @@ const checkoutLabel = isPlaceholder ? t('cta.contact', locale) : t('cta.buyNow',
   schemas={[
     generateProduct({ name: product.title, description: product.shortDescription, url: `${siteConfig.url}/producten/${product.pageSlug}/`, price: product.price, image: coverImage?.src }),
     generateBreadcrumbs(breadcrumbSchema),
+    ...(faqForSchema.length > 0 ? [generateFAQPage(faqForSchema)] : []),
   ]}
   locale={locale}
 >
@@ -125,4 +132,48 @@ const checkoutLabel = isPlaceholder ? t('cta.contact', locale) : t('cta.buyNow',
       )}
     </div>
   </article>
+
+  {/* ── FAQ Accordion ── */}
+  {product.faq.length > 0 && (
+    <div class="bg-bg-alt">
+      <FAQAccordion
+        title="Veelgestelde vragen"
+        items={product.faq}
+        locale={locale}
+        pageType="product"
+        pageSlug={product.pageSlug}
+      />
+    </div>
+  )}
+
+  {/* ── Testimonials ── */}
+  {testimonials.length > 0 && (
+    <div>
+      <div class="max-w-4xl mx-auto px-4 md:px-6 pt-16 md:pt-20">
+        <h2 class="font-heading text-2xl md:text-3xl text-text text-center">Wat klanten zeggen</h2>
+      </div>
+      <TestimonialSlider testimonials={testimonials} locale={locale} />
+    </div>
+  )}
+
+  {/* ── Bottom CTA ── */}
+  <section class="py-16 md:py-20 bg-bg-alt">
+    <div class="max-w-2xl mx-auto px-4 md:px-6 text-center">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">Direct aan de slag?</h2>
+      <p class="text-text-muted mb-8">{product.shortDescription}</p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <span class="text-3xl font-heading font-bold text-text">&euro;{product.price}</span>
+        <a
+          href={checkoutHref}
+          target={isPlaceholder ? '_self' : '_blank'}
+          rel={isPlaceholder ? undefined : 'noopener noreferrer'}
+          class="inline-flex items-center px-8 py-4 text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-lg"
+          onclick={trackOnClick('product_checkout_click', { page_type: 'product', page_slug: product.pageSlug, locale, cluster: product.cluster })}
+        >
+          {checkoutLabel}
+        </a>
+      </div>
+    </div>
+  </section>
+
 </BaseLayout>

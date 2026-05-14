@@ -29,6 +29,17 @@ forWhom:
   - "Ondernemers die een voorspelbaar systeem willen in plaats van hopen op viral content"
 checkoutUrl: "TBD-plug-and-pay-url"
 bumpOffers: []
+faq:
+  - q: "Hoeveel advertentiebudget heb ik nodig om te starten?"
+    a: "Je kunt beginnen met €5-10 per dag (€150-300 per maand). Het systeem is ontworpen om te schalen — begin klein, optimaliseer, en verhoog je budget wanneer je ziet wat werkt."
+  - q: "Ik heb nog weinig volgers. Werkt dit dan ook?"
+    a: "Ja, juist dan. Module 5 laat zien hoe je met simpele ads 20-50 gekwalificeerde volgers per dag aantrekt. Je bouwt je publiek en je leadflow tegelijk op."
+  - q: "Wat als ik geen ervaring heb met advertenties?"
+    a: "Elke module heeft video walkthroughs. Ik laat stap voor stap zien wat je instelt, waar je klikt, en welke instellingen je kiest. Je hoeft geen advertentie-ervaring te hebben."
+  - q: "Hoe verschilt dit van alle gratis Instagram-tips online?"
+    a: "Gratis tips geven je losse tactieken. Dit playbook geeft je een compleet systeem — van profiel tot ads tot automatisering tot retargeting. De stukken werken samen. Dat is het verschil tussen 'meer posten' en 'een machine bouwen'."
+  - q: "Kan ik dit ook zonder Manychat?"
+    a: "Ja. Manychat maakt de automatisering makkelijker, maar je kunt de DM-flows ook handmatig doen. Het playbook legt beide opties uit."
 calendlyContext: "off"
 featured: true
 cover: "instagram-coaches-product-mockup.webp"
@@ -115,19 +126,3 @@ Dit is niet theorie. Dit systeem draait al jaren bij coaches en kennisondernemer
 - Je zoekt naar een "snel rijk worden" truc (dit is een systeem, geen hack)
 - Je al structureel €10k+ per maand omzet draait en een volledig managed service zoekt (kijk dan naar het [Expert Growth Accelerator programma](/diensten/expert-growth-accelerator/))
 
-## Veelgestelde vragen
-
-### Hoeveel advertentiebudget heb ik nodig om te starten?
-Je kunt beginnen met €5-10 per dag (€150-300 per maand). Het systeem is ontworpen om te schalen — begin klein, optimaliseer, en verhoog je budget wanneer je ziet wat werkt.
-
-### Ik heb nog weinig volgers. Werkt dit dan ook?
-Ja, juist dan. Module 5 laat zien hoe je met simpele ads 20-50 gekwalificeerde volgers per dag aantrekt. Je bouwt je publiek en je leadflow tegelijk op.
-
-### Wat als ik geen ervaring heb met advertenties?
-Elke module heeft video walkthroughs. Ik laat stap voor stap zien wat je instelt, waar je klikt, en welke instellingen je kiest. Je hoeft geen advertentie-ervaring te hebben.
-
-### Hoe verschilt dit van alle gratis Instagram-tips online?
-Gratis tips geven je losse tactieken. Dit playbook geeft je een compleet systeem — van profiel tot ads tot automatisering tot retargeting. De stukken werken samen. Dat is het verschil tussen "meer posten" en "een machine bouwen".
-
-### Kan ik dit ook zonder Manychat?
-Ja. Manychat maakt de automatisering makkelijker, maar je kunt de DM-flows ook handmatig doen. Het playbook legt beide opties uit.

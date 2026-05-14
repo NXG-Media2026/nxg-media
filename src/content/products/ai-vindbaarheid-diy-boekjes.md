@@ -23,6 +23,15 @@ forWhom:
   - "Marketingmedewerkers die richting nodig hebben zonder dure audit"
 checkoutUrl: "TBD-plug-and-pay-url"
 bumpOffers: []
+faq:
+  - q: "Werkt dit ook als mijn site op WordPress/Wix/Squarespace staat?"
+    a: "Ja. De templates en checklists zijn platform-onafhankelijk. Je past ze toe op je bestaande site, ongeacht het CMS."
+  - q: "Hoe snel zie ik resultaat?"
+    a: "Na het toepassen van Kit 1 kun je direct opnieuw scannen en het verschil zien. Citeerbaarheid en autoriteit bouwen iets langzamer op, maar de eerste verbeteringen zijn binnen een week zichtbaar."
+  - q: "Wat als ik vastloop?"
+    a: "Elke kit heeft stap-voor-stap instructies met voorbeeldteksten. Als je er echt niet uitkomt, is de <a href='/diensten/ai-vindbaarheid-audit/'>Deep Dive Audit</a> de logische volgende stap — dan doen wij het samen."
+  - q: "Wat is het verschil met de Deep Dive Audit?"
+    a: "De kits zijn zelf-doen: jij volgt de stappen en past de templates toe. De Deep Dive is gedaan-voor-je: wij testen 36 echte zoekvragen, vergelijken met 3 concurrenten en leveren een volledig actieplan op."
 calendlyContext: "off"
 featured: true
 cover: "diy-ai-vindbaarheid-boekjes-bundle.webp"
@@ -83,16 +92,3 @@ Klaar in 15-30 minuten per kit. Geen technische kennis nodig.
 - Je verwacht dat één kit je bovenaan ChatGPT zet (alle drie lagen samen maken het verschil)
 - Je geen eigen website hebt (de kits werken alleen op bestaande sites)
 
-## Veelgestelde vragen
-
-### Werkt dit ook als mijn site op WordPress/Wix/Squarespace staat?
-Ja. De templates en checklists zijn platform-onafhankelijk. Je past ze toe op je bestaande site, ongeacht het CMS.
-
-### Hoe snel zie ik resultaat?
-Na het toepassen van Kit 1 kun je direct opnieuw scannen en het verschil zien. Citeerbaarheid en autoriteit bouwen iets langzamer op, maar de eerste verbeteringen zijn binnen een week zichtbaar.
-
-### Wat als ik vastloop?
-Elke kit heeft stap-voor-stap instructies met voorbeeldteksten. Als je er echt niet uitkomt, is de Deep Dive Audit de logische volgende stap — dan doen wij het samen.
-
-### Wat is het verschil met de Deep Dive Audit?
-De kits zijn zelf-doen: jij volgt de stappen en past de templates toe. De Deep Dive is gedaan-voor-je: wij testen 36 echte zoekvragen, vergelijken met 3 concurrenten en leveren een volledig actieplan op.

@@ -83,6 +83,7 @@ const products = defineCollection({
     forWhom: z.array(z.string()),
     checkoutUrl: z.string(),
     bumpOffers: z.array(z.string()).default([]),
+    faq: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
     calendlyContext: z.enum(['off', 'warm-only', 'coaching-only']).default('off'),
     featured: z.boolean().default(false),
     relatedCaseSlug: z.string().optional(),

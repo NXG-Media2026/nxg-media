@@ -23,6 +23,15 @@ forWhom:
   - "Marketing staff who need direction without an expensive audit"
 checkoutUrl: "TBD-plug-and-pay-url"
 bumpOffers: []
+faq:
+  - q: "Does this work on WordPress/Wix/Squarespace?"
+    a: "Yes. The templates and checklists are platform-independent. You apply them to your existing site, regardless of your CMS."
+  - q: "How quickly will I see results?"
+    a: "After applying Kit 1, you can rescan immediately and see the difference. Citability and authority build a bit more slowly, but the first improvements are visible within a week."
+  - q: "What if I get stuck?"
+    a: "Every kit has step-by-step instructions with example text. If you truly can't figure it out, the <a href='/en/services/ai-visibility-audit/'>Deep Dive Audit</a> is the logical next step — then we do it together."
+  - q: "What's the difference with the Deep Dive Audit?"
+    a: "The kits are DIY: you follow the steps and apply the templates. The Deep Dive is done-for-you: we test 36 real search queries, compare with 3 competitors and deliver a complete action plan."
 calendlyContext: "off"
 featured: true
 cover: "diy-ai-vindbaarheid-boekjes-bundle.webp"
@@ -83,16 +92,3 @@ Done in 15-30 minutes per kit. No technical knowledge required.
 - You expect one kit to put you at the top of ChatGPT (all three layers together make the difference)
 - You don't have your own website (the kits only work on existing sites)
 
-## Frequently asked questions
-
-### Does this work on WordPress/Wix/Squarespace?
-Yes. The templates and checklists are platform-independent. You apply them to your existing site, regardless of your CMS.
-
-### How quickly will I see results?
-After applying Kit 1, you can rescan immediately and see the difference. Citability and authority build a bit more slowly, but the first improvements are visible within a week.
-
-### What if I get stuck?
-Every kit has step-by-step instructions with example text. If you truly can't figure it out, the Deep Dive Audit is the logical next step — then we do it together.
-
-### What's the difference with the Deep Dive Audit?
-The kits are DIY: you follow the steps and apply the templates. The Deep Dive is done-for-you: we test 36 real search queries, compare with 3 competitors and deliver a complete action plan.

@@ -5,7 +5,7 @@ import BaseLayout from './BaseLayout.astro';
 import BreadcrumbNav from '../components/BreadcrumbNav.astro';
 import CTABand from '../components/CTABand.astro';
 import { siteConfig, type Locale } from '../data/site';
-import { generateBreadcrumbs } from '../data/schema';
+import { generateBreadcrumbs, generateCaseStudy } from '../data/schema';
 import { t, localizePath, getCollectionBasePath } from '../i18n/utils';
 
 interface Props {
@@ -67,7 +67,16 @@ const cta = clusterCtaMap[caseData.cluster] ?? clusterCtaMap['expert-growth'];
 <BaseLayout
   title={seoTitle}
   description={seoDescription}
-  schemas={[generateBreadcrumbs(breadcrumbSchema)]}
+  schemas={[
+    generateBreadcrumbs(breadcrumbSchema),
+    generateCaseStudy({
+      title: caseData.title,
+      url: `${siteConfig.url}${pageUrl}`,
+      description: caseData.startSituation,
+      clientName: caseData.title.split('—')[0]?.trim() ?? caseData.title,
+      results: caseData.proofStats,
+    }),
+  ]}
   locale={locale}
 >
   <BreadcrumbNav items={breadcrumbs} />

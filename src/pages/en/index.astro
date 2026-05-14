@@ -1,36 +1,327 @@
 ---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import TrustBar from '../../components/TrustBar.astro';
+import TestimonialSlider from '../../components/TestimonialSlider.astro';
+import SocialStorytellingGrid from '../../components/SocialStorytellingGrid.astro';
+import FounderPreview from '../../components/FounderPreview.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
 import { siteConfig } from '../../data/site';
-import { generateOrganization, generateWebSite, generateFounderPerson } from '../../data/schema';
+import { generateOrganization, generateWebSite, generateFounderPerson, generateFAQPage } from '../../data/schema';
 import { buildHreflangTrilingual } from '../../i18n/hreflang';
+import { getTestimonials } from '../../data/testimonials';
+import { getSocialPosts } from '../../data/socialPosts';
+
+import heroPhoto from '../../assets/images/founder/joost-standing-workinglaptop.webp';
+import founderPhoto from '../../assets/images/founder/joost-sitting-laptop-looking-working.webp';
 
 const locale = 'en';
 const hreflang = buildHreflangTrilingual('/', '/en/', '/es/');
+
+const testimonials = getTestimonials({ locale: 'nl' });
+const socialPosts = getSocialPosts(6);
+
+const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.webp', { eager: true });
+const logos = Object.entries(logoFiles).map(([path, mod]) => {
+  const filename = path.split('/').pop()!.replace('.webp', '');
+  const name = filename.replace('-logo', '').replace(/-/g, ' ');
+  return { src: mod.default, alt: name };
+});
+
+const guides = (await getCollection('guides'))
+  .filter((g) => g.data.locale === locale)
+  .sort((a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime())
+  .slice(0, 4);
+
+const trustItems = [
+  { value: '50+', label: 'Coaches guided' },
+  { value: '€5M+', label: 'Ad spend managed' },
+  { value: '5-7×', label: 'Average ROAS' },
+  { value: '7+', label: 'Years experience' },
+];
+
+const homepageFaq = [
+  {
+    q: 'What does it cost to work with NXG Media?',
+    a: 'It depends on your situation. Our micro-products start at €6.99 if you want to get started yourself. The Expert Growth Accelerator is a fixed programme with setup + monthly optimisation. <a href="/en/contact/">Get in touch</a> for a no-obligation conversation.',
+  },
+  {
+    q: 'Do you only work with coaches?',
+    a: 'No. We work with two clusters: Expert Growth (coaches, knowledge entrepreneurs, experts) and AI Visibility (local practices, SMBs). The approach differs, but the principle is the same: build a system, not isolated campaigns.',
+  },
+  {
+    q: 'How quickly will I see results?',
+    a: 'The first Expert Growth results typically appear within 2-4 weeks (first leads, first product sales). A fully running system takes 2-3 months. With AI Visibility, you can rescan immediately after applying the kits and see the difference.',
+  },
+  {
+    q: "What makes NXG Media different from a regular marketing agency?",
+    a: 'We build complete growth systems — not standalone campaigns or websites. Storytelling, products, email flows, ads and AI visibility work together as one machine. That\'s the difference between "more visibility" and "predictable growth".',
+  },
+  {
+    q: 'Do I need a large audience already?',
+    a: 'No. The system is designed to build your audience and your lead flow at the same time. With a small ad budget (€5-10/day) you attract 20-50 qualified followers daily.',
+  },
+];
+
+const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
 ---
 
 <BaseLayout
   title={`${siteConfig.name} — ${siteConfig.tagline.en}`}
   description="Build an online growth system around your expertise. Expert Growth for coaches and experts. AI visibility for local practices."
   hreflang={hreflang}
-  schemas={[generateOrganization(), generateWebSite(locale), generateFounderPerson()]}
+  schemas={[generateOrganization(), generateWebSite(locale), generateFounderPerson(), generateFAQPage(faqForSchema)]}
   locale={locale}
 >
-  <section class="py-16 md:py-24 lg:py-32">
-    <div class="max-w-4xl mx-auto px-4 md:px-6 text-center">
-      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl text-text mb-6 leading-tight">
+
+  {/* ── Hero ── */}
+  <section class="relative py-20 md:py-28 lg:py-36 overflow-hidden">
+    <div class="absolute inset-0">
+      <Image
+        src={heroPhoto}
+        alt=""
+        widths={[800, 1200, 1600]}
+        sizes="100vw"
+        class="w-full h-full object-cover"
+        loading="eager"
+        decoding="async"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-white/40"></div>
+    </div>
+    <div class="relative max-w-4xl mx-auto px-4 md:px-6">
+      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl text-text mb-6 leading-tight max-w-2xl">
         Build an online growth system around your expertise
       </h1>
-      <p class="text-lg md:text-xl text-text-muted leading-relaxed mb-10 max-w-2xl mx-auto">
+      <p class="text-lg md:text-xl text-text-muted leading-relaxed mb-10 max-w-xl">
         For coaches and experts who want to turn their knowledge into predictable leads, product sales and coaching enquiries. And for local practices that want to be visible in AI tools.
       </p>
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="https://scanner.nxg-media.com" class="inline-flex items-center px-8 py-4 text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-lg" target="_blank" rel="noopener noreferrer">
+      <div class="flex flex-col sm:flex-row items-start gap-4">
+        <a
+          href="https://scanner.nxg-media.com"
+          class="inline-flex items-center px-8 py-4 text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-lg"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Run the AI visibility scan
+          <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+          </svg>
         </a>
-        <a href="/en/expert-growth-accelerator/" class="inline-flex items-center px-8 py-4 text-base font-medium text-primary border-2 border-primary hover:bg-primary/5 transition-colors rounded-button">
+        <a
+          href="/en/services/expert-growth-accelerator/"
+          class="inline-flex items-center px-8 py-4 text-base font-medium text-primary border-2 border-primary hover:bg-primary/5 transition-colors rounded-button"
+        >
           Explore Expert Growth
         </a>
       </div>
     </div>
   </section>
+
+  {/* ── Trust Bar ── */}
+  <section class="bg-bg-alt border-y border-border">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <TrustBar items={trustItems} />
+    </div>
+  </section>
+
+  {/* ── Recognition ── */}
+  <section class="py-16 md:py-20">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-8">Does this sound familiar?</h2>
+      <div class="space-y-6">
+        <p class="text-text-muted leading-relaxed">You already have a solid coaching programme, but your lead flow peaks and dips. Three new clients one month, zero the next — and you don't know why.</p>
+        <p class="text-text-muted leading-relaxed">Or your practice is doing well, but when someone asks ChatGPT for a specialist in your area, you don't come up.</p>
+      </div>
+    </div>
+  </section>
+
+  {/* ── What NXG Media builds ── */}
+  <section class="py-12 md:py-16 bg-bg-alt">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">What NXG Media builds</h2>
+      <p class="text-lg text-text-muted leading-relaxed mb-8 max-w-3xl">
+        Not standalone websites or ad campaigns, but integrated systems where storytelling, products, email flows and ads work together.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div class="bg-white rounded-card p-6 border border-border">
+          <h3 class="font-heading text-lg text-text mb-2">Storytelling & Content</h3>
+          <p class="text-sm text-text-muted">Stories that resonate with your ideal client — not generic taglines.</p>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <h3 class="font-heading text-lg text-text mb-2">Product Ladder</h3>
+          <p class="text-sm text-text-muted">From free to paid — each product qualifies leads for the next.</p>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <h3 class="font-heading text-lg text-text mb-2">Email & Automation</h3>
+          <p class="text-sm text-text-muted">Automated flows that onboard leads and follow up with buyers.</p>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <h3 class="font-heading text-lg text-text mb-2">Ads & Measurement</h3>
+          <p class="text-sm text-text-muted">Meta Ads that feed the system, with tracking that shows what converts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Two clusters ── */}
+  <section class="py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white rounded-card p-8 border border-border hover:border-accent/30 hover:shadow-lg transition-all">
+          <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full mb-4">expert-growth</span>
+          <h2 class="font-heading text-xl text-text mb-3">Expert Growth Accelerator</h2>
+          <p class="text-text-muted text-sm leading-relaxed mb-6">
+            A fixed programme for coaches and experts who want to turn their expertise into an online growth engine — with storytelling, masterclasses, micro-products, email flows and ads that together drive buyers, clients or members.
+          </p>
+          <a href="/en/services/expert-growth-accelerator/" class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium text-sm">
+            Learn about Expert Growth
+            <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+          </a>
+        </div>
+        <div class="bg-white rounded-card p-8 border border-border hover:border-accent/30 hover:shadow-lg transition-all">
+          <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full mb-4">ai-visibility</span>
+          <h2 class="font-heading text-xl text-text mb-3">AI Visibility</h2>
+          <p class="text-text-muted text-sm leading-relaxed mb-6">
+            AI visibility is still a new playing field. That's why we start with a practical scan: where do you stand, what's missing and which improvements make sense? From scan to kits to full audit.
+          </p>
+          <a href="/en/services/ai-visibility-audit/" class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium text-sm">
+            Learn about AI Visibility
+            <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Proof Wall ── */}
+  <section class="py-16 md:py-20 bg-bg-alt">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-10 text-center">Client results</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white rounded-card p-6 border border-border">
+          <h3 class="font-heading text-lg text-text mb-1">Happy With Yoga</h3>
+          <p class="text-xs text-text-muted mb-3">Since 2022</p>
+          <div class="space-y-2">
+            <p class="text-sm"><strong class="text-accent">30,000+</strong> webinar leads</p>
+            <p class="text-sm"><strong class="text-accent">1,700+</strong> mini-course sales</p>
+            <p class="text-sm"><strong class="text-accent">2,000</strong> paying platform members</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <h3 class="font-heading text-lg text-text mb-1">Tessa / Youlife</h3>
+          <p class="text-xs text-text-muted mb-3">Since Feb 2025</p>
+          <div class="space-y-2">
+            <p class="text-sm"><strong class="text-accent">~€10k/mo</strong> online products</p>
+            <p class="text-sm"><strong class="text-accent">6</strong> products launched</p>
+            <p class="text-sm"><strong class="text-accent">~10/mo</strong> coaching clients</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <h3 class="font-heading text-lg text-text mb-1">Coach Josine</h3>
+          <p class="text-xs text-text-muted mb-3">Since Oct 2025</p>
+          <div class="space-y-2">
+            <p class="text-sm"><strong class="text-accent">600×</strong> guide sold</p>
+            <p class="text-sm"><strong class="text-accent">80</strong> masterclass signups</p>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-8">
+        <a href="/en/cases/" class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium">
+          View all cases
+          <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Testimonials ── */}
+  <div>
+    <div class="max-w-4xl mx-auto px-4 md:px-6 pt-16 md:pt-20">
+      <h2 class="font-heading text-2xl md:text-3xl text-text text-center">What clients say</h2>
+    </div>
+    <TestimonialSlider testimonials={testimonials} locale="en" />
+  </div>
+
+  {/* ── Client logos ── */}
+  {logos.length > 0 && (
+    <section class="py-10 md:py-12 bg-bg-alt">
+      <div class="max-w-5xl mx-auto px-4 md:px-6">
+        <p class="text-sm text-text-muted text-center mb-8">Trusted by coaches, experts and businesses</p>
+        <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12 opacity-70">
+          {logos.map((logo) => (
+            <Image
+              src={logo.src}
+              alt={logo.alt}
+              width={120}
+              height={48}
+              class="h-8 md:h-10 w-auto object-contain grayscale hover:grayscale-0 transition-all"
+              loading="lazy"
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {/* ── Blog / Guides preview ── */}
+  {guides.length > 0 && (
+    <section class="py-16 md:py-20">
+      <div class="max-w-4xl mx-auto px-4 md:px-6">
+        <h2 class="font-heading text-2xl md:text-3xl text-text mb-10 text-center">Latest articles</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {guides.map((g) => (
+            <a href={`/en/guides/${g.data.pageSlug}/`} class="group block bg-white border border-border rounded-card p-6 hover:border-accent/30 hover:shadow-lg transition-all">
+              {g.data.cluster && (
+                <span class="text-xs font-medium text-accent uppercase tracking-wider mb-2 block">{g.data.cluster}</span>
+              )}
+              <h3 class="font-heading text-lg text-text group-hover:text-accent transition-colors mb-2">{g.data.title}</h3>
+              <p class="text-sm text-text-muted">{g.data.contentSchema.primaryAnswer.slice(0, 120)}...</p>
+            </a>
+          ))}
+        </div>
+        <div class="text-center mt-8">
+          <a href="/en/guides/" class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium">
+            View all articles
+            <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {/* ── Instagram / Social Grid ── */}
+  <div class="bg-bg-alt">
+    <div class="max-w-5xl mx-auto px-4 md:px-6 pt-16 md:pt-20">
+      <h2 class="font-heading text-2xl md:text-3xl text-text text-center mb-2">Follow the journey</h2>
+      <p class="text-text-muted text-center">Behind-the-scenes, results and growth system tips on Instagram.</p>
+    </div>
+    <SocialStorytellingGrid posts={socialPosts} instagramUrl={siteConfig.socials.instagram} locale="en" />
+  </div>
+
+  {/* ── Founder Preview (EEAT) ── */}
+  <FounderPreview
+    name={siteConfig.founder.name}
+    role={siteConfig.founder.role}
+    bio="Founder of NXG Media. 7+ years of experience in online growth systems. Managed over €5 million in ad spend for coaches and experts. Builds systems that typically achieve 5-7x return on ad spend — with storytelling, product ladders, email flows, ads and AI visibility as core pillars."
+    image={founderPhoto}
+    credentials={siteConfig.founder.credentials.map((c) => ({ name: c.name, issuer: c.issuer }))}
+    knowsAbout={['Online growth systems for experts', 'Storytelling & content strategy', 'Micro-products & product ladders', 'Meta Ads for coaches & experts']}
+    aboutHref="/en/about-joost/"
+    aboutLabel="More about Joost"
+    locale="en"
+  />
+
+  {/* ── Homepage FAQ ── */}
+  <div class="bg-bg-alt">
+    <FAQAccordion
+      title="Frequently asked questions"
+      items={homepageFaq}
+      locale="en"
+      pageType="homepage"
+      pageSlug="/en/"
+    />
+  </div>
+
 </BaseLayout>
