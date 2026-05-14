@@ -4,7 +4,7 @@ import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TrustBar from '../components/TrustBar.astro';
-import TestimonialSlider from '../components/TestimonialSlider.astro';
+import ClientResults from '../components/ClientResults.astro';
 import VideoTestimonialCarousel from '../components/VideoTestimonialCarousel.astro';
 import LogoMarquee from '../components/LogoMarquee.astro';
 import SocialStorytellingGrid from '../components/SocialStorytellingGrid.astro';
@@ -27,11 +27,13 @@ const testimonials = getTestimonials({ locale: 'nl' });
 const socialPosts = getSocialPosts(6);
 
 const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
-const logos = Object.entries(logoFiles).map(([path, mod]) => {
-  const filename = path.split('/').pop()!.replace(/\.(webp|avif|png|jpg)$/, '');
-  const name = filename.replace('-logo', '').replace(/-/g, ' ');
-  return { src: mod.default, alt: name };
-});
+const logos = Object.entries(logoFiles)
+  .filter(([path]) => /logo/i.test(path.split('/').pop()!))
+  .map(([path, mod]) => {
+    const filename = path.split('/').pop()!.replace(/\.(webp|avif|png|jpg)$/, '');
+    const name = filename.replace(/[-_]?logo[-_]?/gi, '').replace(/[-_]/g, ' ').trim();
+    return { src: mod.default, alt: name };
+  });
 
 const guides = (await getCollection('guides'))
   .filter((g) => g.data.locale === locale)
@@ -69,6 +71,7 @@ const homepageFaq = [
 ];
 
 const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
+
 ---
 
 <BaseLayout
@@ -130,12 +133,12 @@ const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
   </section>
 
   {/* ── Recognition ── */}
-  <section class="py-16 md:py-20">
+  <section class="py-16 md:py-20 bg-primary">
     <div class="max-w-3xl mx-auto px-4 md:px-6">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-8">Herken je dit?</h2>
+      <h2 class="font-heading text-2xl md:text-3xl text-white mb-8">Herken je dit?</h2>
       <div class="space-y-6">
-        <p class="text-text-muted leading-relaxed">Je hebt al een goedlopend coachprogramma, maar je leadflow piekt en zakt. De ene maand drie nieuwe klanten, de andere maand nul — en je weet niet waarom.</p>
-        <p class="text-text-muted leading-relaxed">Of je praktijk draait goed, maar als iemand aan ChatGPT vraagt naar een specialist in jouw regio, word je niet genoemd.</p>
+        <p class="text-white/80 leading-relaxed">Je hebt al een goedlopend coachprogramma, maar je leadflow piekt en zakt. De ene maand drie nieuwe klanten, de andere maand nul — en je weet niet waarom.</p>
+        <p class="text-white/80 leading-relaxed">Of je praktijk draait goed, maar als iemand aan ChatGPT vraagt naar een specialist in jouw regio, word je niet genoemd.</p>
       </div>
     </div>
   </section>
@@ -143,26 +146,26 @@ const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
   {/* ── Wat NXG Media bouwt ── */}
   <section class="py-12 md:py-16 bg-bg-alt">
     <div class="max-w-4xl mx-auto px-4 md:px-6">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">Wat NXG Media bouwt</h2>
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">Geen losse campagnes — één route van klik naar klant</h2>
       <p class="text-lg text-text-muted leading-relaxed mb-8 max-w-3xl">
-        Geen losse websites of ads-campagnes, maar geïntegreerde systemen waar storytelling, producten, emailflows en advertenties samenwerken.
+        Je mist geen marketing. Je mist een systeem dat voor je werkt, ook als jij met klanten bezig bent.
       </p>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div class="bg-white rounded-card p-6 border border-border">
-          <h3 class="font-heading text-lg text-text mb-2">Storytelling & Content</h3>
-          <p class="text-sm text-text-muted">Verhalen die resoneren met je ideale klant — geen generieke taglines.</p>
+          <h3 class="font-heading text-lg text-text mb-2">Een instap die zichzelf terugverdient</h3>
+          <p class="text-sm text-text-muted">Je eerste online product — een gids, mini-cursus of masterclass — dekt je advertentiekosten vanaf dag 1. Geen maanden wachten op rendement.</p>
         </div>
         <div class="bg-white rounded-card p-6 border border-border">
-          <h3 class="font-heading text-lg text-text mb-2">Productladder</h3>
-          <p class="text-sm text-text-muted">Van gratis naar betaald — elk product kwalificeert leads voor het volgende.</p>
+          <h3 class="font-heading text-lg text-text mb-2">Leads die zichzelf kwalificeren</h3>
+          <p class="text-sm text-text-muted">Bezoekers doorlopen een interactieve route en laten zien wat ze nodig hebben. Jij weet precies wie klaar is — zonder koud te bellen of eindeloos te DM'en.</p>
         </div>
         <div class="bg-white rounded-card p-6 border border-border">
-          <h3 class="font-heading text-lg text-text mb-2">Email & Automatisering</h3>
-          <p class="text-sm text-text-muted">Geautomatiseerde flows die leads onboarden en kopers opvolgen.</p>
+          <h3 class="font-heading text-lg text-text mb-2">Opvolging die vertrouwen bouwt</h3>
+          <p class="text-sm text-text-muted">Na de eerste aanmelding ontvangen leads een persoonlijke serie. Tegen de tijd dat ze je traject zien, hoef je niet meer te overtuigen.</p>
         </div>
         <div class="bg-white rounded-card p-6 border border-border">
-          <h3 class="font-heading text-lg text-text mb-2">Ads & Meetbaarheid</h3>
-          <p class="text-sm text-text-muted">Meta Ads die het systeem voeden, met tracking die laat zien wat converteert.</p>
+          <h3 class="font-heading text-lg text-text mb-2">Eén route, niet losse campagnes</h3>
+          <p class="text-sm text-text-muted">Content, producten, emails en ads vormen één pad: van eerste klik naar betalende klant. Dat is het verschil tussen "meer zichtbaarheid" en voorspelbare groei.</p>
         </div>
       </div>
     </div>
@@ -198,71 +201,76 @@ const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
     </div>
   </section>
 
-  {/* ── Proof Wall ── */}
-  <section class="py-16 md:py-20 bg-bg-alt">
-    <div class="max-w-4xl mx-auto px-4 md:px-6">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-10 text-center">Resultaten van klanten</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="bg-white rounded-card p-6 border border-border">
-          <h3 class="font-heading text-lg text-text mb-1">Happy With Yoga</h3>
-          <p class="text-xs text-text-muted mb-3">Sinds 2022</p>
-          <div class="space-y-2">
-            <p class="text-sm"><strong class="text-accent">30.000+</strong> webinarleads</p>
-            <p class="text-sm"><strong class="text-accent">1.700+</strong> mini-cursusverkopen</p>
-            <p class="text-sm"><strong class="text-accent">2.000</strong> betalende platformleden</p>
-          </div>
-        </div>
-        <div class="bg-white rounded-card p-6 border border-border">
-          <h3 class="font-heading text-lg text-text mb-1">Tessa / Youlife</h3>
-          <p class="text-xs text-text-muted mb-3">Sinds feb 2025</p>
-          <div class="space-y-2">
-            <p class="text-sm"><strong class="text-accent">±€10k/mnd</strong> online producten</p>
-            <p class="text-sm"><strong class="text-accent">6</strong> producten gelanceerd</p>
-            <p class="text-sm"><strong class="text-accent">±10/mnd</strong> coachingklanten</p>
-          </div>
-        </div>
-        <div class="bg-white rounded-card p-6 border border-border">
-          <h3 class="font-heading text-lg text-text mb-1">Coach Josine</h3>
-          <p class="text-xs text-text-muted mb-3">Sinds okt 2025</p>
-          <div class="space-y-2">
-            <p class="text-sm"><strong class="text-accent">600×</strong> gids verkocht</p>
-            <p class="text-sm"><strong class="text-accent">80</strong> masterclass-aanmeldingen</p>
-          </div>
-        </div>
-        <div class="bg-white rounded-card p-6 border border-border">
-          <h3 class="font-heading text-lg text-text mb-1">Manon van Bakel</h3>
-          <p class="text-xs text-text-muted mb-3">Eerste maand</p>
-          <div class="space-y-2">
-            <p class="text-sm"><strong class="text-accent">120</strong> aanmeldingen in 2 weken</p>
-            <p class="text-sm"><strong class="text-accent">±10%</strong> conversie naar trajecten</p>
-          </div>
-        </div>
-        <div class="bg-white rounded-card p-6 border border-border">
-          <h3 class="font-heading text-lg text-text mb-1">Kim Bongers</h3>
-          <p class="text-xs text-text-muted mb-3">2 maanden</p>
-          <div class="space-y-2">
-            <p class="text-sm"><strong class="text-accent">90</strong> masterclass-aanmeldingen</p>
-            <p class="text-sm"><strong class="text-accent">350×</strong> gids verkocht</p>
-            <p class="text-sm"><strong class="text-accent">8%</strong> conversie</p>
-          </div>
-        </div>
-      </div>
-      <div class="text-center mt-8">
-        <a href="/cases/" class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium">
-          Bekijk alle cases
-          <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  {/* ── Testimonials ── */}
-  <div>
-    <div class="max-w-4xl mx-auto px-4 md:px-6 pt-16 md:pt-20">
-      <h2 class="font-heading text-2xl md:text-3xl text-text text-center">Wat klanten zeggen</h2>
-    </div>
-    <TestimonialSlider testimonials={testimonials} locale="nl" />
-  </div>
+  {/* ── Client Results (merged proof wall + testimonials) ── */}
+  <ClientResults
+    title="Resultaten van klanten"
+    featuredCases={[
+      {
+        testimonial: testimonials.find((t) => t.id === 'rolf-happywithyoga')!,
+        period: 'Sinds 2022',
+        stats: [
+          { value: '30.000+', label: 'webinarleads' },
+          { value: '1.700+', label: 'mini-cursusverkopen' },
+          { value: '2.000', label: 'betalende leden' },
+        ],
+        caseHref: '/cases/happy-with-yoga/',
+      },
+      {
+        testimonial: testimonials.find((t) => t.id === 'tessa-youlife')!,
+        period: 'Sinds feb 2025',
+        stats: [
+          { value: '±€10k/mnd', label: 'online producten' },
+          { value: '6', label: 'producten gelanceerd' },
+          { value: '±10/mnd', label: 'coachingklanten' },
+        ],
+        caseHref: '/cases/youlife/',
+      },
+      {
+        testimonial: testimonials.find((t) => t.id === 'josine-coachjosine')!,
+        period: 'Sinds okt 2025',
+        stats: [
+          { value: '600×', label: 'gids verkocht' },
+          { value: '80', label: 'masterclass-aanmeldingen' },
+        ],
+        caseHref: '/cases/coach-josine/',
+      },
+    ]}
+    smallResults={[
+      {
+        name: 'Manon van Bakel',
+        period: 'Eerste maand',
+        stats: [
+          { value: '120', label: 'aanmeldingen in 2 weken' },
+          { value: '±10%', label: 'conversie naar trajecten' },
+        ],
+      },
+      {
+        name: 'Kim Bongers',
+        period: '2 maanden',
+        stats: [
+          { value: '90', label: 'masterclass-aanmeldingen' },
+          { value: '350×', label: 'gids verkocht' },
+          { value: '8%', label: 'conversie' },
+        ],
+      },
+      {
+        name: 'MCM Research',
+        logo: 'mcm-research-logo.webp',
+        period: 'Klant sinds 2022',
+        stats: [
+          { value: '2.500+', label: 'leads in Nederland' },
+          { value: '500', label: 'sollicitanten NL' },
+          { value: '1.500+', label: 'leads in België' },
+          { value: '250', label: 'sollicitanten BE' },
+        ],
+      },
+    ]}
+    otherTestimonials={testimonials.filter((t) => ['claire-ikrouwvanje', 'andrew-coreprogression'].includes(t.id))}
+    caseLabel="Lees de case"
+    allCasesHref="/cases/"
+    allCasesLabel="Bekijk alle cases"
+    locale="nl"
+  />
 
   {/* ── Client logos marquee ── */}
   {logos.length > 0 && (

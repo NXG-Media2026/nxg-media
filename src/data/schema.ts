@@ -259,6 +259,39 @@ export function generateCaseStudy(caseData: {
   });
 }
 
+export function generateVideoObject(video: {
+  name: string;
+  description: string;
+  thumbnailUrl: string;
+  contentUrl: string;
+  uploadDate?: string;
+  duration?: string; // ISO 8601 e.g. PT2M30S
+  inLanguage?: string;
+}) {
+  return JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: video.name,
+    description: video.description,
+    thumbnailUrl: video.thumbnailUrl.startsWith('http') ? video.thumbnailUrl : `${siteConfig.url}${video.thumbnailUrl}`,
+    contentUrl: video.contentUrl.startsWith('http') ? video.contentUrl : `${siteConfig.url}${video.contentUrl}`,
+    uploadDate: video.uploadDate ?? new Date().toISOString().split('T')[0],
+    ...(video.duration && { duration: video.duration }),
+    inLanguage: video.inLanguage ?? 'nl',
+    publisher: { '@id': orgId },
+  });
+}
+
+export function generateVideoObjectArray(videos: Array<{
+  name: string;
+  description: string;
+  thumbnailUrl: string;
+  contentUrl: string;
+  inLanguage?: string;
+}>): string[] {
+  return videos.map((v) => generateVideoObject(v));
+}
+
 export function generatePerson(member: {
   slug?: string;
   name: string;

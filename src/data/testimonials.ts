@@ -66,15 +66,6 @@ export const testimonials: Testimonial[] = [
     cluster: 'expert-growth',
   },
   {
-    id: 'kim-fitnesscoach',
-    name: 'Kim',
-    outcome: 'Fitness coach',
-    text: 'Het masterclass-systeem draait nu volledig. 90 aanmeldingen, 350 verkochte gidsen en een conversie van 8% naar mijn trajecten — in twee maanden. Eindelijk een voorspelbare instroom.',
-    rating: 5,
-    locale: 'nl',
-    cluster: 'expert-growth',
-  },
-  {
     id: 'andrew-coreprogression',
     name: 'Andrew',
     outcome: 'Core Progression',
