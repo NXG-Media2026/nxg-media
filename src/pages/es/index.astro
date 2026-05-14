@@ -11,6 +11,7 @@ import SocialStorytellingGrid from '../../components/SocialStorytellingGrid.astr
 import FounderPreview from '../../components/FounderPreview.astro';
 import FAQAccordion from '../../components/FAQAccordion.astro';
 import ScannerChooser from '../../components/ScannerChooser.astro';
+import AIPlatformBar from '../../components/AIPlatformBar.astro';
 import { siteConfig } from '../../data/site';
 import { generateOrganization, generateWebSite, generateFounderPerson, generateFAQPage } from '../../data/schema';
 import { buildHreflangTrilingual } from '../../i18n/hreflang';
@@ -141,6 +142,9 @@ const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
       </div>
     </div>
   </section>
+
+  {/* ── AI Platform Bar ── */}
+  <AIPlatformBar locale="es" />
 
   {/* ── What NXG Media builds ── */}
   <section class="py-12 md:py-16 bg-bg-alt">
