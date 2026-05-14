@@ -15,35 +15,35 @@ import { getProductTestimonials } from '../../../data/testimonials';
 export async function getStaticPaths() {
   const products = await getCollection('products');
   return products
-    .filter((p) => p.data.locale === 'en')
+    .filter((p) => p.data.locale === 'es')
     .map((p) => ({ params: { slug: p.data.pageSlug }, props: { entry: p } }));
 }
 
 const { entry } = Astro.props;
 const product = entry.data;
-const locale = 'en';
+const locale = 'es';
 const { Content } = await entry.render();
 
 const productImages = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/products/*.webp', { eager: true });
 const coverImage = product.cover ? productImages[`/src/assets/images/products/${product.cover}`]?.default : undefined;
 
-const testimonials = getProductTestimonials(product.pageSlug, 4, 'en');
+const testimonials = getProductTestimonials(product.pageSlug, 4, 'es');
 
 const breadcrumbs = [
-  { label: t('breadcrumb.home', locale), href: '/en/' },
-  { label: t('breadcrumb.producten', locale), href: '/en/products/' },
+  { label: t('breadcrumb.home', locale), href: '/es/' },
+  { label: t('breadcrumb.producten', locale), href: '/es/productos/' },
   { label: product.title },
 ];
 
 const breadcrumbSchema = breadcrumbs.map((b) => ({
   name: b.label,
-  url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}/en/products/${product.pageSlug}/`,
+  url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}/es/productos/${product.pageSlug}/`,
 }));
 
 const faqForSchema = product.faq.map((f) => ({ question: f.q, answer: f.a }));
 
 const isPlaceholder = !product.checkoutUrl || product.checkoutUrl.includes('TBD');
-const checkoutHref = isPlaceholder ? '/en/contact/' : product.checkoutUrl;
+const checkoutHref = isPlaceholder ? '/es/contacto/' : product.checkoutUrl;
 const checkoutLabel = isPlaceholder ? t('cta.contact', locale) : t('cta.buyNow', locale);
 ---
 
@@ -52,7 +52,7 @@ const checkoutLabel = isPlaceholder ? t('cta.contact', locale) : t('cta.buyNow',
   description={product.shortDescription}
   ogType="product"
   schemas={[
-    generateProduct({ name: product.title, description: product.shortDescription, url: `${siteConfig.url}/en/products/${product.pageSlug}/`, price: product.price, image: coverImage?.src }),
+    generateProduct({ name: product.title, description: product.shortDescription, url: `${siteConfig.url}/es/productos/${product.pageSlug}/`, price: product.price, image: coverImage?.src }),
     generateBreadcrumbs(breadcrumbSchema),
     ...(faqForSchema.length > 0 ? [generateFAQPage(faqForSchema)] : []),
   ]}
@@ -137,7 +137,7 @@ const checkoutLabel = isPlaceholder ? t('cta.contact', locale) : t('cta.buyNow',
   {product.faq.length > 0 && (
     <div class="bg-bg-alt">
       <FAQAccordion
-        title="Frequently asked questions"
+        title="Preguntas frecuentes"
         items={product.faq}
         locale={locale}
         pageType="product"
@@ -150,7 +150,7 @@ const checkoutLabel = isPlaceholder ? t('cta.contact', locale) : t('cta.buyNow',
   {testimonials.length > 0 && (
     <div>
       <div class="max-w-4xl mx-auto px-4 md:px-6 pt-16 md:pt-20">
-        <h2 class="font-heading text-2xl md:text-3xl text-text text-center">What clients say</h2>
+        <h2 class="font-heading text-2xl md:text-3xl text-text text-center">Lo que dicen los clientes</h2>
       </div>
       <TestimonialSlider testimonials={testimonials} locale={locale} />
     </div>
@@ -159,7 +159,7 @@ const checkoutLabel = isPlaceholder ? t('cta.contact', locale) : t('cta.buyNow',
   {/* ── Bottom CTA ── */}
   <section class="py-16 md:py-20 bg-bg-alt">
     <div class="max-w-2xl mx-auto px-4 md:px-6 text-center">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">Ready to get started?</h2>
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">¿Listo para empezar?</h2>
       <p class="text-text-muted mb-8">{product.shortDescription}</p>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
         <span class="text-3xl font-heading font-bold text-text">&euro;{product.price}</span>

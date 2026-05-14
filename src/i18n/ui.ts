@@ -244,22 +244,28 @@ export const ui = {
   es: {
     // Navigation
     'nav.home': 'Inicio',
+    'nav.expertGrowth': 'Expert Growth',
     'nav.aiVindbaarheid': 'Visibilidad IA',
     'nav.cases': 'Casos',
+    'nav.producten': 'Productos',
     'nav.about': 'Sobre Joost',
     'nav.contact': 'Contacto',
+    'nav.guides': 'Guías',
 
     // CTAs
     'cta.discover': 'Explorar',
     'cta.learnMore': 'Leer más',
     'cta.viewAll': 'Ver todo',
     'cta.backToOverview': 'Volver al resumen',
+    'cta.buyNow': 'Comprar ahora',
     'cta.contact': 'Contactar',
     'cta.bookCall': 'Reservar una llamada',
     'cta.subscribe': 'Suscribirse',
     'cta.runScan': 'Solicita un análisis de visibilidad IA',
     'cta.viewCases': 'Ver casos',
     'cta.viewAudit': 'Ver el enfoque de auditoría',
+    'cta.discussGrowth': 'Habla sobre tu ruta de crecimiento',
+    'cta.exploreExpertGrowth': 'Descubre Expert Growth',
 
     // Testimonials / Proof
     'testimonial.heading': 'Lo que dicen los clientes',
@@ -268,6 +274,17 @@ export const ui = {
     // FAQ
     'faq.heading': 'Preguntas frecuentes',
 
+    // Social
+    'social.followCta': 'Sigue a @joost.van.putten en Instagram',
+
+    // Product pages
+    'product.whatIsInside': 'Qué incluye',
+    'product.whoIsThisFor': '¿Para quién es?',
+    'product.price': 'Precio',
+    'product.allProducts': 'Todos los productos',
+    'product.comingSoon': 'Próximamente',
+    'product.format': 'Formato',
+
     // Service pages
     'service.forYouIf': 'Esto es para ti si…',
     'service.notForYouIf': 'Esto no es para ti si…',
@@ -275,10 +292,19 @@ export const ui = {
     'service.mechanism': 'El mecanismo',
     'service.failedSolutions': 'Lo que no funciona',
     'service.problemRecognition': '¿Te suena familiar?',
+    'service.allServices': 'Todos los servicios',
 
     // Case pages
+    'case.whatWeBuilt': 'Lo que construimos',
+    'case.proofStats': 'Resultados',
+    'case.strategicLesson': 'Lección estratégica',
+    'case.startSituation': 'Situación inicial',
     'case.allCases': 'Todos los casos',
     'case.comingSoon': 'Casos próximamente',
+
+    // Guide pages
+    'guide.allGuides': 'Todas las guías',
+    'guide.by': 'Por',
 
     // E-E-A-T bylines
     'eeat.writtenBy': 'Escrito por',
@@ -289,7 +315,7 @@ export const ui = {
 
     // Newsletter
     'newsletter.heading': 'Newsletter',
-    'newsletter.subtitle': 'Información práctica sobre visibilidad ante IA para clínicas y negocios locales.',
+    'newsletter.subtitle': 'Información práctica sobre crecimiento online, visibilidad IA y posicionamiento de expertos — directo en tu inbox.',
     'newsletter.placeholder': 'Tu email',
     'newsletter.button': 'Suscribirse',
     'newsletter.success': '¡Bienvenido! Revisa tu inbox.',
@@ -312,18 +338,26 @@ export const ui = {
     'breadcrumb.home': 'Inicio',
     'breadcrumb.cases': 'Casos',
     'breadcrumb.diensten': 'Servicios',
+    'breadcrumb.producten': 'Productos',
+    'breadcrumb.guides': 'Guías',
 
     // Cluster
     'cluster.relatedTopics': 'Temas relacionados',
+    'cluster.moreAbout': 'Más sobre',
+    'cluster.guidesAbout': 'Guías sobre',
 
     // Calendly
     'calendly.title': 'Reserva una llamada',
     'calendly.subtitle': 'Elige un momento que te convenga — sin compromiso y personal.',
 
     // Homepage
-    'homepage.heroHeading': 'Visibilidad ante IA para clínicas locales',
+    'homepage.heroHeading': 'Construye un sistema de crecimiento online alrededor de tu experiencia',
     'homepage.recognition': '¿Te suena familiar?',
+    'homepage.principle': 'Lo que construye NXG Media',
+    'homepage.proofWall': 'Resultados de clientes',
+    'homepage.buildingBlocks': 'Los pilares',
     'homepage.aboutJoost': 'Sobre Joost',
+    'homepage.newsletter': 'Mantente informado',
 
     // Schema
     'schema.glossaryName': 'Base de conocimiento NXG Media',

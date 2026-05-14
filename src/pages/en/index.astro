@@ -23,8 +23,8 @@ import founderPhoto from '../../assets/images/founder/joost-sitting-laptop-looki
 const locale = 'en';
 const hreflang = buildHreflangTrilingual('/', '/en/', '/es/');
 
-const testimonials = getTestimonials({ locale: 'nl' });
-const socialPosts = getSocialPosts(6);
+const testimonials = getTestimonials({ locale: 'en' });
+const socialPosts = getSocialPosts(6, 'en');
 
 const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
 const logos = Object.entries(logoFiles)

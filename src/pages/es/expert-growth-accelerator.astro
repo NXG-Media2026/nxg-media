@@ -1,0 +1,21 @@
+---
+import ClusterHubLayout from '../../layouts/ClusterHubLayout.astro';
+import CTABand from '../../components/CTABand.astro';
+import { getCluster } from '../../lib/clusters';
+
+const cluster = getCluster('expert-growth')!;
+const locale = 'es';
+---
+
+<ClusterHubLayout cluster={cluster} locale={locale}>
+  <CTABand
+    title="Habla sobre tu ruta de crecimiento"
+    subtitle="Reserva una llamada sin compromiso con Joost."
+    ctaText="Reservar una llamada"
+    ctaHref="/es/servicios/expert-growth-accelerator/"
+    eventName="expert_growth_calendly_open"
+    locale={locale}
+    pageType="cluster_hub"
+    pageSlug="expert-growth-accelerator"
+  />
+</ClusterHubLayout>
