@@ -16,6 +16,8 @@ import { buildHreflangTrilingual } from '../../i18n/hreflang';
 import heroPhoto from '../../assets/images/founder/joost-sitting-laptop-lookingfront.webp';
 import founderPhoto from '../../assets/images/founder/joost-standing-relaxed.webp';
 import clairePhoto from '../../assets/images/logos/claire-profile-photo.png';
+import perplexityLogo from '../../assets/images/logos/perplexity-logo.jpg';
+import claudeLogo from '../../assets/images/logos/claude-logo.svg';
 
 const locale = 'en';
 const cluster = getCluster('ai-vindbaarheid')!;
@@ -177,18 +179,12 @@ const trustItems = [
           <p class="text-xs text-text-muted">Integrated into Google Search</p>
         </div>
         <div class="bg-white rounded-card p-5 border border-border text-center flex flex-col items-center gap-3">
-          <svg class="w-10 h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Perplexity logo" role="img">
-            <path d="M7.55 3.2V9.5H4.75V11.25H7.55V17.1L4 20.25V21.5H10.15V14.5H13.85V21.5H20V20.25L16.45 17.1V11.25H19.25V9.5H16.45V3.2L12 6.75L7.55 3.2Z" fill="#20808D"/>
-            <path d="M12 6.75V14.5" stroke="#20808D" stroke-width="1.2"/>
-            <path d="M10.15 9.5V2.5L12 6.75L13.85 2.5V9.5" fill="#20808D"/>
-          </svg>
+          <Image src={perplexityLogo} alt="Perplexity logo" width={40} height={40} class="w-10 h-10 object-contain" loading="lazy" decoding="async" />
           <p class="font-heading text-base font-semibold text-text">Perplexity</p>
           <p class="text-xs text-text-muted">15M+ daily search queries</p>
         </div>
         <div class="bg-white rounded-card p-5 border border-border text-center flex flex-col items-center gap-3">
-          <svg class="w-10 h-10" viewBox="0 0 24 24" fill="#D97757" xmlns="http://www.w3.org/2000/svg" aria-label="Claude logo" role="img">
-            <path d="M4.709 15.955l4.397-2.006-.893-2.16L4.35 13.42a.463.463 0 0 0-.263.598l.622 1.937zM8.68 7.092l-3.174 3.47a.463.463 0 0 0 .076.666l1.6 1.198 3.097-3.803L8.68 7.092zM11.468 2.2L9.267 6.234l1.832 1.378L13.37 3.28a.463.463 0 0 0-.232-.613L11.468 2.2zM14.636 2.656l-1.33 5.04 2.225.587 1.003-4.67a.463.463 0 0 0-.375-.534l-1.523-.423zM18.34 6.2l-3.614 3.174 1.338 1.67 3.313-2.898a.463.463 0 0 0 .054-.664L18.34 6.2zM19.648 11.85l-4.876.363.163 2.236 4.564-.014a.463.463 0 0 0 .45-.475l-.301-2.11zM17.456 16.88l-3.782-2.72-1.26 1.74 3.49 2.923a.463.463 0 0 0 .66-.078l.892-1.865zM12.9 20.088l-.67-4.856-2.18.5.23 4.68a.463.463 0 0 0 .512.42l2.108-.744zM7.47 17.6l2.48-4.06-1.932-1.08-2.164 3.878a.463.463 0 0 0 .2.638l1.416.625z"/>
-          </svg>
+          <Image src={claudeLogo} alt="Claude logo" width={40} height={40} class="w-10 h-10 object-contain" loading="lazy" decoding="async" />
           <p class="font-heading text-base font-semibold text-text">Claude</p>
           <p class="text-xs text-text-muted">Fastest growing AI assistant</p>
         </div>
