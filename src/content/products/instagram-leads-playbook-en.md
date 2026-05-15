@@ -115,7 +115,7 @@ For €1-2 per day you're "everywhere" for people who already interacted with yo
 
 This isn't theory. This system has been running for years with coaches and knowledge entrepreneurs:
 
-- **Coach Josine** — eating disorder specialist. 600 guides sold and 80 masterclass signups in week 1 after launching her first mini-product with this system.
+- **Coach Josine** — eating disorder specialist. 600 guides sold and 80 masterclass signups in 4 months after launching her first mini-product with this system.
 - **Happy With Yoga** — from yoga blog to platform with 30,000+ webinar leads, 1,700+ mini-course sales and 2,000 paying members.
 - **Tessa / Youlife** — from zero online products to €10,000/month product revenue and 10 coaching clients per month from product leads.
 
@@ -124,5 +124,5 @@ This isn't theory. This system has been running for years with coaches and knowl
 - You don't have an existing offer yet (build your service or product first)
 - You're not willing to spend €5-10 per day on ads (organic works too, but slower)
 - You're looking for a "get rich quick" trick (this is a system, not a hack)
-- You're already consistently earning €10k+ per month and want a fully managed service (check the [Coach Accelerator programme](/en/services/coach-accelerator/))
+- You're already consistently earning €10k+ per month and want a fully managed service (check the [Coach Accelerator programme](/en/coach-accelerator/))
 

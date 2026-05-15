@@ -29,7 +29,7 @@ faq:
   - q: "Hoe snel zie ik resultaat?"
     a: "Na het toepassen van Kit 1 kun je direct opnieuw scannen en het verschil zien. Citeerbaarheid en autoriteit bouwen iets langzamer op, maar de eerste verbeteringen zijn binnen een week zichtbaar."
   - q: "Wat als ik vastloop?"
-    a: "Elke kit heeft stap-voor-stap instructies met voorbeeldteksten. Als je er echt niet uitkomt, is de <a href='/diensten/ai-vindbaarheid-audit/'>Deep Dive Audit</a> de logische volgende stap — dan doen wij het samen."
+    a: "Elke kit heeft stap-voor-stap instructies met voorbeeldteksten. Als je er echt niet uitkomt, is de <a href='/ai-vindbaarheid/'>Deep Dive Audit</a> de logische volgende stap — dan doen wij het samen."
   - q: "Wat is het verschil met de Deep Dive Audit?"
     a: "De kits zijn zelf-doen: jij volgt de stappen en past de templates toe. De Deep Dive is gedaan-voor-je: wij testen 36 echte zoekvragen, vergelijken met 3 concurrenten en leveren een volledig actieplan op."
 calendlyContext: "off"
@@ -88,7 +88,7 @@ Klaar in 15-30 minuten per kit. Geen technische kennis nodig.
 
 ## Dit is niet voor je als...
 
-- Je op zoek bent naar een compleet AI-strategie traject (kijk dan naar de [Deep Dive Audit](/diensten/ai-vindbaarheid-audit/))
+- Je op zoek bent naar een compleet AI-strategie traject (kijk dan naar de [Deep Dive Audit](/ai-vindbaarheid/))
 - Je verwacht dat één kit je bovenaan ChatGPT zet (alle drie lagen samen maken het verschil)
 - Je geen eigen website hebt (de kits werken alleen op bestaande sites)
 

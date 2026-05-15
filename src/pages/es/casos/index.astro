@@ -8,10 +8,12 @@ import CTABand from '../../../components/CTABand.astro';
 import ScannerChooser from '../../../components/ScannerChooser.astro';
 import { siteConfig } from '../../../data/site';
 import { t } from '../../../i18n/utils';
+import { buildHreflangTrilingual } from '../../../i18n/hreflang';
 import { getTestimonials } from '../../../data/testimonials';
 import { videoTestimonials } from '../../../data/videoTestimonials';
 
 const locale = 'es';
+const hreflang = buildHreflangTrilingual('/cases/', '/en/cases/', '/es/casos/');
 const cases = (await getCollection('cases')).filter((c) => c.data.locale === locale).sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 const nlCases = cases.length === 0 ? (await getCollection('cases')).filter((c) => c.data.locale === 'nl').sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99)) : [];
 const displayCases = cases.length > 0 ? cases : nlCases;
@@ -29,6 +31,7 @@ const breadcrumbs = [
   title={`Casos y Resultados | ${siteConfig.name}`}
   description="Descubre cómo coaches, expertos y PYMES crecen con NXG Media. Resultados reales, clientes reales, números reales."
   locale={locale}
+  hreflang={hreflang}
 >
   <BreadcrumbNav items={breadcrumbs} />
 
@@ -54,7 +57,7 @@ const breadcrumbs = [
           { value: '1.700+', label: 'ventas de mini-curso' },
           { value: '2.000', label: 'miembros de pago' },
         ],
-        caseHref: '/cases/happy-with-yoga/',
+        caseHref: '/es/casos/happy-with-yoga/',
       },
       {
         testimonial: testimonials.find((t) => t.id === 'tessa-youlife')!,
@@ -64,7 +67,7 @@ const breadcrumbs = [
           { value: '6', label: 'productos lanzados' },
           { value: '±10/mes', label: 'clientes de coaching' },
         ],
-        caseHref: '/cases/youlife/',
+        caseHref: '/es/casos/tessa-youlife/',
       },
       {
         testimonial: testimonials.find((t) => t.id === 'josine-coachjosine')!,
@@ -73,7 +76,7 @@ const breadcrumbs = [
           { value: '600×', label: 'guías vendidas' },
           { value: '80', label: 'inscripciones masterclass' },
         ],
-        caseHref: '/cases/coach-josine/',
+        caseHref: '/es/casos/coach-josine/',
       },
     ]}
     smallResults={[

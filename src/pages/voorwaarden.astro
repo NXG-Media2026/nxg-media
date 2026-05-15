@@ -3,15 +3,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import BreadcrumbNav from '../components/BreadcrumbNav.astro';
 import { siteConfig } from '../data/site';
 import { t, localizePath } from '../i18n/utils';
+import { buildHreflangTrilingual } from '../i18n/hreflang';
 
 const locale = 'nl';
+const hreflang = buildHreflangTrilingual('/voorwaarden/', '/en/terms/', '/es/terminos/');
 const breadcrumbs = [
   { label: t('breadcrumb.home', locale), href: localizePath('/', locale) },
   { label: 'Voorwaarden' },
 ];
 ---
 
-<BaseLayout title={`Algemene Voorwaarden | ${siteConfig.name}`} description="Algemene voorwaarden van NXG Media voor diensten, audits en digitale producten." locale={locale}>
+<BaseLayout title={`Algemene Voorwaarden | ${siteConfig.name}`} description="Algemene voorwaarden van NXG Media voor diensten, audits en digitale producten." locale={locale} hreflang={hreflang}>
   <BreadcrumbNav items={breadcrumbs} />
 
   <article class="py-12 md:py-16 lg:py-20">

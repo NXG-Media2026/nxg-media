@@ -3,15 +3,17 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import BreadcrumbNav from '../../components/BreadcrumbNav.astro';
 import { siteConfig } from '../../data/site';
 import { t, localizePath } from '../../i18n/utils';
+import { buildHreflangTrilingual } from '../../i18n/hreflang';
 
 const locale = 'es';
+const hreflang = buildHreflangTrilingual('/privacy/', '/en/privacy/', '/es/privacidad/');
 const breadcrumbs = [
   { label: t('breadcrumb.home', locale), href: localizePath('/', locale) },
   { label: 'Privacidad' },
 ];
 ---
 
-<BaseLayout title={`Privacidad | ${siteConfig.name}`} description="Politica de privacidad de NXG Media — como tratamos tus datos personales." locale={locale}>
+<BaseLayout title={`Privacidad | ${siteConfig.name}`} description="Politica de privacidad de NXG Media — como tratamos tus datos personales." locale={locale} hreflang={hreflang}>
   <BreadcrumbNav items={breadcrumbs} />
 
   <article class="py-12 md:py-16 lg:py-20">

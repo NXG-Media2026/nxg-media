@@ -115,7 +115,7 @@ Met €1-2 per dag ben je "overal" voor mensen die al interactie met je hadden. 
 
 Dit is niet theorie. Dit systeem draait al jaren bij coaches en kennisondernemers:
 
-- **Coach Josine** — specialist in eetproblemen. 600 guides verkocht en 80 masterclass-aanmeldingen in week 1 na lancering van haar eerste mini-product met dit systeem.
+- **Coach Josine** — specialist in eetproblemen. 600 guides verkocht en 80 masterclass-aanmeldingen in 4 maanden na lancering van haar eerste mini-product met dit systeem.
 - **Happy With Yoga** — van yogablog naar platform met 30.000+ webinarleads, 1.700+ mini-cursus verkopen en 2.000 betalende leden.
 - **Tessa / Youlife** — van nul online producten naar €10.000/maand productomzet en 10 coachingklanten per maand uit productleads.
 
@@ -124,5 +124,5 @@ Dit is niet theorie. Dit systeem draait al jaren bij coaches en kennisondernemer
 - Je geen bestaand aanbod hebt (bouw eerst je dienst of product)
 - Je niet bereid bent om €5-10 per dag aan ads uit te geven (organisch kan ook, maar langzamer)
 - Je zoekt naar een "snel rijk worden" truc (dit is een systeem, geen hack)
-- Je al structureel €10k+ per maand omzet draait en een volledig managed service zoekt (kijk dan naar het [Coach Accelerator programma](/diensten/coach-accelerator/))
+- Je al structureel €10k+ per maand omzet draait en een volledig managed service zoekt (kijk dan naar het [Coach Accelerator programma](/coach-accelerator/))
 

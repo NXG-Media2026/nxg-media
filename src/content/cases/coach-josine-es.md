@@ -1,5 +1,5 @@
 ---
-title: "Coach Josine — 600× guía vendida y 80 inscripciones a masterclass en la semana 1"
+title: "Coach Josine — 600× guía vendida y 80 inscripciones a masterclass en 4 meses"
 pageSlug: coach-josine
 locale: es
 cluster: expert-growth
@@ -18,7 +18,7 @@ proofStats:
   - value: "600×"
     label: "guías vendidas"
   - value: "80"
-    label: "inscripciones a masterclass en la semana 1"
+    label: "inscripciones a masterclass en 4 meses"
 strategicLesson: "Un primer producto no tiene que ser perfecto: tiene que ser relevante y lanzarse rápido. La velocidad de la primera tracción genera impulso para todo lo que viene después."
 screenshots:
   - "eetgids-coachjosine-product-proof.webp"

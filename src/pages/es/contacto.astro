@@ -5,8 +5,10 @@ import CalendlyEmbed from '../../components/CalendlyEmbed.astro';
 import { siteConfig } from '../../data/site';
 import { generateBreadcrumbs } from '../../data/schema';
 import { t, localizePath } from '../../i18n/utils';
+import { buildHreflangTrilingual } from '../../i18n/hreflang';
 
 const locale = 'es';
+const hreflang = buildHreflangTrilingual('/contact/', '/en/contact/', '/es/contacto/');
 const breadcrumbs = [
   { label: t('breadcrumb.home', locale), href: localizePath('/', locale) },
   { label: 'Contacto' },
@@ -22,6 +24,7 @@ const breadcrumbSchema = [
   description="Contacta con NXG Media o reserva una llamada con Joost."
   schemas={[generateBreadcrumbs(breadcrumbSchema)]}
   locale={locale}
+  hreflang={hreflang}
 >
   <BreadcrumbNav items={breadcrumbs} />
 

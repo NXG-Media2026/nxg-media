@@ -11,6 +11,7 @@ import { siteConfig } from '../../data/site';
 import { generateBreadcrumbs, generateFAQPage } from '../../data/schema';
 import { getCluster, getClusterFaqLocalized } from '../../lib/clusters';
 import { getTestimonials } from '../../data/testimonials';
+import { buildHreflangTrilingual } from '../../i18n/hreflang';
 
 import heroPhoto from '../../assets/images/founder/joost-sitting-laptop-lookingfront.webp';
 import founderPhoto from '../../assets/images/founder/joost-standing-relaxed.webp';
@@ -22,6 +23,7 @@ const faqItems = getClusterFaqLocalized(cluster, locale);
 const faqForComponent = faqItems.map((item) => ({ q: item.question, a: item.answer }));
 
 const testimonials = getTestimonials({ locale: 'en' });
+const hreflang = buildHreflangTrilingual('/ai-vindbaarheid/', '/en/ai-visibility/', '/es/visibilidad-ia/');
 const claireTestimonial = testimonials.find((t) => t.id === 'claire-ikrouwvanje');
 
 const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
@@ -50,6 +52,7 @@ const trustItems = [
   title="AI Visibility — Get recommended by ChatGPT, Gemini & Perplexity | NXG Media"
   description="AI search traffic is growing 60% per year. Is your business already recommended by ChatGPT, Gemini and Perplexity? Run the free scan and find out."
   schemas={[generateBreadcrumbs(breadcrumbs.map((b) => ({ name: b.label, url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}/en/ai-visibility/` }))), generateFAQPage(faqItems)]}
+  hreflang={hreflang}
   locale={locale}
 >
   <BreadcrumbNav items={breadcrumbs} />

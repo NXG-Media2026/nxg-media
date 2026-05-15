@@ -115,7 +115,7 @@ Con €1-2 al día estás "en todas partes" para las personas que ya interactuar
 
 Esto no es teoría. Este sistema lleva años funcionando con coaches y expertos:
 
-- **Coach Josine** — especialista en trastornos alimentarios. 600 guías vendidas y 80 inscripciones a su masterclass en la semana 1 tras lanzar su primer mini-producto con este sistema.
+- **Coach Josine** — especialista en trastornos alimentarios. 600 guías vendidas y 80 inscripciones a su masterclass en 4 meses tras lanzar su primer mini-producto con este sistema.
 - **Happy With Yoga** — de blog de yoga a plataforma con más de 30.000 leads de webinar, más de 1.700 ventas de mini-cursos y 2.000 miembros de pago.
 - **Tessa / Youlife** — de cero productos online a €10.000/mes en facturación de productos y 10 clientes de coaching al mes a través de compradores de productos.
 
@@ -124,4 +124,4 @@ Esto no es teoría. Este sistema lleva años funcionando con coaches y expertos:
 - No tienes una oferta existente (primero construye tu servicio o producto)
 - No estás dispuesto a invertir €5-10 al día en anuncios (lo orgánico también funciona, pero más lento)
 - Buscas un truco para "hacerte rico rápido" (esto es un sistema, no un hack)
-- Ya facturas más de €10k al mes de forma constante y buscas un servicio gestionado completo (echa un vistazo al [programa Coach Accelerator](/es/servicios/coach-accelerator/))
+- Ya facturas más de €10k al mes de forma constante y buscas un servicio gestionado completo (echa un vistazo al [programa Coach Accelerator](/es/coach-accelerator/))

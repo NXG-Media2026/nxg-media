@@ -1,5 +1,5 @@
 ---
-title: "Coach Josine — 600× guide sold and 80 masterclass signups in week 1"
+title: "Coach Josine — 600× guide sold and 80 masterclass signups in 4 months"
 pageSlug: coach-josine
 locale: en
 cluster: expert-growth
@@ -18,7 +18,7 @@ proofStats:
   - value: "600×"
     label: "guides sold"
   - value: "80"
-    label: "masterclass signups in week 1"
+    label: "masterclass signups in 4 months"
 strategicLesson: "A first product does not need to be perfect — it needs to be relevant and launched fast. The speed of that initial traction creates momentum for everything that follows."
 screenshots:
   - "eetgids-coachjosine-product-proof.webp"

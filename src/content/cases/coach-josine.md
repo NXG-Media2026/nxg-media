@@ -1,5 +1,5 @@
 ---
-title: "Coach Josine — 600× gids verkocht en 80 masterclass-aanmeldingen in week 1"
+title: "Coach Josine — 600× gids verkocht en 80 masterclass-aanmeldingen in 4 maanden"
 pageSlug: coach-josine
 locale: nl
 cluster: expert-growth
@@ -18,7 +18,7 @@ proofStats:
   - value: "600×"
     label: "gids verkocht"
   - value: "80"
-    label: "masterclass-aanmeldingen in week 1"
+    label: "masterclass-aanmeldingen in 4 maanden"
 strategicLesson: "Een eerste product hoeft niet perfect te zijn — het moet relevant zijn en snel gelanceerd worden. De snelheid van de eerste tractie geeft momentum voor alles wat daarna komt."
 screenshots:
   - "eetgids-coachjosine-product-proof.webp"

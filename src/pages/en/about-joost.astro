@@ -6,10 +6,12 @@ import CalendlyEmbed from '../../components/CalendlyEmbed.astro';
 import { siteConfig } from '../../data/site';
 import { generateProfilePage, generateFounderPerson, generateBreadcrumbs } from '../../data/schema';
 import { t, localizePath } from '../../i18n/utils';
+import { buildHreflangTrilingual } from '../../i18n/hreflang';
 import founderPhoto from '../../assets/images/founder/joost-sitting-laptop-looking-working.webp';
 import founderRelaxed from '../../assets/images/founder/joost-standing-relaxed.webp';
 
 const locale = 'en';
+const hreflang = buildHreflangTrilingual('/over-joost/', '/en/about-joost/', '/es/sobre-joost/');
 const breadcrumbs = [
   { label: t('breadcrumb.home', locale), href: localizePath('/', locale) },
   { label: 'About Joost' },
@@ -25,6 +27,7 @@ const breadcrumbSchema = [
   description="Joost van Putten — founder of NXG Media. Builds online growth systems for coaches, experts and local practices. 7+ years experience, €5M+ ads managed."
   schemas={[generateProfilePage(), generateFounderPerson(locale), generateBreadcrumbs(breadcrumbSchema)]}
   locale={locale}
+  hreflang={hreflang}
 >
   <BreadcrumbNav items={breadcrumbs} />
 

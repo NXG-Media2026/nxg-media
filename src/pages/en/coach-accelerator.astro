@@ -10,6 +10,7 @@ import { siteConfig } from '../../data/site';
 import { generateBreadcrumbs, generateFAQPage } from '../../data/schema';
 import { getCluster, getClusterFaqLocalized } from '../../lib/clusters';
 import { getTestimonials } from '../../data/testimonials';
+import { buildHreflangTrilingual } from '../../i18n/hreflang';
 
 import heroPhoto from '../../assets/images/founder/joost-standing-workinglaptop.webp';
 import founderPhoto from '../../assets/images/founder/joost-standing-relaxed.webp';
@@ -23,6 +24,7 @@ const cluster = getCluster('expert-growth')!;
 const faqItems = getClusterFaqLocalized(cluster, locale);
 const faqForComponent = faqItems.map((item) => ({ q: item.question, a: item.answer }));
 const testimonials = getTestimonials({ locale: 'en' });
+const hreflang = buildHreflangTrilingual('/coach-accelerator/', '/en/coach-accelerator/', '/es/coach-accelerator/');
 
 const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
 const logos = Object.entries(logoFiles)
@@ -43,6 +45,7 @@ const breadcrumbs = [
   title="Coach Accelerator — Predictable growth for coaches and experts | NXG Media"
   description="From referrals to a system that works for you. Mini-products, email flows, ads and AI visibility — built as one machine that delivers leads and clients."
   schemas={[generateBreadcrumbs(breadcrumbs.map((b) => ({ name: b.label, url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}/en/coach-accelerator/` }))), generateFAQPage(faqItems)]}
+  hreflang={hreflang}
   locale={locale}
 >
   <BreadcrumbNav items={breadcrumbs} />
@@ -70,7 +73,7 @@ const breadcrumbs = [
       </p>
       <div class="flex flex-col sm:flex-row items-start gap-4">
         <a
-          href="/en/services/coach-accelerator/"
+          href="/en/contact/"
           class="inline-flex items-center px-8 py-4 text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-lg"
         >
           See how it works
@@ -94,7 +97,7 @@ const breadcrumbs = [
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
         <div>
           <div class="font-heading text-2xl md:text-3xl text-primary">600×</div>
-          <p class="text-xs text-text-muted mt-1">guides sold in week 1</p>
+          <p class="text-xs text-text-muted mt-1">guides sold in 4 months</p>
           <p class="text-xs text-accent font-medium mt-0.5">Coach Josine</p>
         </div>
         <div>

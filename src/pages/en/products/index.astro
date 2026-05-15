@@ -6,8 +6,10 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import BreadcrumbNav from '../../../components/BreadcrumbNav.astro';
 import { siteConfig } from '../../../data/site';
 import { t, localizePath } from '../../../i18n/utils';
+import { buildHreflangTrilingual } from '../../../i18n/hreflang';
 
 const locale = 'en';
+const hreflang = buildHreflangTrilingual('/producten/', '/en/products/', '/es/productos/');
 const products = (await getCollection('products')).filter((p) => p.data.locale === locale);
 
 const coverFiles = import.meta.glob<{ default: ImageMetadata }>(
@@ -31,6 +33,7 @@ const breadcrumbs = [
   title={`Products | ${siteConfig.name}`}
   description="Practical mini-products for coaches, experts and local practices. Get started with proven systems — from €6.99."
   locale={locale}
+  hreflang={hreflang}
 >
   <BreadcrumbNav items={breadcrumbs} />
 
