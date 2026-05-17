@@ -1,10 +1,13 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BreadcrumbNav from '../components/BreadcrumbNav.astro';
 import CalendlyEmbed from '../components/CalendlyEmbed.astro';
 import FAQAccordion from '../components/FAQAccordion.astro';
 import { siteConfig } from '../data/site';
 import { generateBreadcrumbs, generateFAQPage } from '../data/schema';
+
+import heroPhoto from '../assets/images/founder/joost-standing-workinglaptop.webp';
 
 const locale = 'nl';
 
@@ -187,8 +190,20 @@ const addOns = [
   <BreadcrumbNav items={breadcrumbs} />
 
   {/* ── Hero ── */}
-  <section class="py-20 md:py-28 lg:py-36">
-    <div class="max-w-4xl mx-auto px-4 md:px-6">
+  <section class="relative py-20 md:py-28 lg:py-36 overflow-hidden">
+    <div class="absolute inset-0">
+      <Image
+        src={heroPhoto}
+        alt="Joost van Putten — Website Care specialist, beheert AI-ready websites voor MKB-bedrijven"
+        widths={[800, 1200, 1600]}
+        sizes="100vw"
+        class="w-full h-full object-cover"
+        loading="eager"
+        decoding="async"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/40"></div>
+    </div>
+    <div class="relative max-w-4xl mx-auto px-4 md:px-6">
       <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full mb-6">
         Na het 90-dagen traject
       </span>
