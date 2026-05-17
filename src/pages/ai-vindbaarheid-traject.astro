@@ -1,14 +1,25 @@
 ---
 import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BreadcrumbNav from '../components/BreadcrumbNav.astro';
 import CalendlyEmbed from '../components/CalendlyEmbed.astro';
 import FAQAccordion from '../components/FAQAccordion.astro';
+import LogoMarquee from '../components/LogoMarquee.astro';
 import { siteConfig } from '../data/site';
 import { generateBreadcrumbs, generateFAQPage } from '../data/schema';
 
 import heroPhoto from '../assets/images/founder/joost-sitting-laptop-lookingfront.webp';
 import founderPhoto from '../assets/images/founder/joost-standing-relaxed.webp';
+
+const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
+const logos = Object.entries(logoFiles)
+  .filter(([path]) => /logo/i.test(path.split('/').pop()!))
+  .map(([path, mod]) => {
+    const filename = path.split('/').pop()!.replace(/\.(webp|avif|png|jpg)$/, '');
+    const name = filename.replace(/[-_]?logo[-_]?/gi, '').replace(/[-_]/g, ' ').trim();
+    return { src: mod.default, alt: name };
+  });
 
 const locale = 'nl';
 
@@ -113,6 +124,9 @@ const faqForComponent = faqItems.map((item) => ({ q: item.question, a: item.answ
           <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
         </svg>
       </a>
+      <p class="text-xs text-text-muted mt-6">
+        7+ jaar ervaring &middot; &euro;5M+ advertentiebudget beheerd &middot; 50+ ondernemers geholpen
+      </p>
     </div>
   </section>
 
@@ -229,6 +243,15 @@ const faqForComponent = faqItems.map((item) => ({ q: item.question, a: item.answ
     </div>
   </section>
 
+  {/* ── Logo strip ── */}
+  {logos.length > 0 && (
+    <LogoMarquee
+      logos={logos}
+      label="Vertrouwd door coaches, experts en bedrijven"
+      speed={35}
+    />
+  )}
+
   {/* ── What you get — 3 blocks ── */}
   <section class="py-16 md:py-20 bg-bg-alt">
     <div class="max-w-4xl mx-auto px-4 md:px-6">
@@ -288,6 +311,57 @@ const faqForComponent = faqItems.map((item) => ({ q: item.question, a: item.answ
         <p class="text-accent font-medium text-lg leading-relaxed">
           Geen aparte webdesignfactuur. De AI-ready websitebasis zit in het traject inbegrepen.
         </p>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Proof cards ── */}
+  <section class="py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">Fundamenten die w&eacute;l resultaat dragen</h2>
+      <p class="text-lg text-text-muted leading-relaxed mb-10 max-w-3xl">
+        AI-vindbaarheid staat niet los van je website, content en commerciële structuur. Dit is precies waar we de afgelopen jaren systemen voor bouwden.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-card p-6 border border-border">
+          <p class="text-xs text-accent font-medium mb-2">Happy With Yoga</p>
+          <div class="flex items-baseline gap-2 mb-3">
+            <span class="font-heading text-2xl text-primary">30.000+</span>
+            <span class="text-sm text-text-muted">webinarleads</span>
+          </div>
+          <p class="text-xs text-text-muted mb-4">2.000 betalende leden</p>
+          <p class="text-sm text-text-muted leading-relaxed">Sterke content- en funnelstructuur rond een bestaand expertmerk.</p>
+          <a href="/cases/happy-with-yoga/" class="inline-flex items-center text-sm text-accent hover:text-accent-dark transition-colors font-medium mt-4">
+            Lees de case
+            <svg class="w-3.5 h-3.5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+          </a>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <p class="text-xs text-accent font-medium mb-2">Youlife</p>
+          <div class="flex items-baseline gap-2 mb-3">
+            <span class="font-heading text-2xl text-primary">&plusmn;&euro;10k/mnd</span>
+            <span class="text-sm text-text-muted">productomzet</span>
+          </div>
+          <p class="text-xs text-text-muted mb-4">7.2&times; ROAS op advertenties</p>
+          <p class="text-sm text-text-muted leading-relaxed">Productpagina's, ads en opvolging als &eacute;&eacute;n systeem.</p>
+          <a href="/cases/tessa-youlife/" class="inline-flex items-center text-sm text-accent hover:text-accent-dark transition-colors font-medium mt-4">
+            Lees de case
+            <svg class="w-3.5 h-3.5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+          </a>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <p class="text-xs text-accent font-medium mb-2">Coach Josine</p>
+          <div class="flex items-baseline gap-2 mb-3">
+            <span class="font-heading text-2xl text-primary">600&times;</span>
+            <span class="text-sm text-text-muted">gids verkocht</span>
+          </div>
+          <p class="text-xs text-text-muted mb-4">80 masterclass-aanmeldingen</p>
+          <p class="text-sm text-text-muted leading-relaxed">Van expertise naar een verkoopbare digitale route.</p>
+          <a href="/cases/coach-josine/" class="inline-flex items-center text-sm text-accent hover:text-accent-dark transition-colors font-medium mt-4">
+            Lees de case
+            <svg class="w-3.5 h-3.5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -399,7 +473,7 @@ const faqForComponent = faqItems.map((item) => ({ q: item.question, a: item.answ
           <h2 class="font-heading text-2xl md:text-3xl text-text mb-1">Joost van Putten</h2>
           <p class="text-sm text-text-muted mb-4">Founder & Online Growth Strategist</p>
           <p class="text-text-muted leading-relaxed mb-6">
-            7+ jaar ervaring met online groeisystemen voor coaches, experts en MKB-bedrijven. Van AI-vindbare websites tot volledige platforms — ik bouw systemen die zorgen dat je online beter gevonden, begrepen en vertrouwd wordt.
+            7+ jaar ervaring met online groeisystemen, websites, funnels en advertenties. Meer dan &euro;5M advertentiebudget beheerd voor coaches, experts en MKB-bedrijven. Van AI-vindbare websites tot volledige platforms — ik bouw systemen die zorgen dat je online beter gevonden, begrepen en vertrouwd wordt.
           </p>
           <a
             href="/over-joost/"
