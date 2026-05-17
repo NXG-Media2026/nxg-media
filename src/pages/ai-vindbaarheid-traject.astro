@@ -12,6 +12,13 @@ import { generateBreadcrumbs, generateFAQPage } from '../data/schema';
 import heroPhoto from '../assets/images/founder/joost-sitting-laptop-lookingfront.webp';
 import founderPhoto from '../assets/images/founder/joost-standing-relaxed.webp';
 
+import hwyLogo from '../assets/images/logos/happywithyoga-logo.webp';
+import hwyPhoto from '../assets/images/logos/rolf-profile-photo-happywithyoga.png';
+import youlifeLogo from '../assets/images/logos/youlife-logo.avif';
+import youlifePhoto from '../assets/images/logos/tessa-youlife-profile-photo.png';
+import josineLogo from '../assets/images/logos/coachjosine-logo.avif';
+import josinePhoto from '../assets/images/logos/coachjosine-profile-photo.png';
+
 const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
 const logos = Object.entries(logoFiles)
   .filter(([path]) => /logo/i.test(path.split('/').pop()!))
@@ -324,7 +331,15 @@ const faqForComponent = faqItems.map((item) => ({ q: item.question, a: item.answ
       </p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="bg-white rounded-card p-6 border border-border">
-          <p class="text-xs text-accent font-medium mb-2">Happy With Yoga</p>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full overflow-hidden shrink-0 ring-2 ring-white shadow-sm">
+              <Image src={hwyPhoto} alt="Rolf — Happy With Yoga" widths={[80]} sizes="40px" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+            </div>
+            <div>
+              <p class="text-sm font-medium text-text">Rolf</p>
+              <Image src={hwyLogo} alt="Happy With Yoga logo" widths={[96]} sizes="80px" class="h-4 w-auto mt-0.5" loading="lazy" decoding="async" />
+            </div>
+          </div>
           <div class="flex items-baseline gap-2 mb-3">
             <span class="font-heading text-2xl text-primary">30.000+</span>
             <span class="text-sm text-text-muted">webinarleads</span>
@@ -337,7 +352,15 @@ const faqForComponent = faqItems.map((item) => ({ q: item.question, a: item.answ
           </a>
         </div>
         <div class="bg-white rounded-card p-6 border border-border">
-          <p class="text-xs text-accent font-medium mb-2">Youlife</p>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full overflow-hidden shrink-0 ring-2 ring-white shadow-sm">
+              <Image src={youlifePhoto} alt="Tessa — Youlife" widths={[80]} sizes="40px" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+            </div>
+            <div>
+              <p class="text-sm font-medium text-text">Tessa</p>
+              <Image src={youlifeLogo} alt="Youlife logo" widths={[96]} sizes="80px" class="h-4 w-auto mt-0.5" loading="lazy" decoding="async" />
+            </div>
+          </div>
           <div class="flex items-baseline gap-2 mb-3">
             <span class="font-heading text-2xl text-primary">&plusmn;&euro;10k/mnd</span>
             <span class="text-sm text-text-muted">productomzet</span>
@@ -350,7 +373,15 @@ const faqForComponent = faqItems.map((item) => ({ q: item.question, a: item.answ
           </a>
         </div>
         <div class="bg-white rounded-card p-6 border border-border">
-          <p class="text-xs text-accent font-medium mb-2">Coach Josine</p>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full overflow-hidden shrink-0 ring-2 ring-white shadow-sm">
+              <Image src={josinePhoto} alt="Josine — Coach Josine" widths={[80]} sizes="40px" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+            </div>
+            <div>
+              <p class="text-sm font-medium text-text">Josine</p>
+              <Image src={josineLogo} alt="Coach Josine logo" widths={[96]} sizes="80px" class="h-4 w-auto mt-0.5" loading="lazy" decoding="async" />
+            </div>
+          </div>
           <div class="flex items-baseline gap-2 mb-3">
             <span class="font-heading text-2xl text-primary">600&times;</span>
             <span class="text-sm text-text-muted">gids verkocht</span>
