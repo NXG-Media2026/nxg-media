@@ -1,13 +1,32 @@
 ---
 import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BreadcrumbNav from '../components/BreadcrumbNav.astro';
 import CalendlyEmbed from '../components/CalendlyEmbed.astro';
 import FAQAccordion from '../components/FAQAccordion.astro';
+import LogoMarquee from '../components/LogoMarquee.astro';
 import { siteConfig } from '../data/site';
 import { generateBreadcrumbs, generateFAQPage } from '../data/schema';
 
 import heroPhoto from '../assets/images/founder/joost-standing-workinglaptop.webp';
+import founderPhoto from '../assets/images/founder/joost-standing-relaxed.webp';
+
+import hwyLogo from '../assets/images/logos/happywithyoga-logo.webp';
+import hwyPhoto from '../assets/images/logos/rolf-profile-photo-happywithyoga.png';
+import youlifeLogo from '../assets/images/logos/youlife-logo.avif';
+import youlifePhoto from '../assets/images/logos/tessa-youlife-profile-photo.png';
+import josineLogo from '../assets/images/logos/coachjosine-logo.avif';
+import josinePhoto from '../assets/images/logos/coachjosine-profile-photo.png';
+
+const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
+const logos = Object.entries(logoFiles)
+  .filter(([path]) => /logo/i.test(path.split('/').pop()!))
+  .map(([path, mod]) => {
+    const filename = path.split('/').pop()!.replace(/\.(webp|avif|png|jpg)$/, '');
+    const name = filename.replace(/[-_]?logo[-_]?/gi, '').replace(/[-_]/g, ' ').trim();
+    return { src: mod.default, alt: name };
+  });
 
 const locale = 'nl';
 
@@ -222,6 +241,9 @@ const addOns = [
           <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
         </svg>
       </a>
+      <p class="text-xs text-text-muted mt-6">
+        Gebouwd op 7+ jaar ervaring met websites, funnels, advertenties en online groeisystemen.
+      </p>
     </div>
   </section>
 
@@ -249,6 +271,15 @@ const addOns = [
       </div>
     </div>
   </section>
+
+  {/* ── Logo strip ── */}
+  {logos.length > 0 && (
+    <LogoMarquee
+      logos={logos}
+      label="Vertrouwd door coaches, experts en bedrijven"
+      speed={35}
+    />
+  )}
 
   {/* ── Packages ── */}
   <section class="py-16 md:py-24">
@@ -360,6 +391,81 @@ const addOns = [
     </div>
   </section>
 
+  {/* ── Proof cards ── */}
+  <section class="py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">Websites, funnels en systemen die resultaat dragen</h2>
+      <p class="text-lg text-text-muted leading-relaxed mb-10 max-w-3xl">
+        Website Care staat niet los van je online groei. De afgelopen jaren bouwden we websites, funnels en groeisystemen voor ondernemers die hun online fundament serieuzer wilden neerzetten.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-card p-6 border border-border">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full overflow-hidden shrink-0 ring-2 ring-white shadow-sm">
+              <Image src={hwyPhoto} alt="Rolf — Happy With Yoga" widths={[80]} sizes="40px" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+            </div>
+            <div>
+              <p class="text-sm font-medium text-text">Rolf</p>
+              <Image src={hwyLogo} alt="Happy With Yoga logo" widths={[96]} sizes="80px" class="h-4 w-auto mt-0.5" loading="lazy" decoding="async" />
+            </div>
+          </div>
+          <div class="flex items-baseline gap-2 mb-3">
+            <span class="font-heading text-2xl text-primary">30.000+</span>
+            <span class="text-sm text-text-muted">webinarleads</span>
+          </div>
+          <p class="text-xs text-text-muted mb-4">2.000 betalende leden</p>
+          <p class="text-sm text-text-muted leading-relaxed">Sterke content-, funnel- en platformstructuur rond een bestaand expertmerk.</p>
+          <a href="/cases/happy-with-yoga/" class="inline-flex items-center text-sm text-accent hover:text-accent-dark transition-colors font-medium mt-4">
+            Lees de case
+            <svg class="w-3.5 h-3.5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+          </a>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full overflow-hidden shrink-0 ring-2 ring-white shadow-sm">
+              <Image src={youlifePhoto} alt="Tessa — Youlife" widths={[80]} sizes="40px" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+            </div>
+            <div>
+              <p class="text-sm font-medium text-text">Tessa</p>
+              <Image src={youlifeLogo} alt="Youlife logo" widths={[96]} sizes="80px" class="h-4 w-auto mt-0.5" loading="lazy" decoding="async" />
+            </div>
+          </div>
+          <div class="flex items-baseline gap-2 mb-3">
+            <span class="font-heading text-2xl text-primary">&plusmn;&euro;10k/mnd</span>
+            <span class="text-sm text-text-muted">productomzet</span>
+          </div>
+          <p class="text-xs text-text-muted mb-4">7.2&times; ROAS op advertenties</p>
+          <p class="text-sm text-text-muted leading-relaxed">Productpagina's, advertenties en opvolging als &eacute;&eacute;n systeem.</p>
+          <a href="/cases/tessa-youlife/" class="inline-flex items-center text-sm text-accent hover:text-accent-dark transition-colors font-medium mt-4">
+            Lees de case
+            <svg class="w-3.5 h-3.5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+          </a>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full overflow-hidden shrink-0 ring-2 ring-white shadow-sm">
+              <Image src={josinePhoto} alt="Josine — Coach Josine" widths={[80]} sizes="40px" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+            </div>
+            <div>
+              <p class="text-sm font-medium text-text">Josine</p>
+              <Image src={josineLogo} alt="Coach Josine logo" widths={[96]} sizes="80px" class="h-4 w-auto mt-0.5" loading="lazy" decoding="async" />
+            </div>
+          </div>
+          <div class="flex items-baseline gap-2 mb-3">
+            <span class="font-heading text-2xl text-primary">600&times;</span>
+            <span class="text-sm text-text-muted">gids verkocht</span>
+          </div>
+          <p class="text-xs text-text-muted mb-4">80 masterclass-aanmeldingen</p>
+          <p class="text-sm text-text-muted leading-relaxed">Van expertise naar een verkoopbare digitale route.</p>
+          <a href="/cases/coach-josine/" class="inline-flex items-center text-sm text-accent hover:text-accent-dark transition-colors font-medium mt-4">
+            Lees de case
+            <svg class="w-3.5 h-3.5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   {/* ── Add-ons ── */}
   <section class="py-16 md:py-20">
     <div class="max-w-3xl mx-auto px-4 md:px-6">
@@ -380,6 +486,44 @@ const addOns = [
       <p class="text-xs text-text-muted mt-6">
         Prijzen variëren per type en omvang. We maken altijd vooraf een inschatting zodat je weet waar je aan toe bent.
       </p>
+    </div>
+  </section>
+
+  {/* ── Founder ── */}
+  <section class="py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-10 md:gap-14 items-center">
+        <div class="flex justify-center md:justify-start">
+          <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden shadow-lg ring-4 ring-white shrink-0">
+            <Image
+              src={founderPhoto}
+              alt="Joost van Putten — Founder NXG Media, beheert websites en groeisystemen voor ondernemers"
+              widths={[224, 320]}
+              sizes="(max-width: 768px) 192px, 224px"
+              class="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+        <div>
+          <div class="w-12 h-1 bg-accent rounded-full mb-4"></div>
+          <h2 class="font-heading text-2xl md:text-3xl text-text mb-1">Joost van Putten</h2>
+          <p class="text-sm text-text-muted mb-4">Founder & Online Growth Strategist</p>
+          <p class="text-text-muted leading-relaxed mb-6">
+            7+ jaar ervaring met websites, funnels, advertenties en online groeisystemen. Meer dan &euro;5M advertentiebudget beheerd voor ondernemers en merken. Van AI-vindbare websites tot volledige platforms — ik bouw en beheer systemen die zorgen dat je online fundament blijft werken.
+          </p>
+          <a
+            href="/over-joost/"
+            class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium"
+          >
+            Meer over Joost
+            <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
