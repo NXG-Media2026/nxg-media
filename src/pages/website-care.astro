@@ -37,8 +37,8 @@ const breadcrumbs = [
 
 const faqItems = [
   {
-    question: 'Kan ik opzeggen?',
-    answer: 'Website Care is maandelijks opzegbaar met een opzegtermijn van 1 maand. Er is geen langlopend contract. Wil je stoppen, dan begeleiden we de overdracht of afsluiting netjes.',
+    question: 'Hoe werkt het contract?',
+    answer: 'Website Care loopt als jaarcontract (1 of 2 jaar). Bij een 2-jarig contract profiteer je van 15% korting op de maandprijs. Na afloop van de contractperiode kun je verlengen, upgraden of stoppen. Wil je stoppen, dan begeleiden we de overdracht of afsluiting netjes.',
   },
   {
     question: 'Wat gebeurt er als ik stop?',
@@ -66,7 +66,7 @@ const faqItems = [
   },
   {
     question: 'Kan ik later upgraden naar een hoger pakket?',
-    answer: 'Upgraden kan op elk moment. We passen het pakket aan vanaf de volgende maand. Downgraden kan ook, met dezelfde opzegtermijn van 1 maand.',
+    answer: 'Upgraden kan op elk moment. We passen het pakket aan vanaf de volgende maand. De resterende contractperiode loopt gewoon door.',
   },
 ];
 
@@ -80,7 +80,8 @@ const faqForComponent = faqItems.map((item) => ({ q: item.question, a: item.answ
 const packages = [
   {
     name: 'Website Care Basic',
-    price: '€59',
+    price1y: '€59',
+    price2y: '€50',
     period: 'p/m',
     audience: 'Voor klanten die vooral willen dat hun website live en technisch goed beheerd blijft.',
     highlight: false,
@@ -101,7 +102,8 @@ const packages = [
   },
   {
     name: 'Website Care Plus',
-    price: '€99',
+    price1y: '€99',
+    price2y: '€84',
     period: 'p/m',
     audience: 'Voor klanten die af en toe wijzigingen willen en hun fundament periodiek willen laten checken.',
     highlight: false,
@@ -122,7 +124,8 @@ const packages = [
   },
   {
     name: 'AI Visibility Care',
-    price: '€149',
+    price1y: '€149',
+    price2y: '€127',
     period: 'p/m',
     audience: 'Voor klanten die hun AI-vindbaarheid actief willen blijven monitoren.',
     highlight: true,
@@ -143,7 +146,8 @@ const packages = [
   },
   {
     name: 'Growth Care',
-    price: 'Vanaf €249',
+    price1y: 'Vanaf €249',
+    price2y: 'Vanaf €212',
     period: 'p/m',
     audience: 'Voor bedrijven die actief willen doorgroeien met content, pagina\'s en zichtbaarheid.',
     highlight: false,
@@ -288,9 +292,27 @@ const addOns = [
   <section class="py-16 md:py-24">
     <div class="max-w-5xl mx-auto px-4 md:px-6">
       <h2 class="font-heading text-2xl md:text-3xl text-text mb-4 text-center">Kies het pakket dat bij je past</h2>
-      <p class="text-lg text-text-muted leading-relaxed mb-12 text-center max-w-2xl mx-auto">
+      <p class="text-lg text-text-muted leading-relaxed mb-8 text-center max-w-2xl mx-auto">
         Elk pakket bevat hosting en technisch beheer. Hoe hoger het pakket, hoe meer we actief meekijken en meewerken aan je vindbaarheid.
       </p>
+
+      {/* ── Contract toggle ── */}
+      <div class="flex items-center justify-center gap-1 mb-12" id="contract-toggle">
+        <button
+          type="button"
+          data-term="1y"
+          class="term-btn px-5 py-2.5 text-sm font-medium rounded-full transition-colors bg-primary text-white"
+        >
+          1 jaar
+        </button>
+        <button
+          type="button"
+          data-term="2y"
+          class="term-btn px-5 py-2.5 text-sm font-medium rounded-full transition-colors bg-white text-text-muted border border-border hover:border-primary/30"
+        >
+          2 jaar <span class="text-accent font-medium">&minus;15%</span>
+        </button>
+      </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {packages.map((pkg) => (
@@ -302,7 +324,10 @@ const addOns = [
             )}
             <h3 class={`font-heading text-xl mb-2 ${pkg.highlight ? 'text-white' : 'text-text'}`}>{pkg.name}</h3>
             <div class="flex items-baseline gap-1 mb-2">
-              <span class={`font-heading text-3xl ${pkg.highlight ? 'text-white' : 'text-primary'}`}>{pkg.price}</span>
+              <span class={`font-heading text-3xl ${pkg.highlight ? 'text-white' : 'text-primary'}`}>
+                <span class="price-1y">{pkg.price1y}</span>
+                <span class="price-2y hidden">{pkg.price2y}</span>
+              </span>
               <span class={`text-sm ${pkg.highlight ? 'text-white/70' : 'text-text-muted'}`}>{pkg.period}</span>
             </div>
             <p class={`text-sm leading-relaxed mb-6 ${pkg.highlight ? 'text-white/80' : 'text-text-muted'}`}>{pkg.audience}</p>
@@ -313,7 +338,7 @@ const addOns = [
               <ul class="space-y-1.5">
                 {pkg.includes.map((item) => (
                   <li class={`flex items-start gap-2 text-sm ${pkg.highlight ? 'text-white/85' : 'text-text-muted'}`}>
-                    <svg class={`w-4 h-4 shrink-0 mt-0.5 ${pkg.highlight ? 'text-accent' : 'text-accent'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <svg class="w-4 h-4 shrink-0 mt-0.5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                     <span>{item}</span>
@@ -339,7 +364,7 @@ const addOns = [
       </div>
 
       <p class="text-sm text-text-muted text-center mt-8">
-        Alle pakketten zijn maandelijks opzegbaar met 1 maand opzegtermijn. Upgraden of downgraden kan op elk moment.
+        Upgraden naar een hoger pakket kan op elk moment.
       </p>
     </div>
   </section>
@@ -554,5 +579,32 @@ const addOns = [
   </section>
 
   <CalendlyEmbed pageType="service" pageSlug="website-care" locale={locale} />
+
+  <script>
+    document.addEventListener('astro:page-load', () => {
+      const toggle = document.getElementById('contract-toggle');
+      if (!toggle) return;
+      const btns = toggle.querySelectorAll<HTMLButtonElement>('.term-btn');
+      const prices1y = document.querySelectorAll('.price-1y');
+      const prices2y = document.querySelectorAll('.price-2y');
+
+      function setTerm(term: string) {
+        btns.forEach((btn) => {
+          const isCurrent = btn.dataset.term === term;
+          if (isCurrent) {
+            btn.className = 'term-btn px-5 py-2.5 text-sm font-medium rounded-full transition-colors bg-primary text-white';
+          } else {
+            btn.className = 'term-btn px-5 py-2.5 text-sm font-medium rounded-full transition-colors bg-white text-text-muted border border-border hover:border-primary/30';
+          }
+        });
+        prices1y.forEach((el) => el.classList.toggle('hidden', term === '2y'));
+        prices2y.forEach((el) => el.classList.toggle('hidden', term === '1y'));
+      }
+
+      btns.forEach((btn) => {
+        btn.addEventListener('click', () => setTerm(btn.dataset.term!));
+      });
+    });
+  </script>
 
 </BaseLayout>
