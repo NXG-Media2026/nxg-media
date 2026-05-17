@@ -38,15 +38,19 @@ const breadcrumbs = [
 const faqItems = [
   {
     question: 'Hoe werkt het contract?',
-    answer: 'Website Care loopt als jaarcontract (1 of 2 jaar). Bij een 2-jarig contract profiteer je van 15% korting op de maandprijs. Na afloop van de contractperiode kun je verlengen, upgraden of stoppen. Wil je stoppen, dan begeleiden we de overdracht of afsluiting netjes.',
+    answer: 'Website Care werkt met een minimale looptijd van 12 maanden. Je kiest bij aanvang voor 12 of 24 maanden — bij 24 maanden krijg je 15% korting. Facturatie verloopt per 4 weken. Na afloop van de looptijd kun je verlengen, upgraden of stoppen. Opzeggen kan tot 1 maand voor het einde van je looptijd.',
   },
   {
-    question: 'Wat gebeurt er als ik stop?',
-    answer: 'Je eigen content, foto\'s en bedrijfsgegevens blijven van jou. De beheerde websitebasis, templates, code en infrastructuur blijven onderdeel van NXG Media. Wil je volledige overdracht of maatwerk, dan bespreken we dat apart.',
+    question: 'Wat gebeurt er als ik opzeg?',
+    answer: 'Opzeggen kan tot 1 maand voor het einde van je contractperiode. Je eigen content, foto\'s en bedrijfsgegevens blijven van jou. De beheerde websitebasis, templates, code en infrastructuur blijven onderdeel van NXG Media. Tussentijds opzeggen is niet mogelijk — de minimale looptijd is 12 maanden.',
+  },
+  {
+    question: 'Wat gebeurt er met mijn domeinnaam?',
+    answer: 'Je domeinnaam blijft altijd van jou. Wij koppelen je bestaande domein aan de beheerde websitebasis. Bij het stoppen van Website Care wordt het domein weer naar jouw eigen beheer teruggezet.',
   },
   {
     question: 'Kan ik zelf dingen aanpassen op de website?',
-    answer: 'Kleine wijzigingen kun je doorgeven via formulier of e-mail. Wij verwerken ze binnen je pakket. Zelf inloggen en aanpassen is niet mogelijk — dat beschermt de snelheid, veiligheid en vindbaarheid van je website.',
+    answer: 'Kleine wijzigingen kun je doorgeven via formulier of e-mail. Wij verwerken ze binnen de reactietijd van je pakket. Zelf inloggen en aanpassen is niet mogelijk — dat beschermt de snelheid, veiligheid en vindbaarheid van je website.',
   },
   {
     question: 'Waarom krijg ik geen WordPress-login?',
@@ -54,11 +58,11 @@ const faqItems = [
   },
   {
     question: 'Zit AI-vindbaarheid standaard inbegrepen?',
-    answer: 'De technische AI/SEO-basis die we in het 90-dagen traject opzetten, blijft behouden in elk Website Care-pakket. Actieve AI-vindbaarheidsmonitoring, rapportage en optimalisaties zitten in AI Visibility Care (vanaf €149 p/m) of hoger.',
+    answer: 'De technische AI/SEO-basis die we in het 90-dagen traject opzetten, blijft behouden in elk Website Care-pakket. Actieve AI-vindbaarheidsmonitoring, rapportage en optimalisaties zitten in AI Visibility Care (vanaf €149 per 4 weken) of hoger.',
   },
   {
-    question: 'Wat als ik veel wijzigingen wil?',
-    answer: 'Elk pakket bevat een bepaald aantal wijzigingen. Extra wijzigingen worden als add-on geprijsd. Heb je structureel meer nodig, dan is een hoger pakket of een maatwerkafspraak logischer.',
+    question: 'Hoe werken add-ons?',
+    answer: 'Alles wat buiten je pakket valt, kun je als add-on bijboeken. Doorlopende add-ons worden per 4 weken gefactureerd. Eenmalige add-ons betaal je per opdracht. We bespreken kosten altijd vooraf, zodat je weet waar je aan toe bent.',
   },
   {
     question: 'Is hosting inbegrepen?',
@@ -66,7 +70,7 @@ const faqItems = [
   },
   {
     question: 'Kan ik later upgraden naar een hoger pakket?',
-    answer: 'Upgraden kan op elk moment. We passen het pakket aan vanaf de volgende maand. De resterende contractperiode loopt gewoon door.',
+    answer: 'Upgraden kan op elk moment. We passen het pakket aan vanaf de volgende facturatieperiode. De resterende contractperiode loopt gewoon door.',
   },
 ];
 
@@ -82,15 +86,15 @@ const packages = [
     name: 'Website Care Basic',
     price1y: '€59',
     price2y: '€50',
-    period: 'p/m',
+    period: '/ 4 weken',
     audience: 'Voor klanten die vooral willen dat hun website live en technisch goed beheerd blijft.',
     highlight: false,
     includes: [
-      'Hosting',
-      'Technisch beheer',
+      'Hosting & technisch beheer',
       'Basis monitoring',
       'Kleine technische fixes',
-      '1 kleine wijziging per kwartaal',
+      '1 kleine wijziging per 4 weken',
+      'Reactietijd: 3 werkdagen',
       'Support via formulier/e-mail',
     ],
     excludes: [
@@ -104,15 +108,15 @@ const packages = [
     name: 'Website Care Plus',
     price1y: '€99',
     price2y: '€84',
-    period: 'p/m',
-    audience: 'Voor klanten die af en toe wijzigingen willen en hun fundament periodiek willen laten checken.',
+    period: '/ 4 weken',
+    audience: 'Voor klanten die regelmatig wijzigingen willen en hun fundament periodiek willen laten checken.',
     highlight: false,
     includes: [
       'Alles uit Basic',
-      '1 kleine wijziging per maand',
+      '2 kleine wijzigingen per 4 weken',
       'Kwartaalcheck',
       'Simpele AI-vindbaarheidscheck per kwartaal',
-      'Korte verbeterpunten-update',
+      'Reactietijd: 2 werkdagen',
       'Kleine FAQ/content-update per kwartaal',
     ],
     excludes: [
@@ -126,15 +130,15 @@ const packages = [
     name: 'AI Visibility Care',
     price1y: '€149',
     price2y: '€127',
-    period: 'p/m',
-    audience: 'Voor klanten die hun AI-vindbaarheid actief willen blijven monitoren.',
+    period: '/ 4 weken',
+    audience: 'Voor klanten die hun AI-vindbaarheid actief willen blijven monitoren en verbeteren.',
     highlight: true,
     includes: [
       'Alles uit Plus',
       'Periodieke AI-vindbaarheid vs concurrenten check',
       'Korte rapportage',
       'Lichte optimalisaties aan bestaande pagina\'s',
-      'Review/proof check',
+      'Reactietijd: 1 werkdag',
       'Advies voor nieuwe pagina\'s of content',
     ],
     excludes: [
@@ -148,15 +152,15 @@ const packages = [
     name: 'Growth Care',
     price1y: 'Vanaf €249',
     price2y: 'Vanaf €212',
-    period: 'p/m',
+    period: '/ 4 weken',
     audience: 'Voor bedrijven die actief willen doorgroeien met content, pagina\'s en zichtbaarheid.',
     highlight: false,
     includes: [
       'Alles uit AI Visibility Care',
       'GEO/SEO-content',
       'Extra dienst- of locatiepagina\'s',
-      'Reviewprogramma',
-      'Interne linking updates',
+      'Reviewprogramma & interne linking',
+      'Reactietijd: 1 werkdag, prioriteit',
       'Conversieverbeteringen',
       'Uitgebreidere rapportage',
     ],
@@ -190,23 +194,45 @@ const smallUpdateNo = [
   'Grote herschrijving',
 ];
 
-const addOns = [
-  'Extra pagina',
-  'Dienstpagina met copy',
-  'Locatiepagina',
-  'GEO/SEO-artikel',
-  'Extra taal',
-  'AI-vindbaarheidsrapport',
-  'Reviewprogramma',
-  'Linkbuilding/outreach',
-  'Analytics/tracking setup',
-  'Spoedverzoek',
+const addOnCategories = [
+  {
+    title: 'Doorlopend',
+    description: 'Per 4 weken gefactureerd',
+    items: [
+      'GEO/SEO-content',
+      'Reviewprogramma',
+      'Linkbuilding/outreach',
+      'Extra wijzigingen per 4 weken',
+    ],
+  },
+  {
+    title: 'Eenmalig',
+    description: 'Per opdracht',
+    items: [
+      'Extra pagina',
+      'Dienstpagina met copy',
+      'Locatiepagina',
+      'Extra taal',
+      'Analytics/tracking setup',
+      'Spoedverzoek',
+    ],
+  },
+  {
+    title: 'Growth',
+    description: 'Op maat, na overleg',
+    items: [
+      'AI-vindbaarheidsrapport',
+      'Conversie-audit',
+      'Funnel- of landingspagina',
+      'Uitgebreide contentstrategie',
+    ],
+  },
 ];
 ---
 
 <BaseLayout
   title="Website Care — Hosting, beheer en doorontwikkeling voor je AI-ready website | NXG Media"
-  description="Na het 90-dagen AI-vindbaarheidstraject blijft je website bij ons draaien. Hosting, technisch beheer, kleine updates en AI-vindbaarheidschecks — vanaf €59 per maand."
+  description="Website Care — beheerde websitebasis met hosting, beheer en AI-vindbaarheid. Vanaf €59 per 4 weken. Kies 12 of 24 maanden looptijd."
   schemas={[generateBreadcrumbs(breadcrumbs.map((b) => ({ name: b.label, url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}/website-care/` }))), generateFAQPage(faqForSchema)]}
   locale={locale}
 >
@@ -228,13 +254,13 @@ const addOns = [
     </div>
     <div class="relative max-w-4xl mx-auto px-4 md:px-6">
       <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full mb-6">
-        Na het 90-dagen traject
+        Beheerde websitebasis
       </span>
       <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl text-text mb-6 leading-tight max-w-2xl">
-        Houd je AI-ready website live, snel en actueel
+        Je website — beheerd, bewaakt en verbeterd door NXG Media
       </h1>
       <p class="text-lg md:text-xl text-text-muted leading-relaxed mb-10 max-w-xl">
-        Na het 90-dagen traject kun je je website via NXG Media laten beheren. Wij zorgen voor hosting, technisch beheer, kleine updates en — als je wilt — periodieke AI-vindbaarheidschecks.
+        Website Care is je <strong>beheerde websitebasis</strong>. Hosting, technisch beheer, kleine updates en — als je wilt — actieve <strong>AI-vindbaarheidsmonitoring</strong>. Geen losse hosting, geen plugins, geen gedoe. Vanaf <strong>€59 per 4 weken</strong>.
       </p>
       <a
         href="#gesprek"
@@ -291,9 +317,9 @@ const addOns = [
   {/* ── Packages ── */}
   <section class="py-16 md:py-24">
     <div class="max-w-5xl mx-auto px-4 md:px-6">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4 text-center">Kies het pakket dat bij je past</h2>
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4 text-center">Kies je Website Care looptijd</h2>
       <p class="text-lg text-text-muted leading-relaxed mb-8 text-center max-w-2xl mx-auto">
-        Elk pakket bevat hosting en technisch beheer. Hoe hoger het pakket, hoe meer we actief meekijken en meewerken aan je vindbaarheid.
+        Website Care start met een minimale looptijd van 12 maanden. Kies 24 maanden voor 15% korting op alle pakketten. Elk pakket bevat hosting en technisch beheer — hoe hoger het pakket, hoe meer we actief meekijken.
       </p>
 
       {/* ── Contract toggle ── */}
@@ -303,14 +329,14 @@ const addOns = [
           data-term="1y"
           class="term-btn px-5 py-2.5 text-sm font-medium rounded-full transition-colors bg-primary text-white"
         >
-          1 jaar
+          12 maanden
         </button>
         <button
           type="button"
           data-term="2y"
           class="term-btn px-5 py-2.5 text-sm font-medium rounded-full transition-colors bg-white text-text-muted border border-border hover:border-primary/30"
         >
-          2 jaar <span class="text-accent font-medium">&minus;15%</span>
+          24 maanden <span class="text-accent font-medium">&minus;15%</span>
         </button>
       </div>
 
@@ -364,7 +390,53 @@ const addOns = [
       </div>
 
       <p class="text-sm text-text-muted text-center mt-8">
-        Upgraden naar een hoger pakket kan op elk moment.
+        Prijzen worden per 4 weken gefactureerd. Alle genoemde prijzen zijn exclusief BTW. Upgraden naar een hoger pakket kan op elk moment.
+      </p>
+    </div>
+  </section>
+
+  {/* ── SLA ── */}
+  <section class="py-16 md:py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">Reactietijden per pakket</h2>
+      <p class="text-text-muted leading-relaxed mb-8">
+        Hoe hoger je pakket, hoe sneller we reageren en verwerken. Reactietijd is de tijd waarin we bevestigen dat we je verzoek hebben ontvangen. Verwerkingstijd is de tijd waarbinnen de wijziging live staat.
+      </p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm border border-border rounded-card overflow-hidden">
+          <thead>
+            <tr class="bg-bg-alt">
+              <th class="text-left px-4 py-3 font-heading text-text">Pakket</th>
+              <th class="text-left px-4 py-3 font-heading text-text">Reactietijd</th>
+              <th class="text-left px-4 py-3 font-heading text-text">Verwerkingstijd</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-t border-border">
+              <td class="px-4 py-3 text-text-muted">Basic</td>
+              <td class="px-4 py-3 text-text-muted">3 werkdagen</td>
+              <td class="px-4 py-3 text-text-muted">5 werkdagen</td>
+            </tr>
+            <tr class="border-t border-border bg-bg-alt/50">
+              <td class="px-4 py-3 text-text-muted">Plus</td>
+              <td class="px-4 py-3 text-text-muted">2 werkdagen</td>
+              <td class="px-4 py-3 text-text-muted">3 werkdagen</td>
+            </tr>
+            <tr class="border-t border-border">
+              <td class="px-4 py-3 font-medium text-primary">AI Visibility Care</td>
+              <td class="px-4 py-3 text-text-muted">1 werkdag</td>
+              <td class="px-4 py-3 text-text-muted">2 werkdagen</td>
+            </tr>
+            <tr class="border-t border-border bg-bg-alt/50">
+              <td class="px-4 py-3 text-text-muted">Growth Care</td>
+              <td class="px-4 py-3 text-text-muted">1 werkdag, prioriteit</td>
+              <td class="px-4 py-3 text-text-muted">1–2 werkdagen</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-text-muted mt-4">
+        Spoedverzoeken buiten deze tijden zijn als add-on beschikbaar.
       </p>
     </div>
   </section>
@@ -496,18 +568,26 @@ const addOns = [
 
   {/* ── Add-ons ── */}
   <section class="py-16 md:py-20">
-    <div class="max-w-3xl mx-auto px-4 md:px-6">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">Meer nodig? Dan boek je het los bij.</h2>
-      <p class="text-text-muted leading-relaxed mb-8">
-        Alles wat buiten je pakket valt, kun je als losse add-on bijboeken. Geen verrassingen — we bespreken de kosten vooraf.
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">Meer nodig? Boek het als add-on bij.</h2>
+      <p class="text-text-muted leading-relaxed mb-10">
+        Alles wat buiten je pakket valt, kun je als add-on bijboeken. Doorlopende add-ons worden per 4 weken gefactureerd, eenmalige add-ons per opdracht. We bespreken kosten altijd vooraf.
       </p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {addOns.map((item) => (
-          <div class="flex items-center gap-3 bg-white rounded-card px-4 py-3 border border-border">
-            <svg class="w-4 h-4 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
-            </svg>
-            <span class="text-sm text-text-muted">{item}</span>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {addOnCategories.map((cat) => (
+          <div class="bg-white rounded-card p-6 border border-border">
+            <h3 class="font-heading text-lg text-text mb-1">{cat.title}</h3>
+            <p class="text-xs text-text-muted mb-4">{cat.description}</p>
+            <ul class="space-y-2">
+              {cat.items.map((item) => (
+                <li class="flex items-start gap-2 text-sm text-text-muted">
+                  <svg class="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                  </svg>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         ))}
       </div>
