@@ -581,10 +581,10 @@ const addOns = [
   <CalendlyEmbed pageType="service" pageSlug="website-care" locale={locale} />
 
   <script>
-    document.addEventListener('astro:page-load', () => {
+    document.addEventListener('DOMContentLoaded', () => {
       const toggle = document.getElementById('contract-toggle');
       if (!toggle) return;
-      const btns = toggle.querySelectorAll<HTMLButtonElement>('.term-btn');
+      const btns = toggle.querySelectorAll('.term-btn') as NodeListOf<HTMLButtonElement>;
       const prices1y = document.querySelectorAll('.price-1y');
       const prices2y = document.querySelectorAll('.price-2y');
 
