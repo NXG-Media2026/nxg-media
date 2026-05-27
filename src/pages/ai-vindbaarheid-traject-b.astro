@@ -15,6 +15,10 @@ import keystaticHomepage from '../assets/images/keystatic_edit_homepage.png';
 import keystaticBlog from '../assets/images/keystatic_add_blog.png';
 import verenaPhoto from '../assets/images/cases/verena-mann-linkedin.webp';
 import jamesPhoto from '../assets/images/cases/james-mitchell-portrait.png';
+import proofGoogle from '../assets/images/cases/proof-google-torrevieja.png';
+import proofChatgpt from '../assets/images/cases/proof-chatgpt-local.png';
+import proofVerenaAi from '../assets/images/cases/doc_veri_ai_answer_cropped.PNG';
+import proofVerenaChatgpt from '../assets/images/cases/doc-veri-chatgptproof.jpeg';
 
 const keystacticScreenshots = [
   { src: keystaticDashboard, alt: 'Beheerpaneel met overzicht van alle pagina\'s, blogs, diensten en producten', caption: 'Alles op één plek' },
@@ -345,16 +349,16 @@ const serviceSchema = generateService({
                 <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full uppercase tracking-wider">Coach &middot; 90-dagen traject</span>
               </div>
             </div>
-            <h3 class="font-heading text-2xl md:text-3xl text-white mb-4">Van Instagram-zichtbaarheid naar 19 aanvragen per maand</h3>
+            <h3 class="font-heading text-2xl md:text-3xl text-white mb-4">Van 2 aanvragen per maand naar 19.</h3>
 
             <p class="text-white/60 leading-relaxed italic mb-6">
-              Not&auml;rztin &amp; Ausdauer-Athletin. Veel zichtbaarheid op Instagram, tevreden klanten, sterke content. Maar haar online aanwezigheid leverde weinig nieuwe aanvragen op van mensen die haar nog niet kenden.
+              Not&auml;rztin &amp; Ausdauer-Athletin. Sterke Instagram-community, maar haar website leverde nauwelijks nieuwe aanvragen op van mensen die haar nog niet kenden.
             </p>
 
             <div class="space-y-2 mb-8">
               <div class="flex items-start gap-3">
                 <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
-                <p class="text-white/70 text-sm">Aparte pagina&rsquo;s voor specifieke klantproblemen</p>
+                <p class="text-white/70 text-sm">Aparte pagina&rsquo;s per klantprobleem, vindbaar in Google &eacute;n AI</p>
               </div>
               <div class="flex items-start gap-3">
                 <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
@@ -362,15 +366,7 @@ const serviceSchema = generateService({
               </div>
               <div class="flex items-start gap-3">
                 <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
-                <p class="text-white/70 text-sm">Aanvraagroute simpeler en logischer</p>
-              </div>
-              <div class="flex items-start gap-3">
-                <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
-                <p class="text-white/70 text-sm">Content vindbaar voor Google &eacute;n AI</p>
-              </div>
-              <div class="flex items-start gap-3">
-                <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
-                <p class="text-white/70 text-sm">Positionering aangescherpt als expert in haar niche</p>
+                <p class="text-white/70 text-sm">Positionering aangescherpt + aanvraagroute versimpeld</p>
               </div>
             </div>
 
@@ -382,45 +378,61 @@ const serviceSchema = generateService({
             </blockquote>
           </div>
 
-          {/* Rechts: grote before/after metrics */}
+          {/* Rechts: harde metrics */}
           <div class="flex flex-col justify-center space-y-6">
             <div class="bg-white/5 rounded-card p-5">
               <p class="text-white/50 text-xs uppercase tracking-wider mb-2">Aanvragen per maand</p>
               <div class="flex items-center gap-3">
-                <span class="font-heading text-3xl text-white/40">6</span>
+                <span class="font-heading text-3xl text-white/40">2</span>
                 <span class="text-accent text-xl">&rarr;</span>
                 <span class="font-heading text-5xl md:text-6xl text-accent">19</span>
               </div>
             </div>
             <div class="bg-white/5 rounded-card p-5">
-              <p class="text-white/50 text-xs uppercase tracking-wider mb-2">Organisch verkeer</p>
+              <p class="text-white/50 text-xs uppercase tracking-wider mb-2">AI-vermeldingen (ChatGPT)</p>
               <div class="flex items-center gap-3">
-                <span class="font-heading text-3xl text-white/40">420</span>
+                <span class="font-heading text-3xl text-white/40">0</span>
                 <span class="text-accent text-xl">&rarr;</span>
-                <span class="font-heading text-5xl md:text-6xl text-accent">810</span>
+                <span class="font-heading text-5xl md:text-6xl text-accent">15</span>
               </div>
+              <p class="text-white/30 text-xs mt-1">Consistente vermeldingen bij relevante zoekvragen</p>
             </div>
-            <div class="bg-white/5 rounded-card p-5">
-              <p class="text-white/50 text-xs uppercase tracking-wider mb-2">Google top-10 zoekwoorden</p>
-              <div class="flex items-center gap-3">
-                <span class="font-heading text-3xl text-white/40">3</span>
-                <span class="text-accent text-xl">&rarr;</span>
-                <span class="font-heading text-5xl md:text-6xl text-accent">17</span>
+          </div>
+        </div>
+
+        {/* Screenshot-bewijs */}
+        <div class="mt-8 pt-8 border-t border-white/10">
+          <p class="text-white/50 text-xs uppercase tracking-wider mb-4">ChatGPT beveelt Dr. Verena Mann aan bij relevante zoekvragen</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+            <div class="lightbox-trigger cursor-zoom-in group">
+              <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
+                <Image
+                  src={proofVerenaAi}
+                  alt="ChatGPT noemt Dr. Verena Mann als passende expertin voor hormonale gezondheid en intoleranties"
+                  width={600}
+                  class="w-full h-auto"
+                  loading="lazy"
+                />
               </div>
+              <p class="text-white/40 text-xs mt-2 text-center group-hover:text-white/60 transition-colors">AI-antwoord: &ldquo;eine passende Expertin&rdquo;</p>
             </div>
-            <div class="bg-white/5 rounded-card p-5">
-              <p class="text-white/50 text-xs uppercase tracking-wider mb-2">AI-vermeldingen</p>
-              <div class="flex items-center gap-3">
-                <span class="font-heading text-3xl text-white/40">0/3</span>
-                <span class="text-accent text-xl">&rarr;</span>
-                <span class="font-heading text-5xl md:text-6xl text-accent">2/3</span>
+            <div class="lightbox-trigger cursor-zoom-in group">
+              <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
+                <Image
+                  src={proofVerenaChatgpt}
+                  alt="ChatGPT beveelt Dr. Verena Mann aan met directe link naar haar website"
+                  width={600}
+                  class="w-full h-auto"
+                  loading="lazy"
+                />
               </div>
+              <p class="text-white/40 text-xs mt-2 text-center group-hover:text-white/60 transition-colors">ChatGPT met directe link naar haar site</p>
             </div>
           </div>
         </div>
 
         {/* Kernles */}
-        <div class="mt-8 pt-8 border-t border-white/10">
+        <div class="pt-6 border-t border-white/10">
           <p class="text-accent font-medium leading-relaxed text-center">
             &ldquo;De winst zat niet in een mooiere site. De winst zat in het verbinden van zoekintentie + vertrouwen + conversie.&rdquo;
           </p>
@@ -496,21 +508,27 @@ const serviceSchema = generateService({
 
         {/* Screenshot-grid met bewijs */}
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-          <div class="lightbox-trigger cursor-pointer group">
+          <div class="lightbox-trigger cursor-zoom-in group">
             <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
-              <div class="aspect-[4/3] bg-white/5 flex items-center justify-center text-white/20 text-sm">
-                {/* TODO: vervang met <Image src={proofGoogle} /> zodra screenshot in assets staat */}
-                <p class="text-center px-4">Screenshot Google SERP<br /><span class="text-[10px]">proof-google-torrevieja</span></p>
-              </div>
+              <Image
+                src={proofGoogle}
+                alt="Google zoekresultaten: Costa Blanca Movement Centre op positie 4 voor 'chiropractor Torrevieja' — na 2 weken live"
+                width={600}
+                class="w-full h-auto"
+                loading="lazy"
+              />
             </div>
             <p class="text-white/40 text-xs mt-2 text-center group-hover:text-white/60 transition-colors">Google positie 4 &mdash; na 2 weken</p>
           </div>
-          <div class="lightbox-trigger cursor-pointer group">
+          <div class="lightbox-trigger cursor-zoom-in group">
             <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
-              <div class="aspect-[4/3] bg-white/5 flex items-center justify-center text-white/20 text-sm">
-                {/* TODO: vervang met <Image src={proofChatgpt} /> zodra screenshot in assets staat */}
-                <p class="text-center px-4">Screenshot ChatGPT<br /><span class="text-[10px]">proof-chatgpt-local</span></p>
-              </div>
+              <Image
+                src={proofChatgpt}
+                alt="ChatGPT beveelt Costa Blanca Movement Centre aan als nummer 1 lokale chiropractor in Torrevieja"
+                width={600}
+                class="w-full h-auto"
+                loading="lazy"
+              />
             </div>
             <p class="text-white/40 text-xs mt-2 text-center group-hover:text-white/60 transition-colors">ChatGPT beveelt de kliniek aan als #1 optie</p>
           </div>
@@ -558,7 +576,7 @@ const serviceSchema = generateService({
       </div>
 
       <p class="text-xs text-white/40 italic">
-        *Google-posities en AI-vermeldingen zijn geverifieerd met screenshots. Verena Mann resultaten op basis van vergelijkbare trajecten. Resultaten vari&euml;ren per situatie, markt en medewerking.
+        *Alle genoemde resultaten zijn geverifieerd. Google-posities en AI-vermeldingen zijn onderbouwd met screenshots. Resultaten vari&euml;ren per situatie, markt en medewerking.
       </p>
     </div>
   </section>
@@ -747,7 +765,7 @@ const serviceSchema = generateService({
           Als &eacute;&eacute;n nieuwe klant je gemiddeld &euro;500&ndash;&euro;2.000 oplevert, hoeft dit traject maar een paar extra aanvragen per maand op te leveren om zichzelf terug te verdienen.
         </p>
         <p class="text-text-muted leading-relaxed mb-4">
-          Bij Dr. Verena Mann leverde het systeem 13 extra aanvragen per maand op. Costa Blanca Movement Centre stond na 2 weken al op pagina 1 in Google en wordt door ChatGPT aanbevolen &mdash; vanuit nul.
+          Bij Dr. Verena Mann ging het van 2 naar 19 aanvragen per maand. Costa Blanca Movement Centre stond na 2 weken al op pagina 1 in Google en wordt door ChatGPT aanbevolen &mdash; vanuit nul.
         </p>
         <p class="text-text font-medium leading-relaxed text-lg">
           Wat zou dat voor jouw bedrijf betekenen?
