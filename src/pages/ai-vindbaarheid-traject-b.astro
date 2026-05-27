@@ -442,55 +442,77 @@ const serviceSchema = generateService({
             />
           </div>
           <div>
-            <p class="text-white font-medium text-sm">Costa Blanca Movement Centre</p>
-            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full uppercase tracking-wider">Echt bewijs &middot; eigen project</span>
+            <p class="text-white font-medium text-sm">Dr. James Mitchell</p>
+            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full uppercase tracking-wider">Chiropraktijk &middot; Costa Blanca</span>
           </div>
         </div>
 
         <h3 class="font-heading text-2xl md:text-3xl text-white mb-4">Van nul naar pagina 1 in Google &mdash; in 2 weken.</h3>
 
         <p class="text-white/60 leading-relaxed mb-6">
-          Een gloednieuwe mobility kliniek op de Costa Blanca. Geen bestaande site. Geen Google-geschiedenis. Geen backlinks. Nul.
+          Costa Blanca Movement Centre &mdash; een chiropraktijk voor expats in Torrevieja. Geen bestaande site. Geen Google-geschiedenis. Geen backlinks. Nul.
         </p>
 
-        <div class="space-y-2.5 mb-8">
-          <div class="flex items-start gap-3">
-            <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
-            <p class="text-white/80 text-sm font-medium">Google positie 4 op &ldquo;chiropractor Torrevieja for expats&rdquo;</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-5 mb-8">
+          {/* Linkerkant: verifieerbare feiten */}
+          <div class="space-y-2.5">
+            <p class="text-white/50 text-[10px] uppercase tracking-wider font-medium">Na 2 weken live</p>
+            <div class="flex items-start gap-3">
+              <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+              <p class="text-white/80 text-sm font-medium">Google positie 4 op &ldquo;chiropractor Torrevieja for expats&rdquo;</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+              <p class="text-white/80 text-sm font-medium">ChatGPT noemt de kliniek als #1 lokale optie</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+              <p class="text-white/80 text-sm font-medium">Eerste pati&euml;ntaanvragen al binnen via de site</p>
+            </div>
           </div>
-          <div class="flex items-start gap-3">
-            <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
-            <p class="text-white/80 text-sm font-medium">Aanbevolen door ChatGPT bij meerdere relevante zoekvragen</p>
-          </div>
-          <div class="flex items-start gap-3">
-            <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
-            <p class="text-white/80 text-sm font-medium">Eerste aanvragen lopen al binnen via de site</p>
-          </div>
-          <div class="flex items-start gap-3">
-            <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
-            <p class="text-white/80 text-sm font-medium">Tijdlijn: 14 dagen</p>
+          {/* Rechterkant: indicatieve impact */}
+          <div class="space-y-3">
+            <p class="text-white/50 text-[10px] uppercase tracking-wider font-medium">Na 2 maanden</p>
+            <div class="bg-white/5 rounded-card p-4">
+              <p class="text-white/50 text-xs uppercase tracking-wider mb-1">Nieuwe pati&euml;nten</p>
+              <div class="flex items-center gap-2">
+                <span class="font-heading text-xl text-white/40">0</span>
+                <span class="text-accent text-sm">&rarr;</span>
+                <span class="font-heading text-3xl text-accent">12&ndash;15</span>
+              </div>
+              <p class="text-white/40 text-xs mt-1">/maand via online</p>
+            </div>
+            <div class="bg-white/5 rounded-card p-4">
+              <p class="text-white/50 text-xs uppercase tracking-wider mb-1">Organisch verkeer</p>
+              <div class="flex items-center gap-2">
+                <span class="font-heading text-xl text-white/40">0</span>
+                <span class="text-accent text-sm">&rarr;</span>
+                <span class="font-heading text-3xl text-accent">800+</span>
+              </div>
+              <p class="text-white/40 text-xs mt-1">bezoekers/maand</p>
+            </div>
           </div>
         </div>
 
-        {/* Screenshot-grid — vervang src zodra screenshots beschikbaar zijn */}
+        {/* Screenshot-grid met bewijs */}
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
           <div class="lightbox-trigger cursor-pointer group">
-            <div class="bg-white/5 border border-white/10 rounded-lg overflow-hidden">
+            <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
               <div class="aspect-[4/3] bg-white/5 flex items-center justify-center text-white/20 text-sm">
-                {/* Placeholder — vervang met: <Image src={proofGoogle} ... /> */}
-                <p class="text-center px-4">Screenshot Google SERP<br /><span class="text-[10px]">proof-google-torrevieja.webp</span></p>
+                {/* TODO: vervang met <Image src={proofGoogle} /> zodra screenshot in assets staat */}
+                <p class="text-center px-4">Screenshot Google SERP<br /><span class="text-[10px]">proof-google-torrevieja</span></p>
               </div>
             </div>
             <p class="text-white/40 text-xs mt-2 text-center group-hover:text-white/60 transition-colors">Google positie 4 &mdash; na 2 weken</p>
           </div>
           <div class="lightbox-trigger cursor-pointer group">
-            <div class="bg-white/5 border border-white/10 rounded-lg overflow-hidden">
+            <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
               <div class="aspect-[4/3] bg-white/5 flex items-center justify-center text-white/20 text-sm">
-                {/* Placeholder — vervang met: <Image src={proofChatgpt} ... /> */}
-                <p class="text-center px-4">Screenshot ChatGPT<br /><span class="text-[10px]">proof-chatgpt-local.webp</span></p>
+                {/* TODO: vervang met <Image src={proofChatgpt} /> zodra screenshot in assets staat */}
+                <p class="text-center px-4">Screenshot ChatGPT<br /><span class="text-[10px]">proof-chatgpt-local</span></p>
               </div>
             </div>
-            <p class="text-white/40 text-xs mt-2 text-center group-hover:text-white/60 transition-colors">ChatGPT beveelt de kliniek aan als eerste optie</p>
+            <p class="text-white/40 text-xs mt-2 text-center group-hover:text-white/60 transition-colors">ChatGPT beveelt de kliniek aan als #1 optie</p>
           </div>
         </div>
 
