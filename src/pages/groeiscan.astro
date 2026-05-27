@@ -1,0 +1,243 @@
+---
+/**
+ * Cold Ads Mini-Lander — /groeiscan/
+ * Ultra-short landing page for cold Meta Ads traffic.
+ * Two form fields (URL + email), redirect to B-variant after submit.
+ * No nav, no FAQ, no cases, no pricing. Just the form.
+ */
+import '../styles/global.css';
+import SEOHead from '../components/SEOHead.astro';
+import CookieConsent from '../components/CookieConsent.astro';
+import { siteConfig } from '../data/site';
+import { getTrackingScript } from '../lib/analytics';
+import { getCollectionBasePath } from '../i18n/utils';
+
+const locale = 'nl';
+const title = 'Gratis Groeianalyse — Ontdek waar je klanten laat liggen | NXG Media';
+const description = 'Vul je website in en ontvang binnen 48 uur een persoonlijke analyse. Ontdek waar jouw bedrijf nu klanten laat liggen in Google en AI.';
+
+const privacyHref = getCollectionBasePath('privacy', locale);
+const termsHref = getCollectionBasePath('voorwaarden', locale);
+---
+
+<!DOCTYPE html>
+<html lang="nl" class="scroll-smooth">
+<head>
+  <SEOHead
+    title={title}
+    description={description}
+    canonical={`${siteConfig.url}/groeiscan`}
+    noindex={true}
+    locale={locale}
+  />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <script is:inline set:html={getTrackingScript()} />
+</head>
+<body class="bg-bg text-text min-h-screen flex flex-col">
+
+  {/* ── Minimal header — logo only, no nav ── */}
+  <header class="py-4 px-4 md:px-6">
+    <div class="max-w-2xl mx-auto">
+      <span class="font-heading text-lg text-text/70">{siteConfig.name}</span>
+    </div>
+  </header>
+
+  <main class="flex-1">
+
+    {/* ── BLOK 1: HERO + FORMULIER (above the fold) ── */}
+    <section class="px-4 md:px-6 pt-2 pb-10 md:pt-6 md:pb-16">
+      <div class="max-w-xl mx-auto">
+        <h1 class="font-heading text-[1.75rem] leading-[1.15] md:text-4xl md:leading-tight text-text mb-4">
+          Jouw volgende klant zoekt al naar jou.<br />
+          <em class="text-accent">Alleen vindt hij je concurrent.</em>
+        </h1>
+
+        <p class="text-text-muted leading-relaxed mb-6 text-[0.95rem] md:text-base">
+          Mensen zoeken dagelijks via Google en AI naar wat jij aanbiedt.
+          Vul je website in &mdash; ik laat je binnen 48&nbsp;uur persoonlijk zien
+          waar je nu klanten laat liggen.
+        </p>
+
+        <form id="groeiscan-form" class="space-y-3 mb-3">
+          <input type="hidden" name="bron" value="cold-ads-groeiscan" />
+          <input
+            type="url"
+            name="website"
+            placeholder="https://jouwwebsite.nl"
+            required
+            autocomplete="url"
+            class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white"
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="je@email.nl"
+            required
+            autocomplete="email"
+            class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white"
+          />
+          <button
+            type="submit"
+            class="w-full px-8 py-4 text-base font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg flex items-center justify-center gap-2"
+          >
+            Bereken mijn groeikans
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          </button>
+        </form>
+
+        <p class="text-xs text-text-muted text-center">
+          Gratis &middot; Persoonlijk &middot; Binnen 48 uur &middot; Geen geautomatiseerd rapport
+        </p>
+      </div>
+    </section>
+
+    {/* ── BLOK 2: VERTROUWENSSTRIP ── */}
+    <section class="py-4 border-y border-border/50">
+      <p class="text-center text-[0.8rem] text-text-muted tracking-wide">
+        8 jaar ervaring &middot; &euro;8M+ advertentiebudget beheerd &middot; 50+ klanten
+      </p>
+    </section>
+
+    {/* ── BLOK 3: WAT JE KRIJGT ── */}
+    <section class="px-4 md:px-6 py-10 md:py-14">
+      <div class="max-w-xl mx-auto">
+        <h2 class="font-heading text-xl md:text-2xl text-text mb-5">Wat je binnen 48 uur ontvangt:</h2>
+
+        <ul class="space-y-3 mb-5">
+          <li class="flex items-start gap-3 text-[0.95rem] text-text-muted leading-relaxed">
+            <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+            Waar jouw bedrijf nu klanten laat liggen in Google en AI
+          </li>
+          <li class="flex items-start gap-3 text-[0.95rem] text-text-muted leading-relaxed">
+            <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+            Hoe je ervoor staat vergeleken met je directe concurrenten
+          </li>
+          <li class="flex items-start gap-3 text-[0.95rem] text-text-muted leading-relaxed">
+            <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+            Welke verbeteringen waarschijnlijk het snelst meer aanvragen opleveren
+          </li>
+        </ul>
+
+        <p class="text-xs text-text-muted">
+          Persoonlijk bekeken door Joost van Putten &mdash; online marketeer, geen geautomatiseerde tool.
+        </p>
+      </div>
+    </section>
+
+    {/* ── BLOK 4: HERHALING CTA ── */}
+    <section class="px-4 md:px-6 py-10 md:py-14 bg-primary">
+      <div class="max-w-xl mx-auto text-center">
+        <p class="text-white font-medium text-lg mb-5">
+          Vul je website in &mdash; ik kijk persoonlijk mee.
+        </p>
+
+        <form id="groeiscan-form-bottom" class="space-y-3 mb-3 text-left">
+          <input type="hidden" name="bron" value="cold-ads-groeiscan" />
+          <input
+            type="url"
+            name="website"
+            placeholder="https://jouwwebsite.nl"
+            required
+            autocomplete="url"
+            class="w-full px-4 py-3.5 rounded-button border border-white/20 bg-white/10 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent/50"
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="je@email.nl"
+            required
+            autocomplete="email"
+            class="w-full px-4 py-3.5 rounded-button border border-white/20 bg-white/10 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent/50"
+          />
+          <button
+            type="submit"
+            class="w-full px-8 py-4 text-base font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg flex items-center justify-center gap-2"
+          >
+            Bereken mijn groeikans
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          </button>
+        </form>
+
+        <p class="text-xs text-white/50">
+          Gratis. Geen verplichtingen. Binnen 48 uur.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  {/* ── Minimal footer — privacy + terms only ── */}
+  <footer class="py-4 px-4 md:px-6 border-t border-border/50">
+    <div class="max-w-2xl mx-auto flex items-center justify-between">
+      <p class="text-xs text-text-muted">
+        &copy; {new Date().getFullYear()} {siteConfig.name}
+      </p>
+      <div class="flex items-center gap-4">
+        <a href={privacyHref} class="text-xs text-text-muted hover:text-text transition-colors">Privacy</a>
+        <a href={termsHref} class="text-xs text-text-muted hover:text-text transition-colors">Voorwaarden</a>
+      </div>
+    </div>
+  </footer>
+
+  <CookieConsent locale={locale} />
+
+  {/* ── Form handling: POST to scanner API, fire Meta Lead, redirect ── */}
+  <script is:inline>
+  (function() {
+    var forms = document.querySelectorAll('#groeiscan-form, #groeiscan-form-bottom');
+    forms.forEach(function(form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var f = e.target;
+        var data = new FormData(f);
+        var email = data.get('email');
+        var website = data.get('website');
+
+        if (!email || !website) return;
+
+        // Disable button to prevent double submit
+        var btn = f.querySelector('button[type="submit"]');
+        if (btn) { btn.disabled = true; btn.textContent = 'Even geduld…'; }
+
+        var payload = {
+          naam: email,
+          email: email,
+          websiteUrl: website,
+          vraag: 'Groeianalyse aangevraagd via cold ads lander',
+          source: 'cold-ads-groeiscan',
+          abVersion: 'ads',
+        };
+
+        // Fire Meta Pixel Lead event (if loaded after consent)
+        if (typeof fbq === 'function') {
+          fbq('track', 'Lead', { content_name: 'groeiscan', content_category: 'cold-ads' });
+        }
+
+        // Fire GA4 event
+        if (typeof trackEvent === 'function') {
+          trackEvent('scanner_request_submitted', {
+            page_type: 'page',
+            page_slug: 'groeiscan',
+            locale: 'nl',
+            cta_location: 'inline',
+          });
+        }
+
+        fetch('https://scanner.nxg-media.com/api/gratis-check', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload),
+        }).then(function() {
+          window.location.href = '/ai-vindbaarheid-traject-b/?submitted=true';
+        }).catch(function() {
+          // Even on error, redirect — we don't want to lose the visitor
+          window.location.href = '/ai-vindbaarheid-traject-b/?submitted=true';
+        });
+      });
+    });
+  })();
+  </script>
+
+</body>
+</html>

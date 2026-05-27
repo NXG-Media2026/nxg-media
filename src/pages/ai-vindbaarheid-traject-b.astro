@@ -97,6 +97,18 @@ const serviceSchema = generateService({
 >
   <BreadcrumbNav items={breadcrumbs} />
 
+  {/* ── Bedank-banner voor redirects vanuit /groeiscan/ ── */}
+  <div id="submitted-banner" class="hidden bg-green-50 border-b border-green-200">
+    <div class="max-w-4xl mx-auto px-4 md:px-6 py-4 flex items-center gap-3">
+      <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center shrink-0">
+        <svg class="w-5 h-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+      </div>
+      <p class="text-sm text-green-800 leading-relaxed">
+        <strong>Bedankt!</strong> Ik bekijk je site en mail je binnen 48 uur een persoonlijke analyse. Lees hieronder meer over hoe het traject werkt.
+      </p>
+    </div>
+  </div>
+
   {/* ── 1. HERO — GROEIKANS, NIET TECHNIEK ── */}
   <section class="relative py-20 md:py-28 lg:py-36 overflow-hidden">
     <div class="absolute inset-0">
@@ -954,6 +966,17 @@ const serviceSchema = generateService({
   {/* ── Scripts ── */}
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // ── Show submitted banner if redirected from /groeiscan/ ──
+      if (new URLSearchParams(window.location.search).get('submitted') === 'true') {
+        const banner = document.getElementById('submitted-banner');
+        if (banner) {
+          banner.classList.remove('hidden');
+          window.scrollTo({ top: 0 });
+          // Clean up URL without reload
+          history.replaceState(null, '', window.location.pathname);
+        }
+      }
+
       // ── Sticky CTA: hide when form is visible ──
       const stickyCta = document.querySelector('.sticky-cta') as HTMLElement | null;
       if (stickyCta) {
