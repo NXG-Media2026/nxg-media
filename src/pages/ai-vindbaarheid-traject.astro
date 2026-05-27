@@ -19,6 +19,11 @@ import youlifePhoto from '../assets/images/logos/tessa-youlife-profile-photo.png
 import josineLogo from '../assets/images/logos/coachjosine-logo.avif';
 import josinePhoto from '../assets/images/logos/coachjosine-profile-photo.png';
 
+import keystaticDashboard from '../assets/images/keystatic1.png';
+import keystaticHomepage from '../assets/images/keystatic_edit_homepage.png';
+import keystaticBlog from '../assets/images/keystatic_add_blog.png';
+import keystaticDiensten from '../assets/images/keystatic_services_oversight.png';
+
 const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
 const logos = Object.entries(logoFiles)
   .filter(([path]) => /logo/i.test(path.split('/').pop()!))
@@ -134,22 +139,22 @@ const whatYouGet = [
 
 const keystacticScreenshots = [
   {
-    src: '/images/keystatic-dashboard.webp',
+    src: keystaticDashboard,
     alt: 'Keystatic CMS dashboard met overzicht van websitepagina\'s, blogs, klantervaringen en diensten',
     caption: 'Alles op één plek — pagina\'s, blogs, reviews, diensten en producten',
   },
   {
-    src: '/images/keystatic-homepage-edit.webp',
+    src: keystaticHomepage,
     alt: 'Homepage bewerken in Keystatic CMS met velden voor titel, ondertitel en knoppen',
     caption: 'Homepage aanpassen — invullen, opslaan, klaar',
   },
   {
-    src: '/images/keystatic-blog-editor.webp',
+    src: keystaticBlog,
     alt: 'Blog editor met rich text toolbar, titel, samenvatting en omslagfoto',
     caption: 'Blogartikelen schrijven — met opmaak, afbeeldingen en SEO-velden',
   },
   {
-    src: '/images/keystatic-diensten.webp',
+    src: keystaticDiensten,
     alt: 'Diensten en prijzen beheren in Keystatic CMS overzicht',
     caption: 'Diensten en prijzen beheren — zelf aanpassen wanneer je wilt',
   },
@@ -643,11 +648,14 @@ const keystacticScreenshots = [
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
           {keystacticScreenshots.map((screenshot) => (
             <div class="rounded-lg overflow-hidden border border-border bg-white">
-              <img
+              <Image
                 src={screenshot.src}
                 alt={screenshot.alt}
-                loading="lazy"
+                widths={[400, 600, 800]}
+                sizes="(max-width: 640px) 100vw, 50vw"
                 class="w-full aspect-[16/10] object-cover object-top"
+                loading="lazy"
+                decoding="async"
               />
               <p class="text-xs text-text-muted px-3 py-2">{screenshot.caption}</p>
             </div>
