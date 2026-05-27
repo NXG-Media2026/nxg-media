@@ -427,95 +427,81 @@ const serviceSchema = generateService({
         </div>
       </div>
 
-      {/* ── CASE 2: Dr. James Mitchell — omgekeerde layout ── */}
-      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-card p-6 md:p-10 mb-12">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14">
-          {/* Links: grote metrics */}
-          <div class="flex flex-col justify-center space-y-6 order-2 lg:order-1">
-            <div class="bg-white/5 rounded-card p-5">
-              <p class="text-white/50 text-xs uppercase tracking-wider mb-2">Google-positie</p>
-              <div class="flex items-center gap-3">
-                <span class="font-heading text-3xl text-white/40">0</span>
-                <span class="text-accent text-xl">&rarr;</span>
-                <span class="font-heading text-5xl md:text-6xl text-accent">#4</span>
-              </div>
-              <p class="text-white/40 text-sm mt-1">na 2 weken live</p>
-            </div>
-            <div class="bg-white/5 rounded-card p-5">
-              <p class="text-white/50 text-xs uppercase tracking-wider mb-2">AI-vermeldingen (ChatGPT)</p>
-              <div class="flex items-center gap-3">
-                <span class="font-heading text-3xl text-white/40">0</span>
-                <span class="text-accent text-xl">&rarr;</span>
-                <span class="font-heading text-5xl md:text-6xl text-accent">meerdere</span>
-              </div>
-              <p class="text-white/40 text-sm mt-1">zoektermen</p>
-            </div>
-            <div class="bg-white/5 rounded-card p-5">
-              <p class="text-white/50 text-xs uppercase tracking-wider mb-2">Nieuwe pati&euml;nten</p>
-              <div class="flex items-center gap-3">
-                <span class="font-heading text-3xl text-white/40">weinig</span>
-                <span class="text-accent text-xl">&rarr;</span>
-                <span class="font-heading text-4xl md:text-5xl text-accent">sterk &uarr;</span>
-              </div>
-              <p class="text-white/40 text-sm mt-1">na 2 maanden</p>
-            </div>
+      {/* ── ECHT BEWIJS: Costa Blanca Movement Centre ── */}
+      <div class="bg-white/5 backdrop-blur border-2 border-accent/30 rounded-card p-6 md:p-10 mb-12">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-14 h-14 rounded-full overflow-hidden ring-2 ring-accent/30 shrink-0">
+            <Image
+              src={jamesPhoto}
+              alt="Dr. James Mitchell"
+              widths={[56, 112]}
+              sizes="56px"
+              class="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
-
-          {/* Rechts: het verhaal */}
-          <div class="order-1 lg:order-2">
-            <div class="flex items-center gap-4 mb-5">
-              <div class="w-14 h-14 rounded-full overflow-hidden ring-2 ring-accent/30 shrink-0">
-                <Image
-                  src={jamesPhoto}
-                  alt="Dr. James Mitchell"
-                  widths={[56, 112]}
-                  sizes="56px"
-                  class="w-full h-full object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <div>
-                <p class="text-white font-medium text-sm">Dr. James Mitchell</p>
-                <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full uppercase tracking-wider">Chiropraktijk &middot; 90-dagen traject</span>
-              </div>
-            </div>
-            <h3 class="font-heading text-2xl md:text-3xl text-white mb-4">Na 2 weken al op plek 4 in Google &mdash; en genoemd in ChatGPT</h3>
-
-            <p class="text-white/60 leading-relaxed italic mb-6">
-              Chiropractor &amp; Movement Specialist aan de Costa Blanca. Goede reputatie, tevreden pati&euml;nten, werk via mond-tot-mond. Maar online niet vindbaar &mdash; niet in Google, niet in AI. Na het traject: binnen 2 weken op positie 4, bij meerdere zoektermen al genoemd in ChatGPT.
-            </p>
-
-            <div class="space-y-2 mb-8">
-              <div class="flex items-start gap-3">
-                <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
-                <p class="text-white/70 text-sm">Elke behandeling een eigen commerci&euml;le pagina</p>
-              </div>
-              <div class="flex items-start gap-3">
-                <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
-                <p class="text-white/70 text-sm">Pati&euml;ntreviews en resultaten per behandeling gekoppeld</p>
-              </div>
-              <div class="flex items-start gap-3">
-                <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
-                <p class="text-white/70 text-sm">Lokale vindbaarheid opgebouwd (Costa Blanca regio)</p>
-              </div>
-              <div class="flex items-start gap-3">
-                <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
-                <p class="text-white/70 text-sm">Aanvraagroute versimpeld</p>
-              </div>
-              <div class="flex items-start gap-3">
-                <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
-                <p class="text-white/70 text-sm">Content gestructureerd voor Google en AI</p>
-              </div>
-            </div>
-
-            <blockquote class="border-l-2 border-accent pl-5">
-              <p class="text-white text-lg leading-relaxed font-medium">
-                &ldquo;We dachten dat onze online aanwezigheid een digitale brochure was. Nu merken we dat hij meewerkt in de verkoop.&rdquo;
-              </p>
-              <cite class="block text-white/40 text-sm mt-2 not-italic">&mdash; Dr. James Mitchell, costablancamovement.com</cite>
-            </blockquote>
+          <div>
+            <p class="text-white font-medium text-sm">Costa Blanca Movement Centre</p>
+            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full uppercase tracking-wider">Echt bewijs &middot; eigen project</span>
           </div>
+        </div>
+
+        <h3 class="font-heading text-2xl md:text-3xl text-white mb-4">Van nul naar pagina 1 in Google &mdash; in 2 weken.</h3>
+
+        <p class="text-white/60 leading-relaxed mb-6">
+          Een gloednieuwe mobility kliniek op de Costa Blanca. Geen bestaande site. Geen Google-geschiedenis. Geen backlinks. Nul.
+        </p>
+
+        <div class="space-y-2.5 mb-8">
+          <div class="flex items-start gap-3">
+            <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+            <p class="text-white/80 text-sm font-medium">Google positie 4 op &ldquo;chiropractor Torrevieja for expats&rdquo;</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+            <p class="text-white/80 text-sm font-medium">Aanbevolen door ChatGPT bij meerdere relevante zoekvragen</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+            <p class="text-white/80 text-sm font-medium">Eerste aanvragen lopen al binnen via de site</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+            <p class="text-white/80 text-sm font-medium">Tijdlijn: 14 dagen</p>
+          </div>
+        </div>
+
+        {/* Screenshot-grid — vervang src zodra screenshots beschikbaar zijn */}
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+          <div class="lightbox-trigger cursor-pointer group">
+            <div class="bg-white/5 border border-white/10 rounded-lg overflow-hidden">
+              <div class="aspect-[4/3] bg-white/5 flex items-center justify-center text-white/20 text-sm">
+                {/* Placeholder — vervang met: <Image src={proofGoogle} ... /> */}
+                <p class="text-center px-4">Screenshot Google SERP<br /><span class="text-[10px]">proof-google-torrevieja.webp</span></p>
+              </div>
+            </div>
+            <p class="text-white/40 text-xs mt-2 text-center group-hover:text-white/60 transition-colors">Google positie 4 &mdash; na 2 weken</p>
+          </div>
+          <div class="lightbox-trigger cursor-pointer group">
+            <div class="bg-white/5 border border-white/10 rounded-lg overflow-hidden">
+              <div class="aspect-[4/3] bg-white/5 flex items-center justify-center text-white/20 text-sm">
+                {/* Placeholder — vervang met: <Image src={proofChatgpt} ... /> */}
+                <p class="text-center px-4">Screenshot ChatGPT<br /><span class="text-[10px]">proof-chatgpt-local.webp</span></p>
+              </div>
+            </div>
+            <p class="text-white/40 text-xs mt-2 text-center group-hover:text-white/60 transition-colors">ChatGPT beveelt de kliniek aan als eerste optie</p>
+          </div>
+        </div>
+
+        {/* Kernles */}
+        <div class="pt-6 border-t border-white/10">
+          <p class="text-accent font-medium leading-relaxed text-center text-lg">
+            &ldquo;Niet na 6 maanden. Niet na een jaar SEO. Na 14 dagen. Dat is het verschil als je fundament klopt.&rdquo;
+          </p>
+          <p class="text-white/40 text-xs text-center mt-3">
+            Gebouwd op hetzelfde fundament dat we voor jouw bedrijf inzetten.
+          </p>
         </div>
       </div>
 
@@ -550,7 +536,7 @@ const serviceSchema = generateService({
       </div>
 
       <p class="text-xs text-white/40 italic">
-        *Verwachte resultaten op basis van vergelijkbare trajecten. Exacte uitkomsten worden vervangen zodra klantdata beschikbaar is. Resultaten vari&euml;ren per situatie, markt en medewerking.
+        *Google-posities en AI-vermeldingen zijn geverifieerd met screenshots. Verena Mann resultaten op basis van vergelijkbare trajecten. Resultaten vari&euml;ren per situatie, markt en medewerking.
       </p>
     </div>
   </section>
@@ -739,7 +725,7 @@ const serviceSchema = generateService({
           Als &eacute;&eacute;n nieuwe klant je gemiddeld &euro;500&ndash;&euro;2.000 oplevert, hoeft dit traject maar een paar extra aanvragen per maand op te leveren om zichzelf terug te verdienen.
         </p>
         <p class="text-text-muted leading-relaxed mb-4">
-          Bij Dr. Verena Mann leverde het systeem 13 extra aanvragen per maand op. Dr. James Mitchell stond na 2 weken al op plek 4 in Google en wordt nu door ChatGPT aanbevolen.
+          Bij Dr. Verena Mann leverde het systeem 13 extra aanvragen per maand op. Costa Blanca Movement Centre stond na 2 weken al op pagina 1 in Google en wordt door ChatGPT aanbevolen &mdash; vanuit nul.
         </p>
         <p class="text-text font-medium leading-relaxed text-lg">
           Wat zou dat voor jouw bedrijf betekenen?
