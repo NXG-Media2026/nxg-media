@@ -11,6 +11,14 @@ import { generateBreadcrumbs, generateFAQPage, generateService } from '../data/s
 import heroPhoto from '../assets/images/founder/joost-sitting-laptop-lookingfront.webp';
 import founderPhoto from '../assets/images/founder/joost-standing-relaxed.webp';
 import keystaticDashboard from '../assets/images/keystatic1.png';
+import keystaticHomepage from '../assets/images/keystatic_edit_homepage.png';
+import keystaticBlog from '../assets/images/keystatic_add_blog.png';
+
+const keystacticScreenshots = [
+  { src: keystaticDashboard, alt: 'Beheerpaneel met overzicht van alle pagina\'s, blogs, diensten en producten', caption: 'Alles op één plek' },
+  { src: keystaticHomepage, alt: 'Homepage teksten aanpassen via eenvoudige invoervelden', caption: 'Teksten aanpassen — geen code nodig' },
+  { src: keystaticBlog, alt: 'Blog schrijven met opmaak toolbar en SEO-velden', caption: 'Zelf blogartikelen publiceren' },
+];
 
 const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
 const logos = Object.entries(logoFiles)
@@ -567,39 +575,50 @@ const serviceSchema = generateService({
     />
   )}
 
-  {/* ── 7. JOUW CONTROLE (compact) ── */}
+  {/* ── 7. JOUW CONTROLE ── */}
   <section class="py-16 md:py-20">
     <div class="max-w-4xl mx-auto px-4 md:px-6">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-10">Jij houdt de controle.</h2>
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-3">Jij houdt de controle.</h2>
+      <p class="text-text-muted leading-relaxed mb-10 text-lg">
+        &ldquo;Mari&euml;lle was bang dat ze voor elk klein ding bij mij moest aankloppen. Daarom bouwde ik dit.&rdquo;
+      </p>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-white rounded-card p-6 border border-border">
-          <h3 class="font-heading text-base text-text mb-2">Zelf aanpassen</h3>
-          <p class="text-sm text-text-muted leading-relaxed mb-4">
-            Je krijgt een beheerpaneel voor teksten, foto&rsquo;s, diensten en prijzen. Geen code nodig.
-          </p>
-          <button type="button" class="lightbox-trigger rounded-lg overflow-hidden border border-border bg-white hover:shadow-md transition-shadow cursor-zoom-in w-full" data-index="0">
+      {/* Screenshot grid — 3 kolommen, klikbaar voor lightbox */}
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
+        {keystacticScreenshots.map((screenshot, i) => (
+          <button type="button" class="lightbox-trigger rounded-lg overflow-hidden border border-border bg-white text-left hover:shadow-md transition-shadow cursor-zoom-in" data-index={i}>
             <Image
-              src={keystaticDashboard}
-              alt="Keystatic CMS dashboard met overzicht van alle pagina's en content"
+              src={screenshot.src}
+              alt={screenshot.alt}
               widths={[400, 600]}
-              sizes="(max-width: 768px) 100vw, 33vw"
+              sizes="(max-width: 640px) 100vw, 33vw"
               class="w-full aspect-[16/10] object-cover object-top"
               loading="lazy"
               decoding="async"
             />
+            <p class="text-xs text-text-muted px-3 py-2">{screenshot.caption}</p>
           </button>
+        ))}
+      </div>
+
+      {/* 3 pijlers */}
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-card p-6 border border-border">
+          <h3 class="font-heading text-base text-text mb-2">Zelf aanpassen</h3>
+          <p class="text-sm text-text-muted leading-relaxed">
+            Teksten, foto&rsquo;s, diensten, prijzen, blogs en FAQ&rsquo;s &mdash; je past het zelf aan via een overzichtelijk beheerpaneel. Geen code. Geen technische kennis.
+          </p>
         </div>
         <div class="bg-white rounded-card p-6 border border-border">
           <h3 class="font-heading text-base text-text mb-2">Altijd inzicht</h3>
           <p class="text-sm text-text-muted leading-relaxed">
-            Je ziet je eigen vindbaarheid, verkeer en resultaten.
+            Je ziet je eigen vindbaarheid, verkeer en resultaten. Geen vaag &lsquo;vertrouw me maar&rsquo; &mdash; je ziet wat er verandert.
           </p>
         </div>
-        <div class="bg-white rounded-card p-6 border-2 border-accent/40">
-          <h3 class="font-heading text-base text-text mb-2">Vrij om te stoppen</h3>
+        <div class="bg-white rounded-card p-6 border-l-4 border-l-accent border border-border">
+          <h3 class="font-heading text-base text-text mb-2">Jouw eigendom</h3>
           <p class="text-sm text-text-muted leading-relaxed">
-            Na 90 dagen: bestanden meenemen (&euro;0) of hosting bij mij (&euro;50/maand, maandelijks opzegbaar). Geen lock-in.
+            Na het traject is de site van jou. Je bent eigenaar van alles wat we bouwen &mdash; teksten, structuur, het complete fundament. Je bepaalt zelf hoe je verder gaat.
           </p>
         </div>
       </div>
