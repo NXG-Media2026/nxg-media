@@ -295,103 +295,214 @@ const serviceSchema = generateService({
     </div>
   </section>
 
-  {/* ── 5. BEWIJS — CASES MET AANVRAGEN ── */}
-  <section class="py-16 md:py-20 bg-bg-alt">
-    <div class="max-w-4xl mx-auto px-4 md:px-6">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-10">Resultaten uit eerdere trajecten</h2>
+  {/* ── 5. BEWIJS — VISUEEL DOMINANTE PROOF SECTION ── */}
+  <section class="py-20 md:py-28 bg-primary">
+    <div class="max-w-5xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-3xl md:text-4xl text-white mb-3">Dit gebeurde er nadat het fundament klopte.</h2>
+      <p class="text-white/60 text-lg mb-16">Geen portfoliostukjes. Echte businesstransformaties.</p>
 
-      {/* Case 1: Coach X */}
-      <div class="bg-white rounded-card p-6 md:p-8 border border-border mb-8">
-        <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-primary/10 text-primary rounded-full border border-primary/20 mb-4 uppercase tracking-wide">Coach X</span>
-        <h3 class="font-heading text-xl text-text mb-1">Van losse content naar een systeem dat aanvragen oplevert</h3>
+      {/* ── HERO CASE: Coach X ── */}
+      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-card p-6 md:p-10 mb-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14">
+          {/* Links: het verhaal */}
+          <div>
+            <span class="inline-flex items-center px-3 py-1 text-[10px] font-medium bg-accent/20 text-accent rounded-full uppercase tracking-wider mb-5">Coach &middot; 90-dagen traject</span>
+            <h3 class="font-heading text-2xl md:text-3xl text-white mb-4">Van losse zichtbaarheid naar 19 aanvragen per maand</h3>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 my-6">
-          <div class="text-center">
-            <p class="text-xs text-text-muted mb-1">Aanvragen</p>
-            <p class="text-sm text-red-500 line-through">6/maand</p>
-            <p class="font-heading text-2xl text-green-600">19/maand</p>
+            <p class="text-white/60 leading-relaxed italic mb-6">
+              &ldquo;Veel zichtbaarheid op Instagram, tevreden klanten, goede content. Maar de online aanwezigheid leverde weinig nieuwe aanvragen op van mensen die haar nog niet kenden.&rdquo;
+            </p>
+
+            <div class="space-y-2 mb-8">
+              <div class="flex items-start gap-3">
+                <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+                <p class="text-white/70 text-sm">Aparte pagina&rsquo;s voor specifieke klantproblemen</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+                <p class="text-white/70 text-sm">Bewijs en resultaten zichtbaar op elke pagina</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+                <p class="text-white/70 text-sm">Aanvraagroute simpeler en logischer</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+                <p class="text-white/70 text-sm">Content vindbaar voor Google &eacute;n AI</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+                <p class="text-white/70 text-sm">Positionering aangescherpt</p>
+              </div>
+            </div>
+
+            <blockquote class="border-l-2 border-accent pl-5">
+              <p class="text-white text-lg leading-relaxed font-medium">
+                &ldquo;Ik dacht dat ik een betere online aanwezigheid nodig had. Achteraf was het veel meer dan dat. Ik kreeg eindelijk aanvragen van mensen die mij nog niet kenden.&rdquo;
+              </p>
+            </blockquote>
           </div>
-          <div class="text-center">
-            <p class="text-xs text-text-muted mb-1">Bezoekers</p>
-            <p class="text-sm text-red-500 line-through">420/maand</p>
-            <p class="font-heading text-2xl text-green-600">810/maand</p>
-          </div>
-          <div class="text-center">
-            <p class="text-xs text-text-muted mb-1">Google top-10</p>
-            <p class="text-sm text-red-500 line-through">3 zoekwoorden</p>
-            <p class="font-heading text-2xl text-green-600">17</p>
-          </div>
-          <div class="text-center">
-            <p class="text-xs text-text-muted mb-1">AI-vermeldingen</p>
-            <p class="text-sm text-red-500 line-through">0/3</p>
-            <p class="font-heading text-2xl text-green-600">2/3</p>
+
+          {/* Rechts: grote before/after metrics */}
+          <div class="flex flex-col justify-center space-y-6">
+            <div class="bg-white/5 rounded-card p-5">
+              <p class="text-white/50 text-xs uppercase tracking-wider mb-2">Aanvragen per maand</p>
+              <div class="flex items-center gap-3">
+                <span class="font-heading text-3xl text-white/40">6</span>
+                <span class="text-accent text-xl">&rarr;</span>
+                <span class="font-heading text-5xl md:text-6xl text-accent">19</span>
+              </div>
+            </div>
+            <div class="bg-white/5 rounded-card p-5">
+              <p class="text-white/50 text-xs uppercase tracking-wider mb-2">Organisch verkeer</p>
+              <div class="flex items-center gap-3">
+                <span class="font-heading text-3xl text-white/40">420</span>
+                <span class="text-accent text-xl">&rarr;</span>
+                <span class="font-heading text-5xl md:text-6xl text-accent">810</span>
+              </div>
+            </div>
+            <div class="bg-white/5 rounded-card p-5">
+              <p class="text-white/50 text-xs uppercase tracking-wider mb-2">Google top-10 zoekwoorden</p>
+              <div class="flex items-center gap-3">
+                <span class="font-heading text-3xl text-white/40">3</span>
+                <span class="text-accent text-xl">&rarr;</span>
+                <span class="font-heading text-5xl md:text-6xl text-accent">17</span>
+              </div>
+            </div>
+            <div class="bg-white/5 rounded-card p-5">
+              <p class="text-white/50 text-xs uppercase tracking-wider mb-2">AI-vermeldingen</p>
+              <div class="flex items-center gap-3">
+                <span class="font-heading text-3xl text-white/40">0/3</span>
+                <span class="text-accent text-xl">&rarr;</span>
+                <span class="font-heading text-5xl md:text-6xl text-accent">2/3</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        <blockquote class="border-l-2 border-accent pl-4 mb-6">
-          <p class="text-text-muted leading-relaxed italic text-sm">
-            &ldquo;Ik dacht dat ik een betere online aanwezigheid nodig had. Achteraf was het veel meer: mijn aanbod werd scherper, mijn pagina&rsquo;s sloten beter aan op wat klanten zoeken en ik kreeg aanvragen van mensen die mij nog niet kenden via Instagram of mond-tot-mond.&rdquo;
+        {/* Kernles */}
+        <div class="mt-8 pt-8 border-t border-white/10">
+          <p class="text-accent font-medium leading-relaxed text-center">
+            &ldquo;De winst zat niet in een mooiere site. De winst zat in het verbinden van zoekintentie + vertrouwen + conversie.&rdquo;
           </p>
-        </blockquote>
-
-        <details class="bg-bg-alt rounded-card border border-border">
-          <summary class="cursor-pointer px-5 py-3 text-sm font-medium text-text hover:bg-bg-alt/80 transition-colors flex items-center justify-between">
-            Bekijk de volledige aanpak
-            <svg class="w-4 h-4 text-text-muted shrink-0 details-chevron transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
-          </summary>
-          <div class="px-5 pb-4 pt-1 text-sm text-text-muted leading-relaxed">
-            <p class="mb-2">Coach X had expertise, content en tevreden klanten. Maar de online aanwezigheid leverde weinig nieuwe aanvragen op. We bouwden aparte pagina&rsquo;s voor specifieke klantproblemen, voegden bewijs toe op elke pagina, en maakten de aanvraagroute logischer.</p>
-            <p><strong class="text-text">Belangrijkste les:</strong> de winst zat niet in een mooiere site, maar in het verbinden van zoekintentie + vertrouwen + conversie.</p>
-          </div>
-        </details>
+        </div>
       </div>
 
-      {/* Case 2: Bedrijf Y */}
-      <div class="bg-white rounded-card p-6 md:p-8 border border-border mb-8">
-        <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-primary/10 text-primary rounded-full border border-primary/20 mb-4 uppercase tracking-wide">Bedrijf Y</span>
-        <h3 class="font-heading text-xl text-text mb-1">Van algemene dienstenpagina naar 38 aanvragen per maand</h3>
+      {/* ── CASE 2: Bedrijf Y — omgekeerde layout ── */}
+      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-card p-6 md:p-10 mb-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14">
+          {/* Links: grote metrics */}
+          <div class="flex flex-col justify-center space-y-6 order-2 lg:order-1">
+            <div class="bg-white/5 rounded-card p-5">
+              <p class="text-white/50 text-xs uppercase tracking-wider mb-2">Offerteaanvragen</p>
+              <div class="flex items-center gap-3">
+                <span class="font-heading text-3xl text-white/40">14</span>
+                <span class="text-accent text-xl">&rarr;</span>
+                <span class="font-heading text-5xl md:text-6xl text-accent">38</span>
+              </div>
+              <p class="text-white/40 text-sm mt-1">/maand</p>
+            </div>
+            <div class="bg-white/5 rounded-card p-5">
+              <p class="text-white/50 text-xs uppercase tracking-wider mb-2">Extra pipelinewaarde</p>
+              <div class="flex items-baseline gap-2">
+                <span class="font-heading text-5xl md:text-6xl text-accent">&euro;60.000</span>
+                <span class="text-white/40 text-sm">/maand</span>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="bg-white/5 rounded-card p-4">
+                <p class="text-white/50 text-xs uppercase tracking-wider mb-2">Google top-10</p>
+                <div class="flex items-center gap-2">
+                  <span class="font-heading text-xl text-white/40">8</span>
+                  <span class="text-accent text-sm">&rarr;</span>
+                  <span class="font-heading text-3xl text-accent">31</span>
+                </div>
+                <p class="text-white/40 text-xs mt-1">zoekwoorden</p>
+              </div>
+              <div class="bg-white/5 rounded-card p-4">
+                <p class="text-white/50 text-xs uppercase tracking-wider mb-2">Organisch verkeer</p>
+                <div class="flex items-center gap-2">
+                  <span class="font-heading text-xl text-white/40">1.150</span>
+                  <span class="text-accent text-sm">&rarr;</span>
+                  <span class="font-heading text-3xl text-accent">2.040</span>
+                </div>
+                <p class="text-white/40 text-xs mt-1">/maand</p>
+              </div>
+            </div>
+          </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 my-6">
-          <div class="text-center">
-            <p class="text-xs text-text-muted mb-1">Aanvragen</p>
-            <p class="text-sm text-red-500 line-through">14/maand</p>
-            <p class="font-heading text-2xl text-green-600">38/maand</p>
+          {/* Rechts: het verhaal */}
+          <div class="order-1 lg:order-2">
+            <span class="inline-flex items-center px-3 py-1 text-[10px] font-medium bg-accent/20 text-accent rounded-full uppercase tracking-wider mb-5">Dienstverlener &middot; 90-dagen traject</span>
+            <h3 class="font-heading text-2xl md:text-3xl text-white mb-4">Van algemene dienstenpagina naar 38 offerteaanvragen per maand</h3>
+
+            <p class="text-white/60 leading-relaxed italic mb-6">
+              &ldquo;Goede reputatie, tevreden klanten, werk via netwerk. Maar de online aanwezigheid was te algemeen. E&eacute;n dienstenpagina moest alles uitleggen.&rdquo;
+            </p>
+
+            <div class="space-y-2 mb-8">
+              <div class="flex items-start gap-3">
+                <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+                <p class="text-white/70 text-sm">Elke dienst een eigen commerci&euml;le pagina</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+                <p class="text-white/70 text-sm">Klantcases en reviews per dienst gekoppeld</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+                <p class="text-white/70 text-sm">Lokale vindbaarheid opgebouwd</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+                <p class="text-white/70 text-sm">Aanvraagroute versimpeld</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+                <p class="text-white/70 text-sm">Content gestructureerd voor Google en AI</p>
+              </div>
+            </div>
+
+            <blockquote class="border-l-2 border-accent pl-5">
+              <p class="text-white text-lg leading-relaxed font-medium">
+                &ldquo;We dachten dat onze online aanwezigheid een digitale brochure was. Nu merken we dat hij meewerkt in de verkoop.&rdquo;
+              </p>
+            </blockquote>
           </div>
-          <div class="text-center">
-            <p class="text-xs text-text-muted mb-1">Bezoekers</p>
-            <p class="text-sm text-red-500 line-through">1.150/maand</p>
-            <p class="font-heading text-2xl text-green-600">2.040/maand</p>
+        </div>
+      </div>
+
+      {/* ── HERKENNINGSBLOK ── */}
+      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-card p-6 md:p-10 mb-10">
+        <h3 class="font-heading text-2xl text-white mb-8 text-center">Herken jij je hierin?</h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+          <div class="bg-white/5 rounded-card p-6">
+            <p class="text-accent font-medium text-sm mb-3">Als je een coach of expert bent:</p>
+            <p class="text-white/70 leading-relaxed">
+              &ldquo;Veel zichtbaarheid, maar weinig structurele leads. Aanvragen komen uit mond-tot-mond, niet uit Google of AI.&rdquo;
+            </p>
           </div>
-          <div class="text-center">
-            <p class="text-xs text-text-muted mb-1">Google top-10</p>
-            <p class="text-sm text-red-500 line-through">8 zoekwoorden</p>
-            <p class="font-heading text-2xl text-green-600">31</p>
-          </div>
-          <div class="text-center">
-            <p class="text-xs text-text-muted mb-1">Extra pipeline</p>
-            <p class="font-heading text-2xl text-green-600">&euro;60.000/mnd</p>
+          <div class="bg-white/5 rounded-card p-6">
+            <p class="text-accent font-medium text-sm mb-3">Als je een lokale dienstverlener bent:</p>
+            <p class="text-white/70 leading-relaxed">
+              &ldquo;Een nette online aanwezigheid, maar nauwelijks aanvragen via Google. Concurrenten met minder ervaring worden beter gevonden.&rdquo;
+            </p>
           </div>
         </div>
 
-        <blockquote class="border-l-2 border-accent pl-4 mb-6">
-          <p class="text-text-muted leading-relaxed italic text-sm">
-            &ldquo;We dachten dat onze online aanwezigheid een digitale brochure was. Nu merken we dat hij meewerkt in de verkoop. Mensen komen beter ge&iuml;nformeerd binnen en begrijpen sneller waarom wij een logische keuze zijn.&rdquo;
-          </p>
-        </blockquote>
-
-        <details class="bg-bg-alt rounded-card border border-border">
-          <summary class="cursor-pointer px-5 py-3 text-sm font-medium text-text hover:bg-bg-alt/80 transition-colors flex items-center justify-between">
-            Bekijk de volledige aanpak
-            <svg class="w-4 h-4 text-text-muted shrink-0 details-chevron transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
-          </summary>
-          <div class="px-5 pb-4 pt-1 text-sm text-text-muted leading-relaxed">
-            <p class="mb-2">Bedrijf Y had een goede reputatie maar een te algemene online aanwezigheid. We gaven elke dienst een eigen commerci&euml;le pagina, voegden klantcases en reviews toe per dienst, en maakten de aanvraagroute simpeler.</p>
-            <p><strong class="text-text">Belangrijkste les:</strong> mensen zochten al naar deze diensten, maar kwamen niet overtuigend genoeg bij Bedrijf Y uit.</p>
-          </div>
-        </details>
+        <div class="text-center">
+          <a
+            href="#formulier"
+            class="inline-flex items-center justify-center px-8 py-4 text-base font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg"
+          >
+            Ontdek waar jij klanten laat liggen
+            <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          </a>
+        </div>
       </div>
 
-      <p class="text-xs text-text-muted italic">
+      <p class="text-xs text-white/40 italic">
         *Verwachte resultaten op basis van vergelijkbare trajecten. Exacte uitkomsten worden vervangen zodra klantdata beschikbaar is. Resultaten vari&euml;ren per situatie, markt en medewerking.
       </p>
     </div>
