@@ -68,7 +68,7 @@ const faqItems = [
   },
   {
     question: 'Hoeveel tijd kost het mij?',
-    answer: ‘1-2 uur per week in de eerste maand. Foto’s en feedback. Daarna minder.’,
+    answer: '1-2 uur per week in de eerste maand. Foto’s en feedback. Daarna minder.',
   },
 ];
 
@@ -975,25 +975,35 @@ const serviceSchema = generateService({
           const f = e.target as HTMLFormElement;
           const data = new FormData(f);
 
-          const payload: Record<string, string | null> = {
-            bron: data.get('bron') as string,
-            website: data.get('website') as string,
-            email: data.get('email') as string,
-          };
+          const email = data.get('email') as string;
+          const website = data.get('website') as string;
 
           // Collect radio values (only present in the full form)
-          const radioFields = ['doel', 'bedrijfstype', 'klantwaarde', 'klantbron'];
-          radioFields.forEach((field) => {
-            const val = data.get(field);
-            if (val) payload[field] = val as string;
-          });
+          const doel = data.get('doel') as string | null;
+          const bedrijfstype = data.get('bedrijfstype') as string | null;
+          const klantwaarde = data.get('klantwaarde') as string | null;
+          const klantbron = data.get('klantbron') as string | null;
+
+          // Build structured "vraag" from radio selections
+          const vraagParts = [
+            doel ? `Doel: ${doel}` : '',
+            bedrijfstype ? `Bedrijfstype: ${bedrijfstype}` : '',
+            klantwaarde ? `Klantwaarde: ${klantwaarde}` : '',
+            klantbron ? `Klantbron: ${klantbron}` : '',
+          ].filter(Boolean).join('\n');
+
+          const payload = {
+            naam: email,
+            email,
+            websiteUrl: website,
+            vraag: vraagParts || 'Groeianalyse aangevraagd (compact formulier)',
+            klantwaarde: klantwaarde || undefined,
+            source: 'trajectpagina-b',
+            abVersion: 'b',
+          };
 
           try {
-            const endpoint = f.action && f.action !== window.location.href
-              ? f.action
-              : 'https://formspree.io/f/PLACEHOLDER';
-
-            await fetch(endpoint, {
+            await fetch('https://scanner.nxg-media.com/api/gratis-check', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
               body: JSON.stringify(payload),

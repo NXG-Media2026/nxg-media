@@ -803,29 +803,27 @@ const keystacticScreenshots = [
           const f = e.target as HTMLFormElement;
           const data = new FormData(f);
 
-          // Collect checked values into comma-separated string
+          const email = data.get('email') as string;
+          const website = data.get('website') as string;
           const vragen = data.getAll('vragen').join(', ');
+
           const payload = {
-            bron: data.get('bron'),
-            vragen,
-            website: data.get('website'),
-            email: data.get('email'),
+            naam: email,
+            email,
+            websiteUrl: website,
+            vraag: vragen || 'Persoonlijk advies aangevraagd (compact formulier)',
+            source: 'trajectpagina',
+            abVersion: 'a',
           };
 
           try {
-            // Try form endpoint; fallback gracefully
-            const endpoint = f.action && f.action !== window.location.href
-              ? f.action
-              : 'https://formspree.io/f/PLACEHOLDER';
-
-            await fetch(endpoint, {
+            await fetch('https://scanner.nxg-media.com/api/gratis-check', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
               body: JSON.stringify(payload),
             });
           } catch {
             // Silently fail — show thank you regardless
-            // Joost will configure the endpoint
           }
 
           // Show thank you message
