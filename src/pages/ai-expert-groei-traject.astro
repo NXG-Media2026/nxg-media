@@ -1,0 +1,879 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BreadcrumbNav from '../components/BreadcrumbNav.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import LogoMarquee from '../components/LogoMarquee.astro';
+import { siteConfig } from '../data/site';
+import { generateBreadcrumbs, generateFAQPage, generateService } from '../data/schema';
+import { getTestimonials } from '../data/testimonials';
+
+import heroPhoto from '../assets/images/founder/joost-sitting-laptop-lookingfront.webp';
+import founderPhoto from '../assets/images/founder/joost-standing-relaxed.webp';
+import verenaPhoto from '../assets/images/cases/verena-mann-linkedin.webp';
+import jamesPhoto from '../assets/images/cases/james-mitchell-portrait.png';
+import proofVerenaAi from '../assets/images/cases/doc_veri_ai_answer_cropped.PNG';
+import proofVerenaChatgpt from '../assets/images/cases/doc-veri-chatgptproof.jpeg';
+import proofGoogle from '../assets/images/cases/proof-google-torrevieja.png';
+import proofChatgpt from '../assets/images/cases/proof-chatgpt-local.png';
+
+import josineWhatsApp from '../assets/images/cases/coachjosine_whatsapp_proof.png';
+import josineProduct from '../assets/images/cases/eetgids-coachjosine-product-proof.webp';
+import tessaWhatsApp from '../assets/images/cases/tessa-youlife-whatsapp-proof.webp';
+import rolfWhatsApp from '../assets/images/cases/rolf-happywithyoga-whatsapp-proof.webp';
+
+const locale = 'nl';
+const testimonials = getTestimonials({ locale: 'nl' });
+
+const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
+const logos = Object.entries(logoFiles)
+  .filter(([path]) => /logo/i.test(path.split('/').pop()!))
+  .map(([path, mod]) => {
+    const filename = path.split('/').pop()!.replace(/\.(webp|avif|png|jpg)$/, '');
+    const name = filename.replace(/[-_]?logo[-_]?/gi, '').replace(/[-_]/g, ' ').trim();
+    return { src: mod.default, alt: name };
+  });
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'AI Expert Groei Traject' },
+];
+
+const faqItems = [
+  {
+    question: 'Is dit gewoon AI-vindbaarheid?',
+    answer: 'AI-vindbaarheid is de ingang en diagnose. Het traject gaat over het fundament erachter: positionering, bewijs, content, instaproute en opvolging. Beter gevonden worden heeft weinig zin als bezoekers daarna niet begrijpen waarom jij de logische keuze bent.',
+  },
+  {
+    question: 'Moet ik meteen een online platform bouwen?',
+    answer: 'De eerste fase is bewust klein: een duidelijke positionering, een eerste instaproute en bewijs dat mensen willen instappen. Pas als dat werkt, bouwen we door. Veel coaches starten niet in fase 3 — ze starten met een compacte route die bewijs oplevert.',
+  },
+  {
+    question: 'Werken advertenties nog voor coaches?',
+    answer: 'Directe advertenties naar een duur traject of salescall zijn vaak lastig. Daarom bouwen we meestal eerst een tussenstap zoals een gids, scan, masterclass of mini-product. Dat verlaagt de instapdrempel en bouwt vertrouwen op voordat iemand een gesprek inplant.',
+  },
+  {
+    question: 'Wat als ik al een website heb?',
+    answer: 'Dan kijken we wat bruikbaar is en wat scherper moet. Soms bouwen we door op wat er staat, soms is een nieuw fundament logischer. Het gaat niet om de techniek, maar om of je expertise duidelijk genoeg overkomt voor bezoekers en AI.',
+  },
+  {
+    question: 'Is dit geschikt als ik nog geen groot publiek heb?',
+    answer: 'Een groot publiek is geen voorwaarde, zolang je expertise en aanbod duidelijk genoeg zijn. Met een kleine route testen we waar mensen op reageren. Vaak begint groei niet bij meer bereik, maar bij een scherpere positionering en een duidelijkere eerste stap.',
+  },
+];
+
+const faqForSchema = faqItems.map((item) => ({ question: item.question, answer: item.answer }));
+const faqForComponent = faqItems.map((item) => ({ q: item.question, a: item.answer }));
+
+const serviceSchema = generateService({
+  name: 'AI Expert Groei Traject',
+  description: 'Bouw een AI-ready expertfundament rond je expertise. Voor coaches en experts die beter gevonden willen worden en een route willen bouwen naar aanvragen, producten en coachingklanten.',
+  url: `${siteConfig.url}/ai-expert-groei-traject/`,
+  serviceType: 'Expert Growth System',
+});
+---
+
+<BaseLayout
+  title="AI Expert Groei Traject voor Coaches & Experts | NXG Media"
+  description="Bouw een AI-ready expertfundament rond je expertise. Voor coaches en experts die beter gevonden willen worden en een route willen bouwen naar aanvragen, producten en coachingklanten."
+  canonical={`${siteConfig.url}/ai-expert-groei-traject/`}
+  schemas={[
+    generateBreadcrumbs(breadcrumbs.map((b) => ({ name: b.label, url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}/ai-expert-groei-traject/` }))),
+    generateFAQPage(faqForSchema),
+    serviceSchema,
+  ]}
+  locale={locale}
+>
+  <BreadcrumbNav items={breadcrumbs} />
+
+  {/* ── 1. HERO ── */}
+  <section class="relative py-20 md:py-28 lg:py-36 overflow-hidden">
+    <div class="absolute inset-0">
+      <Image
+        src={heroPhoto}
+        alt="Joost van Putten — online groei-strateeg voor coaches en experts"
+        widths={[800, 1200, 1600]}
+        sizes="100vw"
+        class="w-full h-full object-cover"
+        loading="eager"
+        decoding="async"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/40"></div>
+    </div>
+    <div class="relative max-w-4xl mx-auto px-4 md:px-6">
+      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl text-text mb-6 leading-tight max-w-2xl">
+        Word de expert die AI begrijpt &mdash; en klanten weten te kiezen
+      </h1>
+      <p class="text-lg md:text-xl text-text-muted leading-relaxed mb-10 max-w-xl">
+        Voor coaches, therapeuten en experts die niet alleen beter gevonden willen worden in ChatGPT, Gemini en Google, maar hun expertise willen omzetten in een duidelijke route naar aanvragen, producten en coachingklanten.
+      </p>
+      <div class="flex flex-col sm:flex-row items-start gap-4">
+        <a
+          href="#analyse"
+          class="inline-flex items-center px-8 py-4 text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-lg"
+        >
+          Vraag mijn persoonlijke analyse aan
+          <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+        <a
+          href="#oplossing"
+          class="inline-flex items-center px-8 py-4 text-base font-medium text-primary border-2 border-primary hover:bg-primary/5 transition-colors rounded-button"
+        >
+          Bekijk hoe het traject werkt
+        </a>
+      </div>
+      <p class="text-xs text-text-muted mt-4">
+        AI-vindbaarheid als ingang. Een compleet expertfundament als oplossing.
+      </p>
+    </div>
+  </section>
+
+  {/* ── Proof Stats ── */}
+  <section class="bg-bg-alt border-y border-border">
+    <div class="max-w-4xl mx-auto px-4 md:px-6 py-8 md:py-10">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div>
+          <div class="font-heading text-2xl md:text-3xl text-primary">19/mnd</div>
+          <p class="text-xs text-text-muted mt-1">aanvragen na fundament</p>
+          <p class="text-xs text-accent font-medium mt-0.5">Dr. Verena Mann</p>
+        </div>
+        <div>
+          <div class="font-heading text-2xl md:text-3xl text-primary">600&times;</div>
+          <p class="text-xs text-text-muted mt-1">gids verkocht in 4 mnd</p>
+          <p class="text-xs text-accent font-medium mt-0.5">Coach Josine</p>
+        </div>
+        <div>
+          <div class="font-heading text-2xl md:text-3xl text-primary">&euro;10k/mnd</div>
+          <p class="text-xs text-text-muted mt-1">online productomzet</p>
+          <p class="text-xs text-accent font-medium mt-0.5">Youlife</p>
+        </div>
+        <div>
+          <div class="font-heading text-2xl md:text-3xl text-primary">2.000</div>
+          <p class="text-xs text-text-muted mt-1">betalende platformleden</p>
+          <p class="text-xs text-accent font-medium mt-0.5">Happy With Yoga</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── 2. REFRAME ── */}
+  <section class="py-16 md:py-20">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full mb-4 uppercase tracking-wider">AI-vindbaarheid is niet het einddoel</span>
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">
+        Je AI-score laat zien hoe duidelijk jouw expertise online begrepen wordt
+      </h2>
+      <p class="text-text-muted leading-relaxed mb-4">
+        Als AI jou niet goed begrijpt, is dat vaak geen los technisch probleem. Het is meestal een signaal dat je positionering, bewijs, content, aanbod en volgende stap nog niet scherp genoeg samenkomen.
+      </p>
+      <p class="text-text-muted leading-relaxed">
+        Precies datzelfde probleem voelen potenti&euml;le klanten ook. Ze zien misschien wel dat je kennis hebt, maar niet direct waarom jij de logische keuze bent &mdash; of wat hun eerste stap moet zijn.
+      </p>
+    </div>
+  </section>
+
+  {/* ── 3. PROBLEEM ── */}
+  <section class="py-16 md:py-20 bg-primary">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-white mb-8">
+        Veel coaches hebben geen kennisprobleem. Ze hebben een systeemprobleem.
+      </h2>
+      <div class="space-y-4">
+        <div class="flex items-start gap-4 bg-white/5 rounded-card p-4 border border-white/10">
+          <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+          <p class="text-white/80 leading-relaxed">Je hebt expertise, maar die staat verspreid over losse posts, pagina&rsquo;s en verhalen.</p>
+        </div>
+        <div class="flex items-start gap-4 bg-white/5 rounded-card p-4 border border-white/10">
+          <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+          <p class="text-white/80 leading-relaxed">Mensen volgen je wel, maar zetten geen concrete stap.</p>
+        </div>
+        <div class="flex items-start gap-4 bg-white/5 rounded-card p-4 border border-white/10">
+          <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+          <p class="text-white/80 leading-relaxed">Je aanbod is waardevol, maar nog niet scherp genoeg verpakt.</p>
+        </div>
+        <div class="flex items-start gap-4 bg-white/5 rounded-card p-4 border border-white/10">
+          <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+          <p class="text-white/80 leading-relaxed">Koude advertenties direct naar een salescall werken steeds minder goed.</p>
+        </div>
+        <div class="flex items-start gap-4 bg-white/5 rounded-card p-4 border border-white/10">
+          <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+          <p class="text-white/80 leading-relaxed">Je mist een laagdrempelige tussenstap zoals een gids, scan, masterclass of mini-product.</p>
+        </div>
+        <div class="flex items-start gap-4 bg-white/5 rounded-card p-4 border border-white/10">
+          <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+          <p class="text-white/80 leading-relaxed">Warme interesse verdwijnt omdat er geen duidelijke e-mailopvolging of klantreis is.</p>
+        </div>
+      </div>
+      <p class="text-white font-medium mt-8 text-lg">
+        Daarom bouwen we niet alleen aan AI-vindbaarheid. We bouwen het systeem eromheen.
+      </p>
+    </div>
+  </section>
+
+  {/* ── 4. OPLOSSING ── */}
+  <section id="oplossing" class="py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <div class="max-w-3xl">
+        <h2 class="font-heading text-2xl md:text-3xl text-text mb-3">Het AI-ready Expert Fundament</h2>
+        <p class="text-lg text-text-muted leading-relaxed mb-12">
+          Een compact groeisysteem dat jouw expertise vindbaar, begrijpelijk en verkoopbaar maakt.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-card p-6 border border-border">
+          <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+            <span class="font-heading text-primary text-lg">1</span>
+          </div>
+          <h3 class="font-heading text-lg text-text mb-2">Gevonden worden</h3>
+          <p class="text-sm text-text-muted leading-relaxed">AI, Google en bezoekers begrijpen waarvoor jij de expert bent. Je expertise wordt vindbaar bij de juiste zoekvragen.</p>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center mb-4">
+            <span class="font-heading text-accent text-lg">2</span>
+          </div>
+          <h3 class="font-heading text-lg text-text mb-2">Vertrouwen opbouwen</h3>
+          <p class="text-sm text-text-muted leading-relaxed">Je methode, bewijs, verhaal en resultaten staan op de juiste plek. Bezoekers begrijpen binnen seconden waarom jij de logische keuze bent.</p>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+            <span class="font-heading text-primary text-lg">3</span>
+          </div>
+          <h3 class="font-heading text-lg text-text mb-2">Mensen laten instappen</h3>
+          <p class="text-sm text-text-muted leading-relaxed">Een gids, scan, masterclass of mini-product met e-mailopvolging maakt de eerste stap laagdrempelig. Van interesse naar actie.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── 5. 90-DAGEN ── */}
+  <section class="py-16 md:py-20 bg-bg-alt">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-3">Wat bouwen we in de eerste 90 dagen?</h2>
+      <p class="text-lg text-text-muted leading-relaxed mb-12 max-w-3xl">
+        Niet meteen een groot platform. Eerst bouwen we een compacte route die bewijst dat mensen willen instappen.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+        <div class="bg-white rounded-card p-6 border border-border">
+          <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-primary/10 text-primary rounded-full mb-3">01</span>
+          <h3 class="font-heading text-lg text-text mb-2">Expertpositionering</h3>
+          <p class="text-sm text-text-muted leading-relaxed">Voor wie ben jij de logische keuze, welk probleem los je op en waarom moeten mensen jou vertrouwen?</p>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-primary/10 text-primary rounded-full mb-3">02</span>
+          <h3 class="font-heading text-lg text-text mb-2">Niche- of specialisatiepagina&rsquo;s</h3>
+          <p class="text-sm text-text-muted leading-relaxed">Pagina&rsquo;s rond je methode, doelgroep en thema&rsquo;s, zodat AI, Google en bezoekers je expertise beter begrijpen.</p>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/10 text-accent rounded-full mb-3">03</span>
+          <h3 class="font-heading text-lg text-text mb-2">Instaproute</h3>
+          <p class="text-sm text-text-muted leading-relaxed">Een gids, scan, masterclass of mini-product waarmee mensen laagdrempelig kennis met je maken.</p>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/10 text-accent rounded-full mb-3">04</span>
+          <h3 class="font-heading text-lg text-text mb-2">Landingspagina</h3>
+          <p class="text-sm text-text-muted leading-relaxed">Een duidelijke pagina die niet alleen informeert, maar mensen naar de volgende stap brengt.</p>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-primary/10 text-primary rounded-full mb-3">05</span>
+          <h3 class="font-heading text-lg text-text mb-2">E-mailopvolging</h3>
+          <p class="text-sm text-text-muted leading-relaxed">Een korte flow die vertrouwen opbouwt en warme interesse niet laat verdwijnen.</p>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-primary/10 text-primary rounded-full mb-3">06</span>
+          <h3 class="font-heading text-lg text-text mb-2">Eerste traffic-test</h3>
+          <p class="text-sm text-text-muted leading-relaxed">Met advertenties of bestaande kanalen testen we welke boodschap, doelgroep en instaproute werkt.</p>
+        </div>
+      </div>
+
+      <p class="text-accent font-medium text-center">
+        De eerste 90 dagen zijn bedoeld om bewijs te cre&euml;ren &mdash; niet om meteen een groot platform te bouwen.
+      </p>
+    </div>
+  </section>
+
+  {/* ── 6. WAAROM KOUDE ADS NIET GENOEG ZIJN ── */}
+  <section class="py-16 md:py-20">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">
+        Waarom direct naar een salescall steeds moeilijker wordt
+      </h2>
+      <p class="text-text-muted leading-relaxed mb-4">
+        Veel coaches proberen koude mensen direct naar een gesprek te sturen. Maar voor iemand die jou nog niet kent, is die stap vaak te groot.
+      </p>
+      <p class="text-text-muted leading-relaxed mb-10">
+        Daarom werkt een tussenstap vaak beter: een gids, scan, masterclass of mini-product waarmee iemand eerst je visie, methode en stijl ervaart.
+      </p>
+
+      {/* Visuele flow */}
+      <div class="bg-bg-alt rounded-card p-6 md:p-8 border border-border">
+        <div class="flex flex-col md:flex-row items-stretch gap-3 md:gap-0">
+          <div class="flex-1 bg-white rounded-lg p-4 text-center border border-border">
+            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-2">
+              <span class="text-primary text-sm font-heading">1</span>
+            </div>
+            <p class="text-xs font-medium text-text">Content, AI of advertentie</p>
+            <p class="text-[10px] text-text-muted mt-1">Iemand ontdekt jou</p>
+          </div>
+          <div class="hidden md:flex items-center px-2 text-accent">&rarr;</div>
+          <div class="flex-1 bg-white rounded-lg p-4 text-center border-2 border-accent/30">
+            <div class="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-2">
+              <span class="text-accent text-sm font-heading">2</span>
+            </div>
+            <p class="text-xs font-medium text-text">Instaproute</p>
+            <p class="text-[10px] text-text-muted mt-1">Gids, scan of masterclass</p>
+          </div>
+          <div class="hidden md:flex items-center px-2 text-accent">&rarr;</div>
+          <div class="flex-1 bg-white rounded-lg p-4 text-center border border-border">
+            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-2">
+              <span class="text-primary text-sm font-heading">3</span>
+            </div>
+            <p class="text-xs font-medium text-text">E-mailopvolging</p>
+            <p class="text-[10px] text-text-muted mt-1">Vertrouwen groeit</p>
+          </div>
+          <div class="hidden md:flex items-center px-2 text-accent">&rarr;</div>
+          <div class="flex-1 bg-white rounded-lg p-4 text-center border border-border">
+            <div class="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-2">
+              <span class="text-accent text-sm font-heading">4</span>
+            </div>
+            <p class="text-xs font-medium text-text">Aanvraag of klant</p>
+            <p class="text-[10px] text-text-muted mt-1">Warm en gekwalificeerd</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── 7. CASES / PROOF ── */}
+  <section class="py-16 md:py-20 bg-primary">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-3xl md:text-4xl text-white mb-3">Van eerste AI-vindbaarheid naar volwassen online platform</h2>
+      <p class="text-white/60 text-lg mb-14 max-w-3xl">
+        Niet iedere coach hoeft meteen een groot platform te bouwen. Vaak begint het kleiner: je expertise scherper verpakken, een eerste instaproute bouwen en met bewijs zien dat mensen willen instappen.
+      </p>
+
+      {/* ── Case 1: Dr. Verena Mann ── */}
+      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-card p-6 md:p-8 mb-8">
+        <div class="flex items-center gap-4 mb-5">
+          <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-accent/30 shrink-0">
+            <Image src={verenaPhoto} alt="Dr. Verena Mann" widths={[48, 96]} sizes="48px" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+          </div>
+          <div>
+            <p class="text-white font-medium text-sm">Dr. Verena Mann</p>
+            <a href="https://doc-veri.pages.dev" target="_blank" rel="noopener" class="text-accent/70 hover:text-accent text-xs transition-colors">doc-veri.pages.dev</a>
+          </div>
+          <div class="ml-auto flex items-center gap-3">
+            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full">Expertplatform</span>
+            <span class="text-white/30 text-xs">&plusmn;1,5 maand</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3 mb-5">
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+            <p class="font-heading text-xl text-accent">2 &rarr; 19</p>
+            <p class="text-[10px] text-white/50">aanvragen/mnd</p>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+            <p class="font-heading text-xl text-accent">0 &rarr; 15</p>
+            <p class="text-[10px] text-white/50">AI-vermeldingen</p>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+            <p class="font-heading text-xl text-accent">&plusmn;6 wk</p>
+            <p class="text-[10px] text-white/50">live</p>
+          </div>
+        </div>
+
+        <p class="text-white/70 text-sm leading-relaxed mb-4">
+          Sterke expertise en een actieve community, maar haar website bracht nauwelijks nieuwe aanvragen van mensen die haar nog niet kenden. We maakten haar expertise concreter rond haar thema&rsquo;s, klantproblemen, bewijs en een duidelijke aanvraagroute. Daardoor werd ze niet alleen beter zichtbaar, maar ook logischer om contact mee op te nemen.
+        </p>
+        <p class="text-accent text-sm font-medium italic">
+          &ldquo;Van betere online aanwezigheid naar aanvragen van mensen die haar nog niet kenden.&rdquo;
+        </p>
+
+        {/* Proof screenshots */}
+        <div class="grid grid-cols-2 gap-3 mt-5">
+          <div class="lightbox-trigger cursor-zoom-in group">
+            <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
+              <Image src={proofVerenaAi} alt="ChatGPT noemt Dr. Verena Mann als passende expertin" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
+            </div>
+            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">AI-antwoord: &ldquo;eine passende Expertin&rdquo;</p>
+          </div>
+          <div class="lightbox-trigger cursor-zoom-in group">
+            <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
+              <Image src={proofVerenaChatgpt} alt="ChatGPT beveelt Dr. Verena Mann aan met link naar site" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
+            </div>
+            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">ChatGPT met directe link naar haar site</p>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Case 2: Coach Josine ── */}
+      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-card p-6 md:p-8 mb-8">
+        <div class="flex items-center gap-4 mb-5">
+          <div>
+            <p class="text-white font-medium text-sm">Josine &mdash; Coach Josine</p>
+            <a href="https://www.coachjosine.nl" target="_blank" rel="noopener" class="text-accent/70 hover:text-accent text-xs transition-colors">coachjosine.nl</a>
+          </div>
+          <div class="ml-auto flex items-center gap-3">
+            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full">Eerste tractie</span>
+            <span class="text-white/30 text-xs">&plusmn;7 weken</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3 mb-5">
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+            <p class="font-heading text-xl text-accent">600+</p>
+            <p class="text-[10px] text-white/50">gidsen verkocht</p>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+            <p class="font-heading text-xl text-accent">80</p>
+            <p class="text-[10px] text-white/50">masterclass-aanmeldingen</p>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+            <p class="font-heading text-xl text-accent">18</p>
+            <p class="text-[10px] text-white/50">wilden direct het programma</p>
+          </div>
+        </div>
+
+        <p class="text-white/70 text-sm leading-relaxed mb-4">
+          Josine had al expertise, maar nog geen digitale instaproute die snel vertrouwen opbouwde. We maakten haar eerste gids concreet, bouwden de landingspagina en koppelden dit aan een masterclassroute. Daardoor ontstond direct beweging: mensen kochten de gids, kwamen naar de masterclass en vroegen door naar het programma.
+        </p>
+        <p class="text-accent text-sm font-medium italic">
+          &ldquo;Niet meteen een platform, maar eerst bewijs dat mensen willen instappen.&rdquo;
+        </p>
+
+        {/* Proof: product + WhatsApp */}
+        <div class="grid grid-cols-2 gap-3 mt-5">
+          <div class="lightbox-trigger cursor-zoom-in group">
+            <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
+              <Image src={josineProduct} alt="Eetgids Coach Josine — productpagina" width={600} quality={80} class="w-full h-auto" loading="lazy" />
+            </div>
+            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">De eetgids die het bewijs leverde</p>
+          </div>
+          <div class="lightbox-trigger cursor-zoom-in group">
+            <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
+              <Image src={josineWhatsApp} alt="WhatsApp bericht Josine over resultaten" width={600} quality={80} class="w-full h-auto" loading="lazy" />
+            </div>
+            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">Reactie van Josine</p>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Case 3: Tessa / Youlife ── */}
+      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-card p-6 md:p-8 mb-8">
+        <div class="flex items-center gap-4 mb-5">
+          <div>
+            <p class="text-white font-medium text-sm">Tessa &mdash; Youlife</p>
+          </div>
+          <div class="ml-auto flex items-center gap-3">
+            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full">Productgroei</span>
+            <span class="text-white/30 text-xs">&plusmn;15 maanden</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3 mb-5">
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+            <p class="font-heading text-xl text-accent">&euro;10k/mnd</p>
+            <p class="text-[10px] text-white/50">online productomzet</p>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+            <p class="font-heading text-xl text-accent">1 &rarr; 6</p>
+            <p class="text-[10px] text-white/50">online producten</p>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+            <p class="font-heading text-xl text-accent">&plusmn;10/mnd</p>
+            <p class="text-[10px] text-white/50">coachingklanten</p>
+          </div>
+        </div>
+
+        <p class="text-white/70 text-sm leading-relaxed mb-4">
+          Tessa begon niet met een groot platform, maar met losse producten en de vraag: hoe maken we dit voorspelbaar en schaalbaar? Vanuit &eacute;&eacute;n product bouwden we door naar meerdere producten, e-mailflows, campagnes en coachingaanvragen.
+        </p>
+        <p class="text-accent text-sm font-medium italic">
+          &ldquo;De Guide verkoopt super goed. Het is nu al winstgevend.&rdquo;
+        </p>
+
+        <div class="grid grid-cols-2 gap-3 mt-5">
+          <div class="lightbox-trigger cursor-zoom-in group">
+            <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
+              <Image src={tessaWhatsApp} alt="WhatsApp bericht Tessa — resultaten Youlife" width={600} quality={80} class="w-full h-auto" loading="lazy" />
+            </div>
+            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">Reactie van Tessa</p>
+          </div>
+          <div class="bg-white/5 rounded-lg p-4 flex items-center justify-center">
+            <a href="/cases/tessa-youlife/" class="text-accent hover:text-accent-dark text-sm font-medium transition-colors">Bekijk de volledige case &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Case 4: Happy With Yoga ── */}
+      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-card p-6 md:p-8 mb-8">
+        <div class="flex items-center gap-4 mb-5">
+          <div>
+            <p class="text-white font-medium text-sm">Rolf &mdash; Happy With Yoga</p>
+          </div>
+          <div class="ml-auto flex items-center gap-3">
+            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full">Volwassen platform</span>
+            <span class="text-white/30 text-xs">&plusmn;4 jaar</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3 mb-5">
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+            <p class="font-heading text-xl text-accent">30.000+</p>
+            <p class="text-[10px] text-white/50">webinarleads</p>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+            <p class="font-heading text-xl text-accent">1.700+</p>
+            <p class="text-[10px] text-white/50">mini-cursusverkopen</p>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+            <p class="font-heading text-xl text-accent">2.000</p>
+            <p class="text-[10px] text-white/50">betalende leden</p>
+          </div>
+        </div>
+
+        <p class="text-white/70 text-sm leading-relaxed mb-4">
+          Happy With Yoga laat zien waar dit model op termijn naartoe kan groeien. Niet &eacute;&eacute;n losse campagne, maar een systeem met quizfunnels, mini-cursussen, webinars en een platform met terugkerende leden.
+        </p>
+        <p class="text-accent text-sm font-medium italic">
+          &ldquo;Dit is geen 90-dagen belofte, maar het eindbeeld wanneer een expertmerk blijft doorbouwen.&rdquo;
+        </p>
+
+        <div class="grid grid-cols-2 gap-3 mt-5">
+          <div class="lightbox-trigger cursor-zoom-in group">
+            <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
+              <Image src={rolfWhatsApp} alt="WhatsApp bericht Rolf — Happy With Yoga resultaten" width={600} quality={80} class="w-full h-auto" loading="lazy" />
+            </div>
+            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">Reactie van Rolf</p>
+          </div>
+          <div class="bg-white/5 rounded-lg p-4 flex items-center justify-center">
+            <a href="/cases/happy-with-yoga/" class="text-accent hover:text-accent-dark text-sm font-medium transition-colors">Bekijk de volledige case &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Case 5: CBMC ── */}
+      <div class="bg-white/5 backdrop-blur border-2 border-accent/30 rounded-card p-6 md:p-8">
+        <div class="flex items-center gap-4 mb-5">
+          <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-accent/30 shrink-0">
+            <Image src={jamesPhoto} alt="Dr. James Mitchell" widths={[48, 96]} sizes="48px" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+          </div>
+          <div>
+            <p class="text-white font-medium text-sm">Dr. James Mitchell</p>
+            <a href="https://www.costablancamovement.com" target="_blank" rel="noopener" class="text-accent/70 hover:text-accent text-xs transition-colors">costablancamovement.com</a>
+          </div>
+          <div class="ml-auto flex items-center gap-3">
+            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full">AI-ready fundament</span>
+            <span class="text-white/30 text-xs">&plusmn;2 maanden</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3 mb-5">
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+            <p class="font-heading text-xl text-accent">0 &rarr; p.1</p>
+            <p class="text-[10px] text-white/50">Google in 2 weken</p>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+            <p class="font-heading text-xl text-accent">12&ndash;15/mnd</p>
+            <p class="text-[10px] text-white/50">nieuwe pati&euml;nten</p>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+            <p class="font-heading text-xl text-accent">#1</p>
+            <p class="text-[10px] text-white/50">ChatGPT lokale optie</p>
+          </div>
+        </div>
+
+        <p class="text-white/70 text-sm leading-relaxed mb-4">
+          Deze case is minder coach-specifiek, maar bewijst hoe snel een nieuw online fundament tractie kan krijgen. Geen bestaande site, geen historie, geen backlinks. Toch kwam er snel zichtbaarheid in Google en AI.
+        </p>
+        <p class="text-accent text-sm font-medium italic">
+          &ldquo;Als het fundament klopt, kan zichtbaarheid sneller op gang komen dan je verwacht.&rdquo;
+        </p>
+
+        {/* Proof screenshots */}
+        <div class="grid grid-cols-2 gap-3 mt-5">
+          <div class="lightbox-trigger cursor-zoom-in group">
+            <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
+              <Image src={proofGoogle} alt="Google positie 4 voor chiropractor Torrevieja na 2 weken" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
+            </div>
+            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">Google positie 4 &mdash; na 2 weken</p>
+          </div>
+          <div class="lightbox-trigger cursor-zoom-in group">
+            <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
+              <Image src={proofChatgpt} alt="ChatGPT beveelt CBMC aan als nummer 1 lokale chiropractor" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
+            </div>
+            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">ChatGPT #1 lokale aanbeveling</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-xs text-white/30 italic mt-6">
+        *Alle genoemde resultaten zijn geverifieerd. Google-posities en AI-vermeldingen zijn onderbouwd met screenshots. Resultaten vari&euml;ren per situatie, markt en medewerking.
+      </p>
+    </div>
+  </section>
+
+  {/* ── 8. FASES ── */}
+  <section class="py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">Je hoeft niet meteen naar het eindbeeld</h2>
+      <p class="text-lg text-text-muted leading-relaxed mb-12 max-w-3xl">
+        De meeste coaches starten niet in fase 3. Ze starten met een kleine route die bewijs oplevert.
+      </p>
+
+      <div class="relative">
+        <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-border -translate-x-1/2"></div>
+
+        <div class="space-y-8 md:space-y-12">
+          {/* Fase 1 */}
+          <div class="relative md:grid md:grid-cols-2 md:gap-12 items-start">
+            <div class="md:text-right md:pr-8">
+              <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full mb-3">Eerste 90 dagen</span>
+              <h3 class="font-heading text-xl text-text mb-2">Fundament en eerste tractie</h3>
+            </div>
+            <div class="md:pl-8 mt-3 md:mt-0">
+              <div class="bg-white rounded-card p-5 border border-border">
+                <p class="text-sm text-text-muted leading-relaxed">Positionering, nichepagina&rsquo;s, instaproute, e-mailflow en eerste traffic-test. Doel: bewijzen dat mensen willen instappen.</p>
+                <p class="text-xs text-accent font-medium mt-3">Cases: Dr. Verena Mann, Coach Josine</p>
+              </div>
+            </div>
+            <div class="hidden md:flex absolute left-1/2 top-3 -translate-x-1/2 w-8 h-8 rounded-full bg-primary text-white items-center justify-center text-sm font-heading">1</div>
+          </div>
+
+          {/* Fase 2 */}
+          <div class="relative md:grid md:grid-cols-2 md:gap-12 items-start">
+            <div class="md:text-right md:pr-8">
+              <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full mb-3">Groei</span>
+              <h3 class="font-heading text-xl text-text mb-2">Producten, campagnes en optimalisatie</h3>
+            </div>
+            <div class="md:pl-8 mt-3 md:mt-0">
+              <div class="bg-white rounded-card p-5 border border-border">
+                <p class="text-sm text-text-muted leading-relaxed">Meer producten, kassakoopjes, advertenties, e-mailflows en doorstroom naar coachingaanvragen.</p>
+                <p class="text-xs text-accent font-medium mt-3">Case: Tessa / Youlife</p>
+              </div>
+            </div>
+            <div class="hidden md:flex absolute left-1/2 top-3 -translate-x-1/2 w-8 h-8 rounded-full bg-accent text-white items-center justify-center text-sm font-heading">2</div>
+          </div>
+
+          {/* Fase 3 */}
+          <div class="relative md:grid md:grid-cols-2 md:gap-12 items-start">
+            <div class="md:text-right md:pr-8">
+              <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full mb-3">Platform</span>
+              <h3 class="font-heading text-xl text-text mb-2">Platform, membership of autoriteit</h3>
+            </div>
+            <div class="md:pl-8 mt-3 md:mt-0">
+              <div class="bg-white rounded-card p-5 border border-border">
+                <p class="text-sm text-text-muted leading-relaxed">Alleen als het logisch is: online platform, community, membership of bredere AI/SEO-autoriteit.</p>
+                <p class="text-xs text-accent font-medium mt-3">Case: Happy With Yoga</p>
+              </div>
+            </div>
+            <div class="hidden md:flex absolute left-1/2 top-3 -translate-x-1/2 w-8 h-8 rounded-full bg-primary text-white items-center justify-center text-sm font-heading">3</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── 9. VERGELIJKING: AI-vindbaarheid vs. Expert Groei Traject ── */}
+  <section class="py-16 md:py-20 bg-bg-alt">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">AI-vindbaarheid is &eacute;&eacute;n laag. Niet het hele systeem.</h2>
+      <p class="text-text-muted leading-relaxed mb-4">
+        Losse AI-optimalisatie kan je zichtbaarder maken. Maar als iemand daarna op je site komt en niet begrijpt waarom jij de juiste expert bent, verlies je alsnog de aanvraag.
+      </p>
+      <p class="text-text-muted leading-relaxed mb-10">
+        Daarom combineren we vindbaarheid met positionering, bewijs, instaproute en opvolging.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-card p-6 border border-border">
+          <h3 class="font-heading text-lg text-text mb-4">Alleen AI-vindbaarheid</h3>
+          <ul class="space-y-2 text-sm text-text-muted">
+            <li class="flex items-start gap-2"><span class="text-primary mt-0.5">&check;</span> Beter gevonden worden</li>
+            <li class="flex items-start gap-2"><span class="text-primary mt-0.5">&check;</span> Technische en inhoudelijke optimalisatie</li>
+            <li class="flex items-start gap-2"><span class="text-primary mt-0.5">&check;</span> Meer kans om genoemd te worden</li>
+            <li class="flex items-start gap-2"><span class="text-border mt-0.5">&mdash;</span> <span class="text-text-muted/50">Positionering</span></li>
+            <li class="flex items-start gap-2"><span class="text-border mt-0.5">&mdash;</span> <span class="text-text-muted/50">Instaproute</span></li>
+            <li class="flex items-start gap-2"><span class="text-border mt-0.5">&mdash;</span> <span class="text-text-muted/50">E-mailopvolging</span></li>
+            <li class="flex items-start gap-2"><span class="text-border mt-0.5">&mdash;</span> <span class="text-text-muted/50">Doorstroom naar klanten</span></li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-card p-6 border-2 border-accent/30">
+          <h3 class="font-heading text-lg text-text mb-4">AI Expert Groei Traject</h3>
+          <ul class="space-y-2 text-sm text-text-muted">
+            <li class="flex items-start gap-2"><span class="text-accent mt-0.5">&check;</span> Beter gevonden worden</li>
+            <li class="flex items-start gap-2"><span class="text-accent mt-0.5">&check;</span> Scherper gepositioneerd worden</li>
+            <li class="flex items-start gap-2"><span class="text-accent mt-0.5">&check;</span> Meer vertrouwen opbouwen</li>
+            <li class="flex items-start gap-2"><span class="text-accent mt-0.5">&check;</span> Laagdrempelige instaproute</li>
+            <li class="flex items-start gap-2"><span class="text-accent mt-0.5">&check;</span> E-mailopvolging</li>
+            <li class="flex items-start gap-2"><span class="text-accent mt-0.5">&check;</span> Doorstroom naar aanvragen en klanten</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── 10. INVESTERING ── */}
+  <section class="py-16 md:py-20">
+    <div class="max-w-3xl mx-auto px-4 md:px-6 text-center">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">Start klein. Bouw door op wat werkt.</h2>
+      <p class="text-text-muted leading-relaxed mb-8">
+        Je hoeft niet meteen een volledig platform te bouwen. We starten met het fundament en de eerste route.
+      </p>
+      <div class="inline-block bg-bg-alt rounded-card px-8 py-6 border border-border mb-6">
+        <p class="text-text-muted text-sm mb-1">Starten kan vanaf</p>
+        <p class="font-heading text-4xl text-text">&euro;299<span class="text-lg text-text-muted font-normal">/mnd</span></p>
+      </div>
+      <p class="text-sm text-text-muted">
+        We beginnen klein, maken je expertfundament scherper en bouwen alleen door op wat werkt.
+      </p>
+    </div>
+  </section>
+
+  {/* ── Founder ── */}
+  <section class="py-16 md:py-20 bg-bg-alt">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-10 md:gap-14 items-center">
+        <div class="flex justify-center md:justify-start">
+          <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden shadow-lg ring-4 ring-white shrink-0">
+            <Image
+              src={founderPhoto}
+              alt="Joost van Putten — bouwt groeisystemen voor coaches en experts"
+              widths={[224, 320]}
+              sizes="(max-width: 768px) 192px, 224px"
+              class="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+        <div>
+          <div class="w-12 h-1 bg-accent rounded-full mb-4"></div>
+          <h2 class="font-heading text-2xl md:text-3xl text-text mb-1">Joost van Putten</h2>
+          <p class="text-sm text-text-muted mb-4">Founder &amp; Online Growth Strategist</p>
+          <p class="text-text-muted leading-relaxed mb-6">
+            8 jaar ervaring met online groeisystemen voor coaches en experts. Van quiz-funnels en mini-producten tot volledige platforms &mdash; ik bouw systemen die expertise omzetten in voorspelbare groei. Geen losse tactieken, maar &eacute;&eacute;n samenhangend fundament.
+          </p>
+          <a
+            href="/over-joost/"
+            class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium"
+          >
+            Meer over Joost
+            <svg class="ml-1 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── 11. FAQ ── */}
+  <section class="py-16 md:py-20">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-8 text-center">Veelgestelde vragen</h2>
+      <FAQAccordion items={faqForComponent} />
+    </div>
+  </section>
+
+  {/* ── Logo marquee ── */}
+  <LogoMarquee logos={logos} />
+
+  {/* ── 12. CTA ── */}
+  <section id="analyse" class="py-16 md:py-20 bg-primary">
+    <div class="max-w-3xl mx-auto px-4 md:px-6 text-center">
+      <h2 class="font-heading text-3xl md:text-4xl text-white mb-4">
+        Wil je weten welke groeiroute bij jouw expertise past?
+      </h2>
+      <p class="text-lg text-white/80 mb-10 max-w-2xl mx-auto">
+        Laat je scan, website of aanbod bekijken. Je krijgt geen technisch rapport, maar een persoonlijke inschatting: zit je grootste kans in vindbaarheid, positionering, instaproute of opvolging?
+      </p>
+
+      {/* Meerkeuze-opties */}
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-8 text-left">
+        <label class="flex items-center gap-3 bg-white/10 border border-white/20 rounded-lg p-3 cursor-pointer hover:bg-white/15 transition-colors">
+          <input type="checkbox" name="interesse" value="ai-vindbaarheid" class="accent-accent w-4 h-4 shrink-0" />
+          <span class="text-white text-sm">Mijn AI-vindbaarheid</span>
+        </label>
+        <label class="flex items-center gap-3 bg-white/10 border border-white/20 rounded-lg p-3 cursor-pointer hover:bg-white/15 transition-colors">
+          <input type="checkbox" name="interesse" value="positionering" class="accent-accent w-4 h-4 shrink-0" />
+          <span class="text-white text-sm">Mijn positionering</span>
+        </label>
+        <label class="flex items-center gap-3 bg-white/10 border border-white/20 rounded-lg p-3 cursor-pointer hover:bg-white/15 transition-colors">
+          <input type="checkbox" name="interesse" value="instaproute" class="accent-accent w-4 h-4 shrink-0" />
+          <span class="text-white text-sm">Mijn instaproute</span>
+        </label>
+        <label class="flex items-center gap-3 bg-white/10 border border-white/20 rounded-lg p-3 cursor-pointer hover:bg-white/15 transition-colors">
+          <input type="checkbox" name="interesse" value="email" class="accent-accent w-4 h-4 shrink-0" />
+          <span class="text-white text-sm">Mijn e-mailopvolging</span>
+        </label>
+        <label class="flex items-center gap-3 bg-white/10 border border-white/20 rounded-lg p-3 cursor-pointer hover:bg-white/15 transition-colors">
+          <input type="checkbox" name="interesse" value="groeilek" class="accent-accent w-4 h-4 shrink-0" />
+          <span class="text-white text-sm">Mijn grootste groeilek</span>
+        </label>
+        <label class="flex items-center gap-3 bg-white/10 border border-white/20 rounded-lg p-3 cursor-pointer hover:bg-white/15 transition-colors">
+          <input type="checkbox" name="interesse" value="weet-niet" class="accent-accent w-4 h-4 shrink-0" />
+          <span class="text-white text-sm">Weet niet waar te beginnen</span>
+        </label>
+      </div>
+
+      <a
+        href="/contact/"
+        class="inline-flex items-center px-8 py-4 text-base font-medium bg-accent hover:bg-accent-dark text-white transition-all duration-300 rounded-button shadow-lg shadow-accent/25 hover:shadow-xl"
+      >
+        Vraag mijn persoonlijke analyse aan
+        <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  {/* ── Lightbox script ── */}
+  <script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    var triggers = document.querySelectorAll('.lightbox-trigger');
+    if (triggers.length === 0) return;
+
+    var images = Array.from(triggers).map(function(t) {
+      var img = t.querySelector('img');
+      return img ? img.src : '';
+    });
+
+    var overlay = document.createElement('div');
+    overlay.className = 'fixed inset-0 z-50 bg-black/85 hidden items-center justify-center p-4';
+    overlay.id = 'lightbox';
+    overlay.innerHTML = '<button type="button" class="absolute top-4 right-4 text-white/80 hover:text-white z-10" id="lightbox-close"><svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></button><img src="" alt="" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-2xl" id="lightbox-img" />';
+    document.body.appendChild(overlay);
+
+    var lbImg = document.getElementById('lightbox-img');
+    var lbClose = document.getElementById('lightbox-close');
+
+    function openLightbox(index) {
+      if (!images[index]) return;
+      lbImg.src = images[index];
+      lbImg.alt = (triggers[index].querySelector('img') || {}).alt || '';
+      overlay.classList.remove('hidden');
+      overlay.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      overlay.classList.add('hidden');
+      overlay.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    triggers.forEach(function(trigger, i) {
+      trigger.addEventListener('click', function() { openLightbox(i); });
+    });
+    lbClose.addEventListener('click', closeLightbox);
+    overlay.addEventListener('click', function(e) { if (e.target === overlay) closeLightbox(); });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
+  });
+  </script>
+
+</BaseLayout>

@@ -9,10 +9,7 @@ export interface NavItem {
 
 export const navigation: Record<Locale, NavItem[]> = {
   nl: [
-    { label: 'Coach Accelerator', href: '/coach-accelerator/', children: [
-      { label: 'Coach Accelerator', href: '/coach-accelerator/' },
-      { label: 'AI Expert Groei Traject', href: '/ai-expert-groei-traject/' },
-    ]},
+    { label: 'Coach Accelerator', href: '/coach-accelerator/' },
     { label: 'AI Vindbaarheid', href: '/ai-vindbaarheid/', children: [
       { label: 'Wat is AI vindbaarheid?', href: '/ai-vindbaarheid/' },
       { label: '90-dagen traject', href: '/ai-vindbaarheid-traject/' },
