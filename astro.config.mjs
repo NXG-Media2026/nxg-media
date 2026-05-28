@@ -13,7 +13,8 @@ export default defineConfig({
     sitemap({
       filter: (page) =>
         !page.includes('/archetypen/') &&
-        !page.includes('/groeiscan'),
+        !page.includes('/groeiscan') &&
+        !page.includes('/website-abonnement'),
       serialize: (item) => ({
         ...item,
         lastmod: new Date().toISOString().split('T')[0],
