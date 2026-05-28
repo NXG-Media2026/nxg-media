@@ -232,10 +232,10 @@ const termsHref = getCollectionBasePath('voorwaarden', locale);
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify(payload),
         }).then(function() {
-          window.location.href = '/ai-vindbaarheid-traject-b/?submitted=true';
+          window.location.href = '/ai-vindbaarheid-traject/?submitted=true';
         }).catch(function() {
           // Even on error, redirect — we don't want to lose the visitor
-          window.location.href = '/ai-vindbaarheid-traject-b/?submitted=true';
+          window.location.href = '/ai-vindbaarheid-traject/?submitted=true';
         });
       });
     });
