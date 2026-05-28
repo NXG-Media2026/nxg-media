@@ -25,14 +25,21 @@ https://nxg-media.com/cases/happy-with-yoga/
 
 The AI Vindbaarheid Audit is a scan and audit approach for local businesses and practices that want to understand how visible and citable they are in AI assistants like ChatGPT, Gemini and Perplexity.
 
-Primary page:
+Primary page (educational overview):
 https://nxg-media.com/ai-vindbaarheid/
+
+90-day AI visibility programme (conversion page with case studies and verified proof):
+https://nxg-media.com/ai-vindbaarheid-traject/
 
 Service detail:
 https://nxg-media.com/diensten/ai-vindbaarheid-audit/
 
 Scanner:
 https://scanner.nxg-media.com
+
+Verified client results:
+- Dr. Verena Mann (doc-veri.pages.dev) — from 2 to 19 enquiries per month, 15 consistent ChatGPT mentions
+- Costa Blanca Movement Centre (costablancamovement.com) — Google position 4 in 2 weeks, ChatGPT #1 local recommendation (verified with screenshots)
 
 Important note:
 AI visibility is a new field. NXG Media does not guarantee rankings or recommendations inside AI tools. The audit identifies technical, content and authority improvements that may improve machine readability, citability and trust signals.

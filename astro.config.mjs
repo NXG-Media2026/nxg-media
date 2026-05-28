@@ -12,7 +12,8 @@ export default defineConfig({
     react(),
     sitemap({
       filter: (page) =>
-        !page.includes('/archetypen/'),
+        !page.includes('/archetypen/') &&
+        !page.includes('/groeiscan'),
       serialize: (item) => ({
         ...item,
         lastmod: new Date().toISOString().split('T')[0],
