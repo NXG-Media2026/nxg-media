@@ -1,7 +1,7 @@
 ---
 /**
  * Founding Deal — /website-abonnement/
- * Offer-led landing page for €79/month AI-ready website subscription.
+ * Direct-response, offer-led landing page for EUR79/month AI-ready website.
  * noindex — ads lander for test. No links to other offer pages.
  */
 import { Image } from 'astro:assets';
@@ -15,7 +15,10 @@ import { generateFAQPage, generateBreadcrumbs } from '../data/schema';
 import heroPhoto from '../assets/images/founder/joost-standing-relaxed.webp';
 import proofGoogle from '../assets/images/cases/proof-google-torrevieja.png';
 import proofChatgpt from '../assets/images/cases/proof-chatgpt-local.png';
-import proofDocVeri from '../assets/images/cases/doc_veri_ai_answer_cropped.PNG';
+import proofVerenaAi from '../assets/images/cases/doc_veri_ai_answer_cropped.PNG';
+import proofVerenaChatgpt from '../assets/images/cases/doc-veri-chatgptproof.jpeg';
+import verenaPhoto from '../assets/images/cases/verena-mann-linkedin.webp';
+import jamesPhoto from '../assets/images/cases/james-mitchell-portrait.png';
 
 const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
 const logos = Object.entries(logoFiles)
@@ -28,7 +31,7 @@ const logos = Object.entries(logoFiles)
 
 const locale = 'nl';
 const title = 'Nieuwe AI-ready website — Founding Deal vanaf €79/mnd | NXG Media';
-const description = 'Founding Deal: nieuwe AI-ready website gratis inbegrepen bij een abonnement vanaf €79/maand. Snel, vindbaar, met beheerpaneel. Beperkte plekken.';
+const description = 'Nieuwe AI-ready website zonder €3.000 vooraf. Vanaf €79/maand inclusief hosting, onderhoud en basis Google/AI-structuur. Eerste 10 bedrijven.';
 
 const breadcrumbs = [
   { label: 'Home', href: '/' },
@@ -37,43 +40,30 @@ const breadcrumbs = [
 
 const faqItems = [
   {
-    q: 'Ik heb al een website. Wat gebeurt daarmee?',
-    a: 'Je content nemen we over naar het nieuwe fundament. Je bestaande site blijft online tot de nieuwe klaar is.',
+    q: 'Is dit echt een gratis website?',
+    a: "Je betaalt geen bouwkosten vooraf. De website is inbegrepen in het abonnement van €79/mnd bij 12 maanden.",
   },
   {
-    q: 'Kan ik zelf aanpassen?',
-    a: "Ja. Je krijgt een beheerpaneel voor teksten, foto's, diensten en prijzen. Geen code nodig. Geen afhankelijkheid.",
-  },
-  {
-    q: 'Wat als ik wil stoppen?',
-    a: 'Na 12 maanden ben je vrij. De site en alle bestanden zijn van jou — je kunt zelf hosten of bij mij blijven.',
+    q: 'Waarom 12 maanden?',
+    a: "Omdat dit geen los project is. Je krijgt website, hosting, onderhoud en maandelijkse vindbaarheidscheck in één abonnement.",
   },
   {
     q: 'Wat zit er niet in?',
-    a: "Extra pagina's, blogcontent, advertenties, uitgebreide SEO-optimalisatie en strategische begeleiding zijn apart bij te boeken. Het abonnement is het fundament — uitbreidingen kies je zelf.",
+    a: "Extra dienstpagina's, blogs, advertenties, fotografie, uitgebreide SEO-content en maatwerkfuncties zijn apart. Zo blijft het basisaanbod betaalbaar.",
+  },
+  {
+    q: 'Is dit voor elk bedrijf?',
+    a: "Nee. Dit is vooral geschikt voor lokale dienstverleners, praktijken en specialisten met een duidelijke dienst. Webshops en complexe maatwerksites vallen hier meestal buiten.",
+  },
+  {
+    q: 'Kan ik zelf aanpassen?',
+    a: "Ja. Je krijgt een simpel beheerpaneel voor teksten, foto's, diensten en basiscontent.",
   },
 ];
 
 const schemas = [
   generateFAQPage(faqItems.map(i => ({ question: i.q, answer: i.a }))),
   generateBreadcrumbs(breadcrumbs),
-];
-
-const features = [
-  { title: 'Klanten vinden je sneller', desc: 'Je site laadt in onder 2 seconden. Dat is sneller dan 95% van je concurrenten. Google beloont dat met hogere posities.' },
-  { title: 'AI kan je aanbevelen', desc: 'Je site is zo gebouwd dat ChatGPT, Gemini en Google AI begrijpen wie je bent, wat je doet en waarom jij de logische keuze bent.' },
-  { title: 'Je maakt een professionelere eerste indruk', desc: 'Bezoekers beslissen in 3 seconden of ze je vertrouwen. Een modern, snel fundament maakt dat verschil.' },
-  { title: 'Je bent niet meer afhankelijk van een techneut', desc: "Zelf teksten, foto's, diensten en prijzen aanpassen via een simpel beheerpaneel. Wanneer je wilt." },
-  { title: 'Je hoeft je geen zorgen te maken over techniek', desc: 'Hosting, updates, beveiliging, snelheid — dat regelen wij. Jij focust op je klanten.' },
-  { title: 'Je weet elke maand waar je staat', desc: 'Maandelijkse check: hoe scoort je fundament? Wat kun je verbeteren? Concreet en begrijpelijk.' },
-];
-
-const pricingFeatures = [
-  'Nieuwe website die klanten aantrekt (waarde €2.000–€4.000)',
-  'Sneller dan 95% van je concurrenten',
-  'Vindbaar in Google én AI-zoektools',
-  'Zelf aanpassen wanneer je wilt',
-  'Maandelijkse score-check: weet waar je staat',
 ];
 ---
 
@@ -86,9 +76,10 @@ const pricingFeatures = [
   locale={locale}
 >
 
-  {/* ── SECTIE 1: HERO — HET AANBOD ── */}
+  {/* ══════════════════════════════════════════════════
+      SECTIE 1: HERO — HARD AANBOD
+      ══════════════════════════════════════════════════ */}
   <section class="relative overflow-hidden">
-    {/* Subtle background photo */}
     <div class="absolute inset-0 hidden md:block">
       <Image
         src={heroPhoto}
@@ -102,251 +93,397 @@ const pricingFeatures = [
     <div class="relative px-4 md:px-6 pt-8 pb-12 md:pt-14 md:pb-20">
       <div class="max-w-2xl mx-auto">
         <span class="inline-block px-4 py-1.5 text-xs font-medium tracking-widest uppercase bg-accent/10 text-accent rounded-full mb-6">
-          Founding Deal &mdash; beperkte plekken
+          Founding Deal &mdash; eerste 10 bedrijven
         </span>
 
         <h1 class="font-heading text-[1.85rem] leading-[1.12] md:text-[2.75rem] md:leading-[1.1] text-text mb-5">
           Nieuwe AI-ready website.<br />
-          <em class="text-accent not-italic">Gratis inbegrepen.</em>
+          <em class="text-accent not-italic">Zonder &euro;3.000 vooraf te betalen.</em>
         </h1>
 
-        <p class="text-text-muted leading-relaxed mb-4 text-[0.95rem] md:text-base max-w-xl">
-          Zodat klanten die zoeken naar wat jij doet, bij jou uitkomen &mdash;
-          niet bij je concurrent.
-        </p>
-
         <p class="text-text-muted leading-relaxed mb-6 text-[0.95rem] md:text-base max-w-xl">
-          Geen dure websitebouw. Geen technisch gedoe.
-          Een modern fundament dat ervoor zorgt dat Google en AI
-          jouw bedrijf vinden, begrijpen en aanbevelen. Deze maand klaar.
+          Voor lokale dienstverleners die beter gevonden willen worden in Google en AI &mdash;
+          zonder dure websitebouw, WordPress-gedoe of technische rommel.
         </p>
 
         <p class="text-text font-heading text-3xl md:text-4xl mb-6">
-          Vanaf <strong class="text-accent">€79</strong><span class="text-lg text-text-muted">/maand</span>
+          Vanaf <strong class="text-accent">&euro;79</strong><span class="text-lg text-text-muted">/mnd</span>
         </p>
 
         <a
           href="#aanvragen"
           class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg w-full md:w-auto justify-center"
         >
-          Check of jouw site in aanmerking komt
+          Check of jouw bedrijf in aanmerking komt
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
         </a>
 
         <p class="text-xs text-text-muted mt-4 max-w-md">
-          Gratis website inbegrepen &middot; Niet elke site past &middot;
-          Beperkt aantal plekken deze maand
+          Founding deal &middot; Eerste 10 bedrijven &middot; Website inbegrepen bij 12 maanden
         </p>
       </div>
     </div>
   </section>
 
 
-  {/* ── SECTIE 2: WAT JE KRIJGT ── */}
+  {/* ══════════════════════════════════════════════════
+      SECTIE 2: PRIJSVERGELIJKING — WAAROM NIET €3-5K?
+      ══════════════════════════════════════════════════ */}
   <section class="px-4 md:px-6 py-14 md:py-20 border-t border-border/50">
-    <div class="max-w-3xl mx-auto">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-8 md:mb-10 text-center">
-        Dit verandert er voor je bedrijf
+    <div class="max-w-4xl mx-auto">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4 text-center">
+        Waarom zou je nog &euro;3.000&ndash;&euro;5.000 vooruitbetalen?
       </h2>
+      <p class="text-text-muted text-center mb-4 max-w-2xl mx-auto text-[0.95rem] leading-relaxed">
+        Een traditionele websitebouwer rekent vaak duizenden euro&rsquo;s vooraf.
+        Daarna betaal je alsnog voor hosting, onderhoud, SEO, aanpassingen en snelheid.
+      </p>
+      <p class="text-text-muted text-center mb-10 md:mb-12 max-w-2xl mx-auto text-[0.95rem] leading-relaxed">
+        Wij draaien het om: je betaalt een laag maandbedrag voor een snel, modern online fundament
+        dat gebouwd is om gevonden te worden.
+      </p>
 
+      {/* Comparison table */}
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
-        {features.map((f) => (
-          <div class="flex items-start gap-3">
-            <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-            </svg>
-            <div>
-              <p class="font-medium text-text text-[0.95rem] leading-snug">{f.title}</p>
-              <p class="text-text-muted text-sm leading-relaxed mt-0.5">{f.desc}</p>
+        {/* Traditional */}
+        <div class="border border-border rounded-card p-6 md:p-8 bg-white/50">
+          <p class="text-text-muted text-xs uppercase tracking-widest font-medium mb-4">Traditionele website</p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3 text-sm text-text-muted leading-relaxed">
+              <svg class="w-4 h-4 text-red-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+              &euro;3.000&ndash;&euro;5.000 vooraf
+            </li>
+            <li class="flex items-start gap-3 text-sm text-text-muted leading-relaxed">
+              <svg class="w-4 h-4 text-red-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+              Hosting apart
+            </li>
+            <li class="flex items-start gap-3 text-sm text-text-muted leading-relaxed">
+              <svg class="w-4 h-4 text-red-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+              Onderhoud apart
+            </li>
+            <li class="flex items-start gap-3 text-sm text-text-muted leading-relaxed">
+              <svg class="w-4 h-4 text-red-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+              SEO apart
+            </li>
+            <li class="flex items-start gap-3 text-sm text-text-muted leading-relaxed">
+              <svg class="w-4 h-4 text-red-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+              Vaak WordPress/plugins
+            </li>
+            <li class="flex items-start gap-3 text-sm text-text-muted leading-relaxed">
+              <svg class="w-4 h-4 text-red-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+              Na oplevering sta je er zelf voor
+            </li>
+          </ul>
+        </div>
+
+        {/* NXG Founding Deal */}
+        <div class="border-2 border-accent/30 rounded-card p-6 md:p-8 bg-white shadow-lg relative">
+          <span class="absolute -top-3 left-6 inline-block px-3 py-0.5 text-[0.65rem] font-medium tracking-widest uppercase bg-accent text-white rounded-full">
+            Founding Deal
+          </span>
+          <p class="text-text text-xs uppercase tracking-widest font-medium mb-4">NXG Media</p>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3 text-sm text-text leading-relaxed font-medium">
+              <svg class="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              Vanaf &euro;79/mnd
+            </li>
+            <li class="flex items-start gap-3 text-sm text-text leading-relaxed font-medium">
+              <svg class="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              Website inbegrepen
+            </li>
+            <li class="flex items-start gap-3 text-sm text-text leading-relaxed font-medium">
+              <svg class="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              Hosting inbegrepen
+            </li>
+            <li class="flex items-start gap-3 text-sm text-text leading-relaxed font-medium">
+              <svg class="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              Technisch onderhoud inbegrepen
+            </li>
+            <li class="flex items-start gap-3 text-sm text-text leading-relaxed font-medium">
+              <svg class="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              Basis Google/AI-structuur inbegrepen
+            </li>
+            <li class="flex items-start gap-3 text-sm text-text leading-relaxed font-medium">
+              <svg class="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              Maandelijkse vindbaarheidscheck
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      SECTIE 3: WAT MOET DIT OPLEVEREN?
+      ══════════════════════════════════════════════════ */}
+  <section class="px-4 md:px-6 py-14 md:py-20 bg-bg-alt">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4 text-center">
+        Het doel: meer klanten die jou vinden v&oacute;&oacute;rdat ze je concurrent bellen.
+      </h2>
+      <p class="text-text-muted text-center mb-8 md:mb-10 max-w-2xl mx-auto text-[0.95rem] leading-relaxed">
+        Je website hoeft niet alleen mooi te zijn. Hij moet zorgen dat Google, ChatGPT en potenti&euml;le klanten
+        sneller begrijpen wat je doet, waar je werkt en waarom jij de logische keuze bent.
+      </p>
+
+      <ul class="space-y-4 mb-8">
+        <li class="flex items-start gap-3">
+          <span class="text-accent shrink-0 mt-0.5 font-bold">&rarr;</span>
+          <p class="text-text text-[0.95rem] leading-relaxed">Beter zichtbaar op zoekvragen rond jouw dienst + regio</p>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-accent shrink-0 mt-0.5 font-bold">&rarr;</span>
+          <p class="text-text text-[0.95rem] leading-relaxed">Sneller vertrouwen bij bezoekers die je nog niet kennen</p>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-accent shrink-0 mt-0.5 font-bold">&rarr;</span>
+          <p class="text-text text-[0.95rem] leading-relaxed">Duidelijkere CTA&rsquo;s zodat mensen sneller contact opnemen</p>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-accent shrink-0 mt-0.5 font-bold">&rarr;</span>
+          <p class="text-text text-[0.95rem] leading-relaxed">Een fundament dat AI-tools beter kunnen lezen en begrijpen</p>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-accent shrink-0 mt-0.5 font-bold">&rarr;</span>
+          <p class="text-text text-[0.95rem] leading-relaxed">Minder afhankelijk van mond-tot-mond of dure advertenties</p>
+        </li>
+      </ul>
+
+      <p class="text-text font-medium text-center text-[0.95rem]">
+        Geen garantie op wonderen. Wel een veel sterker fundament dan een trage, verouderde of onduidelijke website.
+      </p>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      SECTIE 4: BEWIJS — HARDE CASES
+      ══════════════════════════════════════════════════ */}
+  <section class="py-20 md:py-28 bg-primary">
+    <div class="max-w-5xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-3xl md:text-4xl text-white mb-3 text-center">
+        Dit is wat er kan gebeuren als het fundament klopt.
+      </h2>
+      <p class="text-white/60 text-center mb-16 max-w-lg mx-auto">Geen portfoliostukjes. Echte resultaten.</p>
+
+      {/* ── CASE 1: CBMC — met foto, metrics, screenshots ── */}
+      <div class="bg-white/5 backdrop-blur border-2 border-accent/30 rounded-card p-6 md:p-10 mb-12">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="w-14 h-14 rounded-full overflow-hidden ring-2 ring-accent/30 shrink-0">
+            <Image
+              src={jamesPhoto}
+              alt="Dr. James Mitchell"
+              widths={[56, 112]}
+              sizes="56px"
+              class="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div>
+            <p class="text-white font-medium text-sm">Dr. James Mitchell</p>
+            <a href="https://www.costablancamovement.com" target="_blank" rel="noopener" class="text-accent/70 hover:text-accent text-xs transition-colors">costablancamovement.com</a>
+            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full uppercase tracking-wider mt-1">Chiropraktijk &middot; Costa Blanca</span>
+          </div>
+        </div>
+
+        <h3 class="font-heading text-2xl md:text-3xl text-white mb-4">Van nul naar online vindbaar in 14 dagen.</h3>
+
+        <p class="text-white/60 leading-relaxed mb-6">
+          Costa Blanca Movement Centre &mdash; een chiropraktijk voor expats in Torrevieja.
+          Geen bestaande site. Geen Google-geschiedenis. Geen backlinks. Nul.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-5 mb-8">
+          <div class="space-y-2.5">
+            <p class="text-white/50 text-[10px] uppercase tracking-wider font-medium">Na 2 weken live</p>
+            <div class="flex items-start gap-3">
+              <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+              <p class="text-white/80 text-sm font-medium">Na 2 weken: pagina 1 in Google</p>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+              <p class="text-white/80 text-sm font-medium">ChatGPT noemt de kliniek als lokale optie</p>
             </div>
           </div>
-        ))}
-      </div>
+          <div class="space-y-3">
+            <p class="text-white/50 text-[10px] uppercase tracking-wider font-medium">Na 2 maanden</p>
+            <div class="bg-white/5 rounded-card p-4">
+              <p class="text-white/50 text-xs uppercase tracking-wider mb-1">Nieuwe pati&euml;nten</p>
+              <div class="flex items-center gap-2">
+                <span class="font-heading text-xl text-white/40">0</span>
+                <span class="text-accent text-sm">&rarr;</span>
+                <span class="font-heading text-3xl text-accent">12&ndash;15</span>
+              </div>
+              <p class="text-white/40 text-xs mt-1">/maand via online</p>
+            </div>
+            <div class="bg-white/5 rounded-card p-4">
+              <p class="text-white/50 text-xs uppercase tracking-wider mb-1">Organisch verkeer</p>
+              <div class="flex items-center gap-2">
+                <span class="font-heading text-xl text-white/40">0</span>
+                <span class="text-accent text-sm">&rarr;</span>
+                <span class="font-heading text-3xl text-accent">800+</span>
+              </div>
+              <p class="text-white/40 text-xs mt-1">bezoekers/maand</p>
+            </div>
+          </div>
+        </div>
 
-      {/* Expandable: wat zit er niet in */}
-      <details class="mt-8 border border-border rounded-card overflow-hidden group">
-        <summary class="flex items-center justify-between gap-4 px-5 py-4 cursor-pointer list-none text-text-muted hover:text-text transition-colors text-sm font-medium">
-          Wat zit er niet standaard in?
-          <svg
-            class="w-4 h-4 shrink-0 transition-transform duration-200 group-open:rotate-45"
-            fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
-            aria-hidden="true"
-          >
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-          </svg>
-        </summary>
-        <div class="px-5 pb-5 text-sm text-text-muted leading-relaxed">
-          <p>
-            Extra dienstpagina&rsquo;s, blogcontent, lokale SEO-content, advertenties,
-            uitgebreide copywriting, fotografie, conversie-optimalisatie en
-            maandelijkse strategische begeleiding zijn apart bij te boeken.
-            Zo betaal je alleen voor wat je nodig hebt.
+        {/* Screenshots */}
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+          <button type="button" class="proof-trigger cursor-pointer group text-left">
+            <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
+              <Image
+                src={proofGoogle}
+                alt="Google zoekresultaat: Costa Blanca Movement Centre op positie 4 na 2 weken"
+                width={1200}
+                quality={85}
+                class="w-full h-auto"
+                loading="lazy"
+              />
+            </div>
+            <p class="text-white/40 text-xs mt-2 text-center group-hover:text-white/60 transition-colors">Google positie 4 &mdash; na 2 weken</p>
+          </button>
+          <button type="button" class="proof-trigger cursor-pointer group text-left">
+            <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
+              <Image
+                src={proofChatgpt}
+                alt="ChatGPT beveelt Costa Blanca Movement Centre aan als nummer 1 lokale optie"
+                width={1200}
+                quality={85}
+                class="w-full h-auto"
+                loading="lazy"
+              />
+            </div>
+            <p class="text-white/40 text-xs mt-2 text-center group-hover:text-white/60 transition-colors">ChatGPT beveelt de kliniek aan als #1</p>
+          </button>
+        </div>
+
+        <div class="pt-6 border-t border-white/10">
+          <p class="text-accent font-medium leading-relaxed text-center text-lg">
+            Niet na een jaar SEO. Niet na maanden wachten. Eerst het fundament goed &mdash;
+            daarna kon Google en AI de praktijk veel sneller begrijpen.
           </p>
         </div>
-      </details>
-    </div>
-  </section>
+      </div>
 
+      {/* ── CASE 2: Dr. Verena Mann — met foto, metrics, screenshots ── */}
+      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-card p-6 md:p-10 mb-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14">
+          <div>
+            <div class="flex items-center gap-4 mb-5">
+              <div class="w-14 h-14 rounded-full overflow-hidden ring-2 ring-accent/30 shrink-0">
+                <Image
+                  src={verenaPhoto}
+                  alt="Dr. Verena Mann"
+                  widths={[56, 112]}
+                  sizes="56px"
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div>
+                <p class="text-white font-medium text-sm">Dr. Verena Mann</p>
+                <a href="https://doc-veri.pages.dev" target="_blank" rel="noopener" class="text-accent/70 hover:text-accent text-xs transition-colors">doc-veri.pages.dev</a>
+                <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full uppercase tracking-wider mt-1">Arts &middot; Duitsland</span>
+              </div>
+            </div>
+            <h3 class="font-heading text-2xl md:text-3xl text-white mb-4">Van sterke expertise naar aanvragen van mensen die haar nog niet kenden.</h3>
 
-  {/* ── SECTIE 3: BEWIJS — donkere band, volledige cases ── */}
-  <section class="bg-primary px-4 md:px-6 py-14 md:py-20">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="font-heading text-2xl md:text-3xl text-white mb-10 md:mb-14 text-center">
-        Dit fundament werkt. Hier is het bewijs.
-      </h2>
+            <p class="text-white/60 leading-relaxed mb-6">
+              Dr. Verena Mann is arts en expert rond hormonale gezondheid, darmgezondheid en intoleranties.
+              Ze had al expertise en een community, maar haar website leverde nauwelijks aanvragen op van
+              mensen die haar nog niet kenden.
+            </p>
 
-      {/* ── CASE 1: CBMC ── */}
-      <div class="mb-14 md:mb-16">
-        <span class="inline-block px-3 py-1 text-[0.65rem] font-medium tracking-widest uppercase bg-accent/20 text-accent rounded-full mb-4">
-          Chiropraktijk &middot; Costa Blanca &middot; 2 weken live
-        </span>
+            <div class="space-y-2 mb-6">
+              <div class="flex items-start gap-3">
+                <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+                <p class="text-white/80 text-sm font-medium">2 &rarr; 19 aanvragen per maand</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+                <p class="text-white/80 text-sm font-medium">0 &rarr; 15 AI-vermeldingen</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+                <p class="text-white/80 text-sm font-medium">ChatGPT noemt haar als passende expert</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+                <p class="text-white/80 text-sm font-medium">Nieuwe AI-ready site live in &plusmn;6 weken</p>
+              </div>
+            </div>
+          </div>
 
-        <h3 class="font-heading text-xl md:text-2xl text-white mb-3">
-          Costa Blanca Movement Centre
-        </h3>
-
-        <p class="text-white/60 text-sm leading-relaxed mb-2 max-w-2xl">
-          Chiropraktijk en mobility kliniek voor expats
-          in Torrevieja, Spanje. Gespecialiseerd in rugklachten, sportblessures
-          en houding. Doelgroep: Britse en Nederlandse expats aan de Costa Blanca.
-        </p>
-
-        <p class="text-white/50 text-sm leading-relaxed mb-5 max-w-2xl">
-          Geen bestaande website. Geen Google-geschiedenis.
-          Geen backlinks. Geen reviews. Letterlijk nul.
-        </p>
-
-        <p class="text-accent font-medium text-sm mb-4">Na 2 weken op het nieuwe fundament:</p>
-
-        <ul class="space-y-1.5 mb-6">
-          <li class="flex items-start gap-2.5 text-white/80 text-sm leading-relaxed">
-            <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
-            Google positie 4 op &ldquo;chiropractor Torrevieja for expats&rdquo;
-          </li>
-          <li class="flex items-start gap-2.5 text-white/80 text-sm leading-relaxed">
-            <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
-            ChatGPT beveelt de kliniek aan als #1 lokale optie
-          </li>
-          <li class="flex items-start gap-2.5 text-white/80 text-sm leading-relaxed">
-            <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
-            Eerste pati&euml;nten melden zich aan via de website
-          </li>
-        </ul>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <button
-            type="button"
-            class="proof-trigger cursor-pointer block rounded-image overflow-hidden border border-white/10 hover:border-white/30 transition-colors"
-          >
-            <Image
-              src={proofGoogle}
-              alt="Google zoekresultaat: Costa Blanca Movement Centre op positie 4 na 2 weken"
-              width={540}
-              quality={85}
-              class="w-full h-auto"
-              loading="lazy"
-            />
-            <p class="text-white/40 text-[0.65rem] text-center py-1.5">Google positie 4 &mdash; &ldquo;chiropractor Torrevieja&rdquo; &mdash; na 2 weken</p>
-          </button>
-          <button
-            type="button"
-            class="proof-trigger cursor-pointer block rounded-image overflow-hidden border border-white/10 hover:border-white/30 transition-colors"
-          >
-            <Image
-              src={proofChatgpt}
-              alt="ChatGPT beveelt Costa Blanca Movement Centre aan als nummer 1 lokale optie"
-              width={540}
-              quality={85}
-              class="w-full h-auto"
-              loading="lazy"
-            />
-            <p class="text-white/40 text-[0.65rem] text-center py-1.5">ChatGPT beveelt Costa Blanca Movement Centre aan als #1</p>
-          </button>
+          {/* Rechts: harde metrics */}
+          <div class="flex flex-col justify-center space-y-6">
+            <div class="bg-white/5 rounded-card p-5">
+              <p class="text-white/50 text-xs uppercase tracking-wider mb-2">Aanvragen per maand</p>
+              <div class="flex items-center gap-3">
+                <span class="font-heading text-3xl text-white/40">2</span>
+                <span class="text-accent text-xl">&rarr;</span>
+                <span class="font-heading text-5xl md:text-6xl text-accent">19</span>
+              </div>
+            </div>
+            <div class="bg-white/5 rounded-card p-5">
+              <p class="text-white/50 text-xs uppercase tracking-wider mb-2">AI-vermeldingen (ChatGPT)</p>
+              <div class="flex items-center gap-3">
+                <span class="font-heading text-3xl text-white/40">0</span>
+                <span class="text-accent text-xl">&rarr;</span>
+                <span class="font-heading text-5xl md:text-6xl text-accent">15</span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <p class="text-white font-medium text-sm mt-5 max-w-2xl">
-          Niet na 6 maanden SEO. Na 14 dagen.
-          Omdat het fundament vanaf dag 1 klopte.
-        </p>
-      </div>
-
-      {/* ── Divider ── */}
-      <hr class="border-white/10 mb-14 md:mb-16" />
-
-      {/* ── CASE 2: doc.veri ── */}
-      <div class="mb-12 md:mb-14">
-        <span class="inline-block px-3 py-1 text-[0.65rem] font-medium tracking-widest uppercase bg-accent/20 text-accent rounded-full mb-4">
-          Arts &amp; Coach &middot; Duitsland &middot; Nog op test-URL
-        </span>
-
-        <h3 class="font-heading text-xl md:text-2xl text-white mb-3">
-          Dr. Verena Mann &mdash; doc.veri
-        </h3>
-
-        <p class="text-white/60 text-sm leading-relaxed mb-2 max-w-2xl">
-          Not&auml;rztin en gespecialiseerd in hormonale
-          gezondheid, darmklachten en intoleranties. Helpt vrouwen die vastlopen
-          in het reguliere circuit. Doelgroep: vrouwen 28&ndash;45 in de DACH-regio.
-        </p>
-
-        <p class="text-white/50 text-sm leading-relaxed mb-5 max-w-2xl">
-          De site draait nog op een test-URL.
-          Niet eens officieel live. Geen eigen domein. Geen promotie.
-        </p>
-
-        <p class="text-accent font-medium text-sm mb-4">Toch al herkend door AI:</p>
-
-        <ul class="space-y-1.5 mb-6">
-          <li class="flex items-start gap-2.5 text-white/80 text-sm leading-relaxed">
-            <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
-            ChatGPT noemt Dr. Verena Mann als expert bij relevante zoekvragen
-          </li>
-          <li class="flex items-start gap-2.5 text-white/80 text-sm leading-relaxed">
-            <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
-            Beschrijft haar specialisaties correct
-          </li>
-          <li class="flex items-start gap-2.5 text-white/80 text-sm leading-relaxed">
-            <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
-            Linkt direct naar haar website
-          </li>
-        </ul>
-
-        <div class="max-w-md">
-          <button
-            type="button"
-            class="proof-trigger cursor-pointer block rounded-image overflow-hidden border border-white/10 hover:border-white/30 transition-colors"
-          >
-            <Image
-              src={proofDocVeri}
-              alt="ChatGPT herkent Dr. Verena Mann als expert bij relevante zoekvragen"
-              width={600}
-              quality={85}
-              class="w-full h-auto"
-              loading="lazy"
-            />
-            <p class="text-white/40 text-[0.65rem] text-center py-1.5">ChatGPT herkent Dr. Verena Mann als expert &mdash; op een test-URL</p>
-          </button>
+        {/* Screenshots */}
+        <div class="mt-8 pt-8 border-t border-white/10">
+          <p class="text-white/50 text-xs uppercase tracking-wider mb-4">ChatGPT beveelt Dr. Verena Mann aan bij relevante zoekvragen</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <button type="button" class="proof-trigger cursor-pointer group text-left">
+              <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
+                <Image
+                  src={proofVerenaAi}
+                  alt="ChatGPT noemt Dr. Verena Mann als passende expertin"
+                  width={1200}
+                  quality={85}
+                  class="w-full h-auto"
+                  loading="lazy"
+                />
+              </div>
+              <p class="text-white/40 text-xs mt-2 text-center group-hover:text-white/60 transition-colors">AI-antwoord: &ldquo;eine passende Expertin&rdquo;</p>
+            </button>
+            <button type="button" class="proof-trigger cursor-pointer group text-left">
+              <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
+                <Image
+                  src={proofVerenaChatgpt}
+                  alt="ChatGPT beveelt Dr. Verena Mann aan met directe link naar haar website"
+                  width={1200}
+                  quality={85}
+                  class="w-full h-auto"
+                  loading="lazy"
+                />
+              </div>
+              <p class="text-white/40 text-xs mt-2 text-center group-hover:text-white/60 transition-colors">ChatGPT met directe link naar haar site</p>
+            </button>
+          </div>
         </div>
 
-        <p class="text-white font-medium text-sm mt-5 max-w-2xl">
-          Zelfs zonder officieel domein pikt AI de structuur al op.
-          Dat is hoe sterk dit fundament werkt.
-        </p>
+        <div class="pt-6 mt-6 border-t border-white/10">
+          <p class="text-accent font-medium leading-relaxed text-center">
+            De winst zat niet in een mooiere site. De winst zat in het duidelijker maken van haar expertise, bewijs en aanvraagroute.
+          </p>
+        </div>
       </div>
 
-      {/* ── Bewijs-afsluiting ── */}
-      <div class="text-center border-t border-white/10 pt-10">
-        <p class="text-white/70 text-[0.95rem] leading-relaxed mb-3 max-w-lg mx-auto">
-          Een chiropraktijk in Spanje. Een arts in Duitsland.
-          Twee totaal verschillende bedrijven. Zelfde fundament. Zelfde resultaat:
-        </p>
-        <p class="text-white font-heading text-lg md:text-xl mb-3">
-          Binnen dagen vindbaar voor de mensen die ertoe doen.
-        </p>
-        <p class="text-accent font-medium text-[0.95rem]">
-          Dat fundament is precies wat jij krijgt voor &euro;79/maand.
-        </p>
-      </div>
+      {/* Closing proof line */}
+      <p class="text-white/80 text-center text-[0.95rem] md:text-base leading-relaxed max-w-2xl mx-auto">
+        Een chiropraktijk in Spanje. Een arts in Duitsland. Twee totaal verschillende bedrijven.
+        Zelfde principe: <strong class="text-white">als het fundament klopt, kunnen Google, AI en klanten je sneller begrijpen.</strong>
+      </p>
     </div>
   </section>
 
@@ -360,14 +497,16 @@ const pricingFeatures = [
   </div>
 
 
-  {/* ── SECTIE 4: PRICING CARD ── */}
+  {/* ══════════════════════════════════════════════════
+      SECTIE 5: PRICING — HARDER, MET CONTEXT
+      ══════════════════════════════════════════════════ */}
   <section class="px-4 md:px-6 py-14 md:py-20">
     <div class="max-w-xl mx-auto">
       <h2 class="font-heading text-2xl md:text-3xl text-text mb-8 md:mb-10 text-center">
-        De investering
+        De founding deal
       </h2>
 
-      {/* Single pricing card */}
+      {/* Pricing card */}
       <div class="bg-white border-2 border-accent/30 rounded-card p-8 md:p-10 shadow-lg text-center">
         <span class="inline-block px-3 py-1 text-xs font-medium tracking-widest uppercase bg-accent/10 text-accent rounded-full mb-4">
           Founding Deal
@@ -378,66 +517,122 @@ const pricingFeatures = [
         </h3>
 
         <p class="font-heading text-5xl md:text-6xl text-text mb-1">
-          &euro;79<span class="text-lg text-text-muted font-body">/maand</span>
+          &euro;79<span class="text-lg text-text-muted font-body">/mnd</span>
         </p>
         <p class="text-sm text-text-muted mb-6">
-          12 maanden &middot; Gratis website inbegrepen
+          12 maanden
         </p>
 
         <ul class="text-left space-y-3 mb-8">
-          {pricingFeatures.map((f) => (
-            <li class="flex items-start gap-3 text-[0.95rem] text-text-muted leading-relaxed">
-              <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-              </svg>
-              {f}
-            </li>
-          ))}
+          <li class="flex items-start gap-3 text-[0.95rem] text-text leading-relaxed">
+            <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+            Nieuwe website inbegrepen
+          </li>
+          <li class="flex items-start gap-3 text-[0.95rem] text-text leading-relaxed">
+            <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+            <strong>Geen &euro;3.000 setupkosten</strong>
+          </li>
+          <li class="flex items-start gap-3 text-[0.95rem] text-text leading-relaxed">
+            <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+            Hosting inbegrepen
+          </li>
+          <li class="flex items-start gap-3 text-[0.95rem] text-text leading-relaxed">
+            <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+            Technisch onderhoud inbegrepen
+          </li>
+          <li class="flex items-start gap-3 text-[0.95rem] text-text leading-relaxed">
+            <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+            Basis Google/AI-structuur inbegrepen
+          </li>
+          <li class="flex items-start gap-3 text-[0.95rem] text-text leading-relaxed">
+            <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+            Maandelijkse vindbaarheidscheck
+          </li>
+          <li class="flex items-start gap-3 text-[0.95rem] text-text leading-relaxed">
+            <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+            Beheerpaneel om zelf teksten en foto&rsquo;s aan te passen
+          </li>
         </ul>
 
         <a
           href="#aanvragen"
           class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg w-full justify-center"
         >
-          Check of jouw site in aanmerking komt
+          Check of ik in aanmerking kom
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
         </a>
 
         <p class="text-xs text-text-muted mt-4">
-          Totaal: &euro;948/jaar &middot; Geen verborgen kosten &middot;
-          Website is altijd van jou
+          Geen betaling nu. Je ontvangt eerst een simpele overeenkomst.
         </p>
       </div>
 
-      {/* Context below card */}
-      <div class="mt-6 space-y-2 text-center">
-        <p class="text-xs text-text-muted">
-          Ter vergelijking: een nieuwe website laten bouwen
-          kost normaal &euro;3.000&ndash;&euro;5.000. Plus &euro;50&ndash;&euro;150/maand hosting.
-          Plus losse SEO-kosten.
-        </p>
-        <p class="text-xs text-text-muted">
-          Beperkte plekken: we bouwen deze sites op een
-          gestandaardiseerd fundament. Daarom kunnen we de eerste groep
-          goedkoper helpen &mdash; in ruil voor feedback en toestemming om
-          resultaten te gebruiken.
+      {/* Waarom 12 maanden */}
+      <div class="mt-8 bg-bg-alt rounded-card p-6 md:p-8">
+        <h3 class="font-heading text-lg text-text mb-3">Waarom 12 maanden?</h3>
+        <p class="text-text-muted text-sm leading-relaxed">
+          Dit is geen los websiteproject. Je krijgt een website, hosting, onderhoud en maandelijkse
+          vindbaarheidscheck in &eacute;&eacute;n abonnement. Geen groot bedrag vooraf. Wel een jaar lang
+          een fundament dat blijft draaien, onderhouden en gemonitord wordt.
         </p>
       </div>
     </div>
   </section>
 
 
-  {/* ── SECTIE 5: FORMULIER ── */}
-  <section id="aanvragen" class="bg-primary px-4 md:px-6 py-14 md:py-20">
+  {/* ══════════════════════════════════════════════════
+      SECTIE 6: URGENTIE
+      ══════════════════════════════════════════════════ */}
+  <section class="bg-primary px-4 md:px-6 py-12 md:py-16">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="font-heading text-xl md:text-2xl text-white mb-4">
+        Waarom deze prijs niet altijd blijft
+      </h2>
+      <p class="text-white/60 text-[0.95rem] leading-relaxed mb-6">
+        We bouwen deze eerste websites op een gestandaardiseerd fundament.
+        Daardoor kunnen we de eerste groep bedrijven goedkoper helpen en tegelijk cases opbouwen.
+      </p>
+      <ul class="text-left max-w-md mx-auto space-y-2 mb-8">
+        <li class="flex items-start gap-2.5 text-white/80 text-sm leading-relaxed">
+          <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+          Eerste 10 bedrijven deze maand
+        </li>
+        <li class="flex items-start gap-2.5 text-white/80 text-sm leading-relaxed">
+          <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+          Daarna gaat de instapprijs omhoog
+        </li>
+        <li class="flex items-start gap-2.5 text-white/80 text-sm leading-relaxed">
+          <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+          Niet elke site past binnen dit aanbod
+        </li>
+        <li class="flex items-start gap-2.5 text-white/80 text-sm leading-relaxed">
+          <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+          Complexe websites, webshops of grote maatwerkprojecten vallen buiten deze founding deal
+        </li>
+      </ul>
+      <a
+        href="#aanvragen"
+        class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg"
+      >
+        Check of jouw bedrijf erbij kan
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+      </a>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      SECTIE 7: FORMULIER
+      ══════════════════════════════════════════════════ */}
+  <section id="aanvragen" class="px-4 md:px-6 py-14 md:py-20">
     <div class="max-w-lg mx-auto">
-      <h2 class="font-heading text-2xl md:text-3xl text-white mb-3 text-center">
-        Komt jouw site in aanmerking?
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-3 text-center">
+        Check of jouw bedrijf in aanmerking komt
       </h2>
 
-      <p class="text-white/70 text-center mb-8 text-[0.95rem] leading-relaxed">
-        Niet elke site past bij dit abonnement. Vul je gegevens in &mdash;
-        ik bekijk je site en laat binnen 24 uur weten of het past
-        en hoe de volgende stap eruitziet.
+      <p class="text-text-muted text-center mb-8 text-[0.95rem] leading-relaxed">
+        Vul je gegevens in. Ik kijk of jouw bedrijf past binnen de founding deal
+        en stuur je de volgende stap.
       </p>
 
       <form id="founding-deal-form" class="space-y-3">
@@ -448,7 +643,7 @@ const pricingFeatures = [
           placeholder="Je naam"
           required
           autocomplete="name"
-          class="w-full px-4 py-3.5 rounded-button border border-white/20 bg-white/10 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent/50"
+          class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white"
         />
         <input
           type="text"
@@ -456,7 +651,7 @@ const pricingFeatures = [
           placeholder="Bedrijfsnaam"
           required
           autocomplete="organization"
-          class="w-full px-4 py-3.5 rounded-button border border-white/20 bg-white/10 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent/50"
+          class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white"
         />
         <input
           type="url"
@@ -464,7 +659,7 @@ const pricingFeatures = [
           placeholder="https://jouwwebsite.nl"
           required
           autocomplete="url"
-          class="w-full px-4 py-3.5 rounded-button border border-white/20 bg-white/10 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent/50"
+          class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white"
         />
         <input
           type="email"
@@ -472,44 +667,57 @@ const pricingFeatures = [
           placeholder="je@email.nl"
           required
           autocomplete="email"
-          class="w-full px-4 py-3.5 rounded-button border border-white/20 bg-white/10 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent/50"
+          class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white"
         />
         <input
           type="tel"
           name="telefoon"
           placeholder="Telefoonnummer (optioneel)"
           autocomplete="tel"
-          class="w-full px-4 py-3.5 rounded-button border border-white/20 bg-white/10 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent/50"
+          class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white"
+        />
+        <input
+          type="text"
+          name="bedrijfstype"
+          placeholder="Wat voor bedrijf heb je?"
+          class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white"
+        />
+        <input
+          type="text"
+          name="dienst"
+          placeholder="Welke dienst wil je vooral beter vindbaar maken?"
+          class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white"
         />
         <button
           type="submit"
           class="w-full px-8 py-4 text-base font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg flex items-center justify-center gap-2"
         >
-          Check of ik in aanmerking kom
+          Check mijn bedrijf
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
         </button>
       </form>
 
-      {/* Inline thank-you message (hidden by default) */}
+      {/* Inline thank-you message */}
       <div id="founding-deal-thanks" class="hidden text-center py-8">
         <svg class="w-12 h-12 text-accent mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
-        <p class="text-white font-heading text-xl mb-2">Bedankt!</p>
-        <p class="text-white/70 text-[0.95rem]">
+        <p class="font-heading text-xl text-text mb-2">Bedankt!</p>
+        <p class="text-text-muted text-[0.95rem]">
           Ik bekijk je site en laat binnen 24 uur weten of je in aanmerking komt.
         </p>
       </div>
 
-      <p id="founding-deal-microcopy" class="text-xs text-white/50 text-center mt-4">
-        Geen betaling. Geen verplichting.
-        Ik check eerst of je site geschikt is.
+      <p id="founding-deal-microcopy" class="text-xs text-text-muted text-center mt-4">
+        Geen betaling nu. Geen verplichting. Je ontvangt eerst een voorstel/overeenkomst.
       </p>
     </div>
   </section>
 
 
-  {/* ── SECTIE 6: FAQ ── */}
+  {/* ══════════════════════════════════════════════════
+      SECTIE 8: FAQ
+      ══════════════════════════════════════════════════ */}
   <FAQAccordion
     title="Veelgestelde vragen"
     items={faqItems}
@@ -530,12 +738,10 @@ const pricingFeatures = [
   var lbClose = document.getElementById('proof-close');
   if (!lb || !lbImg) return;
 
-  // Map proof buttons to their full-res image src
   document.querySelectorAll('.proof-trigger').forEach(function(btn) {
     btn.addEventListener('click', function() {
       var img = btn.querySelector('img');
       if (!img) return;
-      // Use the rendered src (already optimized by Astro)
       lbImg.src = img.src;
       lbImg.alt = img.alt;
       lb.classList.remove('hidden');
@@ -562,7 +768,7 @@ const pricingFeatures = [
 </script>
 
 
-{/* ── Form handling: POST to scanner API, fire Meta Lead, inline thank-you ── */}
+{/* ── Form handling ── */}
 <script is:inline>
 (function() {
   var form = document.getElementById('founding-deal-form');
@@ -578,27 +784,31 @@ const pricingFeatures = [
     var website = data.get('website');
     var bedrijf = data.get('bedrijf');
     var telefoon = data.get('telefoon') || '';
+    var bedrijfstype = data.get('bedrijfstype') || '';
+    var dienst = data.get('dienst') || '';
 
     if (!naam || !email || !website || !bedrijf) return;
 
-    // Disable button
     var btn = form.querySelector('button[type="submit"]');
     if (btn) { btn.disabled = true; btn.textContent = 'Even geduld…'; }
+
+    var extraInfo = [];
+    if (bedrijf) extraInfo.push('Bedrijf: ' + bedrijf);
+    if (bedrijfstype) extraInfo.push('Type: ' + bedrijfstype);
+    if (dienst) extraInfo.push('Dienst: ' + dienst);
+    if (telefoon) extraInfo.push('Tel: ' + telefoon);
 
     var payload = {
       naam: naam,
       email: email,
       websiteUrl: website,
-      vraag: 'Founding Deal aanvraag — Bedrijf: ' + bedrijf + (telefoon ? ' — Tel: ' + telefoon : ''),
+      vraag: 'Founding Deal aanvraag — ' + extraInfo.join(' — '),
       source: 'founding-deal',
     };
 
-    // Fire Meta Pixel Lead event (if loaded after consent)
     if (typeof fbq === 'function') {
       fbq('track', 'Lead', { content_name: 'founding-deal', content_category: 'website-abonnement' });
     }
-
-    // Fire GA4 event
     if (typeof trackEvent === 'function') {
       trackEvent('scanner_request_submitted', {
         page_type: 'page',
@@ -615,7 +825,6 @@ const pricingFeatures = [
     }).then(function() {
       showThanks();
     }).catch(function() {
-      // Even on error, show thanks — we don't want to lose the visitor
       showThanks();
     });
 
