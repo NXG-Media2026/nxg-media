@@ -12,7 +12,7 @@ import LogoMarquee from '../components/LogoMarquee.astro';
 import { siteConfig } from '../data/site';
 import { generateFAQPage, generateBreadcrumbs } from '../data/schema';
 
-import heroPhoto from '../assets/images/founder/joost-standing-relaxed.webp';
+import heroPhoto from '../assets/images/founder/joost-standing-workinglaptop.webp';
 import keystaticDashboard from '../assets/images/keystatic1.png';
 import keystaticHomepage from '../assets/images/keystatic_edit_homepage.png';
 import keystaticBlog from '../assets/images/keystatic_add_blog.png';
@@ -116,19 +116,24 @@ const schemas = [
           Niet omdat hun bedrijf slecht is, maar omdat Google, ChatGPT en bezoekers hun concurrent sneller begrijpen.
         </p>
 
-        <p class="text-white/90 leading-relaxed mb-8 text-[0.95rem] md:text-base max-w-xl font-medium">
+        <p class="text-white/90 leading-relaxed mb-4 text-[0.95rem] md:text-base max-w-xl font-medium">
           Wij gooien je huidige site niet zomaar weg. We vertalen wat er al is &mdash; je aanbod, huisstijl, teksten, foto&rsquo;s en bewijs &mdash; naar een sneller AI-ready fundament dat gebouwd is om gevonden, begrepen en gekozen te worden.
+        </p>
+
+        <p class="text-white font-medium text-base md:text-lg mb-8 max-w-xl">
+          Niet een mooiere site. Een site die klanten moet opleveren.
         </p>
 
         {/* Price block */}
         <div class="bg-white/10 backdrop-blur border border-white/20 rounded-card p-5 md:p-6 mb-8 max-w-md">
-          <p class="font-heading text-4xl md:text-5xl text-white mb-2">
+          <p class="text-accent text-xs uppercase tracking-widest font-medium mb-2">AI-ready Website Actie</p>
+          <p class="font-heading text-4xl md:text-5xl text-white mb-3">
             &euro;79<span class="text-lg text-white/60 font-body">/mnd</span>
           </p>
           <ul class="space-y-1.5">
             <li class="flex items-center gap-2 text-sm">
               <span class="text-accent">&rarr;</span>
-              <span class="text-white/80">Geen duizenden euro&rsquo;s vooraf</span>
+              <span class="text-white/80">Websitefundament inbegrepen bij 12 maanden</span>
             </li>
             <li class="flex items-center gap-2 text-sm">
               <span class="text-accent">&rarr;</span>
@@ -136,7 +141,7 @@ const schemas = [
             </li>
             <li class="flex items-center gap-2 text-sm">
               <span class="text-accent">&rarr;</span>
-              <span class="text-white/80">Bestaande content waar mogelijk meegenomen</span>
+              <span class="text-white/80">Geen duizenden euro&rsquo;s vooraf</span>
             </li>
           </ul>
         </div>
@@ -176,14 +181,14 @@ const schemas = [
           <span class="text-accent text-lg font-bold shrink-0 mt-0.5">#1</span>
           <div>
             <p class="text-text font-medium text-sm leading-snug">Costa Blanca Movement Centre</p>
-            <p class="text-text-muted text-sm leading-relaxed mt-1">Binnen 14 dagen pagina 1 in Google. Na 2 maanden 12&ndash;15 pati&euml;nten/mnd online.</p>
+            <p class="text-text-muted text-sm leading-relaxed mt-1">Binnen 14 dagen zichtbaar op pagina 1 in Google.</p>
           </div>
         </div>
         <div class="flex items-start gap-3 bg-white border border-border rounded-card px-5 py-4">
           <span class="text-accent text-lg font-bold shrink-0 mt-0.5">#2</span>
           <div>
             <p class="text-text font-medium text-sm leading-snug">Dr. Verena Mann</p>
-            <p class="text-text-muted text-sm leading-relaxed mt-1">Van 2 naar 19 aanvragen/mnd. Genoemd door ChatGPT als passende expert.</p>
+            <p class="text-text-muted text-sm leading-relaxed mt-1">Van 2 naar 19 aanvragen/mnd + genoemd door ChatGPT.</p>
           </div>
         </div>
       </div>
@@ -446,11 +451,12 @@ const schemas = [
           </div>
         </div>
 
-        <h3 class="font-heading text-2xl md:text-3xl text-white mb-4">Costa Blanca Movement Centre &mdash; van nul naar zichtbaar in 14 dagen</h3>
+        <h3 class="font-heading text-2xl md:text-3xl text-white mb-2">Van nul naar zichtbaar in 14 dagen</h3>
+        <p class="text-white/50 text-sm mb-4">Costa Blanca Movement Centre &middot; Chiropraktijk &middot; Torrevieja</p>
 
         <p class="text-white/70 leading-relaxed mb-6 text-[0.95rem]">
-          Een chiropraktijk voor expats in Torrevieja. Geen bestaande site, geen Google-historie, geen backlinks.
-          Binnen 14 dagen stond het nieuwe fundament al zichtbaar in Google. Na 2 maanden kwamen er 12&ndash;15 nieuwe pati&euml;nten per maand online binnen.
+          Geen bestaande site, geen Google-historie, geen backlinks.
+          Binnen 14 dagen stond het fundament op pagina 1. Na 2 maanden: 12&ndash;15 nieuwe pati&euml;nten per maand.
         </p>
 
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
@@ -530,11 +536,12 @@ const schemas = [
                 <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full uppercase tracking-wider mt-1">Arts &middot; Duitsland</span>
               </div>
             </div>
-            <h3 class="font-heading text-2xl md:text-3xl text-white mb-4">Dr. Verena Mann &mdash; van sterke expertise naar 19 aanvragen per maand</h3>
+            <h3 class="font-heading text-2xl md:text-3xl text-white mb-2">Van sterke expertise naar 19 aanvragen per maand</h3>
+            <p class="text-white/50 text-sm mb-4">Dr. Verena Mann &middot; Arts &middot; Duitsland</p>
 
             <p class="text-white/70 leading-relaxed mb-6 text-[0.95rem]">
-              Een arts met sterke expertise en community, maar weinig aanvragen via haar website.
-              Door haar expertise, aanbod en aanvraagroute scherper neer te zetten, ging ze van 2 naar 19 aanvragen per maand en werd ze door AI genoemd als passende expert.
+              Sterke expertise en community, maar nauwelijks aanvragen via haar website.
+              Expertise, aanbod en aanvraagroute scherper neergezet: van 2 naar 19 aanvragen per maand, plus AI-vermeldingen als passende expert.
             </p>
 
             <div class="grid grid-cols-2 gap-3">
@@ -675,14 +682,13 @@ const schemas = [
   <section class="px-4 md:px-6 py-14 md:py-20 bg-bg-alt">
     <div class="max-w-3xl mx-auto">
       <h2 class="font-heading text-2xl md:text-3xl text-text mb-4 text-center">
-        Waarom kan dit voor &euro;79/mnd?
+        Waarom is dit zo laag geprijsd?
       </h2>
       <p class="text-text-muted text-center mb-3 max-w-2xl mx-auto text-[0.95rem] leading-relaxed">
-        Omdat dit geen eindeloos maatwerkproject vanaf nul is. We werken met een strak AI-ready fundament
-        en vertalen je bestaande website, aanbod en bewijs naar een betere basis.
+        Omdat we niet vanaf nul beginnen. We vertalen wat er al is &mdash; je aanbod, teksten, bewijs en huisstijl &mdash; naar een strak AI-ready fundament.
       </p>
       <p class="text-text text-center mb-8 md:mb-10 max-w-2xl mx-auto text-[0.95rem] leading-relaxed font-medium">
-        Daardoor kunnen we sneller bouwen, de kosten laag houden en jou een moderne website-upgrade geven zonder duizenden euro&rsquo;s vooraf.
+        Geen eindeloos maatwerktraject. Sneller live, lagere kosten, en jij betaalt &euro;79/mnd in plaats van duizenden euro&rsquo;s vooraf.
       </p>
 
       <ul class="max-w-md mx-auto space-y-3 mb-8">
@@ -717,10 +723,10 @@ const schemas = [
         Waarom maar 10 plekken?
       </h2>
       <p class="text-white/70 text-[0.95rem] leading-relaxed mb-3">
-        Omdat dit alleen werkt als we het strak houden: jouw huidige website omzetten naar een beter fundament, zonder eindeloos maatwerktraject.
+        Elke website krijgt een strakke scope: je bestaande aanbod, content en bewijs vertalen naar een AI-ready fundament. Geen eindeloos maatwerktraject, geen scope creep.
       </p>
       <p class="text-white/70 text-[0.95rem] leading-relaxed mb-6">
-        Deze maand nemen we maximaal 10 bedrijven aan voor &euro;79/mnd. Daarna gaat het actietarief omhoog.
+        Daarvoor moeten we selectief zijn. Deze maand nemen we maximaal 10 bedrijven aan voor &euro;79/mnd. Daarna gaat het actietarief omhoog.
       </p>
 
       <p class="text-accent font-medium text-base md:text-lg mb-8">
