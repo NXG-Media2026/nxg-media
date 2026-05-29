@@ -90,57 +90,93 @@ const schemas = [
 >
 
   {/* ══════════════════════════════════════════════════
-      1 · HERO
+      1 · HERO — HARD, DIRECT-RESPONSE
       ══════════════════════════════════════════════════ */}
-  <section class="relative overflow-hidden">
+  <section class="relative overflow-hidden bg-primary">
     <div class="absolute inset-0 hidden md:block">
       <Image
         src={heroPhoto}
         alt=""
         width={800}
-        class="absolute right-0 top-0 h-full w-auto object-cover object-top opacity-[0.07]"
+        class="absolute right-0 top-0 h-full w-auto object-cover object-top opacity-[0.08]"
         loading="eager"
       />
     </div>
 
-    <div class="relative px-4 md:px-6 pt-8 pb-10 md:pt-14 md:pb-16">
+    <div class="relative px-4 md:px-6 pt-10 pb-12 md:pt-16 md:pb-20">
       <div class="max-w-2xl mx-auto">
-        <span class="inline-block px-4 py-1.5 text-xs font-medium tracking-widest uppercase bg-accent/10 text-accent rounded-full mb-6">
-          AI-ready Website Actie &middot; eerste 10 plekken deze maand
-        </span>
 
-        <h1 class="font-heading text-[1.85rem] leading-[1.12] md:text-[2.75rem] md:leading-[1.1] text-text mb-5">
-          Je website hoeft niet opnieuw.<br />
-          <em class="text-accent not-italic">Hij moet eindelijk klanten opleveren.</em>
+        <h1 class="font-heading text-[1.85rem] leading-[1.12] md:text-[2.75rem] md:leading-[1.1] text-white mb-5">
+          Je website staat online.<br />
+          <em class="text-accent not-italic">Maar je concurrent krijgt de klant.</em>
         </h1>
 
-        <p class="text-text-muted leading-relaxed mb-4 text-[0.95rem] md:text-base max-w-xl">
-          Wij vertalen je huidige site naar een AI-ready klantfundament dat Google, ChatGPT en klanten beter begrijpen &mdash; zonder dat je alles vanaf nul hoeft te bedenken.
+        <p class="text-white/70 leading-relaxed mb-6 text-[0.95rem] md:text-base max-w-xl">
+          Veel ondernemers hebben een website die er prima uitziet, maar nauwelijks aanvragen oplevert.
+          Niet omdat hun bedrijf slecht is, maar omdat Google, ChatGPT en bezoekers hun concurrent sneller begrijpen.
         </p>
 
-        <p class="text-text leading-relaxed mb-5 text-[0.95rem] md:text-base max-w-xl font-medium">
-          Vanaf &euro;79/mnd zetten we je bestaande aanbod, huisstijl en belangrijkste content om naar een sneller, duidelijker fundament dat gebouwd is om gevonden en gekozen te worden.
+        <p class="text-white/90 leading-relaxed mb-8 text-[0.95rem] md:text-base max-w-xl font-medium">
+          Wij vertalen je huidige site naar een AI-ready websitefundament dat gebouwd is om gevonden, begrepen en gekozen te worden.
         </p>
 
-        {/* Early proof */}
-        <div class="bg-accent/5 border border-accent/20 rounded-button px-4 py-3 mb-6 max-w-xl">
-          <p class="text-sm text-text font-medium leading-snug">
-            <span class="text-accent mr-1">&rarr;</span>
+        {/* Price block — prominent */}
+        <div class="bg-white/10 backdrop-blur border border-white/20 rounded-card p-5 md:p-6 mb-8 max-w-md">
+          <p class="font-heading text-4xl md:text-5xl text-white mb-1">
+            &euro;79<span class="text-lg text-white/60 font-body">/mnd</span>
+          </p>
+          <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 mt-2">
+            <span class="text-accent text-sm font-medium">Geen duizenden euro&rsquo;s vooraf</span>
+            <span class="hidden sm:inline text-white/30">&middot;</span>
+            <span class="text-white/60 text-sm">Eerste 10 plekken deze maand</span>
+          </div>
+        </div>
+
+        {/* Proof line */}
+        <div class="bg-accent/15 border border-accent/30 rounded-button px-4 py-3 mb-8 max-w-md">
+          <p class="text-sm text-white font-medium leading-snug">
+            <span class="text-accent mr-1.5">&rarr;</span>
             Onze laatste 2 nieuwe fundamenten werden binnen 2 weken zichtbaar in Google of AI.
           </p>
         </div>
 
         <a
           href="#aanvragen"
-          class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg w-full md:w-auto justify-center"
+          class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-white bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg w-full md:w-auto justify-center"
         >
           Check of mijn site geschikt is
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
         </a>
 
-        <p class="text-xs text-text-muted mt-4 max-w-md">
-          AI-ready Website Actie &middot; Eerste 10 plekken deze maand &middot; Website inbegrepen bij 12 maanden
+        <p class="text-xs text-white/40 mt-4 max-w-md">
+          Geen betaling nu &middot; Je ontvangt eerst een voorstel &middot; Alleen voor bedrijven die binnen deze aanpak passen
         </p>
+      </div>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      1b · PROOF STRIP — KORT EN KRACHTIG
+      ══════════════════════════════════════════════════ */}
+  <section class="bg-bg-alt border-b border-border/50 px-4 md:px-6 py-6 md:py-8">
+    <div class="max-w-4xl mx-auto">
+      <p class="text-xs uppercase tracking-widest text-text-muted font-medium text-center mb-4">Recent bewijs</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+        <div class="flex items-start gap-3 bg-white border border-border rounded-card px-5 py-4">
+          <span class="text-accent text-lg font-bold shrink-0 mt-0.5">#1</span>
+          <div>
+            <p class="text-text font-medium text-sm leading-snug">Costa Blanca Movement Centre</p>
+            <p class="text-text-muted text-sm leading-relaxed mt-1">Binnen 14 dagen pagina 1 in Google. Na 2 maanden 12&ndash;15 pati&euml;nten/mnd online.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 bg-white border border-border rounded-card px-5 py-4">
+          <span class="text-accent text-lg font-bold shrink-0 mt-0.5">#2</span>
+          <div>
+            <p class="text-text font-medium text-sm leading-snug">Dr. Verena Mann</p>
+            <p class="text-text-muted text-sm leading-relaxed mt-1">Van 2 naar 19 aanvragen/mnd. Genoemd door ChatGPT als passende expert.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
