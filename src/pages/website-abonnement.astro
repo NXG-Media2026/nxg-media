@@ -5,14 +5,26 @@
  * noindex — ads lander for test. No links to other offer pages.
  */
 import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import FAQAccordion from '../components/FAQAccordion.astro';
+import LogoMarquee from '../components/LogoMarquee.astro';
 import { siteConfig } from '../data/site';
 import { generateFAQPage, generateBreadcrumbs } from '../data/schema';
 
 import heroPhoto from '../assets/images/founder/joost-standing-relaxed.webp';
 import proofGoogle from '../assets/images/cases/proof-google-torrevieja.png';
 import proofChatgpt from '../assets/images/cases/proof-chatgpt-local.png';
+import proofDocVeri from '../assets/images/cases/doc_veri_ai_answer_cropped.PNG';
+
+const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
+const logos = Object.entries(logoFiles)
+  .filter(([path]) => /logo/i.test(path.split('/').pop()!))
+  .map(([path, mod]) => {
+    const filename = path.split('/').pop()!.replace(/\.(webp|avif|png|jpg)$/, '');
+    const name = filename.replace(/[-_]?logo[-_]?/gi, '').replace(/[-_]/g, ' ').trim();
+    return { src: mod.default, alt: name };
+  });
 
 const locale = 'nl';
 const title = 'Nieuwe AI-ready website — Founding Deal vanaf €79/mnd | NXG Media';
@@ -30,7 +42,7 @@ const faqItems = [
   },
   {
     q: 'Kan ik zelf aanpassen?',
-    a: 'Ja. Je krijgt een beheerpaneel voor teksten, foto’s, diensten en prijzen. Geen code nodig. Geen afhankelijkheid.',
+    a: "Ja. Je krijgt een beheerpaneel voor teksten, foto's, diensten en prijzen. Geen code nodig. Geen afhankelijkheid.",
   },
   {
     q: 'Wat als ik wil stoppen?',
@@ -38,7 +50,7 @@ const faqItems = [
   },
   {
     q: 'Wat zit er niet in?',
-    a: 'Extra pagina’s, blogcontent, advertenties, uitgebreide SEO-optimalisatie en strategische begeleiding zijn apart bij te boeken. Het abonnement is het fundament — uitbreidingen kies je zelf.',
+    a: "Extra pagina's, blogcontent, advertenties, uitgebreide SEO-optimalisatie en strategische begeleiding zijn apart bij te boeken. Het abonnement is het fundament — uitbreidingen kies je zelf.",
   },
 ];
 
@@ -48,20 +60,20 @@ const schemas = [
 ];
 
 const features = [
-  { title: 'Nieuwe snelle website', desc: 'Waarde €2.000–€4.000 — gratis inbegrepen bij 12 maanden' },
-  { title: 'Snel en mobiel-vriendelijk', desc: 'Laadtijd onder 2 seconden. Geen WordPress, geen plugins, geen ballast.' },
-  { title: 'Vindbaar voor Google en AI', desc: 'Basis SEO-structuur, schema markup, AI-leesbare opbouw.' },
-  { title: 'Beheerpaneel', desc: 'Zelf teksten, foto’s, diensten en prijzen aanpassen. Geen code nodig.' },
-  { title: 'Hosting en onderhoud', desc: 'Snelle hosting, technisch onderhoud, SSL — alles inbegrepen.' },
-  { title: 'Maandelijkse check', desc: 'Elke maand controleren we of je fundament technisch goed staat.' },
+  { title: 'Klanten vinden je sneller', desc: 'Je site laadt in onder 2 seconden. Dat is sneller dan 95% van je concurrenten. Google beloont dat met hogere posities.' },
+  { title: 'AI kan je aanbevelen', desc: 'Je site is zo gebouwd dat ChatGPT, Gemini en Google AI begrijpen wie je bent, wat je doet en waarom jij de logische keuze bent.' },
+  { title: 'Je maakt een professionelere eerste indruk', desc: 'Bezoekers beslissen in 3 seconden of ze je vertrouwen. Een modern, snel fundament maakt dat verschil.' },
+  { title: 'Je bent niet meer afhankelijk van een techneut', desc: "Zelf teksten, foto's, diensten en prijzen aanpassen via een simpel beheerpaneel. Wanneer je wilt." },
+  { title: 'Je hoeft je geen zorgen te maken over techniek', desc: 'Hosting, updates, beveiliging, snelheid — dat regelen wij. Jij focust op je klanten.' },
+  { title: 'Je weet elke maand waar je staat', desc: 'Maandelijkse check: hoe scoort je fundament? Wat kun je verbeteren? Concreet en begrijpelijk.' },
 ];
 
 const pricingFeatures = [
-  'Nieuwe AI-ready website (waarde €2.000–€4.000)',
-  'Hosting en technisch onderhoud',
-  'Beheerpaneel voor zelf aanpassen',
-  'Basis SEO en AI-structuur',
-  'Maandelijkse technische check',
+  'Nieuwe website die klanten aantrekt (waarde €2.000–€4.000)',
+  'Sneller dan 95% van je concurrenten',
+  'Vindbaar in Google én AI-zoektools',
+  'Zelf aanpassen wanneer je wilt',
+  'Maandelijkse score-check: weet waar je staat',
 ];
 ---
 
@@ -99,14 +111,14 @@ const pricingFeatures = [
         </h1>
 
         <p class="text-text-muted leading-relaxed mb-4 text-[0.95rem] md:text-base max-w-xl">
-          Zodat Google, ChatGPT en je klanten sneller begrijpen
-          waarom jij de logische keuze bent.
+          Zodat klanten die zoeken naar wat jij doet, bij jou uitkomen &mdash;
+          niet bij je concurrent.
         </p>
 
         <p class="text-text-muted leading-relaxed mb-6 text-[0.95rem] md:text-base max-w-xl">
           Geen dure websitebouw. Geen technisch gedoe.
-          We zetten deze maand een snel, vindbaar en toekomstbestendig
-          online fundament voor je klaar.
+          Een modern fundament dat ervoor zorgt dat Google en AI
+          jouw bedrijf vinden, begrijpen en aanbevelen. Deze maand klaar.
         </p>
 
         <p class="text-text font-heading text-3xl md:text-4xl mb-6">
@@ -134,7 +146,7 @@ const pricingFeatures = [
   <section class="px-4 md:px-6 py-14 md:py-20 border-t border-border/50">
     <div class="max-w-3xl mx-auto">
       <h2 class="font-heading text-2xl md:text-3xl text-text mb-8 md:mb-10 text-center">
-        Dit zit erin
+        Dit verandert er voor je bedrijf
       </h2>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
@@ -176,59 +188,100 @@ const pricingFeatures = [
   </section>
 
 
-  {/* ── SECTIE 3: BEWIJS — donkere band ── */}
+  {/* ── SECTIE 3: BEWIJS — donkere band, twee cases ── */}
   <section class="bg-primary px-4 md:px-6 py-14 md:py-20">
-    <div class="max-w-3xl mx-auto">
-      <h2 class="font-heading text-2xl md:text-3xl text-white mb-3 text-center">
-        Na 2 weken al op Google pagina 1.
+    <div class="max-w-5xl mx-auto">
+      <h2 class="font-heading text-2xl md:text-3xl text-white mb-10 md:mb-12 text-center">
+        Dit fundament werkt. Hier is het bewijs.
       </h2>
 
-      <p class="text-white/70 text-center mb-8 md:mb-10 max-w-lg mx-auto text-[0.95rem] leading-relaxed">
-        Costa Blanca Movement Centre &mdash; van nul naar vindbaar in 14 dagen.
-        Gebouwd op hetzelfde fundament.
-      </p>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
-        {/* Google screenshot */}
-        <button
-          type="button"
-          class="proof-trigger group cursor-pointer block rounded-image overflow-hidden border border-white/10 hover:border-white/30 transition-colors"
-          data-proof="proof-google"
-        >
-          <Image
-            src={proofGoogle}
-            alt="Google zoekresultaat: Costa Blanca Movement Centre op positie 4 na 2 weken"
-            width={600}
-            quality={85}
-            class="w-full h-auto"
-            loading="lazy"
-          />
-          <p class="text-white/50 text-xs text-center py-2">Google positie 4 &mdash; na 2 weken</p>
-        </button>
+        {/* ── CASE 1: CBMC ── */}
+        <div>
+          <span class="inline-block px-3 py-1 text-[0.65rem] font-medium tracking-widest uppercase bg-accent/20 text-accent rounded-full mb-3">
+            2 weken live
+          </span>
+          <h3 class="font-heading text-lg md:text-xl text-white mb-2">
+            Google pagina 1. ChatGPT #1 aanbeveling.
+          </h3>
+          <p class="text-white/60 text-sm leading-relaxed mb-5">
+            Costa Blanca Movement Centre &mdash; van nul naar vindbaar in 14 dagen.
+            Geen bestaande site. Geen Google-geschiedenis. Nul.
+          </p>
 
-        {/* ChatGPT screenshot */}
-        <button
-          type="button"
-          class="proof-trigger group cursor-pointer block rounded-image overflow-hidden border border-white/10 hover:border-white/30 transition-colors"
-          data-proof="proof-chatgpt"
-        >
-          <Image
-            src={proofChatgpt}
-            alt="ChatGPT noemt Costa Blanca Movement Centre als eerste lokale aanbeveling"
-            width={600}
-            quality={85}
-            class="w-full h-auto"
-            loading="lazy"
-          />
-          <p class="text-white/50 text-xs text-center py-2">ChatGPT #1 lokale aanbeveling</p>
-        </button>
+          <div class="grid grid-cols-2 gap-3">
+            <button
+              type="button"
+              class="proof-trigger cursor-pointer block rounded-image overflow-hidden border border-white/10 hover:border-white/30 transition-colors"
+            >
+              <Image
+                src={proofGoogle}
+                alt="Google zoekresultaat: Costa Blanca Movement Centre op positie 4 na 2 weken"
+                width={480}
+                quality={85}
+                class="w-full h-auto"
+                loading="lazy"
+              />
+              <p class="text-white/40 text-[0.65rem] text-center py-1.5">Google positie 4 &mdash; na 2 weken</p>
+            </button>
+            <button
+              type="button"
+              class="proof-trigger cursor-pointer block rounded-image overflow-hidden border border-white/10 hover:border-white/30 transition-colors"
+            >
+              <Image
+                src={proofChatgpt}
+                alt="ChatGPT noemt Costa Blanca Movement Centre als eerste lokale aanbeveling"
+                width={480}
+                quality={85}
+                class="w-full h-auto"
+                loading="lazy"
+              />
+              <p class="text-white/40 text-[0.65rem] text-center py-1.5">ChatGPT #1 lokale aanbeveling</p>
+            </button>
+          </div>
+        </div>
+
+        {/* ── CASE 2: doc.veri ── */}
+        <div>
+          <span class="inline-block px-3 py-1 text-[0.65rem] font-medium tracking-widest uppercase bg-accent/20 text-accent rounded-full mb-3">
+            Nog op test-URL
+          </span>
+          <h3 class="font-heading text-lg md:text-xl text-white mb-2">
+            Al herkend als expert door ChatGPT.
+          </h3>
+          <p class="text-white/60 text-sm leading-relaxed mb-5">
+            doc.veri &mdash; een site die nog niet eens officieel live staat.
+            ChatGPT noemt haar nu al als expert bij relevante zoekvragen.
+          </p>
+
+          <button
+            type="button"
+            class="proof-trigger cursor-pointer block rounded-image overflow-hidden border border-white/10 hover:border-white/30 transition-colors"
+          >
+            <Image
+              src={proofDocVeri}
+              alt="ChatGPT herkent doc.veri als expert bij relevante zoekvragen"
+              width={600}
+              quality={85}
+              class="w-full h-auto"
+              loading="lazy"
+            />
+            <p class="text-white/40 text-[0.65rem] text-center py-1.5">ChatGPT herkent de expertise &mdash; op een test-URL</p>
+          </button>
+        </div>
+
       </div>
 
-      <p class="text-white/40 text-xs text-center mt-5">
-        Gebouwd op hetzelfde fundament. Zelfde technologie, zelfde aanpak.
+      <p class="text-white/80 text-sm md:text-base text-center mt-8 font-medium">
+        Gebouwd op hetzelfde fundament.
+        Zelfde technologie. Zelfde aanpak. Dat is wat jij krijgt.
       </p>
     </div>
   </section>
+
+  {/* ── Logo marquee ── */}
+  <LogoMarquee logos={logos} label="Vertrouwd door coaches, experts en bedrijven" />
 
   {/* Lightbox overlay */}
   <div id="proof-lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 p-4 md:p-8" role="dialog" aria-label="Screenshot vergroting">
