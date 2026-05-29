@@ -590,51 +590,67 @@ const serviceSchema = generateService({
 
   {/* ── CTA ── */}
   <section id="analyse" class="py-16 md:py-20 bg-primary">
-    <div class="max-w-3xl mx-auto px-4 md:px-6 text-center">
-      <h2 class="font-heading text-3xl md:text-4xl text-white mb-4">
+    <div class="max-w-lg mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-3xl md:text-4xl text-white mb-4 text-center">
         Wil je weten welke groeiroute bij jouw expertise past?
       </h2>
-      <p class="text-white/80 mb-8 max-w-2xl mx-auto">
+      <p class="text-white/80 mb-8 max-w-2xl mx-auto text-center">
         Laat je scan, website of aanbod bekijken. Je krijgt geen technisch rapport, maar een persoonlijke inschatting: zit je grootste kans in vindbaarheid, positionering, instaproute of opvolging?
       </p>
 
-      {/* Meerkeuze-opties */}
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-8 text-left">
-        <label class="flex items-center gap-3 bg-white/10 border border-white/20 rounded-lg p-3 cursor-pointer hover:bg-white/15 transition-colors">
-          <input type="checkbox" name="interesse" value="ai-vindbaarheid" class="accent-accent w-4 h-4 shrink-0" />
-          <span class="text-white text-sm">Mijn AI-vindbaarheid</span>
-        </label>
-        <label class="flex items-center gap-3 bg-white/10 border border-white/20 rounded-lg p-3 cursor-pointer hover:bg-white/15 transition-colors">
-          <input type="checkbox" name="interesse" value="positionering" class="accent-accent w-4 h-4 shrink-0" />
-          <span class="text-white text-sm">Mijn positionering</span>
-        </label>
-        <label class="flex items-center gap-3 bg-white/10 border border-white/20 rounded-lg p-3 cursor-pointer hover:bg-white/15 transition-colors">
-          <input type="checkbox" name="interesse" value="instaproute" class="accent-accent w-4 h-4 shrink-0" />
-          <span class="text-white text-sm">Mijn instaproute</span>
-        </label>
-        <label class="flex items-center gap-3 bg-white/10 border border-white/20 rounded-lg p-3 cursor-pointer hover:bg-white/15 transition-colors">
-          <input type="checkbox" name="interesse" value="email" class="accent-accent w-4 h-4 shrink-0" />
-          <span class="text-white text-sm">Mijn e-mailopvolging</span>
-        </label>
-        <label class="flex items-center gap-3 bg-white/10 border border-white/20 rounded-lg p-3 cursor-pointer hover:bg-white/15 transition-colors">
-          <input type="checkbox" name="interesse" value="groeilek" class="accent-accent w-4 h-4 shrink-0" />
-          <span class="text-white text-sm">Mijn grootste groeilek</span>
-        </label>
-        <label class="flex items-center gap-3 bg-white/10 border border-white/20 rounded-lg p-3 cursor-pointer hover:bg-white/15 transition-colors">
-          <input type="checkbox" name="interesse" value="weet-niet" class="accent-accent w-4 h-4 shrink-0" />
-          <span class="text-white text-sm">Weet niet waar te beginnen</span>
-        </label>
+      <form id="groei-form" class="space-y-3">
+        <input type="hidden" name="bron" value="expert-groei-traject" />
+        <input type="text" name="naam" placeholder="Je naam" required autocomplete="name" class="w-full px-4 py-3.5 rounded-button border border-white/20 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white/10 backdrop-blur" />
+        <input type="email" name="email" placeholder="je@email.nl" required autocomplete="email" class="w-full px-4 py-3.5 rounded-button border border-white/20 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white/10 backdrop-blur" />
+        <input type="url" name="website" placeholder="https://jouwwebsite.nl" autocomplete="url" class="w-full px-4 py-3.5 rounded-button border border-white/20 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white/10 backdrop-blur" />
+
+        <p class="text-white/60 text-xs pt-2 pb-1">Waar wil je het meeste inzicht in? (optioneel)</p>
+        <div class="grid grid-cols-2 gap-2">
+          <label class="flex items-center gap-2.5 bg-white/5 border border-white/15 rounded-lg px-3 py-2.5 cursor-pointer hover:bg-white/10 transition-colors">
+            <input type="checkbox" name="interesse" value="ai-vindbaarheid" class="accent-accent w-3.5 h-3.5 shrink-0" />
+            <span class="text-white text-sm">AI-vindbaarheid</span>
+          </label>
+          <label class="flex items-center gap-2.5 bg-white/5 border border-white/15 rounded-lg px-3 py-2.5 cursor-pointer hover:bg-white/10 transition-colors">
+            <input type="checkbox" name="interesse" value="positionering" class="accent-accent w-3.5 h-3.5 shrink-0" />
+            <span class="text-white text-sm">Positionering</span>
+          </label>
+          <label class="flex items-center gap-2.5 bg-white/5 border border-white/15 rounded-lg px-3 py-2.5 cursor-pointer hover:bg-white/10 transition-colors">
+            <input type="checkbox" name="interesse" value="instaproute" class="accent-accent w-3.5 h-3.5 shrink-0" />
+            <span class="text-white text-sm">Instaproute</span>
+          </label>
+          <label class="flex items-center gap-2.5 bg-white/5 border border-white/15 rounded-lg px-3 py-2.5 cursor-pointer hover:bg-white/10 transition-colors">
+            <input type="checkbox" name="interesse" value="email" class="accent-accent w-3.5 h-3.5 shrink-0" />
+            <span class="text-white text-sm">E-mailopvolging</span>
+          </label>
+          <label class="flex items-center gap-2.5 bg-white/5 border border-white/15 rounded-lg px-3 py-2.5 cursor-pointer hover:bg-white/10 transition-colors">
+            <input type="checkbox" name="interesse" value="groeilek" class="accent-accent w-3.5 h-3.5 shrink-0" />
+            <span class="text-white text-sm">Grootste groeilek</span>
+          </label>
+          <label class="flex items-center gap-2.5 bg-white/5 border border-white/15 rounded-lg px-3 py-2.5 cursor-pointer hover:bg-white/10 transition-colors">
+            <input type="checkbox" name="interesse" value="weet-niet" class="accent-accent w-3.5 h-3.5 shrink-0" />
+            <span class="text-white text-sm">Weet niet waar te beginnen</span>
+          </label>
+        </div>
+
+        <button type="submit" class="w-full mt-2 px-8 py-4 text-base font-medium bg-accent hover:bg-accent-dark text-white transition-all duration-300 rounded-button shadow-lg shadow-accent/25 hover:shadow-xl flex items-center justify-center gap-2">
+          Laat Joost mijn groeiroute bepalen
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+        </button>
+      </form>
+
+      <div id="groei-thanks" class="hidden text-center py-8">
+        <svg class="w-12 h-12 text-accent mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <p class="font-heading text-xl text-white mb-2">Bedankt!</p>
+        <p class="text-white/70 text-[0.95rem]">
+          Ik bekijk je situatie en laat binnen 24 uur weten welke groeiroute het meest logisch is.
+        </p>
       </div>
 
-      <a
-        href="/contact/"
-        class="inline-flex items-center px-8 py-4 text-base font-medium bg-accent hover:bg-accent-dark text-white transition-all duration-300 rounded-button shadow-lg shadow-accent/25 hover:shadow-xl"
-      >
-        Laat Joost mijn groeiroute bepalen
-        <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-        </svg>
-      </a>
+      <p id="groei-microcopy" class="text-xs text-white/40 text-center mt-4">
+        Geen betaling nu. Je ontvangt een persoonlijke inschatting, geen verkooppraatje.
+      </p>
     </div>
   </section>
 
@@ -679,6 +695,67 @@ const serviceSchema = generateService({
     overlay.addEventListener('click', function(e) { if (e.target === overlay) closeLightbox(); });
     document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
   });
+  </script>
+
+  <script is:inline>
+  (function() {
+    var form = document.getElementById('groei-form');
+    var thanks = document.getElementById('groei-thanks');
+    var microcopy = document.getElementById('groei-microcopy');
+    if (!form || !thanks) return;
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var data = new FormData(form);
+      var naam = data.get('naam');
+      var email = data.get('email');
+      var website = data.get('website') || '';
+
+      if (!naam || !email) return;
+
+      var btn = form.querySelector('button[type="submit"]');
+      if (btn) { btn.disabled = true; btn.textContent = 'Even geduld...'; }
+
+      var checked = Array.from(form.querySelectorAll('input[name="interesse"]:checked')).map(function(cb) { return cb.value; });
+      var interesse = checked.length > 0 ? checked.join(', ') : 'niet ingevuld';
+
+      var payload = {
+        naam: naam,
+        email: email,
+        websiteUrl: website || 'niet ingevuld',
+        vraag: 'Expert Groei Traject aanvraag — Interesse: ' + interesse,
+        source: 'expert-groei-traject',
+      };
+
+      if (typeof fbq === 'function') {
+        fbq('track', 'Lead', { content_name: 'expert-groei-traject', content_category: 'ai-expert-groei-traject' });
+      }
+      if (typeof trackEvent === 'function') {
+        trackEvent('scanner_request_submitted', {
+          page_type: 'page',
+          page_slug: 'ai-expert-groei-traject',
+          locale: 'nl',
+          cta_location: 'inline',
+        });
+      }
+
+      fetch('https://scanner.nxg-media.com/api/gratis-check', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload),
+      }).then(function() {
+        showThanks();
+      }).catch(function() {
+        showThanks();
+      });
+
+      function showThanks() {
+        form.classList.add('hidden');
+        thanks.classList.remove('hidden');
+        if (microcopy) microcopy.classList.add('hidden');
+      }
+    });
+  })();
   </script>
 
 </BaseLayout>
