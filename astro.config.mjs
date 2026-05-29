@@ -14,7 +14,9 @@ export default defineConfig({
       filter: (page) =>
         !page.includes('/archetypen/') &&
         !page.includes('/groeiscan') &&
-        !page.includes('/website-abonnement'),
+        !page.includes('/website-abonnement') &&
+        !page.includes('/website-subscription') &&
+        !page.includes('/suscripcion-web'),
       serialize: (item) => ({
         ...item,
         lastmod: new Date().toISOString().split('T')[0],

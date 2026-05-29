@@ -1,34 +1,34 @@
 ---
 /**
- * AI-ready Website Actie — /website-abonnement/
+ * AI-ready Website Deal — /en/website-subscription/
  * Direct-response landing page. Translate existing site to AI-ready foundation.
  * noindex — ads lander. No links to other offer pages.
  */
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import FAQAccordion from '../components/FAQAccordion.astro';
-import LogoMarquee from '../components/LogoMarquee.astro';
-import { siteConfig } from '../data/site';
-import { generateFAQPage, generateBreadcrumbs } from '../data/schema';
-import { buildHreflangTrilingual } from '../i18n/hreflang';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+import LogoMarquee from '../../components/LogoMarquee.astro';
+import { siteConfig } from '../../data/site';
+import { generateFAQPage, generateBreadcrumbs } from '../../data/schema';
+import { buildHreflangTrilingual } from '../../i18n/hreflang';
 
-import heroPhoto from '../assets/images/founder/joost-standing-workinglaptop.webp';
-import keystaticDashboard from '../assets/images/keystatic1.png';
-import keystaticHomepage from '../assets/images/keystatic_edit_homepage.png';
-import keystaticBlog from '../assets/images/keystatic_add_blog.png';
+import heroPhoto from '../../assets/images/founder/joost-standing-workinglaptop.webp';
+import keystaticDashboard from '../../assets/images/keystatic1.png';
+import keystaticHomepage from '../../assets/images/keystatic_edit_homepage.png';
+import keystaticBlog from '../../assets/images/keystatic_add_blog.png';
 
 const cmsScreenshots = [
-  { src: keystaticDashboard, alt: 'Beheerpaneel met overzicht van alle pagina\'s, blogs, diensten en producten', caption: 'Alles op één plek' },
-  { src: keystaticHomepage, alt: 'Homepage teksten aanpassen via eenvoudige invoervelden', caption: 'Teksten aanpassen — geen code nodig' },
-  { src: keystaticBlog, alt: 'Blog schrijven met opmaak toolbar en SEO-velden', caption: 'Zelf blogartikelen publiceren' },
+  { src: keystaticDashboard, alt: 'Admin panel with overview of all pages, blogs, services and products', caption: 'Everything in one place' },
+  { src: keystaticHomepage, alt: 'Edit homepage copy via simple input fields', caption: 'Edit copy — no code needed' },
+  { src: keystaticBlog, alt: 'Write a blog post with formatting toolbar and SEO fields', caption: 'Publish blog posts yourself' },
 ];
-import proofGoogle from '../assets/images/cases/proof-google-torrevieja.png';
-import proofChatgpt from '../assets/images/cases/proof-chatgpt-local.png';
-import proofVerenaAi from '../assets/images/cases/doc_veri_ai_answer_cropped.PNG';
-import proofVerenaChatgpt from '../assets/images/cases/doc-veri-chatgptproof.jpeg';
-import verenaPhoto from '../assets/images/cases/verena-mann-linkedin.webp';
-import jamesPhoto from '../assets/images/cases/james-mitchell-portrait.png';
+import proofGoogle from '../../assets/images/cases/proof-google-torrevieja.png';
+import proofChatgpt from '../../assets/images/cases/proof-chatgpt-local.png';
+import proofVerenaAi from '../../assets/images/cases/doc_veri_ai_answer_cropped.PNG';
+import proofVerenaChatgpt from '../../assets/images/cases/doc-veri-chatgptproof.jpeg';
+import verenaPhoto from '../../assets/images/cases/verena-mann-linkedin.webp';
+import jamesPhoto from '../../assets/images/cases/james-mitchell-portrait.png';
 
 const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
 const logos = Object.entries(logoFiles)
@@ -39,51 +39,47 @@ const logos = Object.entries(logoFiles)
     return { src: mod.default, alt: name };
   });
 
-const locale = 'nl';
-const title = 'AI-ready Website Actie — vanaf €79/mnd | NXG Media';
-const description = 'Je huidige website omzetten naar een AI-ready klantfundament dat Google, ChatGPT en klanten begrijpen. Vanaf €79/mnd. Eerste 10 plekken deze maand.';
+const locale = 'en';
+const title = 'AI-ready Website Deal — from €79/mo | NXG Media';
+const description = 'Transform your current website into an AI-ready client foundation that Google, ChatGPT and customers understand. From €79/mo. First 10 spots this month.';
+
+const hreflang = buildHreflangTrilingual('/website-abonnement', '/en/website-subscription', '/es/suscripcion-web');
 
 const breadcrumbs = [
-  { label: 'Home', href: '/' },
-  { label: 'Website Abonnement' },
+  { label: 'Home', href: '/en/' },
+  { label: 'Website Subscription' },
 ];
 
 const faqItems = [
   {
-    q: 'Moet mijn hele website opnieuw?',
-    a: "Het uitgangspunt is juist dat we meenemen wat bruikbaar is: je aanbod, huisstijl, teksten, foto's en bewijs. We zetten het opnieuw neer op een sneller en duidelijker fundament.",
+    q: 'Does my entire website need to be rebuilt?',
+    a: "The starting point is to keep what works: your offer, branding, copy, photos and proof. We rebuild it on a faster, clearer foundation.",
   },
   {
-    q: 'Waarom kan dit voor €79/mnd?',
-    a: "Omdat we niet vanaf nul een volledig maatwerkproject bouwen. We vertalen je bestaande site naar een strak fundament. Daardoor kunnen we sneller bouwen en de kosten laag houden.",
+    q: 'Why can this be done for €79/mo?',
+    a: "Because we don't build a fully custom project from scratch. We translate your existing site into a solid foundation. That allows us to build faster and keep costs low.",
   },
   {
-    q: 'Waarom maar 10 plekken?',
-    a: "Omdat dit alleen werkt als de scope strak blijft: je huidige site omzetten naar een beter fundament, zonder eindeloos maatwerktraject. Daarom nemen we maximaal 10 bedrijven per maand aan.",
+    q: 'Why only 10 spots?',
+    a: "Because this only works when the scope stays tight: converting your current site into a better foundation, without an endless custom project. That's why we take on a maximum of 10 businesses per month.",
   },
   {
-    q: 'Waarom 12 maanden?',
-    a: "Website, hosting, onderhoud en maandelijkse vindbaarheidscheck zitten in één abonnement. Geen groot bedrag vooraf, wel een fundament dat blijft draaien en onderhouden wordt.",
+    q: 'Why 12 months?',
+    a: "Website, hosting, maintenance and monthly visibility check are all included in one subscription. No large upfront payment, but a foundation that keeps running and stays maintained.",
   },
   {
-    q: "Wat als ik extra pagina's of SEO-content wil?",
-    a: "Dat kan later. Extra dienstpagina's, blogs, lokale content en uitgebreide optimalisatie zijn apart bij te boeken. Eerst zorgen we dat het fundament klopt.",
+    q: 'What if I want extra pages or SEO content?',
+    a: "That can come later. Extra service pages, blogs, local content and advanced optimisation can be added on. First we make sure the foundation is right.",
   },
   {
-    q: 'Ben ik mijn oude content kwijt?',
-    a: "Nee. Wat bruikbaar is, nemen we mee. Wat onduidelijk, traag of niet converterend is, maken we scherper.",
+    q: 'Will I lose my old content?',
+    a: "No. What works, we keep. What's unclear, slow or not converting, we sharpen up.",
   },
   {
-    q: 'Is dit voor elk bedrijf?',
-    a: "Vooral voor lokale dienstverleners, praktijken en specialisten met een duidelijke dienst. Webshops en complexe maatwerksites vallen meestal buiten deze actie.",
+    q: 'Is this for every business?',
+    a: "Mainly for local service providers, practices and specialists with a clear service offering. Webshops and complex custom sites usually fall outside this deal.",
   },
 ];
-
-const hreflang = buildHreflangTrilingual(
-  '/website-abonnement',
-  '/en/website-subscription',
-  '/es/suscripcion-web',
-);
 
 const schemas = [
   generateFAQPage(faqItems.map(i => ({ question: i.q, answer: i.a }))),
@@ -94,7 +90,7 @@ const schemas = [
 <BaseLayout
   title={title}
   description={description}
-  canonical={`${siteConfig.url}/website-abonnement`}
+  canonical={`${siteConfig.url}/en/website-subscription`}
   noindex={true}
   schemas={schemas}
   locale={locale}
@@ -119,26 +115,26 @@ const schemas = [
       <div class="max-w-2xl mx-auto">
 
         <h1 class="font-heading text-[1.85rem] leading-[1.12] md:text-[2.75rem] md:leading-[1.1] text-white mb-5">
-          Je website staat online.<br />
-          <em class="text-accent not-italic">Maar je concurrent krijgt de klant.</em>
+          Your website is online.<br />
+          <em class="text-accent not-italic">But your competitor gets the client.</em>
         </h1>
 
         <p class="text-white/70 leading-relaxed mb-6 text-[0.95rem] md:text-base max-w-xl">
-          Als Google, ChatGPT en bezoekers je concurrent sneller begrijpen dan jou, verlies je aanvragen zonder dat je het doorhebt.
+          When Google, ChatGPT and visitors understand your competitor faster than you, you lose enquiries without even realising it.
         </p>
 
         <p class="text-white/90 leading-relaxed mb-8 text-[0.95rem] md:text-base max-w-xl font-medium">
-          Wij vertalen je huidige site &mdash; aanbod, huisstijl, teksten en bewijs &mdash; naar een sneller AI-ready fundament dat gebouwd is om gevonden en gekozen te worden.
+          We translate your current site &mdash; offer, branding, copy and proof &mdash; into a faster AI-ready foundation built to be found and chosen.
         </p>
 
         {/* Deal card */}
         <div class="bg-white/[0.12] backdrop-blur-sm border-2 border-accent/40 rounded-card p-5 md:p-6 mb-6 max-w-md shadow-lg">
           <p class="font-heading text-4xl md:text-5xl text-white mb-2">
-            Vanaf &euro;79<span class="text-lg text-white/60 font-body">/mnd</span>
+            From &euro;79<span class="text-lg text-white/60 font-body">/mo</span>
           </p>
           <div class="flex flex-wrap gap-2 mt-3">
-            <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-accent/20 text-accent rounded-full">Eerste 10 plekken deze maand</span>
-            <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-white/10 text-white/80 rounded-full">Geen betaling nu</span>
+            <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-accent/20 text-accent rounded-full">First 10 spots this month</span>
+            <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-white/10 text-white/80 rounded-full">No payment now</span>
           </div>
         </div>
 
@@ -146,7 +142,7 @@ const schemas = [
           href="#aanvragen"
           class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-white bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg w-full md:w-auto justify-center"
         >
-          Check mijn site
+          Check my site
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
         </a>
       </div>
@@ -159,18 +155,18 @@ const schemas = [
       ══════════════════════════════════════════════════ */}
   <section class="bg-bg-alt border-b border-border/50 px-4 md:px-6 py-6 md:py-8">
     <div class="max-w-4xl mx-auto">
-      <p class="text-xs uppercase tracking-widest text-text-muted font-medium text-center mb-4">Recent bewijs uit 2 nieuwe fundamenten</p>
+      <p class="text-xs uppercase tracking-widest text-text-muted font-medium text-center mb-4">Recent proof from 2 new foundations</p>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
         <div class="flex items-start gap-3 bg-white border border-border rounded-card px-5 py-4">
           <span class="text-accent text-lg font-bold shrink-0 mt-0.5">#1</span>
           <div>
-            <p class="text-text font-medium text-sm leading-snug">Costa Blanca: binnen 14 dagen zichtbaar in Google</p>
+            <p class="text-text font-medium text-sm leading-snug">Costa Blanca: visible in Google within 14 days</p>
           </div>
         </div>
         <div class="flex items-start gap-3 bg-white border border-border rounded-card px-5 py-4">
           <span class="text-accent text-lg font-bold shrink-0 mt-0.5">#2</span>
           <div>
-            <p class="text-text font-medium text-sm leading-snug">Dr. Verena Mann: 2 &rarr; 19 aanvragen/mnd + genoemd door ChatGPT</p>
+            <p class="text-text font-medium text-sm leading-snug">Dr. Verena Mann: 2 &rarr; 19 enquiries/mo + mentioned by ChatGPT</p>
           </div>
         </div>
       </div>
@@ -179,26 +175,26 @@ const schemas = [
 
 
   {/* ══════════════════════════════════════════════════
-      3 · GEEN WEBDESIGNER
+      3 · NOT JUST A PRETTY SITE
       ══════════════════════════════════════════════════ */}
   <section class="px-4 md:px-6 py-12 md:py-16">
     <div class="max-w-4xl mx-auto">
       <h2 class="font-heading text-2xl md:text-3xl text-text mb-3 text-center">
-        Niet alleen een mooie site. Een site die klanten moet opleveren.
+        Not just a pretty site. A site that should generate clients.
       </h2>
       <p class="text-text-muted text-center mb-8 md:mb-10 max-w-2xl mx-auto text-[0.95rem] leading-relaxed">
-        Een klassieke websitebouwer denkt in pagina&rsquo;s en design. Wij kijken naar zoekintentie, vertrouwen, bewijs, CTA&rsquo;s en hoe Google, ChatGPT en klanten je bedrijf begrijpen.
+        A traditional web designer thinks in pages and design. We focus on search intent, trust, proof, CTAs and how Google, ChatGPT and clients understand your business.
       </p>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
         <div class="border border-border rounded-card p-5 md:p-6 bg-white/50">
-          <p class="text-text-muted text-xs uppercase tracking-widest font-medium mb-3">Klassieke websitebouwer</p>
+          <p class="text-text-muted text-xs uppercase tracking-widest font-medium mb-3">Traditional web designer</p>
           <ul class="space-y-2.5">
             {[
-              'Mooie site, weinig aanvragen',
-              'Denkt in pagina\'s en design',
-              'SEO komt later',
-              'Opleveren en klaar',
+              'Nice site, few enquiries',
+              'Thinks in pages and design',
+              'SEO comes later',
+              'Deliver and done',
             ].map((item) => (
               <li class="flex items-start gap-2.5 text-sm text-text-muted leading-relaxed">
                 <svg class="w-4 h-4 text-red-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
@@ -212,13 +208,13 @@ const schemas = [
           <span class="absolute -top-3 left-6 inline-block px-3 py-0.5 text-[0.65rem] font-medium tracking-widest uppercase bg-accent text-white rounded-full">
             NXG Media
           </span>
-          <p class="text-text text-xs uppercase tracking-widest font-medium mb-3">AI-vindbaarheid &amp; conversie</p>
+          <p class="text-text text-xs uppercase tracking-widest font-medium mb-3">AI visibility &amp; conversion</p>
           <ul class="space-y-2.5">
             {[
-              'Vindbaarheid + conversie als uitgangspunt',
-              'Dienst + regio duidelijk neergezet',
-              "Bewijs vóór de CTA",
-              'Gebouwd voor Google, AI en klanten',
+              'Visibility + conversion as the starting point',
+              'Service + region clearly positioned',
+              "Proof before the CTA",
+              'Built for Google, AI and clients',
             ].map((item) => (
               <li class="flex items-start gap-2.5 text-sm text-text leading-relaxed font-medium">
                 <svg class="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
@@ -230,41 +226,41 @@ const schemas = [
       </div>
 
       <p class="text-text font-medium text-center text-[0.95rem] mt-8">
-        De site is het middel. Meer aanvragen is het doel.
+        The site is the tool. More enquiries is the goal.
       </p>
     </div>
   </section>
 
 
   {/* ══════════════════════════════════════════════════
-      4 · NIET ALLES WEGGOOIEN
+      4 · DON'T THROW EVERYTHING AWAY
       ══════════════════════════════════════════════════ */}
   <section class="px-4 md:px-6 py-12 md:py-16 bg-bg-alt">
     <div class="max-w-4xl mx-auto">
       <h2 class="font-heading text-2xl md:text-3xl text-text mb-3 text-center">
-        Je hoeft niet alles weg te gooien. De basis moet beter.
+        You don&rsquo;t have to throw everything away. The foundation needs to be better.
       </h2>
       <p class="text-text-muted text-center mb-8 md:mb-10 max-w-2xl mx-auto text-[0.95rem] leading-relaxed">
-        Je aanbod, huisstijl, reviews, foto&rsquo;s en bruikbare teksten nemen we mee. Wat onduidelijk, traag of niet overtuigend is, zetten we scherper neer.
+        Your offer, branding, reviews, photos and usable copy come with us. What&rsquo;s unclear, slow or unconvincing, we sharpen up.
       </p>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
         <div class="bg-white border border-border rounded-card p-5">
-          <p class="font-heading text-lg text-text mb-1">Wat goed is, nemen we mee</p>
+          <p class="font-heading text-lg text-text mb-1">What works, we keep</p>
           <p class="text-text-muted text-sm leading-relaxed">
-            Huisstijl, foto&rsquo;s, reviews en bruikbare teksten hoeven niet verloren te gaan.
+            Branding, photos, reviews and usable copy don&rsquo;t have to be lost.
           </p>
         </div>
         <div class="bg-white border border-border rounded-card p-5">
-          <p class="font-heading text-lg text-text mb-1">Wat klanten en AI niet begrijpen, maken we scherper</p>
+          <p class="font-heading text-lg text-text mb-1">What clients and AI don&rsquo;t understand, we sharpen</p>
           <p class="text-text-muted text-sm leading-relaxed">
-            Diensten, regio, bewijs en CTA&rsquo;s zodat je sneller als logische keuze overkomt.
+            Services, region, proof and CTAs so you come across as the obvious choice faster.
           </p>
         </div>
         <div class="bg-white border border-border rounded-card p-5">
-          <p class="font-heading text-lg text-text mb-1">Extra optimalisaties kunnen later</p>
+          <p class="font-heading text-lg text-text mb-1">Extra optimisations can come later</p>
           <p class="text-text-muted text-sm leading-relaxed">
-            Blogs, lokale SEO en advertenties zijn later bij te boeken. Eerst het fundament.
+            Blogs, local SEO and ads can be added on later. First the foundation.
           </p>
         </div>
       </div>
@@ -274,7 +270,7 @@ const schemas = [
           href="#aanvragen"
           class="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg"
         >
-          Check mijn site
+          Check my site
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
         </a>
       </div>
@@ -283,34 +279,34 @@ const schemas = [
 
 
   {/* ══════════════════════════════════════════════════
-      5 · PIJN / JE VERLIEST KLANTEN
+      5 · PAIN / YOU'RE LOSING CLIENTS
       ══════════════════════════════════════════════════ */}
   <section class="px-4 md:px-6 py-12 md:py-16">
     <div class="max-w-4xl mx-auto">
       <h2 class="font-heading text-2xl md:text-3xl text-text mb-3 text-center">
-        Je verliest mogelijk nu al klanten aan een duidelijkere concurrent
+        You may already be losing clients to a clearer competitor
       </h2>
       <p class="text-text font-medium text-center mb-8 md:mb-10 max-w-2xl mx-auto text-[0.95rem]">
-        Je concurrent hoeft niet beter te zijn. Alleen duidelijker vindbaar.
+        Your competitor doesn&rsquo;t have to be better. Just more clearly findable.
       </p>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 mb-8">
         <div class="bg-bg-alt border border-border rounded-card p-5">
-          <p class="font-heading text-lg text-text mb-1">Bezoekers klikken door</p>
+          <p class="font-heading text-lg text-text mb-1">Visitors click away</p>
           <p class="text-text-muted text-sm leading-relaxed">
-            Als ze niet snel genoeg vertrouwen voelen, gaan ze naar de concurrent.
+            If they don&rsquo;t feel trust fast enough, they go to the competitor.
           </p>
         </div>
         <div class="bg-bg-alt border border-border rounded-card p-5">
-          <p class="font-heading text-lg text-text mb-1">Google en AI kiezen de duidelijkste</p>
+          <p class="font-heading text-lg text-text mb-1">Google and AI choose the clearest</p>
           <p class="text-text-muted text-sm leading-relaxed">
-            Goed gestructureerde sites met heldere dienst- en regio-info worden vaker getoond.
+            Well-structured sites with clear service and region info are shown more often.
           </p>
         </div>
         <div class="bg-bg-alt border border-border rounded-card p-5">
-          <p class="font-heading text-lg text-text mb-1">&Eacute;&eacute;n extra klant verdient dit terug</p>
+          <p class="font-heading text-lg text-text mb-1">One extra client pays this back</p>
           <p class="text-text-muted text-sm leading-relaxed">
-            Levert &eacute;&eacute;n klant jou &euro;500 op? Dan verdient &eacute;&eacute;n extra klant al ruim 6 maanden abonnement terug.
+            Does one client earn you &euro;500? Then one extra client already covers over 6 months of subscription.
           </p>
         </div>
       </div>
@@ -319,25 +315,25 @@ const schemas = [
 
 
   {/* ══════════════════════════════════════════════════
-      6 · GEEN SEO-PLEISTERS
+      6 · STOP WITH SEO BAND-AIDS
       ══════════════════════════════════════════════════ */}
   <section class="px-4 md:px-6 py-12 md:py-16 bg-bg-alt">
     <div class="max-w-4xl mx-auto">
       <h2 class="font-heading text-2xl md:text-3xl text-text mb-3 text-center">
-        Stop met SEO-pleisters plakken op een site die niet verkoopt
+        Stop putting SEO band-aids on a site that doesn&rsquo;t convert
       </h2>
       <p class="text-text-muted text-center mb-8 md:mb-10 max-w-2xl mx-auto text-[0.95rem] leading-relaxed">
-        Als de basis traag, rommelig of onduidelijk is, blijven losse SEO-updates beperkt. Eerst moet het fundament kloppen.
+        When the foundation is slow, messy or unclear, one-off SEO tweaks stay limited. The foundation needs to be right first.
       </p>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
         <div class="border border-border rounded-card p-5 md:p-6 bg-white/50">
-          <p class="text-text-muted text-xs uppercase tracking-widest font-medium mb-3">Oude aanpak</p>
+          <p class="text-text-muted text-xs uppercase tracking-widest font-medium mb-3">Old approach</p>
           <ul class="space-y-2.5">
             {[
-              'Plugin erbij, tekstje aanpassen',
-              'Maand later weer iets proberen',
-              'Basis blijft hetzelfde',
+              'Add a plugin, tweak some text',
+              'Try something else next month',
+              'Foundation stays the same',
             ].map((item) => (
               <li class="flex items-start gap-2.5 text-sm text-text-muted leading-relaxed">
                 <svg class="w-4 h-4 text-red-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
@@ -349,14 +345,14 @@ const schemas = [
 
         <div class="border-2 border-accent/30 rounded-card p-5 md:p-6 bg-white shadow-lg relative">
           <span class="absolute -top-3 left-6 inline-block px-3 py-0.5 text-[0.65rem] font-medium tracking-widest uppercase bg-accent text-white rounded-full">
-            Nieuwe aanpak
+            New approach
           </span>
-          <p class="text-text text-xs uppercase tracking-widest font-medium mb-3">AI-ready fundament</p>
+          <p class="text-text text-xs uppercase tracking-widest font-medium mb-3">AI-ready foundation</p>
           <ul class="space-y-2.5">
             {[
-              'Huidige site vertalen naar helder fundament',
-              'Dienst + regio duidelijk, bewijs op de juiste plek',
-              'Klaar voor verdere optimalisatie',
+              'Current site translated into a clear foundation',
+              'Service + region clear, proof in the right place',
+              'Ready for further optimisation',
             ].map((item) => (
               <li class="flex items-start gap-2.5 text-sm text-text leading-relaxed font-medium">
                 <svg class="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
@@ -372,7 +368,7 @@ const schemas = [
           href="#aanvragen"
           class="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg"
         >
-          Check mijn site
+          Check my site
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
         </a>
       </div>
@@ -381,15 +377,15 @@ const schemas = [
 
 
   {/* ══════════════════════════════════════════════════
-      7 · BEWIJS / CASES
+      7 · PROOF / CASES
       ══════════════════════════════════════════════════ */}
   <section class="py-16 md:py-24 bg-primary">
     <div class="max-w-5xl mx-auto px-4 md:px-6">
       <h2 class="font-heading text-3xl md:text-4xl text-white mb-3 text-center">
-        Dit is wat er kan gebeuren als het fundament klopt
+        This is what can happen when the foundation is right
       </h2>
       <p class="text-white/60 text-center mb-12 md:mb-16 max-w-xl mx-auto text-[0.95rem]">
-        Onze laatste 2 nieuwe fundamenten werden binnen 2 weken zichtbaar in Google of AI.
+        Our last 2 new foundations became visible in Google or AI within 2 weeks.
       </p>
 
       {/* ── CASE 1: CBMC ── */}
@@ -412,45 +408,45 @@ const schemas = [
           </div>
         </div>
 
-        <h3 class="font-heading text-2xl md:text-3xl text-white mb-1">Van nul naar zichtbaar in 14 dagen</h3>
-        <p class="text-white/50 text-sm mb-5">Chiropraktijk voor expats in Torrevieja. Geen site, geen historie, geen backlinks.</p>
+        <h3 class="font-heading text-2xl md:text-3xl text-white mb-1">From zero to visible in 14 days</h3>
+        <p class="text-white/50 text-sm mb-5">Chiropractic clinic for expats in Torrevieja. No site, no history, no backlinks.</p>
 
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
           <div class="bg-white/5 rounded-card p-3 text-center">
-            <p class="font-heading text-xl md:text-2xl text-accent">pag.&nbsp;1</p>
+            <p class="font-heading text-xl md:text-2xl text-accent">page&nbsp;1</p>
             <p class="text-white/50 text-xs mt-0.5">in Google</p>
           </div>
           <div class="bg-white/5 rounded-card p-3 text-center">
             <p class="font-heading text-xl md:text-2xl text-accent">ChatGPT</p>
-            <p class="text-white/50 text-xs mt-0.5">noemt kliniek</p>
+            <p class="text-white/50 text-xs mt-0.5">mentions clinic</p>
           </div>
           <div class="bg-white/5 rounded-card p-3 text-center">
             <p class="font-heading text-xl md:text-2xl text-accent">12&ndash;15</p>
-            <p class="text-white/50 text-xs mt-0.5">pati&euml;nten/mnd</p>
+            <p class="text-white/50 text-xs mt-0.5">patients/mo</p>
           </div>
           <div class="bg-white/5 rounded-card p-3 text-center">
             <p class="font-heading text-xl md:text-2xl text-accent">800+</p>
-            <p class="text-white/50 text-xs mt-0.5">bezoekers/mnd</p>
+            <p class="text-white/50 text-xs mt-0.5">visitors/mo</p>
           </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
           <button type="button" class="proof-trigger cursor-pointer group text-left">
             <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
-              <Image src={proofGoogle} alt="Google zoekresultaat: Costa Blanca Movement Centre op pagina 1 na 2 weken" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
+              <Image src={proofGoogle} alt="Google search result: Costa Blanca Movement Centre on page 1 after 2 weeks" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
             </div>
-            <p class="text-white/40 text-xs mt-1.5 text-center group-hover:text-white/60 transition-colors">Google pagina 1 &mdash; na 2 weken</p>
+            <p class="text-white/40 text-xs mt-1.5 text-center group-hover:text-white/60 transition-colors">Google page 1 &mdash; after 2 weeks</p>
           </button>
           <button type="button" class="proof-trigger cursor-pointer group text-left">
             <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
-              <Image src={proofChatgpt} alt="ChatGPT beveelt Costa Blanca Movement Centre aan als nummer 1 lokale optie" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
+              <Image src={proofChatgpt} alt="ChatGPT recommends Costa Blanca Movement Centre as number 1 local option" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
             </div>
-            <p class="text-white/40 text-xs mt-1.5 text-center group-hover:text-white/60 transition-colors">ChatGPT beveelt de kliniek aan als #1</p>
+            <p class="text-white/40 text-xs mt-1.5 text-center group-hover:text-white/60 transition-colors">ChatGPT recommends the clinic as #1</p>
           </button>
         </div>
 
         <p class="text-accent font-medium text-center text-base pt-4 border-t border-white/10">
-          Niet na een jaar SEO. Na 14 dagen werd het fundament al opgepikt.
+          Not after a year of SEO. After 14 days the foundation was already picked up.
         </p>
       </div>
 
@@ -467,12 +463,12 @@ const schemas = [
                 <a href="https://doc-veri.pages.dev" target="_blank" rel="noopener" class="text-accent/70 hover:text-accent text-xs transition-colors">doc-veri.pages.dev</a>
               </div>
             </div>
-            <h3 class="font-heading text-2xl md:text-3xl text-white mb-1">Van sterke expertise naar 19 aanvragen per maand</h3>
-            <p class="text-white/50 text-sm mb-5">Arts en expert met community, maar weinig aanvragen via haar website.</p>
+            <h3 class="font-heading text-2xl md:text-3xl text-white mb-1">From strong expertise to 19 enquiries per month</h3>
+            <p class="text-white/50 text-sm mb-5">Doctor and expert with a community, but few enquiries via her website.</p>
 
             <div class="grid grid-cols-2 gap-3">
               <div class="bg-white/5 rounded-card p-3 text-center">
-                <p class="text-white/50 text-xs uppercase tracking-wider mb-1">Aanvragen/mnd</p>
+                <p class="text-white/50 text-xs uppercase tracking-wider mb-1">Enquiries/mo</p>
                 <div class="flex items-center justify-center gap-2">
                   <span class="font-heading text-lg text-white/40">2</span>
                   <span class="text-accent">&rarr;</span>
@@ -480,7 +476,7 @@ const schemas = [
                 </div>
               </div>
               <div class="bg-white/5 rounded-card p-3 text-center">
-                <p class="text-white/50 text-xs uppercase tracking-wider mb-1">AI-vermeldingen</p>
+                <p class="text-white/50 text-xs uppercase tracking-wider mb-1">AI mentions</p>
                 <div class="flex items-center justify-center gap-2">
                   <span class="font-heading text-lg text-white/40">0</span>
                   <span class="text-accent">&rarr;</span>
@@ -493,21 +489,21 @@ const schemas = [
           <div class="flex flex-col justify-center space-y-3">
             <button type="button" class="proof-trigger cursor-pointer group text-left">
               <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
-                <Image src={proofVerenaAi} alt="ChatGPT noemt Dr. Verena Mann als passende expertin" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
+                <Image src={proofVerenaAi} alt="ChatGPT mentions Dr. Verena Mann as a suitable expert" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
               </div>
-              <p class="text-white/40 text-xs mt-1.5 text-center group-hover:text-white/60 transition-colors">AI-antwoord: &ldquo;eine passende Expertin&rdquo;</p>
+              <p class="text-white/40 text-xs mt-1.5 text-center group-hover:text-white/60 transition-colors">AI answer: &ldquo;eine passende Expertin&rdquo;</p>
             </button>
             <button type="button" class="proof-trigger cursor-pointer group text-left">
               <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
-                <Image src={proofVerenaChatgpt} alt="ChatGPT beveelt Dr. Verena Mann aan met directe link naar haar website" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
+                <Image src={proofVerenaChatgpt} alt="ChatGPT recommends Dr. Verena Mann with direct link to her website" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
               </div>
-              <p class="text-white/40 text-xs mt-1.5 text-center group-hover:text-white/60 transition-colors">ChatGPT met directe link naar haar site</p>
+              <p class="text-white/40 text-xs mt-1.5 text-center group-hover:text-white/60 transition-colors">ChatGPT with direct link to her site</p>
             </button>
           </div>
         </div>
 
         <p class="text-accent font-medium text-center text-base pt-5 mt-5 border-t border-white/10">
-          Niet een mooiere site. Een fundament dat haar expertise begrijpelijk maakte.
+          Not a prettier site. A foundation that made her expertise understandable.
         </p>
       </div>
 
@@ -516,52 +512,52 @@ const schemas = [
           href="#aanvragen"
           class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-white bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg"
         >
-          Check mijn site
+          Check my site
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
         </a>
       </div>
     </div>
   </section>
 
-  <LogoMarquee logos={logos} label="Vertrouwd door coaches, experts en bedrijven" />
+  <LogoMarquee logos={logos} label="Trusted by coaches, experts and businesses" />
 
   {/* Lightbox overlay */}
-  <div id="proof-lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 p-4 md:p-8" role="dialog" aria-label="Screenshot vergroting">
-    <button type="button" id="proof-close" class="absolute top-4 right-4 text-white/70 hover:text-white text-3xl leading-none z-10" aria-label="Sluiten">&times;</button>
+  <div id="proof-lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 p-4 md:p-8" role="dialog" aria-label="Screenshot enlargement">
+    <button type="button" id="proof-close" class="absolute top-4 right-4 text-white/70 hover:text-white text-3xl leading-none z-10" aria-label="Close">&times;</button>
     <img id="proof-img" src="" alt="" class="max-h-[90vh] max-w-full rounded-image" />
   </div>
 
 
   {/* ══════════════════════════════════════════════════
-      8 · AANBOD / PRIJSKAART
+      8 · OFFER / PRICE CARD
       ══════════════════════════════════════════════════ */}
   <section class="px-4 md:px-6 py-14 md:py-20">
     <div class="max-w-xl mx-auto">
       <h2 class="font-heading text-2xl md:text-3xl text-text mb-2 text-center">
-        De AI-ready Website Actie
+        The AI-ready Website Deal
       </h2>
       <p class="text-text-muted text-center mb-8 text-[0.95rem]">
-        Voor ondernemers die hun huidige site willen omzetten naar een fundament dat w&eacute;l gevonden en gekozen kan worden.
+        For business owners who want to transform their current site into a foundation that actually gets found and chosen.
       </p>
 
       <div class="bg-white border-2 border-accent/30 rounded-card p-7 md:p-10 shadow-lg text-center">
         <span class="inline-block px-3 py-1 text-xs font-medium tracking-widest uppercase bg-accent/10 text-accent rounded-full mb-4">
-          Eerste 10 plekken deze maand
+          First 10 spots this month
         </span>
 
         <p class="font-heading text-5xl md:text-6xl text-text mb-1">
-          &euro;79<span class="text-lg text-text-muted font-body">/mnd</span>
+          &euro;79<span class="text-lg text-text-muted font-body">/mo</span>
         </p>
-        <p class="text-sm text-text-muted mb-6">12 maanden</p>
+        <p class="text-sm text-text-muted mb-6">12 months</p>
 
         <ul class="text-left space-y-2.5 mb-8">
           {[
-            'Huidige site vertaald naar AI-ready fundament',
-            "Bruikbare teksten, foto's en huisstijl meegenomen",
-            'Geen WordPress/plugin-gedoe',
-            'Hosting + onderhoud inbegrepen',
-            'Maandelijkse vindbaarheidscheck',
-            "Zelf aanpassen via beheerpaneel",
+            'Current site translated into AI-ready foundation',
+            "Usable copy, photos and branding carried over",
+            'No WordPress/plugin hassle',
+            'Hosting + maintenance included',
+            'Monthly visibility check',
+            "Edit content yourself via admin panel",
           ].map((item) => (
             <li class="flex items-start gap-3 text-[0.95rem] text-text leading-relaxed">
               <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
@@ -574,12 +570,12 @@ const schemas = [
           href="#aanvragen"
           class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg w-full justify-center"
         >
-          Check mijn site
+          Check my site
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
         </a>
 
         <p class="text-xs text-text-muted mt-4">
-          Geen betaling nu. Je ontvangt eerst een voorstel.
+          No payment now. You&rsquo;ll receive a proposal first.
         </p>
       </div>
     </div>
@@ -587,12 +583,12 @@ const schemas = [
 
 
   {/* ══════════════════════════════════════════════════
-      9 · GEEN WORDPRESS-CHAOS / BEHEERPANEEL
+      9 · NO WORDPRESS CHAOS / ADMIN PANEL
       ══════════════════════════════════════════════════ */}
   <section class="px-4 md:px-6 py-12 md:py-16 bg-bg-alt">
     <div class="max-w-4xl mx-auto">
       <h2 class="font-heading text-2xl md:text-3xl text-text mb-3 text-center">
-        Geen WordPress-chaos. Geen technisch gedoe.
+        No WordPress chaos. No technical hassle.
       </h2>
 
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8 mt-8">
@@ -614,11 +610,11 @@ const schemas = [
 
       <ul class="max-w-md mx-auto space-y-2.5">
         {[
-          "Zelf teksten en foto's aanpassen",
-          'Geen plugin-updates of kapotte thema\'s',
-          'Geen technische kennis nodig',
-          'Wat bruikbaar is, nemen we mee',
-          'Uitbreidingen alleen als jij dat wil',
+          "Edit copy and photos yourself",
+          'No plugin updates or broken themes',
+          'No technical knowledge needed',
+          'What works, we keep',
+          'Extensions only when you want them',
         ].map((item) => (
           <li class="flex items-start gap-3 text-[0.95rem] text-text leading-relaxed">
             <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
@@ -631,29 +627,29 @@ const schemas = [
 
 
   {/* ══════════════════════════════════════════════════
-      10 · FORMULIER
+      10 · FORM
       ══════════════════════════════════════════════════ */}
   <section id="aanvragen" class="px-4 md:px-6 py-14 md:py-20">
     <div class="max-w-lg mx-auto">
       <h2 class="font-heading text-2xl md:text-3xl text-text mb-3 text-center">
-        Check of jouw site geschikt is
+        Check if your site qualifies
       </h2>
 
       <p class="text-text-muted text-center mb-8 text-[0.95rem] leading-relaxed">
-        Vul je gegevens in. Ik kijk of je huidige site geschikt is om om te zetten naar het AI-ready fundament.
+        Fill in your details. I&rsquo;ll review whether your current site is suitable for conversion to the AI-ready foundation.
       </p>
 
       <form id="founding-deal-form" class="space-y-3">
-        <input type="hidden" name="bron" value="website-actie" />
-        <input type="text" name="naam" placeholder="Je naam" required autocomplete="name" class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white" />
-        <input type="text" name="bedrijf" placeholder="Bedrijfsnaam" required autocomplete="organization" class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white" />
-        <input type="url" name="website" placeholder="https://jouwwebsite.nl" required autocomplete="url" class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white" />
-        <input type="email" name="email" placeholder="je@email.nl" required autocomplete="email" class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white" />
-        <input type="tel" name="telefoon" placeholder="Telefoonnummer (optioneel)" autocomplete="tel" class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white" />
-        <input type="text" name="bedrijfstype" placeholder="Wat voor bedrijf heb je?" class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white" />
-        <input type="text" name="dienst" placeholder="Welke dienst wil je beter vindbaar maken?" class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white" />
+        <input type="hidden" name="bron" value="website-actie-en" />
+        <input type="text" name="naam" placeholder="Your name" required autocomplete="name" class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white" />
+        <input type="text" name="bedrijf" placeholder="Business name" required autocomplete="organization" class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white" />
+        <input type="url" name="website" placeholder="https://yourwebsite.com" required autocomplete="url" class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white" />
+        <input type="email" name="email" placeholder="you@email.com" required autocomplete="email" class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white" />
+        <input type="tel" name="telefoon" placeholder="Phone number (optional)" autocomplete="tel" class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white" />
+        <input type="text" name="bedrijfstype" placeholder="What type of business do you have?" class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white" />
+        <input type="text" name="dienst" placeholder="Which service do you want to make more findable?" class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white" />
         <button type="submit" class="w-full px-8 py-4 text-base font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg flex items-center justify-center gap-2">
-          Check mijn site
+          Check my site
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
         </button>
       </form>
@@ -662,14 +658,14 @@ const schemas = [
         <svg class="w-12 h-12 text-accent mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
-        <p class="font-heading text-xl text-text mb-2">Bedankt!</p>
+        <p class="font-heading text-xl text-text mb-2">Thank you!</p>
         <p class="text-text-muted text-[0.95rem]">
-          Ik bekijk je site en laat binnen 24 uur weten of je in aanmerking komt.
+          I&rsquo;ll review your site and let you know within 24 hours whether you qualify.
         </p>
       </div>
 
       <p id="founding-deal-microcopy" class="text-xs text-text-muted text-center mt-4">
-        Geen betaling nu. Geen verplichting. Je ontvangt eerst een voorstel.
+        No payment now. No obligation. You&rsquo;ll receive a proposal first.
       </p>
     </div>
   </section>
@@ -679,11 +675,11 @@ const schemas = [
       11 · FAQ
       ══════════════════════════════════════════════════ */}
   <FAQAccordion
-    title="Veelgestelde vragen"
+    title="Frequently asked questions"
     items={faqItems}
     locale={locale}
     pageType="page"
-    pageSlug="website-abonnement"
+    pageSlug="website-subscription"
     compact={true}
   />
 
@@ -748,30 +744,30 @@ const schemas = [
     if (!naam || !email || !website || !bedrijf) return;
 
     var btn = form.querySelector('button[type="submit"]');
-    if (btn) { btn.disabled = true; btn.textContent = 'Even geduld...'; }
+    if (btn) { btn.disabled = true; btn.textContent = 'One moment...'; }
 
     var extraInfo = [];
-    if (bedrijf) extraInfo.push('Bedrijf: ' + bedrijf);
+    if (bedrijf) extraInfo.push('Business: ' + bedrijf);
     if (bedrijfstype) extraInfo.push('Type: ' + bedrijfstype);
-    if (dienst) extraInfo.push('Dienst: ' + dienst);
+    if (dienst) extraInfo.push('Service: ' + dienst);
     if (telefoon) extraInfo.push('Tel: ' + telefoon);
 
     var payload = {
       naam: naam,
       email: email,
       websiteUrl: website,
-      vraag: 'Website Actie aanvraag — ' + extraInfo.join(' — '),
-      source: 'website-actie',
+      vraag: 'Website Deal request — ' + extraInfo.join(' — '),
+      source: 'website-actie-en',
     };
 
     if (typeof fbq === 'function') {
-      fbq('track', 'Lead', { content_name: 'website-actie', content_category: 'website-abonnement' });
+      fbq('track', 'Lead', { content_name: 'website-actie-en', content_category: 'website-subscription' });
     }
     if (typeof trackEvent === 'function') {
       trackEvent('scanner_request_submitted', {
         page_type: 'page',
-        page_slug: 'website-abonnement',
-        locale: 'nl',
+        page_slug: 'website-subscription',
+        locale: 'en',
         cta_location: 'inline',
       });
     }
