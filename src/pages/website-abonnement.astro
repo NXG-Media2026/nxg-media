@@ -13,6 +13,15 @@ import { siteConfig } from '../data/site';
 import { generateFAQPage, generateBreadcrumbs } from '../data/schema';
 
 import heroPhoto from '../assets/images/founder/joost-standing-relaxed.webp';
+import keystaticDashboard from '../assets/images/keystatic1.png';
+import keystaticHomepage from '../assets/images/keystatic_edit_homepage.png';
+import keystaticBlog from '../assets/images/keystatic_add_blog.png';
+
+const cmsScreenshots = [
+  { src: keystaticDashboard, alt: 'Beheerpaneel met overzicht van alle pagina\'s, blogs, diensten en producten', caption: 'Alles op één plek' },
+  { src: keystaticHomepage, alt: 'Homepage teksten aanpassen via eenvoudige invoervelden', caption: 'Teksten aanpassen — geen code nodig' },
+  { src: keystaticBlog, alt: 'Blog schrijven met opmaak toolbar en SEO-velden', caption: 'Zelf blogartikelen publiceren' },
+];
 import proofGoogle from '../assets/images/cases/proof-google-torrevieja.png';
 import proofChatgpt from '../assets/images/cases/proof-chatgpt-local.png';
 import proofVerenaAi from '../assets/images/cases/doc_veri_ai_answer_cropped.PNG';
@@ -620,28 +629,53 @@ const schemas = [
 
 
   {/* ══════════════════════════════════════════════════
-      9 · CONTROLE / GEEN GEDOE
+      9 · CONTROLE / GEEN GEDOE + CMS SCREENSHOTS
       ══════════════════════════════════════════════════ */}
   <section class="px-4 md:px-6 py-14 md:py-20">
-    <div class="max-w-xl mx-auto">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6 text-center">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-3 text-center">
         Geen WordPress-chaos. Geen technisch gedoe.
       </h2>
-      <ul class="space-y-3">
-        {[
-          "Je kunt zelf teksten en foto's aanpassen",
-          'Geen plugin-updates of kapotte thema\'s',
-          'Na 12 maanden vrij om door te gaan of te stoppen',
-          'Uitbreidingen alleen als jij dat wil',
-          'Geen technische kennis nodig',
-          'Wat bruikbaar is, nemen we mee',
-        ].map((item) => (
-          <li class="flex items-start gap-3 text-[0.95rem] text-text leading-relaxed">
-            <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-            {item}
-          </li>
+      <p class="text-text-muted text-center text-lg mb-10 max-w-2xl mx-auto">
+        &ldquo;Mari&euml;lle was bang dat ze voor elk klein ding bij mij moest aankloppen. Daarom bouwde ik dit.&rdquo;
+      </p>
+
+      {/* CMS screenshot grid */}
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
+        {cmsScreenshots.map((screenshot) => (
+          <button type="button" class="proof-trigger rounded-lg overflow-hidden border border-border bg-white text-left hover:shadow-md transition-shadow cursor-pointer">
+            <Image
+              src={screenshot.src}
+              alt={screenshot.alt}
+              widths={[400, 600]}
+              sizes="(max-width: 640px) 100vw, 33vw"
+              class="w-full aspect-[16/10] object-cover object-top"
+              loading="lazy"
+              decoding="async"
+            />
+            <p class="text-xs text-text-muted px-3 py-2">{screenshot.caption}</p>
+          </button>
         ))}
-      </ul>
+      </div>
+
+      {/* Bullets */}
+      <div class="max-w-xl mx-auto">
+        <ul class="space-y-3">
+          {[
+            "Je kunt zelf teksten en foto's aanpassen",
+            'Geen plugin-updates of kapotte thema\'s',
+            'Na 12 maanden vrij om door te gaan of te stoppen',
+            'Uitbreidingen alleen als jij dat wil',
+            'Geen technische kennis nodig',
+            'Wat bruikbaar is, nemen we mee',
+          ].map((item) => (
+            <li class="flex items-start gap-3 text-[0.95rem] text-text leading-relaxed">
+              <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   </section>
 
