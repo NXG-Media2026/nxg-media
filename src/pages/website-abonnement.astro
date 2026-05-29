@@ -188,95 +188,165 @@ const pricingFeatures = [
   </section>
 
 
-  {/* ── SECTIE 3: BEWIJS — donkere band, twee cases ── */}
+  {/* ── SECTIE 3: BEWIJS — donkere band, volledige cases ── */}
   <section class="bg-primary px-4 md:px-6 py-14 md:py-20">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="font-heading text-2xl md:text-3xl text-white mb-10 md:mb-12 text-center">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="font-heading text-2xl md:text-3xl text-white mb-10 md:mb-14 text-center">
         Dit fundament werkt. Hier is het bewijs.
       </h2>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+      {/* ── CASE 1: CBMC ── */}
+      <div class="mb-14 md:mb-16">
+        <span class="inline-block px-3 py-1 text-[0.65rem] font-medium tracking-widest uppercase bg-accent/20 text-accent rounded-full mb-4">
+          Chiropraktijk &middot; Costa Blanca &middot; 2 weken live
+        </span>
 
-        {/* ── CASE 1: CBMC ── */}
-        <div>
-          <span class="inline-block px-3 py-1 text-[0.65rem] font-medium tracking-widest uppercase bg-accent/20 text-accent rounded-full mb-3">
-            2 weken live
-          </span>
-          <h3 class="font-heading text-lg md:text-xl text-white mb-2">
-            Google pagina 1. ChatGPT #1 aanbeveling.
-          </h3>
-          <p class="text-white/60 text-sm leading-relaxed mb-5">
-            Costa Blanca Movement Centre &mdash; van nul naar vindbaar in 14 dagen.
-            Geen bestaande site. Geen Google-geschiedenis. Nul.
-          </p>
+        <h3 class="font-heading text-xl md:text-2xl text-white mb-3">
+          Costa Blanca Movement Centre
+        </h3>
 
-          <div class="grid grid-cols-2 gap-3">
-            <button
-              type="button"
-              class="proof-trigger cursor-pointer block rounded-image overflow-hidden border border-white/10 hover:border-white/30 transition-colors"
-            >
-              <Image
-                src={proofGoogle}
-                alt="Google zoekresultaat: Costa Blanca Movement Centre op positie 4 na 2 weken"
-                width={480}
-                quality={85}
-                class="w-full h-auto"
-                loading="lazy"
-              />
-              <p class="text-white/40 text-[0.65rem] text-center py-1.5">Google positie 4 &mdash; na 2 weken</p>
-            </button>
-            <button
-              type="button"
-              class="proof-trigger cursor-pointer block rounded-image overflow-hidden border border-white/10 hover:border-white/30 transition-colors"
-            >
-              <Image
-                src={proofChatgpt}
-                alt="ChatGPT noemt Costa Blanca Movement Centre als eerste lokale aanbeveling"
-                width={480}
-                quality={85}
-                class="w-full h-auto"
-                loading="lazy"
-              />
-              <p class="text-white/40 text-[0.65rem] text-center py-1.5">ChatGPT #1 lokale aanbeveling</p>
-            </button>
-          </div>
+        <p class="text-white/60 text-sm leading-relaxed mb-2 max-w-2xl">
+          Chiropraktijk en mobility kliniek voor expats
+          in Torrevieja, Spanje. Gespecialiseerd in rugklachten, sportblessures
+          en houding. Doelgroep: Britse en Nederlandse expats aan de Costa Blanca.
+        </p>
+
+        <p class="text-white/50 text-sm leading-relaxed mb-5 max-w-2xl">
+          Geen bestaande website. Geen Google-geschiedenis.
+          Geen backlinks. Geen reviews. Letterlijk nul.
+        </p>
+
+        <p class="text-accent font-medium text-sm mb-4">Na 2 weken op het nieuwe fundament:</p>
+
+        <ul class="space-y-1.5 mb-6">
+          <li class="flex items-start gap-2.5 text-white/80 text-sm leading-relaxed">
+            <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+            Google positie 4 op &ldquo;chiropractor Torrevieja for expats&rdquo;
+          </li>
+          <li class="flex items-start gap-2.5 text-white/80 text-sm leading-relaxed">
+            <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+            ChatGPT beveelt de kliniek aan als #1 lokale optie
+          </li>
+          <li class="flex items-start gap-2.5 text-white/80 text-sm leading-relaxed">
+            <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+            Eerste pati&euml;nten melden zich aan via de website
+          </li>
+        </ul>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <button
+            type="button"
+            class="proof-trigger cursor-pointer block rounded-image overflow-hidden border border-white/10 hover:border-white/30 transition-colors"
+          >
+            <Image
+              src={proofGoogle}
+              alt="Google zoekresultaat: Costa Blanca Movement Centre op positie 4 na 2 weken"
+              width={540}
+              quality={85}
+              class="w-full h-auto"
+              loading="lazy"
+            />
+            <p class="text-white/40 text-[0.65rem] text-center py-1.5">Google positie 4 &mdash; &ldquo;chiropractor Torrevieja&rdquo; &mdash; na 2 weken</p>
+          </button>
+          <button
+            type="button"
+            class="proof-trigger cursor-pointer block rounded-image overflow-hidden border border-white/10 hover:border-white/30 transition-colors"
+          >
+            <Image
+              src={proofChatgpt}
+              alt="ChatGPT beveelt Costa Blanca Movement Centre aan als nummer 1 lokale optie"
+              width={540}
+              quality={85}
+              class="w-full h-auto"
+              loading="lazy"
+            />
+            <p class="text-white/40 text-[0.65rem] text-center py-1.5">ChatGPT beveelt Costa Blanca Movement Centre aan als #1</p>
+          </button>
         </div>
 
-        {/* ── CASE 2: doc.veri ── */}
-        <div>
-          <span class="inline-block px-3 py-1 text-[0.65rem] font-medium tracking-widest uppercase bg-accent/20 text-accent rounded-full mb-3">
-            Nog op test-URL
-          </span>
-          <h3 class="font-heading text-lg md:text-xl text-white mb-2">
-            Al herkend als expert door ChatGPT.
-          </h3>
-          <p class="text-white/60 text-sm leading-relaxed mb-5">
-            doc.veri &mdash; een site die nog niet eens officieel live staat.
-            ChatGPT noemt haar nu al als expert bij relevante zoekvragen.
-          </p>
+        <p class="text-white font-medium text-sm mt-5 max-w-2xl">
+          Niet na 6 maanden SEO. Na 14 dagen.
+          Omdat het fundament vanaf dag 1 klopte.
+        </p>
+      </div>
 
+      {/* ── Divider ── */}
+      <hr class="border-white/10 mb-14 md:mb-16" />
+
+      {/* ── CASE 2: doc.veri ── */}
+      <div class="mb-12 md:mb-14">
+        <span class="inline-block px-3 py-1 text-[0.65rem] font-medium tracking-widest uppercase bg-accent/20 text-accent rounded-full mb-4">
+          Arts &amp; Coach &middot; Duitsland &middot; Nog op test-URL
+        </span>
+
+        <h3 class="font-heading text-xl md:text-2xl text-white mb-3">
+          Dr. Verena Mann &mdash; doc.veri
+        </h3>
+
+        <p class="text-white/60 text-sm leading-relaxed mb-2 max-w-2xl">
+          Not&auml;rztin en gespecialiseerd in hormonale
+          gezondheid, darmklachten en intoleranties. Helpt vrouwen die vastlopen
+          in het reguliere circuit. Doelgroep: vrouwen 28&ndash;45 in de DACH-regio.
+        </p>
+
+        <p class="text-white/50 text-sm leading-relaxed mb-5 max-w-2xl">
+          De site draait nog op een test-URL.
+          Niet eens officieel live. Geen eigen domein. Geen promotie.
+        </p>
+
+        <p class="text-accent font-medium text-sm mb-4">Toch al herkend door AI:</p>
+
+        <ul class="space-y-1.5 mb-6">
+          <li class="flex items-start gap-2.5 text-white/80 text-sm leading-relaxed">
+            <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+            ChatGPT noemt Dr. Verena Mann als expert bij relevante zoekvragen
+          </li>
+          <li class="flex items-start gap-2.5 text-white/80 text-sm leading-relaxed">
+            <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+            Beschrijft haar specialisaties correct
+          </li>
+          <li class="flex items-start gap-2.5 text-white/80 text-sm leading-relaxed">
+            <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+            Linkt direct naar haar website
+          </li>
+        </ul>
+
+        <div class="max-w-md">
           <button
             type="button"
             class="proof-trigger cursor-pointer block rounded-image overflow-hidden border border-white/10 hover:border-white/30 transition-colors"
           >
             <Image
               src={proofDocVeri}
-              alt="ChatGPT herkent doc.veri als expert bij relevante zoekvragen"
+              alt="ChatGPT herkent Dr. Verena Mann als expert bij relevante zoekvragen"
               width={600}
               quality={85}
               class="w-full h-auto"
               loading="lazy"
             />
-            <p class="text-white/40 text-[0.65rem] text-center py-1.5">ChatGPT herkent de expertise &mdash; op een test-URL</p>
+            <p class="text-white/40 text-[0.65rem] text-center py-1.5">ChatGPT herkent Dr. Verena Mann als expert &mdash; op een test-URL</p>
           </button>
         </div>
 
+        <p class="text-white font-medium text-sm mt-5 max-w-2xl">
+          Zelfs zonder officieel domein pikt AI de structuur al op.
+          Dat is hoe sterk dit fundament werkt.
+        </p>
       </div>
 
-      <p class="text-white/80 text-sm md:text-base text-center mt-8 font-medium">
-        Gebouwd op hetzelfde fundament.
-        Zelfde technologie. Zelfde aanpak. Dat is wat jij krijgt.
-      </p>
+      {/* ── Bewijs-afsluiting ── */}
+      <div class="text-center border-t border-white/10 pt-10">
+        <p class="text-white/70 text-[0.95rem] leading-relaxed mb-3 max-w-lg mx-auto">
+          Een chiropraktijk in Spanje. Een arts in Duitsland.
+          Twee totaal verschillende bedrijven. Zelfde fundament. Zelfde resultaat:
+        </p>
+        <p class="text-white font-heading text-lg md:text-xl mb-3">
+          Binnen dagen vindbaar voor de mensen die ertoe doen.
+        </p>
+        <p class="text-accent font-medium text-[0.95rem]">
+          Dat fundament is precies wat jij krijgt voor &euro;79/maand.
+        </p>
+      </div>
     </div>
   </section>
 
