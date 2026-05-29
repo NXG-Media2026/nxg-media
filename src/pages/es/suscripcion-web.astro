@@ -1,7 +1,7 @@
 ---
 /**
- * Web AI-ready — /es/suscripcion-web/
- * Direct-response landing page. Translate existing site to AI-ready foundation.
+ * Suscripción Web — /es/suscripcion-web/
+ * Landing page para negocios locales en España.
  * noindex — ads lander. No links to other offer pages.
  */
 import { Image } from 'astro:assets';
@@ -19,9 +19,9 @@ import keystaticHomepage from '../../assets/images/keystatic_edit_homepage.png';
 import keystaticBlog from '../../assets/images/keystatic_add_blog.png';
 
 const cmsScreenshots = [
-  { src: keystaticDashboard, alt: 'Panel de administracion con vista general de todas las paginas, blogs, servicios y productos', caption: 'Todo en un solo lugar' },
-  { src: keystaticHomepage, alt: 'Editar textos de la pagina principal mediante campos de entrada sencillos', caption: 'Editar textos — sin codigo' },
-  { src: keystaticBlog, alt: 'Escribir un articulo de blog con barra de formato y campos SEO', caption: 'Publicar articulos tu mismo' },
+  { src: keystaticDashboard, alt: 'Panel de administración con vista general de todas las páginas, blogs, servicios y productos', caption: 'Todo en un solo lugar' },
+  { src: keystaticHomepage, alt: 'Editar textos de la página principal mediante campos de entrada sencillos', caption: 'Editar textos — sin código' },
+  { src: keystaticBlog, alt: 'Escribir un artículo de blog con barra de formato y campos SEO', caption: 'Publicar artículos tú mismo' },
 ];
 import proofGoogle from '../../assets/images/cases/proof-google-torrevieja.png';
 import proofChatgpt from '../../assets/images/cases/proof-chatgpt-local.png';
@@ -40,44 +40,44 @@ const logos = Object.entries(logoFiles)
   });
 
 const locale = 'es';
-const title = 'Web AI-ready — desde €79/mes | NXG Media';
-const description = 'Transforma tu sitio web actual en una base de clientes AI-ready que Google, ChatGPT y los clientes entienden. Desde €79/mes. Primeras 10 plazas este mes.';
+const title = 'Web preparada para Google y ChatGPT — desde 79€/mes | NXG Media';
+const description = 'Convertimos tu web actual en una web más clara, rápida y preparada para Google, ChatGPT y nuevos clientes. Desde 79€/mes. Primeras 10 plazas este mes.';
 
 const hreflang = buildHreflangTrilingual('/website-abonnement', '/en/website-subscription', '/es/suscripcion-web');
 
 const breadcrumbs = [
   { label: 'Inicio', href: '/es/' },
-  { label: 'Suscripcion Web' },
+  { label: 'Suscripción Web' },
 ];
 
 const faqItems = [
   {
-    q: 'Mi sitio web completo tiene que rehacerse?',
-    a: "El punto de partida es conservar lo que funciona: tu oferta, identidad visual, textos, fotos y pruebas. Lo reconstruimos sobre una base mas rapida y clara.",
+    q: '¿Hay que rehacer toda mi web?',
+    a: "El punto de partida es conservar lo que funciona: tu oferta, marca, textos, fotos y reseñas. Lo reconstruimos sobre una base más rápida, clara y preparada para Google y ChatGPT.",
   },
   {
-    q: 'Por que puede hacerse por 79 euros al mes?',
-    a: "Porque no construimos un proyecto completamente personalizado desde cero. Traducimos tu sitio actual a una base solida. Eso nos permite construir mas rapido y mantener los costes bajos.",
+    q: '¿Por qué puede hacerse por 79€ al mes?',
+    a: "Porque no construimos un proyecto a medida desde cero. Convertimos tu web actual en una base más clara y mejor estructurada. Eso nos permite trabajar más rápido y mantener los costes bajos.",
   },
   {
-    q: 'Por que solo 10 plazas?',
-    a: "Porque esto solo funciona cuando el alcance se mantiene ajustado: convertir tu sitio actual en una base mejor, sin un proyecto personalizado interminable. Por eso aceptamos un maximo de 10 empresas al mes.",
+    q: '¿Hay permanencia?',
+    a: "El plan más económico suele ir ligado a una colaboración más larga, porque incluye web, hosting, mantenimiento y revisión mensual. Antes de pagar nada, recibes una propuesta clara con las condiciones.",
   },
   {
-    q: 'Por que 12 meses?',
-    a: "Web, hosting, mantenimiento y revision mensual de visibilidad estan incluidos en una suscripcion. Sin gran pago inicial, pero con una base que sigue funcionando y se mantiene.",
+    q: '¿Por qué solo 10 plazas?',
+    a: "Porque cada proyecto recibe atención personal. No es una plantilla genérica — revisamos tu web, tu sector y tu zona para construir algo que funcione. Por eso aceptamos un máximo de 10 negocios al mes.",
   },
   {
-    q: 'Que pasa si quiero paginas extra o contenido SEO?',
-    a: "Eso puede venir despues. Paginas de servicios adicionales, blogs, contenido local y optimizacion avanzada se pueden contratar aparte. Primero nos aseguramos de que la base este bien.",
+    q: '¿Qué pasa si quiero páginas extra o contenido SEO?',
+    a: "Las ampliaciones pueden venir después. Páginas de servicios adicionales, blog, contenido local y optimización avanzada se pueden contratar aparte. Primero nos aseguramos de que la base esté bien.",
   },
   {
-    q: 'Voy a perder mi contenido antiguo?',
-    a: "No. Lo que funciona, lo conservamos. Lo que no esta claro, es lento o no convierte, lo mejoramos.",
+    q: '¿Voy a perder mi contenido antiguo?',
+    a: "Lo que funciona, lo conservamos. Lo que no está claro, es lento o no convierte, lo mejoramos. Tu marca, fotos y reseñas se aprovechan siempre que sea posible.",
   },
   {
-    q: 'Es para cualquier empresa?',
-    a: "Principalmente para proveedores de servicios locales, consultorios y especialistas con un servicio claro. Tiendas online y sitios complejos a medida suelen quedar fuera de esta oferta.",
+    q: '¿Es para cualquier empresa?',
+    a: "Principalmente para negocios locales y empresas de servicios: clínicas, fisioterapeutas, abogados, gestorías, centros de estética, academias, inmobiliarias y similares. Tiendas online y webs complejas a medida suelen quedar fuera de esta oferta.",
   },
 ];
 
@@ -115,36 +115,39 @@ const schemas = [
       <div class="max-w-2xl mx-auto">
 
         <h1 class="font-heading text-[1.85rem] leading-[1.12] md:text-[2.75rem] md:leading-[1.1] text-white mb-5">
-          Tu web esta online.<br />
-          <em class="text-accent not-italic">Pero tu competencia se lleva al cliente.</em>
+          Tu web está online.<br />
+          <em class="text-accent not-italic">Pero tus clientes llaman a tu competencia.</em>
         </h1>
 
         <p class="text-white/70 leading-relaxed mb-6 text-[0.95rem] md:text-base max-w-xl">
-          Cuando Google, ChatGPT y los visitantes entienden a tu competencia mas rapido que a ti, pierdes consultas sin darte cuenta.
+          Si Google, ChatGPT y tus visitantes entienden antes a tu competencia que a ti, pierdes consultas sin darte cuenta.
         </p>
 
         <p class="text-white/90 leading-relaxed mb-8 text-[0.95rem] md:text-base max-w-xl font-medium">
-          Traducimos tu sitio actual &mdash; oferta, identidad visual, textos y pruebas &mdash; a una base AI-ready mas rapida, construida para ser encontrada y elegida.
+          No tiramos tu web actual a la basura. Aprovechamos lo que ya sirve &mdash; servicios, textos, fotos, marca y reseñas &mdash; y lo convertimos en una web más rápida, clara y preparada para Google, ChatGPT y nuevos clientes.
         </p>
 
         {/* Deal card */}
         <div class="bg-white/[0.12] backdrop-blur-sm border-2 border-accent/40 rounded-card p-5 md:p-6 mb-6 max-w-md shadow-lg">
           <p class="font-heading text-4xl md:text-5xl text-white mb-2">
-            Desde &euro;79<span class="text-lg text-white/60 font-body">/mes</span>
+            Desde 79&euro;<span class="text-lg text-white/60 font-body">/mes</span>
           </p>
           <div class="flex flex-wrap gap-2 mt-3">
             <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-accent/20 text-accent rounded-full">Primeras 10 plazas este mes</span>
             <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-white/10 text-white/80 rounded-full">Sin pago ahora</span>
+            <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-white/10 text-white/80 rounded-full">Aprovechamos lo que ya tienes</span>
           </div>
         </div>
 
         <a
-          href="#aanvragen"
+          href="#formulario"
           class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-white bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg w-full md:w-auto justify-center"
         >
-          Analizar mi web
+          Comprobar si mi web encaja
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
         </a>
+
+        <p class="text-white/40 text-xs mt-4">Los últimos 2 proyectos fueron visibles en Google o ChatGPT en menos de 2 semanas.</p>
       </div>
     </div>
   </section>
@@ -155,12 +158,12 @@ const schemas = [
       ══════════════════════════════════════════════════ */}
   <section class="bg-bg-alt border-b border-border/50 px-4 md:px-6 py-6 md:py-8">
     <div class="max-w-4xl mx-auto">
-      <p class="text-xs uppercase tracking-widest text-text-muted font-medium text-center mb-4">Pruebas recientes de 2 nuevas bases</p>
+      <p class="text-xs uppercase tracking-widest text-text-muted font-medium text-center mb-4">Resultados recientes</p>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
         <div class="flex items-start gap-3 bg-white border border-border rounded-card px-5 py-4">
           <span class="text-accent text-lg font-bold shrink-0 mt-0.5">#1</span>
           <div>
-            <p class="text-text font-medium text-sm leading-snug">Costa Blanca: visible en Google en 14 dias</p>
+            <p class="text-text font-medium text-sm leading-snug">Clínica en Torrevieja: visible en Google en 14 días</p>
           </div>
         </div>
         <div class="flex items-start gap-3 bg-white border border-border rounded-card px-5 py-4">
@@ -180,20 +183,20 @@ const schemas = [
   <section class="px-4 md:px-6 py-12 md:py-16">
     <div class="max-w-4xl mx-auto">
       <h2 class="font-heading text-2xl md:text-3xl text-text mb-3 text-center">
-        No solo una web bonita. Una web que debe generar clientes.
+        Una web bonita no basta. Tu web tiene que generar consultas.
       </h2>
       <p class="text-text-muted text-center mb-8 md:mb-10 max-w-2xl mx-auto text-[0.95rem] leading-relaxed">
-        Un disenador web tradicional piensa en paginas y diseno. Nosotros nos enfocamos en intencion de busqueda, confianza, pruebas, CTAs y como Google, ChatGPT y los clientes entienden tu negocio.
+        Un diseñador web tradicional piensa en páginas y diseño. Nosotros nos enfocamos en cómo Google, ChatGPT y tus clientes entienden tu negocio — y en que te elijan a ti.
       </p>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
         <div class="border border-border rounded-card p-5 md:p-6 bg-white/50">
-          <p class="text-text-muted text-xs uppercase tracking-widest font-medium mb-3">Disenador web tradicional</p>
+          <p class="text-text-muted text-xs uppercase tracking-widest font-medium mb-3">Diseñador web tradicional</p>
           <ul class="space-y-2.5">
             {[
               'Web bonita, pocas consultas',
-              'Piensa en paginas y diseno',
-              'El SEO viene despues',
+              'Piensa en páginas y diseño',
+              'El SEO viene después',
               'Entregar y listo',
             ].map((item) => (
               <li class="flex items-start gap-2.5 text-sm text-text-muted leading-relaxed">
@@ -208,13 +211,13 @@ const schemas = [
           <span class="absolute -top-3 left-6 inline-block px-3 py-0.5 text-[0.65rem] font-medium tracking-widest uppercase bg-accent text-white rounded-full">
             NXG Media
           </span>
-          <p class="text-text text-xs uppercase tracking-widest font-medium mb-3">Visibilidad AI y conversion</p>
+          <p class="text-text text-xs uppercase tracking-widest font-medium mb-3">Preparada para Google, ChatGPT y clientes</p>
           <ul class="space-y-2.5">
             {[
-              'Visibilidad + conversion como punto de partida',
-              'Servicio + region claramente posicionados',
-              "Pruebas antes del CTA",
-              'Construida para Google, AI y clientes',
+              'Visibilidad + conversión como punto de partida',
+              'Servicio + zona claramente posicionados',
+              'Pruebas y confianza antes de pedir cita',
+              'Construida para que Google y ChatGPT te entiendan',
             ].map((item) => (
               <li class="flex items-start gap-2.5 text-sm text-text leading-relaxed font-medium">
                 <svg class="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
@@ -226,7 +229,7 @@ const schemas = [
       </div>
 
       <p class="text-text font-medium text-center text-[0.95rem] mt-8">
-        La web es el medio. Mas consultas es el objetivo.
+        La web es el medio. Más consultas es el objetivo.
       </p>
     </div>
   </section>
@@ -238,39 +241,39 @@ const schemas = [
   <section class="px-4 md:px-6 py-12 md:py-16 bg-bg-alt">
     <div class="max-w-4xl mx-auto">
       <h2 class="font-heading text-2xl md:text-3xl text-text mb-3 text-center">
-        No tienes que tirarlo todo. La base tiene que mejorar.
+        No tiramos tu web. La convertimos en algo que funcione.
       </h2>
       <p class="text-text-muted text-center mb-8 md:mb-10 max-w-2xl mx-auto text-[0.95rem] leading-relaxed">
-        Tu oferta, identidad visual, resenas, fotos y textos utiles los conservamos. Lo que no esta claro, es lento o no convence, lo mejoramos.
+        Tu marca, reseñas, fotos y textos útiles los conservamos. Lo que no está claro, es lento o no convence, lo mejoramos.
       </p>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
         <div class="bg-white border border-border rounded-card p-5">
           <p class="font-heading text-lg text-text mb-1">Lo que funciona, lo conservamos</p>
           <p class="text-text-muted text-sm leading-relaxed">
-            Identidad visual, fotos, resenas y textos utiles no tienen por que perderse.
+            Marca, fotos, reseñas y textos útiles no tienen por qué perderse.
           </p>
         </div>
         <div class="bg-white border border-border rounded-card p-5">
-          <p class="font-heading text-lg text-text mb-1">Lo que clientes y AI no entienden, lo mejoramos</p>
+          <p class="font-heading text-lg text-text mb-1">Lo que no entienden, lo mejoramos</p>
           <p class="text-text-muted text-sm leading-relaxed">
-            Servicios, region, pruebas y CTAs para que te perciban como la opcion logica mas rapido.
+            Servicios, zona, pruebas y llamadas a la acción para que te perciban como la opción lógica.
           </p>
         </div>
         <div class="bg-white border border-border rounded-card p-5">
-          <p class="font-heading text-lg text-text mb-1">Las optimizaciones extra pueden esperar</p>
+          <p class="font-heading text-lg text-text mb-1">Las ampliaciones pueden esperar</p>
           <p class="text-text-muted text-sm leading-relaxed">
-            Blogs, SEO local y anuncios se pueden anadir despues. Primero la base.
+            Blog, SEO local y anuncios se pueden añadir después. Primero la base.
           </p>
         </div>
       </div>
 
       <div class="text-center mt-8">
         <a
-          href="#aanvragen"
+          href="#formulario"
           class="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg"
         >
-          Analizar mi web
+          Comprobar si mi web encaja
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
         </a>
       </div>
@@ -284,29 +287,29 @@ const schemas = [
   <section class="px-4 md:px-6 py-12 md:py-16">
     <div class="max-w-4xl mx-auto">
       <h2 class="font-heading text-2xl md:text-3xl text-text mb-3 text-center">
-        Puede que ya estes perdiendo clientes frente a un competidor mas claro
+        Puede que ya estés perdiendo clientes frente a un competidor más claro
       </h2>
       <p class="text-text font-medium text-center mb-8 md:mb-10 max-w-2xl mx-auto text-[0.95rem]">
-        Tu competencia no tiene que ser mejor. Solo mas claramente encontrable.
+        Tu competencia no tiene que ser mejor. Solo más fácil de encontrar y entender.
       </p>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 mb-8">
         <div class="bg-bg-alt border border-border rounded-card p-5">
           <p class="font-heading text-lg text-text mb-1">Los visitantes se van</p>
           <p class="text-text-muted text-sm leading-relaxed">
-            Si no sienten confianza lo suficientemente rapido, se van con la competencia.
+            Si no sienten confianza lo suficientemente rápido, se van con la competencia.
           </p>
         </div>
         <div class="bg-bg-alt border border-border rounded-card p-5">
-          <p class="font-heading text-lg text-text mb-1">Google y AI eligen al mas claro</p>
+          <p class="font-heading text-lg text-text mb-1">Google y ChatGPT eligen al más claro</p>
           <p class="text-text-muted text-sm leading-relaxed">
-            Sitios bien estructurados con informacion clara de servicios y region se muestran mas a menudo.
+            Webs bien estructuradas con información clara de servicios y zona se muestran más a menudo.
           </p>
         </div>
         <div class="bg-bg-alt border border-border rounded-card p-5">
           <p class="font-heading text-lg text-text mb-1">Un cliente extra ya lo recupera</p>
           <p class="text-text-muted text-sm leading-relaxed">
-            Te genera un cliente &euro;500? Entonces un cliente extra ya cubre mas de 6 meses de suscripcion.
+            ¿Un cliente te genera 500€? Entonces un cliente extra ya cubre más de 6 meses.
           </p>
         </div>
       </div>
@@ -323,7 +326,7 @@ const schemas = [
         Deja de poner parches SEO en una web que no convierte
       </h2>
       <p class="text-text-muted text-center mb-8 md:mb-10 max-w-2xl mx-auto text-[0.95rem] leading-relaxed">
-        Cuando la base es lenta, desordenada o confusa, los ajustes SEO puntuales se quedan cortos. Primero la base tiene que estar bien.
+        Cuando la base es lenta, desordenada o confusa, los ajustes SEO puntuales no sirven. Primero la base tiene que estar bien.
       </p>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
@@ -331,7 +334,7 @@ const schemas = [
           <p class="text-text-muted text-xs uppercase tracking-widest font-medium mb-3">Enfoque antiguo</p>
           <ul class="space-y-2.5">
             {[
-              'Anadir un plugin, ajustar un texto',
+              'Añadir un plugin, ajustar un texto',
               'Probar otra cosa el mes siguiente',
               'La base sigue igual',
             ].map((item) => (
@@ -347,12 +350,12 @@ const schemas = [
           <span class="absolute -top-3 left-6 inline-block px-3 py-0.5 text-[0.65rem] font-medium tracking-widest uppercase bg-accent text-white rounded-full">
             Nuevo enfoque
           </span>
-          <p class="text-text text-xs uppercase tracking-widest font-medium mb-3">Base AI-ready</p>
+          <p class="text-text text-xs uppercase tracking-widest font-medium mb-3">Web preparada para Google y ChatGPT</p>
           <ul class="space-y-2.5">
             {[
-              'Sitio actual traducido a una base clara',
-              'Servicio + region claros, pruebas en el lugar correcto',
-              'Lista para mas optimizacion',
+              'Tu web actual convertida en una base clara',
+              'Servicio + zona claros, pruebas en el lugar correcto',
+              'Lista para más optimización cuando quieras',
             ].map((item) => (
               <li class="flex items-start gap-2.5 text-sm text-text leading-relaxed font-medium">
                 <svg class="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
@@ -365,10 +368,10 @@ const schemas = [
 
       <div class="text-center mt-8">
         <a
-          href="#aanvragen"
+          href="#formulario"
           class="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg"
         >
-          Analizar mi web
+          Comprobar si mi web encaja
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
         </a>
       </div>
@@ -382,19 +385,19 @@ const schemas = [
   <section class="py-16 md:py-24 bg-primary">
     <div class="max-w-5xl mx-auto px-4 md:px-6">
       <h2 class="font-heading text-3xl md:text-4xl text-white mb-3 text-center">
-        Esto es lo que puede pasar cuando la base esta bien
+        Caso en España: de cero a visible en Google en 14 días
       </h2>
       <p class="text-white/60 text-center mb-12 md:mb-16 max-w-xl mx-auto text-[0.95rem]">
-        Nuestras 2 ultimas bases nuevas fueron visibles en Google o AI en menos de 2 semanas.
+        Los últimos 2 proyectos fueron visibles en Google o ChatGPT en menos de 2 semanas.
       </p>
 
-      {/* ── CASE 1: CBMC ── */}
+      {/* ── CASE 1: CBMC (principal) ── */}
       <div class="bg-white/5 backdrop-blur border-2 border-accent/30 rounded-card p-5 md:p-8 mb-10">
         <div class="flex items-center gap-4 mb-5">
           <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-accent/30 shrink-0">
             <Image
               src={jamesPhoto}
-              alt="Dr. James Mitchell"
+              alt="Dr. James Mitchell — Costa Blanca Movement Centre"
               widths={[56, 112]}
               sizes="56px"
               class="w-full h-full object-cover"
@@ -408,17 +411,19 @@ const schemas = [
           </div>
         </div>
 
-        <h3 class="font-heading text-2xl md:text-3xl text-white mb-1">De cero a visible en 14 dias</h3>
-        <p class="text-white/50 text-sm mb-5">Clinica quiropractica para expats en Torrevieja. Sin web, sin historial, sin backlinks.</p>
+        <h3 class="font-heading text-2xl md:text-3xl text-white mb-3">Clínica quiropráctica para expats en Torrevieja</h3>
+        <p class="text-white/60 text-sm mb-5 leading-relaxed">
+          Costa Blanca Movement Centre no tenía web, ni historial en Google, ni backlinks. En 14 días, la nueva web ya aparecía en Google. Después de 2 meses, recibía 12–15 pacientes al mes a través de la web.
+        </p>
 
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
           <div class="bg-white/5 rounded-card p-3 text-center">
-            <p class="font-heading text-xl md:text-2xl text-accent">pag.&nbsp;1</p>
+            <p class="font-heading text-xl md:text-2xl text-accent">Pág.&nbsp;1</p>
             <p class="text-white/50 text-xs mt-0.5">en Google</p>
           </div>
           <div class="bg-white/5 rounded-card p-3 text-center">
             <p class="font-heading text-xl md:text-2xl text-accent">ChatGPT</p>
-            <p class="text-white/50 text-xs mt-0.5">menciona la clinica</p>
+            <p class="text-white/50 text-xs mt-0.5">la menciona como opción local</p>
           </div>
           <div class="bg-white/5 rounded-card p-3 text-center">
             <p class="font-heading text-xl md:text-2xl text-accent">12&ndash;15</p>
@@ -426,103 +431,95 @@ const schemas = [
           </div>
           <div class="bg-white/5 rounded-card p-3 text-center">
             <p class="font-heading text-xl md:text-2xl text-accent">800+</p>
-            <p class="text-white/50 text-xs mt-0.5">visitantes/mes</p>
+            <p class="text-white/50 text-xs mt-0.5">visitas orgánicas/mes</p>
           </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
           <button type="button" class="proof-trigger cursor-pointer group text-left">
             <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
-              <Image src={proofGoogle} alt="Resultado en Google: Costa Blanca Movement Centre en pagina 1 tras 2 semanas" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
+              <Image src={proofGoogle} alt="Resultado en Google: Costa Blanca Movement Centre en página 1 tras 2 semanas" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
             </div>
-            <p class="text-white/40 text-xs mt-1.5 text-center group-hover:text-white/60 transition-colors">Google pagina 1 &mdash; tras 2 semanas</p>
+            <p class="text-white/40 text-xs mt-1.5 text-center group-hover:text-white/60 transition-colors">Google página 1 — tras 2 semanas</p>
           </button>
           <button type="button" class="proof-trigger cursor-pointer group text-left">
             <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
-              <Image src={proofChatgpt} alt="ChatGPT recomienda Costa Blanca Movement Centre como opcion local numero 1" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
+              <Image src={proofChatgpt} alt="ChatGPT recomienda Costa Blanca Movement Centre como opción local número 1" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
             </div>
-            <p class="text-white/40 text-xs mt-1.5 text-center group-hover:text-white/60 transition-colors">ChatGPT recomienda la clinica como #1</p>
+            <p class="text-white/40 text-xs mt-1.5 text-center group-hover:text-white/60 transition-colors">ChatGPT recomienda la clínica como #1</p>
           </button>
         </div>
 
         <p class="text-accent font-medium text-center text-base pt-4 border-t border-white/10">
-          No despues de un ano de SEO. En 14 dias la base ya fue detectada.
+          No después de un año de SEO. En 14 días, Google y ChatGPT ya entendían la nueva base.
         </p>
       </div>
 
-      {/* ── CASE 2: Dr. Verena Mann ── */}
-      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-card p-5 md:p-8 mb-10">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-          <div>
-            <div class="flex items-center gap-4 mb-5">
-              <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-accent/30 shrink-0">
-                <Image src={verenaPhoto} alt="Dr. Verena Mann" widths={[56, 112]} sizes="56px" class="w-full h-full object-cover" loading="lazy" decoding="async" />
-              </div>
-              <div>
-                <p class="text-white font-medium text-sm">Dr. Verena Mann</p>
-                <a href="https://doc-veri.pages.dev" target="_blank" rel="noopener" class="text-accent/70 hover:text-accent text-xs transition-colors">doc-veri.pages.dev</a>
-              </div>
-            </div>
-            <h3 class="font-heading text-2xl md:text-3xl text-white mb-1">De gran experiencia a 19 consultas al mes</h3>
-            <p class="text-white/50 text-sm mb-5">Doctora y experta con comunidad, pero pocas consultas a traves de su web.</p>
-
-            <div class="grid grid-cols-2 gap-3">
-              <div class="bg-white/5 rounded-card p-3 text-center">
-                <p class="text-white/50 text-xs uppercase tracking-wider mb-1">Consultas/mes</p>
-                <div class="flex items-center justify-center gap-2">
-                  <span class="font-heading text-lg text-white/40">2</span>
-                  <span class="text-accent">&rarr;</span>
-                  <span class="font-heading text-2xl text-accent">19</span>
-                </div>
-              </div>
-              <div class="bg-white/5 rounded-card p-3 text-center">
-                <p class="text-white/50 text-xs uppercase tracking-wider mb-1">Menciones AI</p>
-                <div class="flex items-center justify-center gap-2">
-                  <span class="font-heading text-lg text-white/40">0</span>
-                  <span class="text-accent">&rarr;</span>
-                  <span class="font-heading text-2xl text-accent">15</span>
-                </div>
-              </div>
-            </div>
+      {/* ── CASE 2: Dr. Verena Mann (secundario) ── */}
+      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-card p-5 md:p-6 mb-10">
+        <div class="flex items-center gap-4 mb-4">
+          <div class="w-10 h-10 rounded-full overflow-hidden ring-2 ring-accent/30 shrink-0">
+            <Image src={verenaPhoto} alt="Dr. Verena Mann" widths={[48, 96]} sizes="48px" class="w-full h-full object-cover" loading="lazy" decoding="async" />
           </div>
-
-          <div class="flex flex-col justify-center space-y-3">
-            <button type="button" class="proof-trigger cursor-pointer group text-left">
-              <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
-                <Image src={proofVerenaAi} alt="ChatGPT menciona a Dr. Verena Mann como experta adecuada" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
-              </div>
-              <p class="text-white/40 text-xs mt-1.5 text-center group-hover:text-white/60 transition-colors">Respuesta AI: &ldquo;eine passende Expertin&rdquo;</p>
-            </button>
-            <button type="button" class="proof-trigger cursor-pointer group text-left">
-              <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
-                <Image src={proofVerenaChatgpt} alt="ChatGPT recomienda a Dr. Verena Mann con enlace directo a su web" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
-              </div>
-              <p class="text-white/40 text-xs mt-1.5 text-center group-hover:text-white/60 transition-colors">ChatGPT con enlace directo a su web</p>
-            </button>
+          <div>
+            <p class="text-white font-medium text-sm">Dr. Verena Mann</p>
+            <a href="https://doc-veri.pages.dev" target="_blank" rel="noopener" class="text-accent/70 hover:text-accent text-xs transition-colors">doc-veri.pages.dev</a>
           </div>
         </div>
 
-        <p class="text-accent font-medium text-center text-base pt-5 mt-5 border-t border-white/10">
-          No una web mas bonita. Una base que hizo comprensible su experiencia.
-        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
+          <div>
+            <p class="text-white/60 text-sm mb-3 leading-relaxed">Doctora con experiencia, pero pocas consultas a través de su web. Después de la conversión: 19 consultas/mes y mencionada 15 veces por ChatGPT.</p>
+            <div class="flex gap-3">
+              <div class="bg-white/5 rounded-card p-2.5 text-center flex-1">
+                <div class="flex items-center justify-center gap-2">
+                  <span class="font-heading text-sm text-white/40">2</span>
+                  <span class="text-accent text-sm">&rarr;</span>
+                  <span class="font-heading text-lg text-accent">19</span>
+                </div>
+                <p class="text-white/50 text-[0.65rem] mt-0.5">consultas/mes</p>
+              </div>
+              <div class="bg-white/5 rounded-card p-2.5 text-center flex-1">
+                <div class="flex items-center justify-center gap-2">
+                  <span class="font-heading text-sm text-white/40">0</span>
+                  <span class="text-accent text-sm">&rarr;</span>
+                  <span class="font-heading text-lg text-accent">15</span>
+                </div>
+                <p class="text-white/50 text-[0.65rem] mt-0.5">menciones IA</p>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <button type="button" class="proof-trigger cursor-pointer group text-left">
+              <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
+                <Image src={proofVerenaAi} alt="ChatGPT menciona a Dr. Verena Mann como experta" width={600} quality={85} class="w-full h-auto" loading="lazy" />
+              </div>
+            </button>
+            <button type="button" class="proof-trigger cursor-pointer group text-left">
+              <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
+                <Image src={proofVerenaChatgpt} alt="ChatGPT recomienda a Dr. Verena Mann con enlace directo" width={600} quality={85} class="w-full h-auto" loading="lazy" />
+              </div>
+            </button>
+          </div>
+        </div>
       </div>
 
       <div class="text-center">
         <a
-          href="#aanvragen"
+          href="#formulario"
           class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-white bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg"
         >
-          Analizar mi web
+          Comprobar si mi web encaja
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
         </a>
       </div>
     </div>
   </section>
 
-  <LogoMarquee logos={logos} label="Con la confianza de coaches, expertos y empresas" />
+  <LogoMarquee logos={logos} label="Con la confianza de negocios, especialistas y empresas de servicios" />
 
   {/* Lightbox overlay */}
-  <div id="proof-lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 p-4 md:p-8" role="dialog" aria-label="Ampliacion de captura">
+  <div id="proof-lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 p-4 md:p-8" role="dialog" aria-label="Ampliación de captura">
     <button type="button" id="proof-close" class="absolute top-4 right-4 text-white/70 hover:text-white text-3xl leading-none z-10" aria-label="Cerrar">&times;</button>
     <img id="proof-img" src="" alt="" class="max-h-[90vh] max-w-full rounded-image" />
   </div>
@@ -534,10 +531,10 @@ const schemas = [
   <section class="px-4 md:px-6 py-14 md:py-20">
     <div class="max-w-xl mx-auto">
       <h2 class="font-heading text-2xl md:text-3xl text-text mb-2 text-center">
-        La oferta Web AI-ready
+        La web preparada para Google y ChatGPT
       </h2>
       <p class="text-text-muted text-center mb-8 text-[0.95rem]">
-        Para empresarios que quieren transformar su web actual en una base que realmente se encuentre y se elija.
+        Para negocios que quieren convertir su web actual en algo que realmente se encuentre y genere consultas.
       </p>
 
       <div class="bg-white border-2 border-accent/30 rounded-card p-7 md:p-10 shadow-lg text-center">
@@ -546,18 +543,18 @@ const schemas = [
         </span>
 
         <p class="font-heading text-5xl md:text-6xl text-text mb-1">
-          &euro;79<span class="text-lg text-text-muted font-body">/mes</span>
+          79&euro;<span class="text-lg text-text-muted font-body">/mes</span>
         </p>
-        <p class="text-sm text-text-muted mb-6">12 meses</p>
+        <p class="text-sm text-text-muted mb-6">desde</p>
 
         <ul class="text-left space-y-2.5 mb-8">
           {[
-            'Tu sitio actual traducido a una base AI-ready',
-            "Textos, fotos e identidad visual aprovechados",
-            'Sin WordPress ni lios de plugins',
-            'Hosting + mantenimiento incluido',
-            'Revision mensual de visibilidad',
-            "Edita el contenido tu mismo desde el panel",
+            'Tu web actual convertida en una base más clara',
+            'Textos, fotos y marca aprovechados cuando sea posible',
+            'Sin WordPress ni líos de plugins',
+            'Hosting y mantenimiento incluidos',
+            'Revisión mensual de visibilidad',
+            'Panel para editar textos y fotos tú mismo',
           ].map((item) => (
             <li class="flex items-start gap-3 text-[0.95rem] text-text leading-relaxed">
               <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
@@ -567,15 +564,15 @@ const schemas = [
         </ul>
 
         <a
-          href="#aanvragen"
+          href="#formulario"
           class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg w-full justify-center"
         >
-          Analizar mi web
+          Comprobar si mi web encaja
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
         </a>
 
         <p class="text-xs text-text-muted mt-4">
-          Sin pago ahora. Primero recibes una propuesta.
+          Sin pago ahora. Primero revisamos si tu web encaja y te enviamos una propuesta.
         </p>
       </div>
     </div>
@@ -583,12 +580,12 @@ const schemas = [
 
 
   {/* ══════════════════════════════════════════════════
-      9 · SIN CAOS WORDPRESS / PANEL DE ADMINISTRACION
+      9 · SIN CAOS WORDPRESS / PANEL DE ADMINISTRACIÓN
       ══════════════════════════════════════════════════ */}
   <section class="px-4 md:px-6 py-12 md:py-16 bg-bg-alt">
     <div class="max-w-4xl mx-auto">
       <h2 class="font-heading text-2xl md:text-3xl text-text mb-3 text-center">
-        Sin caos de WordPress. Sin complicaciones tecnicas.
+        Sin caos de WordPress. Sin complicaciones técnicas.
       </h2>
 
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8 mt-8">
@@ -610,11 +607,11 @@ const schemas = [
 
       <ul class="max-w-md mx-auto space-y-2.5">
         {[
-          "Edita textos y fotos tu mismo",
+          'Edita textos y fotos tú mismo',
           'Sin actualizaciones de plugins ni temas rotos',
-          'Sin conocimientos tecnicos necesarios',
+          'Sin conocimientos técnicos necesarios',
           'Lo que funciona, lo conservamos',
-          'Ampliaciones solo cuando tu quieras',
+          'Ampliaciones solo cuando tú quieras',
         ].map((item) => (
           <li class="flex items-start gap-3 text-[0.95rem] text-text leading-relaxed">
             <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
@@ -629,14 +626,14 @@ const schemas = [
   {/* ══════════════════════════════════════════════════
       10 · FORMULARIO
       ══════════════════════════════════════════════════ */}
-  <section id="aanvragen" class="px-4 md:px-6 py-14 md:py-20">
+  <section id="formulario" class="px-4 md:px-6 py-14 md:py-20">
     <div class="max-w-lg mx-auto">
       <h2 class="font-heading text-2xl md:text-3xl text-text mb-3 text-center">
-        Comprueba si tu web es apta
+        Comprueba si tu web encaja
       </h2>
 
       <p class="text-text-muted text-center mb-8 text-[0.95rem] leading-relaxed">
-        Rellena tus datos. Revisare si tu sitio actual es adecuado para convertirlo en la base AI-ready.
+        Déjanos tu web y revisamos si se puede convertir en una base más clara, rápida y preparada para Google y ChatGPT.
       </p>
 
       <form id="founding-deal-form" class="space-y-3">
@@ -645,11 +642,12 @@ const schemas = [
         <input type="text" name="bedrijf" placeholder="Nombre de la empresa" required autocomplete="organization" class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white" />
         <input type="url" name="website" placeholder="https://tuweb.com" required autocomplete="url" class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white" />
         <input type="email" name="email" placeholder="tu@email.com" required autocomplete="email" class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white" />
-        <input type="tel" name="telefoon" placeholder="Telefono (opcional)" autocomplete="tel" class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white" />
-        <input type="text" name="bedrijfstype" placeholder="Que tipo de negocio tienes?" class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white" />
-        <input type="text" name="dienst" placeholder="Que servicio quieres hacer mas visible?" class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white" />
+        <input type="tel" name="telefoon" placeholder="WhatsApp / teléfono" autocomplete="tel" class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white" />
+        <input type="text" name="bedrijfstype" placeholder="¿Qué tipo de negocio tienes? (ej. clínica, abogado, gestoría...)" class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white" />
+        <input type="text" name="dienst" placeholder="¿Qué servicio quieres posicionar mejor?" class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white" />
+        <input type="text" name="ciudad" placeholder="Ciudad / zona" autocomplete="address-level2" class="w-full px-4 py-3.5 rounded-button border border-border text-sm text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white" />
         <button type="submit" class="w-full px-8 py-4 text-base font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg flex items-center justify-center gap-2">
-          Analizar mi web
+          Revisar mi web
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
         </button>
       </form>
@@ -658,14 +656,14 @@ const schemas = [
         <svg class="w-12 h-12 text-accent mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
-        <p class="font-heading text-xl text-text mb-2">Gracias!</p>
+        <p class="font-heading text-xl text-text mb-2">¡Gracias!</p>
         <p class="text-text-muted text-[0.95rem]">
-          Revisare tu web y te informare en 24 horas si cumples los requisitos.
+          Revisaremos tu web y te contactaremos en 24 horas por email o WhatsApp con el siguiente paso.
         </p>
       </div>
 
       <p id="founding-deal-microcopy" class="text-xs text-text-muted text-center mt-4">
-        Sin pago ahora. Sin compromiso. Primero recibes una propuesta.
+        Sin pago ahora. Sin compromiso. Te contactamos por email o WhatsApp con el siguiente paso.
       </p>
     </div>
   </section>
@@ -740,6 +738,7 @@ const schemas = [
     var telefoon = data.get('telefoon') || '';
     var bedrijfstype = data.get('bedrijfstype') || '';
     var dienst = data.get('dienst') || '';
+    var ciudad = data.get('ciudad') || '';
 
     if (!naam || !email || !website || !bedrijf) return;
 
@@ -750,13 +749,14 @@ const schemas = [
     if (bedrijf) extraInfo.push('Empresa: ' + bedrijf);
     if (bedrijfstype) extraInfo.push('Tipo: ' + bedrijfstype);
     if (dienst) extraInfo.push('Servicio: ' + dienst);
-    if (telefoon) extraInfo.push('Tel: ' + telefoon);
+    if (ciudad) extraInfo.push('Ciudad: ' + ciudad);
+    if (telefoon) extraInfo.push('WhatsApp: ' + telefoon);
 
     var payload = {
       naam: naam,
       email: email,
       websiteUrl: website,
-      vraag: 'Solicitud Web AI-ready — ' + extraInfo.join(' — '),
+      vraag: 'Solicitud Web — ' + extraInfo.join(' — '),
       source: 'website-actie-es',
     };
 
