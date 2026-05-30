@@ -10,7 +10,7 @@ export const siteConfig = {
   tagline: {
     nl: 'Bouw een online groeisysteem rond jouw expertise.',
     en: 'Build an online growth system around your expertise.',
-    es: 'Construye un sistema de crecimiento online alrededor de tu experiencia.',
+    es: 'Ayudamos a negocios de servicios a convertir su web en un canal de clientes.',
   },
   url: 'https://nxg-media.com',
   defaultLocale: 'nl' as const,

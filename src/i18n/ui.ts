@@ -317,7 +317,7 @@ export const ui = {
 
     // Newsletter
     'newsletter.heading': 'Newsletter',
-    'newsletter.subtitle': 'Información práctica sobre crecimiento online, visibilidad IA y posicionamiento de expertos — directo en tu inbox.',
+    'newsletter.subtitle': 'Ideas prácticas sobre visibilidad en Google, IA y crecimiento online para negocios de servicios.',
     'newsletter.placeholder': 'Tu email',
     'newsletter.button': 'Suscribirse',
     'newsletter.success': '¡Bienvenido! Revisa tu inbox.',
