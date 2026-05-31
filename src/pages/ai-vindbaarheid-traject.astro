@@ -329,39 +329,40 @@ const serviceSchema = generateService({
       ══════════════════════════════════════════════════ */}
   <section class="px-4 md:px-6 py-10 md:py-14">
     <div class="max-w-2xl mx-auto text-center">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-3">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">
         De Google- en AI-posities worden n&uacute; verdeeld.
       </h2>
-      <p class="text-text-muted mb-2 text-[0.95rem] max-w-xl mx-auto">
-        ChatGPT, Perplexity en Google AI leren welke bedrijven ze kunnen vertrouwen.
-      </p>
-      <p class="text-text font-medium mb-2 text-[0.95rem] max-w-xl mx-auto">
-        Sta jij daar nu tussen? Dan bouw je voorsprong op.
-      </p>
-      <p class="text-text-muted mb-8 text-[0.95rem] max-w-xl mx-auto">
-        Wacht je tot je concurrent die positie heeft? Dan wordt inhalen moeilijker.
-      </p>
+      <p class="text-text-muted text-[0.95rem] max-w-xl mx-auto">ChatGPT, Perplexity en Google AI leren welke bedrijven ze kunnen vertrouwen.</p>
+      <p class="text-text font-medium text-[0.95rem] max-w-xl mx-auto mt-1.5">Sta jij daar nu tussen? Dan bouw je voorsprong op.</p>
+      <p class="text-text-muted text-[0.95rem] max-w-xl mx-auto mt-1.5 mb-8">Wacht je tot je concurrent die positie heeft? Dan wordt inhalen moeilijker.</p>
 
-      {/* Trajectronde card */}
-      <div class="bg-primary rounded-card p-6 md:p-7 mb-8 max-w-md mx-auto text-center shadow-lg relative">
-        <span class="absolute -top-3 left-1/2 -translate-x-1/2 inline-block px-4 py-1 text-[0.6rem] font-medium tracking-[0.15em] uppercase bg-accent text-white rounded-full whitespace-nowrap">Volgende trajectronde</span>
-
-        <p class="font-heading text-4xl md:text-5xl text-white mt-2 mb-3">1 juli</p>
-
-        <div class="flex flex-wrap justify-center gap-2 mb-4">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-white/10 border border-white/20 text-white/80 rounded-full">
-            <svg class="w-3.5 h-3.5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-            Max 5 bedrijven
-          </span>
-          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-white/10 border border-white/20 text-white/80 rounded-full">
-            <svg class="w-3.5 h-3.5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
-            1 per branche/regio
-          </span>
+      {/* ── Trajectronde card ── */}
+      <div class="relative max-w-md mx-auto mb-8">
+        <div class="absolute -inset-1 bg-accent/20 rounded-2xl blur-md"></div>
+        <div class="relative bg-primary-dark rounded-xl overflow-hidden shadow-xl border border-accent/30">
+          <div class="bg-accent px-4 py-2">
+            <span class="text-[0.65rem] font-bold tracking-[0.2em] uppercase text-white">Volgende trajectronde</span>
+          </div>
+          <div class="px-6 py-6 md:px-8 md:py-7">
+            <p class="text-white/50 text-xs font-medium uppercase tracking-wider mb-1">Start</p>
+            <p class="font-heading text-5xl md:text-6xl text-white leading-none mb-5">1 juli</p>
+            <div class="flex flex-wrap justify-center gap-2 mb-5">
+              <span class="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold bg-white/10 text-white rounded-full">
+                <svg class="w-3.5 h-3.5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                Max 5 bedrijven
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold bg-white/10 text-white rounded-full">
+                <svg class="w-3.5 h-3.5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+                1 per branche/regio
+              </span>
+            </div>
+            <div class="border-t border-white/10 pt-4">
+              <p class="text-accent font-semibold text-base md:text-lg">
+                Is jouw concurrent eerder? Dan is jouw plek bezet.
+              </p>
+            </div>
+          </div>
         </div>
-
-        <p class="text-white font-medium text-[0.95rem]">
-          Is jouw concurrent eerder? Dan is jouw plek bezet.
-        </p>
       </div>
 
       <a href="#formulier" class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg">
