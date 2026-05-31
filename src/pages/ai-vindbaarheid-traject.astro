@@ -47,8 +47,20 @@ const faqItems = [
     a: 'Ja, als je huidige website niet geschikt is, bouwen we een nieuw AI-ready websitefundament mee. Normaal betaal je hier al snel €2.000–€4.000 voor. Binnen dit traject zit dat fundament inbegrepen.',
   },
   {
-    q: 'Wat is het verschil tussen €99 en €299?',
-    a: 'Bij €99/mnd zetten wij je websitebasis goed en monitoren je zichtbaarheid. Jij voert zelf de groei-acties uit: content, reviews en uitbreidingen. Bij €299/mnd voeren wij 90 dagen actief de groei voor je uit: content, pagina\'s, Google Business, reviews, conversie en optimalisatie. Na de sprint ga je naar behoud & monitoring vanaf €79/mnd.',
+    q: 'Wat krijg ik precies bij het AI & Google Fundament van €99/mnd?',
+    a: 'Dit pakket is voor bedrijven die hun basis goed willen zetten en daarna zelf content, reviews en input willen aanleveren. Wij zorgen voor het AI-ready websitefundament, hosting, onderhoud, monitoring en concrete verbeterpunten. Jij voert de groei-acties grotendeels zelf uit.<br><br>• Sneller AI & Google-ready websitefundament<br>• Hosting en onderhoud<br>• Maandelijkse Google & AI-monitoring<br>• Concrete suggesties voor content, reviews en pagina\'s<br>• Beheerpaneel om zelf teksten, foto\'s en updates aan te passen<br>• Jij levert zelf reviews, foto\'s, input en extra content aan',
+  },
+  {
+    q: 'Wat krijg ik extra bij de 90-dagen Aanvragen Sprint van €299/mnd?',
+    a: 'Dit pakket is voor bedrijven die willen dat wij de groei-acties uitvoeren. We doen niet alleen de basis, maar bouwen actief aan vindbaarheid, autoriteit, vertrouwen en aanvragen.<br><br>• Zoekvragen- en concurrentieonderzoek<br>• Dienst- en regiopagina\'s<br>• SEO/AI-content schrijven en plaatsen<br>• Google Business optimalisatie<br>• Reviewproces en reviewtemplates<br>• Reviews verwerken op de website<br>• FAQ\'s en bewijsblokken toevoegen<br>• CTA\'s en conversie verbeteren<br>• Maandelijkse Google & AI-check',
+  },
+  {
+    q: 'Wat gebeurt er na de 90-dagen sprint?',
+    a: 'Na de sprint kun je naar behoud & monitoring vanaf €79/mnd. Dan houden we je website online, snel en up-to-date, monitoren we je zichtbaarheid en zorgen we dat je fundament niet stilvalt. Grotere nieuwe pagina\'s, campagnes of extra content kunnen apart worden toegevoegd.',
+  },
+  {
+    q: 'Waarom zou ik €299/mnd kiezen als er ook een €99/mnd optie is?',
+    a: 'Het €99/mnd pakket is vooral bedoeld als basis + richting. Jij moet dan zelf reviews, content en verbeteringen aanleveren. Bij €299/mnd voeren wij de groeiacties uit: onderzoek, pagina\'s, content, Google Business, reviews en optimalisatie richting aanvragen. Je betaalt dus vooral voor uitvoering en snelheid.',
   },
   {
     q: 'Kom ik echt op pagina 1 in Google?',
@@ -252,17 +264,13 @@ const serviceSchema = generateService({
   <section class="px-4 md:px-6 py-12 md:py-16 bg-bg-alt">
     <div class="max-w-3xl mx-auto">
       <h2 class="font-heading text-2xl md:text-3xl text-text mb-3 text-center">
-        Je hebt misschien al iemand voor je website. Maar is dat ook een marketeer?
+        Je hebt misschien al iemand voor je website. Maar die persoon wordt niet afgerekend op jouw aanvragen.
       </h2>
-      <p class="text-text-muted text-center mb-6 max-w-2xl mx-auto text-[0.95rem] leading-relaxed">
-        De meeste MKB-websites worden beheerd door iemand die pagina's, plugins en updates regelt. Handig. Maar dat is iets anders dan een website bouwen die klanten oplevert.
+      <p class="text-text-muted text-center mb-2 max-w-2xl mx-auto text-[0.95rem] leading-relaxed">
+        Veel ondernemers hebben &lsquo;een mannetje&rsquo;, webbouwer of bureau dat de site beheert. Prima voor updates, plugins en kleine aanpassingen. Maar dat is iets anders dan een website bouwen die hoger komt in Google, genoemd wordt door AI en aanvragen oplevert.
       </p>
-
-      <p class="text-text text-[0.95rem] leading-relaxed mb-2 max-w-2xl mx-auto text-center">
-        Je webbouwer kan misschien een tekst aanpassen, een plugin installeren of een SEO-titel wijzigen. Maar daarmee win je nog geen klanten van je concurrent.
-      </p>
-      <p class="text-text-muted text-[0.95rem] leading-relaxed mb-8 max-w-2xl mx-auto text-center">
-        Pagina 1 in Google, AI-vermeldingen en meer aanvragen vragen om meer dan technisch beheer. Daarvoor moet je website gebouwd worden vanuit zoekgedrag, bewijs, vertrouwen en conversie.
+      <p class="text-text font-medium text-center mb-8 max-w-2xl mx-auto text-[0.95rem]">
+        Een tekst aanpassen of plugin installeren maakt je website nog geen klantenkanaal.
       </p>
 
       {/* Vergelijking */}
@@ -271,12 +279,11 @@ const serviceSchema = generateService({
           <p class="text-text-muted text-xs uppercase tracking-widest font-medium mb-3">Websitebeheerder / klassieke webbouwer</p>
           <ul class="space-y-2">
             {[
-              'Beheert pagina\'s en plugins',
-              'Werkt vaak op WordPress',
+              'Houdt je site draaiend',
               'Past aan wat jij vraagt',
-              'Denkt in design en techniek',
-              'Houdt vooral de site draaiend',
-              'Geen eigenaar van jouw aanvragen',
+              'Denkt in pagina’s en plugins',
+              'Werkt vaak op oud WordPress-fundament',
+              'Wordt niet afgerekend op aanvragen',
             ].map((item) => (
               <li class="flex items-start gap-2 text-sm text-text-muted">
                 <svg class="w-3.5 h-3.5 text-red-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
@@ -288,14 +295,13 @@ const serviceSchema = generateService({
 
         <div class="border-2 border-accent/30 rounded-card p-5 bg-white shadow-lg relative">
           <span class="absolute -top-3 left-6 inline-block px-3 py-0.5 text-[0.65rem] font-medium tracking-widest uppercase bg-accent text-white rounded-full">NXG Media</span>
-          <p class="text-text text-xs uppercase tracking-widest font-medium mb-3">Klantenkanaal</p>
+          <p class="text-text text-xs uppercase tracking-widest font-medium mb-3 mt-1">Klantenkanaal</p>
           <ul class="space-y-2">
             {[
-              'Bouwt je website als klantenkanaal',
-              'Denkt vanuit Google, AI en klanten',
-              'Positioneert dienst + regio scherp',
+              'Bouwt vanuit zoekgedrag',
+              'Denkt in Google, AI en conversie',
               'Zet bewijs vóór de CTA',
-              'Bouwt richting pagina 1 en AI-vermeldingen',
+              'Maakt dienst + regio scherp',
               'Stuurt op meer aanvragen',
             ].map((item) => (
               <li class="flex items-start gap-2 text-sm text-text font-medium">
@@ -307,10 +313,10 @@ const serviceSchema = generateService({
         </div>
       </div>
 
-      <p class="text-text font-medium text-center text-[1.05rem] mb-2">
-        Je hebt geen extra plugin nodig. Je hebt een website nodig die klanten wint.
+      <p class="text-text font-medium text-center text-[1.05rem] mb-1">
+        Je hebt geen extra plugin nodig. Je hebt een klantenkanaal nodig.
       </p>
-      <p class="text-text font-medium text-center text-[1.05rem] mb-6">
+      <p class="text-text-muted text-center text-[0.95rem] mb-6">
         De site is het middel. Meer aanvragen is het doel.
       </p>
 
@@ -521,10 +527,10 @@ const serviceSchema = generateService({
         Welke route past bij jouw bedrijf?
       </h2>
       <p class="text-text-muted text-center mb-10 max-w-2xl mx-auto text-[0.95rem] leading-relaxed">
-        Wil je zelf uitvoeren met onze richting, of wil je dat wij 90 dagen actief werken aan posities, AI-vermeldingen en aanvragen?
+        Zelf uitvoeren met onze richting, of volledig ontzorgd worden.
       </p>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
 
         {/* ── KAART 1 — Fundament ── */}
         <div class="bg-white border border-border rounded-card p-5 md:p-7 flex flex-col">
@@ -534,27 +540,19 @@ const serviceSchema = generateService({
           <div class="flex items-baseline gap-2 mb-1">
             <p class="font-heading text-3xl text-accent">Vanaf &euro;99<span class="text-sm text-text-muted font-body">/mnd</span></p>
           </div>
-          <p class="text-text-muted text-xs mb-3">12 maanden</p>
-
-          {/* Value badge */}
-          <div class="bg-accent/5 border border-accent/15 rounded-lg px-4 py-2.5 mb-4">
-            <p class="text-sm text-text font-medium">AI-ready websitefundament inbegrepen</p>
-            <p class="text-xs text-accent">Normaal &euro;2.000&ndash;&euro;4.000 waarde</p>
-          </div>
+          <p class="text-text-muted text-xs mb-4">12 maanden</p>
 
           <p class="text-text-muted text-sm leading-relaxed mb-5">
-            Voor bedrijven die hun websitebasis goed willen zetten, maar zelf content, reviews en verbeteringen willen aanleveren. Als je huidige site niet geschikt is, zetten we hem om naar een snelle, duidelijke basis voor Google, AI-zoekmachines en klanten.
+            Wij zetten de basis goed. Jij voert de groei-acties zelf uit.
           </p>
 
-          {/* Wat dit jou oplevert */}
-          <p class="text-xs uppercase tracking-widest text-accent font-medium mb-2">Wat dit jou oplevert</p>
+          <p class="text-xs uppercase tracking-widest text-accent font-medium mb-2">Wat je krijgt</p>
           <ul class="space-y-1.5 mb-5">
             {[
-              'Een snellere, duidelijkere websitebasis die Google en AI-zoekmachines beter begrijpen',
-              'Een fundament zonder WordPress-chaos',
-              'Duidelijkheid over welke content, reviews of pagina\'s je nodig hebt',
-              'Maandelijkse monitoring van je Google- en AI-zichtbaarheid',
-              'Een beheerpaneel waarmee je zelf teksten, foto\'s en updates kunt aanpassen',
+              'AI-ready websitefundament',
+              'Hosting, onderhoud en monitoring',
+              'Concrete verbeterpunten per maand',
+              'Beheerpaneel om zelf aan te passen',
             ].map((item) => (
               <li class="flex items-start gap-2 text-sm text-text">
                 <svg class="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
@@ -563,47 +561,11 @@ const serviceSchema = generateService({
             ))}
           </ul>
 
-          {/* Wat wij doen */}
-          <p class="text-xs uppercase tracking-widest text-text-muted font-medium mb-2">Wat wij doen</p>
-          <ul class="space-y-1.5 mb-5">
-            {[
-              'We zetten je website op een AI & Google-ready fundament',
-              'We houden de technische basis up-to-date',
-              'We monitoren of je gevonden wordt in Google en AI-zoekmachines',
-              'We geven concrete suggesties voor content, reviews en verbeteringen',
-              'Hosting, onderhoud en beheerpaneel inbegrepen',
-            ].map((item) => (
-              <li class="flex items-start gap-2 text-sm text-text-muted">
-                <svg class="w-3.5 h-3.5 text-accent/60 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-                {item}
-              </li>
-            ))}
-          </ul>
-
-          {/* Wat jij zelf doet */}
-          <p class="text-xs uppercase tracking-widest text-text-muted font-medium mb-2">Wat jij zelf doet</p>
-          <ul class="space-y-1.5 mb-5">
-            {[
-              'Jij levert reviews, foto\'s en input aan',
-              'Jij maakt of laat zelf extra content maken',
-              'Jij voert grotere uitbreidingen zelf uit of vraagt die apart aan',
-            ].map((item) => (
-              <li class="flex items-start gap-2 text-sm text-text-muted">
-                <svg class="w-3.5 h-3.5 text-text-muted/50 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-                {item}
-              </li>
-            ))}
-          </ul>
-
-          {/* Realistisch doel */}
-          <div class="bg-bg-alt rounded-lg p-4 mb-5">
-            <p class="text-xs uppercase tracking-widest text-text-muted font-medium mb-1">Realistisch doel</p>
-            <p class="text-sm text-text leading-relaxed">Een sterke basis die klaarstaat voor Google en AI. Ideaal als je zelf tijd hebt om content en reviews op te bouwen.</p>
+          <div class="bg-bg-alt rounded-lg px-4 py-3 mb-5">
+            <p class="text-xs text-text-muted"><strong class="text-text">Beste keuze als:</strong> je zelf tijd hebt om content, reviews en input aan te leveren.</p>
           </div>
 
-          <p class="text-text font-medium text-sm mb-5 mt-auto">Wij zetten de basis goed en houden hem goed. Jij bouwt zelf verder.</p>
-
-          <a href="#formulier" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg w-full">
+          <a href="#formulier" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg w-full mt-auto">
             Check of mijn bedrijf in aanmerking komt
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
           </a>
@@ -615,31 +577,23 @@ const serviceSchema = generateService({
 
           <span class="inline-block self-start px-3 py-1 text-[0.6rem] font-medium tracking-widest uppercase bg-accent/10 text-accent rounded-full mb-4">Wij voeren het uit</span>
 
-          <p class="font-heading text-lg text-text mb-0.5">90-dagen Google & AI Aanvragen Sprint</p>
+          <p class="font-heading text-lg text-text mb-0.5">90-dagen Aanvragen Sprint</p>
           <div class="flex items-baseline gap-2 mb-1">
             <p class="font-heading text-3xl text-accent">Vanaf &euro;299<span class="text-sm text-text-muted font-body">/mnd</span></p>
           </div>
-          <p class="text-text-muted text-xs mb-3">3 maanden &middot; daarna behoud vanaf &euro;79/mnd</p>
-
-          {/* Value badge */}
-          <div class="bg-accent/5 border border-accent/15 rounded-lg px-4 py-2.5 mb-4">
-            <p class="text-sm text-text font-medium">Inclusief AI-ready websitefundament</p>
-            <p class="text-xs text-accent">+ volledige uitvoering richting vindbaarheid en aanvragen</p>
-          </div>
+          <p class="text-text-muted text-xs mb-4">3 maanden</p>
 
           <p class="text-text-muted text-sm leading-relaxed mb-5">
-            Voor bedrijven die willen dat wij actief bouwen aan vindbaarheid, autoriteit en aanvragen. Niet alleen de basis, maar ook zoekvragen, pagina's, content, reviews, Google Business en conversie worden actief opgepakt.
+            Wij zetten de basis goed &eacute;n voeren de groei-acties voor je uit.
           </p>
 
-          {/* Wat dit jou oplevert */}
-          <p class="text-xs uppercase tracking-widest text-accent font-medium mb-2">Wat dit jou oplevert</p>
+          <p class="text-xs uppercase tracking-widest text-accent font-medium mb-2">Wat je krijgt</p>
           <ul class="space-y-1.5 mb-5">
             {[
-              'Meer kans op pagina 1 in Google voor relevante dienst + regio zoektermen',
-              'Meer kans om genoemd te worden door ChatGPT, Perplexity en Google AI',
-              'Meer vertrouwen bij bezoekers die je nog niet kennen',
-              'Meer contactmomenten en aanvragen uit je website',
-              'Minder afhankelijkheid van mond-tot-mond of dure advertenties',
+              'Zoekvragen- en concurrentieonderzoek',
+              'Dienst/regio-pagina\'s + content',
+              'Google Business + reviewproces',
+              'Optimalisatie richting pagina 1, AI-vermeldingen en aanvragen',
             ].map((item) => (
               <li class="flex items-start gap-2 text-sm text-text font-medium">
                 <svg class="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
@@ -648,89 +602,20 @@ const serviceSchema = generateService({
             ))}
           </ul>
 
-          {/* Wat wij doen in 90 dagen */}
-          <p class="text-xs uppercase tracking-widest text-text-muted font-medium mb-2">Wat wij doen in 90 dagen</p>
-          <ul class="space-y-1.5 mb-5">
-            {[
-              'Zoekvragen- en concurrentieonderzoek',
-              'Dienst- en regiopagina\'s bouwen',
-              'SEO/AI-content schrijven en plaatsen',
-              'Bestaande teksten herschrijven zodat ze beter citeerbaar zijn',
-              'Google Business optimaliseren',
-              'Reviewproces opzetten',
-              'Reviews verwerken op de website',
-              'FAQ\'s en bewijsblokken toevoegen',
-              'CTA\'s en conversie verbeteren',
-              'Maandelijkse Google & AI-check',
-            ].map((item) => (
-              <li class="flex items-start gap-2 text-sm text-text-muted">
-                <svg class="w-3.5 h-3.5 text-accent/60 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-                {item}
-              </li>
-            ))}
-          </ul>
-
-          {/* Realistisch doel */}
-          <div class="bg-accent/5 border border-accent/15 rounded-lg p-4 mb-4">
-            <p class="text-xs uppercase tracking-widest text-accent font-medium mb-2">Realistisch doel binnen 90 dagen</p>
-            <ul class="space-y-1.5">
-              {[
-                'Pagina 1 in Google voor minimaal één relevante lokale zoekterm',
-                'Genoemd worden door AI-tools zoals ChatGPT, Perplexity of Google AI',
-                'Een website die duidelijker vertrouwen opbouwt en meer aanvragen kan opleveren',
-              ].map((item) => (
-                <li class="flex items-start gap-2 text-sm text-text">
-                  <svg class="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-                  {item}
-                </li>
-              ))}
-            </ul>
+          <div class="bg-accent/5 border border-accent/15 rounded-lg px-4 py-3 mb-5">
+            <p class="text-xs text-text-muted"><strong class="text-accent">Daarna:</strong> behoud & monitoring vanaf &euro;79/mnd.</p>
           </div>
 
-          {/* Na 90 dagen */}
-          <div class="bg-bg-alt rounded-lg p-4 mb-5">
-            <p class="text-xs uppercase tracking-widest text-text-muted font-medium mb-1">Na 90 dagen &mdash; behoud vanaf &euro;79/mnd</p>
-            <p class="text-sm text-text-muted leading-relaxed">Na de sprint houden we je fundament online, snel en up-to-date. We blijven je zichtbaarheid monitoren en zorgen dat je positie niet stilvalt.</p>
-          </div>
-
-          <p class="text-text font-medium text-sm mb-5 mt-auto">Wij doen het werk voor je en bouwen actief richting pagina 1, AI-vermeldingen en meer aanvragen.</p>
-
-          <a href="#formulier" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg w-full">
+          <a href="#formulier" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg w-full mt-auto">
             Check of mijn bedrijf in aanmerking komt
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
           </a>
         </div>
       </div>
 
-      {/* Vergelijking */}
-      <div class="max-w-2xl mx-auto">
-        <p class="font-heading text-lg text-text mb-4 text-center">Het simpele verschil:</p>
-        <div class="space-y-2 mb-6">
-          <div class="flex items-start gap-3 bg-white border border-border rounded-lg px-4 py-3">
-            <span class="font-heading text-accent text-sm shrink-0 mt-0.5">&euro;99/mnd</span>
-            <p class="text-sm text-text">Wij zetten de basis goed. Jij voert zelf de groei-acties uit.</p>
-          </div>
-          <div class="flex items-start gap-3 bg-white border-2 border-accent/20 rounded-lg px-4 py-3">
-            <span class="font-heading text-accent text-sm shrink-0 mt-0.5">&euro;299/mnd</span>
-            <p class="text-sm text-text font-medium">Wij zetten de basis goed &eacute;n voeren de groei-acties voor je uit.</p>
-          </div>
-          <div class="flex items-start gap-3 bg-white border border-border rounded-lg px-4 py-3">
-            <span class="font-heading text-text-muted text-sm shrink-0 mt-0.5">Daarna</span>
-            <p class="text-sm text-text-muted">Behoud & monitoring vanaf &euro;79/mnd.</p>
-          </div>
-        </div>
-
-        <p class="text-sm text-text-muted text-center mb-6 max-w-lg mx-auto">
-          Niet elk bedrijf heeft hetzelfde nodig. Daarom checken we eerst of jouw bedrijf geschikt is en welke route logisch is.
-        </p>
-
-        <div class="text-center">
-          <a href="#formulier" class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg">
-            Check of mijn bedrijf in aanmerking komt
-            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-          </a>
-        </div>
-      </div>
+      <p class="text-sm text-text-muted text-center max-w-lg mx-auto">
+        Niet elk bedrijf heeft hetzelfde nodig. Daarom checken we eerst welke route logisch is.
+      </p>
     </div>
   </section>
 
