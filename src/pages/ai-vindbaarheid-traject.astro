@@ -137,6 +137,22 @@ const serviceSchema = generateService({
           </ul>
         </div>
 
+        {/* Trajectronde badges */}
+        <div class="flex flex-wrap gap-2 mb-6">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-accent/20 border border-accent/40 text-white rounded-full">
+            <svg class="w-3.5 h-3.5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+            Volgende trajectronde start 1 juli
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-accent/20 border border-accent/40 text-white rounded-full">
+            <svg class="w-3.5 h-3.5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+            Maximaal 5 bedrijven
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-accent/20 border border-accent/40 text-white rounded-full">
+            <svg class="w-3.5 h-3.5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+            1 bedrijf per branche/regio
+          </span>
+        </div>
+
         <a href="#formulier" class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-white bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg w-full md:w-auto justify-center">
           Check of mijn bedrijf in aanmerking komt
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
@@ -177,7 +193,87 @@ const serviceSchema = generateService({
 
 
   {/* ══════════════════════════════════════════════════
-      2b · WEBSITE VALUE STACK
+      2b · GUARANTEE (risk reversal — high placement)
+      ══════════════════════════════════════════════════ */}
+  <section class="px-4 md:px-6 py-10 md:py-14">
+    <div class="max-w-3xl mx-auto">
+      <div class="bg-white border-2 border-accent/30 rounded-card p-6 md:p-8 shadow-lg text-center relative">
+        <span class="absolute -top-3 left-1/2 -translate-x-1/2 inline-block px-4 py-1 text-[0.65rem] font-medium tracking-widest uppercase bg-accent text-white rounded-full whitespace-nowrap">Google & AI vooruitgangsgarantie</span>
+
+        <div class="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.746 3.746 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+          </svg>
+        </div>
+
+        <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">
+          Geen zichtbare vooruitgang in Google of AI? Dan werken wij gratis door.
+        </h2>
+        <p class="text-text-muted mb-3 text-[0.95rem] leading-relaxed max-w-xl mx-auto">
+          Binnen 90 dagen moet je vooruitgang zien in Google, AI-zoekmachines of aanvragen via je website.
+        </p>
+        <p class="text-text font-medium mb-6 text-[1.05rem] max-w-xl mx-auto">
+          Geen vooruitgang? Dan werken wij gratis door totdat er resultaat zichtbaar wordt. Zonder extra kosten.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-3">
+          {['Geen nieuw traject', 'Geen extra voorstel', 'Geen slap rapport', 'Resultaat moet zichtbaar worden'].map((item) => (
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm bg-bg-alt border border-border rounded-full text-text font-medium">
+              <svg class="w-3.5 h-3.5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              {item}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      2c · EXCLUSIVITEIT
+      ══════════════════════════════════════════════════ */}
+  <section class="px-4 md:px-6 py-12 md:py-16 bg-primary">
+    <div class="max-w-3xl mx-auto text-center">
+      <span class="inline-block px-4 py-1 text-[0.65rem] font-medium tracking-widest uppercase bg-accent text-white rounded-full mb-5">Beperkt aantal plekken</span>
+
+      <h2 class="font-heading text-2xl md:text-3xl text-white mb-4">
+        Waarom maximaal 5 bedrijven per ronde?
+      </h2>
+      <p class="text-white/70 mb-4 text-[0.95rem] leading-relaxed max-w-xl mx-auto">
+        Elk traject krijgt persoonlijke aandacht: strategie, content, optimalisatie en begeleiding. Dat kan niet met 20 bedrijven tegelijk.
+      </p>
+      <p class="text-white/90 font-medium mb-4 text-[0.95rem] max-w-xl mx-auto">
+        Daarom nemen we maximaal 5 bedrijven per trajectronde aan &mdash; en maximaal 1 per branche in dezelfde regio.
+      </p>
+      <p class="text-accent font-medium mb-8 text-[1.05rem] max-w-xl mx-auto">
+        Als jouw concurrent in dezelfde regio eerder instapt, is jouw plek bezet.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8 max-w-2xl mx-auto">
+        <div class="bg-white/[0.08] border border-white/10 rounded-card px-4 py-4 text-center">
+          <p class="font-heading text-2xl text-accent mb-1">5</p>
+          <p class="text-white/70 text-sm">bedrijven per ronde</p>
+        </div>
+        <div class="bg-white/[0.08] border border-white/10 rounded-card px-4 py-4 text-center">
+          <p class="font-heading text-2xl text-accent mb-1">1</p>
+          <p class="text-white/70 text-sm">per branche/regio</p>
+        </div>
+        <div class="bg-white/[0.08] border border-white/10 rounded-card px-4 py-4 text-center">
+          <p class="font-heading text-lg text-accent mb-1">1 juli</p>
+          <p class="text-white/70 text-sm">volgende start</p>
+        </div>
+      </div>
+
+      <a href="#formulier" class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-white bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg">
+        Check of mijn bedrijf in aanmerking komt
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+      </a>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      2d · WEBSITE VALUE STACK
       ══════════════════════════════════════════════════ */}
   <section class="px-4 md:px-6 py-12 md:py-16">
     <div class="max-w-4xl mx-auto">
@@ -674,44 +770,7 @@ const serviceSchema = generateService({
 
 
   {/* ══════════════════════════════════════════════════
-      9 · GUARANTEE
-      ══════════════════════════════════════════════════ */}
-  <section class="px-4 md:px-6 py-14 md:py-20">
-    <div class="max-w-3xl mx-auto">
-      <div class="bg-white border-2 border-accent/30 rounded-card p-6 md:p-8 shadow-lg text-center relative">
-        <span class="absolute -top-3 left-1/2 -translate-x-1/2 inline-block px-4 py-1 text-[0.65rem] font-medium tracking-widest uppercase bg-accent text-white rounded-full whitespace-nowrap">Google & AI beweging-garantie</span>
-
-        <div class="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
-          <svg class="w-8 h-8 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.746 3.746 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
-          </svg>
-        </div>
-
-        <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">
-          Geen beweging? Wij werken gratis door.
-        </h2>
-        <p class="text-text-muted mb-3 text-[0.95rem] leading-relaxed max-w-xl mx-auto">
-          Binnen 90 dagen moet je vooruitgang zien in Google, AI-zoekmachines of aanvragen via je website.
-        </p>
-        <p class="text-text font-medium mb-6 text-[1.05rem] max-w-xl mx-auto">
-          Geen beweging? Dan werken wij gratis door totdat er resultaat zichtbaar wordt.
-        </p>
-
-        <div class="flex flex-wrap justify-center gap-3">
-          {['Geen nieuw traject', 'Geen extra voorstel', 'Geen slap rapport', 'Resultaat moet zichtbaar worden'].map((item) => (
-            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm bg-bg-alt border border-border rounded-full text-text font-medium">
-              <svg class="w-3.5 h-3.5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-              {item}
-            </span>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  {/* ══════════════════════════════════════════════════
-      10 · URGENCY
+      10 · URGENCY + EXCLUSIVITEIT
       ══════════════════════════════════════════════════ */}
   <section class="px-4 md:px-6 py-12 md:py-16">
     <div class="max-w-3xl mx-auto text-center">
@@ -727,6 +786,12 @@ const serviceSchema = generateService({
       <p class="text-text-muted mb-6 text-[0.95rem] max-w-xl mx-auto">
         Wacht je tot je concurrent die positie heeft, dan wordt het moeilijker om hem nog in te halen.
       </p>
+
+      <div class="bg-bg-alt border-2 border-accent/20 rounded-card p-5 md:p-6 mb-8 max-w-xl mx-auto">
+        <p class="text-text font-medium text-[0.95rem] mb-2">Volgende trajectronde: <span class="text-accent font-heading">1 juli</span></p>
+        <p class="text-text-muted text-sm mb-2">Maximaal 5 bedrijven &mdash; 1 per branche in dezelfde regio.</p>
+        <p class="text-text font-medium text-sm">Als jouw concurrent in dezelfde regio eerder instapt, is jouw plek bezet.</p>
+      </div>
 
       <div class="space-y-2 mb-8">
         <p class="text-text font-medium text-[1.05rem]">Wie nu zichtbaar wordt, wordt straks moeilijker in te halen.</p>
