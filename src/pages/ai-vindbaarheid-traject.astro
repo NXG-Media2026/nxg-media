@@ -381,14 +381,9 @@ const serviceSchema = generateService({
       <h2 class="font-heading text-2xl md:text-3xl text-white mb-3">
         Zichtbaarheid is niet het doel. Klanten zijn het doel.
       </h2>
-      <p class="text-white/60 mb-5 text-[0.95rem] leading-relaxed">
+      <p class="text-white/60 text-[0.95rem] leading-relaxed">
         Daarom bouwen we geen website om mooi te zijn. We bouwen een klantenkanaal dat gevonden, vertrouwd en gebruikt wordt.
       </p>
-      <div class="bg-white/[0.08] border border-accent/30 rounded-card px-5 py-3.5 max-w-md mx-auto">
-        <p class="text-accent font-medium text-[0.95rem]">
-          E&eacute;n extra klant van &euro;500&ndash;&euro;2.000 kan al meerdere maanden van het traject terugverdienen.
-        </p>
-      </div>
     </div>
   </section>
 
@@ -772,6 +767,28 @@ const serviceSchema = generateService({
   </section>
 
 
+  {/* ── Uitsluitingscheck ── */}
+  <section class="px-4 md:px-6 py-10 md:py-12 bg-bg-alt">
+    <div class="max-w-lg mx-auto text-center">
+      <p class="text-text-muted text-xs font-medium uppercase tracking-widest mb-4">Dit traject is niet bedoeld voor:</p>
+      <div class="space-y-1.5 mb-5 inline-block text-left">
+        {[
+          'Webshops met honderden producten',
+          'SaaS-platformen of complexe maatwerksystemen',
+          'Multinationals of grote corporate websites',
+          'Bedrijven zonder duidelijke dienst, regio of klantwaarde',
+        ].map((item) => (
+          <div class="flex items-start gap-2">
+            <svg class="w-3.5 h-3.5 text-red-400/70 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+            <p class="text-sm text-text-muted">{item}</p>
+          </div>
+        ))}
+      </div>
+      <p class="text-sm text-text font-medium italic">Voor lokale dienstverleners, praktijken en specialisten is dit juist gemaakt.</p>
+    </div>
+  </section>
+
+
   {/* ══════════════════════════════════════════════════
       14 · FINAL CTA / FORMULIER
       ══════════════════════════════════════════════════ */}
@@ -821,24 +838,6 @@ const serviceSchema = generateService({
         </button>
       </form>
 
-      {/* Korte uitsluitingscheck */}
-      <div class="mt-8 pt-6 border-t border-white/10">
-        <p class="text-white/50 text-xs font-medium uppercase tracking-widest mb-3">Dit traject is niet bedoeld voor:</p>
-        <div class="space-y-1.5 mb-4">
-          {[
-            'Webshops met honderden producten',
-            'SaaS-platformen of complexe maatwerksystemen',
-            'Multinationals of grote corporate websites',
-            'Bedrijven zonder duidelijke dienst, regio of klantwaarde',
-          ].map((item) => (
-            <div class="flex items-start gap-2">
-              <svg class="w-3.5 h-3.5 text-red-400/70 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-              <p class="text-xs text-white/40">{item}</p>
-            </div>
-          ))}
-        </div>
-        <p class="text-xs text-white/60 italic">Voor lokale dienstverleners, praktijken en specialisten is dit juist gemaakt.</p>
-      </div>
 
       <div id="traject-thanks" class="hidden text-center py-8">
         <svg class="w-12 h-12 text-accent mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
