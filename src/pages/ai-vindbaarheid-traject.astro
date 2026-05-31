@@ -21,9 +21,10 @@ import proofGoogle from '../assets/images/cases/proof-google-torrevieja.png';
 import proofChatgpt from '../assets/images/cases/proof-chatgpt-local.png';
 import proofVerenaAi from '../assets/images/cases/doc_veri_ai_answer_cropped.PNG';
 import proofVerenaChatgpt from '../assets/images/cases/doc-veri-chatgptproof.jpeg';
-import keystaticDashboard from '../assets/images/keystatic1.png';
-import keystaticHomepage from '../assets/images/keystatic_edit_homepage.png';
-import keystaticBlog from '../assets/images/keystatic_add_blog.png';
+// CMS screenshots moved to FAQ — imports kept for potential future use
+// import keystaticDashboard from '../assets/images/keystatic1.png';
+// import keystaticHomepage from '../assets/images/keystatic_edit_homepage.png';
+// import keystaticBlog from '../assets/images/keystatic_add_blog.png';
 
 const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
 const logos = Object.entries(logoFiles)
@@ -55,8 +56,12 @@ const faqItems = [
     a: 'Voor lokale bedrijven is pagina 1 vaak realistischer dan mensen denken, vooral op dienst + regio zoektermen. Daarom bouwen we gericht op duidelijke diensten, regio\'s, bewijs, autoriteit en een sterke technische basis.',
   },
   {
-    q: 'Word ik echt genoemd door ChatGPT en andere AI-zoekmachines?',
+    q: 'Word ik echt genoemd door ChatGPT en AI-zoekmachines?',
     a: 'Ja, dat is precies waar we je online fundament op inrichten: duidelijk genoeg worden voor AI-tools zoals ChatGPT, Perplexity en Google AI. Daarna bouwen we door naar de zoekvragen die klanten echt gebruiken.',
+  },
+  {
+    q: 'Wat gebeurt er in de eerste 90 dagen?',
+    a: 'In de eerste 90 dagen bouwen we stap voor stap aan vindbaarheid, vertrouwen en aanvragen.<br><br><strong>Week 1 — Groeiplan:</strong> kansen, zoekvragen, concurrenten en snelste route naar aanvragen.<br><br><strong>Week 2–4 — Fundament:</strong> je site wordt sneller, duidelijker en gebouwd voor Google, AI-zoekmachines en klanten.<br><br><strong>Week 4–8 — Autoriteit:</strong> reviews, Google Business, bewijs, content en lokale signalen.<br><br><strong>Week 8–12 — Optimalisatie:</strong> CTA\'s, conversie, vindbaarheid en aanvraagroute verbeteren.',
   },
   {
     q: 'Waarom geen WordPress?',
@@ -64,15 +69,23 @@ const faqItems = [
   },
   {
     q: 'Houd ik zelf controle over mijn website?',
-    a: 'Ja. Je krijgt een beheerpaneel waarmee je zelf teksten, foto\'s, diensten en updates kunt aanpassen. Je hoeft niet voor elke kleine wijziging naar een webbouwer.',
+    a: 'Ja. Je krijgt een beheerpaneel waarmee je zelf teksten, foto\'s, diensten en updates kunt aanpassen. Je hoeft niet voor elke kleine wijziging naar een webbouwer.<br><br>• Zelf teksten aanpassen<br>• Zelf foto\'s vervangen<br>• Blogs of updates publiceren<br>• Diensten beheren',
+  },
+  {
+    q: 'Ben ik dan afhankelijk van NXG Media?',
+    a: 'Nee, niet voor kleine inhoudelijke aanpassingen. Jij houdt controle over de inhoud. Wij beheren het technische fundament en zorgen dat de basis snel, veilig en goed ingericht blijft.',
   },
   {
     q: 'Wat moet ik zelf nog doen?',
     a: 'Bij de basisroute lever je vooral zelf input, reviews en content aan. Bij het volledig ontzorgde traject nemen wij veel meer uitvoering over, zoals content, reviewproces, Google Business en optimalisatie.',
   },
   {
-    q: 'Is dit voor elk bedrijf?',
-    a: 'Nee. Dit is vooral voor lokale dienstverleners, praktijken en specialisten waar één extra klant genoeg waarde heeft om online groei serieus te nemen.',
+    q: 'Voor wie is dit niet geschikt?',
+    a: 'Dit traject is niet bedoeld voor webshops met honderden producten, SaaS-platformen, multinationals of bedrijven zonder duidelijke dienst, regio of klantwaarde. Het is juist gemaakt voor lokale dienstverleners, praktijken en specialisten waar één extra klant genoeg waarde heeft om online groei serieus te nemen.',
+  },
+  {
+    q: 'Waarom maximaal 5 bedrijven per ronde?',
+    a: 'Elk traject krijgt persoonlijke aandacht: strategie, uitvoering en optimalisatie. Dat lukt alleen als we het aantal bedrijven per ronde beperken. Bovendien nemen we maximaal één bedrijf per branche in dezelfde regio aan, zodat je nooit tegen een directe concurrent binnen het traject aankijkt.',
   },
 ];
 
@@ -578,38 +591,7 @@ const serviceSchema = generateService({
 
 
   {/* ══════════════════════════════════════════════════
-      11 · 90-DAGEN TIJDLIJN
-      ══════════════════════════════════════════════════ */}
-  <section class="px-4 md:px-6 py-12 md:py-16">
-    <div class="max-w-3xl mx-auto">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-8 text-center">
-        Wat gebeurt er in de eerste 90 dagen?
-      </h2>
-
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-        {[
-          { week: 'Week 1', title: 'Groeiplan', desc: 'Kansen, zoekvragen, concurrenten en snelste route naar aanvragen.' },
-          { week: 'Week 2–4', title: 'Fundament', desc: 'Je site wordt sneller, duidelijker en gebouwd voor Google, AI en klanten.' },
-          { week: 'Week 4–8', title: 'Autoriteit', desc: 'Reviews, Google Business, bewijs, content en lokale signalen.' },
-          { week: 'Week 8–12', title: 'Optimalisatie', desc: 'CTA’s, conversie, vindbaarheid en aanvraagroute verbeteren.' },
-        ].map((step, i) => (
-          <div class="bg-white border border-border rounded-card p-4 text-center relative">
-            {i < 3 && <div class="hidden md:block absolute top-1/2 -right-2.5 w-5 h-0.5 bg-accent/20" />}
-            <div class="w-9 h-9 rounded-full bg-accent flex items-center justify-center mx-auto mb-2 shadow-md">
-              <span class="text-white font-heading text-sm">{i + 1}</span>
-            </div>
-            <p class="text-xs text-accent font-medium uppercase tracking-wide mb-1">{step.week}</p>
-            <p class="font-heading text-sm text-text mb-1">{step.title}</p>
-            <p class="text-xs text-text-muted leading-relaxed">{step.desc}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-
-  {/* ══════════════════════════════════════════════════
-      12 · CASES
+      11 · CASES
       ══════════════════════════════════════════════════ */}
   <section class="py-16 md:py-24 bg-bg-alt">
     <div class="max-w-5xl mx-auto px-4 md:px-6">
@@ -737,53 +719,7 @@ const serviceSchema = generateService({
 
 
   {/* ══════════════════════════════════════════════════
-      13 · CMS CONTROL
-      ══════════════════════════════════════════════════ */}
-  <section class="px-4 md:px-6 py-12 md:py-16 bg-bg-alt">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-2 text-center">
-        Je houdt gewoon controle over je website
-      </h2>
-      <p class="text-text-muted text-center mb-8 max-w-xl mx-auto text-[0.95rem]">
-        Geen black box. Geen plugin-chaos. Geen webbouwer nodig voor elke kleine tekstwijziging.
-      </p>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <div class="bg-white border border-border rounded-card overflow-hidden shadow-sm">
-          <Image src={keystaticDashboard} alt="Beheerpaneel met overzicht van alle pagina's, blogs, diensten en producten" width={600} quality={80} class="w-full h-auto" loading="lazy" />
-          <p class="text-xs text-text-muted text-center py-2 px-3">Alles op één plek</p>
-        </div>
-        <div class="bg-white border border-border rounded-card overflow-hidden shadow-sm">
-          <Image src={keystaticHomepage} alt="Homepage teksten aanpassen via eenvoudige invoervelden" width={600} quality={80} class="w-full h-auto" loading="lazy" />
-          <p class="text-xs text-text-muted text-center py-2 px-3">Teksten aanpassen &mdash; geen code nodig</p>
-        </div>
-        <div class="bg-white border border-border rounded-card overflow-hidden shadow-sm">
-          <Image src={keystaticBlog} alt="Blog schrijven met opmaak toolbar en SEO-velden" width={600} quality={80} class="w-full h-auto" loading="lazy" />
-          <p class="text-xs text-text-muted text-center py-2 px-3">Zelf blogartikelen publiceren</p>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl mx-auto">
-        {[
-          'Zelf teksten aanpassen',
-          'Zelf foto\'s vervangen',
-          'Blogs of updates publiceren',
-          'Diensten beheren',
-          'Geen WordPress-updates of kapotte plugins',
-          'Wij beheren het fundament, jij houdt controle over de inhoud',
-        ].map((item) => (
-          <div class="flex items-start gap-2.5">
-            <svg class="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-            <p class="text-sm text-text leading-relaxed">{item}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-
-  {/* ══════════════════════════════════════════════════
-      14 · FOUNDER
+      12 · FOUNDER
       ══════════════════════════════════════════════════ */}
   <section class="py-12 md:py-16">
     <div class="max-w-4xl mx-auto px-4 md:px-6">
@@ -805,20 +741,7 @@ const serviceSchema = generateService({
 
 
   {/* ══════════════════════════════════════════════════
-      15 · FAQ
-      ══════════════════════════════════════════════════ */}
-  <FAQAccordion
-    title="Veelgestelde vragen"
-    items={faqItems}
-    locale={locale}
-    pageType="service"
-    pageSlug="ai-vindbaarheid-traject"
-    compact={true}
-  />
-
-
-  {/* ══════════════════════════════════════════════════
-      16 · FINAL CTA / FORMULIER
+      14 · FINAL CTA / FORMULIER
       ══════════════════════════════════════════════════ */}
   <section id="formulier" class="px-4 md:px-6 py-14 md:py-20 bg-primary">
     <div class="max-w-lg mx-auto">
@@ -900,6 +823,19 @@ const serviceSchema = generateService({
       </p>
     </div>
   </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      15 · FAQ
+      ══════════════════════════════════════════════════ */}
+  <FAQAccordion
+    title="Veelgestelde vragen"
+    items={faqItems}
+    locale={locale}
+    pageType="service"
+    pageSlug="ai-vindbaarheid-traject"
+    compact={true}
+  />
 
 
   {/* ── Sticky mobile CTA ── */}
