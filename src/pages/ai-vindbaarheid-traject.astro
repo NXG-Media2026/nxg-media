@@ -571,9 +571,12 @@ const serviceSchema = generateService({
         </div>
 
         <div class="max-w-sm">
-          <div class="bg-bg-alt border border-border rounded-lg overflow-hidden">
-            <Image src={proofHwyWhatsapp} alt="WhatsApp-gesprek met Rolf van Happy With Yoga" width={600} quality={85} class="w-full h-auto" loading="lazy" />
-          </div>
+          <button type="button" class="proof-trigger cursor-pointer group w-full text-left">
+            <div class="bg-bg-alt border border-border rounded-lg overflow-hidden group-hover:border-accent/30 transition-colors">
+              <Image src={proofHwyWhatsapp} alt="WhatsApp-gesprek met Rolf van Happy With Yoga — klik om te vergroten" width={1200} quality={90} class="w-full h-auto" loading="lazy" />
+            </div>
+            <p class="text-text-muted text-[0.6rem] text-center mt-1 group-hover:text-text transition-colors">Klik om te vergroten</p>
+          </button>
         </div>
       </div>
 
