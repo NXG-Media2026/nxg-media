@@ -200,22 +200,47 @@ const serviceSchema = generateService({
     <div class="max-w-4xl mx-auto">
       <p class="text-xs uppercase tracking-widest text-accent font-medium text-center mb-5">Resultaten uit recente trajecten</p>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-        <div class="bg-white border-2 border-accent/20 rounded-card px-5 py-5 shadow-sm">
-          <div class="flex items-center gap-3 mb-2">
-            <span class="w-8 h-8 rounded-full bg-accent flex items-center justify-center text-white font-heading text-sm shrink-0">1</span>
-            <p class="text-text font-heading text-base leading-snug">0 &rarr; pagina 1 in 14 dagen</p>
+
+        {/* CBMC proof card */}
+        <div class="bg-white border-2 border-accent/20 rounded-card overflow-hidden shadow-sm">
+          <div class="px-5 pt-5 pb-4">
+            <div class="flex items-center gap-3 mb-3">
+              <Image src={jamesPhoto} alt="James Mitchell" width={40} height={40} class="w-10 h-10 rounded-full object-cover shrink-0 border-2 border-accent/20" />
+              <div>
+                <p class="text-text font-medium text-sm leading-tight">Costa Blanca Movement Centre</p>
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-wider bg-accent/10 text-accent rounded-full mt-0.5">Google proof</span>
+              </div>
+            </div>
+            <p class="text-text font-heading text-lg leading-snug mb-0.5">0 &rarr; pagina 1 in 14 dagen</p>
+            <p class="text-accent font-semibold text-sm">12&ndash;15 nieuwe pati&euml;nten/mnd</p>
           </div>
-          <p class="text-text-muted text-sm ml-11">Costa Blanca Movement Centre</p>
-          <p class="text-accent font-medium text-sm ml-11">12&ndash;15 nieuwe patiënten/mnd</p>
-        </div>
-        <div class="bg-white border-2 border-accent/20 rounded-card px-5 py-5 shadow-sm">
-          <div class="flex items-center gap-3 mb-2">
-            <span class="w-8 h-8 rounded-full bg-accent flex items-center justify-center text-white font-heading text-sm shrink-0">2</span>
-            <p class="text-text font-heading text-base leading-snug">2 &rarr; 19 aanvragen/mnd</p>
+          <div class="px-5 pb-4">
+            <div class="rounded-lg overflow-hidden border border-border/50 cursor-pointer proof-thumb" data-full-src="">
+              <Image src={proofGoogle} alt="Google pagina 1 bewijs" width={400} height={80} class="w-full h-auto opacity-90 hover:opacity-100 transition-opacity" />
+            </div>
           </div>
-          <p class="text-text-muted text-sm ml-11">Dr. Verena Mann</p>
-          <p class="text-accent font-medium text-sm ml-11">15 AI-vermeldingen in ChatGPT</p>
         </div>
+
+        {/* Verena proof card */}
+        <div class="bg-white border-2 border-accent/20 rounded-card overflow-hidden shadow-sm">
+          <div class="px-5 pt-5 pb-4">
+            <div class="flex items-center gap-3 mb-3">
+              <Image src={verenaPhoto} alt="Dr. Verena Mann" width={40} height={40} class="w-10 h-10 rounded-full object-cover shrink-0 border-2 border-accent/20" />
+              <div>
+                <p class="text-text font-medium text-sm leading-tight">Dr. Verena Mann</p>
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-wider bg-primary/10 text-primary rounded-full mt-0.5">AI proof</span>
+              </div>
+            </div>
+            <p class="text-text font-heading text-lg leading-snug mb-0.5">2 &rarr; 19 aanvragen/mnd</p>
+            <p class="text-accent font-semibold text-sm">15 AI-vermeldingen in ChatGPT</p>
+          </div>
+          <div class="px-5 pb-4">
+            <div class="rounded-lg overflow-hidden border border-border/50 cursor-pointer proof-thumb" data-full-src="">
+              <Image src={proofVerenaAi} alt="ChatGPT AI-vermelding bewijs" width={400} height={80} class="w-full h-auto opacity-90 hover:opacity-100 transition-opacity" />
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -261,50 +286,44 @@ const serviceSchema = generateService({
   {/* ══════════════════════════════════════════════════
       4 · ENEMY — WEBSITEBEHEERDER VS MARKETEER
       ══════════════════════════════════════════════════ */}
-  <section class="px-4 md:px-6 py-12 md:py-16 bg-bg-alt">
+  <section class="px-4 md:px-6 py-10 md:py-14 bg-bg-alt">
     <div class="max-w-3xl mx-auto">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-3 text-center">
-        Je hebt misschien al iemand voor je website. Maar die persoon wordt niet afgerekend op jouw aanvragen.
+      <h2 class="font-heading text-xl md:text-2xl text-text mb-1 text-center leading-snug">
+        Je websitepersoon beheert je site.<br class="hidden md:inline" />
+        Maar wordt hij afgerekend op aanvragen?
       </h2>
-      <p class="text-text-muted text-center mb-2 max-w-2xl mx-auto text-[0.95rem] leading-relaxed">
-        Veel ondernemers hebben &lsquo;een mannetje&rsquo;, webbouwer of bureau dat de site beheert. Prima voor updates, plugins en kleine aanpassingen. Maar dat is iets anders dan een website bouwen die hoger komt in Google, genoemd wordt door AI en aanvragen oplevert.
-      </p>
-      <p class="text-text font-medium text-center mb-8 max-w-2xl mx-auto text-[0.95rem]">
-        Een tekst aanpassen of plugin installeren maakt je website nog geen klantenkanaal.
+      <p class="text-text-muted text-center text-[0.9rem] mb-5 max-w-xl mx-auto">
+        Veel ondernemers hebben al &lsquo;een mannetje&rsquo;, webbouwer of bureau. Prima voor updates en kleine aanpassingen. Maar een tekst aanpassen is geen groeistrategie.
       </p>
 
-      {/* Vergelijking */}
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-        <div class="border border-border rounded-card p-5 bg-white/50">
-          <p class="text-text-muted text-xs uppercase tracking-widest font-medium mb-3">Websitebeheerder / klassieke webbouwer</p>
-          <ul class="space-y-2">
-            {[
-              'Houdt je site draaiend',
-              'Past aan wat jij vraagt',
-              'Denkt in pagina’s en plugins',
-              'Werkt vaak op oud WordPress-fundament',
-              'Wordt niet afgerekend op aanvragen',
-            ].map((item) => (
-              <li class="flex items-start gap-2 text-sm text-text-muted">
+      {/* Herkenningschips */}
+      <div class="flex flex-wrap justify-center gap-2 mb-6">
+        {['Ik heb al iemand voor mijn website', 'Hij past af en toe iets aan', 'Maar er komen weinig aanvragen uit'].map((item) => (
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-white border border-border text-text-muted rounded-full">
+            <svg class="w-3 h-3 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            {item}
+          </span>
+        ))}
+      </div>
+
+      {/* Vergelijking — compact */}
+      <div class="grid grid-cols-2 gap-3 mb-6 max-w-lg mx-auto">
+        <div class="border border-border rounded-lg p-4 bg-white/50">
+          <p class="text-[0.65rem] uppercase tracking-widest text-text-muted font-medium mb-2.5">Websitebeheerder</p>
+          <ul class="space-y-1.5">
+            {['Houdt je site draaiend', 'Past aan wat jij vraagt', 'Denkt in plugins/design', 'Wordt niet afgerekend op klanten'].map((item) => (
+              <li class="flex items-start gap-1.5 text-[0.8rem] text-text-muted">
                 <svg class="w-3.5 h-3.5 text-red-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
                 {item}
               </li>
             ))}
           </ul>
         </div>
-
-        <div class="border-2 border-accent/30 rounded-card p-5 bg-white shadow-lg relative">
-          <span class="absolute -top-3 left-6 inline-block px-3 py-0.5 text-[0.65rem] font-medium tracking-widest uppercase bg-accent text-white rounded-full">NXG Media</span>
-          <p class="text-text text-xs uppercase tracking-widest font-medium mb-3 mt-1">Klantenkanaal</p>
-          <ul class="space-y-2">
-            {[
-              'Bouwt vanuit zoekgedrag',
-              'Denkt in Google, AI en conversie',
-              'Zet bewijs vóór de CTA',
-              'Maakt dienst + regio scherp',
-              'Stuurt op meer aanvragen',
-            ].map((item) => (
-              <li class="flex items-start gap-2 text-sm text-text font-medium">
+        <div class="border-2 border-accent/30 rounded-lg p-4 bg-white shadow-md">
+          <p class="text-[0.65rem] uppercase tracking-widest text-accent font-medium mb-2.5">NXG Media</p>
+          <ul class="space-y-1.5">
+            {['Bouwt vanuit zoekgedrag', 'Maakt dienst + regio scherp', 'Zet bewijs vóór de CTA', 'Stuurt op aanvragen'].map((item) => (
+              <li class="flex items-start gap-1.5 text-[0.8rem] text-text font-medium">
                 <svg class="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
                 {item}
               </li>
@@ -313,11 +332,8 @@ const serviceSchema = generateService({
         </div>
       </div>
 
-      <p class="text-text font-medium text-center text-[1.05rem] mb-1">
+      <p class="text-text font-medium text-center text-[0.95rem] mb-5">
         Je hebt geen extra plugin nodig. Je hebt een klantenkanaal nodig.
-      </p>
-      <p class="text-text-muted text-center text-[0.95rem] mb-6">
-        De site is het middel. Meer aanvragen is het doel.
       </p>
 
       <div class="text-center">
@@ -369,6 +385,20 @@ const serviceSchema = generateService({
             </div>
           </div>
         </div>
+      </div>
+
+      {/* ── Niet bedoeld voor ── */}
+      <div class="max-w-md mx-auto mb-8">
+        <p class="text-text-muted text-[0.65rem] font-medium uppercase tracking-[0.15em] mb-2.5">Niet bedoeld voor:</p>
+        <div class="flex flex-wrap justify-center gap-1.5 mb-3">
+          {['Webshops', 'SaaS/platformen', 'Multinationals', 'Geen duidelijke dienst/regio'].map((item) => (
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 text-[0.7rem] text-text-muted bg-bg-alt border border-border rounded-full">
+              <svg class="w-3 h-3 text-red-400/70 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+              {item}
+            </span>
+          ))}
+        </div>
+        <p class="text-[0.8rem] text-text font-medium">Juist gemaakt voor lokale dienstverleners, praktijken en specialisten.</p>
       </div>
 
       <a href="#formulier" class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg">
@@ -652,26 +682,6 @@ const serviceSchema = generateService({
   </section>
 
 
-  {/* ── Uitsluitingscheck ── */}
-  <section class="px-4 md:px-6 py-10 md:py-12 bg-bg-alt">
-    <div class="max-w-lg mx-auto text-center">
-      <p class="text-text-muted text-xs font-medium uppercase tracking-widest mb-4">Dit traject is niet bedoeld voor:</p>
-      <div class="space-y-1.5 mb-5 inline-block text-left">
-        {[
-          'Webshops met honderden producten',
-          'SaaS-platformen of complexe maatwerksystemen',
-          'Multinationals of grote corporate websites',
-          'Bedrijven zonder duidelijke dienst, regio of klantwaarde',
-        ].map((item) => (
-          <div class="flex items-start gap-2">
-            <svg class="w-3.5 h-3.5 text-red-400/70 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-            <p class="text-sm text-text-muted">{item}</p>
-          </div>
-        ))}
-      </div>
-      <p class="text-sm text-text font-medium italic">Voor lokale dienstverleners, praktijken en specialisten is dit juist gemaakt.</p>
-    </div>
-  </section>
 
 
   {/* ══════════════════════════════════════════════════
