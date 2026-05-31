@@ -6,9 +6,10 @@ import { buildNewsletterPayload, serializePayload } from '../lib/emailCapture';
 
 interface Props {
   locale?: Locale;
+  hideNewsletter?: boolean;
 }
 
-const { locale = 'nl' } = Astro.props;
+const { locale = 'nl', hideNewsletter = false } = Astro.props;
 const navItems = navigation[locale];
 const year = new Date().getFullYear();
 const nlFormId = 'footer-newsletter';
@@ -24,6 +25,7 @@ const termsHref = getCollectionBasePath('voorwaarden', locale);
 
 <footer class="bg-primary-dark text-white/90">
   <div class="max-w-7xl mx-auto px-4 md:px-6 pt-16 md:pt-24 pb-10">
+    {!hideNewsletter && (
     <div class="max-w-xl mx-auto text-center mb-14">
       <h3 class="font-heading text-xl text-white mb-2">{t('newsletter.heading', locale)}</h3>
       <p class="text-sm text-white/60 mb-5">{t('newsletter.subtitle', locale)}</p>
@@ -59,6 +61,7 @@ const termsHref = getCollectionBasePath('voorwaarden', locale);
         {t('newsletter.error', locale)}
       </p>
     </div>
+    )}
   </div>
 
   <div class="border-t border-white/10">

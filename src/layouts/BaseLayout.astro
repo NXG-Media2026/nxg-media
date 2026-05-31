@@ -20,6 +20,7 @@ interface Props {
   noindex?: boolean;
   schemas?: string[];
   locale?: Locale;
+  hideNewsletter?: boolean;
 }
 
 const {
@@ -32,6 +33,7 @@ const {
   noindex = false,
   schemas = [],
   locale = 'nl',
+  hideNewsletter = false,
 } = Astro.props;
 ---
 
@@ -68,7 +70,7 @@ const {
 
   <div class="h-20 md:hidden" aria-hidden="true"></div>
 
-  <Footer locale={locale} />
+  <Footer locale={locale} hideNewsletter={hideNewsletter} />
 
   <StickyMobileCTA locale={locale} />
 
