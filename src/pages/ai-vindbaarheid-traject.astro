@@ -21,10 +21,9 @@ import proofGoogle from '../assets/images/cases/proof-google-torrevieja.png';
 import proofChatgpt from '../assets/images/cases/proof-chatgpt-local.png';
 import proofVerenaAi from '../assets/images/cases/doc_veri_ai_answer_cropped.PNG';
 import proofVerenaChatgpt from '../assets/images/cases/doc-veri-chatgptproof.jpeg';
-// CMS screenshots moved to FAQ — imports kept for potential future use
-// import keystaticDashboard from '../assets/images/keystatic1.png';
-// import keystaticHomepage from '../assets/images/keystatic_edit_homepage.png';
-// import keystaticBlog from '../assets/images/keystatic_add_blog.png';
+import keystaticDashboard from '../assets/images/keystatic1.png';
+import keystaticHomepage from '../assets/images/keystatic_edit_homepage.png';
+import keystaticBlog from '../assets/images/keystatic_add_blog.png';
 
 const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
 const logos = Object.entries(logoFiles)
@@ -327,31 +326,41 @@ const serviceSchema = generateService({
   {/* ══════════════════════════════════════════════════
       5 · URGENCY
       ══════════════════════════════════════════════════ */}
-  <section class="px-4 md:px-6 py-12 md:py-16">
-    <div class="max-w-3xl mx-auto text-center">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">
+  <section class="px-4 md:px-6 py-10 md:py-14">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-3">
         De Google- en AI-posities worden n&uacute; verdeeld.
       </h2>
-      <p class="text-text-muted mb-4 text-[0.95rem] leading-relaxed max-w-xl mx-auto">
-        ChatGPT, Perplexity en Google AI leren welke bedrijven duidelijk, betrouwbaar en relevant zijn.
+      <p class="text-text-muted mb-2 text-[0.95rem] max-w-xl mx-auto">
+        ChatGPT, Perplexity en Google AI leren welke bedrijven ze kunnen vertrouwen.
       </p>
-      <p class="text-text font-medium mb-3 text-[0.95rem] max-w-xl mx-auto">
-        Sta jij daar nu tussen, dan pak je vandaag zichtbaarheid &eacute;n bouw je voorsprong op voor later.
+      <p class="text-text font-medium mb-2 text-[0.95rem] max-w-xl mx-auto">
+        Sta jij daar nu tussen? Dan bouw je voorsprong op.
       </p>
-      <p class="text-text-muted mb-6 text-[0.95rem] max-w-xl mx-auto">
-        Wacht je tot je concurrent die positie heeft, dan wordt het moeilijker om hem nog in te halen.
+      <p class="text-text-muted mb-8 text-[0.95rem] max-w-xl mx-auto">
+        Wacht je tot je concurrent die positie heeft? Dan wordt inhalen moeilijker.
       </p>
 
-      <div class="bg-bg-alt border-2 border-accent/20 rounded-card p-5 md:p-6 mb-8 max-w-xl mx-auto">
-        <p class="text-text font-medium text-[0.95rem] mb-2">Volgende trajectronde: <span class="text-accent font-heading">1 juli</span></p>
-        <p class="text-text-muted text-sm mb-2">Maximaal 5 bedrijven &mdash; 1 per branche in dezelfde regio.</p>
-        <p class="text-text font-medium text-sm">Als jouw concurrent in dezelfde regio eerder instapt, is jouw plek bezet.</p>
-      </div>
+      {/* Trajectronde card */}
+      <div class="bg-primary rounded-card p-6 md:p-7 mb-8 max-w-md mx-auto text-center shadow-lg relative">
+        <span class="absolute -top-3 left-1/2 -translate-x-1/2 inline-block px-4 py-1 text-[0.6rem] font-medium tracking-[0.15em] uppercase bg-accent text-white rounded-full whitespace-nowrap">Volgende trajectronde</span>
 
-      <div class="space-y-2 mb-8">
-        <p class="text-text font-medium text-[1.05rem]">Wie nu zichtbaar wordt, wordt straks moeilijker in te halen.</p>
-        <p class="text-text font-medium text-[1.05rem]">Je concurrent wacht misschien niet.</p>
-        <p class="text-accent font-medium text-[1.05rem]">Dit is niet iets voor later. Dit kost je nu aanvragen.</p>
+        <p class="font-heading text-4xl md:text-5xl text-white mt-2 mb-3">1 juli</p>
+
+        <div class="flex flex-wrap justify-center gap-2 mb-4">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-white/10 border border-white/20 text-white/80 rounded-full">
+            <svg class="w-3.5 h-3.5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+            Max 5 bedrijven
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-white/10 border border-white/20 text-white/80 rounded-full">
+            <svg class="w-3.5 h-3.5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+            1 per branche/regio
+          </span>
+        </div>
+
+        <p class="text-white font-medium text-[0.95rem]">
+          Is jouw concurrent eerder? Dan is jouw plek bezet.
+        </p>
       </div>
 
       <a href="#formulier" class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg">
@@ -857,6 +866,24 @@ const serviceSchema = generateService({
     pageSlug="ai-vindbaarheid-traject"
     compact={true}
   />
+
+  {/* ── CMS proof (visual support for FAQ "Houd ik zelf controle?") ── */}
+  <section class="bg-bg pb-10 md:pb-14">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <p class="text-xs uppercase tracking-widest text-text-muted font-medium text-center mb-4">Zo ziet het beheerpaneel eruit</p>
+      <div class="grid grid-cols-3 gap-3">
+        <div class="bg-white border border-border rounded-lg overflow-hidden shadow-sm">
+          <Image src={keystaticDashboard} alt="Beheerpaneel met overzicht van pagina's, blogs en diensten" width={400} quality={80} class="w-full h-auto" loading="lazy" />
+        </div>
+        <div class="bg-white border border-border rounded-lg overflow-hidden shadow-sm">
+          <Image src={keystaticHomepage} alt="Teksten aanpassen via eenvoudige invoervelden" width={400} quality={80} class="w-full h-auto" loading="lazy" />
+        </div>
+        <div class="bg-white border border-border rounded-lg overflow-hidden shadow-sm">
+          <Image src={keystaticBlog} alt="Blog schrijven met opmaak en SEO-velden" width={400} quality={80} class="w-full h-auto" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
 
 
   {/* ── Sticky mobile CTA ── */}
