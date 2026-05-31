@@ -44,11 +44,11 @@ const breadcrumbs = [
 const faqItems = [
   {
     q: 'Krijg ik echt een nieuwe website inbegrepen?',
-    a: 'Als je huidige website niet geschikt is, bouwen we een nieuw AI-ready websitefundament mee. Normaal betaal je hier al snel €2.000–€4.000 voor. Binnen dit traject zit dat fundament inbegrepen.',
+    a: 'Ja, als je huidige website niet geschikt is, bouwen we een nieuw AI-ready websitefundament mee. Normaal betaal je hier al snel €2.000–€4.000 voor. Binnen dit traject zit dat fundament inbegrepen.',
   },
   {
     q: 'Wat is het verschil tussen €99 en €299?',
-    a: 'Vanaf €99/mnd zetten we vooral je basis goed: een snelle, duidelijke website die Google, AI-zoekmachines en klanten beter begrijpen. Vanaf €299/mnd nemen we ook de groei verder uit handen: content, reviews, Google Business, autoriteit, optimalisatie en conversie richting aanvragen.',
+    a: 'Vanaf €99/mnd zetten we vooral je basis goed: een snelle, duidelijke website die Google, ChatGPT en AI-zoekmachines beter begrijpen. Vanaf €299/mnd nemen we ook de groei verder uit handen: content, reviews, Google Business, autoriteit, optimalisatie en conversie richting aanvragen.',
   },
   {
     q: 'Kom ik echt op pagina 1 in Google?',
@@ -56,7 +56,7 @@ const faqItems = [
   },
   {
     q: 'Word ik echt genoemd door ChatGPT en andere AI-zoekmachines?',
-    a: 'Daar richten we je online fundament specifiek op in: duidelijk genoeg worden voor AI-tools zoals ChatGPT, Perplexity en Google AI. Daarna bouwen we door naar de zoekvragen die klanten echt gebruiken.',
+    a: 'Ja, dat is precies waar we je online fundament op inrichten: duidelijk genoeg worden voor AI-tools zoals ChatGPT, Perplexity en Google AI. Daarna bouwen we door naar de zoekvragen die klanten echt gebruiken.',
   },
   {
     q: 'Waarom geen WordPress?',
@@ -64,7 +64,7 @@ const faqItems = [
   },
   {
     q: 'Houd ik zelf controle over mijn website?',
-    a: 'Je krijgt een beheerpaneel waarmee je zelf teksten, foto\'s, diensten en updates kunt aanpassen. Je hoeft niet voor elke kleine wijziging naar een webbouwer.',
+    a: 'Ja. Je krijgt een beheerpaneel waarmee je zelf teksten, foto\'s, diensten en updates kunt aanpassen. Je hoeft niet voor elke kleine wijziging naar een webbouwer.',
   },
   {
     q: 'Wat moet ik zelf nog doen?',
@@ -110,7 +110,7 @@ const serviceSchema = generateService({
       <div class="max-w-2xl mx-auto">
         <h1 class="font-heading text-[1.85rem] leading-[1.12] md:text-[2.75rem] md:leading-[1.1] text-white mb-5">
           Pagina 1 in Google.<br />
-          Genoemd worden door ChatGPT.<br />
+          Genoemd worden door ChatGPT en AI-zoekmachines.<br />
           <em class="text-accent not-italic">Meer aanvragen uit je website.</em>
         </h1>
 
@@ -124,15 +124,16 @@ const serviceSchema = generateService({
 
         {/* Deal card */}
         <div class="bg-white/[0.12] backdrop-blur-sm border-2 border-accent/40 rounded-card p-5 md:p-6 mb-6 max-w-md shadow-lg">
-          <p class="font-heading text-4xl md:text-5xl text-white mb-2">
+          <p class="font-heading text-4xl md:text-5xl text-white mb-1">
             Vanaf &euro;99<span class="text-lg text-white/60 font-body">/mnd</span>
           </p>
-          <ul class="space-y-1.5 mt-3 text-sm text-white/70">
+          <p class="text-white/50 text-sm mb-3">Voor bedrijven die in aanmerking komen.</p>
+          <ul class="space-y-1.5 text-sm text-white/70">
             <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> Zichtbaar worden op pagina 1 in Google</li>
-            <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> Genoemd worden door ChatGPT, Perplexity en AI-zoekmachines</li>
+            <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> Genoemd worden door ChatGPT, Perplexity en Google AI</li>
             <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> Meer aanvragen uit je website</li>
-            <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> Websitefundament inbegrepen als dat nodig is</li>
-            <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> Actief groeitraject mogelijk vanaf &euro;299/mnd</li>
+            <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> AI-ready websitefundament inbegrepen als dat nodig is</li>
+            <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> Volledig ontzorgd traject mogelijk vanaf &euro;299/mnd</li>
           </ul>
         </div>
 
@@ -195,7 +196,7 @@ const serviceSchema = generateService({
             'Geen grote investering vooraf',
             'Geen losse webdesigner nodig',
             'Geen trage WordPress-site',
-            'Direct gebouwd voor Google, AI-zoekmachines en klanten',
+            'Direct gebouwd voor Google, ChatGPT en AI-zoekmachines',
             'Inclusief hosting, onderhoud en beheerpaneel',
           ].map((item) => (
             <div class="flex items-start gap-2.5">
@@ -258,13 +259,13 @@ const serviceSchema = generateService({
   <section class="px-4 md:px-6 py-12 md:py-16 bg-primary">
     <div class="max-w-4xl mx-auto">
       <h2 class="font-heading text-2xl md:text-3xl text-white mb-3 text-center">
-        Je oude WordPress-site remt je groei af
+        Je oude WordPress-site kost je aanvragen.
       </h2>
       <p class="text-white/70 text-center mb-3 max-w-2xl mx-auto text-[0.95rem] leading-relaxed">
         Veel MKB-websites hangen aan elkaar van plugins, verouderde thema's, trage hosting en losse SEO-trucjes.
       </p>
       <p class="text-white/90 font-medium text-center mb-8 max-w-2xl mx-auto text-[0.95rem]">
-        Dat kost snelheid, vertrouwen, vindbaarheid en aanvragen.
+        Dat voelt misschien onschuldig. Maar het remt je snelheid, vertrouwen, vindbaarheid en conversie.
       </p>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 max-w-3xl mx-auto">
@@ -285,7 +286,7 @@ const serviceSchema = generateService({
 
       <div class="bg-white/[0.12] backdrop-blur-sm border border-accent/40 rounded-card p-5 md:p-6 max-w-2xl mx-auto mb-6">
         <p class="text-white font-medium text-[0.95rem] leading-relaxed">
-          <span class="text-accent font-heading">Nieuwe aanpak:</span> Wij bouwen je nieuwe fundament zonder WordPress-chaos: snel, overzichtelijk, beheersbaar en gebouwd voor Google, AI-zoekmachines en klanten.
+          <span class="text-accent font-heading">Nieuwe aanpak:</span> Wij bouwen je nieuwe fundament zonder WordPress-chaos: snel, overzichtelijk, beheersbaar en gebouwd voor Google, ChatGPT, AI-zoekmachines en klanten.
         </p>
       </div>
 
@@ -561,7 +562,7 @@ const serviceSchema = generateService({
           </p>
           <div class="bg-bg-alt border border-border rounded-lg p-3 mb-4">
             <p class="text-sm text-text font-medium leading-relaxed">
-              <span class="text-accent font-heading">Uitkomst:</span> Wij zetten je huidige website om naar een snelle, duidelijke basis die Google, AI-zoekmachines en klanten beter begrijpen.
+              <span class="text-accent font-heading">Uitkomst:</span> Wij zetten je huidige website om naar een snelle, duidelijke basis die Google, ChatGPT en klanten beter begrijpen.
             </p>
           </div>
           <ul class="space-y-2 mb-5">
@@ -607,7 +608,7 @@ const serviceSchema = generateService({
               'AI-citeerbare FAQ\'s en contentblokken',
               'Lokale autoriteit/citations',
               'Conversieverbeteringen',
-              'Maandelijkse Google & AI-zoekmachine check',
+              'Maandelijkse Google & AI-check',
               'Doorlopende optimalisatie richting aanvragen',
             ].map((item) => (
               <li class="flex items-start gap-2 text-sm text-text font-medium">
@@ -715,19 +716,22 @@ const serviceSchema = generateService({
   <section class="px-4 md:px-6 py-12 md:py-16">
     <div class="max-w-3xl mx-auto text-center">
       <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">
-        De Google- en AI-posities worden nu verdeeld.
+        De Google- en AI-posities worden n&uacute; verdeeld.
       </h2>
       <p class="text-text-muted mb-4 text-[0.95rem] leading-relaxed max-w-xl mx-auto">
-        Google, ChatGPT, Perplexity en andere AI-zoekmachines leren welke bedrijven duidelijk, betrouwbaar en relevant zijn. Wie nu zichtbaar wordt, wordt straks moeilijker in te halen.
+        ChatGPT, Perplexity en Google AI leren welke bedrijven duidelijk, betrouwbaar en relevant zijn.
+      </p>
+      <p class="text-text font-medium mb-3 text-[0.95rem] max-w-xl mx-auto">
+        Sta jij daar nu tussen, dan pak je vandaag zichtbaarheid &eacute;n bouw je voorsprong op voor later.
       </p>
       <p class="text-text-muted mb-6 text-[0.95rem] max-w-xl mx-auto">
-        Wie wacht, laat zijn concurrent autoriteit opbouwen.
+        Wacht je tot je concurrent die positie heeft, dan wordt het moeilijker om hem nog in te halen.
       </p>
 
       <div class="space-y-2 mb-8">
-        <p class="text-text font-medium text-[1.05rem]">Dit is niet iets voor later.</p>
-        <p class="text-text font-medium text-[1.05rem]">Dit kost je nu aanvragen.</p>
-        <p class="text-accent font-medium text-[1.05rem]">Je concurrent hoeft niet beter te zijn. Alleen duidelijker vindbaar.</p>
+        <p class="text-text font-medium text-[1.05rem]">Wie nu zichtbaar wordt, wordt straks moeilijker in te halen.</p>
+        <p class="text-text font-medium text-[1.05rem]">Je concurrent wacht misschien niet.</p>
+        <p class="text-accent font-medium text-[1.05rem]">Dit is niet iets voor later. Dit kost je nu aanvragen.</p>
       </div>
 
       <a href="#formulier" class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg">
