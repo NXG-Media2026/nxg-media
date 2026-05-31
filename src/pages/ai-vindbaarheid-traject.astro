@@ -125,6 +125,7 @@ const serviceSchema = generateService({
   ]}
   locale={locale}
   hideNewsletter={true}
+  hideStickyMobileCTA={true}
 >
   <BreadcrumbNav items={breadcrumbs} />
 
@@ -137,51 +138,32 @@ const serviceSchema = generateService({
       <Image src={heroPhoto} alt="" width={800} class="absolute right-0 top-0 h-full w-auto object-cover object-top opacity-[0.15]" loading="eager" />
     </div>
 
-    <div class="relative px-5 md:px-6 pt-12 pb-14 md:pt-16 md:pb-20">
+    <div class="relative px-5 md:px-6 pt-10 pb-10 md:pt-14 md:pb-16">
       <div class="max-w-2xl mx-auto">
-        <h1 class="font-heading text-[1.85rem] leading-[1.12] md:text-[2.75rem] md:leading-[1.1] text-white mb-5">
+        <h1 class="font-heading text-[1.75rem] leading-[1.15] md:text-[2.75rem] md:leading-[1.1] text-white mb-4">
           Pagina 1 in Google.<br />
           Genoemd worden door ChatGPT en AI-zoekmachines.<br />
           <em class="text-accent not-italic">Meer aanvragen uit je website.</em>
         </h1>
 
-        <p class="text-white/70 leading-relaxed mb-6 text-[0.95rem] md:text-base max-w-xl">
-          Jouw volgende klant zoekt al naar jouw dienst &mdash; in Google, ChatGPT, Perplexity en andere AI-zoekmachines. Maar als zij je concurrent sneller begrijpen, gaat de aanvraag naar hem.
+        <p class="text-white/70 leading-relaxed mb-2 text-[0.9rem] md:text-base max-w-xl">
+          Jouw volgende klant zoekt al. Als Google, AI en bezoekers je concurrent sneller begrijpen, gaat de aanvraag naar hem.
+        </p>
+        <p class="text-white/90 font-medium mb-5 text-[0.9rem] md:text-base max-w-xl">
+          Wij bouwen je website om van online visitekaartje naar klantenkanaal.
         </p>
 
-        <p class="text-white/90 leading-relaxed mb-8 text-[0.95rem] md:text-base max-w-xl font-medium">
-          Wij bouwen je online fundament om naar een klantenkanaal dat gevonden, vertrouwd en gekozen wordt.
-        </p>
-
-        {/* Deal card */}
-        <div class="bg-white/[0.12] backdrop-blur-sm border-2 border-accent/40 rounded-card p-5 md:p-6 mb-6 max-w-md shadow-lg">
-          <p class="font-heading text-4xl md:text-5xl text-white mb-1">
-            Vanaf &euro;99<span class="text-lg text-white/60 font-body">/mnd</span>
-          </p>
-          <p class="text-white/50 text-sm mb-3">Voor bedrijven die in aanmerking komen.</p>
-          <ul class="space-y-1.5 text-sm text-white/70">
-            <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> Zichtbaar worden op pagina 1 in Google</li>
+        {/* Compact deal card */}
+        <div class="bg-white/[0.12] backdrop-blur-sm border-2 border-accent/40 rounded-card p-4 md:p-5 mb-5 max-w-md shadow-lg">
+          <div class="flex items-baseline gap-2 mb-1">
+            <p class="font-heading text-3xl md:text-4xl text-white">Vanaf &euro;99<span class="text-base text-white/60 font-body">/mnd</span></p>
+          </div>
+          <p class="text-white/50 text-xs mb-3">Voor bedrijven die in aanmerking komen &middot; Volgende ronde: 1 juli &middot; Max 5 bedrijven &middot; 1 per branche/regio</p>
+          <ul class="space-y-1 text-sm text-white/70">
+            <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> Pagina 1 in Google als doel</li>
             <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> Genoemd worden door ChatGPT, Perplexity en Google AI</li>
-            <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> Meer aanvragen uit je website</li>
-            <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> AI-ready websitefundament inbegrepen als dat nodig is</li>
-            <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> Volledig ontzorgd traject mogelijk vanaf &euro;299/mnd</li>
+            <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> Websitefundament inbegrepen als dat nodig is</li>
           </ul>
-        </div>
-
-        {/* Trajectronde badges */}
-        <div class="flex flex-wrap gap-2 mb-6">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-accent/20 border border-accent/40 text-white rounded-full">
-            <svg class="w-3.5 h-3.5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-            Volgende trajectronde start 1 juli
-          </span>
-          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-accent/20 border border-accent/40 text-white rounded-full">
-            <svg class="w-3.5 h-3.5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-            Maximaal 5 bedrijven
-          </span>
-          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-accent/20 border border-accent/40 text-white rounded-full">
-            <svg class="w-3.5 h-3.5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
-            1 bedrijf per branche/regio
-          </span>
         </div>
 
         <a href="#formulier" class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-white bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg w-full md:w-auto justify-center">
@@ -189,7 +171,7 @@ const serviceSchema = generateService({
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
         </a>
 
-        <p class="text-white/40 text-xs mt-4">Geen betaling nu. Eerst kijken we of jouw bedrijf hiervoor in aanmerking komt.</p>
+        <p class="text-white/40 text-xs mt-3">Geen betaling nu. Eerst kijken we of jouw bedrijf past.</p>
       </div>
     </div>
   </section>

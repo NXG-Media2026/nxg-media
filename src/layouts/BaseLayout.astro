@@ -21,6 +21,7 @@ interface Props {
   schemas?: string[];
   locale?: Locale;
   hideNewsletter?: boolean;
+  hideStickyMobileCTA?: boolean;
 }
 
 const {
@@ -34,6 +35,7 @@ const {
   schemas = [],
   locale = 'nl',
   hideNewsletter = false,
+  hideStickyMobileCTA = false,
 } = Astro.props;
 ---
 
@@ -72,7 +74,7 @@ const {
 
   <Footer locale={locale} hideNewsletter={hideNewsletter} />
 
-  <StickyMobileCTA locale={locale} />
+  {!hideStickyMobileCTA && <StickyMobileCTA locale={locale} />}
 
   <CookieConsent locale={locale} />
 
