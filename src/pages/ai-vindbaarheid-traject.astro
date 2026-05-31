@@ -383,15 +383,139 @@ const serviceSchema = generateService({
 
 
   {/* ══════════════════════════════════════════════════
-      7 · PAKKETTEN / ROUTE KIEZEN
+      7 · CASES / BEWIJS
       ══════════════════════════════════════════════════ */}
-  <section class="px-4 md:px-6 py-14 md:py-20 bg-bg-alt">
+  <section class="py-14 md:py-20 bg-bg-alt">
+    <div class="max-w-5xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-2 text-center">
+        Wat er gebeurt als het fundament klopt
+      </h2>
+      <p class="text-text-muted text-center mb-10 max-w-2xl mx-auto text-[0.95rem] leading-relaxed">
+        Geen theorie. Dit zijn recente voorbeelden van websites die w&eacute;l gevonden, begrepen en gekozen worden.
+      </p>
+
+      {/* ── CASE 1: CBMC ── */}
+      <div class="bg-white border-2 border-accent/30 rounded-card p-5 md:p-8 mb-8 shadow-lg">
+        <div class="flex items-center gap-4 mb-5">
+          <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-accent/30 shrink-0">
+            <Image src={jamesPhoto} alt="Dr. James Mitchell" widths={[56, 112]} sizes="56px" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+          </div>
+          <div>
+            <p class="text-text font-medium text-sm">Dr. James Mitchell</p>
+            <a href="https://www.costablancamovement.com" target="_blank" rel="noopener" class="text-accent/70 hover:text-accent text-xs transition-colors">costablancamovement.com</a>
+          </div>
+        </div>
+
+        <h3 class="font-heading text-2xl md:text-3xl text-text mb-3">Van nul naar pagina 1 in Google in 14 dagen</h3>
+        <p class="text-text-muted text-sm mb-5 leading-relaxed">
+          Costa Blanca Movement Centre had geen website, geen Google-historie en geen backlinks. Binnen 14 dagen stond het nieuwe fundament op pagina 1. Na 2 maanden kwamen er 12&ndash;15 patiënten per maand online binnen.
+        </p>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+          <div class="bg-bg-alt rounded-card p-3 text-center">
+            <p class="font-heading text-xl text-accent">0 &rarr; pag.&nbsp;1</p>
+            <p class="text-text-muted text-xs mt-0.5">in Google</p>
+          </div>
+          <div class="bg-bg-alt rounded-card p-3 text-center">
+            <p class="font-heading text-xl text-accent">12&ndash;15</p>
+            <p class="text-text-muted text-xs mt-0.5">patiënten/mnd</p>
+          </div>
+          <div class="bg-bg-alt rounded-card p-3 text-center">
+            <p class="font-heading text-xl text-accent">800+</p>
+            <p class="text-text-muted text-xs mt-0.5">organische bezoekers/mnd</p>
+          </div>
+          <div class="bg-bg-alt rounded-card p-3 text-center">
+            <p class="font-heading text-xl text-accent">ChatGPT</p>
+            <p class="text-text-muted text-xs mt-0.5">noemt kliniek als lokale optie</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <button type="button" class="proof-trigger cursor-pointer group text-left">
+            <div class="bg-bg-alt border border-border rounded-lg overflow-hidden">
+              <Image src={proofGoogle} alt="Google pagina 1: Costa Blanca Movement Centre na 2 weken" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
+            </div>
+            <p class="text-text-muted text-xs mt-1.5 text-center group-hover:text-text transition-colors">Google pagina 1 &mdash; na 2 weken</p>
+          </button>
+          <button type="button" class="proof-trigger cursor-pointer group text-left">
+            <div class="bg-bg-alt border border-border rounded-lg overflow-hidden">
+              <Image src={proofChatgpt} alt="ChatGPT beveelt Costa Blanca Movement Centre aan als #1" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
+            </div>
+            <p class="text-text-muted text-xs mt-1.5 text-center group-hover:text-text transition-colors">ChatGPT beveelt de kliniek aan als #1</p>
+          </button>
+        </div>
+      </div>
+
+      {/* ── CASE 2: Dr. Verena Mann ── */}
+      <div class="bg-white border border-border rounded-card p-5 md:p-8 mb-8">
+        <div class="flex items-center gap-4 mb-5">
+          <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-accent/30 shrink-0">
+            <Image src={verenaPhoto} alt="Dr. Verena Mann" widths={[56, 112]} sizes="56px" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+          </div>
+          <div>
+            <p class="text-text font-medium text-sm">Dr. Verena Mann</p>
+            <a href="https://doc-veri.pages.dev" target="_blank" rel="noopener" class="text-accent/70 hover:text-accent text-xs transition-colors">doc-veri.pages.dev</a>
+          </div>
+        </div>
+
+        <h3 class="font-heading text-2xl md:text-3xl text-text mb-3">Van 2 naar 19 aanvragen per maand</h3>
+        <p class="text-text-muted text-sm mb-5 leading-relaxed">
+          Dr. Verena Mann had expertise en een community, maar haar website leverde nauwelijks nieuwe aanvragen op. Door haar expertise, bewijs en aanvraagroute duidelijker neer te zetten, groeide ze naar 19 aanvragen per maand en werd ze genoemd door ChatGPT.
+        </p>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+          <div class="bg-bg-alt rounded-card p-3 text-center">
+            <p class="font-heading text-xl text-accent">2 &rarr; 19</p>
+            <p class="text-text-muted text-xs mt-0.5">aanvragen/mnd</p>
+          </div>
+          <div class="bg-bg-alt rounded-card p-3 text-center">
+            <p class="font-heading text-xl text-accent">0 &rarr; 15</p>
+            <p class="text-text-muted text-xs mt-0.5">AI-vermeldingen</p>
+          </div>
+          <div class="bg-bg-alt rounded-card p-3 text-center">
+            <p class="font-heading text-xl text-accent">ChatGPT</p>
+            <p class="text-text-muted text-xs mt-0.5">noemt haar als expert</p>
+          </div>
+          <div class="bg-bg-alt rounded-card p-3 text-center">
+            <p class="font-heading text-xl text-accent">&plusmn;6 wkn</p>
+            <p class="text-text-muted text-xs mt-0.5">live</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <button type="button" class="proof-trigger cursor-pointer group text-left">
+            <div class="bg-bg-alt border border-border rounded-lg overflow-hidden">
+              <Image src={proofVerenaAi} alt="ChatGPT noemt Dr. Verena Mann als passende expert" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
+            </div>
+          </button>
+          <button type="button" class="proof-trigger cursor-pointer group text-left">
+            <div class="bg-bg-alt border border-border rounded-lg overflow-hidden">
+              <Image src={proofVerenaChatgpt} alt="ChatGPT met directe link naar Dr. Verena Mann" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <a href="#formulier" class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg">
+          Check of mijn bedrijf in aanmerking komt
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      8 · PAKKETTEN / ROUTE KIEZEN
+      ══════════════════════════════════════════════════ */}
+  <section class="px-4 md:px-6 py-14 md:py-20">
     <div class="max-w-5xl mx-auto">
       <h2 class="font-heading text-2xl md:text-3xl text-text mb-2 text-center">
         Welke route past bij jouw bedrijf?
       </h2>
       <p class="text-text-muted text-center mb-10 max-w-2xl mx-auto text-[0.95rem] leading-relaxed">
-        Wil je vooral de basis goedzetten en zelf verder bouwen? Of wil je dat wij 90 dagen actief werken aan betere posities, AI-vermeldingen en meer aanvragen?
+        Wil je zelf uitvoeren met onze richting, of wil je dat wij 90 dagen actief werken aan posities, AI-vermeldingen en aanvragen?
       </p>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
@@ -600,124 +724,6 @@ const serviceSchema = generateService({
             <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
           </a>
         </div>
-      </div>
-    </div>
-  </section>
-
-
-  {/* ══════════════════════════════════════════════════
-      11 · CASES
-      ══════════════════════════════════════════════════ */}
-  <section class="py-16 md:py-24 bg-bg-alt">
-    <div class="max-w-5xl mx-auto px-4 md:px-6">
-
-      {/* ── CASE 1: CBMC ── */}
-      <div class="bg-white border-2 border-accent/30 rounded-card p-5 md:p-8 mb-8 shadow-lg">
-        <div class="flex items-center gap-4 mb-5">
-          <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-accent/30 shrink-0">
-            <Image src={jamesPhoto} alt="Dr. James Mitchell" widths={[56, 112]} sizes="56px" class="w-full h-full object-cover" loading="lazy" decoding="async" />
-          </div>
-          <div>
-            <p class="text-text font-medium text-sm">Dr. James Mitchell</p>
-            <a href="https://www.costablancamovement.com" target="_blank" rel="noopener" class="text-accent/70 hover:text-accent text-xs transition-colors">costablancamovement.com</a>
-          </div>
-        </div>
-
-        <h3 class="font-heading text-2xl md:text-3xl text-text mb-3">Van nul naar pagina 1 in Google in 14 dagen</h3>
-        <p class="text-text-muted text-sm mb-5 leading-relaxed">
-          Costa Blanca Movement Centre had geen website, geen Google-historie en geen backlinks. Binnen 14 dagen stond het nieuwe fundament op pagina 1. Na 2 maanden kwamen er 12&ndash;15 patiënten per maand online binnen.
-        </p>
-
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-          <div class="bg-bg-alt rounded-card p-3 text-center">
-            <p class="font-heading text-xl text-accent">0 &rarr; pag.&nbsp;1</p>
-            <p class="text-text-muted text-xs mt-0.5">in Google</p>
-          </div>
-          <div class="bg-bg-alt rounded-card p-3 text-center">
-            <p class="font-heading text-xl text-accent">12&ndash;15</p>
-            <p class="text-text-muted text-xs mt-0.5">patiënten/mnd</p>
-          </div>
-          <div class="bg-bg-alt rounded-card p-3 text-center">
-            <p class="font-heading text-xl text-accent">800+</p>
-            <p class="text-text-muted text-xs mt-0.5">organische bezoekers/mnd</p>
-          </div>
-          <div class="bg-bg-alt rounded-card p-3 text-center">
-            <p class="font-heading text-xl text-accent">ChatGPT</p>
-            <p class="text-text-muted text-xs mt-0.5">noemt kliniek als lokale optie</p>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <button type="button" class="proof-trigger cursor-pointer group text-left">
-            <div class="bg-bg-alt border border-border rounded-lg overflow-hidden">
-              <Image src={proofGoogle} alt="Google pagina 1: Costa Blanca Movement Centre na 2 weken" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
-            </div>
-            <p class="text-text-muted text-xs mt-1.5 text-center group-hover:text-text transition-colors">Google pagina 1 &mdash; na 2 weken</p>
-          </button>
-          <button type="button" class="proof-trigger cursor-pointer group text-left">
-            <div class="bg-bg-alt border border-border rounded-lg overflow-hidden">
-              <Image src={proofChatgpt} alt="ChatGPT beveelt Costa Blanca Movement Centre aan als #1" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
-            </div>
-            <p class="text-text-muted text-xs mt-1.5 text-center group-hover:text-text transition-colors">ChatGPT beveelt de kliniek aan als #1</p>
-          </button>
-        </div>
-      </div>
-
-      {/* ── CASE 2: Dr. Verena Mann ── */}
-      <div class="bg-white border border-border rounded-card p-5 md:p-8 mb-8">
-        <div class="flex items-center gap-4 mb-5">
-          <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-accent/30 shrink-0">
-            <Image src={verenaPhoto} alt="Dr. Verena Mann" widths={[56, 112]} sizes="56px" class="w-full h-full object-cover" loading="lazy" decoding="async" />
-          </div>
-          <div>
-            <p class="text-text font-medium text-sm">Dr. Verena Mann</p>
-            <a href="https://doc-veri.pages.dev" target="_blank" rel="noopener" class="text-accent/70 hover:text-accent text-xs transition-colors">doc-veri.pages.dev</a>
-          </div>
-        </div>
-
-        <h3 class="font-heading text-2xl md:text-3xl text-text mb-3">Van 2 naar 19 aanvragen per maand</h3>
-        <p class="text-text-muted text-sm mb-5 leading-relaxed">
-          Dr. Verena Mann had expertise en een community, maar haar website leverde nauwelijks nieuwe aanvragen op. Door haar expertise, bewijs en aanvraagroute duidelijker neer te zetten, groeide ze naar 19 aanvragen per maand en werd ze genoemd door ChatGPT.
-        </p>
-
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-          <div class="bg-bg-alt rounded-card p-3 text-center">
-            <p class="font-heading text-xl text-accent">2 &rarr; 19</p>
-            <p class="text-text-muted text-xs mt-0.5">aanvragen/mnd</p>
-          </div>
-          <div class="bg-bg-alt rounded-card p-3 text-center">
-            <p class="font-heading text-xl text-accent">0 &rarr; 15</p>
-            <p class="text-text-muted text-xs mt-0.5">AI-vermeldingen</p>
-          </div>
-          <div class="bg-bg-alt rounded-card p-3 text-center">
-            <p class="font-heading text-xl text-accent">ChatGPT</p>
-            <p class="text-text-muted text-xs mt-0.5">noemt haar als expert</p>
-          </div>
-          <div class="bg-bg-alt rounded-card p-3 text-center">
-            <p class="font-heading text-xl text-accent">&plusmn;6 wkn</p>
-            <p class="text-text-muted text-xs mt-0.5">live</p>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <button type="button" class="proof-trigger cursor-pointer group text-left">
-            <div class="bg-bg-alt border border-border rounded-lg overflow-hidden">
-              <Image src={proofVerenaAi} alt="ChatGPT noemt Dr. Verena Mann als passende expert" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
-            </div>
-          </button>
-          <button type="button" class="proof-trigger cursor-pointer group text-left">
-            <div class="bg-bg-alt border border-border rounded-lg overflow-hidden">
-              <Image src={proofVerenaChatgpt} alt="ChatGPT met directe link naar Dr. Verena Mann" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
-            </div>
-          </button>
-        </div>
-      </div>
-
-      <div class="text-center">
-        <a href="#formulier" class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg">
-          Check of mijn bedrijf in aanmerking komt
-          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-        </a>
       </div>
     </div>
   </section>
