@@ -247,71 +247,37 @@ const serviceSchema = generateService({
 
 
   {/* ══════════════════════════════════════════════════
-      4 · PAIN + ENEMY + ANTI-WP (samengevoegd)
+      4 · ENEMY — WEBSITEBEHEERDER VS MARKETEER
       ══════════════════════════════════════════════════ */}
   <section class="px-4 md:px-6 py-12 md:py-16 bg-bg-alt">
-    <div class="max-w-4xl mx-auto">
+    <div class="max-w-3xl mx-auto">
       <h2 class="font-heading text-2xl md:text-3xl text-text mb-3 text-center">
-        Waarom je huidige website klanten kost
+        Je hebt misschien al iemand voor je website. Maar is dat ook een marketeer?
       </h2>
-      <p class="text-text-muted text-center mb-10 max-w-2xl mx-auto text-[0.95rem] leading-relaxed">
-        Je website hoeft niet lelijk te zijn om aanvragen te verliezen. Als bezoekers, Google en AI-zoekmachines je bedrijf niet snel genoeg begrijpen, gaat de aanvraag naar je concurrent.
+      <p class="text-text-muted text-center mb-6 max-w-2xl mx-auto text-[0.95rem] leading-relaxed">
+        De meeste MKB-websites worden beheerd door iemand die pagina's, plugins en updates regelt. Handig. Maar dat is iets anders dan een website bouwen die klanten oplevert.
       </p>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
-        {/* Card 1 */}
-        <div class="bg-white border border-border rounded-card p-5">
-          <p class="font-heading text-base text-text mb-2">Bezoekers haken af</p>
-          <p class="text-text-muted text-sm leading-relaxed mb-3">Ze snappen niet direct waarom jij de logische keuze bent. Je bewijs komt te laat, je CTA is te zwak of je aanbod voelt te onduidelijk.</p>
-          <ul class="space-y-1.5">
-            {['Bewijs komt te laat', 'CTA is te zwak', 'Bezoekers verdwijnen zonder contact'].map((item) => (
-              <li class="flex items-start gap-2 text-sm text-text-muted">
-                <svg class="w-3.5 h-3.5 text-red-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Card 2 */}
-        <div class="bg-white border border-border rounded-card p-5">
-          <p class="font-heading text-base text-text mb-2">Google & AI kiezen je concurrent</p>
-          <p class="text-text-muted text-sm leading-relaxed mb-3">Als je dienst, regio en expertise niet scherp genoeg staan, noemen Google, ChatGPT, Perplexity en Google AI sneller een duidelijkere concurrent.</p>
-          <ul class="space-y-1.5">
-            {['Concurrent verschijnt eerder', 'AI noemt hem wel', 'Jij wordt niet als logische keuze gezien'].map((item) => (
-              <li class="flex items-start gap-2 text-sm text-text-muted">
-                <svg class="w-3.5 h-3.5 text-red-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Card 3 */}
-        <div class="bg-white border border-border rounded-card p-5">
-          <p class="font-heading text-base text-text mb-2">Je oude WordPress-basis remt groei af</p>
-          <p class="text-text-muted text-sm leading-relaxed mb-3">Veel MKB-sites hangen aan elkaar van plugins, oude thema's en losse SEO-pleisters. Dat kost snelheid, vertrouwen en aanvragen.</p>
-          <ul class="space-y-1.5">
-            {['Traag door plugins', 'Updates breken dingen', 'SEO op oude basis blijft pleisterwerk'].map((item) => (
-              <li class="flex items-start gap-2 text-sm text-text-muted">
-                <svg class="w-3.5 h-3.5 text-red-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      <p class="text-text text-[0.95rem] leading-relaxed mb-2 max-w-2xl mx-auto text-center">
+        Je webbouwer kan misschien een tekst aanpassen, een plugin installeren of een SEO-titel wijzigen. Maar daarmee win je nog geen klanten van je concurrent.
+      </p>
+      <p class="text-text-muted text-[0.95rem] leading-relaxed mb-8 max-w-2xl mx-auto text-center">
+        Pagina 1 in Google, AI-vermeldingen en meer aanvragen vragen om meer dan technisch beheer. Daarvoor moet je website gebouwd worden vanuit zoekgedrag, bewijs, vertrouwen en conversie.
+      </p>
 
       {/* Vergelijking */}
-      <h3 class="font-heading text-xl md:text-2xl text-text mb-6 text-center">
-        Een websitebouwer bouwt pagina's. Wij bouwen een klantenkanaal.
-      </h3>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto mb-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
         <div class="border border-border rounded-card p-5 bg-white/50">
-          <p class="text-text-muted text-xs uppercase tracking-widest font-medium mb-3">Klassieke websitebouwer</p>
+          <p class="text-text-muted text-xs uppercase tracking-widest font-medium mb-3">Websitebeheerder / klassieke webbouwer</p>
           <ul class="space-y-2">
-            {['Mooie site', 'Design eerst', 'SEO later', 'WordPress + plugins', 'Opleveren en weg'].map((item) => (
+            {[
+              'Beheert pagina\'s en plugins',
+              'Werkt vaak op WordPress',
+              'Past aan wat jij vraagt',
+              'Denkt in design en techniek',
+              'Houdt vooral de site draaiend',
+              'Geen eigenaar van jouw aanvragen',
+            ].map((item) => (
               <li class="flex items-start gap-2 text-sm text-text-muted">
                 <svg class="w-3.5 h-3.5 text-red-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
                 {item}
@@ -324,7 +290,14 @@ const serviceSchema = generateService({
           <span class="absolute -top-3 left-6 inline-block px-3 py-0.5 text-[0.65rem] font-medium tracking-widest uppercase bg-accent text-white rounded-full">NXG Media</span>
           <p class="text-text text-xs uppercase tracking-widest font-medium mb-3">Klantenkanaal</p>
           <ul class="space-y-2">
-            {['Google & AI als uitgangspunt', 'Dienst + regio scherp', 'Bewijs vóór de CTA', 'Geen WordPress-chaos', 'Gebouwd voor aanvragen'].map((item) => (
+            {[
+              'Bouwt je website als klantenkanaal',
+              'Denkt vanuit Google, AI en klanten',
+              'Positioneert dienst + regio scherp',
+              'Zet bewijs vóór de CTA',
+              'Bouwt richting pagina 1 en AI-vermeldingen',
+              'Stuurt op meer aanvragen',
+            ].map((item) => (
               <li class="flex items-start gap-2 text-sm text-text font-medium">
                 <svg class="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
                 {item}
@@ -334,6 +307,9 @@ const serviceSchema = generateService({
         </div>
       </div>
 
+      <p class="text-text font-medium text-center text-[1.05rem] mb-2">
+        Je hebt geen extra plugin nodig. Je hebt een website nodig die klanten wint.
+      </p>
       <p class="text-text font-medium text-center text-[1.05rem] mb-6">
         De site is het middel. Meer aanvragen is het doel.
       </p>
