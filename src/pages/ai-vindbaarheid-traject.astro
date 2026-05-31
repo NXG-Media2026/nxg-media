@@ -21,6 +21,8 @@ import proofGoogle from '../assets/images/cases/proof-google-torrevieja.png';
 import proofChatgpt from '../assets/images/cases/proof-chatgpt-local.png';
 import proofVerenaAi from '../assets/images/cases/doc_veri_ai_answer_cropped.PNG';
 import proofVerenaChatgpt from '../assets/images/cases/doc-veri-chatgptproof.jpeg';
+import rolfPhoto from '../assets/images/logos/rolf-profile-photo-happywithyoga.png';
+import proofHwyFunnel from '../assets/images/cases/autenthicoffers-lander-happywithyoga-funnel-proof.webp';
 import keystaticDashboard from '../assets/images/keystatic1.png';
 import keystaticHomepage from '../assets/images/keystatic_edit_homepage.png';
 import keystaticBlog from '../assets/images/keystatic_add_blog.png';
@@ -432,8 +434,11 @@ const serviceSchema = generateService({
       <h2 class="font-heading text-2xl md:text-3xl text-text mb-2 text-center">
         Wat er gebeurt als het fundament klopt
       </h2>
-      <p class="text-text-muted text-center mb-10 max-w-2xl mx-auto text-[0.95rem] leading-relaxed">
+      <p class="text-text-muted text-center mb-4 max-w-2xl mx-auto text-[0.95rem] leading-relaxed">
         Geen theorie. Dit zijn recente voorbeelden van websites die w&eacute;l gevonden, begrepen en gekozen worden.
+      </p>
+      <p class="text-text-muted text-center mb-10 max-w-2xl mx-auto text-sm leading-relaxed">
+        De eerste twee cases laten zien hoe Google en AI je bedrijf kunnen oppakken. Happy With Yoga laat zien wat er gebeurt als een website geen visitekaartje meer is, maar een volledig klantenkanaal.
       </p>
 
       {/* ── CASE 1: CBMC ── */}
@@ -535,6 +540,52 @@ const serviceSchema = generateService({
               <Image src={proofVerenaChatgpt} alt="ChatGPT met directe link naar Dr. Verena Mann" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
             </div>
           </button>
+        </div>
+      </div>
+
+      {/* ── CASE 3: Happy With Yoga ── */}
+      <div class="bg-white border border-border rounded-card p-5 md:p-8 mb-8">
+        <div class="flex items-center gap-4 mb-4">
+          <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-accent/30 shrink-0">
+            <Image src={rolfPhoto} alt="Rolf — Happy With Yoga" widths={[56, 112]} sizes="56px" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+          </div>
+          <div>
+            <p class="text-text font-medium text-sm">Rolf &mdash; Happy With Yoga</p>
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-wider bg-accent/10 text-accent rounded-full mt-0.5">Klantenkanaal proof</span>
+          </div>
+        </div>
+
+        <h3 class="font-heading text-2xl md:text-3xl text-text mb-3">Van bezoekers naar betalende leden</h3>
+        <p class="text-text-muted text-sm mb-5 leading-relaxed">
+          Geen pure AI-vindbaarheidscase, maar bewijs van het belangrijkste principe achter deze pagina: een website moet geen online visitekaartje zijn, maar een systeem dat bezoekers omzet in leads, klanten en omzet.
+        </p>
+
+        <div class="grid grid-cols-3 gap-3 mb-6">
+          <div class="bg-bg-alt rounded-card p-3 text-center">
+            <p class="font-heading text-xl text-accent">30.000+</p>
+            <p class="text-text-muted text-xs mt-0.5">webinarleads</p>
+          </div>
+          <div class="bg-bg-alt rounded-card p-3 text-center">
+            <p class="font-heading text-xl text-accent">1.700+</p>
+            <p class="text-text-muted text-xs mt-0.5">mini-cursusverkopen</p>
+          </div>
+          <div class="bg-bg-alt rounded-card p-3 text-center">
+            <p class="font-heading text-xl text-accent">2.000</p>
+            <p class="text-text-muted text-xs mt-0.5">betalende leden</p>
+          </div>
+        </div>
+
+        <div class="bg-bg-alt border border-border rounded-lg px-5 py-4 mb-5">
+          <p class="text-text-muted text-sm leading-relaxed italic">
+            &ldquo;Joost heeft een compleet systeem gebouwd dat onze bezoekers stap voor stap omzet in betalende leden. Van quiz-funnel tot webinar tot mini-cursus &mdash; alles werkt samen. We zitten nu op 30.000+ leads en 2.000 betalende platformleden.&rdquo;
+          </p>
+          <p class="text-text text-xs font-medium mt-2">&mdash; Rolf, Happy With Yoga</p>
+        </div>
+
+        <div class="max-w-sm">
+          <div class="bg-bg-alt border border-border rounded-lg overflow-hidden">
+            <Image src={proofHwyFunnel} alt="Happy With Yoga funnelpagina" width={600} quality={85} class="w-full h-auto" loading="lazy" />
+          </div>
         </div>
       </div>
 
