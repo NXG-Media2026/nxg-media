@@ -406,100 +406,128 @@ const serviceSchema = generateService({
 
 
   {/* ══════════════════════════════════════════════════
-      8 · OFFER SECTION
+      8 · 3 PIJLERS
       ══════════════════════════════════════════════════ */}
   <section class="px-4 md:px-6 py-14 md:py-20">
     <div class="max-w-4xl mx-auto">
       <h2 class="font-heading text-2xl md:text-3xl text-text mb-2 text-center">
-        Het Google & AI Aanvragen Traject
+        Het systeem achter meer aanvragen
       </h2>
-      <p class="text-text-muted text-center mb-4 max-w-2xl mx-auto text-[0.95rem]">
-        Voor bedrijven die willen dat hun website eindelijk klanten oplevert.
-      </p>
-      <p class="text-text-muted text-center mb-10 max-w-2xl mx-auto text-sm leading-relaxed">
-        Geen losse SEO-trucjes. Geen mooie website die niets oplevert. Geen technisch rapport dat in je inbox verdwijnt. Wij bouwen aan de drie dingen die wél tellen: gevonden worden, vertrouwd worden en aanvragen krijgen.
+      <p class="text-text-muted text-center mb-10 max-w-2xl mx-auto text-[0.95rem]">
+        Geen losse SEO-trucjes. Geen mooie website die niets oplevert. We bouwen aan drie dingen die klanten opleveren.
       </p>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {[
-          { title: 'Google & AI Fundament', desc: 'Je website wordt duidelijker, sneller en beter begrijpbaar voor Google, AI-zoekmachines en bezoekers.' },
-          { title: 'Dienst- en regiopagina\'s', desc: "Pagina's die aansluiten op wat jouw klanten zoeken: dienst, probleem, regio en bewijs." },
-          { title: 'Bewijs en vertrouwen', desc: 'Reviews, expertise, cases en resultaten komen op de plekken waar bezoekers beslissen.' },
-          { title: 'Sterke CTA\'s', desc: 'Elke belangrijke pagina krijgt een duidelijke route naar aanvraag.' },
-          { title: 'AI-vermeldingen', desc: 'We richten je content zo in dat ChatGPT, Perplexity, Google AI en andere AI-zoekmachines je bedrijf begrijpen en noemen.' },
-          { title: 'Autoriteit en optimalisatie', desc: 'Content, reviews, Google Business, lokale signalen en maandelijkse verbeteringen.' },
-        ].map((item) => (
-          <div class="bg-white border border-border rounded-card p-5">
-            <p class="font-heading text-base text-text mb-1.5">{item.title}</p>
-            <p class="text-text-muted text-sm leading-relaxed">{item.desc}</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {/* Pijler 1 */}
+        <div class="bg-white border border-border rounded-card p-5 md:p-6">
+          <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center mb-3">
+            <span class="font-heading text-accent text-lg">1</span>
           </div>
-        ))}
+          <p class="font-heading text-base text-text mb-2">Gevonden worden</p>
+          <p class="text-text-muted text-sm leading-relaxed mb-3">Je diensten, regio's en belangrijkste zoekvragen worden duidelijk ingericht voor Google, ChatGPT, Perplexity en Google AI.</p>
+          <ul class="space-y-1.5">
+            {['Dienst + regio scherp', 'Pagina 1 als doel', 'AI-vermeldingen als doel'].map((item) => (
+              <li class="flex items-start gap-2 text-sm text-text-muted">
+                <svg class="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Pijler 2 */}
+        <div class="bg-white border border-border rounded-card p-5 md:p-6">
+          <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center mb-3">
+            <span class="font-heading text-accent text-lg">2</span>
+          </div>
+          <p class="font-heading text-base text-text mb-2">Vertrouwd worden</p>
+          <p class="text-text-muted text-sm leading-relaxed mb-3">Bezoekers moeten direct snappen waarom jij de logische keuze bent.</p>
+          <ul class="space-y-1.5">
+            {['Reviews en bewijs zichtbaar', 'Expertise duidelijk', 'Google Business en autoriteit'].map((item) => (
+              <li class="flex items-start gap-2 text-sm text-text-muted">
+                <svg class="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Pijler 3 */}
+        <div class="bg-white border border-border rounded-card p-5 md:p-6">
+          <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center mb-3">
+            <span class="font-heading text-accent text-lg">3</span>
+          </div>
+          <p class="font-heading text-base text-text mb-2">Aanvragen krijgen</p>
+          <p class="text-text-muted text-sm leading-relaxed mb-3">Je website wordt geen online visitekaartje, maar een route naar contact.</p>
+          <ul class="space-y-1.5">
+            {['Sterke CTA\'s', 'Betere conversie', 'Duidelijke aanvraagroute'].map((item) => (
+              <li class="flex items-start gap-2 text-sm text-text-muted">
+                <svg class="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
 
   {/* ══════════════════════════════════════════════════
-      8b · RESULT SECTION
+      8b · QUOTE / IMPACT BLOCK
       ══════════════════════════════════════════════════ */}
-  <section class="px-4 md:px-6 py-12 md:py-16 bg-primary">
+  <section class="px-4 md:px-6 py-10 md:py-14 bg-primary">
     <div class="max-w-3xl mx-auto text-center">
-      <h2 class="font-heading text-2xl md:text-3xl text-white mb-3">
+      <h2 class="font-heading text-2xl md:text-3xl text-white mb-2">
         Zichtbaarheid is niet het doel. Klanten zijn het doel.
       </h2>
-      <p class="text-white/60 mb-8 text-[0.95rem]">
+      <p class="text-white/60 mb-6 text-[0.95rem]">
         Daarom bouwen we dit als marketeer, niet als websitebouwer.
       </p>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mb-8">
-        {[
-          'Pagina 1 in Google als doel',
-          'Genoemd worden door ChatGPT, Perplexity en Google AI',
-          'Meer vertrouwen bij koude bezoekers',
-          'Meer contactaanvragen',
-          'Minder afhankelijk van mond-tot-mond',
-          'Minder afhankelijk van dure advertenties',
-        ].map((item) => (
-          <div class="bg-white/5 rounded-card p-3 text-left flex items-start gap-2">
-            <svg class="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+      <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-6 mb-6">
+        {['Meer mensen die je vinden', 'Meer mensen die je vertrouwen', 'Meer mensen die contact opnemen'].map((item) => (
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
             <p class="text-white/80 text-sm">{item}</p>
           </div>
         ))}
       </div>
 
-      <p class="text-accent font-medium text-[1.05rem]">
-        Als één extra klant je &euro;500 tot &euro;2.000 waard is, hoeft dit traject zichzelf maar een paar keer terug te verdienen.
-      </p>
+      <div class="bg-white/[0.08] border border-accent/30 rounded-card px-5 py-4 max-w-lg mx-auto">
+        <p class="text-accent font-medium text-[0.95rem]">
+          E&eacute;n extra klant van &euro;500&ndash;&euro;2.000 kan al meerdere maanden van het traject terugverdienen.
+        </p>
+      </div>
     </div>
   </section>
 
 
   {/* ══════════════════════════════════════════════════
-      9 · WEBSITE VALUE STACK
+      9 · WEBSITE VALUE CARD
       ══════════════════════════════════════════════════ */}
   <section class="px-4 md:px-6 py-12 md:py-16">
-    <div class="max-w-4xl mx-auto">
+    <div class="max-w-3xl mx-auto">
       <div class="bg-white border-2 border-accent/30 rounded-card p-6 md:p-8 shadow-lg relative">
         <span class="absolute -top-3 left-6 inline-block px-3 py-0.5 text-[0.65rem] font-medium tracking-widest uppercase bg-accent text-white rounded-full">Inbegrepen</span>
 
-        <h2 class="font-heading text-2xl md:text-3xl text-text mb-3">
+        <h2 class="font-heading text-xl md:text-2xl text-text mb-2">
           Nieuwe AI-ready website nodig? Die zit inbegrepen.
         </h2>
-        <p class="text-text-muted text-[0.95rem] leading-relaxed mb-6 max-w-2xl">
-          Normaal betaal je al snel &euro;2.000&ndash;&euro;4.000 voor een moderne websitebasis. Binnen dit traject bouwen we die basis voor je mee, zodat je direct kunt starten met vindbaarheid, vertrouwen en aanvragen.
+        <p class="text-text-muted text-sm leading-relaxed mb-5 max-w-xl">
+          Normaal betaal je &euro;2.000&ndash;&euro;4.000 voor een moderne websitebasis. Binnen dit traject zit die basis inbegrepen, zodat je direct kunt starten met vindbaarheid, vertrouwen en aanvragen.
         </p>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-5">
           {[
             'Geen grote investering vooraf',
             'Geen losse webdesigner nodig',
             'Geen trage WordPress-site',
-            'Direct gebouwd voor Google, ChatGPT en AI-zoekmachines',
             'Inclusief hosting, onderhoud en beheerpaneel',
           ].map((item) => (
-            <div class="flex items-start gap-2.5">
-              <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-              <p class="text-sm text-text font-medium leading-relaxed">{item}</p>
+            <div class="flex items-start gap-2">
+              <svg class="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              <p class="text-sm text-text font-medium">{item}</p>
             </div>
           ))}
         </div>
@@ -516,36 +544,28 @@ const serviceSchema = generateService({
   {/* ══════════════════════════════════════════════════
       10 · PRICE / OFFER LADDER
       ══════════════════════════════════════════════════ */}
-  <section class="px-4 md:px-6 py-14 md:py-20 bg-bg-alt">
+  <section class="px-4 md:px-6 py-12 md:py-16 bg-bg-alt">
     <div class="max-w-4xl mx-auto">
       <h2 class="font-heading text-2xl md:text-3xl text-text mb-2 text-center">
-        Start met de basis. Of laat ons de groei volledig ontzorgen.
+        Basis zelf aanleveren. Of volledig ontzorgd worden.
       </h2>
-      <p class="text-text-muted text-center mb-10 max-w-2xl mx-auto text-[0.95rem]">
-        Twee routes, één doel: meer aanvragen uit Google, AI-zoekmachines en je website.
+      <p class="text-text-muted text-center mb-8 max-w-2xl mx-auto text-[0.95rem]">
+        Twee routes. E&eacute;n doel: meer aanvragen uit Google, AI-zoekmachines en je website.
       </p>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
         {/* Kaart 1 — Fundament */}
-        <div class="bg-white border border-border rounded-card p-6 md:p-8">
-          <p class="font-heading text-lg text-text mb-1">AI-ready Website Fundament</p>
-          <p class="font-heading text-3xl text-accent mb-2">Vanaf &euro;99<span class="text-sm text-text-muted font-body">/mnd</span></p>
-          <p class="text-text-muted text-sm mb-3 leading-relaxed">
-            Voor bedrijven die hun online basis goed willen zetten zonder &euro;2.000&ndash;&euro;4.000 vooraf te betalen voor een nieuwe website.
-          </p>
-          <div class="bg-bg-alt border border-border rounded-lg p-3 mb-4">
-            <p class="text-sm text-text font-medium leading-relaxed">
-              <span class="text-accent font-heading">Uitkomst:</span> Wij zetten je huidige website om naar een snelle, duidelijke basis die Google, ChatGPT en klanten beter begrijpen.
-            </p>
-          </div>
-          <ul class="space-y-2 mb-5">
+        <div class="bg-white border border-border rounded-card p-5 md:p-6">
+          <span class="inline-block px-2.5 py-0.5 text-[0.6rem] font-medium tracking-widest uppercase bg-bg-alt text-text-muted rounded-full mb-3">Voor de basis</span>
+          <p class="font-heading text-lg text-text mb-0.5">AI-ready Website Fundament</p>
+          <p class="font-heading text-3xl text-accent mb-3">Vanaf &euro;99<span class="text-sm text-text-muted font-body">/mnd</span></p>
+          <p class="text-text-muted text-sm mb-4 leading-relaxed">Wij zetten je websitebasis goed. Jij levert vooral input, reviews en content aan.</p>
+          <ul class="space-y-1.5">
             {[
-              'AI-ready websitefundament inbegrepen',
-              'Bestaande content waar mogelijk meegenomen',
-              'Snelle website zonder WordPress-chaos',
-              'Basisstructuur voor Google en AI-zoekmachines',
-              'Hosting en onderhoud',
-              'Beheerpaneel om zelf teksten/foto\'s aan te passen',
+              'AI-ready websitefundament',
+              'Geen WordPress-chaos',
+              'Hosting + onderhoud',
+              'Beheerpaneel',
               'Maandelijkse basischeck',
             ].map((item) => (
               <li class="flex items-start gap-2 text-sm text-text-muted">
@@ -554,35 +574,22 @@ const serviceSchema = generateService({
               </li>
             ))}
           </ul>
-          <p class="text-xs text-text-muted italic">Jij levert vooral zelf input, reviews en content aan. Wij zetten de basis goed.</p>
         </div>
 
         {/* Kaart 2 — Volledig ontzorgd */}
-        <div class="bg-white border-2 border-accent/30 rounded-card p-6 md:p-8 shadow-lg relative">
+        <div class="bg-white border-2 border-accent/30 rounded-card p-5 md:p-6 shadow-lg relative">
           <span class="absolute -top-3 left-6 inline-block px-3 py-0.5 text-[0.65rem] font-medium tracking-widest uppercase bg-accent text-white rounded-full">Populairst</span>
-          <p class="font-heading text-lg text-text mb-1">Volledig Ontzorgd Google & AI Aanvragen Traject</p>
-          <p class="font-heading text-3xl text-accent mb-2">Vanaf &euro;299<span class="text-sm text-text-muted font-body">/mnd</span></p>
-          <p class="text-text-muted text-sm mb-3 leading-relaxed">
-            Voor bedrijven die willen dat wij actief bouwen aan pagina 1, AI-vermeldingen, autoriteit en aanvragen.
-          </p>
-          <div class="bg-accent/5 border border-accent/20 rounded-lg p-3 mb-4">
-            <p class="text-sm text-text font-medium leading-relaxed">
-              <span class="text-accent font-heading">Uitkomst:</span> Wij zetten niet alleen je basis goed, maar werken actief door aan vindbaarheid, autoriteit, vertrouwen en conversie.
-            </p>
-          </div>
-          <ul class="space-y-2 mb-5">
+          <p class="font-heading text-lg text-text mb-0.5">Volledig Ontzorgd Aanvragen Traject</p>
+          <p class="font-heading text-3xl text-accent mb-3">Vanaf &euro;299<span class="text-sm text-text-muted font-body">/mnd</span></p>
+          <p class="text-text-muted text-sm mb-4 leading-relaxed">Wij zetten de basis goed &eacute;n voeren de groei actief uit.</p>
+          <ul class="space-y-1.5">
             {[
-              'Alles uit het AI-ready Website Fundament',
+              'Alles uit Fundament',
               'Dienst- en regiopagina\'s',
-              'Maandelijkse SEO/AI-content',
+              'SEO/AI-content',
               'Google Business optimalisatie',
-              'Reviewproces + reviewtemplates',
-              'Reviews verwerken op de website',
-              'AI-citeerbare FAQ\'s en contentblokken',
-              'Lokale autoriteit/citations',
-              'Conversieverbeteringen',
-              'Maandelijkse Google & AI-check',
-              'Doorlopende optimalisatie richting aanvragen',
+              'Reviewproces',
+              'Maandelijkse optimalisatie richting aanvragen',
             ].map((item) => (
               <li class="flex items-start gap-2 text-sm text-text font-medium">
                 <svg class="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
@@ -590,18 +597,17 @@ const serviceSchema = generateService({
               </li>
             ))}
           </ul>
-          <p class="text-xs text-text-muted italic">Jij hoeft niet zelf uit te zoeken wat er nodig is. Wij voeren het uit.</p>
         </div>
       </div>
 
       <div class="text-center">
+        <p class="text-sm text-text-muted mb-5 max-w-lg mx-auto">
+          Niet elk bedrijf heeft hetzelfde nodig. Daarom checken we eerst welke route logisch is.
+        </p>
         <a href="#formulier" class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg">
           Check of mijn bedrijf in aanmerking komt
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
         </a>
-        <p class="text-sm text-text-muted mt-4 max-w-lg mx-auto">
-          Niet elk bedrijf heeft hetzelfde nodig. Daarom checken we eerst of jouw bedrijf geschikt is en welke route logisch is: basis vanaf &euro;99/mnd of volledig ontzorgd traject vanaf &euro;299/mnd.
-        </p>
       </div>
     </div>
   </section>
@@ -610,35 +616,27 @@ const serviceSchema = generateService({
   {/* ══════════════════════════════════════════════════
       11 · 90-DAGEN TIJDLIJN
       ══════════════════════════════════════════════════ */}
-  <section class="px-4 md:px-6 py-14 md:py-20">
+  <section class="px-4 md:px-6 py-12 md:py-16">
     <div class="max-w-3xl mx-auto">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-2 text-center">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-8 text-center">
         Wat gebeurt er in de eerste 90 dagen?
       </h2>
-      <p class="text-text-muted text-center mb-10 max-w-xl mx-auto text-[0.95rem]">
-        Van diagnose naar zichtbaarheid en aanvragen.
-      </p>
 
-      <div class="space-y-0">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
         {[
-          { week: 'Week 1', title: 'Diagnose & groeiplan', desc: 'We bepalen welke diensten, regio\'s en zoekvragen het meeste geld kunnen opleveren.' },
-          { week: 'Week 2–4', title: 'AI-ready websitefundament', desc: 'We bouwen of vertalen je site naar een snelle, duidelijke basis die Google, AI-zoekmachines en klanten begrijpen.' },
-          { week: 'Week 4–8', title: 'Autoriteit & vertrouwen', desc: 'We werken aan reviews, Google Business, bewijs, content, FAQ\'s, dienstpagina\'s en lokale signalen.' },
-          { week: 'Week 8–12', title: 'Optimalisatie naar aanvragen', desc: 'We verbeteren CTA\'s, conversie, vindbaarheid en de route naar contact op basis van data en checks.' },
+          { week: 'Week 1', title: 'Groeiplan', desc: 'Kansen, zoekvragen, concurrenten en snelste route naar aanvragen.' },
+          { week: 'Week 2–4', title: 'Fundament', desc: 'Je site wordt sneller, duidelijker en gebouwd voor Google, AI en klanten.' },
+          { week: 'Week 4–8', title: 'Autoriteit', desc: 'Reviews, Google Business, bewijs, content en lokale signalen.' },
+          { week: 'Week 8–12', title: 'Optimalisatie', desc: 'CTA’s, conversie, vindbaarheid en aanvraagroute verbeteren.' },
         ].map((step, i) => (
-          <div class="relative flex gap-4 md:gap-6 pb-8">
-            {/* Timeline line */}
-            {i < 3 && <div class="absolute left-[1.1rem] md:left-[1.35rem] top-10 bottom-0 w-0.5 bg-accent/20" />}
-            {/* Circle */}
-            <div class="shrink-0 w-9 h-9 md:w-11 md:h-11 rounded-full bg-accent flex items-center justify-center shadow-md">
-              <span class="text-white font-heading text-sm md:text-base">{i + 1}</span>
+          <div class="bg-white border border-border rounded-card p-4 text-center relative">
+            {i < 3 && <div class="hidden md:block absolute top-1/2 -right-2.5 w-5 h-0.5 bg-accent/20" />}
+            <div class="w-9 h-9 rounded-full bg-accent flex items-center justify-center mx-auto mb-2 shadow-md">
+              <span class="text-white font-heading text-sm">{i + 1}</span>
             </div>
-            {/* Content */}
-            <div class="bg-white border border-border rounded-card p-4 md:p-5 flex-1 shadow-sm">
-              <p class="text-xs text-accent font-medium uppercase tracking-wide mb-1">{step.week}</p>
-              <p class="font-heading text-base md:text-lg text-text mb-1">{step.title}</p>
-              <p class="text-sm text-text-muted leading-relaxed">{step.desc}</p>
-            </div>
+            <p class="text-xs text-accent font-medium uppercase tracking-wide mb-1">{step.week}</p>
+            <p class="font-heading text-sm text-text mb-1">{step.title}</p>
+            <p class="text-xs text-text-muted leading-relaxed">{step.desc}</p>
           </div>
         ))}
       </div>
