@@ -104,6 +104,10 @@ const faqItems = [
     q: 'Waarom maximaal 5 bedrijven per ronde?',
     a: 'Elk traject krijgt persoonlijke aandacht: strategie, uitvoering en optimalisatie. Dat lukt alleen als we het aantal bedrijven per ronde beperken. Bovendien nemen we maximaal één bedrijf per branche in dezelfde regio aan, zodat je nooit tegen een directe concurrent binnen het traject aankijkt.',
   },
+  {
+    q: 'Hoe bepalen jullie of er vooruitgang is?',
+    a: 'We starten altijd met een 0-meting. Daarin leggen we vast hoe je bedrijf nu zichtbaar is in Google, ChatGPT, Perplexity, Google AI en je website. We kijken naar relevante zoektermen, AI-vermeldingen, websitebasis, content, bewijs en aanvraagroute.<br><br>Na 90 dagen vergelijken we de resultaten met die nulmeting. Geen duidelijke vooruitgang in Google, AI-zichtbaarheid of aanvragen? Dan werken we gratis door.',
+  },
 ];
 
 const serviceSchema = generateService({
@@ -260,7 +264,7 @@ const serviceSchema = generateService({
           Geen vooruitgang? Dan werken wij gratis door totdat er resultaat zichtbaar wordt. Zonder extra kosten.
         </p>
 
-        <div class="flex flex-wrap justify-center gap-3">
+        <div class="flex flex-wrap justify-center gap-3 mb-4">
           {['Geen nieuw traject', 'Geen extra voorstel', 'Geen slap rapport', 'Resultaat moet zichtbaar worden'].map((item) => (
             <span class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm bg-bg-alt border border-border rounded-full text-text font-medium">
               <svg class="w-3.5 h-3.5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
@@ -268,6 +272,7 @@ const serviceSchema = generateService({
             </span>
           ))}
         </div>
+        <p class="text-text-muted text-xs text-center">Vooruitgang meten we op basis van een 0-meting bij de start.</p>
       </div>
     </div>
   </section>
