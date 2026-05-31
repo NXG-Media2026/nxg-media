@@ -217,9 +217,12 @@ const serviceSchema = generateService({
             <p class="text-accent font-semibold text-sm">12&ndash;15 nieuwe pati&euml;nten/mnd</p>
           </div>
           <div class="px-5 pb-4">
-            <div class="rounded-lg overflow-hidden border border-border/50 cursor-pointer proof-thumb" data-full-src="">
-              <Image src={proofGoogle} alt="Google pagina 1 bewijs" width={400} height={80} class="w-full h-auto opacity-90 hover:opacity-100 transition-opacity" />
-            </div>
+            <button type="button" class="proof-trigger cursor-pointer group w-full text-left">
+              <div class="rounded-lg overflow-hidden border border-border/50">
+                <Image src={proofGoogle} alt="Google pagina 1 bewijs — klik om te vergroten" width={400} height={80} class="w-full h-auto opacity-90 group-hover:opacity-100 transition-opacity" />
+              </div>
+              <p class="text-text-muted text-[0.6rem] text-center mt-1 group-hover:text-text transition-colors">Klik om te vergroten</p>
+            </button>
           </div>
         </div>
 
@@ -237,9 +240,12 @@ const serviceSchema = generateService({
             <p class="text-accent font-semibold text-sm">15 AI-vermeldingen in ChatGPT</p>
           </div>
           <div class="px-5 pb-4">
-            <div class="rounded-lg overflow-hidden border border-border/50 cursor-pointer proof-thumb" data-full-src="">
-              <Image src={proofVerenaAi} alt="ChatGPT AI-vermelding bewijs" width={400} height={80} class="w-full h-auto opacity-90 hover:opacity-100 transition-opacity" />
-            </div>
+            <button type="button" class="proof-trigger cursor-pointer group w-full text-left">
+              <div class="rounded-lg overflow-hidden border border-border/50">
+                <Image src={proofVerenaAi} alt="ChatGPT AI-vermelding bewijs — klik om te vergroten" width={400} height={80} class="w-full h-auto opacity-90 group-hover:opacity-100 transition-opacity" />
+              </div>
+              <p class="text-text-muted text-[0.6rem] text-center mt-1 group-hover:text-text transition-colors">Klik om te vergroten</p>
+            </button>
           </div>
         </div>
 
@@ -819,15 +825,24 @@ const serviceSchema = generateService({
     <div class="max-w-3xl mx-auto px-4 md:px-6">
       <p class="text-xs uppercase tracking-widest text-text-muted font-medium text-center mb-4">Zo ziet het beheerpaneel eruit</p>
       <div class="grid grid-cols-3 gap-3">
-        <div class="bg-white border border-border rounded-lg overflow-hidden shadow-sm">
-          <Image src={keystaticDashboard} alt="Beheerpaneel met overzicht van pagina's, blogs en diensten" width={400} quality={80} class="w-full h-auto" loading="lazy" />
-        </div>
-        <div class="bg-white border border-border rounded-lg overflow-hidden shadow-sm">
-          <Image src={keystaticHomepage} alt="Teksten aanpassen via eenvoudige invoervelden" width={400} quality={80} class="w-full h-auto" loading="lazy" />
-        </div>
-        <div class="bg-white border border-border rounded-lg overflow-hidden shadow-sm">
-          <Image src={keystaticBlog} alt="Blog schrijven met opmaak en SEO-velden" width={400} quality={80} class="w-full h-auto" loading="lazy" />
-        </div>
+        <button type="button" class="proof-trigger cursor-pointer group text-left">
+          <div class="bg-white border border-border rounded-lg overflow-hidden shadow-sm group-hover:border-accent/30 transition-colors">
+            <Image src={keystaticDashboard} alt="Beheerpaneel met overzicht van pagina's, blogs en diensten" width={400} quality={80} class="w-full h-auto" loading="lazy" />
+          </div>
+          <p class="text-text-muted text-[0.6rem] text-center mt-1 group-hover:text-text transition-colors">Klik om te vergroten</p>
+        </button>
+        <button type="button" class="proof-trigger cursor-pointer group text-left">
+          <div class="bg-white border border-border rounded-lg overflow-hidden shadow-sm group-hover:border-accent/30 transition-colors">
+            <Image src={keystaticHomepage} alt="Teksten aanpassen via eenvoudige invoervelden" width={400} quality={80} class="w-full h-auto" loading="lazy" />
+          </div>
+          <p class="text-text-muted text-[0.6rem] text-center mt-1 group-hover:text-text transition-colors">Klik om te vergroten</p>
+        </button>
+        <button type="button" class="proof-trigger cursor-pointer group text-left">
+          <div class="bg-white border border-border rounded-lg overflow-hidden shadow-sm group-hover:border-accent/30 transition-colors">
+            <Image src={keystaticBlog} alt="Blog schrijven met opmaak en SEO-velden" width={400} quality={80} class="w-full h-auto" loading="lazy" />
+          </div>
+          <p class="text-text-muted text-[0.6rem] text-center mt-1 group-hover:text-text transition-colors">Klik om te vergroten</p>
+        </button>
       </div>
     </div>
   </section>
