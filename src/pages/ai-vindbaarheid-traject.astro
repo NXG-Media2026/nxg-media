@@ -821,80 +821,7 @@ const serviceSchema = generateService({
 
 
   {/* ══════════════════════════════════════════════════
-      14 · VOOR WIE WEL/NIET
-      ══════════════════════════════════════════════════ */}
-  <section class="px-4 md:px-6 py-12 md:py-16">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-8 text-center">
-        Voor wie is dit bedoeld?
-      </h2>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Wel geschikt */}
-        <div class="bg-white border-2 border-accent/20 rounded-card p-5 md:p-6">
-          <p class="font-heading text-base text-accent mb-4 flex items-center gap-2">
-            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-            Wel geschikt voor
-          </p>
-          <ul class="space-y-2.5">
-            {[
-              'Lokale dienstverleners',
-              'Praktijken en specialisten',
-              'Bedrijven met duidelijke diensten/regio\'s',
-              'Bedrijven waar één extra klant honderden euro\'s waard is',
-              'Ondernemers met een website die weinig oplevert',
-              'Bedrijven die zichtbaar willen worden in Google en AI-zoekmachines',
-            ].map((item) => (
-              <li class="flex items-start gap-2.5 text-sm text-text leading-relaxed">
-                <svg class="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Niet geschikt */}
-        <div class="bg-white border border-border rounded-card p-5 md:p-6">
-          <p class="font-heading text-base text-text-muted mb-4 flex items-center gap-2">
-            <svg class="w-5 h-5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-            Niet geschikt voor
-          </p>
-          <ul class="space-y-2.5">
-            {[
-              'Webshops met veel producten',
-              'Bedrijven zonder duidelijke dienst of regio',
-              'Ondernemers die alleen een goedkoop design willen',
-              'Bedrijven die geen input of reviews willen aanleveren',
-              'Bedrijven zonder commerciële klantwaarde',
-              'Complexe maatwerksites of platformen',
-            ].map((item) => (
-              <li class="flex items-start gap-2.5 text-sm text-text-muted leading-relaxed">
-                <svg class="w-4 h-4 text-red-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  {/* ══════════════════════════════════════════════════
-      15 · FAQ
-      ══════════════════════════════════════════════════ */}
-  <FAQAccordion
-    title="Veelgestelde vragen"
-    items={faqItems}
-    locale={locale}
-    pageType="service"
-    pageSlug="ai-vindbaarheid-traject"
-    compact={true}
-  />
-
-
-  {/* ══════════════════════════════════════════════════
-      16 · FOUNDER
+      14 · FOUNDER
       ══════════════════════════════════════════════════ */}
   <section class="py-12 md:py-16">
     <div class="max-w-4xl mx-auto px-4 md:px-6">
@@ -916,7 +843,20 @@ const serviceSchema = generateService({
 
 
   {/* ══════════════════════════════════════════════════
-      17 · FINAL CTA / FORMULIER
+      15 · FAQ
+      ══════════════════════════════════════════════════ */}
+  <FAQAccordion
+    title="Veelgestelde vragen"
+    items={faqItems}
+    locale={locale}
+    pageType="service"
+    pageSlug="ai-vindbaarheid-traject"
+    compact={true}
+  />
+
+
+  {/* ══════════════════════════════════════════════════
+      16 · FINAL CTA / FORMULIER
       ══════════════════════════════════════════════════ */}
   <section id="formulier" class="px-4 md:px-6 py-14 md:py-20 bg-primary">
     <div class="max-w-lg mx-auto">
@@ -963,6 +903,25 @@ const serviceSchema = generateService({
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
         </button>
       </form>
+
+      {/* Korte uitsluitingscheck */}
+      <div class="mt-8 pt-6 border-t border-white/10">
+        <p class="text-white/50 text-xs font-medium uppercase tracking-widest mb-3">Dit traject is niet bedoeld voor:</p>
+        <div class="space-y-1.5 mb-4">
+          {[
+            'Webshops met honderden producten',
+            'SaaS-platformen of complexe maatwerksystemen',
+            'Multinationals of grote corporate websites',
+            'Bedrijven zonder duidelijke dienst, regio of klantwaarde',
+          ].map((item) => (
+            <div class="flex items-start gap-2">
+              <svg class="w-3.5 h-3.5 text-red-400/70 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+              <p class="text-xs text-white/40">{item}</p>
+            </div>
+          ))}
+        </div>
+        <p class="text-xs text-white/60 italic">Voor lokale dienstverleners, praktijken en specialisten is dit juist gemaakt.</p>
+      </div>
 
       <div id="traject-thanks" class="hidden text-center py-8">
         <svg class="w-12 h-12 text-accent mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
