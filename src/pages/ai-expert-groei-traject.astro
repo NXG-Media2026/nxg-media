@@ -152,6 +152,8 @@ const serviceSchema = generateService({
             Bekijk de coach-cases
           </a>
         </div>
+
+        <p class="text-white/40 text-xs mt-4">Volgende 90-dagen ronde start 1 juli &middot; Max 4 coaches/experts</p>
       </div>
     </div>
   </section>
@@ -200,6 +202,28 @@ const serviceSchema = generateService({
         <p class="text-text-muted text-[0.95rem] max-w-xl mx-auto">
           Niet meteen een groot platform. Eerst een compacte route die bewijst dat mensen willen instappen.
         </p>
+      </div>
+
+      {/* Cohort card */}
+      <div class="relative max-w-md mx-auto mb-10">
+        <div class="absolute -inset-1 bg-accent/20 rounded-2xl blur-md"></div>
+        <div class="relative bg-primary-dark rounded-xl overflow-hidden shadow-xl border border-accent/30">
+          <div class="bg-accent px-4 py-2">
+            <span class="text-[0.65rem] font-bold tracking-[0.2em] uppercase text-white">Volgende 90-dagen ronde</span>
+          </div>
+          <div class="px-6 py-6 md:px-8 md:py-7">
+            <p class="text-white/50 text-xs font-medium uppercase tracking-wider mb-1">Start</p>
+            <p class="font-heading text-5xl md:text-6xl text-white leading-none mb-5">1 juli</p>
+            <div class="flex flex-wrap justify-center gap-2 mb-5">
+              <span class="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold bg-white/10 text-white rounded-full">Max 4 coaches/experts</span>
+            </div>
+            <div class="border-t border-white/10 pt-4">
+              <p class="text-white/60 text-sm leading-relaxed text-center">
+                De analyse, positionering, instaproute en eerste groeifase worden persoonlijk opgezet. Daarom beperken we het aantal.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="bg-white border border-border rounded-card p-6 md:p-8 mb-8">
@@ -546,6 +570,9 @@ const serviceSchema = generateService({
       <p class="text-text-muted text-sm leading-relaxed mb-3">
         Zoek je alleen wat losse tips om ooit zelf iets mee te doen? Dan is dit waarschijnlijk niet de juiste stap. Deze analyse is bedoeld voor coaches en experts die willen weten welke route commercieel het meeste kans maakt.
       </p>
+      <p class="text-text-muted text-sm leading-relaxed">
+        Als er genoeg groeikans ligt en je openstaat voor een traject, kijken we of je mee kunt in de ronde van 1 juli.
+      </p>
     </div>
   </section>
 
@@ -554,8 +581,11 @@ const serviceSchema = generateService({
       <h2 class="font-heading text-2xl md:text-3xl text-white mb-3 text-center">
         Check of er groeikans in jouw expertise zit
       </h2>
-      <p class="text-white/50 text-center text-sm mb-8">
+      <p class="text-white/50 text-center text-sm mb-3">
         Voor coaches, therapeuten en experts die serieus willen groeien.
+      </p>
+      <p class="text-accent text-center text-sm font-medium mb-8">
+        Volgende ronde: 1 juli &middot; Max 4 coaches/experts
       </p>
 
       <form id="groei-form" class="space-y-3">
@@ -616,7 +646,7 @@ const serviceSchema = generateService({
       </div>
 
       <p id="groei-microcopy" class="text-xs text-white/40 text-center mt-4">
-        Geen betaling nu. We kijken eerst of er genoeg potentie is en of je openstaat voor een serieus 90-dagen traject.
+        Geen betaling nu. We kijken eerst of er genoeg potentie is en of je past bij de ronde van 1 juli.
       </p>
     </div>
   </section>
