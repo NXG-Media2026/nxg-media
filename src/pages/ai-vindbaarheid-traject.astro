@@ -565,45 +565,65 @@ const serviceSchema = generateService({
   <section class="px-4 md:px-6 py-14 md:py-20">
     <div class="max-w-6xl mx-auto">
       <h2 class="font-heading text-2xl md:text-3xl text-text mb-2 text-center">
-        Welke route past bij jouw groeikans?
+        Kies je tempo
       </h2>
       <p class="text-text-muted text-center mb-3 max-w-2xl mx-auto text-[0.95rem] leading-relaxed">
-        Wil je een paar losse verbeteringen op je huidige site, of wil je een fundament dat gebouwd is om sneller gevonden, begrepen en gekozen te worden door Google, AI en potentiele klanten?
+        Wil je eerst klein testen, rustig een nieuw fundament opbouwen, of direct 90 dagen actief versnellen?
       </p>
       <p class="text-text font-medium text-center mb-8 max-w-2xl mx-auto text-sm">
-        De meeste bedrijven hebben geen bezoekersprobleem. Ze hebben een fundamentprobleem: Google, AI en klanten begrijpen te langzaam waarom zij de logische keuze zijn.
+        Losse fixes maken je huidige site beter. Een nieuw fundament kan je hele online positie versnellen.
       </p>
 
-      {/* ── Vergelijking boven kaarten ── */}
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-10 max-w-4xl mx-auto">
-        <div class="bg-bg-alt rounded-lg px-4 py-3 text-center">
-          <p class="text-xs uppercase tracking-widest text-text-muted font-medium mb-1">Eerste fixes</p>
-          <p class="text-sm text-text leading-snug">Je huidige site wordt beter begrijpbaar voor Google en AI.</p>
-          <p class="text-xs text-text-muted font-medium mt-2">&rarr; Losse fixes</p>
+      {/* ── Tempo vergelijking ── */}
+      <div class="grid grid-cols-3 gap-2 md:gap-3 mb-10 max-w-3xl mx-auto">
+        <div class="text-center px-2 py-2">
+          <p class="text-[0.6rem] md:text-xs uppercase tracking-widest text-text-muted font-medium mb-0.5">Kleine test</p>
+          <div class="flex justify-center gap-0.5 mt-1">
+            <span class="w-5 h-1.5 rounded-full bg-text-muted/30"></span>
+            <span class="w-5 h-1.5 rounded-full bg-border"></span>
+            <span class="w-5 h-1.5 rounded-full bg-border"></span>
+          </div>
         </div>
-        <div class="bg-bg-alt rounded-lg px-4 py-3 text-center">
-          <p class="text-xs uppercase tracking-widest text-text-muted font-medium mb-1">Nieuw fundament</p>
-          <p class="text-sm text-text leading-snug">Een nieuwe basis die maand na maand meer kans cre&euml;ert op aanvragen.</p>
-          <p class="text-xs text-accent font-medium mt-2">&rarr; AI & Google Fundament</p>
+        <div class="text-center px-2 py-2">
+          <p class="text-[0.6rem] md:text-xs uppercase tracking-widest text-accent font-medium mb-0.5">Nieuw fundament</p>
+          <div class="flex justify-center gap-0.5 mt-1">
+            <span class="w-5 h-1.5 rounded-full bg-accent/60"></span>
+            <span class="w-5 h-1.5 rounded-full bg-accent/60"></span>
+            <span class="w-5 h-1.5 rounded-full bg-border"></span>
+          </div>
         </div>
-        <div class="bg-accent/5 border border-accent/15 rounded-lg px-4 py-3 text-center">
-          <p class="text-xs uppercase tracking-widest text-accent font-medium mb-1">Nieuwe basis + versnelling</p>
-          <p class="text-sm text-text leading-snug font-medium">Wij bouwen het fundament &eacute;n zetten 90 dagen druk op de belangrijkste groeikansen.</p>
-          <p class="text-xs text-accent font-medium mt-2">&rarr; Complete Boost</p>
+        <div class="text-center px-2 py-2">
+          <p class="text-[0.6rem] md:text-xs uppercase tracking-widest text-accent font-medium mb-0.5">Snelste route</p>
+          <div class="flex justify-center gap-0.5 mt-1">
+            <span class="w-5 h-1.5 rounded-full bg-accent"></span>
+            <span class="w-5 h-1.5 rounded-full bg-accent"></span>
+            <span class="w-5 h-1.5 rounded-full bg-accent"></span>
+          </div>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
+      <div class="grid grid-cols-1 md:grid-cols-[1fr_1fr_1.15fr] gap-4 md:gap-5 mb-10 items-start">
 
         {/* ── ROUTE 1 — Losse fixes ── */}
-        <div class="bg-white border border-border rounded-card p-5 flex flex-col">
+        <div class="bg-white border border-border/60 rounded-card p-4 md:p-5 flex flex-col opacity-90">
           <span class="inline-block self-start px-2.5 py-0.5 text-[0.55rem] font-medium tracking-widest uppercase bg-bg-alt text-text-muted rounded-full mb-3">Kleine test</span>
 
           <p class="font-heading text-base text-text mb-0.5">Losse fixes / optimalisatielaag</p>
           <div class="flex items-baseline gap-1 mb-0.5">
-            <p class="font-heading text-2xl text-text-muted">&euro;99<span class="text-sm font-body">/mnd</span></p>
+            <p class="font-heading text-xl text-text-muted">&euro;99<span class="text-sm font-body">/mnd</span></p>
           </div>
-          <p class="text-text-muted text-xs mb-4">3 maanden</p>
+          <p class="text-text-muted text-xs mb-3">3 maanden</p>
+
+          {/* Impact indicator */}
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-[0.6rem] uppercase tracking-widest text-text-muted font-medium">Impact</span>
+            <div class="flex gap-0.5">
+              <span class="w-4 h-1 rounded-full bg-text-muted/40"></span>
+              <span class="w-4 h-1 rounded-full bg-border"></span>
+              <span class="w-4 h-1 rounded-full bg-border"></span>
+            </div>
+            <span class="text-[0.6rem] text-text-muted">Beperkt</span>
+          </div>
 
           <p class="text-xs uppercase tracking-widest text-text-muted font-medium mb-1">Uitkomst na 90 dagen</p>
           <p class="text-text-muted text-sm leading-relaxed mb-3">
@@ -622,8 +642,8 @@ const serviceSchema = generateService({
             <p class="text-[0.7rem] text-text-muted">Je blijft afhankelijk van je huidige website, WordPress/thema/plugins, snelheid en bestaande structuur. <strong class="text-text">Geen nieuwe website, geen nieuw fundament.</strong></p>
           </div>
 
-          <a href="#formulier" class="inline-flex items-center justify-center gap-2 px-5 py-3 text-sm font-medium text-text border border-border hover:border-accent/30 transition-colors rounded-button w-full mt-auto mb-4">
-            Start klein met losse fixes
+          <a href="#formulier" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium text-text-muted border border-border hover:border-text-muted/40 transition-colors rounded-button w-full mt-auto mb-4">
+            Start klein
           </a>
 
           <details class="group border-t border-border pt-3">
@@ -643,7 +663,7 @@ const serviceSchema = generateService({
                 'Evaluatie na 90 dagen',
               ].map((item) => (
                 <li class="flex items-start gap-2 text-xs text-text-muted">
-                  <svg class="w-3 h-3 text-text-muted/50 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  <svg class="w-3 h-3 text-text-muted/40 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
                   {item}
                 </li>
               ))}
@@ -652,14 +672,25 @@ const serviceSchema = generateService({
         </div>
 
         {/* ── ROUTE 2 — Fundament ── */}
-        <div class="bg-white border border-border rounded-card p-5 flex flex-col">
+        <div class="bg-white border border-accent/20 rounded-card p-4 md:p-5 flex flex-col">
           <span class="inline-block self-start px-2.5 py-0.5 text-[0.55rem] font-medium tracking-widest uppercase bg-accent/10 text-accent rounded-full mb-3">Nieuw fundament</span>
 
           <p class="font-heading text-base text-text mb-0.5">AI & Google Fundament</p>
           <div class="flex items-baseline gap-1 mb-0.5">
             <p class="font-heading text-2xl text-accent">&euro;99<span class="text-sm text-text-muted font-body">/mnd</span></p>
           </div>
-          <p class="text-text-muted text-xs mb-4">12 maanden</p>
+          <p class="text-text-muted text-xs mb-3">12 maanden</p>
+
+          {/* Impact indicator */}
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-[0.6rem] uppercase tracking-widest text-accent font-medium">Impact</span>
+            <div class="flex gap-0.5">
+              <span class="w-4 h-1 rounded-full bg-accent/60"></span>
+              <span class="w-4 h-1 rounded-full bg-accent/60"></span>
+              <span class="w-4 h-1 rounded-full bg-border"></span>
+            </div>
+            <span class="text-[0.6rem] text-accent">Structureel</span>
+          </div>
 
           <p class="text-xs uppercase tracking-widest text-text-muted font-medium mb-1">Uitkomst</p>
           <p class="text-text-muted text-sm leading-relaxed mb-3">
@@ -678,7 +709,7 @@ const serviceSchema = generateService({
             <p class="text-[0.7rem] text-text">Bij eerdere cases werd een nieuw fundament al binnen 2 weken zichtbaar in Google en AI-tools zoals ChatGPT. Geen garantie voor ieder bedrijf, wel precies waarom het fundament zo belangrijk is.</p>
           </div>
 
-          <a href="#formulier" class="inline-flex items-center justify-center gap-2 px-5 py-3 text-sm font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button w-full mt-auto mb-4">
+          <a href="#formulier" class="inline-flex items-center justify-center gap-2 px-5 py-3 text-sm font-medium text-accent border-2 border-accent hover:bg-accent hover:text-white transition-colors rounded-button w-full mt-auto mb-4">
             Bouw mijn fundament
           </a>
 
@@ -709,19 +740,30 @@ const serviceSchema = generateService({
         </div>
 
         {/* ── ROUTE 3 — Complete Boost ── */}
-        <div class="bg-white border-2 border-accent/30 rounded-card p-5 shadow-lg relative flex flex-col">
-          <span class="absolute -top-3 left-5 inline-block px-3 py-0.5 text-[0.6rem] font-medium tracking-widest uppercase bg-accent text-white rounded-full shadow-sm">Aanbevolen &mdash; snelste route</span>
+        <div class="bg-gradient-to-b from-white to-accent/[0.03] border-2 border-accent/40 rounded-card p-5 md:p-6 shadow-xl relative flex flex-col ring-1 ring-accent/10">
+          <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 inline-block px-4 py-1 text-[0.6rem] font-bold tracking-[0.15em] uppercase bg-accent text-white rounded-full shadow-md whitespace-nowrap">Aanbevolen &mdash; snelste route</span>
 
-          <span class="inline-block self-start px-2.5 py-0.5 text-[0.55rem] font-medium tracking-widest uppercase bg-accent/10 text-accent rounded-full mb-3">Nieuwe basis + actieve boost</span>
+          <span class="inline-block self-start px-2.5 py-0.5 text-[0.55rem] font-medium tracking-widest uppercase bg-accent/10 text-accent rounded-full mb-3 mt-1">Nieuwe basis + actieve boost</span>
 
-          <p class="font-heading text-base text-text mb-0.5">Complete Boost Fundament</p>
+          <p class="font-heading text-lg text-text mb-0.5">Complete Boost Fundament</p>
           <div class="flex items-baseline gap-1 mb-0.5">
-            <p class="font-heading text-2xl text-accent">&euro;299<span class="text-sm text-text-muted font-body">/mnd</span></p>
+            <p class="font-heading text-3xl text-accent">&euro;299<span class="text-sm text-text-muted font-body">/mnd</span></p>
           </div>
-          <p class="text-text-muted text-xs mb-4">3 maanden actieve uitvoering</p>
+          <p class="text-text-muted text-xs mb-3">3 maanden actieve uitvoering</p>
+
+          {/* Impact indicator */}
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-[0.6rem] uppercase tracking-widest text-accent font-semibold">Impact</span>
+            <div class="flex gap-0.5">
+              <span class="w-5 h-1.5 rounded-full bg-accent"></span>
+              <span class="w-5 h-1.5 rounded-full bg-accent"></span>
+              <span class="w-5 h-1.5 rounded-full bg-accent"></span>
+            </div>
+            <span class="text-[0.6rem] text-accent font-semibold">Snelste groei</span>
+          </div>
 
           <p class="text-xs uppercase tracking-widest text-accent font-medium mb-1">Uitkomst na 90 dagen</p>
-          <p class="text-text-muted text-sm leading-relaxed mb-3">
+          <p class="text-text text-sm leading-relaxed mb-3">
             Er staat niet alleen een nieuwe site. Er staat een fundament dat gebouwd is om aanvragen te winnen: sneller, scherper, beter leesbaar voor AI en ingericht rond de zoekvragen waar klanten op binnenkomen.
           </p>
           <p class="text-text-muted text-sm leading-relaxed mb-4">
@@ -741,16 +783,18 @@ const serviceSchema = generateService({
             <p class="text-[0.7rem] text-text"><strong class="text-primary">Voorsprong:</strong> als je concurrenten hier nog niet structureel mee bezig zijn, kun je in 90 dagen een voorsprong opbouwen die later moeilijker in te halen is.</p>
           </div>
 
-          <div class="bg-bg-alt rounded-lg px-3 py-2 mb-4">
+          <div class="bg-bg-alt rounded-lg px-3 py-2 mb-5">
             <p class="text-[0.7rem] text-text-muted"><strong class="text-text">Na 90 dagen:</strong> behoud, hosting en monitoring vanaf &euro;75/mnd.</p>
           </div>
 
-          <a href="#formulier" class="inline-flex items-center justify-center gap-2 px-5 py-3.5 text-sm font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg w-full mt-auto mb-4">
+          <a href="#formulier" class="inline-flex items-center justify-center gap-2 px-6 py-4 text-base font-semibold text-white bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg w-full mt-auto mb-4">
             Start met de complete boost
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
           </a>
 
-          <details class="group border-t border-border pt-3">
+          <p class="text-[0.65rem] text-accent/70 text-center mb-3 font-medium">Sterkste resultaatpotentieel</p>
+
+          <details class="group border-t border-accent/15 pt-3">
             <summary class="flex items-center justify-between cursor-pointer text-xs text-accent font-medium select-none">
               Wat zit erin?
               <svg class="w-3.5 h-3.5 text-accent transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
@@ -785,7 +829,7 @@ const serviceSchema = generateService({
         <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
           <div class="bg-bg-alt rounded-lg px-4 py-3">
             <p class="text-xs text-text-muted font-medium mb-1">Route 1</p>
-            <p class="text-sm text-text">Je huidige site wordt iets beter.</p>
+            <p class="text-sm text-text-muted">Je huidige site wordt iets beter.</p>
           </div>
           <div class="bg-bg-alt rounded-lg px-4 py-3">
             <p class="text-xs text-accent font-medium mb-1">Route 2</p>
