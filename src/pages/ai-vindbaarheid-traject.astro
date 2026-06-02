@@ -1,8 +1,7 @@
 ---
 /**
  * Google & AI Aanvragen Traject — /ai-vindbaarheid-traject/
- * Hard direct-response offer page. Replaces old advisory/analysis version.
- * Old version archived at /ai-vindbaarheid-traject-v1/
+ * Hard direct-response offer page with 3 routes and qualification logic.
  */
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
@@ -45,24 +44,24 @@ const breadcrumbs = [
 
 const faqItems = [
   {
-    q: 'Krijg ik echt een complete nieuwe website inbegrepen?',
-    a: 'Ja. Als je huidige website niet geschikt is, bouwen we een complete AI-ready website op een premium fundament mee. Normaal betaal je hier al snel €2.000–€4.000 voor. Binnen dit traject zit dat inbegrepen.<br><br>Met fundament bedoelen we geen simpele starter-site, maar een snelle, moderne website-architectuur die beter geschikt is voor Google, AI-zoekmachines, snelheid en conversie dan standaard WordPress/Wix-oplossingen. Inclusief homepage, diensten/aanbod, bewijs/reviews, duidelijke contactroute, hosting, onderhoud en beheerpaneel.<br><br>Webshops, complexe platformen en uitgebreid maatwerk vallen hier niet onder.',
+    q: 'Krijg ik bij €99/mnd een nieuwe website?',
+    a: 'Dat hangt van de route af. Bij het AI & Google Fundament (€99/mnd x 12 maanden) bouwen we een compleet nieuw AI-ready fundament inclusief hosting en beheerpaneel. Bij de losse-fixes-route (€99/mnd x 3 maanden) werken we binnen je huidige website en krijg je géén nieuwe site.',
   },
   {
-    q: 'Wat krijg ik precies bij het AI & Google Fundament van €99/mnd?',
-    a: 'Dit pakket is voor bedrijven die hun fundament goed willen zetten en daarna zelf content, reviews en input willen aanleveren. Wij zorgen voor de complete AI-ready website op premium fundament, hosting, onderhoud, monitoring en concrete verbeterpunten. Jij voert de groei-acties grotendeels zelf uit.<br><br>• Complete AI-ready website op premium fundament<br>• Hosting en onderhoud<br>• Maandelijkse Google & AI-monitoring<br>• Concrete suggesties voor content, reviews en pagina\'s<br>• Beheerpaneel om zelf teksten, foto\'s en updates aan te passen<br>• Geen losse Wix-, WordPress- of hostingkosten meer nodig<br>• Jij levert zelf reviews, foto\'s, input en extra content aan',
+    q: 'Waarom zou ik €299/mnd kiezen als er ook €99/mnd is?',
+    a: 'De €299-route bevat actieve uitvoering in de eerste 90 dagen. We bouwen niet alleen het fundament, maar pakken ook de belangrijkste pagina\'s, structuur, citeerbaarheid en conversieroute actief aan. Bij €99/mnd lever je zelf meer input en uitvoering.',
   },
   {
-    q: 'Wat krijg ik extra bij de 90-dagen Google & AI Groeitraject van €299/mnd?',
-    a: 'Dit pakket is voor bedrijven die willen dat wij de groei-acties uitvoeren. We doen niet alleen het fundament, maar bouwen actief aan vindbaarheid, autoriteit, vertrouwen en aanvragen.<br><br>• Zoekvragen- en concurrentieonderzoek<br>• Dienst- en regiopagina\'s<br>• SEO/AI-content schrijven en plaatsen<br>• Google Business optimalisatie<br>• Reviewproces en reviewtemplates<br>• Reviews verwerken op de website<br>• FAQ\'s en bewijsblokken toevoegen<br>• CTA\'s en conversie verbeteren<br>• Maandelijkse Google & AI-check',
+    q: 'Kan ik ook alleen losse tips krijgen?',
+    a: 'Niet als uitgebreid adviestraject. De losse-fixes-route is bedoeld voor ondernemers die willen dat wij de eerste verbeteringen uitvoeren. Zoek je alleen gratis tips om zelf ooit iets mee te doen, dan past dit traject minder goed.',
   },
   {
-    q: 'Wat gebeurt er na de 90-dagen sprint?',
-    a: 'Na de sprint kun je naar behoud & monitoring vanaf €79/mnd. Dan houden we je website online, snel en up-to-date, monitoren we je zichtbaarheid en zorgen we dat je fundament niet stilvalt. Grotere nieuwe pagina\'s, campagnes of extra content kunnen apart worden toegevoegd.',
+    q: 'Garanderen jullie 30% meer aanvragen?',
+    a: 'Nee. Bij klanten waar het fundament goed stond, zagen we gemiddeld rond de 30% meer aanvragen, maar het effect verschilt per niche, aanbod, concurrentie en huidige situatie. Daarom werken we met een nulmeting en 90-dagen evaluatie.',
   },
   {
-    q: 'Waarom zou ik €299/mnd kiezen als er ook een €99/mnd optie is?',
-    a: 'Het €99/mnd pakket is vooral bedoeld als fundament + richting. Jij moet dan zelf reviews, content en verbeteringen aanleveren. Bij €299/mnd voeren wij de groeiacties uit: onderzoek, pagina\'s, content, Google Business, reviews en optimalisatie richting aanvragen. Je betaalt dus vooral voor uitvoering en snelheid.',
+    q: 'Wat gebeurt er als uit jullie check blijkt dat er weinig kans ligt?',
+    a: 'Dan zeggen we dat eerlijk. Niet elk bedrijf of elke markt is geschikt. We starten liever niet dan dat we een traject doen waar weinig commerciële kans in zit.',
   },
   {
     q: 'Kom ik echt op pagina 1 in Google?',
@@ -78,27 +77,19 @@ const faqItems = [
   },
   {
     q: 'Wat gebeurt er in de eerste 90 dagen?',
-    a: 'In de eerste 90 dagen bouwen we stap voor stap aan vindbaarheid, vertrouwen en aanvragen.<br><br><strong>Week 1 — Groeiplan:</strong> kansen, zoekvragen, concurrenten en snelste route naar aanvragen.<br><br><strong>Week 2–4 — Fundament:</strong> je site wordt sneller, duidelijker en gebouwd voor Google, AI-zoekmachines en klanten.<br><br><strong>Week 4–8 — Autoriteit:</strong> reviews, Google Business, bewijs, content en lokale signalen.<br><br><strong>Week 8–12 — Optimalisatie:</strong> CTA\'s, conversie, vindbaarheid en aanvraagroute verbeteren.',
+    a: 'In de eerste 90 dagen bouwen we stap voor stap aan vindbaarheid, vertrouwen en aanvragen.<br><br><strong>Week 1 — Nulmeting & groeiplan:</strong> kansen, zoekvragen, concurrenten en snelste route naar aanvragen.<br><br><strong>Week 2–4 — Fundament:</strong> je site wordt sneller, duidelijker en gebouwd voor Google, AI-zoekmachines en klanten.<br><br><strong>Week 4–8 — Autoriteit:</strong> reviews, Google Business, bewijs, content en lokale signalen.<br><br><strong>Week 8–12 — Optimalisatie:</strong> CTA\'s, conversie, vindbaarheid en aanvraagroute verbeteren.',
   },
   {
     q: 'Waarom geen WordPress?',
     a: 'Veel WordPress-sites worden traag en rommelig door plugins, thema\'s en updates. Wij bouwen liever een snelle, moderne website op een premium fundament zonder plugin-chaos, zodat je site beter te beheren en beter te optimaliseren is.',
   },
   {
-    q: 'Heb ik mijn huidige Wix, WordPress of hosting dan nog nodig?',
-    a: 'Meestal niet. Als we je website overzetten naar ons AI-ready premium fundament, zitten hosting, onderhoud en beheerpaneel inbegrepen. Je hebt dan geen losse Wix-, WordPress-, plugin- of hostingkosten meer nodig. We bekijken vooraf wat er bij jouw huidige situatie logisch is, zodat je niets dubbel betaalt.',
-  },
-  {
     q: 'Houd ik zelf controle over mijn website?',
-    a: 'Ja. Je krijgt een beheerpaneel waarmee je zelf teksten, foto\'s, diensten en updates kunt aanpassen. Je hoeft niet voor elke kleine wijziging naar een webbouwer.<br><br>• Zelf teksten aanpassen<br>• Zelf foto\'s vervangen<br>• Blogs of updates publiceren<br>• Diensten beheren',
+    a: 'Ja. Bij Route 2 en 3 krijg je een beheerpaneel waarmee je zelf teksten, foto\'s, diensten en updates kunt aanpassen. Je hoeft niet voor elke kleine wijziging naar een webbouwer.',
   },
   {
     q: 'Ben ik dan afhankelijk van NXG Media?',
     a: 'Nee, niet voor kleine inhoudelijke aanpassingen. Jij houdt controle over de inhoud. Wij beheren het technische fundament en zorgen dat alles snel, veilig en goed ingericht blijft.',
-  },
-  {
-    q: 'Wat moet ik zelf nog doen?',
-    a: 'Bij het €99/mnd fundament lever je vooral zelf input, reviews en content aan. Bij het volledig ontzorgde traject nemen wij veel meer uitvoering over, zoals content, reviewproces, Google Business en optimalisatie.',
   },
   {
     q: 'Voor wie is dit niet geschikt?',
@@ -110,11 +101,11 @@ const faqItems = [
   },
   {
     q: 'Hoe bepalen jullie of er vooruitgang is?',
-    a: 'We starten altijd met een 0-meting. Daarin leggen we vast hoe je bedrijf nu zichtbaar is in Google, ChatGPT, Perplexity, Google AI en je website. We kijken naar relevante zoektermen, AI-vermeldingen, websitefundament, content, bewijs en aanvraagroute.<br><br>Na 90 dagen vergelijken we de resultaten met die nulmeting. Geen duidelijke vooruitgang in Google, AI-zichtbaarheid of aanvragen? Dan werken we gratis door.',
+    a: 'We starten altijd met een nulmeting. Daarin leggen we vast hoe je bedrijf nu zichtbaar is in Google, ChatGPT, Perplexity, Google AI en je website. We kijken naar relevante zoektermen, AI-vermeldingen, websitefundament, content, bewijs en aanvraagroute.<br><br>Na 90 dagen vergelijken we de resultaten met die nulmeting. Geen duidelijke vooruitgang in Google, AI-zichtbaarheid of aanvragen? Dan werken we gratis door.',
   },
   {
     q: 'Kunnen jullie ook meten wat bezoekers doen op mijn website?',
-    a: 'Ja. We kunnen tracking en optimalisatie toevoegen, zoals Google Tag Manager, Meta Pixel, Microsoft Clarity, formuliertracking en conversiemeting. Daarmee zien we waar bezoekers afhaken en welke pagina\'s, CTA\'s of formulieren beter kunnen. Dit is vooral interessant zodra je website live staat en er verkeer op komt.',
+    a: 'Ja. We kunnen tracking en optimalisatie toevoegen, zoals Google Tag Manager, Meta Pixel, Microsoft Clarity, formuliertracking en conversiemeting. Daarmee zien we waar bezoekers afhaken en welke pagina\'s, CTA\'s of formulieren beter kunnen.',
   },
   {
     q: 'Wat kunnen jullie na de eerste 90 dagen blijven doen?',
@@ -131,8 +122,8 @@ const serviceSchema = generateService({
 ---
 
 <BaseLayout
-  title="Pagina 1 in Google. Genoemd worden door ChatGPT. Meer aanvragen. | NXG Media"
-  description="Pagina 1 in Google. Genoemd worden door ChatGPT en AI-zoekmachines. Meer aanvragen uit je website. Fundament vanaf €99/mnd. Check of jouw bedrijf in aanmerking komt."
+  title="Meer aanvragen uit Google en AI begint met het juiste fundament | NXG Media"
+  description="Laat zien waar jouw bedrijf nu klanten mist in Google en AI. Losse fixes vanaf €99/mnd, nieuw fundament of complete 90-dagen boost vanaf €299/mnd."
   canonical={`${siteConfig.url}/ai-vindbaarheid-traject/`}
   schemas={[
     generateBreadcrumbs(breadcrumbs.map((b) => ({ name: b.label, url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}/ai-vindbaarheid-traject/` }))),
@@ -147,7 +138,7 @@ const serviceSchema = generateService({
 
 
   {/* ══════════════════════════════════════════════════
-      1 · HERO
+      1 - HERO
       ══════════════════════════════════════════════════ */}
   <section class="relative overflow-hidden bg-primary">
     <div class="absolute inset-0 hidden md:block">
@@ -157,44 +148,46 @@ const serviceSchema = generateService({
     <div class="relative px-5 md:px-6 pt-10 pb-10 md:pt-14 md:pb-16">
       <div class="max-w-2xl mx-auto">
         <h1 class="font-heading text-[1.75rem] leading-[1.15] md:text-[2.75rem] md:leading-[1.1] text-white mb-4">
-          Pagina 1 in Google.<br />
-          Genoemd worden door ChatGPT en AI-zoekmachines.<br />
-          <em class="text-accent not-italic">Meer aanvragen uit je website.</em>
+          Meer aanvragen uit Google en AI<br />
+          <em class="text-accent not-italic">begint met het juiste fundament.</em>
         </h1>
 
-        <p class="text-white/70 leading-relaxed mb-2 text-[0.9rem] md:text-base max-w-xl">
-          Jouw volgende klant zoekt al. Als Google, AI en bezoekers je concurrent sneller begrijpen, gaat de aanvraag naar hem.
-        </p>
-        <p class="text-white/90 font-medium mb-5 text-[0.9rem] md:text-base max-w-xl">
-          Wij bouwen je website om van online visitekaartje naar klantenkanaal.
+        <p class="text-white/70 leading-relaxed mb-5 text-[0.9rem] md:text-base max-w-xl">
+          Laat zien waar jouw bedrijf nu klanten mist in Google en AI. Als er concrete kansen liggen, kiezen we de route: losse fixes, een nieuw fundament of een complete 90-dagen boost.
         </p>
 
-        {/* Compact deal card */}
-        <div class="bg-white/[0.12] backdrop-blur-sm border-2 border-accent/40 rounded-card p-4 md:p-5 mb-5 max-w-md shadow-lg">
-          <div class="flex items-baseline gap-2 mb-1">
-            <p class="font-heading text-3xl md:text-4xl text-white">Vanaf &euro;99<span class="text-base text-white/60 font-body">/mnd</span></p>
+        {/* Price anchors */}
+        <div class="flex flex-col sm:flex-row gap-3 mb-5 max-w-md">
+          <div class="bg-white/[0.08] border border-white/15 rounded-lg px-4 py-3 flex-1">
+            <p class="text-white font-heading text-xl">Vanaf &euro;99<span class="text-sm text-white/50 font-body">/mnd</span></p>
+            <p class="text-white/50 text-xs">Losse AI/SEO-fixes</p>
           </div>
-          <p class="text-white/50 text-xs mb-3">Voor bedrijven die in aanmerking komen &middot; Volgende ronde: 1 juli &middot; Max 5 bedrijven &middot; 1 per branche/regio</p>
-          <ul class="space-y-1 text-sm text-white/70">
-            <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> Pagina 1 in Google als doel</li>
-            <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> Genoemd worden door ChatGPT, Perplexity en Google AI</li>
-            <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> Complete AI-ready website op premium fundament inbegrepen</li>
-          </ul>
+          <div class="bg-white/[0.12] border-2 border-accent/40 rounded-lg px-4 py-3 flex-1">
+            <p class="text-white font-heading text-xl">Vanaf &euro;299<span class="text-sm text-white/50 font-body">/mnd</span></p>
+            <p class="text-accent text-xs font-medium">Complete Google & AI boost</p>
+          </div>
         </div>
+
+        <ul class="space-y-1.5 text-sm text-white/70 mb-6">
+          <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> Kies tussen losse fixes, een nieuw fundament of een complete 90-dagen boost</li>
+          <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> Beter vindbaar worden in Google, ChatGPT, Perplexity en AI-zoekmachines</li>
+          <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> Gericht op meer aanvragen, niet alleen meer bezoekers</li>
+          <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> Altijd met nulmeting en evaluatie na 90 dagen</li>
+        </ul>
 
         <a href="#formulier" class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-white bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg w-full md:w-auto justify-center">
           Check of mijn bedrijf in aanmerking komt
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
         </a>
 
-        <p class="text-white/40 text-xs mt-3">Geen betaling nu. Eerst kijken we of jouw bedrijf past.</p>
+        <p class="text-white/40 text-xs mt-3">Geen gratis tips-rondje. We kijken of er genoeg potentie is voor een serieus 90-dagen traject.</p>
       </div>
     </div>
   </section>
 
 
   {/* ══════════════════════════════════════════════════
-      2 · PROOF STRIP
+      2 - PROOF STRIP
       ══════════════════════════════════════════════════ */}
   <section class="bg-bg-alt border-b border-border/50 px-4 md:px-6 py-8 md:py-10">
     <div class="max-w-4xl mx-auto">
@@ -217,7 +210,7 @@ const serviceSchema = generateService({
           <div class="px-5 pb-4">
             <button type="button" class="proof-trigger cursor-pointer group w-full text-left">
               <div class="rounded-lg overflow-hidden border border-border/50">
-                <Image src={proofGoogle} alt="Google pagina 1 bewijs — klik om te vergroten" width={1200} quality={90} class="w-full h-auto opacity-90 group-hover:opacity-100 transition-opacity" />
+                <Image src={proofGoogle} alt="Google pagina 1 bewijs" width={1200} quality={90} class="w-full h-auto opacity-90 group-hover:opacity-100 transition-opacity" />
               </div>
               <p class="text-text-muted text-[0.6rem] text-center mt-1 group-hover:text-text transition-colors">Klik om te vergroten</p>
             </button>
@@ -240,7 +233,7 @@ const serviceSchema = generateService({
           <div class="px-5 pb-4">
             <button type="button" class="proof-trigger cursor-pointer group w-full text-left">
               <div class="rounded-lg overflow-hidden border border-border/50">
-                <Image src={proofVerenaAi} alt="ChatGPT AI-vermelding bewijs — klik om te vergroten" width={1200} quality={90} class="w-full h-auto opacity-90 group-hover:opacity-100 transition-opacity" />
+                <Image src={proofVerenaAi} alt="ChatGPT AI-vermelding bewijs" width={1200} quality={90} class="w-full h-auto opacity-90 group-hover:opacity-100 transition-opacity" />
               </div>
               <p class="text-text-muted text-[0.6rem] text-center mt-1 group-hover:text-text transition-colors">Klik om te vergroten</p>
             </button>
@@ -253,7 +246,22 @@ const serviceSchema = generateService({
 
 
   {/* ══════════════════════════════════════════════════
-      3 · GUARANTEE / RISK REVERSAL
+      3 - KERNVRAAG / KWALIFICATIE
+      ══════════════════════════════════════════════════ */}
+  <section class="px-4 md:px-6 py-12 md:py-16">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4 leading-snug">
+        Als we kunnen laten zien waar jouw bedrijf nu klanten mist in Google en AI, ben je dan bereid om 90 dagen serieus aan dat fundament te werken?
+      </h2>
+      <p class="text-text-muted text-[0.95rem] leading-relaxed max-w-xl mx-auto">
+        Dat is de enige vraag die ertoe doet. Wij doen alleen een deep dive als iemand serieus openstaat voor een traject wanneer er concrete kansen liggen.
+      </p>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      4 - GUARANTEE / RISK REVERSAL
       ══════════════════════════════════════════════════ */}
   <section class="px-4 md:px-6 py-10 md:py-14">
     <div class="max-w-3xl mx-auto">
@@ -267,94 +275,69 @@ const serviceSchema = generateService({
         </div>
 
         <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">
-          Geen zichtbare vooruitgang in Google of AI? Dan werken wij gratis door.
+          Geen zichtbare vooruitgang? Dan werken wij gratis door.
         </h2>
-        <p class="text-text-muted mb-3 text-[0.95rem] leading-relaxed max-w-xl mx-auto">
-          Binnen 90 dagen moet je vooruitgang zien in Google, AI-zoekmachines of aanvragen via je website.
+        <p class="text-text-muted mb-6 text-[0.95rem] leading-relaxed max-w-xl mx-auto">
+          Binnen 90 dagen moet je vooruitgang zien in Google, AI-zoekmachines of aanvragen via je website. Geen vooruitgang? Dan werken wij gratis door totdat er resultaat zichtbaar wordt.
         </p>
-        <p class="text-text font-medium mb-6 text-[1.05rem] max-w-xl mx-auto">
-          Geen vooruitgang? Dan werken wij gratis door totdat er resultaat zichtbaar wordt. Zonder extra kosten.
-        </p>
-
-        <div class="flex flex-wrap justify-center gap-3 mb-4">
-          {['Geen nieuw traject', 'Geen extra voorstel', 'Geen slap rapport', 'Resultaat moet zichtbaar worden'].map((item) => (
-            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm bg-bg-alt border border-border rounded-full text-text font-medium">
-              <svg class="w-3.5 h-3.5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-              {item}
-            </span>
-          ))}
-        </div>
-        <p class="text-text-muted text-xs text-center">Vooruitgang meten we op basis van een 0-meting bij de start.</p>
+        <p class="text-text-muted text-xs">Vooruitgang meten we op basis van een nulmeting bij de start.</p>
       </div>
     </div>
   </section>
 
 
   {/* ══════════════════════════════════════════════════
-      4 · ENEMY — WEBSITEBEHEERDER VS MARKETEER
+      5 - RESULTAATCLAIM + NULMETING
       ══════════════════════════════════════════════════ */}
   <section class="px-4 md:px-6 py-10 md:py-14 bg-bg-alt">
     <div class="max-w-3xl mx-auto">
-      <h2 class="font-heading text-xl md:text-2xl text-text mb-1 text-center leading-snug">
-        Je websitepersoon beheert je site.<br class="hidden md:inline" />
-        Maar wordt hij afgerekend op aanvragen?
-      </h2>
-      <p class="text-text-muted text-center text-[0.9rem] mb-5 max-w-xl mx-auto">
-        Veel ondernemers hebben al &lsquo;een mannetje&rsquo;, webbouwer of bureau. Prima voor updates en kleine aanpassingen. Maar een tekst aanpassen is geen groeistrategie.
-      </p>
+      <div class="bg-white border border-border rounded-card p-6 md:p-8">
+        <p class="text-text text-[0.95rem] leading-relaxed mb-4">
+          Bij klanten waar het fundament goed stond, zagen we gemiddeld rond de 30% meer aanvragen. Maar eerlijk is eerlijk: het effect verschilt per bedrijf. Daarom starten we altijd met een nulmeting en kijken we na 90 dagen wat er daadwerkelijk beweegt.
+        </p>
 
-      {/* Herkenningschips */}
-      <div class="flex flex-wrap justify-center gap-2 mb-6">
-        {['Ik heb al iemand voor mijn website', 'Hij past af en toe iets aan', 'Maar er komen weinig aanvragen uit'].map((item) => (
-          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-white border border-border text-text-muted rounded-full">
-            <svg class="w-3 h-3 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            {item}
-          </span>
-        ))}
-      </div>
-
-      {/* Vergelijking — compact */}
-      <div class="grid grid-cols-2 gap-3 mb-6 max-w-lg mx-auto">
-        <div class="border border-border rounded-lg p-4 bg-white/50">
-          <p class="text-[0.65rem] uppercase tracking-widest text-text-muted font-medium mb-2.5">Websitebeheerder</p>
-          <ul class="space-y-1.5">
-            {['Houdt je site draaiend', 'Past aan wat jij vraagt', 'Denkt in plugins/design', 'Wordt niet afgerekend op klanten'].map((item) => (
-              <li class="flex items-start gap-1.5 text-[0.8rem] text-text-muted">
-                <svg class="w-3.5 h-3.5 text-red-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-                {item}
-              </li>
-            ))}
-          </ul>
+        <p class="text-xs uppercase tracking-widest text-accent font-medium mb-3">Wat we meten</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          {[
+            'Organisch verkeer via Google Analytics',
+            'Search Console-impressies en klikken',
+            'Posities op belangrijkste zoekvragen',
+            'AI-vermeldingen in ChatGPT, Perplexity en Gemini',
+            'Best presterende pagina\'s',
+            'Conversiepunten: formulier, telefoonklik, mailklik',
+          ].map((item) => (
+            <div class="flex items-start gap-2 text-sm text-text">
+              <svg class="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              {item}
+            </div>
+          ))}
         </div>
-        <div class="border-2 border-accent/30 rounded-lg p-4 bg-white shadow-md">
-          <p class="text-[0.65rem] uppercase tracking-widest text-accent font-medium mb-2.5">NXG Media</p>
-          <ul class="space-y-1.5">
-            {['Bouwt vanuit zoekgedrag', 'Maakt dienst + regio scherp', 'Zet bewijs vóór de CTA', 'Stuurt op aanvragen'].map((item) => (
-              <li class="flex items-start gap-1.5 text-[0.8rem] text-text font-medium">
+
+        <div class="border-t border-border mt-5 pt-5">
+          <p class="text-xs uppercase tracking-widest text-accent font-medium mb-3">Na 90 dagen vergelijken we</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            {[
+              'Welke zoekvragen bewegen',
+              'Welke pagina\'s meer zichtbaarheid krijgen',
+              'Of AI het bedrijf vaker noemt',
+              'Of organisch verkeer groeit',
+              'Of er meer kwalitatieve contactmomenten zijn',
+              'Welke vervolgroute logisch is',
+            ].map((item) => (
+              <div class="flex items-start gap-2 text-sm text-text-muted">
                 <svg class="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
                 {item}
-              </li>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
-      </div>
-
-      <p class="text-text font-medium text-center text-[0.95rem] mb-5">
-        Je hebt geen extra plugin nodig. Je hebt een klantenkanaal nodig.
-      </p>
-
-      <div class="text-center">
-        <a href="#formulier" class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg">
-          Check of mijn bedrijf in aanmerking komt
-          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-        </a>
       </div>
     </div>
   </section>
 
 
   {/* ══════════════════════════════════════════════════
-      5 · URGENCY
+      6 - URGENCY
       ══════════════════════════════════════════════════ */}
   <section class="px-4 md:px-6 py-10 md:py-14">
     <div class="max-w-2xl mx-auto text-center">
@@ -362,10 +345,9 @@ const serviceSchema = generateService({
         De Google- en AI-posities worden n&uacute; verdeeld.
       </h2>
       <p class="text-text-muted text-[0.95rem] max-w-xl mx-auto">ChatGPT, Perplexity en Google AI leren welke bedrijven ze kunnen vertrouwen.</p>
-      <p class="text-text font-medium text-[0.95rem] max-w-xl mx-auto mt-1.5">Sta jij daar nu tussen? Dan bouw je voorsprong op.</p>
-      <p class="text-text-muted text-[0.95rem] max-w-xl mx-auto mt-1.5 mb-8">Wacht je tot je concurrent die positie heeft? Dan wordt inhalen moeilijker.</p>
+      <p class="text-text font-medium text-[0.95rem] max-w-xl mx-auto mt-1.5 mb-8">Wacht je tot je concurrent die positie heeft? Dan wordt inhalen moeilijker.</p>
 
-      {/* ── Trajectronde card ── */}
+      {/* Trajectronde card */}
       <div class="relative max-w-md mx-auto mb-8">
         <div class="absolute -inset-1 bg-accent/20 rounded-2xl blur-md"></div>
         <div class="relative bg-primary-dark rounded-xl overflow-hidden shadow-xl border border-accent/30">
@@ -376,14 +358,8 @@ const serviceSchema = generateService({
             <p class="text-white/50 text-xs font-medium uppercase tracking-wider mb-1">Start</p>
             <p class="font-heading text-5xl md:text-6xl text-white leading-none mb-5">1 juli</p>
             <div class="flex flex-wrap justify-center gap-2 mb-5">
-              <span class="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold bg-white/10 text-white rounded-full">
-                <svg class="w-3.5 h-3.5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                Max 5 bedrijven
-              </span>
-              <span class="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold bg-white/10 text-white rounded-full">
-                <svg class="w-3.5 h-3.5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
-                1 per branche/regio
-              </span>
+              <span class="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold bg-white/10 text-white rounded-full">Max 5 bedrijven</span>
+              <span class="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold bg-white/10 text-white rounded-full">1 per branche/regio</span>
             </div>
             <div class="border-t border-white/10 pt-4">
               <p class="text-accent font-semibold text-base md:text-lg">
@@ -394,7 +370,7 @@ const serviceSchema = generateService({
         </div>
       </div>
 
-      {/* ── Niet bedoeld voor ── */}
+      {/* Niet bedoeld voor */}
       <div class="max-w-md mx-auto mb-8">
         <p class="text-text-muted text-[0.65rem] font-medium uppercase tracking-[0.15em] mb-2.5">Niet bedoeld voor:</p>
         <div class="flex flex-wrap justify-center gap-1.5 mb-3">
@@ -417,22 +393,7 @@ const serviceSchema = generateService({
 
 
   {/* ══════════════════════════════════════════════════
-      6 · QUOTE / IMPACT BLOCK
-      ══════════════════════════════════════════════════ */}
-  <section class="px-4 md:px-6 py-10 md:py-12 bg-primary">
-    <div class="max-w-2xl mx-auto text-center">
-      <h2 class="font-heading text-2xl md:text-3xl text-white mb-3">
-        Zichtbaarheid is niet het doel. Klanten zijn het doel.
-      </h2>
-      <p class="text-white/60 text-[0.95rem] leading-relaxed">
-        Daarom bouwen we geen website om mooi te zijn. We bouwen een klantenkanaal dat gevonden, vertrouwd en gebruikt wordt.
-      </p>
-    </div>
-  </section>
-
-
-  {/* ══════════════════════════════════════════════════
-      7 · CASES / BEWIJS
+      7 - CASES / BEWIJS
       ══════════════════════════════════════════════════ */}
   <section class="py-14 md:py-20 bg-bg-alt">
     <div class="max-w-5xl mx-auto px-4 md:px-6">
@@ -440,13 +401,10 @@ const serviceSchema = generateService({
         Wat er gebeurt als het fundament klopt
       </h2>
       <p class="text-text-muted text-center mb-4 max-w-2xl mx-auto text-[0.95rem] leading-relaxed">
-        Geen theorie. Dit zijn recente voorbeelden van websites die w&eacute;l gevonden, begrepen en gekozen worden.
-      </p>
-      <p class="text-text-muted text-center mb-10 max-w-2xl mx-auto text-sm leading-relaxed">
-        De eerste twee cases laten zien hoe Google en AI je bedrijf kunnen oppakken. Happy With Yoga laat zien wat er gebeurt als een website geen visitekaartje meer is, maar een volledig klantenkanaal.
+        Deze cases laten vooral zien wat er mogelijk wordt wanneer techniek, structuur, content, lokale signalen en conversie vanaf dag &eacute;&eacute;n kloppen. Dat is het verschil tussen losse fixes en een echt fundament.
       </p>
 
-      {/* ── CASE 1: CBMC ── */}
+      {/* CASE 1: CBMC */}
       <div class="bg-white border-2 border-accent/30 rounded-card p-5 md:p-8 mb-8 shadow-lg">
         <div class="flex items-center gap-4 mb-5">
           <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-accent/30 shrink-0">
@@ -460,7 +418,7 @@ const serviceSchema = generateService({
 
         <h3 class="font-heading text-2xl md:text-3xl text-text mb-3">Van nul naar pagina 1 in Google in 14 dagen</h3>
         <p class="text-text-muted text-sm mb-5 leading-relaxed">
-          Costa Blanca Movement Centre had geen website, geen Google-historie en geen backlinks. Binnen 14 dagen stond het nieuwe fundament op pagina 1. Na 2 maanden kwamen er 12&ndash;15 patiënten per maand online binnen.
+          Costa Blanca Movement Centre had geen website, geen Google-historie en geen backlinks. Binnen 14 dagen stond het nieuwe fundament op pagina 1. Na 2 maanden kwamen er 12&ndash;15 pati&euml;nten per maand online binnen.
         </p>
 
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
@@ -470,7 +428,7 @@ const serviceSchema = generateService({
           </div>
           <div class="bg-bg-alt rounded-card p-3 text-center">
             <p class="font-heading text-xl text-accent">12&ndash;15</p>
-            <p class="text-text-muted text-xs mt-0.5">patiënten/mnd</p>
+            <p class="text-text-muted text-xs mt-0.5">pati&euml;nten/mnd</p>
           </div>
           <div class="bg-bg-alt rounded-card p-3 text-center">
             <p class="font-heading text-xl text-accent">800+</p>
@@ -498,7 +456,7 @@ const serviceSchema = generateService({
         </div>
       </div>
 
-      {/* ── CASE 2: Dr. Verena Mann ── */}
+      {/* CASE 2: Dr. Verena Mann */}
       <div class="bg-white border border-border rounded-card p-5 md:p-8 mb-8">
         <div class="flex items-center gap-4 mb-5">
           <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-accent/30 shrink-0">
@@ -548,11 +506,11 @@ const serviceSchema = generateService({
         </div>
       </div>
 
-      {/* ── CASE 3: Happy With Yoga ── */}
+      {/* CASE 3: Happy With Yoga */}
       <div class="bg-white border border-border rounded-card p-5 md:p-6 mb-8">
         <div class="flex items-center gap-3 mb-3">
           <div class="w-10 h-10 rounded-full overflow-hidden ring-2 ring-accent/30 shrink-0">
-            <Image src={rolfPhoto} alt="Rolf — Happy With Yoga" widths={[56, 112]} sizes="56px" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+            <Image src={rolfPhoto} alt="Rolf - Happy With Yoga" widths={[56, 112]} sizes="56px" class="w-full h-full object-cover" loading="lazy" decoding="async" />
           </div>
           <div>
             <p class="text-text font-medium text-sm">Rolf &mdash; Happy With Yoga</p>
@@ -584,7 +542,7 @@ const serviceSchema = generateService({
         <div class="max-w-xs">
           <button type="button" class="proof-trigger cursor-pointer group w-full text-left">
             <div class="bg-bg-alt border border-border rounded-lg overflow-hidden group-hover:border-accent/30 transition-colors">
-              <Image src={proofHwyWhatsapp} alt="WhatsApp-gesprek met Rolf van Happy With Yoga — klik om te vergroten" width={1200} quality={90} class="w-full h-auto" loading="lazy" />
+              <Image src={proofHwyWhatsapp} alt="WhatsApp-gesprek met Rolf van Happy With Yoga" width={1200} quality={90} class="w-full h-auto" loading="lazy" />
             </div>
             <p class="text-text-muted text-[0.6rem] text-center mt-1 group-hover:text-text transition-colors">Klik om WhatsApp-bewijs te vergroten</p>
           </button>
@@ -602,186 +560,149 @@ const serviceSchema = generateService({
 
 
   {/* ══════════════════════════════════════════════════
-      8 · PAKKETTEN / ROUTE KIEZEN
+      8 - DRIE ROUTES
       ══════════════════════════════════════════════════ */}
   <section class="px-4 md:px-6 py-14 md:py-20">
-    <div class="max-w-5xl mx-auto">
+    <div class="max-w-6xl mx-auto">
       <h2 class="font-heading text-2xl md:text-3xl text-text mb-2 text-center">
-        Welke route past bij jouw bedrijf?
+        Drie routes. Welke past bij jouw situatie?
       </h2>
-      <p class="text-text-muted text-center mb-8 max-w-2xl mx-auto text-[0.95rem] leading-relaxed">
-        Beide routes starten met een complete AI-ready website op premium fundament. Het verschil: voer jij de groei-acties zelf uit, of doen wij dat 90 dagen voor je?
+      <p class="text-text-muted text-center mb-10 max-w-2xl mx-auto text-[0.95rem] leading-relaxed">
+        Of je nu losse verbeteringen wilt, een nieuw fundament zonder hoge instapkosten, of een complete 90-dagen boost met actieve uitvoering.
       </p>
 
-      {/* ── Gedeelde value-bar ── */}
-      <div class="bg-accent/5 border border-accent/15 rounded-card px-5 py-4 mb-8 max-w-2xl mx-auto">
-        <p class="text-xs uppercase tracking-widest text-accent font-medium mb-1">Altijd inbegrepen</p>
-        <p class="text-sm text-text font-medium mb-2">Complete AI-ready website op premium fundament &mdash; normaal &euro;2.000&ndash;&euro;4.000 waarde.</p>
-        <div class="flex flex-wrap gap-2">
-          {['Hosting inbegrepen', 'Beheerpaneel inbegrepen', 'Geen losse Wix/WordPress/hostingkosten'].map((chip) => (
-            <span class="inline-flex items-center gap-1 px-2.5 py-1 text-xs text-accent bg-white rounded-full border border-accent/15">
-              <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-              {chip}
-            </span>
-          ))}
-        </div>
-      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        {/* ── ROUTE 1 — Losse fixes ── */}
+        <div class="bg-white border border-border rounded-card p-5 flex flex-col">
+          <span class="inline-block self-start px-2.5 py-0.5 text-[0.55rem] font-medium tracking-widest uppercase bg-bg-alt text-text-muted rounded-full mb-3">Beter maken wat je nu hebt</span>
 
-        {/* ── KAART 1 — Fundament ── */}
-        <div class="bg-white border border-border rounded-card p-5 md:p-6 flex flex-col">
-          <span class="inline-block self-start px-3 py-1 text-[0.6rem] font-medium tracking-widest uppercase bg-bg-alt text-text-muted rounded-full mb-3">Zelf uitvoeren met onze richting</span>
-
-          <p class="font-heading text-lg text-text mb-0.5">AI & Google Fundament</p>
-          <div class="flex items-baseline gap-2 mb-0.5">
-            <p class="font-heading text-3xl text-accent">Vanaf &euro;99<span class="text-sm text-text-muted font-body">/mnd</span></p>
+          <p class="font-heading text-base text-text mb-0.5">Losse fixes / optimalisatielaag</p>
+          <div class="flex items-baseline gap-1 mb-0.5">
+            <p class="font-heading text-2xl text-text-muted">&euro;99<span class="text-sm font-body">/mnd</span></p>
           </div>
-          <p class="text-text-muted text-xs mb-3">12 maanden</p>
-
-          <div class="bg-accent/5 border border-accent/15 rounded-lg px-3.5 py-2.5 mb-4 flex items-start gap-2.5">
-            <svg class="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            <div>
-              <p class="text-xs font-semibold uppercase tracking-wider text-accent">Inbegrepen &middot; website t.w.v. &euro;2.000&ndash;&euro;4.000</p>
-              <p class="text-xs text-text-muted mt-0.5">Complete AI-ready website op premium fundament</p>
-            </div>
-          </div>
+          <p class="text-text-muted text-xs mb-4">3 maanden</p>
 
           <p class="text-text-muted text-sm leading-relaxed mb-4">
-            We nemen mee wat goed is en zetten je website om naar een premium fundament dat Google, AI en klanten beter begrijpen. Je website kan al gevonden worden doordat het fundament klopt. Voor verdere groei voer jij zelf content, reviews en uitbreidingen uit met onze richting.
+            Na 90 dagen weet je waar je huidige site beter kan scoren en zijn de eerste AI/SEO-fixes doorgevoerd.
           </p>
 
-          {/* Rows — stacked labels */}
-          <div class="space-y-3 mb-4">
-            <div>
-              <span class="inline-block px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-wider text-accent bg-accent/8 rounded mb-1">Wij regelen</span>
-              <p class="text-sm text-text">Premium fundament, hosting, monitoring en verbeterpunten.</p>
-            </div>
-            <div>
-              <span class="inline-block px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-wider text-accent bg-accent/8 rounded mb-1">Jij levert aan</span>
-              <p class="text-sm text-text">Content, reviews, foto's en input.</p>
-            </div>
-            <div>
-              <span class="inline-block px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-wider text-accent bg-accent/8 rounded mb-1">Resultaatdoel</span>
-              <p class="text-sm text-text">Vindbaar fundament + duidelijke maandelijkse richting.</p>
-            </div>
+          <ul class="space-y-1.5 mb-4 flex-1">
+            {[
+              'Nulmeting',
+              'Prioriteitenlijst',
+              'Technische fixes waar mogelijk',
+              'Schema / structured data',
+              'Citeerbare FAQ- en tekstblokken',
+              'Aanscherping 1-2 commerciele pagina\'s',
+              'AI/GEO-checks',
+              'Evaluatie na 90 dagen',
+            ].map((item) => (
+              <li class="flex items-start gap-2 text-xs text-text-muted">
+                <svg class="w-3 h-3 text-text-muted/50 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+
+          <div class="bg-bg-alt rounded-lg px-3 py-2 mb-4">
+            <p class="text-[0.7rem] text-text-muted">Route 1 kan helpen, maar blijft repareren binnen de bestaande structuur. <strong class="text-text">Geen nieuwe website, geen nieuw fundament, geen hosting/beheerpaneel.</strong></p>
           </div>
 
-          <div class="bg-bg-alt rounded-lg px-4 py-2.5 mb-5">
-            <p class="text-xs text-text-muted"><strong class="text-text">Beste keuze als:</strong> je zelf tijd hebt om reviews, content en input aan te leveren.</p>
+          <a href="#formulier" class="inline-flex items-center justify-center gap-2 px-5 py-3 text-sm font-medium text-text border border-border hover:border-accent/30 transition-colors rounded-button w-full mt-auto">
+            Check of mijn bedrijf in aanmerking komt
+          </a>
+        </div>
+
+        {/* ── ROUTE 2 — Fundament ── */}
+        <div class="bg-white border border-border rounded-card p-5 flex flex-col">
+          <span class="inline-block self-start px-2.5 py-0.5 text-[0.55rem] font-medium tracking-widest uppercase bg-accent/10 text-accent rounded-full mb-3">Nieuw fundament zonder hoge instapkosten</span>
+
+          <p class="font-heading text-base text-text mb-0.5">AI & Google Fundament</p>
+          <div class="flex items-baseline gap-1 mb-0.5">
+            <p class="font-heading text-2xl text-accent">&euro;99<span class="text-sm text-text-muted font-body">/mnd</span></p>
+          </div>
+          <p class="text-text-muted text-xs mb-4">12 maanden</p>
+
+          <p class="text-text-muted text-sm leading-relaxed mb-4">
+            Na 12 maanden heb je een nieuw AI & Google fundament dat technisch goed staat, blijft draaien, gemonitord wordt en klaar is om verder op uit te bouwen.
+          </p>
+
+          <ul class="space-y-1.5 mb-4 flex-1">
+            {[
+              'Nieuwe AI-ready website',
+              'Hosting inbegrepen',
+              'Onderhoud inbegrepen',
+              'Beheerpaneel inbegrepen',
+              'Monitoring inbegrepen',
+              'Concrete verbeterpunten per maand',
+              'Jij levert content, reviews en input',
+            ].map((item) => (
+              <li class="flex items-start gap-2 text-xs text-text">
+                <svg class="w-3 h-3 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+
+          <div class="bg-bg-alt rounded-lg px-3 py-2 mb-4">
+            <p class="text-[0.7rem] text-text-muted">Omdat bouw, hosting en technische inrichting in het maandbedrag verwerkt zitten, geldt een <strong class="text-text">minimale looptijd van 12 maanden.</strong></p>
           </div>
 
-          <a href="#formulier" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg w-full mt-auto mb-4">
+          <a href="#formulier" class="inline-flex items-center justify-center gap-2 px-5 py-3 text-sm font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button w-full mt-auto">
+            Check of mijn bedrijf in aanmerking komt
+          </a>
+        </div>
+
+        {/* ── ROUTE 3 — Complete Boost ── */}
+        <div class="bg-white border-2 border-accent/30 rounded-card p-5 shadow-lg relative flex flex-col">
+          <span class="absolute -top-3 left-5 inline-block px-3 py-0.5 text-[0.6rem] font-medium tracking-widest uppercase bg-accent text-white rounded-full shadow-sm">Aanbevolen</span>
+
+          <span class="inline-block self-start px-2.5 py-0.5 text-[0.55rem] font-medium tracking-widest uppercase bg-accent/10 text-accent rounded-full mb-3">Nieuwe basis + actieve boost</span>
+
+          <p class="font-heading text-base text-text mb-0.5">Complete Boost Fundament</p>
+          <div class="flex items-baseline gap-1 mb-0.5">
+            <p class="font-heading text-2xl text-accent">&euro;299<span class="text-sm text-text-muted font-body">/mnd</span></p>
+          </div>
+          <p class="text-text-muted text-xs mb-4">3 maanden actieve uitvoering</p>
+
+          <p class="text-text-muted text-sm leading-relaxed mb-4">
+            Na 90 dagen staat er een nieuw fundament dat gebouwd is voor Google, AI en aanvragen.
+          </p>
+
+          <ul class="space-y-1.5 mb-4 flex-1">
+            {[
+              'Nulmeting',
+              'Nieuwe AI-ready website vanaf dag 1',
+              'Commerciele pagina\'s opnieuw opbouwen',
+              'Pagina-opbouw rond zoekvragen en koopintentie',
+              'Structured data / schema ingebouwd',
+              'llms.txt / AI-uitlegbestand',
+              'Citeerbare FAQ- en antwoordblokken',
+              'Interne linking bewust ontworpen',
+              'Conversiegerichte aanvraagroute',
+              'AI/GEO-checks',
+              'Meting en evaluatie na 90 dagen',
+            ].map((item) => (
+              <li class="flex items-start gap-2 text-xs text-text font-medium">
+                <svg class="w-3 h-3 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+
+          <div class="bg-accent/5 border border-accent/15 rounded-lg px-3 py-2 mb-4">
+            <p class="text-[0.7rem] text-text-muted">Route 3 is niet optimaliseren bovenop de oude basis, maar een <strong class="text-accent">nieuw fundament dat vanaf dag 1 gebouwd is om gevonden, begrepen en vertrouwd te worden.</strong></p>
+          </div>
+
+          <div class="bg-bg-alt rounded-lg px-3 py-2 mb-4">
+            <p class="text-[0.7rem] text-text-muted"><strong class="text-text">Na 90 dagen:</strong> behoud, hosting en monitoring vanaf &euro;75/mnd.</p>
+          </div>
+
+          <a href="#formulier" class="inline-flex items-center justify-center gap-2 px-5 py-3.5 text-sm font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg w-full mt-auto">
             Check of mijn bedrijf in aanmerking komt
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
           </a>
-
-          <details class="group border-t border-border pt-3">
-            <summary class="flex items-center justify-between cursor-pointer text-xs text-accent font-medium select-none">
-              Bekijk wat er precies inbegrepen is
-              <svg class="w-3.5 h-3.5 text-accent transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
-            </summary>
-            <ul class="mt-3 space-y-1.5">
-              {[
-                'Complete AI-ready website op premium fundament',
-                'Hosting, onderhoud en monitoring',
-                'Beheerpaneel om zelf aan te passen',
-                'Concrete verbeterpunten per maand',
-                'Geen losse Wix-, WordPress- of hostingkosten meer nodig',
-                'Maandelijkse Google & AI-monitoring',
-                'Suggesties voor content, reviews en pagina\'s',
-              ].map((item) => (
-                <li class="flex items-start gap-2 text-xs text-text">
-                  <svg class="w-3 h-3 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </details>
-        </div>
-
-        {/* ── KAART 2 — 90-dagen Groeitraject ── */}
-        <div class="bg-white border-2 border-accent/30 rounded-card p-5 md:p-6 shadow-lg relative flex flex-col">
-          <span class="absolute -top-3 left-6 inline-block px-3 py-0.5 text-[0.65rem] font-medium tracking-widest uppercase bg-accent text-white rounded-full shadow-sm">Meest gekozen</span>
-
-          <span class="inline-block self-start px-3 py-1 text-[0.6rem] font-medium tracking-widest uppercase bg-accent/10 text-accent rounded-full mb-3">Wij voeren het uit</span>
-
-          <p class="font-heading text-lg text-text mb-0.5">90-dagen Google & AI Groeitraject</p>
-          <div class="flex items-baseline gap-2 mb-0.5">
-            <p class="font-heading text-3xl text-accent">Vanaf &euro;299<span class="text-sm text-text-muted font-body">/mnd</span></p>
-          </div>
-          <p class="text-text-muted text-xs mb-3">3 maanden</p>
-
-          <div class="bg-accent/5 border border-accent/15 rounded-lg px-3.5 py-2.5 mb-4">
-            <div class="flex items-start gap-2.5">
-              <svg class="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-              <div>
-                <p class="text-xs font-semibold uppercase tracking-wider text-accent">Alles uit AI & Google Fundament inbegrepen</p>
-                <p class="text-xs text-text-muted mt-0.5">Website t.w.v. &euro;2.000&ndash;&euro;4.000 + hosting, monitoring en beheerpaneel</p>
-              </div>
-            </div>
-          </div>
-
-          <p class="text-text-muted text-sm leading-relaxed mb-4">
-            Wij zetten het fundament neer en voeren 90 dagen de acties uit om sneller richting pagina 1, AI-vermeldingen en aanvragen te bewegen.
-          </p>
-
-          {/* Rows — stacked labels */}
-          <div class="space-y-3 mb-4">
-            <div>
-              <span class="inline-block px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-wider text-accent bg-accent/8 rounded mb-1">Wij regelen</span>
-              <p class="text-sm text-text">Onderzoek, pagina's, content, reviews, Google Business en optimalisatie.</p>
-            </div>
-            <div>
-              <span class="inline-block px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-wider text-accent bg-accent/8 rounded mb-1">Jij levert aan</span>
-              <p class="text-sm text-text">Input, reviews/foto's en feedback. Wij voeren uit.</p>
-            </div>
-            <div>
-              <span class="inline-block px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-wider text-accent bg-accent/8 rounded mb-1">Resultaatdoel</span>
-              <p class="text-sm text-text">Pagina 1 voor een relevante lokale zoekterm, AI-vermeldingen en meer aanvragen.</p>
-            </div>
-          </div>
-
-          <div class="bg-accent/5 border border-accent/15 rounded-lg px-4 py-2.5 mb-3">
-            <p class="text-xs text-text-muted"><strong class="text-accent">Beste keuze als:</strong> je sneller richting resultaat wilt zonder het zelf uit te zoeken.</p>
-          </div>
-
-          <div class="bg-bg-alt rounded-lg px-4 py-2.5 mb-5">
-            <p class="text-xs text-text-muted"><strong class="text-text">Na 90 dagen:</strong> behoud & monitoring vanaf &euro;79/mnd.</p>
-          </div>
-
-          <a href="#formulier" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg w-full mt-auto mb-4">
-            Check of mijn bedrijf in aanmerking komt
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-          </a>
-
-          <details class="group border-t border-border pt-3">
-            <summary class="flex items-center justify-between cursor-pointer text-xs text-accent font-medium select-none">
-              Bekijk wat er precies inbegrepen is
-              <svg class="w-3.5 h-3.5 text-accent transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
-            </summary>
-            <ul class="mt-3 space-y-1.5">
-              {[
-                'Alles uit AI & Google Fundament',
-                'Zoekvragen- en concurrentieonderzoek',
-                'Nieuwe dienst/regio-pagina\'s',
-                'SEO/AI-content schrijven en plaatsen',
-                'Bestaande teksten herschrijven voor AI-citeerbaarheid',
-                'Google Business optimalisatie',
-                'Reviewproces + reviewtemplates',
-                'Reviews verwerken op de website',
-                'FAQ\'s en bewijsblokken toevoegen',
-                'Conversie en CTA\'s verbeteren',
-                'Maandelijkse Google & AI-check',
-                'Optimalisatie richting pagina 1, AI-vermeldingen en aanvragen',
-              ].map((item) => (
-                <li class="flex items-start gap-2 text-xs text-text font-medium">
-                  <svg class="w-3 h-3 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </details>
         </div>
       </div>
 
@@ -803,14 +724,14 @@ const serviceSchema = generateService({
 
 
   {/* ══════════════════════════════════════════════════
-      12 · FOUNDER
+      9 - FOUNDER
       ══════════════════════════════════════════════════ */}
   <section class="py-12 md:py-16">
     <div class="max-w-4xl mx-auto px-4 md:px-6">
       <div class="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-8 md:gap-12 items-center">
         <div class="flex justify-center md:justify-start">
           <div class="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden shadow-lg ring-4 ring-white shrink-0">
-            <Image src={founderPhoto} alt="Joost van Putten — Founder NXG Media" widths={[192, 256]} sizes="(max-width: 768px) 160px, 192px" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+            <Image src={founderPhoto} alt="Joost van Putten - Founder NXG Media" widths={[192, 256]} sizes="(max-width: 768px) 160px, 192px" class="w-full h-full object-cover" loading="lazy" decoding="async" />
           </div>
         </div>
         <div>
@@ -824,23 +745,58 @@ const serviceSchema = generateService({
   </section>
 
 
+  {/* ══════════════════════════════════════════════════
+      10 - WAT GEBEURT ER NA JE AANVRAAG
+      ══════════════════════════════════════════════════ */}
+  <section class="px-4 md:px-6 py-10 md:py-14 bg-bg-alt">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="font-heading text-xl md:text-2xl text-text mb-6 text-center">Wat gebeurt er na je aanvraag?</h2>
+      <ol class="space-y-4">
+        {[
+          'We bekijken je scan en website kort.',
+          'We checken of er duidelijke zoekkansen lijken te liggen.',
+          'We vragen of je openstaat voor een 90-dagen traject als de kansen logisch zijn.',
+          'Alleen dan bereiden we een deep dive voor.',
+          'In de deep dive laten we zien welke route logisch is.',
+          'Daarna beslis je of je start.',
+        ].map((step, i) => (
+          <li class="flex gap-4 items-start">
+            <span class="shrink-0 w-7 h-7 rounded-full bg-accent text-white text-xs font-bold flex items-center justify-center">{i + 1}</span>
+            <p class="text-sm text-text pt-0.5">{step}</p>
+          </li>
+        ))}
+      </ol>
+      <p class="text-xs text-text-muted text-center mt-6">Niet iedereen krijgt een uitgebreide deep dive. Dit voorkomt gratis advieszoekers.</p>
+    </div>
+  </section>
 
 
   {/* ══════════════════════════════════════════════════
-      14 · FINAL CTA / FORMULIER
+      11 - KWALIFICATIE + FORMULIER
       ══════════════════════════════════════════════════ */}
+  <section class="px-4 md:px-6 py-10 md:py-14">
+    <div class="max-w-2xl mx-auto text-center mb-10">
+      <h2 class="font-heading text-xl md:text-2xl text-text mb-3">Deze scan is niet bedoeld voor vrijblijvende tips</h2>
+      <p class="text-text-muted text-sm leading-relaxed mb-3">
+        Deze scan is bedoeld voor ondernemers die serieus willen weten of hun bedrijf meer aanvragen kan halen uit Google en AI. Na je aanvraag kijken we of er concrete kansen liggen: zoekvragen, locaties of diensten waar concurrenten nog niet structureel op winnen.
+      </p>
+      <p class="text-text-muted text-sm leading-relaxed mb-3">
+        Zien we genoeg potentie? Dan kunnen we een korte deep dive doen en laten we zien welke route logisch is.
+      </p>
+      <p class="text-text font-medium text-sm">
+        Zoek je vooral gratis tips om zelf ooit iets aan te passen? Dan is dit waarschijnlijk niet de juiste stap.
+      </p>
+    </div>
+  </section>
+
   <section id="formulier" class="px-4 md:px-6 py-14 md:py-20 bg-primary">
     <div class="max-w-lg mx-auto">
       <h2 class="font-heading text-2xl md:text-3xl text-white mb-3 text-center">
-        Check of jouw bedrijf in aanmerking komt voor de volgende trajectronde
+        Check of jouw bedrijf in aanmerking komt
       </h2>
 
-      <p class="text-white/50 text-center text-sm mb-6">
+      <p class="text-white/50 text-center text-sm mb-8">
         Maximaal 5 bedrijven &middot; 1 per branche/regio &middot; start 1 juli
-      </p>
-
-      <p class="text-white/60 text-center mb-8 text-[0.95rem] leading-relaxed">
-        Laat me checken of jouw bedrijf past bij deze ronde en welke route logisch is: fundament vanaf &euro;99/mnd of 90-dagen Google & AI Groeitraject vanaf &euro;299/mnd.
       </p>
 
       <form id="traject-form" class="space-y-3">
@@ -868,6 +824,41 @@ const serviceSchema = generateService({
           </div>
         </fieldset>
 
+        {/* Kwalificatievraag 1 */}
+        <fieldset class="pt-4">
+          <legend class="text-sm font-medium text-white/80 mb-3">Als uit de deep dive blijkt dat er concrete kansen liggen, sta je dan open voor een traject vanaf &euro;99 of &euro;299 per maand?</legend>
+          <div class="space-y-2">
+            {[
+              'Ja, als de kansen logisch zijn',
+              'Misschien, ik wil eerst begrijpen wat het oplevert',
+              'Nee, ik zoek vooral gratis tips om zelf aan te passen',
+            ].map((opt) => (
+              <label class="flex items-center gap-3 cursor-pointer">
+                <input type="radio" name="commitment" value={opt} required class="text-accent focus:ring-accent" />
+                <span class="text-sm text-white/70">{opt}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        {/* Kwalificatievraag 2 */}
+        <fieldset class="pt-4">
+          <legend class="text-sm font-medium text-white/80 mb-3">Welke route voelt nu het meest logisch?</legend>
+          <div class="space-y-2">
+            {[
+              'Losse fixes op mijn huidige site',
+              'Nieuw fundament zonder hoge instapkosten',
+              'Complete 90-dagen boost',
+              'Weet ik nog niet',
+            ].map((opt) => (
+              <label class="flex items-center gap-3 cursor-pointer">
+                <input type="radio" name="route_voorkeur" value={opt} class="text-accent focus:ring-accent" />
+                <span class="text-sm text-white/70">{opt}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
         <button type="submit" class="w-full px-8 py-4 text-base font-medium text-white bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg flex items-center justify-center gap-2 mt-4">
           Check of mijn bedrijf in aanmerking komt
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
@@ -886,14 +877,14 @@ const serviceSchema = generateService({
       </div>
 
       <p id="traject-microcopy" class="text-xs text-white/40 text-center mt-4">
-        Geen betaling nu. Geen verplichting. Eerst kijken we of jouw bedrijf past.
+        Geen betaling nu. Geen verplichting. Eerst kijken we of er genoeg potentie is.
       </p>
     </div>
   </section>
 
 
   {/* ══════════════════════════════════════════════════
-      15 · FAQ
+      12 - FAQ
       ══════════════════════════════════════════════════ */}
   <FAQAccordion
     title="Veelgestelde vragen"
@@ -904,7 +895,7 @@ const serviceSchema = generateService({
     compact={true}
   />
 
-  {/* ── CMS proof (visual support for FAQ "Houd ik zelf controle?") ── */}
+  {/* CMS proof */}
   <section class="bg-bg pb-10 md:pb-14">
     <div class="max-w-3xl mx-auto px-4 md:px-6">
       <p class="text-xs uppercase tracking-widest text-text-muted font-medium text-center mb-4">Zo ziet het beheerpaneel eruit</p>
@@ -932,7 +923,7 @@ const serviceSchema = generateService({
   </section>
 
 
-  {/* ── Sticky mobile CTA ── */}
+  {/* Sticky mobile CTA */}
   <div class="fixed bottom-0 inset-x-0 p-3 bg-white/95 backdrop-blur border-t border-border md:hidden z-40" id="sticky-cta">
     <a href="#formulier" class="flex items-center justify-center w-full px-6 py-3.5 text-sm font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg">
       Check of mijn bedrijf in aanmerking komt
@@ -945,7 +936,7 @@ const serviceSchema = generateService({
 
 <script is:inline>
 (function() {
-  // ── Lightbox ──
+  // Lightbox
   var lb = document.getElementById('proof-lightbox');
   var lbImg = document.getElementById('proof-img');
   var lbClose = document.getElementById('proof-close');
@@ -979,7 +970,7 @@ const serviceSchema = generateService({
 
 <script is:inline>
 (function() {
-  // ── Sticky CTA: hide when form visible ──
+  // Sticky CTA: hide when form visible
   var sticky = document.getElementById('sticky-cta');
   if (!sticky) return;
   var formEl = document.getElementById('formulier');
@@ -1013,17 +1004,21 @@ const serviceSchema = generateService({
     var btn = form.querySelector('button[type="submit"]');
     if (btn) { btn.disabled = true; btn.textContent = 'Even geduld...'; }
 
-    // Collect checkbox values
+    // Collect all form data
     var doelen = data.getAll('doel');
+    var commitment = data.get('commitment') || '';
+    var routeVoorkeur = data.get('route_voorkeur') || '';
     var vraagParts = [];
     if (doelen.length > 0) vraagParts.push('Doelen: ' + doelen.join(', '));
+    if (commitment) vraagParts.push('Commitment: ' + commitment);
+    if (routeVoorkeur) vraagParts.push('Route voorkeur: ' + routeVoorkeur);
 
     var payload = {
       naam: naam,
       email: email,
       telefoon: telefoon || '',
       websiteUrl: website,
-      vraag: vraagParts.length > 0 ? vraagParts.join('\n') : 'Check aanvraag (geen doelen geselecteerd)',
+      vraag: vraagParts.length > 0 ? vraagParts.join('\n') : 'Check aanvraag',
       source: 'traject-hard-offer',
     };
 
