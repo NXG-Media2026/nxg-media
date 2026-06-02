@@ -280,44 +280,81 @@ const serviceSchema = generateService({
   {/* ── 4. SOCIAL PROOF BEFORE OFFERS ── */}
   <section class="px-4 md:px-6 py-12 md:py-16">
     <div class="max-w-4xl mx-auto">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-2 text-center">Bewezen bij coaches en experts</h2>
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-2 text-center">Wat dit systeem al opleverde voor coaches en experts</h2>
       <p class="text-text-muted text-center mb-8 max-w-2xl mx-auto text-[0.95rem]">
-        Deze trajecten leverden niet alleen zichtbaarheid op, maar aanvragen, gidsverkopen, masterclass-aanmeldingen, productomzet en leden.
+        Niet door een trucje. Door steeds dezelfde groeilogica: expertise scherper positioneren, een instaproute bouwen, opvolgen en daarna doorsturen naar product, programma of aanvraag.
       </p>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        <div class="bg-white border border-border rounded-card p-4">
-          <span class="text-[0.6rem] text-accent font-medium uppercase tracking-wider">Van expertpositie naar aanvragen</span>
-          <p class="font-heading text-2xl text-accent mt-1">2 &rarr; 19</p>
-          <p class="text-xs text-text-muted">aanvragen/mnd</p>
-          <p class="text-xs text-text mt-2">Plus 15 AI-vermeldingen in ChatGPT.</p>
-          <p class="text-[0.6rem] text-text-muted mt-1 font-medium">Dr. Verena Mann</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+
+        {/* Verena */}
+        <div class="bg-white border border-border rounded-card p-5">
+          <div class="flex items-center justify-between mb-3">
+            <p class="text-sm text-text font-medium">Dr. Verena Mann</p>
+            <span class="text-[0.55rem] text-accent font-semibold uppercase tracking-wider bg-accent/10 px-2 py-0.5 rounded-full">Expertfundament &rarr; aanvragen</span>
+          </div>
+          <div class="flex items-baseline gap-3 mb-2">
+            <p class="font-heading text-2xl text-accent">2 &rarr; 19</p>
+            <p class="text-xs text-text-muted">aanvragen/mnd</p>
+          </div>
+          <p class="text-xs text-text-muted mb-3">+ 0 &rarr; 15 AI-vermeldingen in ChatGPT</p>
+          <p class="text-sm text-text-muted leading-relaxed">
+            We maakten haar expertise concreter rond thema's, bewijs en AI-vindbaarheid, zodat onbekende bezoekers sneller begrepen waarom zij de logische expert was.
+          </p>
         </div>
-        <div class="bg-white border border-border rounded-card p-4">
-          <span class="text-[0.6rem] text-accent font-medium uppercase tracking-wider">Van gids naar programma-interesse</span>
-          <p class="font-heading text-2xl text-accent mt-1">600+</p>
-          <p class="text-xs text-text-muted">gidsen verkocht</p>
-          <p class="text-xs text-text mt-2">80 masterclass-aanmeldingen en 18 mensen wilden direct door naar het programma.</p>
-          <p class="text-[0.6rem] text-text-muted mt-1 font-medium">Coach Josine</p>
+
+        {/* Josine */}
+        <div class="bg-white border border-border rounded-card p-5">
+          <div class="flex items-center justify-between mb-3">
+            <p class="text-sm text-text font-medium">Coach Josine</p>
+            <span class="text-[0.55rem] text-accent font-semibold uppercase tracking-wider bg-accent/10 px-2 py-0.5 rounded-full">Gids &rarr; masterclass &rarr; programma</span>
+          </div>
+          <div class="flex items-baseline gap-3 mb-2">
+            <p class="font-heading text-2xl text-accent">600+</p>
+            <p class="text-xs text-text-muted">gidsen verkocht</p>
+          </div>
+          <p class="text-xs text-text-muted mb-3">80 masterclass-aanmeldingen &middot; 18 wilden door naar het programma</p>
+          <p class="text-sm text-text-muted leading-relaxed">
+            We bouwden een eerste digitale instaproute, waardoor mensen niet meteen naar coaching hoefden maar laagdrempelig konden instappen.
+          </p>
         </div>
-        <div class="bg-white border border-border rounded-card p-4">
-          <span class="text-[0.6rem] text-accent font-medium uppercase tracking-wider">Van losse producten naar productomzet</span>
-          <p class="font-heading text-2xl text-accent mt-1">&plusmn;&euro;10k/mnd</p>
-          <p class="text-xs text-text-muted">productomzet</p>
-          <p class="text-xs text-text mt-2">Van 1 naar 6 producten en &plusmn;10 coachingklanten per maand.</p>
-          <p class="text-[0.6rem] text-text-muted mt-1 font-medium">Tessa / Youlife</p>
+
+        {/* Tessa */}
+        <div class="bg-white border border-border rounded-card p-5">
+          <div class="flex items-center justify-between mb-3">
+            <p class="text-sm text-text font-medium">Tessa / Youlife</p>
+            <span class="text-[0.55rem] text-accent font-semibold uppercase tracking-wider bg-accent/10 px-2 py-0.5 rounded-full">Mini-producten &rarr; omzet + klanten</span>
+          </div>
+          <div class="flex items-baseline gap-3 mb-2">
+            <p class="font-heading text-2xl text-accent">&plusmn;&euro;10k/mnd</p>
+            <p class="text-xs text-text-muted">productomzet</p>
+          </div>
+          <p class="text-xs text-text-muted mb-3">1 &rarr; 6 producten &middot; &plusmn;10 coachingklanten/mnd</p>
+          <p class="text-sm text-text-muted leading-relaxed">
+            We bouwden door van een product naar meerdere instapproducten, e-mailflows en coachingaanvragen.
+          </p>
         </div>
-        <div class="bg-white border border-border rounded-card p-4">
-          <span class="text-[0.6rem] text-accent font-medium uppercase tracking-wider">Van funnel naar expertplatform</span>
-          <p class="font-heading text-2xl text-accent mt-1">30.000+</p>
-          <p class="text-xs text-text-muted">leads</p>
-          <p class="text-xs text-text mt-2">1.700+ mini-cursusverkopen en 2.000 betalende leden.</p>
-          <p class="text-[0.6rem] text-text-muted mt-1 font-medium">Happy With Yoga</p>
+
+        {/* HWY */}
+        <div class="bg-white border border-border rounded-card p-5">
+          <div class="flex items-center justify-between mb-3">
+            <p class="text-sm text-text font-medium">Happy With Yoga</p>
+            <span class="text-[0.55rem] text-accent font-semibold uppercase tracking-wider bg-accent/10 px-2 py-0.5 rounded-full">Leadfunnel &rarr; platform/membership</span>
+          </div>
+          <div class="flex items-baseline gap-3 mb-2">
+            <p class="font-heading text-2xl text-accent">30.000+</p>
+            <p class="text-xs text-text-muted">leads</p>
+          </div>
+          <p class="text-xs text-text-muted mb-3">1.700+ mini-cursusverkopen &middot; 2.000 betalende leden</p>
+          <p class="text-sm text-text-muted leading-relaxed">
+            Laat zien waar dit model op termijn naartoe kan groeien: niet een campagne, maar een volledig expertplatform.
+          </p>
         </div>
+
       </div>
 
       <p class="text-text font-medium text-sm text-center max-w-2xl mx-auto mb-2">
-        Deze resultaten kwamen niet door alleen een mooie website. Ze kwamen door het systeem erachter: positionering, aanbod, instaproute, opvolging, traffic en optimalisatie.
+        Deze cases laten zien waarom Coach Accelerator verder gaat dan een website. De website is het fundament. De groei komt uit het systeem: positionering, instaproute, e-mail, traffic en optimalisatie.
       </p>
       <p class="text-text-muted text-sm text-center">
         Daarom zijn er twee routes: eerst je expertfundament neerzetten, of direct het volledige groeisysteem bouwen.
