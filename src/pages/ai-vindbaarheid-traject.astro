@@ -249,13 +249,27 @@ const serviceSchema = generateService({
       3 - KERNVRAAG / KWALIFICATIE
       ══════════════════════════════════════════════════ */}
   <section class="px-4 md:px-6 py-12 md:py-16">
-    <div class="max-w-3xl mx-auto text-center">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4 leading-snug">
-        Als we kunnen laten zien waar jouw bedrijf nu klanten mist in Google en AI, ben je dan bereid om 90 dagen serieus aan dat fundament te werken?
+    <div class="max-w-3xl mx-auto">
+      <p class="text-accent font-semibold text-center text-sm uppercase tracking-widest mb-4">Je mist geen rapport. Je mist aanvragen.</p>
+
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-5 text-center leading-snug">
+        Als we kunnen laten zien waar jouw bedrijf nu aanvragen mist in Google en AI, ben je dan bereid om 90 dagen serieus aan dat fundament te werken?
       </h2>
-      <p class="text-text-muted text-[0.95rem] leading-relaxed max-w-xl mx-auto">
-        Dat is de enige vraag die ertoe doet. Wij doen alleen een deep dive als iemand serieus openstaat voor een traject wanneer er concrete kansen liggen.
-      </p>
+
+      <div class="max-w-xl mx-auto space-y-4 text-[0.95rem] leading-relaxed">
+        <p class="text-text-muted">
+          Dat is de vraag waar het om draait.
+        </p>
+        <p class="text-text-muted">
+          Want een scan is leuk. Een rapport is interessant. Maar uiteindelijk wil je weten: waar gaan potentiele klanten nu naar je concurrent, en wat moet er gebeuren om die aanvragen naar jou te trekken?
+        </p>
+        <p class="text-text font-medium">
+          Daarom doen we geen vrijblijvende deep dive voor ondernemers die alleen wat losse tips willen verzamelen.
+        </p>
+        <p class="text-text-muted">
+          We kijken eerst of er concrete kansen liggen: zoekvragen, regio's, diensten of AI-antwoorden waar je concurrenten nog niet structureel op winnen. Zien we die kansen? Dan laten we zien welke route logisch is: losse fixes, een nieuw fundament of een complete 90-dagen boost.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -277,26 +291,28 @@ const serviceSchema = generateService({
         <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">
           Geen zichtbare vooruitgang? Dan werken wij gratis door.
         </h2>
-        <p class="text-text-muted mb-6 text-[0.95rem] leading-relaxed max-w-xl mx-auto">
-          Binnen 90 dagen moet je vooruitgang zien in Google, AI-zoekmachines of aanvragen via je website. Geen vooruitgang? Dan werken wij gratis door totdat er resultaat zichtbaar wordt.
+        <p class="text-text-muted mb-3 text-[0.95rem] leading-relaxed max-w-xl mx-auto">
+          Binnen 90 dagen moet er beweging zichtbaar zijn. Niet per se direct omzet of tientallen nieuwe klanten, maar wel aantoonbare vooruitgang in Google, AI-zichtbaarheid, organisch verkeer of aanvragen via je website.
         </p>
-        <p class="text-text-muted text-xs">Vooruitgang meten we op basis van een nulmeting bij de start.</p>
+        <p class="text-text font-medium mb-6 text-[0.95rem] max-w-xl mx-auto">
+          Geen enkele vooruitgang op de afgesproken meetpunten? Dan werken wij gratis door aan optimalisatie, zonder nieuw traject of extra voorstel.
+        </p>
+        <p class="text-text-muted text-xs">Vooruitgang meten we altijd op basis van een nulmeting bij de start.</p>
       </div>
     </div>
   </section>
 
 
   {/* ══════════════════════════════════════════════════
-      5 - RESULTAATCLAIM + NULMETING
+      5 - WAT WE METEN
       ══════════════════════════════════════════════════ */}
   <section class="px-4 md:px-6 py-10 md:py-14 bg-bg-alt">
     <div class="max-w-3xl mx-auto">
       <div class="bg-white border border-border rounded-card p-6 md:p-8">
-        <p class="text-text text-[0.95rem] leading-relaxed mb-4">
-          Bij klanten waar het fundament goed stond, zagen we gemiddeld rond de 30% meer aanvragen. Maar eerlijk is eerlijk: het effect verschilt per bedrijf. Daarom starten we altijd met een nulmeting en kijken we na 90 dagen wat er daadwerkelijk beweegt.
-        </p>
+        <p class="text-text font-medium text-[0.95rem] mb-1">We meten niet om een mooi rapport te maken.</p>
+        <p class="text-text-muted text-[0.95rem] leading-relaxed mb-5">We meten om te zien of je website dichter bij aanvragen komt.</p>
 
-        <p class="text-xs uppercase tracking-widest text-accent font-medium mb-3">Wat we meten</p>
+        <p class="text-xs uppercase tracking-widest text-accent font-medium mb-3">Bij de start meten we</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
           {[
             'Organisch verkeer via Google Analytics',
@@ -317,12 +333,12 @@ const serviceSchema = generateService({
           <p class="text-xs uppercase tracking-widest text-accent font-medium mb-3">Na 90 dagen vergelijken we</p>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {[
-              'Welke zoekvragen bewegen',
+              'Welke zoekvragen zijn gestegen',
               'Welke pagina\'s meer zichtbaarheid krijgen',
-              'Of AI het bedrijf vaker noemt',
+              'Of AI je bedrijf vaker noemt',
               'Of organisch verkeer groeit',
               'Of er meer kwalitatieve contactmomenten zijn',
-              'Welke vervolgroute logisch is',
+              'Welke vervolgstap logisch is',
             ].map((item) => (
               <div class="flex items-start gap-2 text-sm text-text-muted">
                 <svg class="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
@@ -330,6 +346,12 @@ const serviceSchema = generateService({
               </div>
             ))}
           </div>
+        </div>
+
+        <div class="border-t border-border mt-5 pt-5">
+          <p class="text-text-muted text-sm leading-relaxed">
+            Bij klanten waar het fundament goed stond, zagen we gemiddeld rond de 30% meer aanvragen. Maar eerlijk is eerlijk: het effect verschilt per bedrijf. Daarom starten we altijd met een nulmeting en kijken we na 90 dagen wat er daadwerkelijk beweegt.
+          </p>
         </div>
       </div>
     </div>
