@@ -164,53 +164,59 @@ const serviceSchema = generateService({
   </section>
 
 
-  {/* ── 2. PIJN — REFERRALS ── */}
-  <section class="px-4 md:px-6 py-12 md:py-16">
-    <div class="max-w-3xl mx-auto">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-3">
-        Je leeft van referrals en mond-tot-mond. Het loopt... tot het stopt.
-      </h2>
-      <p class="text-text-muted text-[0.95rem] leading-relaxed mb-6">
-        De ene maand komen er vanzelf aanvragen binnen. De andere maand is het stil. Je weet dat je &lsquo;iets aan marketing&rsquo; moet doen, maar klantwerk gaat altijd voor. En op het moment dat het stil wordt, is het eigenlijk al te laat om nog rustig te bouwen.
-      </p>
+  {/* ── 2. PIJN — DARK CONTRAST BLOCK ── */}
+  <section class="px-4 md:px-6 py-14 md:py-20 bg-primary-dark">
+    <div class="max-w-2xl mx-auto">
+      <p class="text-accent text-xs font-semibold uppercase tracking-[0.2em] mb-6 text-center">Hoe het nu voelt</p>
 
-      <ul class="space-y-2.5 mb-6">
+      <div class="space-y-6 mb-10">
         {[
-          'Je krijgt vooral klanten via netwerk, referrals of losse posts.',
-          'Je weet niet voorspelbaar waar je volgende klant vandaan komt.',
-          'Je hebt expertise genoeg, maar geen systeem dat voor je blijft werken.',
+          'Je leeft van referrals en mond-tot-mond. Het loopt… tot het stopt.',
+          'Je weet dat je "iets aan marketing moet doen", maar klantwerk gaat altijd voor.',
+          'Je krijgt reacties op je content, maar te weinig aanvragen.',
           'Je website vertelt wie je bent, maar bouwt geen route naar instap, vertrouwen en aanvraag.',
-          'Je wilt niet afhankelijk blijven van steeds harder posten of hopen dat iemand je aanbeveelt.',
-        ].map((item) => (
-          <li class="flex items-start gap-2.5 text-sm text-text">
-            <svg class="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" /></svg>
-            {item}
-          </li>
+          'Als het stil wordt, is het eigenlijk al te laat om rustig te bouwen.',
+        ].map((line) => (
+          <div class="flex items-start gap-3">
+            <span class="shrink-0 w-1.5 h-1.5 rounded-full bg-accent mt-2"></span>
+            <p class="text-white/80 text-[0.95rem] md:text-base leading-relaxed">{line}</p>
+          </div>
         ))}
-      </ul>
+      </div>
 
-      <p class="text-text font-medium text-[0.95rem]">
-        Je bent niet slecht in ondernemen. Je mist gewoon een systeem dat voor je werkt, ook als jij met klanten bezig bent.
-      </p>
+      <div class="border-t border-white/10 pt-8">
+        <p class="text-white font-heading text-xl md:text-2xl leading-snug text-center">
+          Je bent niet slecht in ondernemen. Je mist gewoon een systeem dat voor je werkt, ook als jij met klanten bezig bent.
+        </p>
+      </div>
     </div>
   </section>
 
 
   {/* ── 3. DE OUDE AANPAK WERKT NIET MEER ── */}
-  <section class="px-4 md:px-6 py-12 md:py-16 bg-bg-alt">
+  <section class="px-4 md:px-6 py-12 md:py-16">
     <div class="max-w-4xl mx-auto">
       <h2 class="font-heading text-2xl md:text-3xl text-text mb-8 text-center">De oude aanpak werkt niet meer</h2>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-        <div class="bg-white rounded-card p-5 border border-border">
+        <div class="bg-white rounded-card p-5 border border-border shadow-sm">
+          <div class="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center mb-3">
+            <svg class="w-4 h-4 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+          </div>
           <p class="font-heading text-base text-text mb-2">Gratis e-books en downloads</p>
           <p class="text-sm text-text-muted leading-relaxed">Je deelt je beste tips in een PDF. Mensen downloaden hem, maar de meeste leads verdwijnen daarna weer uit beeld.</p>
         </div>
-        <div class="bg-white rounded-card p-5 border border-border">
+        <div class="bg-white rounded-card p-5 border border-border shadow-sm">
+          <div class="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center mb-3">
+            <svg class="w-4 h-4 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+          </div>
           <p class="font-heading text-base text-text mb-2">&lsquo;Boek een gratis gesprek&rsquo;</p>
           <p class="text-sm text-text-muted leading-relaxed">Je trekt mensen aan die even willen sparren, nog geen vertrouwen hebben of niet komen opdagen.</p>
         </div>
-        <div class="bg-white rounded-card p-5 border border-border">
+        <div class="bg-white rounded-card p-5 border border-border shadow-sm">
+          <div class="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center mb-3">
+            <svg class="w-4 h-4 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+          </div>
           <p class="font-heading text-base text-text mb-2">Wachten op referrals</p>
           <p class="text-sm text-text-muted leading-relaxed">Het werkt zolang mensen je aanbevelen. Maar je hebt geen controle over wanneer de volgende klant komt.</p>
         </div>
