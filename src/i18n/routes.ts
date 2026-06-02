@@ -2,7 +2,7 @@ import type { Locale } from '../data/site';
 
 export const routeSegments: Record<Locale, Record<string, string>> = {
   nl: {
-    'expert-growth': 'coach-accelerator',
+    'expert-growth': 'ai-expert-groei-traject',
     'ai-vindbaarheid': 'ai-vindbaarheid',
     diensten: 'diensten',
     cases: 'cases',
@@ -14,7 +14,7 @@ export const routeSegments: Record<Locale, Record<string, string>> = {
     voorwaarden: 'voorwaarden',
   },
   en: {
-    'expert-growth': 'coach-accelerator',
+    'expert-growth': 'ai-expert-growth',
     'ai-vindbaarheid': 'ai-visibility',
     diensten: 'services',
     cases: 'cases',
@@ -26,7 +26,7 @@ export const routeSegments: Record<Locale, Record<string, string>> = {
     voorwaarden: 'terms',
   },
   es: {
-    'expert-growth': 'coach-accelerator',
+    'expert-growth': 'crecimiento-experto-ia',
     'ai-vindbaarheid': 'visibilidad-ia',
     diensten: 'servicios',
     cases: 'casos',

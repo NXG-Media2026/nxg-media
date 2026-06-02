@@ -9,9 +9,8 @@ export interface NavItem {
 
 export const navigation: Record<Locale, NavItem[]> = {
   nl: [
-    { label: 'Coach Accelerator', href: '/coach-accelerator/', children: [
-      { label: 'Coach Accelerator', href: '/coach-accelerator/' },
-      { label: 'AI Expert Groei Traject', href: '/ai-expert-groei-traject/' },
+    { label: 'Expert Groei', href: '/ai-expert-groei-traject/', children: [
+      { label: 'Expert Groei Traject', href: '/ai-expert-groei-traject/' },
     ]},
     { label: 'AI Vindbaarheid', href: '/ai-vindbaarheid/', children: [
       { label: 'Wat is AI vindbaarheid?', href: '/ai-vindbaarheid/' },
@@ -23,7 +22,7 @@ export const navigation: Record<Locale, NavItem[]> = {
     { label: 'Contact', href: '/contact/', isButton: true },
   ],
   en: [
-    { label: 'Coach Accelerator', href: '/en/coach-accelerator/' },
+    { label: 'Expert Growth', href: '/en/ai-expert-growth/' },
     { label: 'AI Visibility', href: '/en/ai-visibility/' },
     { label: 'Cases', href: '/en/cases/' },
     { label: 'Products', href: '/en/products/' },
@@ -31,7 +30,7 @@ export const navigation: Record<Locale, NavItem[]> = {
     { label: 'Contact', href: '/en/contact/', isButton: true },
   ],
   es: [
-    { label: 'Coach Accelerator', href: '/es/coach-accelerator/' },
+    { label: 'Crecimiento Experto', href: '/es/crecimiento-experto-ia/' },
     { label: 'Visibilidad IA', href: '/es/visibilidad-ia/' },
     { label: 'Casos', href: '/es/casos/' },
     { label: 'Productos', href: '/es/productos/' },
