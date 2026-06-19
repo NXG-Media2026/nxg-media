@@ -173,7 +173,39 @@ const serviceSchema = generateService({
 
 
   {/* ══════════════════════════════════════════════════
-      SECTIE 3 — CASES / BEWIJS
+      DISQUALIFICATIE (boven cases)
+      ══════════════════════════════════════════════════ */}
+  <section class="px-4 md:px-6 py-14 md:py-20">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">
+        Dit is niet voor je als:
+      </h2>
+
+      <ul class="space-y-3 mb-8">
+        {[
+          'Je al vol zit met klanten en niet wil groeien met je bedrijf.',
+          'Je jouw website van 5 jaar geleden niet wil loslaten.',
+          'Je alleen gratis tips zoekt.',
+          'Je minder dan €299/mnd over hebt voor groei van je bedrijf — voor tenminste 3 maanden.',
+        ].map((item) => (
+          <li class="flex items-start gap-3 text-text-muted">
+            <svg class="w-4 h-4 text-red-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+            <span class="text-[0.95rem]">{item}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div class="border-t border-border pt-6">
+        <p class="text-text font-heading text-lg md:text-xl">
+          Maar als je serieus meer klanten wilt en bereid bent om samen met ons 90 dagen gas te geven, lees dan vooral verder.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      CASES / BEWIJS
       ══════════════════════════════════════════════════ */}
   <section class="py-14 md:py-20 bg-bg-alt">
     <div class="max-w-5xl mx-auto px-4 md:px-6">
@@ -331,37 +363,6 @@ const serviceSchema = generateService({
     </div>
   </section>
 
-
-  {/* ══════════════════════════════════════════════════
-      SECTIE 4 — Disqualificatie
-      ══════════════════════════════════════════════════ */}
-  <section class="px-4 md:px-6 py-14 md:py-20 bg-bg-alt">
-    <div class="max-w-2xl mx-auto">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">
-        Dit is niet voor je als:
-      </h2>
-
-      <ul class="space-y-3 mb-8">
-        {[
-          'Je al vol zit met klanten en niet wil groeien met je bedrijf.',
-          'Je jouw website van 5 jaar geleden niet wil loslaten.',
-          'Je alleen gratis tips zoekt.',
-          'Je minder dan €299/mnd over hebt voor groei van je bedrijf — voor tenminste 3 maanden.',
-        ].map((item) => (
-          <li class="flex items-start gap-3 text-text-muted">
-            <svg class="w-4 h-4 text-red-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-            <span class="text-[0.95rem]">{item}</span>
-          </li>
-        ))}
-      </ul>
-
-      <div class="border-t border-border pt-6">
-        <p class="text-text font-heading text-lg md:text-xl">
-          Maar als je serieus meer klanten wilt en bereid bent om 90 dagen gas te geven, lees dan vooral verder.
-        </p>
-      </div>
-    </div>
-  </section>
 
 
   {/* ══════════════════════════════════════════════════
