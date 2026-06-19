@@ -444,31 +444,81 @@ const serviceSchema = generateService({
 
 
   {/* ══════════════════════════════════════════════════
-      SECTIE 6 — Waarom NXG Media
+      SECTIE 6 — Waarom NXG Media (marketeer vs webbouwer)
       ══════════════════════════════════════════════════ */}
   <section class="px-4 md:px-6 py-14 md:py-20">
-    <div class="max-w-2xl mx-auto">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">
-        Waarom NXG Media?
+    <div class="max-w-4xl mx-auto">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-3 text-center">
+        Geen webdesigner die toevallig iets van marketing weet.
       </h2>
+      <p class="text-accent font-medium text-center text-[0.95rem] mb-6">
+        Een online marketeer die jouw online aanwezigheid bouwt als groeikanaal.
+      </p>
+      <p class="text-text-muted text-center text-[0.95rem] leading-relaxed max-w-2xl mx-auto mb-10">
+        Dit traject is gebouwd door een online marketeer met 8 jaar ervaring in advertenties, funnels, conversie en klantacquisitie. Dat betekent dat we niet kijken naar "wordt het mooi?" maar naar:
+      </p>
 
-      <div class="space-y-4 text-[0.95rem] leading-relaxed mb-8">
-        <p class="text-text-muted">
-          Niet nog een marketingbureau dat losse campagnes en fixes uitvoert.
-        </p>
-        <p class="text-text font-medium">
-          Eén 90-dagen AI-vindbaarheid traject dat zorgt dat jij gevonden wordt in Google én door ChatGPT, Claude en Perplexity. Terwijl je concurrent nog denkt dat AI-vindbaarheid niet belangrijk is.
-        </p>
+      {/* Wat we wél vragen */}
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mb-12 max-w-3xl mx-auto">
+        {[
+          'Waar zoekt je ideale klant naar?',
+          'Wat moet iemand geloven voordat hij contact opneemt?',
+          'Welke twijfels houden hem tegen?',
+          'Welke bewijzen moeten zichtbaar zijn?',
+          'Hoe maken we je expertise vindbaar voor Google én AI?',
+          'Waar moet de CTA staan zodat bezoekers niet afhaken?',
+        ].map((item) => (
+          <div class="flex items-start gap-2 text-sm text-text">
+            <span class="text-accent shrink-0 mt-0.5">&rarr;</span>
+            {item}
+          </div>
+        ))}
       </div>
 
-      {/* Stats */}
-      <div class="grid grid-cols-3 gap-3 mb-8">
+      <p class="text-text font-medium text-center text-[0.95rem] mb-10 max-w-2xl mx-auto">
+        Een klassieke websitebouwer bouwt wat jij vraagt. Een online marketeer bouwt wat jouw klant nodig heeft om contact op te nemen.
+      </p>
+
+      {/* Vergelijkingstabel */}
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+        <div class="bg-white rounded-card p-6 border border-border">
+          <h3 class="font-heading text-lg text-text mb-5 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-gray-400 shrink-0"></span>
+            Klassieke websitebouwer
+          </h3>
+          <ul class="space-y-3 text-sm text-text-muted">
+            <li class="flex items-start gap-2"><span class="text-gray-400 shrink-0 mt-0.5">&ndash;</span> Bouwt een site die er goed uitziet</li>
+            <li class="flex items-start gap-2"><span class="text-gray-400 shrink-0 mt-0.5">&ndash;</span> Denkt in pagina&rsquo;s en design</li>
+            <li class="flex items-start gap-2"><span class="text-gray-400 shrink-0 mt-0.5">&ndash;</span> Levert op en verdwijnt</li>
+            <li class="flex items-start gap-2"><span class="text-gray-400 shrink-0 mt-0.5">&ndash;</span> Werkt vanuit thema&rsquo;s en templates</li>
+            <li class="flex items-start gap-2"><span class="text-gray-400 shrink-0 mt-0.5">&ndash;</span> Maakt teksten &ldquo;netjes&rdquo;</li>
+            <li class="flex items-start gap-2"><span class="text-gray-400 shrink-0 mt-0.5">&ndash;</span> Kijkt naar techniek als einddoel</li>
+          </ul>
+        </div>
+        <div class="bg-white rounded-card p-6 border-2 border-accent shadow-md">
+          <h3 class="font-heading text-lg text-text mb-5 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-accent shrink-0"></span>
+            NXG Media
+          </h3>
+          <ul class="space-y-3 text-sm text-text-muted">
+            <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> Bouwt een systeem dat aanvragen moet opleveren</li>
+            <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> Denkt in klantreis, zoekintentie en conversie</li>
+            <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> Meet, verbetert en optimaliseert 90 dagen door</li>
+            <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> Werkt vanuit jouw aanbod, markt en concurrentie</li>
+            <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> Maakt content vindbaar, overtuigend en citeerbaar</li>
+            <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> Gebruikt techniek als middel voor groei</li>
+          </ul>
+        </div>
+      </div>
+
+      {/* Stats + garantie + exclusiviteit */}
+      <div class="grid grid-cols-3 gap-3 mb-6 max-w-2xl mx-auto">
         <div class="bg-bg-alt rounded-card p-4 text-center">
-          <p class="font-heading text-xl md:text-2xl text-accent">7+</p>
+          <p class="font-heading text-xl md:text-2xl text-accent">8+</p>
           <p class="text-text-muted text-xs mt-1">jaar marketing ervaring</p>
         </div>
         <div class="bg-bg-alt rounded-card p-4 text-center">
-          <p class="font-heading text-xl md:text-2xl text-accent">€5M+</p>
+          <p class="font-heading text-xl md:text-2xl text-accent">&euro;5M+</p>
           <p class="text-text-muted text-xs mt-1">advertentiebudget beheerd</p>
         </div>
         <div class="bg-bg-alt rounded-card p-4 text-center">
@@ -477,22 +527,19 @@ const serviceSchema = generateService({
         </div>
       </div>
 
-      {/* Guarantee */}
-      <div class="bg-accent/5 border-2 border-accent/20 rounded-card p-5 md:p-6 mb-8">
-        <p class="text-text font-heading text-lg mb-2">Geen vooruitgang binnen 90 dagen?</p>
-        <p class="text-text font-medium">Dan werken we gratis door.</p>
-      </div>
-
-      {/* Exclusiviteit */}
-      <div class="bg-primary/5 border border-primary/15 rounded-card p-5 md:p-6">
-        <p class="text-text font-heading text-lg mb-2">Max 5 bedrijven per regio.</p>
-        <p class="text-text-muted text-[0.95rem] leading-relaxed">
-          Ben jij nog niet zichtbaar in de AI-zoekmachines, dan staat je concurrent er al wel — en gaan zij er met jouw klanten vandoor. Claim jij komende dagen hun omzet?
-        </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto mb-8">
+        <div class="bg-accent/5 border-2 border-accent/20 rounded-card p-5">
+          <p class="text-text font-heading text-base mb-1">Geen vooruitgang binnen 90 dagen?</p>
+          <p class="text-text font-medium text-sm">Dan werken we gratis door.</p>
+        </div>
+        <div class="bg-primary/5 border border-primary/15 rounded-card p-5">
+          <p class="text-text font-heading text-base mb-1">Max 5 bedrijven per regio.</p>
+          <p class="text-text-muted text-sm">1 per branche. Jouw concurrent of jij.</p>
+        </div>
       </div>
 
       {/* Founder */}
-      <div class="flex items-center gap-4 mt-8">
+      <div class="flex items-center gap-4 max-w-2xl mx-auto">
         <div class="w-14 h-14 rounded-full overflow-hidden ring-2 ring-accent/20 shrink-0">
           <Image src={founderPhoto} alt="Joost van Putten" width={56} height={56} class="w-full h-full object-cover" loading="lazy" />
         </div>
