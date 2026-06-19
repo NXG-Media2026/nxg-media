@@ -5,8 +5,10 @@
  * One story, no routes, no feature lists, no FAQ wall.
  */
 import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BreadcrumbNav from '../components/BreadcrumbNav.astro';
+import LogoMarquee from '../components/LogoMarquee.astro';
 import { siteConfig } from '../data/site';
 import { generateBreadcrumbs, generateService } from '../data/schema';
 
@@ -27,6 +29,15 @@ const breadcrumbs = [
   { label: 'Home', href: '/' },
   { label: 'AI-Vindbaarheid Traject' },
 ];
+
+const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
+const logos = Object.entries(logoFiles)
+  .filter(([path]) => /logo/i.test(path.split('/').pop()!))
+  .map(([path, mod]) => {
+    const filename = path.split('/').pop()!.replace(/\.(webp|avif|png|jpg)$/, '');
+    const name = filename.replace(/[-_]?logo[-_]?/gi, '').replace(/[-_]/g, ' ').trim();
+    return { src: mod.default, alt: name };
+  });
 
 const serviceSchema = generateService({
   name: 'AI-Vindbaarheid Traject',
@@ -375,6 +386,9 @@ const serviceSchema = generateService({
     </div>
   </section>
 
+
+
+  <LogoMarquee logos={logos} label="Vertrouwd door coaches, experts en bedrijven" />
 
 
   {/* ══════════════════════════════════════════════════
