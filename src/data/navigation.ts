@@ -14,7 +14,7 @@ export const navigation: Record<Locale, NavItem[]> = {
     ]},
     { label: 'AI Vindbaarheid', href: '/ai-vindbaarheid/', children: [
       { label: 'Wat is AI vindbaarheid?', href: '/ai-vindbaarheid/' },
-      { label: '90-dagen traject', href: '/ai-vindbaarheid-traject/' },
+      { label: '90-dagen traject', href: '/ai-vindbaarheid-traject-b/' },
     ]},
     { label: 'Cases', href: '/cases/' },
     { label: 'Producten', href: '/producten/' },
