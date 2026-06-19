@@ -1,0 +1,408 @@
+---
+/**
+ * AI-Vindbaarheid Traject — Variant B (problem-first)
+ * /ai-vindbaarheid-traject-b/
+ * One story, no routes, no feature lists, no FAQ wall.
+ */
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BreadcrumbNav from '../components/BreadcrumbNav.astro';
+import { siteConfig } from '../data/site';
+import { generateBreadcrumbs, generateService } from '../data/schema';
+
+import heroPhoto from '../assets/images/founder/joost-sitting-laptop-lookingfront.webp';
+import founderPhoto from '../assets/images/founder/joost-standing-relaxed.webp';
+import jamesPhoto from '../assets/images/cases/james-mitchell-portrait.png';
+import verenaPhoto from '../assets/images/cases/verena-mann-linkedin.webp';
+import proofGoogle from '../assets/images/cases/proof-google-torrevieja.png';
+import proofChatgpt from '../assets/images/cases/proof-chatgpt-local.png';
+import proofVerenaAi from '../assets/images/cases/doc_veri_ai_answer_cropped.PNG';
+
+const locale = 'nl';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'AI-Vindbaarheid Traject' },
+];
+
+const serviceSchema = generateService({
+  name: 'AI-Vindbaarheid Traject',
+  description: 'Jouw concurrent staat boven jou in ChatGPT, Google en AI. Wij draaien dat om in 90 dagen.',
+  url: `${siteConfig.url}/ai-vindbaarheid-traject-b/`,
+  serviceType: 'AI Visibility & Growth System',
+});
+---
+
+<BaseLayout
+  title="Je concurrent staat boven jou in ChatGPT en Google. Dat kost je elke maand klanten. | NXG Media"
+  description="Wij zorgen dat jij boven je concurrenten komt in Google én aanbevolen wordt door ChatGPT — in 90 dagen. Max 5 bedrijven per regio."
+  canonical={`${siteConfig.url}/ai-vindbaarheid-traject-b/`}
+  schemas={[
+    generateBreadcrumbs(breadcrumbs.map((b) => ({ name: b.label, url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}/ai-vindbaarheid-traject-b/` }))),
+    serviceSchema,
+  ]}
+  locale={locale}
+  hideNewsletter={true}
+  hideStickyMobileCTA={true}
+>
+  <BreadcrumbNav items={breadcrumbs} />
+
+
+  {/* ══════════════════════════════════════════════════
+      HERO — Problem statement
+      ══════════════════════════════════════════════════ */}
+  <section class="relative overflow-hidden bg-primary">
+    <div class="absolute inset-0 hidden md:block">
+      <Image src={heroPhoto} alt="" width={800} class="absolute right-0 top-0 h-full w-auto object-cover object-top opacity-[0.12]" loading="eager" />
+    </div>
+
+    <div class="relative px-5 md:px-6 pt-12 pb-12 md:pt-20 md:pb-20">
+      <div class="max-w-2xl mx-auto">
+        <h1 class="font-heading text-[1.75rem] leading-[1.15] md:text-[2.75rem] md:leading-[1.1] text-white mb-5">
+          Je concurrent staat boven jou in ChatGPT, Claude en Google.<br />
+          <em class="text-accent not-italic">Dat kost je elke maand klanten.</em>
+        </h1>
+
+        <p class="text-white/60 text-sm md:text-base max-w-xl mb-8">
+          Wij zorgen dat jij boven je concurrenten komt in Google én aanbevolen wordt door ChatGPT — in 90 dagen.
+        </p>
+
+        <a href="#gesprek" class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-white bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg w-full md:w-auto justify-center">
+          Plan een gesprek
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      SECTIE 1 — Het probleem concreet maken (pijn)
+      ══════════════════════════════════════════════════ */}
+  <section class="px-4 md:px-6 py-14 md:py-20">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6 leading-snug">
+        Elke maand zoeken honderden mensen in jouw regio naar jouw dienst. De nummer 1 pakt 30% van die zoekers.
+      </h2>
+
+      <div class="space-y-4 text-[0.95rem] leading-relaxed">
+        <p class="text-text-muted">
+          Google, ChatGPT, Perplexity en Claude bevelen nu specifieke dienstverleners aan. Niet een lijstje met tien opties — één of twee namen. Als jij daar niet bij staat, stuurt AI jouw klanten letterlijk naar je concurrent.
+        </p>
+        <p class="text-text font-medium">
+          En het wordt erger. Elke dag dat jij niet zichtbaar bent, leert AI dat je concurrent de betere keuze is. Die voorsprong wordt steeds moeilijker in te halen.
+        </p>
+      </div>
+
+      {/* Concrete niche-voorbeelden */}
+      <div class="mt-10 bg-bg-alt border border-border rounded-card p-5 md:p-6">
+        <p class="text-xs uppercase tracking-widest text-accent font-medium mb-4">Wat dit betekent in de praktijk</p>
+        <div class="space-y-3">
+          <div class="flex items-start gap-3">
+            <span class="shrink-0 w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center mt-0.5">
+              <svg class="w-3.5 h-3.5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+            </span>
+            <div>
+              <p class="text-text font-medium text-sm">"Fysiotherapeut Torrevieja"</p>
+              <p class="text-text-muted text-sm">~320 zoekopdrachten/mnd. Eén praktijk staat #1 in Google én wordt aanbevolen door ChatGPT. De rest deelt de kruimels.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="shrink-0 w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center mt-0.5">
+              <svg class="w-3.5 h-3.5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+            </span>
+            <div>
+              <p class="text-text font-medium text-sm">"Hormoonspecialist vrouwen Duitsland"</p>
+              <p class="text-text-muted text-sm">Eén specialist wordt door ChatGPT bij naam aanbevolen. De rest bestaat niet in AI-zoekresultaten.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      SECTIE 2 — Wat wij doen (belofte, niet features)
+      ══════════════════════════════════════════════════ */}
+  <section class="px-4 md:px-6 py-14 md:py-20 bg-primary">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="font-heading text-2xl md:text-[2.25rem] md:leading-[1.15] text-white mb-5">
+        Wij zorgen dat jij boven je concurrenten komt in Google én aanbevolen wordt door ChatGPT.<br />
+        <em class="text-accent not-italic">In 90 dagen.</em>
+      </h2>
+      <p class="text-white/50 text-sm">
+        Meer niet. Geen buzzwords. Geen vage beloftes. Eén resultaat.
+      </p>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      SECTIE 3 — Bewijs (cases, kort)
+      ══════════════════════════════════════════════════ */}
+  <section class="px-4 md:px-6 py-14 md:py-20">
+    <div class="max-w-3xl mx-auto">
+      <p class="text-xs uppercase tracking-widest text-accent font-medium text-center mb-8">Bewijs</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+
+        {/* CBMC */}
+        <div class="bg-white border-2 border-accent/20 rounded-card p-5 shadow-sm">
+          <div class="flex items-center gap-3 mb-4">
+            <Image src={jamesPhoto} alt="James Mitchell" width={44} height={44} class="w-11 h-11 rounded-full object-cover border-2 border-accent/20" />
+            <div>
+              <p class="text-text font-medium text-sm">Costa Blanca Movement Centre</p>
+              <p class="text-text-muted text-xs">Fysiotherapie &bull; Spanje</p>
+            </div>
+          </div>
+          <p class="font-heading text-xl text-text mb-1">Van 0 → pagina 1 in 14 dagen</p>
+          <p class="text-accent font-semibold text-sm mb-4">12–15 nieuwe patiënten/mnd</p>
+          <div class="grid grid-cols-2 gap-2">
+            <button type="button" class="proof-trigger cursor-pointer group text-left">
+              <div class="rounded-lg overflow-hidden border border-border/50">
+                <Image src={proofGoogle} alt="Google pagina 1 bewijs" width={600} quality={85} class="w-full h-auto" loading="lazy" />
+              </div>
+            </button>
+            <button type="button" class="proof-trigger cursor-pointer group text-left">
+              <div class="rounded-lg overflow-hidden border border-border/50">
+                <Image src={proofChatgpt} alt="ChatGPT aanbeveling bewijs" width={600} quality={85} class="w-full h-auto" loading="lazy" />
+              </div>
+            </button>
+          </div>
+        </div>
+
+        {/* Dr. Verena Mann */}
+        <div class="bg-white border-2 border-accent/20 rounded-card p-5 shadow-sm">
+          <div class="flex items-center gap-3 mb-4">
+            <Image src={verenaPhoto} alt="Dr. Verena Mann" width={44} height={44} class="w-11 h-11 rounded-full object-cover border-2 border-accent/20" />
+            <div>
+              <p class="text-text font-medium text-sm">Dr. Verena Mann</p>
+              <p class="text-text-muted text-xs">Hormoonspecialist &bull; Duitsland</p>
+            </div>
+          </div>
+          <p class="font-heading text-xl text-text mb-1">Van 2 → 19 aanvragen/mnd</p>
+          <p class="text-accent font-semibold text-sm mb-4">15 AI-vermeldingen in ChatGPT</p>
+          <div class="grid grid-cols-2 gap-2">
+            <button type="button" class="proof-trigger cursor-pointer group text-left">
+              <div class="rounded-lg overflow-hidden border border-border/50">
+                <Image src={proofVerenaAi} alt="ChatGPT AI-vermelding bewijs" width={600} quality={85} class="w-full h-auto" loading="lazy" />
+              </div>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      {/* Quote */}
+      <div class="max-w-xl mx-auto text-center">
+        <blockquote class="text-text italic text-[0.95rem] leading-relaxed">
+          "Binnen twee weken stonden we op pagina 1. Ik had niet verwacht dat het zo snel kon."
+        </blockquote>
+        <p class="text-text-muted text-xs mt-2">— James Mitchell, Costa Blanca Movement Centre</p>
+      </div>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      SECTIE 4 — Disqualificatie
+      ══════════════════════════════════════════════════ */}
+  <section class="px-4 md:px-6 py-14 md:py-20 bg-bg-alt">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">
+        Dit is niet voor je als:
+      </h2>
+
+      <ul class="space-y-3 mb-8">
+        {[
+          'Je al vol zit met klanten en niet wil groeien met je bedrijf.',
+          'Je jouw website van 5 jaar geleden niet wil loslaten.',
+          'Je alleen gratis tips zoekt.',
+          'Je minder dan €299/mnd over hebt voor groei van je bedrijf — voor tenminste 3 maanden.',
+        ].map((item) => (
+          <li class="flex items-start gap-3 text-text-muted">
+            <svg class="w-4 h-4 text-red-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+            <span class="text-[0.95rem]">{item}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div class="border-t border-border pt-6">
+        <p class="text-text font-heading text-lg md:text-xl">
+          Maar als je serieus meer klanten wilt en bereid bent om 90 dagen gas te geven, lees dan vooral verder.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      SECTIE 5 — CTA (direct boeken)
+      ══════════════════════════════════════════════════ */}
+  <section id="gesprek" class="px-4 md:px-6 py-14 md:py-20 bg-primary">
+    <div class="max-w-xl mx-auto text-center">
+      <h2 class="font-heading text-2xl md:text-[2.25rem] md:leading-[1.15] text-white mb-5">
+        In 15 minuten laat ik je zien welke klanten je nu mist — en hoe we dat omdraaien.
+      </h2>
+
+      <p class="text-white/60 text-sm mb-8 max-w-md mx-auto">
+        Geen formulier met checkboxes. Geen "check of je in aanmerking komt." Direct een gesprek.
+      </p>
+
+      <a href="https://calendly.com/nxg-media/ai-vindbaarheid" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-10 py-5 text-lg font-semibold text-white bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-xl w-full md:w-auto justify-center">
+        Plan een gesprek
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+      </a>
+
+      <p class="text-white/30 text-xs mt-4">Geen betaling. Geen verplichting. 15 minuten.</p>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      SECTIE 6 — Waarom NXG Media
+      ══════════════════════════════════════════════════ */}
+  <section class="px-4 md:px-6 py-14 md:py-20">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">
+        Waarom NXG Media?
+      </h2>
+
+      <div class="space-y-4 text-[0.95rem] leading-relaxed mb-8">
+        <p class="text-text-muted">
+          Niet nog een marketingbureau dat losse campagnes en fixes uitvoert.
+        </p>
+        <p class="text-text font-medium">
+          Eén 90-dagen AI-vindbaarheid traject dat zorgt dat jij gevonden wordt in Google én door ChatGPT, Claude en Perplexity. Terwijl je concurrent nog denkt dat AI-vindbaarheid niet belangrijk is.
+        </p>
+      </div>
+
+      {/* Stats */}
+      <div class="grid grid-cols-3 gap-3 mb-8">
+        <div class="bg-bg-alt rounded-card p-4 text-center">
+          <p class="font-heading text-xl md:text-2xl text-accent">7+</p>
+          <p class="text-text-muted text-xs mt-1">jaar marketing ervaring</p>
+        </div>
+        <div class="bg-bg-alt rounded-card p-4 text-center">
+          <p class="font-heading text-xl md:text-2xl text-accent">€5M+</p>
+          <p class="text-text-muted text-xs mt-1">advertentiebudget beheerd</p>
+        </div>
+        <div class="bg-bg-alt rounded-card p-4 text-center">
+          <p class="font-heading text-xl md:text-2xl text-accent">50+</p>
+          <p class="text-text-muted text-xs mt-1">dienstverleners geholpen</p>
+        </div>
+      </div>
+
+      {/* Guarantee */}
+      <div class="bg-accent/5 border-2 border-accent/20 rounded-card p-5 md:p-6 mb-8">
+        <p class="text-text font-heading text-lg mb-2">Geen vooruitgang binnen 90 dagen?</p>
+        <p class="text-text font-medium">Dan werken we gratis door.</p>
+      </div>
+
+      {/* Exclusiviteit */}
+      <div class="bg-primary/5 border border-primary/15 rounded-card p-5 md:p-6">
+        <p class="text-text font-heading text-lg mb-2">Max 5 bedrijven per regio.</p>
+        <p class="text-text-muted text-[0.95rem] leading-relaxed">
+          Ben jij nog niet zichtbaar in de AI-zoekmachines, dan staat je concurrent er al wel — en gaan zij er met jouw klanten vandoor. Claim jij komende dagen hun omzet?
+        </p>
+      </div>
+
+      {/* Founder */}
+      <div class="flex items-center gap-4 mt-8">
+        <div class="w-14 h-14 rounded-full overflow-hidden ring-2 ring-accent/20 shrink-0">
+          <Image src={founderPhoto} alt="Joost van Putten" width={56} height={56} class="w-full h-full object-cover" loading="lazy" />
+        </div>
+        <div>
+          <p class="text-text font-medium text-sm">Joost van Putten</p>
+          <p class="text-text-muted text-xs">Founder, NXG Media</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      SECTIE 7 — Pricing teaser
+      ══════════════════════════════════════════════════ */}
+  <section class="px-4 md:px-6 py-14 md:py-20 bg-bg-alt">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">
+        Wat kost het?
+      </h2>
+      <p class="text-text-muted text-[0.95rem] leading-relaxed mb-6 max-w-lg mx-auto">
+        Het 90-dagen traject start vanaf €299 per maand. Wat er precies in zit, hangt af van jouw situatie — dat bespreken we in het gesprek.
+      </p>
+      <a href="#gesprek" class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-white bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg">
+        Plan een gesprek en ik laat het je zien
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+      </a>
+    </div>
+  </section>
+
+
+  {/* Lightbox overlay */}
+  <div id="proof-lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 p-4 md:p-8" role="dialog" aria-label="Vergroting van screenshot">
+    <button type="button" id="proof-close" class="absolute top-4 right-4 text-white/70 hover:text-white text-3xl leading-none z-10" aria-label="Sluiten">&times;</button>
+    <img id="proof-img" src="" alt="" class="max-h-[90vh] max-w-full rounded-image" />
+  </div>
+
+
+  {/* Sticky mobile CTA */}
+  <div class="fixed bottom-0 inset-x-0 p-3 bg-white/95 backdrop-blur border-t border-border md:hidden z-40" id="sticky-cta">
+    <a href="#gesprek" class="flex items-center justify-center w-full px-6 py-3.5 text-sm font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg">
+      Plan een gesprek
+      <svg class="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+    </a>
+  </div>
+
+</BaseLayout>
+
+
+<script is:inline>
+(function() {
+  // Lightbox
+  var lb = document.getElementById('proof-lightbox');
+  var lbImg = document.getElementById('proof-img');
+  var lbClose = document.getElementById('proof-close');
+  if (!lb || !lbImg) return;
+
+  document.querySelectorAll('.proof-trigger').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var img = btn.querySelector('img');
+      if (!img) return;
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lb.classList.remove('hidden');
+      lb.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeLb() {
+    lb.classList.add('hidden');
+    lb.classList.remove('flex');
+    lbImg.src = '';
+    document.body.style.overflow = '';
+  }
+
+  if (lbClose) lbClose.addEventListener('click', closeLb);
+  lb.addEventListener('click', function(e) { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && !lb.classList.contains('hidden')) closeLb(); });
+})();
+</script>
+
+
+<script is:inline>
+(function() {
+  var sticky = document.getElementById('sticky-cta');
+  if (!sticky) return;
+  var gesprekEl = document.getElementById('gesprek');
+  if (!gesprekEl) return;
+
+  var observer = new IntersectionObserver(function(entries) {
+    sticky.style.display = entries[0].isIntersecting ? 'none' : 'block';
+  }, { threshold: 0.1 });
+  observer.observe(gesprekEl);
+})();
+</script>
