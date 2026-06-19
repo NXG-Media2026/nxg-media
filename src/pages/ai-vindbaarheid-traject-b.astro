@@ -94,29 +94,63 @@ const serviceSchema = generateService({
         </p>
       </div>
 
-      {/* Concrete niche-voorbeelden */}
-      <div class="mt-10 bg-bg-alt border border-border rounded-card p-5 md:p-6">
-        <p class="text-xs uppercase tracking-widest text-accent font-medium mb-4">Wat dit betekent in de praktijk</p>
-        <div class="space-y-3">
-          <div class="flex items-start gap-3">
-            <span class="shrink-0 w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center mt-0.5">
-              <svg class="w-3.5 h-3.5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-            </span>
-            <div>
-              <p class="text-text font-medium text-sm">"Fysiotherapeut Torrevieja"</p>
-              <p class="text-text-muted text-sm">~320 zoekopdrachten/mnd. Eén praktijk staat #1 in Google én wordt aanbevolen door ChatGPT. De rest deelt de kruimels.</p>
+    </div>
+  </section>
+
+  {/* ══════════════════════════════════════════════════
+      PROOF STRIP (uit pagina A)
+      ══════════════════════════════════════════════════ */}
+  <section class="bg-bg-alt border-b border-border/50 px-4 md:px-6 py-8 md:py-10">
+    <div class="max-w-4xl mx-auto">
+      <p class="text-xs uppercase tracking-widest text-accent font-medium text-center mb-5">Resultaten uit recente trajecten</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+
+        {/* CBMC proof card */}
+        <div class="bg-white border-2 border-accent/20 rounded-card overflow-hidden shadow-sm">
+          <div class="px-5 pt-5 pb-4">
+            <div class="flex items-center gap-3 mb-3">
+              <Image src={jamesPhoto} alt="James Mitchell" width={40} height={40} class="w-10 h-10 rounded-full object-cover shrink-0 border-2 border-accent/20" />
+              <div>
+                <p class="text-text font-medium text-sm leading-tight">Costa Blanca Movement Centre</p>
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-wider bg-accent/10 text-accent rounded-full mt-0.5">Google &amp; AI proof</span>
+              </div>
             </div>
+            <p class="text-text font-heading text-lg leading-snug mb-0.5">Van 0 naar pagina 1 in Google<span class="block text-sm font-body text-text-muted">binnen 14 dagen</span></p>
+            <p class="text-accent font-semibold text-sm">12&ndash;15 nieuwe pati&euml;nten/mnd</p>
           </div>
-          <div class="flex items-start gap-3">
-            <span class="shrink-0 w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center mt-0.5">
-              <svg class="w-3.5 h-3.5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-            </span>
-            <div>
-              <p class="text-text font-medium text-sm">"Hormoonspecialist vrouwen Duitsland"</p>
-              <p class="text-text-muted text-sm">Eén specialist wordt door ChatGPT bij naam aanbevolen. De rest bestaat niet in AI-zoekresultaten.</p>
-            </div>
+          <div class="px-5 pb-4">
+            <button type="button" class="proof-trigger cursor-pointer group w-full text-left">
+              <div class="rounded-lg overflow-hidden border border-border/50">
+                <Image src={proofGoogle} alt="Google pagina 1 bewijs" width={1200} quality={90} class="w-full h-auto opacity-90 group-hover:opacity-100 transition-opacity" />
+              </div>
+              <p class="text-text-muted text-[0.6rem] text-center mt-1 group-hover:text-text transition-colors">Klik om te vergroten</p>
+            </button>
           </div>
         </div>
+
+        {/* Verena proof card */}
+        <div class="bg-white border-2 border-accent/20 rounded-card overflow-hidden shadow-sm">
+          <div class="px-5 pt-5 pb-4">
+            <div class="flex items-center gap-3 mb-3">
+              <Image src={verenaPhoto} alt="Dr. Verena Mann" width={40} height={40} class="w-10 h-10 rounded-full object-cover shrink-0 border-2 border-accent/20" />
+              <div>
+                <p class="text-text font-medium text-sm leading-tight">Dr. Verena Mann</p>
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-wider bg-primary/10 text-primary rounded-full mt-0.5">AI proof</span>
+              </div>
+            </div>
+            <p class="text-text font-heading text-lg leading-snug mb-0.5">2 &rarr; 19 aanvragen/mnd</p>
+            <p class="text-accent font-semibold text-sm">15 AI-vermeldingen in ChatGPT</p>
+          </div>
+          <div class="px-5 pb-4">
+            <button type="button" class="proof-trigger cursor-pointer group w-full text-left">
+              <div class="rounded-lg overflow-hidden border border-border/50">
+                <Image src={proofVerenaAi} alt="ChatGPT AI-vermelding bewijs" width={1200} quality={90} class="w-full h-auto opacity-90 group-hover:opacity-100 transition-opacity" />
+              </div>
+              <p class="text-text-muted text-[0.6rem] text-center mt-1 group-hover:text-text transition-colors">Klik om te vergroten</p>
+            </button>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -138,71 +172,6 @@ const serviceSchema = generateService({
   </section>
 
 
-  {/* ══════════════════════════════════════════════════
-      SECTIE 3 — Bewijs (cases, kort)
-      ══════════════════════════════════════════════════ */}
-  <section class="px-4 md:px-6 py-14 md:py-20">
-    <div class="max-w-3xl mx-auto">
-      <p class="text-xs uppercase tracking-widest text-accent font-medium text-center mb-8">Bewijs</p>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-
-        {/* CBMC */}
-        <div class="bg-white border-2 border-accent/20 rounded-card p-5 shadow-sm">
-          <div class="flex items-center gap-3 mb-4">
-            <Image src={jamesPhoto} alt="James Mitchell" width={44} height={44} class="w-11 h-11 rounded-full object-cover border-2 border-accent/20" />
-            <div>
-              <p class="text-text font-medium text-sm">Costa Blanca Movement Centre</p>
-              <p class="text-text-muted text-xs">Fysiotherapie &bull; Spanje</p>
-            </div>
-          </div>
-          <p class="font-heading text-xl text-text mb-1">Van 0 → pagina 1 in 14 dagen</p>
-          <p class="text-accent font-semibold text-sm mb-4">12–15 nieuwe patiënten/mnd</p>
-          <div class="grid grid-cols-2 gap-2">
-            <button type="button" class="proof-trigger cursor-pointer group text-left">
-              <div class="rounded-lg overflow-hidden border border-border/50">
-                <Image src={proofGoogle} alt="Google pagina 1 bewijs" width={600} quality={85} class="w-full h-auto" loading="lazy" />
-              </div>
-            </button>
-            <button type="button" class="proof-trigger cursor-pointer group text-left">
-              <div class="rounded-lg overflow-hidden border border-border/50">
-                <Image src={proofChatgpt} alt="ChatGPT aanbeveling bewijs" width={600} quality={85} class="w-full h-auto" loading="lazy" />
-              </div>
-            </button>
-          </div>
-        </div>
-
-        {/* Dr. Verena Mann */}
-        <div class="bg-white border-2 border-accent/20 rounded-card p-5 shadow-sm">
-          <div class="flex items-center gap-3 mb-4">
-            <Image src={verenaPhoto} alt="Dr. Verena Mann" width={44} height={44} class="w-11 h-11 rounded-full object-cover border-2 border-accent/20" />
-            <div>
-              <p class="text-text font-medium text-sm">Dr. Verena Mann</p>
-              <p class="text-text-muted text-xs">Hormoonspecialist &bull; Duitsland</p>
-            </div>
-          </div>
-          <p class="font-heading text-xl text-text mb-1">Van 2 → 19 aanvragen/mnd</p>
-          <p class="text-accent font-semibold text-sm mb-4">15 AI-vermeldingen in ChatGPT</p>
-          <div class="grid grid-cols-2 gap-2">
-            <button type="button" class="proof-trigger cursor-pointer group text-left">
-              <div class="rounded-lg overflow-hidden border border-border/50">
-                <Image src={proofVerenaAi} alt="ChatGPT AI-vermelding bewijs" width={600} quality={85} class="w-full h-auto" loading="lazy" />
-              </div>
-            </button>
-          </div>
-        </div>
-
-      </div>
-
-      {/* Quote */}
-      <div class="max-w-xl mx-auto text-center">
-        <blockquote class="text-text italic text-[0.95rem] leading-relaxed">
-          "Binnen twee weken stonden we op pagina 1. Ik had niet verwacht dat het zo snel kon."
-        </blockquote>
-        <p class="text-text-muted text-xs mt-2">— James Mitchell, Costa Blanca Movement Centre</p>
-      </div>
-    </div>
-  </section>
 
 
   {/* ══════════════════════════════════════════════════
