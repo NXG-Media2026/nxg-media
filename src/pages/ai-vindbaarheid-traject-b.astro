@@ -95,9 +95,10 @@ const serviceSchema = generateService({
         </ul>
 
         <a href="#gesprek" class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-white bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg w-full md:w-auto justify-center">
-          Plan een gesprek
+          Laat zien hoeveel omzet ik mis
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
         </a>
+        <p class="text-white/40 text-xs mt-3">Stijg in Google &amp; AI of je krijgt je geld terug.</p>
       </div>
     </div>
   </section>
@@ -178,10 +179,13 @@ const serviceSchema = generateService({
         {/* Bottom line */}
         <div class="bg-white rounded-2xl p-5 md:p-6 text-center">
           <p class="text-text font-heading text-lg md:text-xl leading-snug mb-1">
-            Dit traject kost <span class="text-accent font-bold">&euro;299/mnd</span>.
+            Dit traject kost <span class="text-accent font-bold">&euro;299/mnd</span>. Reken maar uit.
           </p>
-          <p class="text-text-muted text-sm">
+          <p class="text-text-muted text-sm mb-2">
             E&eacute;n extra klant per maand en je hebt het er dubbel en dwars uit.
+          </p>
+          <p class="text-accent font-semibold text-sm">
+            Je stijgt in Google &amp; AI, of je krijgt je geld terug.
           </p>
         </div>
       </div>
@@ -602,8 +606,8 @@ const serviceSchema = generateService({
       pageType="service"
       pageSlug="ai-vindbaarheid-traject-b"
       locale={locale}
-      title="In 15 minuten laat ik je zien welke klanten je nu mist — en hoe we dat omdraaien."
-      subtitle="Geen formulier met checkboxes. Direct een gesprek."
+      title="In 15 minuten laat ik je zien hoeveel omzet je nu mist — en wat het oplevert als we dat fixen."
+      subtitle="Stijg in Google & AI of je krijgt je geld terug."
     />
   </div>
 
@@ -651,18 +655,35 @@ const serviceSchema = generateService({
 
 
   {/* ══════════════════════════════════════════════════
-      SECTIE 7 — Pricing teaser
+      SECTIE 7 — Pricing + garantie
       ══════════════════════════════════════════════════ */}
   <section class="px-4 md:px-6 py-14 md:py-20 bg-bg-alt">
     <div class="max-w-2xl mx-auto text-center">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">
-        Wat kost het?
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-3">
+        &euro;299/mnd voor klanten die nu naar je concurrent gaan.
       </h2>
       <p class="text-text-muted text-[0.95rem] leading-relaxed mb-6 max-w-lg mx-auto">
-        Het 90-dagen traject start vanaf €299 per maand. Wat er precies in zit, hangt af van jouw situatie — dat bespreken we in het gesprek.
+        E&eacute;n extra klant per maand en je hebt het er dubbel en dwars uit. De meeste trajecten leveren er 5&ndash;15 op.
       </p>
+
+      {/* Garantie blok */}
+      <div class="bg-white border-2 border-accent rounded-card p-5 md:p-6 mb-8 text-left max-w-md mx-auto">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+          </div>
+          <p class="font-heading text-lg text-text">Resultaatgarantie</p>
+        </div>
+        <p class="text-text font-medium text-[0.95rem] mb-2">
+          Je stijgt in Google &amp; AI-vermeldingen, of je krijgt je geld terug.
+        </p>
+        <p class="text-text-muted text-sm">
+          Geen kleine lettertjes. We bespreken de exacte voorwaarden in het gesprek zodat je precies weet waar je aan toe bent.
+        </p>
+      </div>
+
       <a href="#gesprek" class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-white bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg">
-        Plan een gesprek en ik laat het je zien
+        Bekijk wat dit voor mijn omzet betekent
         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
       </a>
     </div>
@@ -679,8 +700,7 @@ const serviceSchema = generateService({
   {/* Sticky mobile CTA */}
   <div class="fixed bottom-0 inset-x-0 p-3 bg-white/95 backdrop-blur border-t border-border md:hidden z-40" id="sticky-cta">
     <a href="#gesprek" class="flex items-center justify-center w-full px-6 py-3.5 text-sm font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg">
-      Plan een gesprek
-      <svg class="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+      Hoeveel omzet mis ik? &rarr;
     </a>
   </div>
 
