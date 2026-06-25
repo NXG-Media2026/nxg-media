@@ -132,8 +132,8 @@ const serviceSchema = generateService({
       {/* Interactieve ROI calculator */}
       <div id="roi-calc" class="bg-primary rounded-2xl p-6 md:p-10 text-white">
         {/* Big number top */}
-        <p class="text-xs uppercase tracking-widest text-white/50 font-medium mb-2">Jij mist nu elke maand <span class="normal-case tracking-normal text-white/30">&middot; Gebaseerd op NL/BE markt- en interne klantdata</span></p>
-        <p class="font-heading text-4xl md:text-6xl text-accent mb-1 transition-all duration-300" id="roi-amount">&euro;2.400 &ndash; &euro;6.000</p>
+        <p class="text-xs uppercase tracking-widest text-white/50 font-medium mb-2">Jij mist nu elke maand <span class="normal-case tracking-normal text-white/30">&middot; Gebaseerd op NL/BE markt- en klantdata</span></p>
+        <p class="font-heading text-4xl md:text-6xl text-accent mb-1 transition-all duration-300" id="roi-amount">&euro;1.500 &ndash; &euro;4.800</p>
         <p class="text-white/60 text-sm mb-8" id="roi-subtitle">aan omzet die naar je concurrent gaat</p>
 
         {/* Niche selector */}
@@ -141,40 +141,62 @@ const serviceSchema = generateService({
         <div class="flex flex-wrap gap-2 mb-8" id="niche-buttons">
           <button type="button" data-niche="fysiotherapeut" class="niche-btn active px-4 py-2 rounded-full text-sm font-medium transition-all bg-accent text-white">Fysiotherapeut</button>
           <button type="button" data-niche="chiropractor" class="niche-btn px-4 py-2 rounded-full text-sm font-medium transition-all bg-white/10 text-white/80 hover:bg-white/20">Chiropractor</button>
-          <button type="button" data-niche="coach" class="niche-btn px-4 py-2 rounded-full text-sm font-medium transition-all bg-white/10 text-white/80 hover:bg-white/20">Coach / trainer</button>
           <button type="button" data-niche="psycholoog" class="niche-btn px-4 py-2 rounded-full text-sm font-medium transition-all bg-white/10 text-white/80 hover:bg-white/20">Psycholoog</button>
-          <button type="button" data-niche="tandarts" class="niche-btn px-4 py-2 rounded-full text-sm font-medium transition-all bg-white/10 text-white/80 hover:bg-white/20">Tandarts</button>
+          <button type="button" data-niche="coach" class="niche-btn px-4 py-2 rounded-full text-sm font-medium transition-all bg-white/10 text-white/80 hover:bg-white/20">Coach / trainer</button>
           <button type="button" data-niche="huidtherapeut" class="niche-btn px-4 py-2 rounded-full text-sm font-medium transition-all bg-white/10 text-white/80 hover:bg-white/20">Huidtherapeut</button>
-          <button type="button" data-niche="advocaat" class="niche-btn px-4 py-2 rounded-full text-sm font-medium transition-all bg-white/10 text-white/80 hover:bg-white/20">Advocaat</button>
-          <button type="button" data-niche="accountant" class="niche-btn px-4 py-2 rounded-full text-sm font-medium transition-all bg-white/10 text-white/80 hover:bg-white/20">Accountant / boekhouder</button>
           <button type="button" data-niche="personal-trainer" class="niche-btn px-4 py-2 rounded-full text-sm font-medium transition-all bg-white/10 text-white/80 hover:bg-white/20">Personal trainer</button>
-          <button type="button" data-niche="schoonheidssalon" class="niche-btn px-4 py-2 rounded-full text-sm font-medium transition-all bg-white/10 text-white/80 hover:bg-white/20">Schoonheidssalon</button>
           <button type="button" data-niche="yogastudio" class="niche-btn px-4 py-2 rounded-full text-sm font-medium transition-all bg-white/10 text-white/80 hover:bg-white/20">Yogastudio</button>
           <button type="button" data-niche="dietist" class="niche-btn px-4 py-2 rounded-full text-sm font-medium transition-all bg-white/10 text-white/80 hover:bg-white/20">Di&euml;tist</button>
+          <button type="button" data-niche="massagetherapeut" class="niche-btn px-4 py-2 rounded-full text-sm font-medium transition-all bg-white/10 text-white/80 hover:bg-white/20">Massagetherapeut</button>
+          <button type="button" data-niche="tandarts" class="niche-btn px-4 py-2 rounded-full text-sm font-medium transition-all bg-white/10 text-white/80 hover:bg-white/20">Tandarts</button>
+          <button type="button" data-niche="advocaat" class="niche-btn px-4 py-2 rounded-full text-sm font-medium transition-all bg-white/10 text-white/80 hover:bg-white/20">Advocaat</button>
+          <button type="button" data-niche="accountant" class="niche-btn px-4 py-2 rounded-full text-sm font-medium transition-all bg-white/10 text-white/80 hover:bg-white/20">Accountant</button>
+          <button type="button" data-niche="fotograaf" class="niche-btn px-4 py-2 rounded-full text-sm font-medium transition-all bg-white/10 text-white/80 hover:bg-white/20">Fotograaf</button>
         </div>
 
         {/* Funnel breakdown */}
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
           <div class="bg-white/10 rounded-xl p-4 text-center">
-            <p class="font-heading text-2xl md:text-3xl text-white" id="roi-searches">480</p>
+            <p class="font-heading text-2xl md:text-3xl text-white" id="roi-searches">500</p>
             <p class="text-white/50 text-xs mt-1">zoekopdrachten /mnd</p>
           </div>
           <div class="bg-white/10 rounded-xl p-4 text-center">
-            <p class="font-heading text-2xl md:text-3xl text-white" id="roi-visitors">~144</p>
+            <p class="font-heading text-2xl md:text-3xl text-white" id="roi-visitors">~150</p>
             <p class="text-white/50 text-xs mt-1">bezoekers voor #1</p>
           </div>
           <div class="bg-white/10 rounded-xl p-4 text-center">
-            <p class="font-heading text-2xl md:text-3xl text-white" id="roi-leads">5&ndash;7</p>
+            <p class="font-heading text-2xl md:text-3xl text-white" id="roi-leads">5&ndash;8</p>
             <p class="text-white/50 text-xs mt-1">aanvragen /mnd</p>
           </div>
           <div class="bg-accent/20 border border-accent/30 rounded-xl p-4 text-center">
-            <p class="font-heading text-2xl md:text-3xl text-accent" id="roi-value">&euro;400&ndash;800</p>
+            <p class="font-heading text-2xl md:text-3xl text-accent" id="roi-value">&euro;300&ndash;600</p>
             <p class="text-white/50 text-xs mt-1">klantwaarde</p>
           </div>
         </div>
 
+        {/* GEO uplift */}
+        <div class="bg-accent/15 border border-accent/30 rounded-xl p-4 md:p-5 mb-8">
+          <div class="flex flex-col md:flex-row md:items-center gap-3 md:gap-6">
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-accent shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+              <p class="text-accent text-xs uppercase tracking-widest font-medium">Extra door AI-vindbaarheid (GEO)</p>
+            </div>
+            <div class="flex items-center gap-4 md:gap-6">
+              <div>
+                <p class="font-heading text-xl md:text-2xl text-white" id="roi-geo-leads">+3&ndash;12</p>
+                <p class="text-white/50 text-xs">extra aanvragen /mnd</p>
+              </div>
+              <div>
+                <p class="font-heading text-xl md:text-2xl text-accent" id="roi-geo-rev">+&euro;900 &ndash; &euro;7.200</p>
+                <p class="text-white/50 text-xs">extra omzet /mnd</p>
+              </div>
+            </div>
+          </div>
+          <p class="text-white/40 text-xs mt-3" id="roi-geo-note">Via ChatGPT, Perplexity, Claude &mdash; bovenop je Google-verkeer</p>
+        </div>
+
         {/* Example search terms */}
-        <div class="bg-white/5 rounded-xl p-4 mb-8">
+        <div class="bg-white/5 rounded-xl p-4 mb-6">
           <p class="text-white/40 text-xs uppercase tracking-widest font-medium mb-2">Typische zoekvragen in deze niche</p>
           <div class="flex flex-wrap gap-2" id="roi-keywords">
             <span class="px-3 py-1 rounded-full bg-white/10 text-white/70 text-xs">&ldquo;fysiotherapeut [stad]&rdquo;</span>
@@ -182,6 +204,21 @@ const serviceSchema = generateService({
             <span class="px-3 py-1 rounded-full bg-white/10 text-white/70 text-xs">&ldquo;beste fysiotherapeut bij mij&rdquo;</span>
           </div>
         </div>
+
+        {/* Bronnen */}
+        <details class="mb-8 group">
+          <summary class="text-white/30 text-xs cursor-pointer hover:text-white/50 transition-colors flex items-center gap-1">
+            <svg class="w-3.5 h-3.5 transition-transform group-open:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+            Bronnen &amp; methodologie
+          </summary>
+          <div class="mt-3 text-white/30 text-xs space-y-1 pl-5">
+            <p>Zoekvolumes: schattingen op basis van NL/BE marktdata, Google Keyword Planner ranges, OrbitHQ, SEMrush benchmarks.</p>
+            <p>Klantwaarden: NZa-tarieven, brancheverenigingen, Independer, Trustoo, marktonderzoek 2025&ndash;2026.</p>
+            <p>GEO-uplift: BrightEdge Healthcare AI Overviews (2025), GrowthPro AI Local Business Stats (mei 2026), SEOplusgeo case studies, Click2Convert Village Health GEO case (2026), Gitnux GEO Statistics (verified), ZipDo GEO Statistics (2026).</p>
+            <p>Conversieratio&rsquo;s: Unbounce/Rudys.AI health benchmark, DesignCheck MKB benchmark.</p>
+            <p class="text-white/20 mt-2">Exacte cijfers per regio bespreken we in het gesprek op basis van jouw markt.</p>
+          </div>
+        </details>
 
         {/* Bottom line */}
         <div class="bg-white rounded-2xl p-5 md:p-6 text-center">
@@ -200,35 +237,40 @@ const serviceSchema = generateService({
       <script>
       (function () {
         const data = {
-          'fysiotherapeut':    { searches: 480,  visitors: 144, leadsLow: 5, leadsHigh: 7,  valueLow: 400,  valueHigh: 800,   keywords: ['fysiotherapeut [stad]', 'fysiotherapie in de buurt', 'beste fysiotherapeut bij mij'] },
-          'chiropractor':      { searches: 320,  visitors: 96,  leadsLow: 3, leadsHigh: 5,  valueLow: 500,  valueHigh: 1200,  keywords: ['chiropractor [stad]', 'chiropractor in de buurt', 'nekpijn behandeling'] },
-          'coach':             { searches: 590,  visitors: 177, leadsLow: 5, leadsHigh: 9,  valueLow: 800,  valueHigh: 3000,  keywords: ['loopbaancoach [stad]', 'burnout coach', 'life coach bij mij in de buurt'] },
-          'psycholoog':        { searches: 720,  visitors: 216, leadsLow: 6, leadsHigh: 11, valueLow: 500,  valueHigh: 1500,  keywords: ['psycholoog [stad]', 'therapie angst', 'psycholoog zonder wachtlijst'] },
-          'tandarts':          { searches: 880,  visitors: 264, leadsLow: 8, leadsHigh: 13, valueLow: 200,  valueHigh: 600,   keywords: ['tandarts [stad]', 'tandarts in de buurt', 'spoed tandarts'] },
-          'huidtherapeut':     { searches: 260,  visitors: 78,  leadsLow: 2, leadsHigh: 4,  valueLow: 600,  valueHigh: 2000,  keywords: ['huidtherapeut [stad]', 'acne behandeling', 'huidtherapie in de buurt'] },
-          'advocaat':          { searches: 650,  visitors: 195, leadsLow: 6, leadsHigh: 10, valueLow: 1500, valueHigh: 5000,  keywords: ['advocaat [stad]', 'arbeidsrecht advocaat', 'letselschade advocaat'] },
-          'accountant':        { searches: 540,  visitors: 162, leadsLow: 5, leadsHigh: 8,  valueLow: 1000, valueHigh: 3000,  keywords: ['boekhouder [stad]', 'accountant zzp', 'belastingaangifte hulp'] },
-          'personal-trainer':  { searches: 390,  visitors: 117, leadsLow: 4, leadsHigh: 6,  valueLow: 300,  valueHigh: 800,   keywords: ['personal trainer [stad]', 'personal training', 'afvallen begeleiding'] },
-          'schoonheidssalon':  { searches: 440,  visitors: 132, leadsLow: 4, leadsHigh: 7,  valueLow: 200,  valueHigh: 500,   keywords: ['schoonheidssalon [stad]', 'gezichtsbehandeling', 'nagelsalon in de buurt'] },
-          'yogastudio':        { searches: 350,  visitors: 105, leadsLow: 3, leadsHigh: 5,  valueLow: 400,  valueHigh: 1200,  keywords: ['yoga [stad]', 'yogales in de buurt', 'beginners yoga'] },
-          'dietist':           { searches: 310,  visitors: 93,  leadsLow: 3, leadsHigh: 5,  valueLow: 400,  valueHigh: 1000,  keywords: ['diëtist [stad]', 'voedingsadvies', 'afvallen begeleiding diëtist'] },
+          'fysiotherapeut':    { searches: 500,  visitors: 150, leadsLow: 5, leadsHigh: 8,  valueLow: 300,  valueHigh: 600,  geoLow: 3,  geoHigh: 12, keywords: ['fysiotherapeut [stad]', 'fysiotherapie in de buurt', 'beste fysiotherapeut bij mij'] },
+          'chiropractor':      { searches: 150,  visitors: 45,  leadsLow: 2, leadsHigh: 4,  valueLow: 400,  valueHigh: 800,  geoLow: 2,  geoHigh: 8,  keywords: ['chiropractor [stad]', 'osteopaat in de buurt', 'rugklachten chiropractor'] },
+          'psycholoog':        { searches: 450,  visitors: 135, leadsLow: 4, leadsHigh: 7,  valueLow: 800,  valueHigh: 2500, geoLow: 2,  geoHigh: 6,  keywords: ['psycholoog [stad]', 'EMDR therapeut', 'psycholoog zonder wachtlijst'] },
+          'coach':             { searches: 500,  visitors: 150, leadsLow: 3, leadsHigh: 5,  valueLow: 600,  valueHigh: 3000, geoLow: 1,  geoHigh: 5,  keywords: ['burnout coach [stad]', 'loopbaancoach', 'life coach bij mij in de buurt'] },
+          'huidtherapeut':     { searches: 280,  visitors: 84,  leadsLow: 3, leadsHigh: 5,  valueLow: 400,  valueHigh: 1500, geoLow: 3,  geoHigh: 15, keywords: ['huidtherapeut [stad]', 'acne behandeling', 'laserbehandeling huid'] },
+          'personal-trainer':  { searches: 400,  visitors: 120, leadsLow: 4, leadsHigh: 7,  valueLow: 400,  valueHigh: 900,  geoLow: 3,  geoHigh: 12, keywords: ['personal trainer [stad]', 'personal trainer afvallen', 'PT coach bij mij'] },
+          'yogastudio':        { searches: 350,  visitors: 105, leadsLow: 3, leadsHigh: 6,  valueLow: 450,  valueHigh: 1200, geoLow: 2,  geoHigh: 8,  keywords: ['yogastudio [stad]', 'yoga lessen', 'hot yoga bij mij in de buurt'] },
+          'dietist':           { searches: 300,  visitors: 90,  leadsLow: 3, leadsHigh: 5,  valueLow: 300,  valueHigh: 1000, geoLow: 2,  geoHigh: 8,  keywords: ['diëtist [stad]', 'voedingscoach afvallen', 'orthomoleculair diëtist'] },
+          'massagetherapeut':  { searches: 300,  visitors: 90,  leadsLow: 3, leadsHigh: 5,  valueLow: 250,  valueHigh: 800,  geoLow: 2,  geoHigh: 7,  keywords: ['sportmassage [stad]', 'massagetherapeut in de buurt', 'zwangerschapsmassage'] },
+          'tandarts':          { searches: 800,  visitors: 240, leadsLow: 7, leadsHigh: 12, valueLow: 200,  valueHigh: 500,  geoLow: 3,  geoHigh: 10, keywords: ['tandarts [stad]', 'tandarts in de buurt', 'spoed tandarts'] },
+          'advocaat':          { searches: 600,  visitors: 180, leadsLow: 5, leadsHigh: 9,  valueLow: 1500, valueHigh: 4000, geoLow: 2,  geoHigh: 6,  keywords: ['advocaat [stad]', 'arbeidsrecht advocaat', 'letselschade advocaat'] },
+          'accountant':        { searches: 500,  visitors: 150, leadsLow: 4, leadsHigh: 7,  valueLow: 800,  valueHigh: 2500, geoLow: 2,  geoHigh: 5,  keywords: ['boekhouder [stad]', 'accountant zzp', 'belastingaangifte hulp'] },
+          'fotograaf':         { searches: 350,  visitors: 105, leadsLow: 2, leadsHigh: 4,  valueLow: 500,  valueHigh: 3000, geoLow: 1,  geoHigh: 4,  keywords: ['trouwfotograaf [stad]', 'newborn fotograaf', 'zakelijk fotograaf'] },
         };
 
         function fmt(n) { return n.toLocaleString('nl-NL'); }
 
         function update(niche) {
-          const d = data[niche];
+          var d = data[niche];
           if (!d) return;
-          const revLow  = d.leadsLow  * d.valueLow;
-          const revHigh = d.leadsHigh * d.valueHigh;
+          var revLow  = d.leadsLow  * d.valueLow;
+          var revHigh = d.leadsHigh * d.valueHigh;
+          var geoRevLow  = d.geoLow  * d.valueLow;
+          var geoRevHigh = d.geoHigh * d.valueHigh;
 
-          document.getElementById('roi-amount').innerHTML    = '&euro;' + fmt(revLow) + ' &ndash; &euro;' + fmt(revHigh);
-          document.getElementById('roi-searches').textContent = fmt(d.searches);
-          document.getElementById('roi-visitors').textContent = '~' + fmt(d.visitors);
-          document.getElementById('roi-leads').innerHTML      = d.leadsLow + '&ndash;' + d.leadsHigh;
-          document.getElementById('roi-value').innerHTML      = '&euro;' + fmt(d.valueLow) + '&ndash;' + fmt(d.valueHigh);
+          document.getElementById('roi-amount').innerHTML     = '&euro;' + fmt(revLow) + ' &ndash; &euro;' + fmt(revHigh);
+          document.getElementById('roi-searches').textContent  = fmt(d.searches);
+          document.getElementById('roi-visitors').textContent  = '~' + fmt(d.visitors);
+          document.getElementById('roi-leads').innerHTML       = d.leadsLow + '&ndash;' + d.leadsHigh;
+          document.getElementById('roi-value').innerHTML       = '&euro;' + fmt(d.valueLow) + '&ndash;' + fmt(d.valueHigh);
+          document.getElementById('roi-geo-leads').innerHTML   = '+' + d.geoLow + '&ndash;' + d.geoHigh;
+          document.getElementById('roi-geo-rev').innerHTML     = '+&euro;' + fmt(geoRevLow) + ' &ndash; &euro;' + fmt(geoRevHigh);
 
-          const kwBox = document.getElementById('roi-keywords');
+          var kwBox = document.getElementById('roi-keywords');
           kwBox.innerHTML = d.keywords.map(function (kw) {
             return '<span class="px-3 py-1 rounded-full bg-white/10 text-white/70 text-xs">&ldquo;' + kw + '&rdquo;</span>';
           }).join('');
