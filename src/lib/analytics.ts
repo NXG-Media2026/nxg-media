@@ -104,3 +104,18 @@ export function getMetaPixelScript(pixelId: string): string {
 export function trackOnClick(name: EventName, props: EventProperties): string {
   return `trackEvent('${name}',${JSON.stringify(props)})`;
 }
+
+export function getCapiHelperScript(): string {
+  return [
+    'window.nxgCapiEventId=function(){',
+    "return Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,9);",
+    '};',
+    'window.nxgCapiSend=function(eventName,eventId,customData,userData){',
+    "if(location.hostname==='localhost'||location.hostname==='127.0.0.1'){",
+    "console.log('[CAPI]',eventName,eventId,customData);return}",
+    "fetch('/api/meta-capi',{method:'POST',headers:{'Content-Type':'application/json'},",
+    "body:JSON.stringify({events:[{event_name:eventName,event_id:eventId,",
+    "event_source_url:location.href,custom_data:customData||{},user_data:userData||{}}]})}).catch(function(){});",
+    '};',
+  ].join('');
+}

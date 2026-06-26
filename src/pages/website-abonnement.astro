@@ -764,8 +764,12 @@ const schemas = [
       source: 'website-actie',
     };
 
+    var leadId = typeof nxgCapiEventId === 'function' ? nxgCapiEventId() : '';
     if (typeof fbq === 'function') {
-      fbq('track', 'Lead', { content_name: 'website-actie', content_category: 'website-abonnement' });
+      fbq('track', 'Lead', { content_name: 'website-actie', content_category: 'website-abonnement' }, { eventID: leadId });
+    }
+    if (leadId && typeof nxgCapiSend === 'function') {
+      nxgCapiSend('Lead', leadId, { content_name: 'website-actie', content_category: 'website-abonnement' });
     }
     if (typeof trackEvent === 'function') {
       trackEvent('scanner_request_submitted', {

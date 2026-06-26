@@ -68,7 +68,11 @@ const description = 'Hemos recibido tu solicitud. Revisaremos tu web y te contac
 </BaseLayout>
 
 <script is:inline>
+  var leadId = typeof nxgCapiEventId === 'function' ? nxgCapiEventId() : '';
   if (typeof fbq === 'function') {
-    fbq('track', 'Lead', { content_name: 'es-mkb-founding-deal' });
+    fbq('track', 'Lead', { content_name: 'es-mkb-founding-deal' }, { eventID: leadId });
+  }
+  if (leadId && typeof nxgCapiSend === 'function') {
+    nxgCapiSend('Lead', leadId, { content_name: 'es-mkb-founding-deal' });
   }
 </script>

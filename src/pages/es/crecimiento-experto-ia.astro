@@ -731,8 +731,12 @@ const serviceSchema = generateService({
         source: 'expert-groei-traject-es',
       };
 
+      var leadId = typeof nxgCapiEventId === 'function' ? nxgCapiEventId() : '';
       if (typeof fbq === 'function') {
-        fbq('track', 'Lead', { content_name: 'expert-groei-traject-es', content_category: 'crecimiento-experto-ia' });
+        fbq('track', 'Lead', { content_name: 'expert-groei-traject-es', content_category: 'crecimiento-experto-ia' }, { eventID: leadId });
+      }
+      if (leadId && typeof nxgCapiSend === 'function') {
+        nxgCapiSend('Lead', leadId, { content_name: 'expert-groei-traject-es', content_category: 'crecimiento-experto-ia' });
       }
       if (typeof trackEvent === 'function') {
         trackEvent('scanner_request_submitted', {

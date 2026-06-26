@@ -9,7 +9,7 @@ import '../styles/global.css';
 import SEOHead from '../components/SEOHead.astro';
 import CookieConsent from '../components/CookieConsent.astro';
 import { siteConfig } from '../data/site';
-import { getTrackingScript } from '../lib/analytics';
+import { getTrackingScript, getCapiHelperScript } from '../lib/analytics';
 import { getCollectionBasePath } from '../i18n/utils';
 
 const locale = 'nl';
@@ -33,6 +33,7 @@ const termsHref = getCollectionBasePath('voorwaarden', locale);
   <meta name="robots" content="noindex, nofollow" />
 
   <script is:inline set:html={getTrackingScript()} />
+  <script is:inline set:html={getCapiHelperScript()} />
 </head>
 <body class="bg-bg text-text min-h-screen flex flex-col">
 
@@ -212,9 +213,13 @@ const termsHref = getCollectionBasePath('voorwaarden', locale);
           abVersion: 'ads',
         };
 
-        // Fire Meta Pixel Lead event (if loaded after consent)
+        // Fire Meta Pixel Lead event (browser + CAPI with dedup)
+        var leadId = typeof nxgCapiEventId === 'function' ? nxgCapiEventId() : '';
         if (typeof fbq === 'function') {
-          fbq('track', 'Lead', { content_name: 'groeiscan', content_category: 'cold-ads' });
+          fbq('track', 'Lead', { content_name: 'groeiscan', content_category: 'cold-ads' }, { eventID: leadId });
+        }
+        if (leadId && typeof nxgCapiSend === 'function') {
+          nxgCapiSend('Lead', leadId, { content_name: 'groeiscan', content_category: 'cold-ads' }, { em: email });
         }
 
         // Fire GA4 event

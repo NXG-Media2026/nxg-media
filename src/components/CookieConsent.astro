@@ -120,7 +120,11 @@ const metaPixelId = siteConfig.analytics.metaPixelId;
       s.parentNode.insertBefore(t,s)}(window,document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
       fbq('init', metaPixelId);
-      fbq('track', 'PageView');
+      var pvId = typeof nxgCapiEventId === 'function' ? nxgCapiEventId() : '';
+      fbq('track', 'PageView', {}, { eventID: pvId });
+      if (pvId && typeof nxgCapiSend === 'function') {
+        nxgCapiSend('PageView', pvId);
+      }
     }
   }
 })();

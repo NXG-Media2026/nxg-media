@@ -7,7 +7,7 @@ import StickyMobileCTA from '../components/StickyMobileCTA.astro';
 import CookieConsent from '../components/CookieConsent.astro';
 import { siteConfig, type Locale } from '../data/site';
 import type { PageType } from '../lib/analytics';
-import { getTrackingScript } from '../lib/analytics';
+import { getTrackingScript, getCapiHelperScript } from '../lib/analytics';
 import { t } from '../i18n/utils';
 
 interface Props {
@@ -55,6 +55,7 @@ const {
   />
 
   <script is:inline set:html={getTrackingScript()} />
+  <script is:inline set:html={getCapiHelperScript()} />
 </head>
 <body class="bg-bg text-text min-h-screen flex flex-col">
   <a
