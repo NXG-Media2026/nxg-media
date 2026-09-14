@@ -17,3 +17,5 @@
 @media(max-width:1050px){.portrait-stage{left:-70px}.portrait-frame img{object-position:75% bottom}}
 @media(max-width:760px){.hero-visual{margin-top:-10px;min-height:490px}.portrait-stage{inset:-30px -25px 0 20px}.portrait-frame img{object-position:right bottom}.hero-ticket{left:23px;bottom:25px;width:235px;padding:20px}.hero-ticket p{font-size:30px}.hero-ticket p b{font-size:64px}.hero-ticket .ticket-refund{font-size:24px}.ticket-refund strong{font-size:30px}.portrait-controls{right:14px;bottom:16px}.portrait-controls button{width:30px;height:30px}.portrait-frame{mask-image:linear-gradient(to bottom,#000 84%,transparent 100%)}}
 @media(prefers-reduced-motion:reduce){.portrait-frame{transition:none;transform:none}.portrait-frame.is-leaving,.portrait-frame.is-active{transform:none}.portrait-controls .portrait-pause{display:none}}
+/* Match the hero so white client logos stay readable. */
+.client-proof{background:var(--blue);border-bottom-color:#ffffff26}.client-proof .proof-heading p,.client-proof .logos-toggle{color:#fff}.client-proof button:focus-visible{outline-color:var(--yellow)}
