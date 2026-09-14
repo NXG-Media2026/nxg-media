@@ -1,20 +1,67 @@
 ---
 import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import LogoMarquee from '../components/LogoMarquee.astro';
+import VideoTestimonialCarousel from '../components/VideoTestimonialCarousel.astro';
+import FounderPreview from '../components/FounderPreview.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
 import { siteConfig } from '../data/site';
-import { generateOrganization, generateWebSite, generateFounderPerson } from '../data/schema';
+import { generateOrganization, generateWebSite, generateFounderPerson, generateFAQPage } from '../data/schema';
 import { buildHreflangTrilingual } from '../i18n/hreflang';
+import { videoTestimonials } from '../data/videoTestimonials';
 
 /* TODO: Replace with new hero photo (Joost in NXG hoodie, arms crossed, transparent bg) */
 import heroPhoto from '../assets/images/founder/joost-standing-relaxed.webp';
+import founderPhoto from '../assets/images/founder/joost-sitting-laptop-looking-working.webp';
 
 const locale = 'nl';
 const hreflang = buildHreflangTrilingual('/', '/en/', '/es/');
+
+/* Client logos — auto-import all from Client-logos folder */
+const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/Client-logos/*.{webp,avif,png,jpg}', { eager: true });
+const logos = Object.entries(logoFiles)
+  .map(([path, mod]) => {
+    const filename = path.split('/').pop()!.replace(/\.(webp|avif|png|jpg)$/, '');
+    const name = filename.replace(/[-_]?logo[-_]?/gi, '').replace(/[-_]/g, ' ').trim();
+    return { src: mod.default, alt: name };
+  });
+
+/* FAQ — updated for MKB positioning */
+const homepageFaq = [
+  {
+    q: 'Voor welk type bedrijf is NXG-media?',
+    a: 'We werken met praktisch MKB: loodgieters, dakdekkers, aannemers, installateurs, schoonmaakbedrijven en andere dienstverleners die lokaal gevonden willen worden. Geen vaag gedoe — gewoon meer klanten.',
+  },
+  {
+    q: 'Wat kost het om met NXG-media te werken?',
+    a: 'Onze pakketten starten vanaf €299 per maand (Gevonden). Het meest gekozen pakket is Groei (€599/mnd) met advertenties en landingspagina\'s erbij. <a href="/contact/">Plan een gratis gesprek</a> en we kijken samen wat bij jou past.',
+  },
+  {
+    q: 'Hoe snel zie ik resultaat?',
+    a: 'Bij het Gevonden pakket zie je meestal binnen 4-6 weken betere posities in Google. Met het Groei pakket (incl. advertenties) komen de eerste leads vaak al in de eerste 2 weken binnen.',
+  },
+  {
+    q: 'Wat is het verschil met een gewoon marketingbureau?',
+    a: 'Wij combineren vindbaarheid in Google én AI-zoekmachines (ChatGPT, Gemini) met advertenties die direct klanten opleveren. Geen praatjes, maar een systeem dat werkt. En je hebt altijd persoonlijk contact — geen ticketsysteem.',
+  },
+  {
+    q: 'Wat is AI-vindbaarheid?',
+    a: 'Steeds meer mensen zoeken via ChatGPT, Google AI en andere AI-tools. Wij zorgen dat jouw bedrijf ook daar gevonden wordt. <a href="' + siteConfig.external.scannerUrl + '" target="_blank" rel="noopener">Check gratis hoe je nu scoort</a>.',
+  },
+  {
+    q: 'Zit ik ergens aan vast?',
+    a: 'Nee. Onze pakketten zijn maandelijks opzegbaar. We geloven dat je blijft omdat het werkt, niet omdat je vastzit aan een contract.',
+  },
+];
+
+const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
 
 const schemas = [
   generateOrganization(locale),
   generateWebSite(locale),
   generateFounderPerson(locale),
+  generateFAQPage(faqForSchema, locale),
 ];
 ---
 
@@ -150,6 +197,26 @@ const schemas = [
 
 
   {/* ══════════════════════════════════════════════════
+      LOGO MARQUEE — klantlogo's
+      ══════════════════════════════════════════════════ */}
+  <LogoMarquee
+    logos={logos}
+    label="Vertrouwd door ondernemers door heel Nederland"
+    speed={35}
+  />
+
+
+  {/* ══════════════════════════════════════════════════
+      VIDEO TESTIMONIALS
+      ══════════════════════════════════════════════════ */}
+  <VideoTestimonialCarousel
+    title="Wat klanten zeggen"
+    subtitle="Echte ondernemers over hun samenwerking met NXG-media"
+    testimonials={videoTestimonials}
+  />
+
+
+  {/* ══════════════════════════════════════════════════
       AI SCANNER CTA
       ══════════════════════════════════════════════════ */}
   <section class="bg-primary text-white py-12 md:py-16">
@@ -274,6 +341,34 @@ const schemas = [
       </div>
     </div>
   </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      OVER JOOST — founder preview
+      ══════════════════════════════════════════════════ */}
+  <FounderPreview
+    name={siteConfig.founder.name}
+    role={siteConfig.founder.role}
+    bio={siteConfig.founder.bio.nl}
+    image={founderPhoto}
+    credentials={siteConfig.founder.credentials}
+    knowsAbout={siteConfig.founder.knowsAbout.nl}
+    aboutHref="/over-joost/"
+    aboutLabel="Meer over Joost"
+    locale="nl"
+  />
+
+
+  {/* ══════════════════════════════════════════════════
+      FAQ
+      ══════════════════════════════════════════════════ */}
+  <FAQAccordion
+    title="Veelgestelde vragen"
+    items={homepageFaq}
+    locale="nl"
+    pageType="homepage"
+    pageSlug="/"
+  />
 
 
   {/* ══════════════════════════════════════════════════
