@@ -1,362 +1,327 @@
 ---
-import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
-import type { ImageMetadata } from 'astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import TrustBar from '../components/TrustBar.astro';
-import ClientResults from '../components/ClientResults.astro';
-import VideoTestimonialCarousel from '../components/VideoTestimonialCarousel.astro';
-import LogoMarquee from '../components/LogoMarquee.astro';
-import SocialStorytellingGrid from '../components/SocialStorytellingGrid.astro';
-import FounderPreview from '../components/FounderPreview.astro';
-import FAQAccordion from '../components/FAQAccordion.astro';
-import ScannerChooser from '../components/ScannerChooser.astro';
-import AIPlatformBar from '../components/AIPlatformBar.astro';
 import { siteConfig } from '../data/site';
-import { generateOrganization, generateWebSite, generateFounderPerson, generateFAQPage } from '../data/schema';
+import { generateOrganization, generateWebSite, generateFounderPerson } from '../data/schema';
 import { buildHreflangTrilingual } from '../i18n/hreflang';
-import { getTestimonials } from '../data/testimonials';
-import { getSocialPosts } from '../data/socialPosts';
-import { videoTestimonials } from '../data/videoTestimonials';
 
-import heroPhoto from '../assets/images/founder/joost-profielfoto-portrait.webp';
-import founderPhoto from '../assets/images/founder/joost-sitting-laptop-looking-working.webp';
+/* TODO: Replace with new hero photo (Joost in NXG hoodie, arms crossed, transparent bg) */
+import heroPhoto from '../assets/images/Founder/joost-standing-relaxed.webp';
 
 const locale = 'nl';
 const hreflang = buildHreflangTrilingual('/', '/en/', '/es/');
 
-const testimonials = getTestimonials({ locale: 'nl' });
-const socialPosts = getSocialPosts(6);
-
-const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
-const logos = Object.entries(logoFiles)
-  .filter(([path]) => /logo/i.test(path.split('/').pop()!))
-  .map(([path, mod]) => {
-    const filename = path.split('/').pop()!.replace(/\.(webp|avif|png|jpg)$/, '');
-    const name = filename.replace(/[-_]?logo[-_]?/gi, '').replace(/[-_]/g, ' ').trim();
-    return { src: mod.default, alt: name };
-  });
-
-const guides = (await getCollection('guides'))
-  .filter((g) => g.data.locale === locale)
-  .sort((a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime())
-  .slice(0, 4);
-
-const trustItems = [
-  { value: '50+', label: 'Coaches begeleid' },
-  { value: '€5M+', label: 'Ads budget beheerd' },
-  { value: '5-7×', label: 'Gemiddelde ROAS' },
-  { value: '7+', label: 'Jaar ervaring' },
+const schemas = [
+  generateOrganization(locale),
+  generateWebSite(locale),
+  generateFounderPerson(locale),
 ];
-
-const homepageFaq = [
-  {
-    q: 'Wat kost het om met NXG Media te werken?',
-    a: 'NXG Media biedt micro-producten vanaf €6,99 voor ondernemers die zelf aan de slag willen. Het Coach Accelerator traject is een vast programma met setup + maandelijkse optimalisatie. <a href="/contact/">Neem contact op</a> voor een vrijblijvend gesprek over de investering die bij jouw situatie past.',
-  },
-  {
-    q: 'Werken jullie alleen met coaches?',
-    a: 'NXG Media werkt met twee clusters: Coach Accelerator (coaches, kennisondernemers, experts) en AI Vindbaarheid (lokale praktijken, MKB). De aanpak verschilt, maar het uitgangspunt is hetzelfde: bouw een systeem, geen losse campagnes.',
-  },
-  {
-    q: 'Hoe snel zie ik resultaat?',
-    a: 'De eerste Coach Accelerator resultaten zijn er meestal binnen 2-4 weken — eerste leads, eerste productverkopen. Een volledig draaiend systeem kost 2-3 maanden. Bij AI Vindbaarheid kun je na het toepassen van de kits direct opnieuw scannen en het verschil zien.',
-  },
-  {
-    q: 'Wat is het verschil tussen NXG Media en een gewoon marketingbureau?',
-    a: 'Wij bouwen complete groeisystemen — geen losse campagnes of websites. Storytelling, producten, emailflows, ads en AI-vindbaarheid werken samen als één machine. Dat is het verschil tussen "meer zichtbaarheid" en "voorspelbare groei".',
-  },
-  {
-    q: 'Moet ik al een groot publiek hebben?',
-    a: 'Nee. Het systeem is juist ontworpen om je publiek en je leadflow tegelijk op te bouwen. Met een klein advertentiebudget (€5-10/dag) haal je dagelijks 20-50 gekwalificeerde volgers.',
-  },
-];
-
-const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
-
 ---
 
 <BaseLayout
-  title={`${siteConfig.name} — ${siteConfig.tagline.nl}`}
-  description="Bouw een online groeisysteem rond jouw expertise. Coach Accelerator voor coaches en experts. AI-vindbaarheid voor lokale praktijken."
-  hreflang={hreflang}
-  schemas={[generateOrganization(), generateWebSite(locale), generateFounderPerson(), generateFAQPage(faqForSchema)]}
+  title="NXG-media — Word gevonden. Word gekozen. Krijg meer aanvragen."
+  description="NXG-media helpt praktisch MKB om beter vindbaar te zijn in Google, ChatGPT en andere AI-zoekmachines — en combineert dat met advertenties die klanten opleveren."
   locale={locale}
+  hreflang={hreflang}
+  schemas={schemas}
+  hideNewsletter={true}
 >
 
-  {/* ── Hero ── */}
-  <section class="relative py-20 md:py-28 lg:py-36 overflow-hidden">
-    <div class="absolute inset-0">
-      <Image
-        src={heroPhoto}
-        alt="Joost van Putten werkt aan online groeisystemen voor coaches en experts — NXG Media"
-        widths={[800, 1200, 1600]}
-        sizes="100vw"
-        class="w-full h-full object-cover object-top"
-        loading="eager"
-        decoding="async"
-      />
-      <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-white/40"></div>
-    </div>
-    <div class="relative max-w-4xl mx-auto px-4 md:px-6">
-      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl text-text mb-6 leading-tight max-w-2xl">
-        Bouw een online groeisysteem rond jouw expertise
-      </h1>
-      <p class="text-lg md:text-xl text-text-muted leading-relaxed mb-10 max-w-xl">
-        Voor coaches en experts die hun kennis willen vertalen naar voorspelbare leads, productverkoop en coaching-aanvragen. En voor lokale praktijken die zichtbaar willen zijn in AI-tools.
-      </p>
-      <div class="flex flex-col sm:flex-row items-start gap-4">
-        <button
-          type="button"
-          data-scanner-open
-          class="inline-flex items-center px-8 py-4 text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-lg cursor-pointer"
-        >
-          Doe de AI Vindbaarheids Scan
-          <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
-        </button>
-        <a
-          href="/ai-expert-groei-traject/"
-          class="inline-flex items-center px-8 py-4 text-base font-medium text-primary border-2 border-primary hover:bg-primary/5 transition-colors rounded-button"
-        >
-          Bekijk Expert Groei Traject
-        </a>
-        <a
-          href="/ai-vindbaarheid/"
-          class="inline-flex items-center px-8 py-4 text-base font-medium text-primary border-2 border-primary hover:bg-primary/5 transition-colors rounded-button"
-        >
-          Bekijk AI Vindbaarheid
-        </a>
-      </div>
-    </div>
-  </section>
+  {/* ══════════════════════════════════════════════════
+      HERO — blauw met foto + sticky notes
+      ══════════════════════════════════════════════════ */}
+  <section class="bg-primary text-white relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 py-12 md:py-20 lg:py-24">
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
-  {/* ── Trust Bar ── */}
-  <section class="bg-bg-alt border-y border-border">
-    <div class="max-w-4xl mx-auto px-4 md:px-6">
-      <TrustBar items={trustItems} />
-    </div>
-  </section>
+        {/* Left: copy */}
+        <div class="relative z-10">
+          <h1 class="font-heading font-black text-[2.25rem] leading-[1.08] md:text-5xl lg:text-6xl text-white mb-6">
+            Word gevonden.<br />
+            Word gekozen.<br />
+            <span class="text-accent">Krijg meer aanvragen.</span>
+          </h1>
 
-  {/* ── Recognition ── */}
-  <section class="py-16 md:py-20 bg-primary">
-    <div class="max-w-3xl mx-auto px-4 md:px-6">
-      <h2 class="font-heading text-2xl md:text-3xl text-white mb-8">Herken je dit?</h2>
-      <div class="space-y-6">
-        <p class="text-white/80 leading-relaxed">Je hebt al een goedlopend coachprogramma, maar je leadflow piekt en zakt. De ene maand drie nieuwe klanten, de andere maand nul — en je weet niet waarom.</p>
-        <p class="text-white/80 leading-relaxed">Of je praktijk draait goed, maar als iemand aan ChatGPT vraagt naar een specialist in jouw regio, word je niet genoemd.</p>
-      </div>
-    </div>
-  </section>
-
-  {/* ── AI Platform Bar ── */}
-  <AIPlatformBar locale="nl" />
-
-  {/* ── Wat NXG Media bouwt ── */}
-  <section class="py-12 md:py-16 bg-bg-alt">
-    <div class="max-w-4xl mx-auto px-4 md:px-6">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">Geen losse campagnes — één route van klik naar klant</h2>
-      <p class="text-lg text-text-muted leading-relaxed mb-8 max-w-3xl">
-        Je mist geen marketing. Je mist een systeem dat voor je werkt, ook als jij met klanten bezig bent.
-      </p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <div class="bg-white rounded-card p-6 border border-border">
-          <h3 class="font-heading text-lg text-text mb-2">Een instap die zichzelf terugverdient</h3>
-          <p class="text-sm text-text-muted">Je eerste online product — een gids, mini-cursus of masterclass — dekt je advertentiekosten vanaf dag 1. Geen maanden wachten op rendement.</p>
-        </div>
-        <div class="bg-white rounded-card p-6 border border-border">
-          <h3 class="font-heading text-lg text-text mb-2">Leads die zichzelf kwalificeren</h3>
-          <p class="text-sm text-text-muted">Bezoekers doorlopen een interactieve route en laten zien wat ze nodig hebben. Jij weet precies wie klaar is — zonder koud te bellen of eindeloos te DM'en.</p>
-        </div>
-        <div class="bg-white rounded-card p-6 border border-border">
-          <h3 class="font-heading text-lg text-text mb-2">Opvolging die vertrouwen bouwt</h3>
-          <p class="text-sm text-text-muted">Na de eerste aanmelding ontvangen leads een persoonlijke serie. Tegen de tijd dat ze je traject zien, hoef je niet meer te overtuigen.</p>
-        </div>
-        <div class="bg-white rounded-card p-6 border border-border">
-          <h3 class="font-heading text-lg text-text mb-2">Eén route, niet losse campagnes</h3>
-          <p class="text-sm text-text-muted">Content, producten, emails en ads vormen één pad: van eerste klik naar betalende klant. Dat is het verschil tussen "meer zichtbaarheid" en voorspelbare groei.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {/* ── Two clusters ── */}
-  <section class="py-16 md:py-20">
-    <div class="max-w-4xl mx-auto px-4 md:px-6">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="bg-white rounded-card p-8 border border-border hover:border-accent/30 hover:shadow-lg transition-all">
-          <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full mb-4">expert-growth</span>
-          <h2 class="font-heading text-xl text-text mb-3">Expert Groei Traject</h2>
-          <p class="text-text-muted text-sm leading-relaxed mb-6">
-            Een compleet groeisysteem voor coaches en experts — van een snelle, AI-vindbare website tot storytelling, mini-producten, emailflows en ads. Alles werkt samen als één machine die zichtbaarheid, leads en klanten oplevert.
+          <p class="text-white/80 text-base md:text-lg leading-relaxed mb-8 max-w-lg">
+            <strong class="text-white font-semibold">NXG-media</strong> helpt praktisch MKB om beter vindbaar
+            te zijn in Google, ChatGPT en andere AI-zoekmachines
+            — en combineert dat met advertenties die klanten opleveren.
           </p>
-          <a href="/ai-expert-groei-traject/" class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium text-sm">
-            Meer over Expert Groei
-            <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
-          </a>
-        </div>
-        <div class="bg-white rounded-card p-8 border border-border hover:border-accent/30 hover:shadow-lg transition-all">
-          <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full mb-4">ai-vindbaarheid</span>
-          <h2 class="font-heading text-xl text-text mb-3">AI Vindbaarheid</h2>
-          <p class="text-text-muted text-sm leading-relaxed mb-6">
-            AI-vindbaarheid is nog een nieuw speelveld. Daarom beginnen we met een praktische scan: waar sta je nu, wat ontbreekt er en welke verbeteringen zijn logisch? Van scan naar kits naar full audit.
-          </p>
-          <a href="/ai-vindbaarheid/" class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium text-sm">
-            Meer over AI Vindbaarheid
-            <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  {/* ── Client Results (merged proof wall + testimonials) ── */}
-  <ClientResults
-    title="Resultaten van klanten"
-    featuredCases={[
-      {
-        testimonial: testimonials.find((t) => t.id === 'rolf-happywithyoga')!,
-        period: 'Sinds 2022',
-        stats: [
-          { value: '30.000+', label: 'webinarleads' },
-          { value: '1.700+', label: 'mini-cursusverkopen' },
-          { value: '2.000', label: 'betalende leden' },
-        ],
-        caseHref: '/cases/happy-with-yoga/',
-      },
-      {
-        testimonial: testimonials.find((t) => t.id === 'tessa-youlife')!,
-        period: 'Sinds feb 2025',
-        stats: [
-          { value: '±€10k/mnd', label: 'online producten' },
-          { value: '6', label: 'producten gelanceerd' },
-          { value: '±10/mnd', label: 'coachingklanten' },
-        ],
-        caseHref: '/cases/tessa-youlife/',
-      },
-      {
-        testimonial: testimonials.find((t) => t.id === 'josine-coachjosine')!,
-        period: 'Sinds okt 2025',
-        stats: [
-          { value: '600×', label: 'gids verkocht' },
-          { value: '80', label: 'masterclass-aanmeldingen' },
-        ],
-        caseHref: '/cases/coach-josine/',
-      },
-    ]}
-    smallResults={[
-      {
-        name: 'Manon — Vrouw & Mindset coach',
-        period: 'Eerste maand',
-        stats: [
-          { value: '120', label: 'aanmeldingen in 2 weken' },
-          { value: '±10%', label: 'conversie naar trajecten' },
-        ],
-      },
-      {
-        name: 'Kim — Human Design coach',
-        period: '2 maanden',
-        stats: [
-          { value: '90', label: 'masterclass-aanmeldingen' },
-          { value: '350×', label: 'gids verkocht' },
-          { value: '8%', label: 'conversie' },
-        ],
-      },
-      {
-        name: 'MCM Research',
-        logo: 'mcm-research-logo.webp',
-        period: 'Klant sinds 2022',
-        stats: [
-          { value: '2.500+', label: 'leads in Nederland' },
-          { value: '500', label: 'sollicitanten NL' },
-          { value: '1.500+', label: 'leads in België' },
-          { value: '250', label: 'sollicitanten BE' },
-        ],
-      },
-    ]}
-    otherTestimonials={testimonials.filter((t) => ['claire-ikrouwvanje', 'andrew-coreprogression'].includes(t.id))}
-    caseLabel="Lees de case"
-    allCasesHref="/cases/"
-    allCasesLabel="Bekijk alle cases"
-    locale="nl"
-  />
-
-  {/* ── Client logos marquee ── */}
-  {logos.length > 0 && (
-    <LogoMarquee
-      logos={logos}
-      label="Vertrouwd door coaches, experts en bedrijven"
-      speed={35}
-    />
-  )}
-
-  {/* ── Video Testimonials Carousel ── */}
-  <VideoTestimonialCarousel
-    title="Wat Klanten Zeggen Over Werken met Joost"
-    subtitle="Echte ervaringen van ondernemers die succesvol samenwerken met Joost"
-    testimonials={videoTestimonials}
-  />
-
-  {/* ── Blog / Guides preview ── */}
-  {guides.length > 0 && (
-    <section class="py-16 md:py-20">
-      <div class="max-w-4xl mx-auto px-4 md:px-6">
-        <h2 class="font-heading text-2xl md:text-3xl text-text mb-10 text-center">Laatste artikelen</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {guides.map((g) => (
-            <a href={`/guides/${g.data.pageSlug}/`} class="group block bg-white border border-border rounded-card p-6 hover:border-accent/30 hover:shadow-lg transition-all">
-              {g.data.cluster && (
-                <span class="text-xs font-medium text-accent uppercase tracking-wider mb-2 block">{g.data.cluster}</span>
-              )}
-              <h3 class="font-heading text-lg text-text group-hover:text-accent transition-colors mb-2">{g.data.title}</h3>
-              <p class="text-sm text-text-muted">{g.data.contentSchema.primaryAnswer.slice(0, 120)}...</p>
+          <div class="flex flex-wrap gap-3 mb-8">
+            <a
+              href="/contact/"
+              class="inline-flex items-center gap-2 px-6 py-3.5 text-base font-bold text-text bg-accent hover:bg-accent-dark transition-colors rounded-button"
+            >
+              Plan een gratis gesprek
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </a>
-          ))}
+            <a
+              href="#pakketten"
+              class="inline-flex items-center gap-2 px-6 py-3.5 text-base font-medium text-white border-2 border-white/30 hover:border-white/60 transition-colors rounded-button"
+            >
+              Bekijk onze pakketten
+            </a>
+          </div>
+
+          <p class="font-script text-2xl md:text-3xl text-accent -rotate-2 inline-block">
+            Niet lullen. Poetsen.
+          </p>
         </div>
-        <div class="text-center mt-8">
-          <a href="/guides/" class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium">
-            Bekijk alle artikelen
-            <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
-          </a>
+
+        {/* Right: hero photo + sticky notes */}
+        <div class="relative flex justify-center lg:justify-end">
+          <div class="relative">
+            <Image
+              src={heroPhoto}
+              alt="Joost van Putten — oprichter NXG-media"
+              width={520}
+              height={640}
+              class="relative z-10 max-h-[500px] md:max-h-[580px] w-auto object-contain drop-shadow-2xl"
+              loading="eager"
+            />
+
+            {/* Sticky note: testimonial */}
+            <div class="absolute top-4 right-0 md:-right-4 z-20 sticky-note text-base md:text-lg max-w-[200px] rotate-2">
+              "Meer aanvragen.<br />Dat is pas echt werk."
+            </div>
+
+            {/* Sticky note: MKB badge */}
+            <div class="absolute bottom-16 -right-2 md:right-0 z-20 sticky-note text-lg md:text-xl font-black uppercase -rotate-3">
+              MKB doet<br />het gewoon.
+            </div>
+          </div>
         </div>
       </div>
-    </section>
-  )}
-
-  {/* ── Instagram / Social Grid ── */}
-  <div class="bg-bg-alt">
-    <div class="max-w-5xl mx-auto px-4 md:px-6 pt-16 md:pt-20">
-      <h2 class="font-heading text-2xl md:text-3xl text-text text-center mb-2">Volg de journey</h2>
-      <p class="text-text-muted text-center">Behind-the-scenes, resultaten en groeisysteem-tips op Instagram.</p>
     </div>
-    <SocialStorytellingGrid posts={socialPosts} instagramUrl={siteConfig.socials.instagram} locale="nl" />
-  </div>
 
-  {/* ── Founder Preview (EEAT) ── */}
-  <FounderPreview
-    name={siteConfig.founder.name}
-    role={siteConfig.founder.role}
-    bio={siteConfig.founder.bio[locale]}
-    image={founderPhoto}
-    credentials={siteConfig.founder.credentials.map((c) => ({ name: c.name, issuer: c.issuer }))}
-    knowsAbout={siteConfig.founder.knowsAbout[locale]}
-    aboutHref="/over-joost/"
-    aboutLabel="Meer over Joost"
-    locale="nl"
-  />
+    {/* Script tagline strip */}
+    <div class="border-t border-white/10 py-4">
+      <div class="max-w-7xl mx-auto px-4 md:px-6 flex flex-wrap items-center justify-center gap-6 md:gap-12 text-center">
+        <p class="font-script text-xl md:text-2xl text-accent -rotate-1">Agencytaal eruit.</p>
+        <p class="font-heading font-extrabold text-lg md:text-xl text-white">
+          <span class="text-accent">Resultaat</span> erin.
+        </p>
+      </div>
+    </div>
+  </section>
 
-  {/* ── Homepage FAQ ── */}
-  <div class="bg-bg-alt">
-    <FAQAccordion
-      title="Veelgestelde vragen"
-      items={homepageFaq}
-      locale="nl"
-      pageType="homepage"
-      pageSlug="/"
-    />
-  </div>
 
-  <ScannerChooser locale="nl" />
+  {/* ══════════════════════════════════════════════════
+      TRUST STRIP — 3 kernpunten
+      ══════════════════════════════════════════════════ */}
+  <section class="py-10 md:py-14 border-b border-border">
+    <div class="max-w-5xl mx-auto px-4 md:px-6">
+      <div class="grid md:grid-cols-3 gap-8 md:gap-10">
+
+        <div class="flex items-start gap-4">
+          <div class="shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+            <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8" /><path stroke-linecap="round" d="m21 21-4.35-4.35" /></svg>
+          </div>
+          <div>
+            <h3 class="font-heading font-extrabold text-base mb-1">Google + AI</h3>
+            <p class="text-text-muted text-sm leading-relaxed">Beter vindbaar in Google, ChatGPT en andere AI-zoekmachines.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <div class="shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+            <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+          </div>
+          <div>
+            <h3 class="font-heading font-extrabold text-base mb-1">Duidelijke prijs</h3>
+            <p class="text-text-muted text-sm leading-relaxed">Transparante pakketten. Geen verrassingen.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <div class="shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+            <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+          </div>
+          <div>
+            <h3 class="font-heading font-extrabold text-base mb-1">Geen vaag gedoe</h3>
+            <p class="text-text-muted text-sm leading-relaxed">Praktisch, persoonlijk en resultaatgericht.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      AI SCANNER CTA
+      ══════════════════════════════════════════════════ */}
+  <section class="bg-primary text-white py-12 md:py-16">
+    <div class="max-w-4xl mx-auto px-4 md:px-6 text-center">
+      <p class="font-script text-2xl md:text-3xl text-accent -rotate-1 mb-4">Benieuwd hoe je scoort?</p>
+      <h2 class="font-heading font-black text-2xl md:text-4xl lg:text-5xl text-white mb-4">
+        Gratis AI-vindbaarheidscheck
+      </h2>
+      <p class="text-white/80 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-8">
+        Ontdek in 30 seconden hoe goed jouw bedrijf vindbaar is in Google én AI-zoekmachines
+        zoals ChatGPT. Geen gedoe, geen account nodig.
+      </p>
+      <a
+        href={siteConfig.external.scannerUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-8 py-4 text-lg font-bold text-text bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg"
+      >
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8" /><path stroke-linecap="round" d="m21 21-4.35-4.35" /></svg>
+        Check jouw vindbaarheid
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>
+      </a>
+      <p class="mt-4 text-white/50 text-sm">Gratis · Geen account · Resultaat in 30 seconden</p>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      PAKKETTEN — 3-tier pricing
+      ══════════════════════════════════════════════════ */}
+  <section id="pakketten" class="py-16 md:py-24">
+    <div class="max-w-6xl mx-auto px-4 md:px-6">
+
+      <div class="mb-10 md:mb-14">
+        <p class="text-primary font-heading font-extrabold text-xs uppercase tracking-widest mb-2">Onze pakketten</p>
+        <div class="flex flex-wrap items-end gap-4 md:gap-8">
+          <h2 class="font-heading font-black text-3xl md:text-5xl lg:text-6xl text-text leading-none">
+            Kies jouw pakket.
+          </h2>
+          <p class="font-script text-xl md:text-2xl text-primary -rotate-2 mb-1">
+            Zelfde doel.<br />Meer resultaat.
+          </p>
+        </div>
+        <p class="text-text-muted mt-4 max-w-2xl">
+          Of je nu net begint of wilt doorgroeien — wij hebben een pakket dat past bij jouw ambities.
+          Alle pakketten zijn gericht op meer zichtbaarheid, meer verkeer en meer klanten.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+
+        {/* Gevonden — €299 */}
+        <div class="relative border-2 border-border rounded-2xl p-6 md:p-8 flex flex-col">
+          <h3 class="font-heading font-black text-2xl mb-1">Gevonden</h3>
+          <p class="text-text-muted text-sm mb-4">Start met zichtbaarheid.</p>
+          <p class="font-heading font-black text-5xl md:text-6xl text-text mb-1">&euro;299</p>
+          <p class="text-text-muted text-sm mb-6">per maand</p>
+
+          <ul class="space-y-3 mb-8 flex-1">
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Website optimalisatie</li>
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Lokaal beter gevonden</li>
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Google Business profiel</li>
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Maandelijkse rapportage</li>
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Persoonlijke support</li>
+          </ul>
+
+          <a href="/contact/" class="block w-full py-3.5 text-center font-bold text-text border-2 border-text rounded-button hover:bg-text hover:text-white transition-colors">
+            Start met Gevonden &rarr;
+          </a>
+          <p class="font-script text-base text-text-muted mt-4 -rotate-1 text-center">Een sterke basis.<br />Meer klanten.</p>
+        </div>
+
+        {/* Groei — €599 (highlighted) */}
+        <div class="relative border-2 border-primary rounded-2xl p-6 md:p-8 flex flex-col shadow-lg">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
+            <span class="sticky-note text-sm font-black uppercase px-4 py-1.5 rotate-[-2deg]">Meest gekozen</span>
+          </div>
+
+          <h3 class="font-heading font-black text-2xl mb-1">Groei</h3>
+          <p class="text-text-muted text-sm mb-4">Meer verkeer. Meer klanten.</p>
+          <p class="font-heading font-black text-5xl md:text-6xl text-text mb-1">&euro;599</p>
+          <p class="text-text-muted text-sm mb-6">per maand</p>
+
+          <ul class="space-y-3 mb-8 flex-1">
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Alles uit het Gevonden pakket</li>
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Advertenties (Google & Social)</li>
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Landingspagina's die converteren</li>
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Maandelijkse content</li>
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Strategie & optimalisatie</li>
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Persoonlijke support</li>
+          </ul>
+
+          <a href="/contact/" class="block w-full py-3.5 text-center font-bold text-text bg-accent hover:bg-accent-dark rounded-button transition-colors">
+            Start met Groei &rarr;
+          </a>
+          <p class="font-script text-base text-text-muted mt-4 -rotate-1 text-center">Meer zichtbaarheid.<br />Meer werk.</p>
+        </div>
+
+        {/* Volle agenda — €999 */}
+        <div class="relative border-2 border-border rounded-2xl p-6 md:p-8 flex flex-col">
+          <h3 class="font-heading font-black text-2xl mb-1">Volle agenda</h3>
+          <p class="text-text-muted text-sm mb-4">Maximale groei. Geen lege dagen.</p>
+          <p class="font-heading font-black text-5xl md:text-6xl text-text mb-1">&euro;999</p>
+          <p class="text-text-muted text-sm mb-6">per maand</p>
+
+          <ul class="space-y-3 mb-8 flex-1">
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Alles uit het Groei pakket</li>
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Uitgebreide advertentiecampagnes</li>
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Meerdere landingspagina's</li>
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Content creatie (foto, video, tekst)</li>
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Continue optimalisatie</li>
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Strategisch advies</li>
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Prioriteit support</li>
+          </ul>
+
+          <a href="/contact/" class="block w-full py-3.5 text-center font-bold text-text border-2 border-text rounded-button hover:bg-text hover:text-white transition-colors">
+            Start met Volle agenda &rarr;
+          </a>
+          <p class="font-script text-base text-text-muted mt-4 -rotate-1 text-center">Meer leads. Meer omzet.<br />Meer vrijheid.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      FOOTER CTA BAND
+      ══════════════════════════════════════════════════ */}
+  <section class="border-t border-border py-8 md:py-10">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+
+        <div class="flex items-center gap-6">
+          <div>
+            <p class="font-heading font-black text-lg text-text">NXG-media</p>
+            <p class="font-script text-sm text-text-muted">Niet lullen. Poetsen.</p>
+          </div>
+          <p class="font-script text-lg md:text-xl text-text-muted hidden md:block">
+            &ldquo;Voor ondernemers die gewoon willen ondernemen.&rdquo;
+          </p>
+        </div>
+
+        <a
+          href="/contact/"
+          class="inline-flex items-center gap-2 px-6 py-3 font-bold text-text bg-accent hover:bg-accent-dark rounded-button transition-colors shrink-0"
+        >
+          Plan een gratis gesprek
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+        </a>
+
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-6 md:gap-10 mt-6 pt-6 border-t border-border">
+        <span class="flex items-center gap-2 text-xs text-text-muted">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+          Persoonlijk contact
+        </span>
+        <span class="flex items-center gap-2 text-xs text-text-muted">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          Snel schakelen
+        </span>
+        <span class="flex items-center gap-2 text-xs text-text-muted">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+          Door heel Nederland
+        </span>
+        <span class="flex items-center gap-2 text-xs text-text-muted">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+          Focus op resultaat
+        </span>
+      </div>
+    </div>
+  </section>
 
 </BaseLayout>

@@ -33,14 +33,17 @@ const mobileAriaLabel: Record<Locale, string> = {
 };
 ---
 
-<header class="sticky top-0 z-50 bg-bg/95 backdrop-blur-sm border-b border-border">
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-border">
   <div class="max-w-7xl mx-auto px-4 md:px-6">
     <div class="flex items-center justify-between h-16 md:h-20">
 
-      <a href={localizePath('/', locale)} class="font-heading text-xl md:text-2xl text-text hover:text-primary transition-colors py-3 -my-1 inline-flex items-center">
-        {siteConfig.name}
+      {/* Logo */}
+      <a href={localizePath('/', locale)} class="inline-flex flex-col leading-none py-2 -my-1 hover:opacity-80 transition-opacity">
+        <span class="font-heading font-black text-xl md:text-2xl tracking-tight text-text">NXG-media</span>
+        <span class="font-script text-xs md:text-sm text-text-muted -mt-0.5">Niet lullen. Poetsen.</span>
       </a>
 
+      {/* Desktop nav */}
       <nav class="hidden lg:flex items-center gap-1" aria-label={ariaLabel[locale]}>
         {linkItems.map((item) => (
           item.children ? (
@@ -58,7 +61,7 @@ const mobileAriaLabel: Record<Locale, string> = {
                 </svg>
               </a>
               <div class="invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 absolute top-full left-0 pt-2 z-50">
-                <ul class="bg-bg-white rounded-card shadow-lg border border-border py-2 min-w-[220px]">
+                <ul class="bg-white rounded-card shadow-lg border border-border py-2 min-w-[220px]">
                   {item.children.map((child) => (
                     <li>
                       <a
@@ -97,13 +100,15 @@ const mobileAriaLabel: Record<Locale, string> = {
         {buttonItem && (
           <a
             href={buttonItem.href}
-            class="ml-3 inline-flex items-center px-4 py-2 text-sm font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button"
+            class="ml-3 inline-flex items-center gap-1.5 px-5 py-2.5 text-sm font-bold text-text bg-accent hover:bg-accent-dark transition-colors rounded-button"
           >
             {buttonItem.label}
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
           </a>
         )}
       </nav>
 
+      {/* Mobile hamburger */}
       <button
         id="menu-btn"
         class="lg:hidden p-3 -mr-2 min-h-[44px] min-w-[44px] inline-flex items-center justify-center text-text hover:text-primary transition-colors rounded-button"
@@ -121,9 +126,10 @@ const mobileAriaLabel: Record<Locale, string> = {
     </div>
   </div>
 
+  {/* Mobile nav */}
   <nav
     id="mobile-nav"
-    class="hidden lg:hidden fixed top-16 left-0 w-full h-[calc(100dvh-4rem)] z-40 bg-bg overflow-y-auto"
+    class="hidden lg:hidden fixed top-16 left-0 w-full h-[calc(100dvh-4rem)] z-40 bg-white overflow-y-auto"
     aria-label={mobileAriaLabel[locale]}
   >
     <div class="px-4 py-6 space-y-1">
@@ -137,17 +143,6 @@ const mobileAriaLabel: Record<Locale, string> = {
               </svg>
             </summary>
             <ul class="pl-4 pb-2 space-y-1">
-              <li>
-                <a
-                  href={item.href}
-                  class:list={[
-                    'block py-3 min-h-[44px] text-base transition-colors',
-                    isActive(item.href) ? 'text-primary font-medium' : 'text-text-muted hover:text-primary',
-                  ]}
-                >
-                  {t('cta.viewAll', locale)}
-                </a>
-              </li>
               {item.children.map((child) => (
                 <li>
                   <a
@@ -186,9 +181,9 @@ const mobileAriaLabel: Record<Locale, string> = {
       {buttonItem && (
         <a
           href={buttonItem.href}
-          class="block w-full mt-4 py-3 text-center text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button"
+          class="block w-full mt-4 py-3.5 text-center text-base font-bold text-text bg-accent hover:bg-accent-dark transition-colors rounded-button"
         >
-          {buttonItem.label}
+          {buttonItem.label} →
         </a>
       )}
     </div>

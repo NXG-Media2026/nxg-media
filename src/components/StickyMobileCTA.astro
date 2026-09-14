@@ -24,7 +24,7 @@ const contactHref = getCollectionBasePath('contact', locale);
   <div class="bg-bg-white border-t border-border px-4 py-3 flex gap-3 safe-bottom">
     <a
       href={contactHref}
-      class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 text-sm font-medium text-text-inverse bg-primary rounded-button transition-colors active:bg-primary-dark"
+      class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 text-sm font-bold text-text bg-accent rounded-button transition-colors active:bg-accent-dark"
       onclick={trackOnClick('contact_cta_click', { page_type: pageType, page_slug: pageSlug, locale, cta_location: 'sticky_mobile' })}
     >
       {t('cta.bookCall', locale)}

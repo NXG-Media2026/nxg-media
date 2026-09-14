@@ -8,9 +8,9 @@ export const siteConfig = {
   name: 'NXG Media',
   shortName: 'NXG Media',
   tagline: {
-    nl: 'Bouw een online groeisysteem rond jouw expertise.',
-    en: 'Build an online growth system around your expertise.',
-    es: 'Ayudamos a negocios de servicios a convertir su web en un canal de clientes.',
+    nl: 'Niet lullen. Poetsen.',
+    en: 'Get found. Get chosen. Get more leads.',
+    es: 'Más visibilidad. Más clientes. Menos bla bla.',
   },
   url: 'https://nxg-media.com',
   defaultLocale: 'nl' as const,
@@ -37,11 +37,11 @@ export const siteConfig = {
   founder: {
     slug: 'joost-van-putten',
     name: 'Joost van Putten',
-    role: 'Founder & Online Growth Strategist',
+    role: 'Founder & Online Marketing Specialist',
     bio: {
-      nl: 'Founder van NXG Media. 7+ jaar ervaring in online groeisystemen. Meer dan €5 miljoen aan advertentiebudget beheerd voor coaches en experts. Bouwt systemen die gemiddeld 5-7x return on ad spend opleveren — met storytelling, productladders, emailflows, ads en AI-vindbaarheid als kern.',
-      en: 'Founder of NXG Media. 7+ years of experience in online growth systems. Over €5 million in ad spend managed for coaches and experts. Builds systems that deliver an average 5-7x return on ad spend — with storytelling, product ladders, email flows, ads and AI visibility at the core.',
-      es: 'Fundador de NXG Media. Más de 7 años de experiencia en sistemas de crecimiento online. Más de €5 millones en presupuesto publicitario gestionado para coaches y expertos. Construye sistemas que generan un retorno de 5-7x en inversión publicitaria — con storytelling, escaleras de productos, flujos de email, anuncios y visibilidad ante IA como base.',
+      nl: 'Founder van NXG-media. 7+ jaar ervaring in online marketing voor MKB. Helpt loodgieters, dakdekkers, aannemers en andere praktische ondernemers om beter vindbaar te worden in Google en AI-zoekmachines — en combineert dat met advertenties die klanten opleveren.',
+      en: 'Founder of NXG-media. 7+ years of experience in online marketing for SMBs. Helps plumbers, roofers, contractors and other hands-on business owners get found in Google and AI search engines — combined with ads that bring in customers.',
+      es: 'Fundador de NXG-media. Más de 7 años de experiencia en marketing online para PYMES. Ayuda a fontaneros, techadores, contratistas y otros emprendedores prácticos a ser más visibles en Google y buscadores IA — combinado con anuncios que traen clientes.',
     },
     description: {
       nl: 'Joost van Putten is de oprichter van NXG Media en heeft 7+ jaar ervaring in het bouwen van online groeisystemen voor coaches, kennisondernemers en lokale praktijken. Hij heeft meer dan €5 miljoen aan advertentiebudget beheerd en werkt met 50+ coaches aan systemen die gemiddeld 5-7x return on ad spend realiseren. Daarnaast bouwt NXG Media aan AI-vindbaarheid voor lokale praktijken en MKB.',
