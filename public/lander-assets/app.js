@@ -41,3 +41,9 @@ document.querySelectorAll('.dialog-close,.dialog-dismiss').forEach(button => but
 dialog.addEventListener('click', event => { if (event.target === dialog) { const r = dialog.getBoundingClientRect(); if(event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) dialog.close(); } });
 dialog.addEventListener('close', () => previousFocus?.focus());
 document.getElementById('year').textContent = new Date().getFullYear();
+
+document.querySelectorAll('.logos-toggle').forEach(button => button.addEventListener('click', () => {
+  const paused = button.closest('.client-proof').classList.toggle('is-paused');
+  button.setAttribute('aria-pressed', String(paused));
+  button.textContent = paused ? 'Logo’s afspelen' : 'Logo’s pauzeren';
+}));
