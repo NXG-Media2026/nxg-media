@@ -28,15 +28,15 @@ const {
 const trackLogos = [...logos, ...logos];
 ---
 
-<section class="py-10 md:py-14 overflow-hidden bg-bg-alt">
+<section class="py-10 md:py-14 overflow-hidden bg-primary">
   <div class="max-w-5xl mx-auto px-4 md:px-6">
-    {label && <p class="text-sm text-text-muted text-center mb-8">{label}</p>}
+    {label && <p class="text-sm text-white/70 text-center mb-8">{label}</p>}
   </div>
 
   <div class="marquee-wrapper relative">
     {/* Fade edges */}
-    <div class="pointer-events-none absolute inset-y-0 left-0 w-16 md:w-24 z-10 bg-gradient-to-r from-bg-alt to-transparent"></div>
-    <div class="pointer-events-none absolute inset-y-0 right-0 w-16 md:w-24 z-10 bg-gradient-to-l from-bg-alt to-transparent"></div>
+    <div class="pointer-events-none absolute inset-y-0 left-0 w-16 md:w-24 z-10 bg-gradient-to-r from-primary to-transparent"></div>
+    <div class="pointer-events-none absolute inset-y-0 right-0 w-16 md:w-24 z-10 bg-gradient-to-l from-primary to-transparent"></div>
 
     <div
       class="marquee-track flex items-center gap-12 md:gap-16 w-max"
@@ -48,7 +48,7 @@ const trackLogos = [...logos, ...logos];
             src={logo.src}
             alt={logo.alt}
             height={48}
-            class="h-8 md:h-10 w-auto object-contain max-w-[140px]"
+            class="h-8 md:h-10 w-auto object-contain max-w-[140px] brightness-0 invert"
             loading="lazy"
             decoding="async"
           />
