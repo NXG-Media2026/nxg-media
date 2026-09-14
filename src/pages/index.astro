@@ -6,10 +6,12 @@ import LogoMarquee from '../components/LogoMarquee.astro';
 import VideoTestimonialCarousel from '../components/VideoTestimonialCarousel.astro';
 import FounderPreview from '../components/FounderPreview.astro';
 import FAQAccordion from '../components/FAQAccordion.astro';
+import SocialStorytellingGrid from '../components/SocialStorytellingGrid.astro';
 import { siteConfig } from '../data/site';
 import { generateOrganization, generateWebSite, generateFounderPerson, generateFAQPage } from '../data/schema';
 import { buildHreflangTrilingual } from '../i18n/hreflang';
 import { videoTestimonials } from '../data/videoTestimonials';
+import { getSocialPosts } from '../data/socialPosts';
 
 /* TODO: Replace with new hero photo (Joost in NXG hoodie, arms crossed, transparent bg) */
 import heroPhoto from '../assets/images/founder/joost-standing-relaxed.webp';
@@ -54,6 +56,8 @@ const homepageFaq = [
     a: 'Nee. Onze pakketten zijn maandelijks opzegbaar. We geloven dat je blijft omdat het werkt, niet omdat je vastzit aan een contract.',
   },
 ];
+
+const socialPosts = getSocialPosts(6, 'nl');
 
 const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
 
@@ -368,6 +372,16 @@ const schemas = [
     locale="nl"
     pageType="homepage"
     pageSlug="/"
+  />
+
+
+  {/* ══════════════════════════════════════════════════
+      INSTAGRAM GRID — persoonlijk
+      ══════════════════════════════════════════════════ */}
+  <SocialStorytellingGrid
+    posts={socialPosts}
+    instagramUrl={siteConfig.socials.instagram}
+    locale="nl"
   />
 
 

@@ -74,7 +74,7 @@ const visibleSkills = knowsAbout.slice(0, 4);
           <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-8">
             {visibleSkills.map((skill) => (
               <li class="flex items-start gap-2 text-sm text-text-muted">
-                <svg class="w-4 h-4 mt-0.5 shrink-0 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <svg class="w-4 h-4 mt-0.5 shrink-0 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 {skill}
@@ -86,7 +86,7 @@ const visibleSkills = knowsAbout.slice(0, 4);
         {/* More about link */}
         <a
           href={aboutHref}
-          class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium"
+          class="inline-flex items-center text-primary hover:text-primary-dark transition-colors font-medium"
         >
           {aboutLabel}
           <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
