@@ -1,5 +1,7 @@
 ---
 import { Image } from 'astro:assets';
+import '../styles/lander.css';
+import landerScriptUrl from '../scripts/lander.js?url';
 import type { ImageMetadata } from 'astro';
 import CookieConsent from '../components/CookieConsent.astro';
 import { getTrackingScript } from '../lib/analytics';
@@ -17,7 +19,7 @@ const clientLogos = Object.entries(clientLogoFiles).map(([file, mod]) => ({ src:
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230756ef'/%3E%3Cpath d='M15 48V16h8l18 20V16h8v32h-8L23 28v20z' fill='%23fff000'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:wght@400;500;600;650;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/lander-assets/styles.css"><style is:global>.photo{background-image:url('/lander-assets/ondernemer-werkplaats-nxg-growth.webp');background-position:76% center}@media(max-width:760px){.photo{background-position:75% 35%}}</style>
+<style is:global>.photo{background-image:url('/lander-assets/ondernemer-werkplaats-nxg-growth.webp');background-position:76% center}@media(max-width:760px){.photo{background-position:75% 35%}}</style>
 </head>
 <body>
 <a class="skip" href="#main">Naar inhoud</a>
@@ -42,5 +44,5 @@ const clientLogos = Object.entries(clientLogoFiles).map(([file, mod]) => ({ src:
 <dialog id="booking-dialog" aria-labelledby="booking-title"><button type="button" class="dialog-close" aria-label="Venster sluiten">×</button><p class="eyebrow">PERSOONLIJKE GROWTH-SESSIE</p><h2 id="booking-title">KIES JOUW<br><span class="blue">MOMENT.</span></h2><div id="booking-content"><p>Kies een beschikbare tijd voor je gratis strategiegesprek van 15 minuten.</p><a class="button yellow" href="https://calendly.com/nxgmedia/gratis-15-minuten-strategiegesprek" target="_blank" rel="noopener noreferrer">Open de boekingsagenda ↗</a></div></dialog>
 <CookieConsent locale="nl" />
 <script is:inline set:html={getTrackingScript()} />
-<script is:inline src="/lander-assets/app.js"></script>
+<script is:inline src={landerScriptUrl}></script>
 </body></html>
