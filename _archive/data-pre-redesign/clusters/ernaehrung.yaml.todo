@@ -1,0 +1,8 @@
+# TODO: Create ernaehrung.yaml cluster config when enough nutrition content exists.
+#
+# Currently the glutenfrei-superpower micro-product declares cluster: "ernaehrung"
+# in its frontmatter, but no cluster YAML exists yet. All cluster features
+# (hub page, cross-sell from YAML, related learning) gracefully skip.
+#
+# Prerequisite: at least 2-3 articles in the Ernaehrung cluster + a primary product.
+# Use histamin.yaml as the template when creating this file.

@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BreadcrumbNav from '../../components/BreadcrumbNav.astro';
+import CalendlyEmbed from '../../components/CalendlyEmbed.astro';
+import { siteConfig } from '../../data/site';
+import { generateBreadcrumbs } from '../../data/schema';
+import { t, localizePath } from '../../i18n/utils';
+import { buildHreflangTrilingual } from '../../i18n/hreflang';
+
+const locale = 'en';
+const hreflang = buildHreflangTrilingual('/contact/', '/en/contact/', '/es/contacto/');
+const breadcrumbs = [
+  { label: t('breadcrumb.home', locale), href: localizePath('/', locale) },
+  { label: 'Contact' },
+];
+const breadcrumbSchema = [
+  { name: t('breadcrumb.home', locale), url: `${siteConfig.url}${localizePath('/', locale)}` },
+  { name: 'Contact', url: `${siteConfig.url}/en/contact` },
+];
+---
+
+<BaseLayout
+  title={`Contact | ${siteConfig.name}`}
+  description="Get in touch with NXG Media or book a call with Joost."
+  schemas={[generateBreadcrumbs(breadcrumbSchema)]}
+  locale={locale}
+  hreflang={hreflang}
+>
+  <BreadcrumbNav items={breadcrumbs} />
+
+  <section class="py-12 md:py-16 lg:py-20">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <h1 class="font-heading text-3xl md:text-4xl text-text mb-6">Contact</h1>
+      <p class="text-lg text-text-muted leading-relaxed mb-8">
+        Want to discuss what NXG Media can do for you? Book a no-obligation call or send an email.
+      </p>
+      <div class="bg-white rounded-card p-6 border border-border mb-8">
+        <p class="text-text mb-2"><strong>Email:</strong> <a href={`mailto:${siteConfig.email}`} class="text-accent hover:text-accent-dark">{siteConfig.email}</a></p>
+        <p class="text-text"><strong>LinkedIn:</strong> <a href={siteConfig.socials.linkedin} class="text-accent hover:text-accent-dark" target="_blank" rel="noopener noreferrer">Joost van Putten</a></p>
+      </div>
+    </div>
+  </section>
+  <CalendlyEmbed pageType="contact" pageSlug="contact" locale={locale} />
+</BaseLayout>

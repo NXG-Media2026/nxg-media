@@ -1,0 +1,43 @@
+---
+import { siteConfig, type Locale } from '../data/site';
+
+interface Props {
+  locale: Locale;
+  currentPath: string;
+  hreflang?: Array<{ lang: string; href: string }>;
+}
+
+const { locale, currentPath, hreflang } = Astro.props;
+
+const localeLabels: Record<string, string> = {
+  nl: 'NL',
+  en: 'EN',
+  es: 'ES',
+};
+
+const alternates = (hreflang ?? [])
+  .filter((h) => h.lang !== locale && h.lang !== 'x-default')
+  .map((h) => ({
+    locale: h.lang,
+    label: localeLabels[h.lang] ?? h.lang.toUpperCase(),
+    href: h.href.replace(siteConfig.url, ''),
+  }));
+---
+
+{alternates.length > 0 && (
+  <div class="flex items-center text-xs">
+    <span class="font-medium text-text lang-switcher-item">{localeLabels[locale]}</span>
+    {alternates.map(({ label, href, locale: targetLocale }) => (
+      <>
+        <span class="text-border mx-1">/</span>
+        <a
+          href={href}
+          class="text-text-muted hover:text-accent transition-colors lang-switcher-item"
+          hreflang={targetLocale}
+        >
+          {label}
+        </a>
+      </>
+    ))}
+  </div>
+)}

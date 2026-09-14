@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BreadcrumbNav from '../../components/BreadcrumbNav.astro';
+import { siteConfig } from '../../data/site';
+import { t, localizePath } from '../../i18n/utils';
+import { buildHreflangTrilingual } from '../../i18n/hreflang';
+
+const locale = 'en';
+const hreflang = buildHreflangTrilingual('/privacy/', '/en/privacy/', '/es/privacidad/');
+const breadcrumbs = [
+  { label: t('breadcrumb.home', locale), href: localizePath('/', locale) },
+  { label: 'Privacy' },
+];
+---
+
+<BaseLayout title={`Privacy Policy | ${siteConfig.name}`} description="Privacy policy of NXG Media — how we handle your personal data." locale={locale} hreflang={hreflang}>
+  <BreadcrumbNav items={breadcrumbs} />
+
+  <article class="py-12 md:py-16 lg:py-20">
+    <div class="max-w-3xl mx-auto px-4 md:px-6 prose prose-lg">
+      <h1>Privacy Policy</h1>
+      <p class="text-sm text-text-muted">Last updated: 3 September 2025</p>
+
+      <p>NXG Media is registered in the Netherlands (KVK 78318122). Our privacy policy is governed by Dutch and EU law, including the GDPR.</p>
+
+      <h2>Controller</h2>
+      <p>NXG-Media, also operating under the names Marketingmetjoost and Magic AI Hub.<br />
+      Amendijk 1, 3829DS Hooglanderveen, the Netherlands.<br />
+      Responsible person: Joost van Putten.<br />
+      Email: <a href="mailto:info@nxg-media.com">info@nxg-media.com</a></p>
+
+      <h2>What data we process</h2>
+      <p>We may process: name, company details, contact information, payment data (via Plug & Pay / KNAB), account credentials, profile information, tool and course usage data, newsletter preferences, technical data (IP, browser), and video interaction data.</p>
+
+      <h2>Purposes</h2>
+      <p>We use personal data for: service delivery, customer support, financial administration, newsletters and marketing (with consent only), lead generation and remarketing via Meta/Google/MailerLite, platform improvement, and security.</p>
+
+      <h2>Legal bases</h2>
+      <ul>
+        <li>Performance of a contract</li>
+        <li>Consent (marketing and tracking)</li>
+        <li>Legal obligation (accounting, tax)</li>
+        <li>Legitimate interest (optimisation, security, direct marketing)</li>
+      </ul>
+
+      <h2>Third parties</h2>
+      <p>We share data only with processors who help deliver our services, under data processing agreements: Calendly, Zapier/Make, OpenAI, MailerLite, Google Analytics, Meta Pixel, Plug & Pay / KNAB, Vimeo, YouTube, Notion.</p>
+
+      <h2>Retention</h2>
+      <ul>
+        <li>Sessions: max. 7 days</li>
+        <li>Payment data: min. 7 years (legal requirement)</li>
+        <li>Marketing data: up to 2 years after last interaction</li>
+        <li>User profiles: as long as you hold an account</li>
+      </ul>
+
+      <h2>Cookies</h2>
+      <p>We use functional, analytical (Google Analytics, anonymised), and marketing cookies (Meta Pixel, consent required). You can manage preferences via the cookie banner or your browser settings.</p>
+
+      <h2>Your rights</h2>
+      <p>Under GDPR you have the right to access, rectification, erasure, restriction, objection, portability, and withdrawal of consent. Contact <a href="mailto:info@nxg-media.com">info@nxg-media.com</a> — we respond within 30 days. You may also file a complaint with the <a href="https://autoriteitpersoonsgegevens.nl" target="_blank" rel="noopener noreferrer">Dutch Data Protection Authority (AP)</a>.</p>
+
+      <h2>Full version</h2>
+      <p>The legally binding privacy policy is available in Dutch at <a href="/privacy/">/privacy/</a>.</p>
+    </div>
+  </article>
+</BaseLayout>

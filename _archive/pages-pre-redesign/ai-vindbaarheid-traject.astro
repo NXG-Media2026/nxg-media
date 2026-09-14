@@ -1,0 +1,1240 @@
+---
+/**
+ * Google & AI Aanvragen Traject — /ai-vindbaarheid-traject/
+ * Hard direct-response offer page with 3 routes and qualification logic.
+ */
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BreadcrumbNav from '../components/BreadcrumbNav.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import LogoMarquee from '../components/LogoMarquee.astro';
+import { siteConfig } from '../data/site';
+import { generateBreadcrumbs, generateFAQPage, generateService } from '../data/schema';
+
+import heroPhoto from '../assets/images/founder/joost-sitting-laptop-lookingfront.webp';
+import founderPhoto from '../assets/images/founder/joost-standing-relaxed.webp';
+import verenaPhoto from '../assets/images/cases/verena-mann-linkedin.webp';
+import jamesPhoto from '../assets/images/cases/james-mitchell-portrait.png';
+import proofGoogle from '../assets/images/cases/proof-google-torrevieja.png';
+import proofChatgpt from '../assets/images/cases/proof-chatgpt-local.png';
+import proofVerenaAi from '../assets/images/cases/doc_veri_ai_answer_cropped.PNG';
+import proofVerenaChatgpt from '../assets/images/cases/doc-veri-chatgptproof.jpeg';
+import rolfPhoto from '../assets/images/logos/rolf-profile-photo-happywithyoga.png';
+import proofHwyWhatsapp from '../assets/images/cases/rolf-happywithyoga-whatsapp-proof.webp';
+import keystaticDashboard from '../assets/images/keystatic1.png';
+import keystaticHomepage from '../assets/images/keystatic_edit_homepage.png';
+import keystaticBlog from '../assets/images/keystatic_add_blog.png';
+
+const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
+const logos = Object.entries(logoFiles)
+  .filter(([path]) => /logo/i.test(path.split('/').pop()!))
+  .map(([path, mod]) => {
+    const filename = path.split('/').pop()!.replace(/\.(webp|avif|png|jpg)$/, '');
+    const name = filename.replace(/[-_]?logo[-_]?/gi, '').replace(/[-_]/g, ' ').trim();
+    return { src: mod.default, alt: name };
+  });
+
+const locale = 'nl';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Google & AI Aanvragen Traject' },
+];
+
+const faqItems = [
+  {
+    q: 'Krijg ik bij €99/mnd een nieuwe website?',
+    a: 'Dat hangt van de route af. Bij het AI & Google Fundament (€99/mnd x 12 maanden) bouwen we een compleet nieuw AI-ready fundament inclusief hosting en beheerpaneel. Bij de losse-fixes-route (€99/mnd x 3 maanden) werken we binnen je huidige website en krijg je géén nieuwe site.',
+  },
+  {
+    q: 'Waarom zou ik €299/mnd kiezen als er ook €99/mnd is?',
+    a: 'De €299-route bevat actieve uitvoering in de eerste 90 dagen. We bouwen niet alleen het fundament, maar pakken ook de belangrijkste pagina\'s, structuur, citeerbaarheid en conversieroute actief aan. Bij €99/mnd lever je zelf meer input en uitvoering.',
+  },
+  {
+    q: 'Kan ik ook alleen losse tips krijgen?',
+    a: 'Niet als uitgebreid adviestraject. De losse-fixes-route is bedoeld voor ondernemers die willen dat wij de eerste verbeteringen uitvoeren. Zoek je alleen gratis tips om zelf ooit iets mee te doen, dan past dit traject minder goed.',
+  },
+  {
+    q: 'Garanderen jullie 30% meer aanvragen?',
+    a: 'Nee. Bij klanten waar het fundament goed stond, zagen we gemiddeld rond de 30% meer aanvragen, maar het effect verschilt per niche, aanbod, concurrentie en huidige situatie. Daarom werken we met een nulmeting en 90-dagen evaluatie.',
+  },
+  {
+    q: 'Wat gebeurt er als uit jullie check blijkt dat er weinig kans ligt?',
+    a: 'Dan zeggen we dat eerlijk. Niet elk bedrijf of elke markt is geschikt. We starten liever niet dan dat we een traject doen waar weinig commerciële kans in zit.',
+  },
+  {
+    q: 'Kom ik echt op pagina 1 in Google?',
+    a: 'Voor lokale bedrijven is pagina 1 vaak realistischer dan mensen denken, vooral op dienst + regio zoektermen. Daarom bouwen we gericht op duidelijke diensten, regio\'s, bewijs, autoriteit en een sterke technische basis.',
+  },
+  {
+    q: 'Word ik echt genoemd door ChatGPT en AI-zoekmachines?',
+    a: 'Ja, dat is precies waar we je online fundament op inrichten: duidelijk genoeg worden voor AI-tools zoals ChatGPT, Perplexity en Google AI. Daarna bouwen we door naar de zoekvragen die klanten echt gebruiken.',
+  },
+  {
+    q: 'Wat doen jullie precies in het traject?',
+    a: 'We bouwen aan drie dingen: beter gevonden worden, sneller vertrouwen opbouwen en meer aanvragen krijgen. Dat doen we via je websitefundament, Google/AI-structuur, dienst- en regiopagina\'s, reviews, Google Business, sterke CTA\'s en maandelijkse optimalisatie.<br><br>• <strong>Gevonden worden:</strong> Google, ChatGPT, Perplexity en Google AI begrijpen je bedrijf beter.<br>• <strong>Vertrouwd worden:</strong> reviews, bewijs en expertise staan op de juiste plekken.<br>• <strong>Aanvragen krijgen:</strong> je website krijgt een duidelijke route naar contact.',
+  },
+  {
+    q: 'Wat gebeurt er in de eerste 90 dagen?',
+    a: 'In de eerste 90 dagen bouwen we stap voor stap aan vindbaarheid, vertrouwen en aanvragen.<br><br><strong>Week 1 — Nulmeting & groeiplan:</strong> kansen, zoekvragen, concurrenten en snelste route naar aanvragen.<br><br><strong>Week 2–4 — Fundament:</strong> je site wordt sneller, duidelijker en gebouwd voor Google, AI-zoekmachines en klanten.<br><br><strong>Week 4–8 — Autoriteit:</strong> reviews, Google Business, bewijs, content en lokale signalen.<br><br><strong>Week 8–12 — Optimalisatie:</strong> CTA\'s, conversie, vindbaarheid en aanvraagroute verbeteren.',
+  },
+  {
+    q: 'Waarom geen WordPress?',
+    a: 'Veel WordPress-sites worden traag en rommelig door plugins, thema\'s en updates. Wij bouwen liever een snelle, moderne website op een premium fundament zonder plugin-chaos, zodat je site beter te beheren en beter te optimaliseren is.',
+  },
+  {
+    q: 'Houd ik zelf controle over mijn website?',
+    a: 'Ja. Bij Route 2 en 3 krijg je een beheerpaneel waarmee je zelf teksten, foto\'s, diensten en updates kunt aanpassen. Je hoeft niet voor elke kleine wijziging naar een webbouwer.',
+  },
+  {
+    q: 'Ben ik dan afhankelijk van NXG Media?',
+    a: 'Nee, niet voor kleine inhoudelijke aanpassingen. Jij houdt controle over de inhoud. Wij beheren het technische fundament en zorgen dat alles snel, veilig en goed ingericht blijft.',
+  },
+  {
+    q: 'Voor wie is dit niet geschikt?',
+    a: 'Dit traject is niet bedoeld voor webshops met honderden producten, SaaS-platformen, multinationals of bedrijven zonder duidelijke dienst, regio of klantwaarde. Het is juist gemaakt voor lokale dienstverleners, praktijken en specialisten waar één extra klant genoeg waarde heeft om online groei serieus te nemen.',
+  },
+  {
+    q: 'Waarom maximaal 5 bedrijven per ronde?',
+    a: 'Elk traject krijgt persoonlijke aandacht: strategie, uitvoering en optimalisatie. Dat lukt alleen als we het aantal bedrijven per ronde beperken. Bovendien nemen we maximaal één bedrijf per branche in dezelfde regio aan, zodat je nooit tegen een directe concurrent binnen het traject aankijkt.',
+  },
+  {
+    q: 'Hoe bepalen jullie of er vooruitgang is?',
+    a: 'We starten altijd met een nulmeting. Daarin leggen we vast hoe je bedrijf nu zichtbaar is in Google, ChatGPT, Perplexity, Google AI en je website. We kijken naar relevante zoektermen, AI-vermeldingen, websitefundament, content, bewijs en aanvraagroute.<br><br>Na 90 dagen vergelijken we de resultaten met die nulmeting. Geen duidelijke vooruitgang in Google, AI-zichtbaarheid of aanvragen? Dan werken we gratis door.',
+  },
+  {
+    q: 'Kunnen jullie ook meten wat bezoekers doen op mijn website?',
+    a: 'Ja. We kunnen tracking en optimalisatie toevoegen, zoals Google Tag Manager, Meta Pixel, Microsoft Clarity, formuliertracking en conversiemeting. Daarmee zien we waar bezoekers afhaken en welke pagina\'s, CTA\'s of formulieren beter kunnen.',
+  },
+  {
+    q: 'Wat kunnen jullie na de eerste 90 dagen blijven doen?',
+    a: 'Na de eerste 90 dagen kunnen we doorgaan met behoud, monitoring en groei. Denk aan extra dienst- en regiopagina\'s, SEO/AI-content, Google Business optimalisatie, reviewproces, conversie-optimalisatie, Microsoft Clarity analyses, A/B-tests en tracking via Meta Pixel of Google Tag Manager.',
+  },
+];
+
+const serviceSchema = generateService({
+  name: 'Google & AI Aanvragen Traject',
+  description: 'Pagina 1 in Google. Genoemd worden door ChatGPT, Perplexity en AI-zoekmachines. Meer aanvragen uit je website. Voor lokale dienstverleners en praktijken.',
+  url: `${siteConfig.url}/ai-vindbaarheid-traject/`,
+  serviceType: 'AI Visibility & Growth System',
+});
+---
+
+<BaseLayout
+  title="Meer aanvragen uit Google en AI begint met het juiste fundament | NXG Media"
+  description="Laat zien waar jouw bedrijf nu klanten mist in Google en AI. Losse fixes vanaf €99/mnd, nieuw fundament of complete 90-dagen boost vanaf €299/mnd."
+  canonical={`${siteConfig.url}/ai-vindbaarheid-traject/`}
+  schemas={[
+    generateBreadcrumbs(breadcrumbs.map((b) => ({ name: b.label, url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}/ai-vindbaarheid-traject/` }))),
+    generateFAQPage(faqItems.map(i => ({ question: i.q, answer: i.a }))),
+    serviceSchema,
+  ]}
+  locale={locale}
+  hideNewsletter={true}
+  hideStickyMobileCTA={true}
+>
+  <BreadcrumbNav items={breadcrumbs} />
+
+
+  {/* ══════════════════════════════════════════════════
+      1 - HERO
+      ══════════════════════════════════════════════════ */}
+  <section class="relative overflow-hidden bg-primary">
+    <div class="absolute inset-0 hidden md:block">
+      <Image src={heroPhoto} alt="" width={800} class="absolute right-0 top-0 h-full w-auto object-cover object-top opacity-[0.15]" loading="eager" />
+    </div>
+
+    <div class="relative px-5 md:px-6 pt-10 pb-10 md:pt-14 md:pb-16">
+      <div class="max-w-2xl mx-auto">
+        <h1 class="font-heading text-[1.75rem] leading-[1.15] md:text-[2.75rem] md:leading-[1.1] text-white mb-4">
+          Meer aanvragen uit Google en AI<br />
+          <em class="text-accent not-italic">begint met het juiste fundament.</em>
+        </h1>
+
+        <p class="text-white/70 leading-relaxed mb-5 text-[0.9rem] md:text-base max-w-xl">
+          Laat zien waar jouw bedrijf nu klanten mist in Google en AI. Als er concrete kansen liggen, kiezen we de route: losse fixes, een nieuw fundament of een complete 90-dagen boost.
+        </p>
+
+        {/* Price anchors */}
+        <div class="flex flex-col sm:flex-row gap-3 mb-5 max-w-md">
+          <div class="bg-white/[0.08] border border-white/15 rounded-lg px-4 py-3 flex-1">
+            <p class="text-white font-heading text-xl">Vanaf &euro;99<span class="text-sm text-white/50 font-body">/mnd</span></p>
+            <p class="text-white/50 text-xs">Losse AI/SEO-fixes</p>
+          </div>
+          <div class="bg-white/[0.12] border-2 border-accent/40 rounded-lg px-4 py-3 flex-1">
+            <p class="text-white font-heading text-xl">Vanaf &euro;299<span class="text-sm text-white/50 font-body">/mnd</span></p>
+            <p class="text-accent text-xs font-medium">Complete Google & AI boost</p>
+          </div>
+        </div>
+
+        <ul class="space-y-1.5 text-sm text-white/70 mb-6">
+          <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> Kies tussen losse fixes, een nieuw fundament of een complete 90-dagen boost</li>
+          <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> Beter vindbaar worden in Google, ChatGPT, Perplexity en AI-zoekmachines</li>
+          <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> Gericht op meer aanvragen, niet alleen meer bezoekers</li>
+          <li class="flex items-start gap-2"><span class="text-accent shrink-0 mt-0.5">&check;</span> Altijd met nulmeting en evaluatie na 90 dagen</li>
+        </ul>
+
+        <a href="#formulier" class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-white bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg w-full md:w-auto justify-center">
+          Check of mijn bedrijf in aanmerking komt
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+        </a>
+
+        <p class="text-white/40 text-xs mt-3">Geen gratis tips-rondje. We kijken of er genoeg potentie is voor een serieus 90-dagen traject.</p>
+      </div>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      2 - PROOF STRIP
+      ══════════════════════════════════════════════════ */}
+  <section class="bg-bg-alt border-b border-border/50 px-4 md:px-6 py-8 md:py-10">
+    <div class="max-w-4xl mx-auto">
+      <p class="text-xs uppercase tracking-widest text-accent font-medium text-center mb-5">Resultaten uit recente trajecten</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+
+        {/* CBMC proof card */}
+        <div class="bg-white border-2 border-accent/20 rounded-card overflow-hidden shadow-sm">
+          <div class="px-5 pt-5 pb-4">
+            <div class="flex items-center gap-3 mb-3">
+              <Image src={jamesPhoto} alt="James Mitchell" width={40} height={40} class="w-10 h-10 rounded-full object-cover shrink-0 border-2 border-accent/20" />
+              <div>
+                <p class="text-text font-medium text-sm leading-tight">Costa Blanca Movement Centre</p>
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-wider bg-accent/10 text-accent rounded-full mt-0.5">Google &amp; AI proof</span>
+              </div>
+            </div>
+            <p class="text-text font-heading text-lg leading-snug mb-0.5">Van 0 naar pagina 1 in Google<span class="block text-sm font-body text-text-muted">binnen 14 dagen</span></p>
+            <p class="text-accent font-semibold text-sm">12&ndash;15 nieuwe pati&euml;nten/mnd</p>
+          </div>
+          <div class="px-5 pb-4">
+            <button type="button" class="proof-trigger cursor-pointer group w-full text-left">
+              <div class="rounded-lg overflow-hidden border border-border/50">
+                <Image src={proofGoogle} alt="Google pagina 1 bewijs" width={1200} quality={90} class="w-full h-auto opacity-90 group-hover:opacity-100 transition-opacity" />
+              </div>
+              <p class="text-text-muted text-[0.6rem] text-center mt-1 group-hover:text-text transition-colors">Klik om te vergroten</p>
+            </button>
+          </div>
+        </div>
+
+        {/* Verena proof card */}
+        <div class="bg-white border-2 border-accent/20 rounded-card overflow-hidden shadow-sm">
+          <div class="px-5 pt-5 pb-4">
+            <div class="flex items-center gap-3 mb-3">
+              <Image src={verenaPhoto} alt="Dr. Verena Mann" width={40} height={40} class="w-10 h-10 rounded-full object-cover shrink-0 border-2 border-accent/20" />
+              <div>
+                <p class="text-text font-medium text-sm leading-tight">Dr. Verena Mann</p>
+                <span class="inline-flex items-center gap-1 px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-wider bg-primary/10 text-primary rounded-full mt-0.5">AI proof</span>
+              </div>
+            </div>
+            <p class="text-text font-heading text-lg leading-snug mb-0.5">2 &rarr; 19 aanvragen/mnd</p>
+            <p class="text-accent font-semibold text-sm">15 AI-vermeldingen in ChatGPT</p>
+          </div>
+          <div class="px-5 pb-4">
+            <button type="button" class="proof-trigger cursor-pointer group w-full text-left">
+              <div class="rounded-lg overflow-hidden border border-border/50">
+                <Image src={proofVerenaAi} alt="ChatGPT AI-vermelding bewijs" width={1200} quality={90} class="w-full h-auto opacity-90 group-hover:opacity-100 transition-opacity" />
+              </div>
+              <p class="text-text-muted text-[0.6rem] text-center mt-1 group-hover:text-text transition-colors">Klik om te vergroten</p>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      3 - KERNVRAAG / KWALIFICATIE
+      ══════════════════════════════════════════════════ */}
+  <section class="px-4 md:px-6 py-12 md:py-16">
+    <div class="max-w-3xl mx-auto">
+      <p class="text-accent font-semibold text-center text-sm uppercase tracking-widest mb-4">Je mist geen rapport. Je mist aanvragen.</p>
+
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-5 text-center leading-snug">
+        Als we kunnen laten zien waar jouw bedrijf nu aanvragen mist in Google en AI, ben je dan bereid om 90 dagen serieus aan dat fundament te werken?
+      </h2>
+
+      <div class="max-w-xl mx-auto space-y-4 text-[0.95rem] leading-relaxed">
+        <p class="text-text-muted">
+          Dat is de vraag waar het om draait.
+        </p>
+        <p class="text-text-muted">
+          Want een scan is leuk. Een rapport is interessant. Maar uiteindelijk wil je weten: waar gaan potentiele klanten nu naar je concurrent, en wat moet er gebeuren om die aanvragen naar jou te trekken?
+        </p>
+        <p class="text-text font-medium">
+          Daarom doen we geen vrijblijvende deep dive voor ondernemers die alleen wat losse tips willen verzamelen.
+        </p>
+        <p class="text-text-muted">
+          We kijken eerst of er concrete kansen liggen: zoekvragen, regio's, diensten of AI-antwoorden waar je concurrenten nog niet structureel op winnen. Zien we die kansen? Dan laten we zien welke route logisch is: losse fixes, een nieuw fundament of een complete 90-dagen boost.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      4 - GUARANTEE / RISK REVERSAL
+      ══════════════════════════════════════════════════ */}
+  <section class="px-4 md:px-6 py-10 md:py-14">
+    <div class="max-w-3xl mx-auto">
+      <div class="bg-white border-2 border-accent/30 rounded-card p-6 md:p-8 shadow-lg text-center relative">
+        <span class="absolute -top-3 left-1/2 -translate-x-1/2 inline-block px-4 py-1 text-[0.65rem] font-medium tracking-widest uppercase bg-accent text-white rounded-full whitespace-nowrap">Google & AI vooruitgangsgarantie</span>
+
+        <div class="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.746 3.746 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+          </svg>
+        </div>
+
+        <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">
+          Geen zichtbare vooruitgang? Dan werken wij gratis door.
+        </h2>
+        <p class="text-text-muted mb-3 text-[0.95rem] leading-relaxed max-w-xl mx-auto">
+          Binnen 90 dagen moet er beweging zichtbaar zijn. Niet per se direct omzet of tientallen nieuwe klanten, maar wel aantoonbare vooruitgang in Google, AI-zichtbaarheid, organisch verkeer of aanvragen via je website.
+        </p>
+        <p class="text-text font-medium mb-6 text-[0.95rem] max-w-xl mx-auto">
+          Geen enkele vooruitgang op de afgesproken meetpunten? Dan werken wij gratis door aan optimalisatie, zonder nieuw traject of extra voorstel.
+        </p>
+        <p class="text-text-muted text-xs">Vooruitgang meten we altijd op basis van een nulmeting bij de start.</p>
+      </div>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      5 - WAT WE METEN
+      ══════════════════════════════════════════════════ */}
+  <section class="px-4 md:px-6 py-10 md:py-14 bg-bg-alt">
+    <div class="max-w-3xl mx-auto">
+      <div class="bg-white border border-border rounded-card p-6 md:p-8">
+        <p class="text-text font-medium text-[0.95rem] mb-1">We meten niet om een mooi rapport te maken.</p>
+        <p class="text-text-muted text-[0.95rem] leading-relaxed mb-5">We meten om te zien of je website dichter bij aanvragen komt.</p>
+
+        <p class="text-xs uppercase tracking-widest text-accent font-medium mb-3">Bij de start meten we</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          {[
+            'Organisch verkeer via Google Analytics',
+            'Search Console-impressies en klikken',
+            'Posities op belangrijkste zoekvragen',
+            'AI-vermeldingen in ChatGPT, Perplexity en Gemini',
+            'Best presterende pagina\'s',
+            'Conversiepunten: formulier, telefoonklik, mailklik',
+          ].map((item) => (
+            <div class="flex items-start gap-2 text-sm text-text">
+              <svg class="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              {item}
+            </div>
+          ))}
+        </div>
+
+        <div class="border-t border-border mt-5 pt-5">
+          <p class="text-xs uppercase tracking-widest text-accent font-medium mb-3">Na 90 dagen vergelijken we</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            {[
+              'Welke zoekvragen zijn gestegen',
+              'Welke pagina\'s meer zichtbaarheid krijgen',
+              'Of AI je bedrijf vaker noemt',
+              'Of organisch verkeer groeit',
+              'Of er meer kwalitatieve contactmomenten zijn',
+              'Welke vervolgstap logisch is',
+            ].map((item) => (
+              <div class="flex items-start gap-2 text-sm text-text-muted">
+                <svg class="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="border-t border-border mt-5 pt-5">
+          <p class="text-text-muted text-sm leading-relaxed">
+            Bij klanten waar het fundament goed stond, zagen we gemiddeld rond de 30% meer aanvragen. Maar eerlijk is eerlijk: het effect verschilt per bedrijf. Daarom starten we altijd met een nulmeting en kijken we na 90 dagen wat er daadwerkelijk beweegt.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      6 - URGENCY
+      ══════════════════════════════════════════════════ */}
+  <section class="px-4 md:px-6 py-10 md:py-14">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">
+        De Google- en AI-posities worden n&uacute; verdeeld.
+      </h2>
+      <p class="text-text-muted text-[0.95rem] max-w-xl mx-auto">ChatGPT, Perplexity en Google AI leren welke bedrijven ze kunnen vertrouwen.</p>
+      <p class="text-text font-medium text-[0.95rem] max-w-xl mx-auto mt-1.5 mb-8">Wacht je tot je concurrent die positie heeft? Dan wordt inhalen moeilijker.</p>
+
+      {/* Trajectronde card */}
+      <div class="relative max-w-md mx-auto mb-8">
+        <div class="absolute -inset-1 bg-accent/20 rounded-2xl blur-md"></div>
+        <div class="relative bg-primary-dark rounded-xl overflow-hidden shadow-xl border border-accent/30">
+          <div class="bg-accent px-4 py-2">
+            <span class="text-[0.65rem] font-bold tracking-[0.2em] uppercase text-white">Volgende trajectronde</span>
+          </div>
+          <div class="px-6 py-6 md:px-8 md:py-7">
+            <p class="text-white/50 text-xs font-medium uppercase tracking-wider mb-1">Start</p>
+            <p class="font-heading text-5xl md:text-6xl text-white leading-none mb-5">1 juli</p>
+            <div class="flex flex-wrap justify-center gap-2 mb-5">
+              <span class="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold bg-white/10 text-white rounded-full">Max 5 bedrijven</span>
+              <span class="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold bg-white/10 text-white rounded-full">1 per branche/regio</span>
+            </div>
+            <div class="border-t border-white/10 pt-4">
+              <p class="text-accent font-semibold text-base md:text-lg">
+                Is jouw concurrent eerder? Dan is jouw plek bezet.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Niet bedoeld voor */}
+      <div class="max-w-md mx-auto mb-8">
+        <p class="text-text-muted text-[0.65rem] font-medium uppercase tracking-[0.15em] mb-2.5">Niet bedoeld voor:</p>
+        <div class="flex flex-wrap justify-center gap-1.5 mb-3">
+          {['Webshops', 'SaaS/platformen', 'Multinationals', 'Geen duidelijke dienst/regio'].map((item) => (
+            <span class="inline-flex items-center gap-1 px-2.5 py-1 text-[0.7rem] text-text-muted bg-bg-alt border border-border rounded-full">
+              <svg class="w-3 h-3 text-red-400/70 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+              {item}
+            </span>
+          ))}
+        </div>
+        <p class="text-[0.8rem] text-text font-medium">Juist gemaakt voor lokale dienstverleners, praktijken en specialisten.</p>
+      </div>
+
+      <a href="#formulier" class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg">
+        Check of mijn bedrijf in aanmerking komt
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+      </a>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      7 - CASES / BEWIJS
+      ══════════════════════════════════════════════════ */}
+  <section class="py-14 md:py-20 bg-bg-alt">
+    <div class="max-w-5xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-2 text-center">
+        Wat er gebeurt als het fundament klopt
+      </h2>
+      <p class="text-text-muted text-center mb-4 max-w-2xl mx-auto text-[0.95rem] leading-relaxed">
+        Deze cases laten vooral zien wat er mogelijk wordt wanneer techniek, structuur, content, lokale signalen en conversie vanaf dag &eacute;&eacute;n kloppen. Dat is het verschil tussen losse fixes en een echt fundament.
+      </p>
+
+      {/* CASE 1: CBMC */}
+      <div class="bg-white border-2 border-accent/30 rounded-card p-5 md:p-8 mb-8 shadow-lg">
+        <div class="flex items-center gap-4 mb-5">
+          <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-accent/30 shrink-0">
+            <Image src={jamesPhoto} alt="Dr. James Mitchell" widths={[56, 112]} sizes="56px" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+          </div>
+          <div>
+            <p class="text-text font-medium text-sm">Dr. James Mitchell</p>
+            <a href="https://www.costablancamovement.com" target="_blank" rel="noopener" class="text-accent/70 hover:text-accent text-xs transition-colors">costablancamovement.com</a>
+          </div>
+        </div>
+
+        <h3 class="font-heading text-2xl md:text-3xl text-text mb-3">Van nul naar pagina 1 in Google in 14 dagen</h3>
+        <p class="text-text-muted text-sm mb-5 leading-relaxed">
+          Costa Blanca Movement Centre had geen website, geen Google-historie en geen backlinks. Binnen 14 dagen stond het nieuwe fundament op pagina 1. Na 2 maanden kwamen er 12&ndash;15 pati&euml;nten per maand online binnen.
+        </p>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+          <div class="bg-bg-alt rounded-card p-3 text-center">
+            <p class="font-heading text-xl text-accent">0 &rarr; pag.&nbsp;1</p>
+            <p class="text-text-muted text-xs mt-0.5">in Google</p>
+          </div>
+          <div class="bg-bg-alt rounded-card p-3 text-center">
+            <p class="font-heading text-xl text-accent">12&ndash;15</p>
+            <p class="text-text-muted text-xs mt-0.5">pati&euml;nten/mnd</p>
+          </div>
+          <div class="bg-bg-alt rounded-card p-3 text-center">
+            <p class="font-heading text-xl text-accent">800+</p>
+            <p class="text-text-muted text-xs mt-0.5">organische bezoekers/mnd</p>
+          </div>
+          <div class="bg-bg-alt rounded-card p-3 text-center">
+            <p class="font-heading text-xl text-accent">ChatGPT</p>
+            <p class="text-text-muted text-xs mt-0.5">noemt kliniek als lokale optie</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <button type="button" class="proof-trigger cursor-pointer group text-left">
+            <div class="bg-bg-alt border border-border rounded-lg overflow-hidden">
+              <Image src={proofGoogle} alt="Google pagina 1: Costa Blanca Movement Centre na 2 weken" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
+            </div>
+            <p class="text-text-muted text-xs mt-1.5 text-center group-hover:text-text transition-colors">Google pagina 1 &mdash; na 2 weken</p>
+          </button>
+          <button type="button" class="proof-trigger cursor-pointer group text-left">
+            <div class="bg-bg-alt border border-border rounded-lg overflow-hidden">
+              <Image src={proofChatgpt} alt="ChatGPT beveelt Costa Blanca Movement Centre aan als #1" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
+            </div>
+            <p class="text-text-muted text-xs mt-1.5 text-center group-hover:text-text transition-colors">ChatGPT beveelt de kliniek aan als #1</p>
+          </button>
+        </div>
+      </div>
+
+      {/* CASE 2: Dr. Verena Mann */}
+      <div class="bg-white border border-border rounded-card p-5 md:p-8 mb-8">
+        <div class="flex items-center gap-4 mb-5">
+          <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-accent/30 shrink-0">
+            <Image src={verenaPhoto} alt="Dr. Verena Mann" widths={[56, 112]} sizes="56px" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+          </div>
+          <div>
+            <p class="text-text font-medium text-sm">Dr. Verena Mann</p>
+            <a href="https://doc-veri.pages.dev" target="_blank" rel="noopener" class="text-accent/70 hover:text-accent text-xs transition-colors">doc-veri.pages.dev</a>
+          </div>
+        </div>
+
+        <h3 class="font-heading text-2xl md:text-3xl text-text mb-3">Van 2 naar 19 aanvragen per maand</h3>
+        <p class="text-text-muted text-sm mb-5 leading-relaxed">
+          Dr. Verena Mann had expertise en een community, maar haar website leverde nauwelijks nieuwe aanvragen op. Door haar expertise, bewijs en aanvraagroute duidelijker neer te zetten, groeide ze naar 19 aanvragen per maand en werd ze genoemd door ChatGPT.
+        </p>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+          <div class="bg-bg-alt rounded-card p-3 text-center">
+            <p class="font-heading text-xl text-accent">2 &rarr; 19</p>
+            <p class="text-text-muted text-xs mt-0.5">aanvragen/mnd</p>
+          </div>
+          <div class="bg-bg-alt rounded-card p-3 text-center">
+            <p class="font-heading text-xl text-accent">0 &rarr; 15</p>
+            <p class="text-text-muted text-xs mt-0.5">AI-vermeldingen</p>
+          </div>
+          <div class="bg-bg-alt rounded-card p-3 text-center">
+            <p class="font-heading text-xl text-accent">ChatGPT</p>
+            <p class="text-text-muted text-xs mt-0.5">noemt haar als expert</p>
+          </div>
+          <div class="bg-bg-alt rounded-card p-3 text-center">
+            <p class="font-heading text-xl text-accent">&plusmn;6 wkn</p>
+            <p class="text-text-muted text-xs mt-0.5">live</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <button type="button" class="proof-trigger cursor-pointer group text-left">
+            <div class="bg-bg-alt border border-border rounded-lg overflow-hidden">
+              <Image src={proofVerenaAi} alt="ChatGPT noemt Dr. Verena Mann als passende expert" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
+            </div>
+          </button>
+          <button type="button" class="proof-trigger cursor-pointer group text-left">
+            <div class="bg-bg-alt border border-border rounded-lg overflow-hidden">
+              <Image src={proofVerenaChatgpt} alt="ChatGPT met directe link naar Dr. Verena Mann" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
+            </div>
+          </button>
+        </div>
+      </div>
+
+      {/* CASE 3: Happy With Yoga */}
+      <div class="bg-white border border-border rounded-card p-5 md:p-6 mb-8">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-10 h-10 rounded-full overflow-hidden ring-2 ring-accent/30 shrink-0">
+            <Image src={rolfPhoto} alt="Rolf - Happy With Yoga" widths={[56, 112]} sizes="56px" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+          </div>
+          <div>
+            <p class="text-text font-medium text-sm">Rolf &mdash; Happy With Yoga</p>
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 text-[0.6rem] font-semibold uppercase tracking-wider bg-accent/10 text-accent rounded-full mt-0.5">Klantenkanaal proof</span>
+          </div>
+        </div>
+
+        <p class="font-heading text-lg text-text mb-1">Van bezoekers naar betalende leden</p>
+        <p class="text-text-muted text-xs mb-4">Bewijs dat Joost klantenkanalen bouwt, geen losse websites.</p>
+
+        <div class="grid grid-cols-3 gap-2 mb-4">
+          <div class="bg-bg-alt rounded-lg p-2.5 text-center">
+            <p class="font-heading text-lg text-accent">30.000+</p>
+            <p class="text-text-muted text-[0.65rem] mt-0.5">leads</p>
+          </div>
+          <div class="bg-bg-alt rounded-lg p-2.5 text-center">
+            <p class="font-heading text-lg text-accent">1.700+</p>
+            <p class="text-text-muted text-[0.65rem] mt-0.5">verkopen</p>
+          </div>
+          <div class="bg-bg-alt rounded-lg p-2.5 text-center">
+            <p class="font-heading text-lg text-accent">2.000</p>
+            <p class="text-text-muted text-[0.65rem] mt-0.5">leden</p>
+          </div>
+        </div>
+
+        <p class="text-text-muted text-sm italic mb-1">&ldquo;Joost bouwde een systeem dat bezoekers stap voor stap omzet in betalende leden.&rdquo;</p>
+        <p class="text-text text-xs font-medium mb-4">&mdash; Rolf, Happy With Yoga</p>
+
+        <div class="max-w-xs">
+          <button type="button" class="proof-trigger cursor-pointer group w-full text-left">
+            <div class="bg-bg-alt border border-border rounded-lg overflow-hidden group-hover:border-accent/30 transition-colors">
+              <Image src={proofHwyWhatsapp} alt="WhatsApp-gesprek met Rolf van Happy With Yoga" width={1200} quality={90} class="w-full h-auto" loading="lazy" />
+            </div>
+            <p class="text-text-muted text-[0.6rem] text-center mt-1 group-hover:text-text transition-colors">Klik om WhatsApp-bewijs te vergroten</p>
+          </button>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <a href="#formulier" class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg">
+          Check of mijn bedrijf in aanmerking komt
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      8 - DRIE ROUTES
+      ══════════════════════════════════════════════════ */}
+  <section class="px-4 md:px-6 py-14 md:py-20">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-2 text-center">
+        Kies je tempo
+      </h2>
+      <p class="text-text-muted text-center mb-3 max-w-2xl mx-auto text-[0.95rem] leading-relaxed">
+        Wil je eerst klein testen, rustig een nieuw fundament opbouwen, of direct 90 dagen actief versnellen?
+      </p>
+      <p class="text-text font-medium text-center mb-8 max-w-2xl mx-auto text-sm">
+        Losse fixes maken je huidige site beter. Een nieuw fundament kan je hele online positie versnellen.
+      </p>
+
+      {/* ── Tempo vergelijking ── */}
+      <div class="grid grid-cols-3 gap-2 md:gap-3 mb-10 max-w-3xl mx-auto">
+        <div class="text-center px-2 py-2">
+          <p class="text-[0.6rem] md:text-xs uppercase tracking-widest text-text-muted font-medium mb-0.5">Kleine test</p>
+          <div class="flex justify-center gap-0.5 mt-1">
+            <span class="w-5 h-1.5 rounded-full bg-text-muted/30"></span>
+            <span class="w-5 h-1.5 rounded-full bg-border"></span>
+            <span class="w-5 h-1.5 rounded-full bg-border"></span>
+          </div>
+        </div>
+        <div class="text-center px-2 py-2">
+          <p class="text-[0.6rem] md:text-xs uppercase tracking-widest text-accent font-medium mb-0.5">Nieuw fundament</p>
+          <div class="flex justify-center gap-0.5 mt-1">
+            <span class="w-5 h-1.5 rounded-full bg-accent/60"></span>
+            <span class="w-5 h-1.5 rounded-full bg-accent/60"></span>
+            <span class="w-5 h-1.5 rounded-full bg-border"></span>
+          </div>
+        </div>
+        <div class="text-center px-2 py-2">
+          <p class="text-[0.6rem] md:text-xs uppercase tracking-widest text-accent font-medium mb-0.5">Snelste route</p>
+          <div class="flex justify-center gap-0.5 mt-1">
+            <span class="w-5 h-1.5 rounded-full bg-accent"></span>
+            <span class="w-5 h-1.5 rounded-full bg-accent"></span>
+            <span class="w-5 h-1.5 rounded-full bg-accent"></span>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-sm text-text-muted text-center mb-6 max-w-2xl mx-auto">
+        Bij Route 2 en 3 zit het nieuwe AI-ready websitefundament inbegrepen. Bij Route 1 verbeteren we alleen je huidige site.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-[1fr_1fr_1.15fr] gap-4 md:gap-5 mb-10 items-start">
+
+        {/* ── ROUTE 1 — Losse fixes ── */}
+        <div class="bg-white border border-border/60 rounded-card p-4 md:p-5 flex flex-col opacity-90">
+          <span class="inline-block self-start px-2.5 py-0.5 text-[0.55rem] font-medium tracking-widest uppercase bg-bg-alt text-text-muted rounded-full mb-3">Kleine test</span>
+
+          <p class="font-heading text-base text-text mb-0.5">Losse fixes / optimalisatielaag</p>
+          <div class="flex items-baseline gap-1 mb-0.5">
+            <p class="font-heading text-xl text-text-muted">&euro;99<span class="text-sm font-body">/mnd</span></p>
+          </div>
+          <p class="text-text-muted text-xs mb-3">3 maanden</p>
+
+          <div class="bg-bg-alt border border-border/50 rounded-lg px-3 py-2 mb-3">
+            <p class="text-[0.65rem] text-text-muted font-medium">Geen nieuwe website</p>
+            <p class="text-[0.6rem] text-text-muted/70">Alleen fixes op je huidige site</p>
+          </div>
+
+          {/* Impact indicator */}
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-[0.6rem] uppercase tracking-widest text-text-muted font-medium">Impact</span>
+            <div class="flex gap-0.5">
+              <span class="w-4 h-1 rounded-full bg-text-muted/40"></span>
+              <span class="w-4 h-1 rounded-full bg-border"></span>
+              <span class="w-4 h-1 rounded-full bg-border"></span>
+            </div>
+            <span class="text-[0.6rem] text-text-muted">Beperkt</span>
+          </div>
+
+          <p class="text-xs uppercase tracking-widest text-text-muted font-medium mb-1">Uitkomst na 90 dagen</p>
+          <p class="text-text-muted text-sm leading-relaxed mb-3">
+            Je huidige site wordt beter leesbaar voor Google en AI. De grootste basisfouten worden aangepakt, 1&ndash;2 belangrijke pagina's worden scherper gemaakt en je ziet waar je nu kansen laat liggen.
+          </p>
+          <p class="text-text font-medium text-sm mb-4">
+            Maar eerlijk: dit is geen groeiboost. Dit is repareren wat er staat.
+          </p>
+
+          <p class="text-xs uppercase tracking-widest text-text-muted font-medium mb-1">Kies deze route als</p>
+          <p class="text-text-muted text-sm leading-relaxed mb-4">
+            Goed als je klein wilt starten. Niet de route als je snel terrein wilt winnen.
+          </p>
+
+          <div class="bg-bg-alt rounded-lg px-3 py-2 mb-4">
+            <p class="text-[0.7rem] text-text-muted">Je blijft afhankelijk van je huidige website, WordPress/thema/plugins, snelheid en bestaande structuur. <strong class="text-text">Geen nieuwe website, geen nieuw fundament.</strong></p>
+          </div>
+
+          <a href="#formulier" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium text-text-muted border border-border hover:border-text-muted/40 transition-colors rounded-button w-full mt-auto mb-4">
+            Start klein
+          </a>
+
+          <details class="group border-t border-border pt-3">
+            <summary class="flex items-center justify-between cursor-pointer text-xs text-text-muted font-medium select-none">
+              Wat zit erin?
+              <svg class="w-3.5 h-3.5 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <ul class="mt-3 space-y-1.5">
+              {[
+                'Nulmeting',
+                'Prioriteitenlijst',
+                'Technische fixes waar mogelijk',
+                'Schema / structured data waar mogelijk',
+                'Citeerbare FAQ- en tekstblokken',
+                'Aanscherping 1-2 commerciele pagina\'s',
+                'AI/GEO-checks',
+                'Evaluatie na 90 dagen',
+              ].map((item) => (
+                <li class="flex items-start gap-2 text-xs text-text-muted">
+                  <svg class="w-3 h-3 text-text-muted/40 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </details>
+        </div>
+
+        {/* ── ROUTE 2 — Fundament ── */}
+        <div class="bg-white border border-accent/20 rounded-card p-4 md:p-5 flex flex-col">
+          <span class="inline-block self-start px-2.5 py-0.5 text-[0.55rem] font-medium tracking-widest uppercase bg-accent/10 text-accent rounded-full mb-3">Nieuw fundament</span>
+
+          <p class="font-heading text-base text-text mb-0.5">AI & Google Fundament</p>
+          <div class="flex items-baseline gap-1 mb-0.5">
+            <p class="font-heading text-2xl text-accent">&euro;99<span class="text-sm text-text-muted font-body">/mnd</span></p>
+          </div>
+          <p class="text-text-muted text-xs mb-3">12 maanden</p>
+
+          <div class="bg-accent/5 border border-accent/15 rounded-lg px-3 py-2 mb-3 flex items-start gap-2">
+            <svg class="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <div>
+              <p class="text-[0.65rem] text-accent font-semibold">AI-ready website inbegrepen</p>
+              <p class="text-[0.6rem] text-text-muted">Normale waarde: &euro;2.000&ndash;&euro;4.000</p>
+            </div>
+          </div>
+
+          {/* Impact indicator */}
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-[0.6rem] uppercase tracking-widest text-accent font-medium">Impact</span>
+            <div class="flex gap-0.5">
+              <span class="w-4 h-1 rounded-full bg-accent/60"></span>
+              <span class="w-4 h-1 rounded-full bg-accent/60"></span>
+              <span class="w-4 h-1 rounded-full bg-border"></span>
+            </div>
+            <span class="text-[0.6rem] text-accent">Structureel</span>
+          </div>
+
+          <p class="text-xs uppercase tracking-widest text-text-muted font-medium mb-1">Uitkomst</p>
+          <p class="text-text-muted text-sm leading-relaxed mb-3">
+            Je krijgt een nieuw fundament dat vanaf de basis is gebouwd om beter gevonden, sneller begrepen en vaker vertrouwd te worden door Google, AI en bezoekers.
+          </p>
+          <p class="text-text-muted text-sm leading-relaxed mb-4">
+            Het doel: niet alleen een betere website, maar een basis die maand na maand meer kans cre&euml;ert op aanvragen uit Google en AI.
+          </p>
+
+          <p class="text-xs uppercase tracking-widest text-text-muted font-medium mb-1">Kies deze route als</p>
+          <p class="text-text-muted text-sm leading-relaxed mb-3">
+            Je geen hoge website-investering vooraf wilt, maar wel structureel wilt bouwen aan een sterker online fundament.
+          </p>
+
+          <div class="bg-accent/5 border border-accent/15 rounded-lg px-3 py-2 mb-4">
+            <p class="text-[0.7rem] text-text">Bij eerdere cases werd een nieuw fundament al binnen 2 weken zichtbaar in Google en AI-tools zoals ChatGPT. Geen garantie voor ieder bedrijf, wel precies waarom het fundament zo belangrijk is.</p>
+          </div>
+
+          <a href="#formulier" class="inline-flex items-center justify-center gap-2 px-5 py-3 text-sm font-medium text-accent border-2 border-accent hover:bg-accent hover:text-white transition-colors rounded-button w-full mt-auto mb-4">
+            Bouw mijn fundament
+          </a>
+
+          <details class="group border-t border-border pt-3">
+            <summary class="flex items-center justify-between cursor-pointer text-xs text-accent font-medium select-none">
+              Wat zit erin?
+              <svg class="w-3.5 h-3.5 text-accent transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <ul class="mt-3 space-y-1.5">
+              {[
+                'Nieuwe AI-ready websitebasis',
+                'Hosting inbegrepen',
+                'Onderhoud inbegrepen',
+                'Beheerpaneel inbegrepen',
+                'Monitoring inbegrepen',
+                'Concrete verbeterpunten per maand',
+                'Jij levert content, reviews, foto\'s en input',
+              ].map((item) => (
+                <li class="flex items-start gap-2 text-xs text-text">
+                  <svg class="w-3 h-3 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </details>
+
+          <p class="text-[0.65rem] text-text-muted mt-3">Omdat bouw, hosting en technische inrichting in het maandbedrag verwerkt zitten, geldt een minimale looptijd van 12 maanden.</p>
+        </div>
+
+        {/* ── ROUTE 3 — Complete Boost ── */}
+        <div class="bg-gradient-to-b from-white to-accent/[0.03] border-2 border-accent/40 rounded-card p-5 md:p-6 shadow-xl relative flex flex-col ring-1 ring-accent/10">
+          <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 inline-block px-4 py-1 text-[0.6rem] font-bold tracking-[0.15em] uppercase bg-accent text-white rounded-full shadow-md whitespace-nowrap">Aanbevolen &mdash; snelste route</span>
+
+          <span class="inline-block self-start px-2.5 py-0.5 text-[0.55rem] font-medium tracking-widest uppercase bg-accent/10 text-accent rounded-full mb-3 mt-1">Nieuwe basis + actieve boost</span>
+
+          <p class="font-heading text-lg text-text mb-0.5">Complete Boost Fundament</p>
+          <div class="flex items-baseline gap-1 mb-0.5">
+            <p class="font-heading text-3xl text-accent">&euro;299<span class="text-sm text-text-muted font-body">/mnd</span></p>
+          </div>
+          <p class="text-text-muted text-xs mb-3">3 maanden actieve uitvoering</p>
+
+          <div class="bg-accent/8 border border-accent/20 rounded-lg px-3 py-2.5 mb-3 flex items-start gap-2">
+            <svg class="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <div>
+              <p class="text-xs text-accent font-bold">AI-ready website + actieve boost inbegrepen</p>
+              <p class="text-[0.6rem] text-text-muted">Normale waarde websitefundament: &euro;2.000&ndash;&euro;4.000</p>
+            </div>
+          </div>
+
+          {/* Impact indicator */}
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-[0.6rem] uppercase tracking-widest text-accent font-semibold">Impact</span>
+            <div class="flex gap-0.5">
+              <span class="w-5 h-1.5 rounded-full bg-accent"></span>
+              <span class="w-5 h-1.5 rounded-full bg-accent"></span>
+              <span class="w-5 h-1.5 rounded-full bg-accent"></span>
+            </div>
+            <span class="text-[0.6rem] text-accent font-semibold">Snelste groei</span>
+          </div>
+
+          <p class="text-xs uppercase tracking-widest text-accent font-medium mb-1">Uitkomst na 90 dagen</p>
+          <p class="text-text text-sm leading-relaxed mb-3">
+            Er staat niet alleen een nieuwe site. Er staat een fundament dat gebouwd is om aanvragen te winnen: sneller, scherper, beter leesbaar voor AI en ingericht rond de zoekvragen waar klanten op binnenkomen.
+          </p>
+          <p class="text-text-muted text-sm leading-relaxed mb-4">
+            Wij pakken in 90 dagen actief de belangrijkste groeikansen aan: commerci&euml;le pagina's, zoekvragen, AI-leesbaarheid, interne structuur en de route naar aanvraag.
+          </p>
+
+          <p class="text-xs uppercase tracking-widest text-accent font-medium mb-1">Kies deze route als</p>
+          <p class="text-text-muted text-sm leading-relaxed mb-3">
+            Je sneller tractie wilt en niet zelf wilt uitzoeken welke pagina's, zoekvragen, teksten en technische signalen prioriteit hebben.
+          </p>
+
+          <div class="bg-accent/5 border border-accent/15 rounded-lg px-3 py-2.5 mb-3">
+            <p class="text-[0.7rem] text-text leading-relaxed">Bij klanten waar het fundament goed stond, zagen we gemiddeld rond de <strong class="text-accent">30% meer aanvragen.</strong> Het exacte effect verschilt per niche, aanbod en concurrentie &mdash; daarom starten we met een nulmeting en meten we na 90 dagen wat er daadwerkelijk beweegt.</p>
+          </div>
+
+          <div class="bg-primary/5 border border-primary/10 rounded-lg px-3 py-2 mb-3">
+            <p class="text-[0.7rem] text-text"><strong class="text-primary">Voorsprong:</strong> als je concurrenten hier nog niet structureel mee bezig zijn, kun je in 90 dagen een voorsprong opbouwen die later moeilijker in te halen is.</p>
+          </div>
+
+          <div class="bg-bg-alt rounded-lg px-3 py-2 mb-5">
+            <p class="text-[0.7rem] text-text-muted"><strong class="text-text">Na 90 dagen:</strong> behoud, hosting en monitoring vanaf &euro;75/mnd.</p>
+          </div>
+
+          <a href="#formulier" class="inline-flex items-center justify-center gap-2 px-6 py-4 text-base font-semibold text-white bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg w-full mt-auto mb-4">
+            Start met de complete boost
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          </a>
+
+          <p class="text-[0.65rem] text-accent/70 text-center mb-3 font-medium">Sterkste resultaatpotentieel</p>
+
+          <details class="group border-t border-accent/15 pt-3">
+            <summary class="flex items-center justify-between cursor-pointer text-xs text-accent font-medium select-none">
+              Wat zit erin?
+              <svg class="w-3.5 h-3.5 text-accent transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <ul class="mt-3 space-y-1.5">
+              {[
+                'Nulmeting',
+                'Nieuwe AI-ready websitebasis vanaf dag 1',
+                'Commerciele pagina\'s opnieuw opbouwen',
+                'Pagina-opbouw rond zoekvragen en koopintentie',
+                'Structured data / schema ingebouwd',
+                'llms.txt / AI-uitlegbestand',
+                'Citeerbare FAQ- en antwoordblokken',
+                'Interne linking bewust ontworpen',
+                'Conversiegerichte aanvraagroute',
+                'AI/GEO-checks',
+                'Meting en evaluatie na 90 dagen',
+              ].map((item) => (
+                <li class="flex items-start gap-2 text-xs text-text font-medium">
+                  <svg class="w-3 h-3 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </details>
+        </div>
+      </div>
+
+      {/* ── Het verschil in een zin ── */}
+      <div class="max-w-3xl mx-auto">
+        <p class="text-xs uppercase tracking-widest text-accent font-medium text-center mb-4">Het verschil in een zin</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-6">
+          <div class="bg-bg-alt rounded-lg px-4 py-3">
+            <p class="text-xs text-text-muted font-medium mb-1">Route 1</p>
+            <p class="text-sm text-text-muted">Je huidige site wordt iets beter.</p>
+          </div>
+          <div class="bg-bg-alt rounded-lg px-4 py-3">
+            <p class="text-xs text-accent font-medium mb-1">Route 2</p>
+            <p class="text-sm text-text">Je krijgt een nieuwe basis die blijft groeien.</p>
+          </div>
+          <div class="bg-accent/5 border border-accent/15 rounded-lg px-4 py-3">
+            <p class="text-xs text-accent font-medium mb-1">Route 3</p>
+            <p class="text-sm text-text font-medium">Je krijgt een nieuwe basis &eacute;n wij zetten 90 dagen druk op de belangrijkste groeikansen.</p>
+          </div>
+        </div>
+        <p class="text-sm text-text-muted text-center max-w-lg mx-auto">
+          Wil je vooral wat technische verbeteringen? Kies Route 1. Wil je serieus meer aanvragen uit Google en AI? Dan is Route 2 of 3 de logische stap.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <LogoMarquee logos={logos} label="Vertrouwd door dienstverleners, praktijken en specialisten" />
+
+
+  {/* Lightbox overlay */}
+  <div id="proof-lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 p-4 md:p-8" role="dialog" aria-label="Vergroting van screenshot">
+    <button type="button" id="proof-close" class="absolute top-4 right-4 text-white/70 hover:text-white text-3xl leading-none z-10" aria-label="Sluiten">&times;</button>
+    <img id="proof-img" src="" alt="" class="max-h-[90vh] max-w-full rounded-image" />
+  </div>
+
+
+  {/* ══════════════════════════════════════════════════
+      9 - FOUNDER
+      ══════════════════════════════════════════════════ */}
+  <section class="py-12 md:py-16">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-8 md:gap-12 items-center">
+        <div class="flex justify-center md:justify-start">
+          <div class="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden shadow-lg ring-4 ring-white shrink-0">
+            <Image src={founderPhoto} alt="Joost van Putten - Founder NXG Media" widths={[192, 256]} sizes="(max-width: 768px) 160px, 192px" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+          </div>
+        </div>
+        <div>
+          <h2 class="font-heading text-2xl text-text mb-3">Joost van Putten</h2>
+          <p class="text-text-muted leading-relaxed text-sm">
+            8 jaar online marketing. &euro;8M+ advertentiebudget beheerd. 50+ klanten in dienstverlening, health en coaching. Ik bouw geen sites. Ik bouw klantenkanalen.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      10 - WAT GEBEURT ER NA JE AANVRAAG
+      ══════════════════════════════════════════════════ */}
+  <section class="px-4 md:px-6 py-10 md:py-14 bg-bg-alt">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="font-heading text-xl md:text-2xl text-text mb-6 text-center">Wat gebeurt er na je aanvraag?</h2>
+      <ol class="space-y-4">
+        {[
+          'We bekijken je scan en website kort.',
+          'We checken of er duidelijke zoekkansen lijken te liggen.',
+          'We vragen of je openstaat voor een 90-dagen traject als de kansen logisch zijn.',
+          'Alleen dan bereiden we een deep dive voor.',
+          'In de deep dive laten we zien welke route logisch is.',
+          'Daarna beslis je of je start.',
+        ].map((step, i) => (
+          <li class="flex gap-4 items-start">
+            <span class="shrink-0 w-7 h-7 rounded-full bg-accent text-white text-xs font-bold flex items-center justify-center">{i + 1}</span>
+            <p class="text-sm text-text pt-0.5">{step}</p>
+          </li>
+        ))}
+      </ol>
+      <p class="text-xs text-text-muted text-center mt-6">Niet iedereen krijgt een uitgebreide deep dive. Dit voorkomt gratis advieszoekers.</p>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      11 - KWALIFICATIE + FORMULIER
+      ══════════════════════════════════════════════════ */}
+  <section class="px-4 md:px-6 py-10 md:py-14">
+    <div class="max-w-2xl mx-auto text-center mb-10">
+      <h2 class="font-heading text-xl md:text-2xl text-text mb-3">Deze scan is niet bedoeld voor vrijblijvende tips</h2>
+      <p class="text-text-muted text-sm leading-relaxed mb-3">
+        Deze scan is bedoeld voor ondernemers die serieus willen weten of hun bedrijf meer aanvragen kan halen uit Google en AI. Na je aanvraag kijken we of er concrete kansen liggen: zoekvragen, locaties of diensten waar concurrenten nog niet structureel op winnen.
+      </p>
+      <p class="text-text-muted text-sm leading-relaxed mb-3">
+        Zien we genoeg potentie? Dan kunnen we een korte deep dive doen en laten we zien welke route logisch is.
+      </p>
+      <p class="text-text font-medium text-sm">
+        Zoek je vooral gratis tips om zelf ooit iets aan te passen? Dan is dit waarschijnlijk niet de juiste stap.
+      </p>
+    </div>
+  </section>
+
+  <section id="formulier" class="px-4 md:px-6 py-14 md:py-20 bg-primary">
+    <div class="max-w-lg mx-auto">
+      <h2 class="font-heading text-2xl md:text-3xl text-white mb-3 text-center">
+        Check of jouw bedrijf in aanmerking komt
+      </h2>
+
+      <p class="text-white/50 text-center text-sm mb-8">
+        Maximaal 5 bedrijven &middot; 1 per branche/regio &middot; start 1 juli
+      </p>
+
+      <form id="traject-form" class="space-y-3">
+        <input type="hidden" name="bron" value="traject-hard-offer" />
+        <input type="text" name="naam" placeholder="Je naam" required autocomplete="name" class="w-full px-4 py-3.5 rounded-button border border-white/20 bg-white/10 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent/50" />
+        <input type="email" name="email" placeholder="je@email.nl" required autocomplete="email" class="w-full px-4 py-3.5 rounded-button border border-white/20 bg-white/10 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent/50" />
+        <input type="tel" name="telefoon" placeholder="06 12345678" autocomplete="tel" class="w-full px-4 py-3.5 rounded-button border border-white/20 bg-white/10 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent/50" />
+        <input type="url" name="website" placeholder="https://jouwbedrijf.nl" required autocomplete="url" class="w-full px-4 py-3.5 rounded-button border border-white/20 bg-white/10 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent/50" />
+
+        <fieldset class="pt-2">
+          <legend class="text-sm font-medium text-white/80 mb-3">Ik wil vooral:</legend>
+          <div class="space-y-2">
+            {[
+              'Op pagina 1 in Google komen',
+              'Genoemd worden door ChatGPT en AI-zoekmachines',
+              'Meer aanvragen uit mijn website',
+              'Mijn concurrenten voorbij',
+              'Weten of mijn bedrijf hiervoor geschikt is',
+            ].map((opt) => (
+              <label class="flex items-center gap-3 cursor-pointer">
+                <input type="checkbox" name="doel" value={opt} class="text-accent focus:ring-accent rounded" />
+                <span class="text-sm text-white/70">{opt}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        {/* Kwalificatievraag 1 */}
+        <fieldset class="pt-4">
+          <legend class="text-sm font-medium text-white/80 mb-3">Als uit de deep dive blijkt dat er concrete kansen liggen, sta je dan open voor een traject vanaf &euro;99 of &euro;299 per maand?</legend>
+          <div class="space-y-2">
+            {[
+              'Ja, als de kansen logisch zijn',
+              'Misschien, ik wil eerst begrijpen wat het oplevert',
+              'Nee, ik zoek vooral gratis tips om zelf aan te passen',
+            ].map((opt) => (
+              <label class="flex items-center gap-3 cursor-pointer">
+                <input type="radio" name="commitment" value={opt} required class="text-accent focus:ring-accent" />
+                <span class="text-sm text-white/70">{opt}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        {/* Kwalificatievraag 2 */}
+        <fieldset class="pt-4">
+          <legend class="text-sm font-medium text-white/80 mb-3">Welke route voelt nu het meest logisch?</legend>
+          <div class="space-y-2">
+            {[
+              'Losse fixes op mijn huidige site',
+              'Nieuw fundament zonder hoge instapkosten',
+              'Complete 90-dagen boost',
+              'Weet ik nog niet',
+            ].map((opt) => (
+              <label class="flex items-center gap-3 cursor-pointer">
+                <input type="radio" name="route_voorkeur" value={opt} class="text-accent focus:ring-accent" />
+                <span class="text-sm text-white/70">{opt}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <button type="submit" class="w-full px-8 py-4 text-base font-medium text-white bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg flex items-center justify-center gap-2 mt-4">
+          Check of mijn bedrijf in aanmerking komt
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+        </button>
+      </form>
+
+
+      <div id="traject-thanks" class="hidden text-center py-8">
+        <svg class="w-12 h-12 text-accent mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <p class="font-heading text-xl text-white mb-2">Bedankt!</p>
+        <p class="text-white/60 text-[0.95rem]">
+          Ik bekijk je situatie en laat je binnen 48 uur weten of jouw bedrijf in aanmerking komt.
+        </p>
+      </div>
+
+      <p id="traject-microcopy" class="text-xs text-white/40 text-center mt-4">
+        Geen betaling nu. Geen verplichting. Eerst kijken we of er genoeg potentie is.
+      </p>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      12 - FAQ
+      ══════════════════════════════════════════════════ */}
+  <FAQAccordion
+    title="Veelgestelde vragen"
+    items={faqItems}
+    locale={locale}
+    pageType="service"
+    pageSlug="ai-vindbaarheid-traject"
+    compact={true}
+  />
+
+  {/* CMS proof */}
+  <section class="bg-bg pb-10 md:pb-14">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <p class="text-xs uppercase tracking-widest text-text-muted font-medium text-center mb-4">Zo ziet het beheerpaneel eruit</p>
+      <div class="grid grid-cols-3 gap-3">
+        <button type="button" class="proof-trigger cursor-pointer group text-left">
+          <div class="bg-white border border-border rounded-lg overflow-hidden shadow-sm group-hover:border-accent/30 transition-colors">
+            <Image src={keystaticDashboard} alt="Beheerpaneel met overzicht van pagina's, blogs en diensten" width={1200} quality={90} class="w-full h-auto" loading="lazy" />
+          </div>
+          <p class="text-text-muted text-[0.6rem] text-center mt-1 group-hover:text-text transition-colors">Klik om te vergroten</p>
+        </button>
+        <button type="button" class="proof-trigger cursor-pointer group text-left">
+          <div class="bg-white border border-border rounded-lg overflow-hidden shadow-sm group-hover:border-accent/30 transition-colors">
+            <Image src={keystaticHomepage} alt="Teksten aanpassen via eenvoudige invoervelden" width={1200} quality={90} class="w-full h-auto" loading="lazy" />
+          </div>
+          <p class="text-text-muted text-[0.6rem] text-center mt-1 group-hover:text-text transition-colors">Klik om te vergroten</p>
+        </button>
+        <button type="button" class="proof-trigger cursor-pointer group text-left">
+          <div class="bg-white border border-border rounded-lg overflow-hidden shadow-sm group-hover:border-accent/30 transition-colors">
+            <Image src={keystaticBlog} alt="Blog schrijven met opmaak en SEO-velden" width={1200} quality={90} class="w-full h-auto" loading="lazy" />
+          </div>
+          <p class="text-text-muted text-[0.6rem] text-center mt-1 group-hover:text-text transition-colors">Klik om te vergroten</p>
+        </button>
+      </div>
+    </div>
+  </section>
+
+
+  {/* Sticky mobile CTA */}
+  <div class="fixed bottom-0 inset-x-0 p-3 bg-white/95 backdrop-blur border-t border-border md:hidden z-40" id="sticky-cta">
+    <a href="#formulier" class="flex items-center justify-center w-full px-6 py-3.5 text-sm font-medium text-text-inverse bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg">
+      Check of mijn bedrijf in aanmerking komt
+      <svg class="ml-2 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+    </a>
+  </div>
+
+</BaseLayout>
+
+
+<script is:inline>
+(function() {
+  // Lightbox
+  var lb = document.getElementById('proof-lightbox');
+  var lbImg = document.getElementById('proof-img');
+  var lbClose = document.getElementById('proof-close');
+  if (!lb || !lbImg) return;
+
+  document.querySelectorAll('.proof-trigger').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var img = btn.querySelector('img');
+      if (!img) return;
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lb.classList.remove('hidden');
+      lb.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeLb() {
+    lb.classList.add('hidden');
+    lb.classList.remove('flex');
+    lbImg.src = '';
+    document.body.style.overflow = '';
+  }
+
+  if (lbClose) lbClose.addEventListener('click', closeLb);
+  lb.addEventListener('click', function(e) { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && !lb.classList.contains('hidden')) closeLb(); });
+})();
+</script>
+
+
+<script is:inline>
+(function() {
+  // Sticky CTA: hide when form visible
+  var sticky = document.getElementById('sticky-cta');
+  if (!sticky) return;
+  var formEl = document.getElementById('formulier');
+  if (!formEl) return;
+
+  var observer = new IntersectionObserver(function(entries) {
+    sticky.style.display = entries[0].isIntersecting ? 'none' : 'block';
+  }, { threshold: 0.1 });
+  observer.observe(formEl);
+})();
+</script>
+
+
+<script is:inline>
+(function() {
+  var form = document.getElementById('traject-form');
+  var thanks = document.getElementById('traject-thanks');
+  var microcopy = document.getElementById('traject-microcopy');
+  if (!form || !thanks) return;
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var data = new FormData(form);
+    var naam = data.get('naam');
+    var email = data.get('email');
+    var telefoon = data.get('telefoon');
+    var website = data.get('website');
+
+    if (!naam || !email || !website) return;
+
+    var btn = form.querySelector('button[type="submit"]');
+    if (btn) { btn.disabled = true; btn.textContent = 'Even geduld...'; }
+
+    // Collect all form data
+    var doelen = data.getAll('doel');
+    var commitment = data.get('commitment') || '';
+    var routeVoorkeur = data.get('route_voorkeur') || '';
+    var vraagParts = [];
+    if (doelen.length > 0) vraagParts.push('Doelen: ' + doelen.join(', '));
+    if (commitment) vraagParts.push('Commitment: ' + commitment);
+    if (routeVoorkeur) vraagParts.push('Route voorkeur: ' + routeVoorkeur);
+
+    var payload = {
+      naam: naam,
+      email: email,
+      telefoon: telefoon || '',
+      websiteUrl: website,
+      vraag: vraagParts.length > 0 ? vraagParts.join('\n') : 'Check aanvraag',
+      source: 'traject-hard-offer',
+    };
+
+    var leadId = typeof nxgCapiEventId === 'function' ? nxgCapiEventId() : '';
+    if (typeof fbq === 'function') {
+      fbq('track', 'Lead', { content_name: 'traject-hard-offer', content_category: 'ai-vindbaarheid-traject' }, { eventID: leadId });
+    }
+    if (leadId && typeof nxgCapiSend === 'function') {
+      nxgCapiSend('Lead', leadId, { content_name: 'traject-hard-offer', content_category: 'ai-vindbaarheid-traject' });
+    }
+    if (typeof trackEvent === 'function') {
+      trackEvent('scanner_request_submitted', {
+        page_type: 'service',
+        page_slug: 'ai-vindbaarheid-traject',
+        locale: 'nl',
+        cta_location: 'inline',
+      });
+    }
+
+    fetch('https://scanner.nxg-media.com/api/gratis-check', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload),
+    }).then(function() {
+      showThanks();
+    }).catch(function() {
+      showThanks();
+    });
+
+    function showThanks() {
+      form.classList.add('hidden');
+      thanks.classList.remove('hidden');
+      if (microcopy) microcopy.classList.add('hidden');
+    }
+  });
+})();
+</script>

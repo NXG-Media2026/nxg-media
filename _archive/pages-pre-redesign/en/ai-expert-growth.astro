@@ -1,0 +1,769 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BreadcrumbNav from '../../components/BreadcrumbNav.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
+import LogoMarquee from '../../components/LogoMarquee.astro';
+import { siteConfig } from '../../data/site';
+import { generateBreadcrumbs, generateFAQPage, generateService } from '../../data/schema';
+import { buildHreflangTrilingual } from '../../i18n/hreflang';
+
+import heroPhoto from '../../assets/images/founder/joost-sitting-laptop-lookingfront.webp';
+import founderPhoto from '../../assets/images/founder/joost-standing-relaxed.webp';
+import verenaPhoto from '../../assets/images/cases/verena-mann-linkedin.webp';
+import jamesPhoto from '../../assets/images/cases/james-mitchell-portrait.png';
+import proofVerenaAi from '../../assets/images/cases/doc_veri_ai_answer_cropped.PNG';
+import proofVerenaChatgpt from '../../assets/images/cases/doc-veri-chatgptproof.jpeg';
+import proofGoogle from '../../assets/images/cases/proof-google-torrevieja.png';
+import proofChatgpt from '../../assets/images/cases/proof-chatgpt-local.png';
+
+import josineWhatsApp from '../../assets/images/cases/coachjosine_whatsapp_proof.png';
+import josineProduct from '../../assets/images/cases/eetgids-coachjosine-product-proof.webp';
+import tessaWhatsApp from '../../assets/images/cases/tessa-youlife-whatsapp-proof.webp';
+import rolfWhatsApp from '../../assets/images/cases/rolf-happywithyoga-whatsapp-proof.webp';
+
+const locale = 'en';
+
+const hreflang = buildHreflangTrilingual('/ai-expert-groei-traject/', '/en/ai-expert-growth/', '/es/crecimiento-experto-ia/');
+
+const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
+const logos = Object.entries(logoFiles)
+  .filter(([path]) => /logo/i.test(path.split('/').pop()!))
+  .map(([path, mod]) => {
+    const filename = path.split('/').pop()!.replace(/\.(webp|avif|png|jpg)$/, '');
+    const name = filename.replace(/[-_]?logo[-_]?/gi, '').replace(/[-_]/g, ' ').trim();
+    return { src: mod.default, alt: name };
+  });
+
+const breadcrumbs = [
+  { label: 'Home', href: '/en/' },
+  { label: 'AI Expert Growth' },
+];
+
+const faqItems = [
+  {
+    question: 'Is this just AI visibility?',
+    answer: 'AI visibility is the entry point and diagnosis. The programme is about the foundation behind it: positioning, proof, content, entry route and follow-up. Being found more easily has little value if visitors don\'t understand why you are the obvious choice.',
+  },
+  {
+    question: 'Do I need to build an online platform straight away?',
+    answer: 'The first phase is deliberately small: a clear positioning, an initial entry route and proof that people are willing to take the first step. Only when that works do we build further. Many coaches never start phase 3 — they begin with a compact route that delivers proof.',
+  },
+  {
+    question: 'Do ads still work for coaches?',
+    answer: 'Running ads directly to an expensive programme or sales call is often difficult. That is why we usually build an intermediate step first, such as a guide, scan, masterclass or mini-product. This lowers the barrier and builds trust before someone books a call.',
+  },
+  {
+    question: 'What if I already have a website?',
+    answer: 'We look at what is usable and what needs sharpening. Sometimes we build on what is already there; sometimes a new foundation makes more sense. It is not about the technology, but about whether your expertise comes across clearly enough for visitors and AI.',
+  },
+  {
+    question: 'Is this suitable if I don\'t have a large audience yet?',
+    answer: 'A large audience is not a requirement, as long as your expertise and offer are clear enough. With a small route we test what people respond to. Often growth doesn\'t start with more reach, but with sharper positioning and a clearer first step.',
+  },
+];
+
+const faqForSchema = faqItems.map((item) => ({ question: item.question, answer: item.answer }));
+const faqForComponent = faqItems.map((item) => ({ q: item.question, a: item.answer }));
+
+const serviceSchema = generateService({
+  name: 'AI Expert Growth Programme',
+  description: 'Build an AI-ready expert foundation around your expertise. For coaches and experts who want to be found and build a route to enquiries, products and coaching clients.',
+  url: `${siteConfig.url}/en/ai-expert-growth/`,
+  serviceType: 'Expert Growth System',
+});
+---
+
+<BaseLayout
+  title="AI Expert Growth Programme for Coaches & Experts | NXG Media"
+  description="Build an AI-ready expert foundation around your expertise. For coaches and experts who want to be found and build a route to enquiries, products and coaching clients."
+  canonical={`${siteConfig.url}/en/ai-expert-growth/`}
+  schemas={[
+    generateBreadcrumbs(breadcrumbs.map((b) => ({ name: b.label, url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}/en/ai-expert-growth/` }))),
+    generateFAQPage(faqForSchema),
+    serviceSchema,
+  ]}
+  hreflang={hreflang}
+  locale={locale}
+>
+  <BreadcrumbNav items={breadcrumbs} />
+
+  {/* ── 1. HERO ── */}
+  <section class="relative py-16 md:py-24 lg:py-32 overflow-hidden">
+    <div class="absolute inset-0">
+      <Image
+        src={heroPhoto}
+        alt="Joost van Putten — online growth strategist for coaches and experts"
+        widths={[800, 1200, 1600]}
+        sizes="100vw"
+        class="w-full h-full object-cover"
+        loading="eager"
+        decoding="async"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/40"></div>
+    </div>
+    <div class="relative max-w-4xl mx-auto px-4 md:px-6">
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl text-text mb-5 leading-tight max-w-2xl">
+        Your scan reveals where your expert foundation leaks. <em class="text-accent not-italic">Now we build the route to enquiries.</em>
+      </h1>
+      <p class="text-text-muted leading-relaxed mb-8 max-w-xl">
+        AI visibility is the entry point. But when AI doesn&rsquo;t fully understand you, that is often the same problem potential clients feel: your positioning, proof, entry route and follow-up are not yet connected logically enough.
+      </p>
+      <div class="flex flex-col sm:flex-row items-start gap-3">
+        <a
+          href="#analyse"
+          class="inline-flex items-center px-8 py-4 text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-lg"
+        >
+          Let Joost map my growth route
+          <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+        <a
+          href="#cases"
+          class="inline-flex items-center px-8 py-4 text-base font-medium text-primary border-2 border-primary hover:bg-primary/5 transition-colors rounded-button"
+        >
+          View the cases
+        </a>
+      </div>
+      <p class="text-xs text-text-muted mt-4">
+        For coaches, therapists and experts who want to turn their expertise into enquiries, products and coaching clients.
+      </p>
+    </div>
+  </section>
+
+  {/* ── 2. PROOF STRIP ── */}
+  <section class="bg-bg-alt border-y border-border">
+    <div class="max-w-4xl mx-auto px-4 md:px-6 py-8 md:py-10">
+      <p class="text-xs uppercase tracking-widest text-text-muted font-medium text-center mb-5">What this already delivered for other experts</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div>
+          <div class="font-heading text-2xl md:text-3xl text-primary">2 &rarr; 19</div>
+          <p class="text-xs text-text-muted mt-1">enquiries/month</p>
+          <p class="text-xs text-accent font-medium mt-0.5">Dr. Verena Mann</p>
+        </div>
+        <div>
+          <div class="font-heading text-2xl md:text-3xl text-primary">600+</div>
+          <p class="text-xs text-text-muted mt-1">guides sold</p>
+          <p class="text-xs text-accent font-medium mt-0.5">Coach Josine</p>
+        </div>
+        <div>
+          <div class="font-heading text-2xl md:text-3xl text-primary">&plusmn;&euro;10k/mo</div>
+          <p class="text-xs text-text-muted mt-1">online product revenue</p>
+          <p class="text-xs text-accent font-medium mt-0.5">Tessa / Youlife</p>
+        </div>
+        <div>
+          <div class="font-heading text-2xl md:text-3xl text-primary">2,000</div>
+          <p class="text-xs text-text-muted mt-1">paying members</p>
+          <p class="text-xs text-accent font-medium mt-0.5">Happy With Yoga</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── 3. REFRAME: EXPERT FOUNDATION ── */}
+  <section class="py-14 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-3">
+        Your problem is usually not just visibility. It is your expert foundation.
+      </h2>
+      <p class="text-text-muted leading-relaxed mb-10 max-w-3xl">
+        Your expertise may be strong, but if your online foundation does not clearly show why you are the obvious choice, what someone can do as a first step and how trust is built, you lose warm interest.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+        <div class="bg-white rounded-card p-5 border border-border">
+          <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-3">
+            <span class="font-heading text-primary text-lg">1</span>
+          </div>
+          <h3 class="font-heading text-lg text-text mb-1">Get found</h3>
+          <p class="text-sm text-text-muted leading-relaxed">AI, Google and visitors understand what you are the expert in.</p>
+        </div>
+        <div class="bg-white rounded-card p-5 border border-border">
+          <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center mb-3">
+            <span class="font-heading text-accent text-lg">2</span>
+          </div>
+          <h3 class="font-heading text-lg text-text mb-1">Build trust</h3>
+          <p class="text-sm text-text-muted leading-relaxed">Your method, story, proof and results are in the right place.</p>
+        </div>
+        <div class="bg-white rounded-card p-5 border border-border">
+          <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-3">
+            <span class="font-heading text-primary text-lg">3</span>
+          </div>
+          <h3 class="font-heading text-lg text-text mb-1">Get people to take the first step</h3>
+          <p class="text-sm text-text-muted leading-relaxed">A guide, scan, masterclass or mini-product makes the first step easy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── 4. 90-DAY ROUTE ── */}
+  <section class="py-14 md:py-20 bg-bg-alt">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-3">In the first 90 days we build your first growth route</h2>
+      <p class="text-text-muted leading-relaxed mb-10 max-w-3xl">
+        Not a big platform straight away. First a compact route that proves people are willing to take the first step.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 mb-8">
+        <div class="bg-white rounded-card p-5 border border-border">
+          <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-primary/10 text-primary rounded-full mb-3">Phase 1</span>
+          <h3 class="font-heading text-lg text-text mb-2">Expert position + niche pages</h3>
+          <p class="text-sm text-text-muted leading-relaxed">Who are you the obvious choice for, what problem do you solve, and how does that become visible to AI, Google and visitors?</p>
+        </div>
+        <div class="bg-white rounded-card p-5 border border-border">
+          <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/10 text-accent rounded-full mb-3">Phase 2</span>
+          <h3 class="font-heading text-lg text-text mb-2">Entry route + landing page</h3>
+          <p class="text-sm text-text-muted leading-relaxed">A guide, scan, masterclass or mini-product with a page that takes people to the next step.</p>
+        </div>
+        <div class="bg-white rounded-card p-5 border border-border">
+          <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-primary/10 text-primary rounded-full mb-3">Phase 3</span>
+          <h3 class="font-heading text-lg text-text mb-2">Email follow-up + traffic test</h3>
+          <p class="text-sm text-text-muted leading-relaxed">A short flow that builds trust and an initial test with ads or existing channels.</p>
+        </div>
+      </div>
+
+      <p class="text-accent font-medium text-center">
+        The first 90 days are designed to create proof &mdash; not to build a big platform straight away.
+      </p>
+    </div>
+  </section>
+
+  {/* ── 5. CASES / PROOF ── */}
+  <section id="cases" class="py-16 md:py-24 bg-primary">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-3xl md:text-4xl text-white mb-3">This is what can happen when the foundation is right</h2>
+      <p class="text-white/60 mb-12 max-w-3xl">
+        Not every coach builds a large platform straight away. Often it starts smaller: packaging expertise more sharply, building a first entry route and proving that people are willing to take the first step.
+      </p>
+
+      {/* ── Case 1: Dr. Verena Mann ── */}
+      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-card p-5 md:p-8 mb-8">
+        <div class="flex items-center gap-4 mb-5">
+          <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-accent/30 shrink-0">
+            <Image src={verenaPhoto} alt="Dr. Verena Mann" widths={[48, 96]} sizes="48px" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+          </div>
+          <div>
+            <p class="text-white font-medium text-sm">Dr. Verena Mann</p>
+            <a href="https://doc-veri.pages.dev" target="_blank" rel="noopener" class="text-accent/70 hover:text-accent text-xs transition-colors">doc-veri.pages.dev</a>
+          </div>
+          <div class="ml-auto flex items-center gap-3">
+            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full">Expert platform</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3 mb-5">
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+            <p class="font-heading text-xl text-accent">2 &rarr; 19</p>
+            <p class="text-[10px] text-white/50">enquiries/month</p>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+            <p class="font-heading text-xl text-accent">0 &rarr; 15</p>
+            <p class="text-[10px] text-white/50">AI mentions</p>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+            <p class="font-heading text-xl text-accent">&plusmn;6 wks</p>
+            <p class="text-[10px] text-white/50">live</p>
+          </div>
+        </div>
+
+        <p class="text-white/70 text-sm leading-relaxed mb-3">
+          Strong expertise and an active community, but barely any enquiries from people who didn&rsquo;t already know her. By packaging her expertise more concretely around themes, client problems and proof, she became not only more visible but also more logical to contact.
+        </p>
+        <p class="text-accent text-sm font-medium italic">
+          &ldquo;From a better online presence to enquiries from people who didn&rsquo;t know her yet.&rdquo;
+        </p>
+
+        <div class="grid grid-cols-2 gap-3 mt-5">
+          <div class="lightbox-trigger cursor-zoom-in group">
+            <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
+              <Image src={proofVerenaAi} alt="ChatGPT names Dr. Verena Mann as a fitting expert" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
+            </div>
+            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">AI answer: &ldquo;eine passende Expertin&rdquo;</p>
+          </div>
+          <div class="lightbox-trigger cursor-zoom-in group">
+            <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
+              <Image src={proofVerenaChatgpt} alt="ChatGPT recommends Dr. Verena Mann with a direct link" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
+            </div>
+            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">ChatGPT with a direct link to her site</p>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Case 2: Coach Josine ── */}
+      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-card p-5 md:p-8 mb-8">
+        <div class="flex items-center gap-4 mb-5">
+          <div>
+            <p class="text-white font-medium text-sm">Josine &mdash; Coach Josine</p>
+            <a href="https://www.coachjosine.nl" target="_blank" rel="noopener" class="text-accent/70 hover:text-accent text-xs transition-colors">coachjosine.nl</a>
+          </div>
+          <div class="ml-auto">
+            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full">First traction</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3 mb-5">
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+            <p class="font-heading text-xl text-accent">600+</p>
+            <p class="text-[10px] text-white/50">guides sold</p>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+            <p class="font-heading text-xl text-accent">80</p>
+            <p class="text-[10px] text-white/50">masterclass sign-ups</p>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+            <p class="font-heading text-xl text-accent">18</p>
+            <p class="text-[10px] text-white/50">wanted the programme directly</p>
+          </div>
+        </div>
+
+        <p class="text-white/70 text-sm leading-relaxed mb-3">
+          Had expertise, but no digital entry route. We made her first guide concrete, built the landing page and connected this to a masterclass route. People bought the guide, attended the masterclass and asked about the programme.
+        </p>
+        <p class="text-accent text-sm font-medium italic">
+          &ldquo;Not a platform straight away, but first proof that people are willing to take the first step.&rdquo;
+        </p>
+
+        <div class="grid grid-cols-2 gap-3 mt-5">
+          <div class="lightbox-trigger cursor-zoom-in group">
+            <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
+              <Image src={josineProduct} alt="Eating guide Coach Josine — product page" width={600} quality={80} class="w-full h-auto" loading="lazy" />
+            </div>
+            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">The eating guide that delivered the proof</p>
+          </div>
+          <div class="lightbox-trigger cursor-zoom-in group">
+            <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
+              <Image src={josineWhatsApp} alt="WhatsApp message from Josine about results" width={600} quality={80} class="w-full h-auto" loading="lazy" />
+            </div>
+            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">Response from Josine</p>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Case 3: Tessa / Youlife ── */}
+      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-card p-5 md:p-8 mb-8">
+        <div class="flex items-center gap-4 mb-5">
+          <div>
+            <p class="text-white font-medium text-sm">Tessa &mdash; Youlife</p>
+          </div>
+          <div class="ml-auto">
+            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full">Product growth</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3 mb-5">
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+            <p class="font-heading text-xl text-accent">&euro;10k/mo</p>
+            <p class="text-[10px] text-white/50">online product revenue</p>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+            <p class="font-heading text-xl text-accent">1 &rarr; 6</p>
+            <p class="text-[10px] text-white/50">online products</p>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+            <p class="font-heading text-xl text-accent">&plusmn;10/mo</p>
+            <p class="text-[10px] text-white/50">coaching clients</p>
+          </div>
+        </div>
+
+        <p class="text-white/70 text-sm leading-relaxed mb-3">
+          Did not start with a big platform, but with individual products and the question: how do we make this predictable? From one product we built towards multiple products, email flows and coaching enquiries.
+        </p>
+        <p class="text-accent text-sm font-medium italic">
+          &ldquo;The Guide sells really well. It is already profitable.&rdquo;
+        </p>
+
+        <div class="grid grid-cols-2 gap-3 mt-5">
+          <div class="lightbox-trigger cursor-zoom-in group">
+            <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
+              <Image src={tessaWhatsApp} alt="WhatsApp message from Tessa — Youlife results" width={600} quality={80} class="w-full h-auto" loading="lazy" />
+            </div>
+            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">Response from Tessa</p>
+          </div>
+          <div class="bg-white/5 rounded-lg p-4 flex items-center justify-center">
+            <a href="/en/cases/tessa-youlife/" class="text-accent hover:text-accent-dark text-sm font-medium transition-colors">View the full case &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Case 4: Happy With Yoga ── */}
+      <div class="bg-white/5 backdrop-blur border border-white/10 rounded-card p-5 md:p-8 mb-8">
+        <div class="flex items-center gap-4 mb-5">
+          <div>
+            <p class="text-white font-medium text-sm">Rolf &mdash; Happy With Yoga</p>
+          </div>
+          <div class="ml-auto">
+            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full">Mature platform</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3 mb-5">
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+            <p class="font-heading text-xl text-accent">30,000+</p>
+            <p class="text-[10px] text-white/50">webinar leads</p>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+            <p class="font-heading text-xl text-accent">1,700+</p>
+            <p class="text-[10px] text-white/50">mini-course sales</p>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+            <p class="font-heading text-xl text-accent">2,000</p>
+            <p class="text-[10px] text-white/50">paying members</p>
+          </div>
+        </div>
+
+        <p class="text-white/70 text-sm leading-relaxed mb-3">
+          Shows where this model can grow over time. Not one campaign, but a system with quiz funnels, mini-courses, webinars and a platform with recurring members.
+        </p>
+        <p class="text-accent text-sm font-medium italic">
+          &ldquo;This is not a 90-day promise, but the end picture when an expert brand keeps building.&rdquo;
+        </p>
+
+        <div class="grid grid-cols-2 gap-3 mt-5">
+          <div class="lightbox-trigger cursor-zoom-in group">
+            <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
+              <Image src={rolfWhatsApp} alt="WhatsApp message from Rolf — Happy With Yoga results" width={600} quality={80} class="w-full h-auto" loading="lazy" />
+            </div>
+            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">Response from Rolf</p>
+          </div>
+          <div class="bg-white/5 rounded-lg p-4 flex items-center justify-center">
+            <a href="/en/cases/happy-with-yoga/" class="text-accent hover:text-accent-dark text-sm font-medium transition-colors">View the full case &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Case 5: CBMC ── */}
+      <div class="bg-white/5 backdrop-blur border-2 border-accent/30 rounded-card p-5 md:p-8">
+        <div class="flex items-center gap-4 mb-5">
+          <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-accent/30 shrink-0">
+            <Image src={jamesPhoto} alt="Dr. James Mitchell" widths={[48, 96]} sizes="48px" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+          </div>
+          <div>
+            <p class="text-white font-medium text-sm">Dr. James Mitchell</p>
+            <a href="https://www.costablancamovement.com" target="_blank" rel="noopener" class="text-accent/70 hover:text-accent text-xs transition-colors">costablancamovement.com</a>
+          </div>
+          <div class="ml-auto">
+            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full">AI-ready foundation</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3 mb-5">
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+            <p class="font-heading text-xl text-accent">0 &rarr; p.1</p>
+            <p class="text-[10px] text-white/50">Google in 2 weeks</p>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+            <p class="font-heading text-xl text-accent">12&ndash;15/mo</p>
+            <p class="text-[10px] text-white/50">new patients</p>
+          </div>
+          <div class="bg-white/5 rounded-lg p-3 text-center">
+            <p class="font-heading text-xl text-accent">#1</p>
+            <p class="text-[10px] text-white/50">ChatGPT local option</p>
+          </div>
+        </div>
+
+        <p class="text-white/70 text-sm leading-relaxed mb-3">
+          Less coach-specific, but proves how quickly a new foundation can gain traction. No existing site, no history, no backlinks. Yet quickly visible in Google and AI.
+        </p>
+        <p class="text-accent text-sm font-medium italic">
+          &ldquo;When the foundation is right, visibility can pick up faster than you expect.&rdquo;
+        </p>
+
+        <div class="grid grid-cols-2 gap-3 mt-5">
+          <div class="lightbox-trigger cursor-zoom-in group">
+            <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
+              <Image src={proofGoogle} alt="Google position 4 for chiropractor Torrevieja after 2 weeks" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
+            </div>
+            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">Google page 1 &mdash; after 2 weeks</p>
+          </div>
+          <div class="lightbox-trigger cursor-zoom-in group">
+            <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
+              <Image src={proofChatgpt} alt="ChatGPT recommends CBMC as number 1 local chiropractor" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
+            </div>
+            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">ChatGPT #1 local recommendation</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-xs text-white/30 italic mt-6">
+        *All results mentioned are verified. Results vary by situation, market and cooperation.
+      </p>
+    </div>
+  </section>
+
+  {/* ── 6. WHY NOT A DIRECT SALES CALL ── */}
+  <section class="py-14 md:py-20">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">
+        Why going straight to a sales call is often too big a step
+      </h2>
+      <p class="text-text-muted leading-relaxed mb-8">
+        Sending cold people directly to an expensive programme works less and less. An intermediate step such as a guide, scan, masterclass or mini-product lets someone first experience your vision, method and style.
+      </p>
+
+      {/* Visual flow */}
+      <div class="bg-bg-alt rounded-card p-5 md:p-6 border border-border">
+        <div class="flex flex-col md:flex-row items-stretch gap-3 md:gap-0">
+          <div class="flex-1 bg-white rounded-lg p-3 text-center border border-border">
+            <p class="text-xs font-medium text-text">Content / AI / ad</p>
+            <p class="text-[10px] text-text-muted mt-0.5">Someone discovers you</p>
+          </div>
+          <div class="hidden md:flex items-center px-2 text-accent">&rarr;</div>
+          <div class="flex-1 bg-white rounded-lg p-3 text-center border-2 border-accent/30">
+            <p class="text-xs font-medium text-text">Entry route</p>
+            <p class="text-[10px] text-text-muted mt-0.5">Guide, scan or masterclass</p>
+          </div>
+          <div class="hidden md:flex items-center px-2 text-accent">&rarr;</div>
+          <div class="flex-1 bg-white rounded-lg p-3 text-center border border-border">
+            <p class="text-xs font-medium text-text">Email follow-up</p>
+            <p class="text-[10px] text-text-muted mt-0.5">Trust grows</p>
+          </div>
+          <div class="hidden md:flex items-center px-2 text-accent">&rarr;</div>
+          <div class="flex-1 bg-white rounded-lg p-3 text-center border border-border">
+            <p class="text-xs font-medium text-text">Enquiry or client</p>
+            <p class="text-[10px] text-text-muted mt-0.5">Warm and qualified</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── 7. INVESTMENT ── */}
+  <section class="py-14 md:py-18 bg-bg-alt">
+    <div class="max-w-3xl mx-auto px-4 md:px-6 text-center">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">Start small. Build on what works.</h2>
+      <div class="inline-block bg-white rounded-card px-8 py-6 border border-border mb-4">
+        <p class="text-text-muted text-sm mb-1">Starting from</p>
+        <p class="font-heading text-4xl text-text">&euro;299<span class="text-lg text-text-muted font-normal">/mo</span></p>
+      </div>
+      <p class="text-sm text-text-muted">
+        For the first route and foundation phase. After that we only build on what works.
+      </p>
+    </div>
+  </section>
+
+  {/* ── Founder ── */}
+  <section class="py-14 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-10 md:gap-14 items-center">
+        <div class="flex justify-center md:justify-start">
+          <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden shadow-lg ring-4 ring-white shrink-0">
+            <Image
+              src={founderPhoto}
+              alt="Joost van Putten — builds growth systems for coaches and experts"
+              widths={[224, 320]}
+              sizes="(max-width: 768px) 192px, 224px"
+              class="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+        <div>
+          <div class="w-12 h-1 bg-accent rounded-full mb-4"></div>
+          <h2 class="font-heading text-2xl md:text-3xl text-text mb-1">Joost van Putten</h2>
+          <p class="text-sm text-text-muted mb-4">Founder &amp; Online Growth Strategist</p>
+          <p class="text-text-muted leading-relaxed mb-6">
+            8 years of experience with online growth systems for coaches and experts. From quiz funnels and mini-products to full platforms &mdash; systems that turn expertise into predictable growth.
+          </p>
+          <a
+            href="/en/about-joost/"
+            class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium"
+          >
+            More about Joost
+            <svg class="ml-1 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── FAQ ── */}
+  <section class="py-14 md:py-20 bg-bg-alt">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-8 text-center">Frequently asked questions</h2>
+      <FAQAccordion items={faqForComponent} />
+    </div>
+  </section>
+
+  {/* ── Logo marquee ── */}
+  <LogoMarquee logos={logos} />
+
+  {/* ── CTA ── */}
+  <section id="analyse" class="py-16 md:py-20 bg-primary">
+    <div class="max-w-lg mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-3xl md:text-4xl text-white mb-4 text-center">
+        Want to know which growth route fits your expertise?
+      </h2>
+      <p class="text-white/80 mb-8 max-w-2xl mx-auto text-center">
+        Have your scan, website or offer reviewed. You won&rsquo;t receive a technical report, but a personal assessment: is your biggest opportunity in visibility, positioning, entry route or follow-up?
+      </p>
+
+      <form id="groei-form" class="space-y-3">
+        <input type="hidden" name="bron" value="expert-groei-traject-en" />
+        <input type="text" name="naam" placeholder="Your name" required autocomplete="name" class="w-full px-4 py-3.5 rounded-button border border-white/20 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white/10 backdrop-blur" />
+        <input type="email" name="email" placeholder="you@email.com" required autocomplete="email" class="w-full px-4 py-3.5 rounded-button border border-white/20 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white/10 backdrop-blur" />
+        <input type="url" name="website" placeholder="https://yourwebsite.com" autocomplete="url" class="w-full px-4 py-3.5 rounded-button border border-white/20 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white/10 backdrop-blur" />
+
+        <p class="text-white/60 text-xs pt-2 pb-1">What would you like the most insight into? (optional)</p>
+        <div class="grid grid-cols-2 gap-2">
+          <label class="flex items-center gap-2.5 bg-white/5 border border-white/15 rounded-lg px-3 py-2.5 cursor-pointer hover:bg-white/10 transition-colors">
+            <input type="checkbox" name="interesse" value="ai-vindbaarheid" class="accent-accent w-3.5 h-3.5 shrink-0" />
+            <span class="text-white text-sm">AI visibility</span>
+          </label>
+          <label class="flex items-center gap-2.5 bg-white/5 border border-white/15 rounded-lg px-3 py-2.5 cursor-pointer hover:bg-white/10 transition-colors">
+            <input type="checkbox" name="interesse" value="positionering" class="accent-accent w-3.5 h-3.5 shrink-0" />
+            <span class="text-white text-sm">Positioning</span>
+          </label>
+          <label class="flex items-center gap-2.5 bg-white/5 border border-white/15 rounded-lg px-3 py-2.5 cursor-pointer hover:bg-white/10 transition-colors">
+            <input type="checkbox" name="interesse" value="instaproute" class="accent-accent w-3.5 h-3.5 shrink-0" />
+            <span class="text-white text-sm">Entry route</span>
+          </label>
+          <label class="flex items-center gap-2.5 bg-white/5 border border-white/15 rounded-lg px-3 py-2.5 cursor-pointer hover:bg-white/10 transition-colors">
+            <input type="checkbox" name="interesse" value="email" class="accent-accent w-3.5 h-3.5 shrink-0" />
+            <span class="text-white text-sm">Email follow-up</span>
+          </label>
+          <label class="flex items-center gap-2.5 bg-white/5 border border-white/15 rounded-lg px-3 py-2.5 cursor-pointer hover:bg-white/10 transition-colors">
+            <input type="checkbox" name="interesse" value="groeilek" class="accent-accent w-3.5 h-3.5 shrink-0" />
+            <span class="text-white text-sm">Biggest growth leak</span>
+          </label>
+          <label class="flex items-center gap-2.5 bg-white/5 border border-white/15 rounded-lg px-3 py-2.5 cursor-pointer hover:bg-white/10 transition-colors">
+            <input type="checkbox" name="interesse" value="weet-niet" class="accent-accent w-3.5 h-3.5 shrink-0" />
+            <span class="text-white text-sm">Don&rsquo;t know where to start</span>
+          </label>
+        </div>
+
+        <button type="submit" class="w-full mt-2 px-8 py-4 text-base font-medium bg-accent hover:bg-accent-dark text-white transition-all duration-300 rounded-button shadow-lg shadow-accent/25 hover:shadow-xl flex items-center justify-center gap-2">
+          Let Joost map my growth route
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+        </button>
+      </form>
+
+      <div id="groei-thanks" class="hidden text-center py-8">
+        <svg class="w-12 h-12 text-accent mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <p class="font-heading text-xl text-white mb-2">Thank you!</p>
+        <p class="text-white/70 text-[0.95rem]">
+          I will review your situation and let you know within 24 hours which growth route makes the most sense.
+        </p>
+      </div>
+
+      <p id="groei-microcopy" class="text-xs text-white/40 text-center mt-4">
+        No payment now. You will receive a personal assessment, not a sales pitch.
+      </p>
+    </div>
+  </section>
+
+  {/* ── Lightbox script ── */}
+  <script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    var triggers = document.querySelectorAll('.lightbox-trigger');
+    if (triggers.length === 0) return;
+
+    var images = Array.from(triggers).map(function(t) {
+      var img = t.querySelector('img');
+      return img ? img.src : '';
+    });
+
+    var overlay = document.createElement('div');
+    overlay.className = 'fixed inset-0 z-50 bg-black/85 hidden items-center justify-center p-4';
+    overlay.id = 'lightbox';
+    overlay.innerHTML = '<button type="button" class="absolute top-4 right-4 text-white/80 hover:text-white z-10" id="lightbox-close"><svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg></button><img src="" alt="" class="max-w-[90vw] max-h-[90vh] rounded-lg shadow-2xl" id="lightbox-img" />';
+    document.body.appendChild(overlay);
+
+    var lbImg = document.getElementById('lightbox-img');
+    var lbClose = document.getElementById('lightbox-close');
+
+    function openLightbox(index) {
+      if (!images[index]) return;
+      lbImg.src = images[index];
+      lbImg.alt = (triggers[index].querySelector('img') || {}).alt || '';
+      overlay.classList.remove('hidden');
+      overlay.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      overlay.classList.add('hidden');
+      overlay.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    triggers.forEach(function(trigger, i) {
+      trigger.addEventListener('click', function() { openLightbox(i); });
+    });
+    lbClose.addEventListener('click', closeLightbox);
+    overlay.addEventListener('click', function(e) { if (e.target === overlay) closeLightbox(); });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
+  });
+  </script>
+
+  <script is:inline>
+  (function() {
+    var form = document.getElementById('groei-form');
+    var thanks = document.getElementById('groei-thanks');
+    var microcopy = document.getElementById('groei-microcopy');
+    if (!form || !thanks) return;
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var data = new FormData(form);
+      var naam = data.get('naam');
+      var email = data.get('email');
+      var website = data.get('website') || '';
+
+      if (!naam || !email) return;
+
+      var btn = form.querySelector('button[type="submit"]');
+      if (btn) { btn.disabled = true; btn.textContent = 'One moment...'; }
+
+      var checked = Array.from(form.querySelectorAll('input[name="interesse"]:checked')).map(function(cb) { return cb.value; });
+      var interesse = checked.length > 0 ? checked.join(', ') : 'niet ingevuld';
+
+      var payload = {
+        naam: naam,
+        email: email,
+        websiteUrl: website || 'niet ingevuld',
+        vraag: 'Expert Groei Traject aanvraag — Interesse: ' + interesse,
+        source: 'expert-groei-traject-en',
+      };
+
+      var leadId = typeof nxgCapiEventId === 'function' ? nxgCapiEventId() : '';
+      if (typeof fbq === 'function') {
+        fbq('track', 'Lead', { content_name: 'expert-groei-traject-en', content_category: 'ai-expert-growth' }, { eventID: leadId });
+      }
+      if (leadId && typeof nxgCapiSend === 'function') {
+        nxgCapiSend('Lead', leadId, { content_name: 'expert-groei-traject-en', content_category: 'ai-expert-growth' });
+      }
+      if (typeof trackEvent === 'function') {
+        trackEvent('scanner_request_submitted', {
+          page_type: 'page',
+          page_slug: 'ai-expert-growth',
+          locale: 'en',
+          cta_location: 'inline',
+        });
+      }
+
+      fetch('https://scanner.nxg-media.com/api/gratis-check', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload),
+      }).then(function() {
+        showThanks();
+      }).catch(function() {
+        showThanks();
+      });
+
+      function showThanks() {
+        form.classList.add('hidden');
+        thanks.classList.remove('hidden');
+        if (microcopy) microcopy.classList.add('hidden');
+      }
+    });
+  })();
+  </script>
+
+</BaseLayout>

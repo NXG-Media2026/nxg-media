@@ -1,0 +1,690 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BreadcrumbNav from '../components/BreadcrumbNav.astro';
+import CalendlyEmbed from '../components/CalendlyEmbed.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import LogoMarquee from '../components/LogoMarquee.astro';
+import { siteConfig } from '../data/site';
+import { generateBreadcrumbs, generateFAQPage } from '../data/schema';
+
+import heroPhoto from '../assets/images/founder/joost-standing-workinglaptop.webp';
+import founderPhoto from '../assets/images/founder/joost-standing-relaxed.webp';
+
+import hwyLogo from '../assets/images/logos/happywithyoga-logo.webp';
+import hwyPhoto from '../assets/images/logos/rolf-profile-photo-happywithyoga.png';
+import youlifeLogo from '../assets/images/logos/youlife-logo.avif';
+import youlifePhoto from '../assets/images/logos/tessa-youlife-profile-photo.png';
+import josineLogo from '../assets/images/logos/coachjosine-logo.avif';
+import josinePhoto from '../assets/images/logos/coachjosine-profile-photo.png';
+
+const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
+const logos = Object.entries(logoFiles)
+  .filter(([path]) => /logo/i.test(path.split('/').pop()!))
+  .map(([path, mod]) => {
+    const filename = path.split('/').pop()!.replace(/\.(webp|avif|png|jpg)$/, '');
+    const name = filename.replace(/[-_]?logo[-_]?/gi, '').replace(/[-_]/g, ' ').trim();
+    return { src: mod.default, alt: name };
+  });
+
+const locale = 'nl';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Website Care' },
+];
+
+const faqItems = [
+  {
+    question: 'Hoe werkt het contract?',
+    answer: 'Website Care werkt met een minimale looptijd van 12 maanden. Je kiest bij aanvang voor 12 of 24 maanden — bij 24 maanden krijg je 15% korting. Facturatie verloopt per 4 weken. Na afloop van de looptijd kun je verlengen, upgraden of stoppen. Opzeggen kan tot 1 maand voor het einde van je looptijd.',
+  },
+  {
+    question: 'Wat gebeurt er als ik opzeg?',
+    answer: 'Opzeggen kan tot 1 maand voor het einde van je contractperiode. Je eigen content, foto\'s en bedrijfsgegevens blijven van jou. De beheerde websitebasis, templates, code en infrastructuur blijven onderdeel van NXG Media. Tussentijds opzeggen is niet mogelijk — de minimale looptijd is 12 maanden.',
+  },
+  {
+    question: 'Wat gebeurt er met mijn domeinnaam?',
+    answer: 'Je domeinnaam blijft altijd van jou. Wij koppelen je bestaande domein aan de beheerde websitebasis. Bij het stoppen van Website Care wordt het domein weer naar jouw eigen beheer teruggezet.',
+  },
+  {
+    question: 'Kan ik zelf dingen aanpassen op de website?',
+    answer: 'Kleine wijzigingen kun je doorgeven via formulier of e-mail. Wij verwerken ze binnen de reactietijd van je pakket. Zelf inloggen en aanpassen is niet mogelijk — dat beschermt de snelheid, veiligheid en vindbaarheid van je website.',
+  },
+  {
+    question: 'Waarom krijg ik geen WordPress-login?',
+    answer: 'Je website draait als beheerde websitebasis. Wij beheren de technische laag zodat snelheid, veiligheid en vindbaarheid niet stukgaan door losse plugins, pagebuilders of ongecontroleerde wijzigingen. Dat is het verschil met een traditionele WordPress-site.',
+  },
+  {
+    question: 'Zit AI-vindbaarheid standaard inbegrepen?',
+    answer: 'De technische AI/SEO-basis die we in het 90-dagen traject opzetten, blijft behouden in elk Website Care-pakket. Actieve AI-vindbaarheidsmonitoring, rapportage en optimalisaties zitten in AI Visibility Care (vanaf €149 per 4 weken) of hoger.',
+  },
+  {
+    question: 'Hoe werken add-ons?',
+    answer: 'Alles wat buiten je pakket valt, kun je als add-on bijboeken. Doorlopende add-ons worden per 4 weken gefactureerd. Eenmalige add-ons betaal je per opdracht. We bespreken kosten altijd vooraf, zodat je weet waar je aan toe bent.',
+  },
+  {
+    question: 'Is hosting inbegrepen?',
+    answer: 'Hosting zit bij elk Website Care-pakket inbegrepen. Je betaalt geen aparte hostingfactuur.',
+  },
+  {
+    question: 'Kan ik later upgraden naar een hoger pakket?',
+    answer: 'Upgraden kan op elk moment. We passen het pakket aan vanaf de volgende facturatieperiode. De resterende contractperiode loopt gewoon door.',
+  },
+];
+
+const faqForSchema = faqItems.map((item) => ({
+  question: item.question,
+  answer: item.answer,
+}));
+
+const faqForComponent = faqItems.map((item) => ({ q: item.question, a: item.answer }));
+
+const packages = [
+  {
+    name: 'Website Care Basic',
+    price1y: '€59',
+    price2y: '€50',
+    period: '/ 4 weken',
+    audience: 'Voor klanten die vooral willen dat hun website live en technisch goed beheerd blijft.',
+    highlight: false,
+    includes: [
+      'Hosting & technisch beheer',
+      'Basis monitoring',
+      'Kleine technische fixes',
+      '1 kleine wijziging per 4 weken',
+      'Reactietijd: 3 werkdagen',
+      'Support via formulier/e-mail',
+    ],
+    excludes: [
+      'Rapportage',
+      'Strategie',
+      'Nieuwe pagina\'s',
+      'Contentcreatie',
+    ],
+  },
+  {
+    name: 'Website Care Plus',
+    price1y: '€99',
+    price2y: '€84',
+    period: '/ 4 weken',
+    audience: 'Voor klanten die regelmatig wijzigingen willen en hun fundament periodiek willen laten checken.',
+    highlight: false,
+    includes: [
+      'Alles uit Basic',
+      '2 kleine wijzigingen per 4 weken',
+      'Kwartaalcheck',
+      'Simpele AI-vindbaarheidscheck per kwartaal',
+      'Reactietijd: 2 werkdagen',
+      'Kleine FAQ/content-update per kwartaal',
+    ],
+    excludes: [
+      'Uitgebreide rapportage',
+      'Nieuwe pagina\'s',
+      'GEO/SEO-content',
+      'Linkbuilding',
+    ],
+  },
+  {
+    name: 'AI Visibility Care',
+    price1y: '€149',
+    price2y: '€127',
+    period: '/ 4 weken',
+    audience: 'Voor klanten die hun AI-vindbaarheid actief willen blijven monitoren en verbeteren.',
+    highlight: true,
+    includes: [
+      'Alles uit Plus',
+      'Periodieke AI-vindbaarheid vs concurrenten check',
+      'Korte rapportage',
+      'Lichte optimalisaties aan bestaande pagina\'s',
+      'Reactietijd: 1 werkdag',
+      'Advies voor nieuwe pagina\'s of content',
+    ],
+    excludes: [
+      'GEO/SEO-artikelen',
+      'Linkbuilding',
+      'Ads/tracking',
+      'Grote herschrijvingen',
+    ],
+  },
+  {
+    name: 'Growth Care',
+    price1y: 'Vanaf €249',
+    price2y: 'Vanaf €212',
+    period: '/ 4 weken',
+    audience: 'Voor bedrijven die actief willen doorgroeien met content, pagina\'s en zichtbaarheid.',
+    highlight: false,
+    includes: [
+      'Alles uit AI Visibility Care',
+      'GEO/SEO-content',
+      'Extra dienst- of locatiepagina\'s',
+      'Reviewprogramma & interne linking',
+      'Reactietijd: 1 werkdag, prioriteit',
+      'Conversieverbeteringen',
+      'Uitgebreidere rapportage',
+    ],
+    excludes: [
+      'Meta Ads / Google Ads beheer',
+      'Geavanceerde tracking',
+      'Meerdere talen',
+      'Volledige redesign',
+    ],
+  },
+];
+
+const smallUpdateYes = [
+  'Telefoonnummer aanpassen',
+  'Openingstijden wijzigen',
+  'Foto vervangen',
+  'Korte tekst aanpassen',
+  'Review toevoegen',
+  'Kleine FAQ aanpassen',
+  'Link aanpassen',
+];
+
+const smallUpdateNo = [
+  'Nieuwe pagina',
+  'Nieuwe dienstpagina schrijven',
+  'Layout/design aanpassen',
+  'Nieuwe taal toevoegen',
+  'Blogartikel schrijven',
+  'Nieuwe module bouwen',
+  'Tracking/ads debugging',
+  'Grote herschrijving',
+];
+
+const addOnCategories = [
+  {
+    title: 'Doorlopend',
+    description: 'Per 4 weken gefactureerd',
+    items: [
+      'GEO/SEO-content',
+      'Reviewprogramma',
+      'Linkbuilding/outreach',
+      'Extra wijzigingen per 4 weken',
+    ],
+  },
+  {
+    title: 'Eenmalig',
+    description: 'Per opdracht',
+    items: [
+      'Extra pagina',
+      'Dienstpagina met copy',
+      'Locatiepagina',
+      'Extra taal',
+      'Analytics/tracking setup',
+      'Spoedverzoek',
+    ],
+  },
+  {
+    title: 'Growth',
+    description: 'Op maat, na overleg',
+    items: [
+      'AI-vindbaarheidsrapport',
+      'Conversie-audit',
+      'Funnel- of landingspagina',
+      'Uitgebreide contentstrategie',
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Website Care — Hosting, beheer en doorontwikkeling voor je AI-ready website | NXG Media"
+  description="Website Care — beheerde websitebasis met hosting, beheer en AI-vindbaarheid. Vanaf €59 per 4 weken. Kies 12 of 24 maanden looptijd."
+  schemas={[generateBreadcrumbs(breadcrumbs.map((b) => ({ name: b.label, url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}/website-care/` }))), generateFAQPage(faqForSchema)]}
+  locale={locale}
+>
+  <BreadcrumbNav items={breadcrumbs} />
+
+  {/* ── Hero ── */}
+  <section class="relative py-20 md:py-28 lg:py-36 overflow-hidden">
+    <div class="absolute inset-0">
+      <Image
+        src={heroPhoto}
+        alt="Joost van Putten — Website Care specialist, beheert AI-ready websites voor MKB-bedrijven"
+        widths={[800, 1200, 1600]}
+        sizes="100vw"
+        class="w-full h-full object-cover"
+        loading="eager"
+        decoding="async"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/40"></div>
+    </div>
+    <div class="relative max-w-4xl mx-auto px-4 md:px-6">
+      <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full mb-6">
+        Beheerde websitebasis
+      </span>
+      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl text-text mb-6 leading-tight max-w-2xl">
+        Je website — beheerd, bewaakt en verbeterd door NXG Media
+      </h1>
+      <p class="text-lg md:text-xl text-text-muted leading-relaxed mb-10 max-w-xl">
+        Website Care is je <strong>beheerde websitebasis</strong>. Hosting, technisch beheer, kleine updates en — als je wilt — actieve <strong>AI-vindbaarheidsmonitoring</strong>. Geen losse hosting, geen plugins, geen gedoe. Vanaf <strong>€59 per 4 weken</strong>.
+      </p>
+      <a
+        href="#gesprek"
+        class="inline-flex items-center px-8 py-4 text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-lg"
+      >
+        Bespreek Website Care
+        <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+      <p class="text-xs text-text-muted mt-6">
+        Gebouwd op 7+ jaar ervaring met websites, funnels, advertenties en online groeisystemen.
+      </p>
+    </div>
+  </section>
+
+  {/* ── Why Website Care ── */}
+  <section class="py-16 md:py-20 bg-primary">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-white mb-4">Geen hostinggedoe, plugins of losse developers</h2>
+      <p class="text-white/80 leading-relaxed mb-8 text-lg">
+        Je nieuwe website draait als beheerde websitebasis. Je hoeft dus geen Wix, WordPress, Elementor, Joomla, losse hosting of plugin-updates meer te regelen. Je houdt gewoon je huidige domeinnaam.
+      </p>
+      <div class="space-y-4">
+        {[
+          'Hosting en technisch beheer geregeld',
+          'Geen Wix, WordPress, Elementor, Joomla of pluginchaos nodig',
+          'Je huidige domeinnaam blijft gewoon van jou',
+          'Kleine wijzigingen vraag je makkelijk aan via formulier of e-mail',
+          'Je website blijft snel, technisch schoon en goed beheerd',
+          'Uitbreiden kan wanneer nodig',
+          'AI/SEO-basis blijft bewaakt, afhankelijk van je pakket',
+        ].map((item) => (
+          <div class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            <p class="text-white/85 leading-relaxed">{item}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ── Logo strip ── */}
+  {logos.length > 0 && (
+    <LogoMarquee
+      logos={logos}
+      label="Vertrouwd door coaches, experts en bedrijven"
+      speed={35}
+    />
+  )}
+
+  {/* ── Packages ── */}
+  <section class="py-16 md:py-24">
+    <div class="max-w-5xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4 text-center">Kies je Website Care looptijd</h2>
+      <p class="text-lg text-text-muted leading-relaxed mb-8 text-center max-w-2xl mx-auto">
+        Website Care start met een minimale looptijd van 12 maanden. Kies 24 maanden voor 15% korting op alle pakketten. Elk pakket bevat hosting en technisch beheer — hoe hoger het pakket, hoe meer we actief meekijken.
+      </p>
+
+      {/* ── Contract toggle ── */}
+      <div class="flex items-center justify-center gap-1 mb-12" id="contract-toggle">
+        <button
+          type="button"
+          data-term="1y"
+          class="term-btn px-5 py-2.5 text-sm font-medium rounded-full transition-colors bg-primary text-white"
+        >
+          12 maanden
+        </button>
+        <button
+          type="button"
+          data-term="2y"
+          class="term-btn px-5 py-2.5 text-sm font-medium rounded-full transition-colors bg-white text-text-muted border border-border hover:border-primary/30"
+        >
+          24 maanden <span class="text-accent font-medium">&minus;15%</span>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {packages.map((pkg) => (
+          <div class={`rounded-card p-6 md:p-8 border-2 ${pkg.highlight ? 'bg-primary border-primary shadow-lg' : 'bg-white border-border'} flex flex-col`}>
+            {pkg.highlight && (
+              <span class="inline-flex items-center self-start px-3 py-1 text-xs font-medium bg-white/15 text-white rounded-full mb-3">
+                Populairste keuze
+              </span>
+            )}
+            <h3 class={`font-heading text-xl mb-2 ${pkg.highlight ? 'text-white' : 'text-text'}`}>{pkg.name}</h3>
+            <div class="flex items-baseline gap-1 mb-2">
+              <span class={`font-heading text-3xl ${pkg.highlight ? 'text-white' : 'text-primary'}`}>
+                <span class="price-1y">{pkg.price1y}</span>
+                <span class="price-2y hidden">{pkg.price2y}</span>
+              </span>
+              <span class={`text-sm ${pkg.highlight ? 'text-white/70' : 'text-text-muted'}`}>{pkg.period}</span>
+            </div>
+            <p class={`text-sm leading-relaxed mb-6 ${pkg.highlight ? 'text-white/80' : 'text-text-muted'}`}>{pkg.audience}</p>
+
+            {/* Includes */}
+            <div class="mb-4">
+              <p class={`text-xs font-medium uppercase tracking-wider mb-2 ${pkg.highlight ? 'text-white/60' : 'text-text'}`}>Inbegrepen</p>
+              <ul class="space-y-1.5">
+                {pkg.includes.map((item) => (
+                  <li class={`flex items-start gap-2 text-sm ${pkg.highlight ? 'text-white/85' : 'text-text-muted'}`}>
+                    <svg class="w-4 h-4 shrink-0 mt-0.5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Excludes */}
+            <div class={`mt-auto pt-4 border-t ${pkg.highlight ? 'border-white/20' : 'border-border'}`}>
+              <p class={`text-xs font-medium uppercase tracking-wider mb-2 ${pkg.highlight ? 'text-white/50' : 'text-text-muted'}`}>Niet inbegrepen</p>
+              <ul class="space-y-1">
+                {pkg.excludes.map((item) => (
+                  <li class={`flex items-start gap-2 text-xs ${pkg.highlight ? 'text-white/50' : 'text-text-muted/70'}`}>
+                    <span class="shrink-0 mt-0.5">&mdash;</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-sm text-text-muted text-center mt-8">
+        Prijzen worden per 4 weken gefactureerd. Alle genoemde prijzen zijn exclusief BTW. Upgraden naar een hoger pakket kan op elk moment.
+      </p>
+    </div>
+  </section>
+
+  {/* ── SLA ── */}
+  <section class="py-16 md:py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">Reactietijden per pakket</h2>
+      <p class="text-text-muted leading-relaxed mb-8">
+        Hoe hoger je pakket, hoe sneller we reageren en verwerken. Reactietijd is de tijd waarin we bevestigen dat we je verzoek hebben ontvangen. Verwerkingstijd is de tijd waarbinnen de wijziging live staat.
+      </p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm border border-border rounded-card overflow-hidden">
+          <thead>
+            <tr class="bg-bg-alt">
+              <th class="text-left px-4 py-3 font-heading text-text">Pakket</th>
+              <th class="text-left px-4 py-3 font-heading text-text">Reactietijd</th>
+              <th class="text-left px-4 py-3 font-heading text-text">Verwerkingstijd</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-t border-border">
+              <td class="px-4 py-3 text-text-muted">Basic</td>
+              <td class="px-4 py-3 text-text-muted">3 werkdagen</td>
+              <td class="px-4 py-3 text-text-muted">5 werkdagen</td>
+            </tr>
+            <tr class="border-t border-border bg-bg-alt/50">
+              <td class="px-4 py-3 text-text-muted">Plus</td>
+              <td class="px-4 py-3 text-text-muted">2 werkdagen</td>
+              <td class="px-4 py-3 text-text-muted">3 werkdagen</td>
+            </tr>
+            <tr class="border-t border-border">
+              <td class="px-4 py-3 font-medium text-primary">AI Visibility Care</td>
+              <td class="px-4 py-3 text-text-muted">1 werkdag</td>
+              <td class="px-4 py-3 text-text-muted">2 werkdagen</td>
+            </tr>
+            <tr class="border-t border-border bg-bg-alt/50">
+              <td class="px-4 py-3 text-text-muted">Growth Care</td>
+              <td class="px-4 py-3 text-text-muted">1 werkdag, prioriteit</td>
+              <td class="px-4 py-3 text-text-muted">1–2 werkdagen</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-xs text-text-muted mt-4">
+        Spoedverzoeken buiten deze tijden zijn als add-on beschikbaar.
+      </p>
+    </div>
+  </section>
+
+  {/* ── What is a small update ── */}
+  <section class="py-16 md:py-20 bg-bg-alt">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-10">Wat is een kleine wijziging?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Yes */}
+        <div>
+          <h3 class="font-heading text-lg text-text mb-4 flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center shrink-0">
+              <svg class="w-3.5 h-3.5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+            </span>
+            Kleine wijziging
+          </h3>
+          <ul class="space-y-2 text-sm text-text-muted">
+            {smallUpdateYes.map((item) => (
+              <li class="flex items-start gap-2">
+                <span class="text-green-500 mt-0.5">&check;</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        {/* No */}
+        <div>
+          <h3 class="font-heading text-lg text-text mb-4 flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center shrink-0">
+              <svg class="w-3.5 h-3.5 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </span>
+            Geen kleine wijziging
+          </h3>
+          <ul class="space-y-2 text-sm text-text-muted">
+            {smallUpdateNo.map((item) => (
+              <li class="flex items-start gap-2">
+                <span class="text-red-400 mt-0.5">&times;</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <p class="text-sm text-text-muted mt-8">
+        Grotere wijzigingen en nieuwe pagina's worden als add-on geprijsd of vallen onder een hoger pakket.
+      </p>
+    </div>
+  </section>
+
+  {/* ── Proof cards ── */}
+  <section class="py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">Websites, funnels en systemen die resultaat dragen</h2>
+      <p class="text-lg text-text-muted leading-relaxed mb-10 max-w-3xl">
+        Website Care staat niet los van je online groei. De afgelopen jaren bouwden we websites, funnels en groeisystemen voor ondernemers die hun online fundament serieuzer wilden neerzetten.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-card p-6 border border-border">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full overflow-hidden shrink-0 ring-2 ring-white shadow-sm">
+              <Image src={hwyPhoto} alt="Rolf — Happy With Yoga" widths={[80]} sizes="40px" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+            </div>
+            <div>
+              <p class="text-sm font-medium text-text">Rolf</p>
+              <Image src={hwyLogo} alt="Happy With Yoga logo" widths={[96]} sizes="80px" class="h-4 w-auto mt-0.5" loading="lazy" decoding="async" />
+            </div>
+          </div>
+          <div class="flex items-baseline gap-2 mb-3">
+            <span class="font-heading text-2xl text-primary">30.000+</span>
+            <span class="text-sm text-text-muted">webinarleads</span>
+          </div>
+          <p class="text-xs text-text-muted mb-4">2.000 betalende leden</p>
+          <p class="text-sm text-text-muted leading-relaxed">Sterke content-, funnel- en platformstructuur rond een bestaand expertmerk.</p>
+          <a href="/cases/happy-with-yoga/" class="inline-flex items-center text-sm text-accent hover:text-accent-dark transition-colors font-medium mt-4">
+            Lees de case
+            <svg class="w-3.5 h-3.5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+          </a>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full overflow-hidden shrink-0 ring-2 ring-white shadow-sm">
+              <Image src={youlifePhoto} alt="Tessa — Youlife" widths={[80]} sizes="40px" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+            </div>
+            <div>
+              <p class="text-sm font-medium text-text">Tessa</p>
+              <Image src={youlifeLogo} alt="Youlife logo" widths={[96]} sizes="80px" class="h-4 w-auto mt-0.5" loading="lazy" decoding="async" />
+            </div>
+          </div>
+          <div class="flex items-baseline gap-2 mb-3">
+            <span class="font-heading text-2xl text-primary">&plusmn;&euro;10k/mnd</span>
+            <span class="text-sm text-text-muted">productomzet</span>
+          </div>
+          <p class="text-xs text-text-muted mb-4">7.2&times; ROAS op advertenties</p>
+          <p class="text-sm text-text-muted leading-relaxed">Productpagina's, advertenties en opvolging als &eacute;&eacute;n systeem.</p>
+          <a href="/cases/tessa-youlife/" class="inline-flex items-center text-sm text-accent hover:text-accent-dark transition-colors font-medium mt-4">
+            Lees de case
+            <svg class="w-3.5 h-3.5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+          </a>
+        </div>
+        <div class="bg-white rounded-card p-6 border border-border">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full overflow-hidden shrink-0 ring-2 ring-white shadow-sm">
+              <Image src={josinePhoto} alt="Josine — Coach Josine" widths={[80]} sizes="40px" class="w-full h-full object-cover" loading="lazy" decoding="async" />
+            </div>
+            <div>
+              <p class="text-sm font-medium text-text">Josine</p>
+              <Image src={josineLogo} alt="Coach Josine logo" widths={[96]} sizes="80px" class="h-4 w-auto mt-0.5" loading="lazy" decoding="async" />
+            </div>
+          </div>
+          <div class="flex items-baseline gap-2 mb-3">
+            <span class="font-heading text-2xl text-primary">600&times;</span>
+            <span class="text-sm text-text-muted">gids verkocht</span>
+          </div>
+          <p class="text-xs text-text-muted mb-4">80 masterclass-aanmeldingen</p>
+          <p class="text-sm text-text-muted leading-relaxed">Van expertise naar een verkoopbare digitale route.</p>
+          <a href="/cases/coach-josine/" class="inline-flex items-center text-sm text-accent hover:text-accent-dark transition-colors font-medium mt-4">
+            Lees de case
+            <svg class="w-3.5 h-3.5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Add-ons ── */}
+  <section class="py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">Meer nodig? Boek het als add-on bij.</h2>
+      <p class="text-text-muted leading-relaxed mb-10">
+        Alles wat buiten je pakket valt, kun je als add-on bijboeken. Doorlopende add-ons worden per 4 weken gefactureerd, eenmalige add-ons per opdracht. We bespreken kosten altijd vooraf.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {addOnCategories.map((cat) => (
+          <div class="bg-white rounded-card p-6 border border-border">
+            <h3 class="font-heading text-lg text-text mb-1">{cat.title}</h3>
+            <p class="text-xs text-text-muted mb-4">{cat.description}</p>
+            <ul class="space-y-2">
+              {cat.items.map((item) => (
+                <li class="flex items-start gap-2 text-sm text-text-muted">
+                  <svg class="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                  </svg>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <p class="text-xs text-text-muted mt-6">
+        Prijzen variëren per type en omvang. We maken altijd vooraf een inschatting zodat je weet waar je aan toe bent.
+      </p>
+    </div>
+  </section>
+
+  {/* ── Founder ── */}
+  <section class="py-16 md:py-20">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-10 md:gap-14 items-center">
+        <div class="flex justify-center md:justify-start">
+          <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden shadow-lg ring-4 ring-white shrink-0">
+            <Image
+              src={founderPhoto}
+              alt="Joost van Putten — Founder NXG Media, beheert websites en groeisystemen voor ondernemers"
+              widths={[224, 320]}
+              sizes="(max-width: 768px) 192px, 224px"
+              class="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        </div>
+        <div>
+          <div class="w-12 h-1 bg-accent rounded-full mb-4"></div>
+          <h2 class="font-heading text-2xl md:text-3xl text-text mb-1">Joost van Putten</h2>
+          <p class="text-sm text-text-muted mb-4">Founder & Online Growth Strategist</p>
+          <p class="text-text-muted leading-relaxed mb-6">
+            7+ jaar ervaring met websites, funnels, advertenties en online groeisystemen. Meer dan &euro;5M advertentiebudget beheerd voor ondernemers en merken. Van AI-vindbare websites tot volledige platforms — ik bouw en beheer systemen die zorgen dat je online fundament blijft werken.
+          </p>
+          <a
+            href="/over-joost/"
+            class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium"
+          >
+            Meer over Joost
+            <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── FAQ ── */}
+  <div class="bg-bg-alt">
+    <FAQAccordion
+      title="Veelgestelde vragen over Website Care"
+      items={faqForComponent}
+      locale={locale}
+      pageType="service"
+      pageSlug="website-care"
+    />
+  </div>
+
+  {/* ── Final CTA with Calendly ── */}
+  <section id="gesprek" class="py-16 md:py-20 bg-primary">
+    <div class="max-w-4xl mx-auto px-4 md:px-6 text-center">
+      <h2 class="font-heading text-3xl md:text-4xl text-white mb-4">
+        Wil je je website rustig laten draaien of actief blijven verbeteren?
+      </h2>
+      <p class="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+        Bespreek welk Website Care-pakket bij jouw situatie past. We kijken samen wat je nodig hebt — nu en later.
+      </p>
+    </div>
+  </section>
+
+  <CalendlyEmbed pageType="service" pageSlug="website-care" locale={locale} />
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const toggle = document.getElementById('contract-toggle');
+      if (!toggle) return;
+      const btns = toggle.querySelectorAll('.term-btn') as NodeListOf<HTMLButtonElement>;
+      const prices1y = document.querySelectorAll('.price-1y');
+      const prices2y = document.querySelectorAll('.price-2y');
+
+      function setTerm(term: string) {
+        btns.forEach((btn) => {
+          const isCurrent = btn.dataset.term === term;
+          if (isCurrent) {
+            btn.className = 'term-btn px-5 py-2.5 text-sm font-medium rounded-full transition-colors bg-primary text-white';
+          } else {
+            btn.className = 'term-btn px-5 py-2.5 text-sm font-medium rounded-full transition-colors bg-white text-text-muted border border-border hover:border-primary/30';
+          }
+        });
+        prices1y.forEach((el) => el.classList.toggle('hidden', term === '2y'));
+        prices2y.forEach((el) => el.classList.toggle('hidden', term === '1y'));
+      }
+
+      btns.forEach((btn) => {
+        btn.addEventListener('click', () => setTerm(btn.dataset.term!));
+      });
+    });
+  </script>
+
+</BaseLayout>
