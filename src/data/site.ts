@@ -39,12 +39,12 @@ export const siteConfig = {
     name: 'Joost van Putten',
     role: 'Founder & Online Marketing Specialist',
     bio: {
-      nl: 'Founder van NXG-media. 7+ jaar ervaring in online marketing voor MKB. Helpt loodgieters, dakdekkers, aannemers en andere praktische ondernemers om beter vindbaar te worden in Google en AI-zoekmachines — en combineert dat met advertenties die klanten opleveren.',
+      nl: 'Oprichter van NXG-media. 7+ jaar ervaring in online marketing voor MKB-bedrijven, praktijken, dienstverleners, coaches en experts. Verbindt websites, AI-vindbaarheid, advertenties en opvolging in een aanpak die past bij het bedrijf.',
       en: 'Founder of NXG-media. 7+ years of experience in online marketing for SMBs. Helps plumbers, roofers, contractors and other hands-on business owners get found in Google and AI search engines — combined with ads that bring in customers.',
       es: 'Fundador de NXG-media. Más de 7 años de experiencia en marketing online para PYMES. Ayuda a fontaneros, techadores, contratistas y otros emprendedores prácticos a ser más visibles en Google y buscadores IA — combinado con anuncios que traen clientes.',
     },
     description: {
-      nl: 'Joost van Putten is de oprichter van NXG Media en heeft 7+ jaar ervaring in het bouwen van online groeisystemen voor coaches, kennisondernemers en lokale praktijken. Hij heeft meer dan €5 miljoen aan advertentiebudget beheerd en werkt met 50+ coaches aan systemen die gemiddeld 5-7x return on ad spend realiseren. Daarnaast bouwt NXG Media aan AI-vindbaarheid voor lokale praktijken en MKB.',
+      nl: 'Joost van Putten is de oprichter van NXG-media en heeft meer dan 7 jaar ervaring in online marketing. Hij helpt MKB-bedrijven, praktijken en dienstverleners met NXG Growth en werkt met coaches en experts via Coach Accelerator. Zijn aanpak verbindt websites, vindbaarheid, campagnes en opvolging.',
       en: 'Joost van Putten is the founder of NXG Media with 7+ years of experience building online growth systems for coaches, knowledge entrepreneurs and local practices. He has managed over €5 million in ad spend and works with 50+ coaches on systems that deliver an average 5-7x return on ad spend. NXG Media also builds AI visibility for local practices and SMBs.',
       es: 'Joost van Putten es el fundador de NXG Media con más de 7 años de experiencia construyendo sistemas de crecimiento online para coaches, emprendedores del conocimiento y negocios locales. Ha gestionado más de €5 millones en presupuesto publicitario y trabaja con más de 50 coaches en sistemas que generan un retorno promedio de 5-7x. NXG Media también construye visibilidad ante IA para clínicas y PYMES.',
     },
@@ -78,7 +78,7 @@ export const siteConfig = {
     publications: [] as string[],
     knowsAbout: {
       nl: [
-        'Online groeisystemen voor experts',
+        'Online groei voor MKB, praktijken, coaches en experts',
         'Storytelling & content strategie',
         'Mini-producten & productladders',
         'Email marketing automatisering',
