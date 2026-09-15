@@ -1,4 +1,7 @@
 /* Shared Dutch website design; standalone home and campaign landers are unaffected. */
+.nxg-restyle[data-page^='/guides'] main>section:first-of-type h1 span{color:#fff000}
+.nxg-restyle .refresh-guides h2{font-size:30px;line-height:1.15}
+.nxg-restyle :is(.bg-primary,.bg-primary-dark) :is(a,button).bg-accent{color:#111316}
 .nxg-restyle{font-family:'DM Sans',Arial,sans-serif;color:#111316;background:#fff;--nxg-blue:#0756ef;--nxg-yellow:#fff000;--nxg-ink:#111316}
 .nxg-restyle .font-heading,.nxg-restyle h1,.nxg-restyle h2,.nxg-restyle h3{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:800;letter-spacing:-.35px}
 .nxg-restyle main h1{font-size:clamp(44px,5.7vw,78px);line-height:1.02;text-transform:uppercase;max-width:1000px}
