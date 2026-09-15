@@ -9,11 +9,13 @@ export interface NavItem {
 
 export const navigation: Record<Locale, NavItem[]> = {
   nl: [
-    { label: 'Diensten', href: '/diensten/', children: [
+    { label: 'Diensten', href: '/#diensten', children: [
+      { label: 'NXG Growth', href: '/landermkb/' },
+      { label: 'Websites', href: '/website-abonnement/' },
       { label: 'AI Vindbaarheid', href: '/ai-vindbaarheid-traject-b/' },
       { label: 'Coach Accelerator', href: '/coach-accelerator/' },
     ]},
-    { label: 'Pakketten', href: '/pakketten/' },
+    { label: 'Pakketten', href: '/#pakketten' },
     { label: 'Cases', href: '/cases/' },
     { label: 'Over ons', href: '/over-joost/' },
     { label: 'Kennis', href: '/guides/' },

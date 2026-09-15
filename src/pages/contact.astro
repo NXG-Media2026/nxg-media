@@ -25,21 +25,12 @@ const breadcrumbSchema = [
   schemas={[generateBreadcrumbs(breadcrumbSchema)]}
   locale={locale}
   hreflang={hreflang}
+  hideNewsletter={true}
+  hideStickyMobileCTA={true}
 >
   <BreadcrumbNav items={breadcrumbs} />
 
-  <section class="py-12 md:py-16 lg:py-20">
-    <div class="max-w-3xl mx-auto px-4 md:px-6">
-      <h1 class="font-heading text-3xl md:text-4xl text-text mb-6">Contact</h1>
-      <p class="text-lg text-text-muted leading-relaxed mb-8">
-        Wil je bespreken wat NXG Media voor jou kan betekenen? Plan een vrijblijvend gesprek of stuur een e-mail.
-      </p>
-      <div class="bg-white rounded-card p-6 border border-border mb-8">
-        <p class="text-text mb-2"><strong>E-mail:</strong> <a href={`mailto:${siteConfig.email}`} class="text-accent hover:text-accent-dark">{siteConfig.email}</a></p>
-        <p class="text-text"><strong>LinkedIn:</strong> <a href={siteConfig.socials.linkedin} class="text-accent hover:text-accent-dark" target="_blank" rel="noopener noreferrer">Joost van Putten</a></p>
-      </div>
-    </div>
-  </section>
+  <section class="refresh-hero refresh-contact"><div class="refresh-wrap refresh-split"><div><p class="refresh-eyebrow">VERTEL ONS WAAR JE NAARTOE WILT</p><h1>JOUW VOLGENDE STAP.<br /><span>BEGINT HIER.</span></h1><p>In 15 minuten bespreken we jouw bedrijf, je groeiplannen en welke aanpak daarbij past. Persoonlijk, concreet en vrijblijvend.</p><a class="refresh-button" href="#calendly">Kies een moment met Joost <span aria-hidden="true">↓</span></a></div><aside class="refresh-contact-card"><img src="/lander-assets/proof/joost.webp" alt="Joost van Putten" width="100" height="100" /><p class="refresh-eyebrow">JE SPREEKT MET JOOST</p><h2>GEWOON EVEN<br />KENNISMAKEN.</h2><p>Liever eerst iets vragen? Stuur me gerust een bericht.</p><a href={'mailto:' + siteConfig.email}>{siteConfig.email} ↗</a><a href={siteConfig.socials.linkedin} target="_blank" rel="noopener noreferrer">Vind me op LinkedIn ↗</a></aside></div></section>
 
-  <CalendlyEmbed pageType="contact" pageSlug="contact" locale={locale} />
+  <CalendlyEmbed pageType="contact" pageSlug="contact" locale={locale} title="Kies jouw moment." subtitle="15 minuten. Jouw bedrijf, jouw vragen en een concrete volgende stap." />
 </BaseLayout>

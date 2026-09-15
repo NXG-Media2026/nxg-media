@@ -32,25 +32,7 @@ const breadcrumbSchema = [
   <BreadcrumbNav items={breadcrumbs} />
 
   {/* ── 1. Hero with positioning ── */}
-  <section class="py-12 md:py-16 lg:py-20">
-    <div class="max-w-3xl mx-auto px-4 md:px-6">
-      <div class="flex flex-col md:flex-row gap-8 items-start mb-10">
-        <Image
-          src={founderPhoto}
-          alt="Joost van Putten — founder NXG Media, bouwt online groeisystemen voor coaches en experts"
-          widths={[200, 300, 400]}
-          sizes="(max-width: 768px) 200px, 300px"
-          class="rounded-card shadow-lg w-48 md:w-64 shrink-0"
-          loading="eager"
-        />
-        <div>
-          <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl text-text mb-4">Over Joost</h1>
-          <p class="text-xl text-accent font-medium mb-4">De persoon achter het systeem dat 50+ coaches voorspelbare groei geeft.</p>
-          <p class="text-lg text-text-muted leading-relaxed">{siteConfig.founder.description[locale]}</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <section class="refresh-hero refresh-about"><div class="refresh-wrap refresh-split"><div><p class="refresh-eyebrow">DE PERSOON ACHTER NXG-MEDIA</p><h1>HI, IK BEN JOOST.<br /><span>IK BOUW MEE.</span></h1><p>Al meer dan 7 jaar help ik ondernemers met online marketing. Van campagnes tot websites: ik wil weten wat het oplevert voor het bedrijf erachter.</p><p>Jij bent goed in je vak. Ik help je die expertise online te vertalen naar een duidelijke aanpak voor groei.</p><a class="refresh-button" href="/contact/">Laten we kennismaken <span aria-hidden="true">↗</span></a></div><figure><Image src={founderPhoto} alt="Joost van Putten aan het werk" width={620} loading="eager" fetchpriority="high" /><figcaption>Joost van Putten · Oprichter NXG-media</figcaption></figure></div></section>
 
   {/* ── 2. Why NXG Media exists — origin story ── */}
   <section class="py-10 md:py-14 bg-bg-alt">

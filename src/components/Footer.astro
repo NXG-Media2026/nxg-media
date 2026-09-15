@@ -71,7 +71,7 @@ const termsHref = getCollectionBasePath('voorwaarden', locale);
       <div>
         <a href={localizePath('/', locale)} class="inline-flex flex-col leading-none hover:opacity-80 transition-opacity">
           <span class="font-heading font-black text-xl text-white">NXG-media</span>
-          <span class="font-script text-sm text-white/60 -mt-0.5">{siteConfig.tagline[locale]}</span>
+          <span class="font-script text-sm text-white/60 -mt-0.5">{locale === 'nl' ? 'AI Search Agency' : siteConfig.tagline[locale]}</span>
         </a>
 
         {(siteConfig.socials.instagram || siteConfig.socials.linkedin || siteConfig.socials.youtube) && (

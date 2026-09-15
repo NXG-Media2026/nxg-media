@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import '../styles/site-refresh.css';
 import SEOHead from '../components/SEOHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -54,10 +55,11 @@ const {
     locale={locale}
   />
 
+  {locale === 'nl' && <><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" /></>}
   <script is:inline set:html={getTrackingScript()} />
   <script is:inline set:html={getCapiHelperScript()} />
 </head>
-<body class="bg-bg text-text min-h-screen flex flex-col">
+<body class:list={["bg-bg text-text min-h-screen flex flex-col", { "nxg-restyle": locale === "nl" }]} data-page={Astro.url.pathname}>
   <a
     href="#main-content"
     class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-accent focus:text-white focus:rounded-button focus:text-sm"
