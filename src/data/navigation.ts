@@ -13,7 +13,7 @@ export const SHOW_HOME_PRICING = false;
 export const navigation: Record<Locale, NavItem[]> = {
   nl: [
     { label: 'Diensten', href: '/#diensten', children: [
-      { label: 'MKB · NXG Growth', href: '/landermkb/' },
+      { label: 'MKB · NXG AI-Search-systeem', href: '/landermkb/' },
       { label: 'Coach Accelerator', href: '/coach-accelerator/' },
     ]},
     ...(SHOW_HOME_PRICING ? [{ label: 'Pakketten', href: '/#pakketten' }] : []),

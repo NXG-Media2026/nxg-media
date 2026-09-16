@@ -1,0 +1,20 @@
+---
+interface Props { ctaHref: string }
+const { ctaHref } = Astro.props;
+---
+<section class="nxg-method section" id="nxg-systeem">
+  <div class="wrap">
+    <p class="eyebrow">ONZE METHODE. JOUW VOLGENDE AANVRAGEN.</p>
+    <h2>HET NXG<br /><span>AI-SEARCH-SYSTEEM.</span></h2>
+    <p class="method-intro">Jouw klant zoekt. Wij zorgen dat alles samenwerkt om van die zoektocht een aanvraag te maken.</p>
+    <div class="method-steps">
+      <article><b>01</b><h3>IN BEELD KOMEN.</h3><p>AI-vindbaarheid in Google, ChatGPT, Gemini, Perplexity, Claude, Grok en Bing. Aangevuld met AI Search Ads waar die jouw doelgroep bereiken.</p></article>
+      <article><b>02</b><h3>GEKOZEN WORDEN.</h3><p>Een website die laat zien waarom jij de juiste keuze bent. Met jouw expertise, bewijs en een duidelijke stap naar contact.</p></article>
+      <article><b>03</b><h3>AANVRAGEN BINNENHALEN.</h3><p>We meten de aanvragen en verbeteren je website en campagnes. Alles gericht op het afgesproken resultaat.</p></article>
+    </div>
+    <div class="method-news" id="chatgpt-ads"><img src="/lander-assets/platforms/openai.svg" alt="ChatGPT" width="54" height="54" loading="lazy" /><div><span>NIEUW IN NEDERLAND</span><h3>OOK CHATGPT ADS.</h3><p>We zetten ChatGPT Ads in als het past bij jouw bedrijf. Als onderdeel van het NXG AI-Search-systeem.</p></div><a class="button yellow" href={ctaHref}>Bekijk mijn AI-Search-kansen <span aria-hidden="true">↗</span></a></div>
+  </div>
+</section>
+<style>
+.nxg-method{background:#111316;color:white}.nxg-method .eyebrow,.nxg-method h2 span{color:#fff000}.nxg-method h2{margin-bottom:24px}.method-intro{max-width:620px;color:#d6dce4;font-size:18px}.method-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin:42px 0}.method-steps article{border-top:1px solid #ffffff40;padding-top:24px}.method-steps b{color:#fff000;font:800 30px/1 var(--display)}.method-steps h3{font-size:32px;margin:18px 0 14px}.method-steps p{font-size:15px;color:#d6dce4;line-height:1.7}.method-news{border:1px solid #fff000;border-top:5px solid #fff000;border-radius:8px;padding:28px;display:flex;align-items:center;gap:24px;scroll-margin-top:105px}.method-news>img{background:white;padding:8px;border-radius:8px;flex-shrink:0}.method-news>div{flex:1}.method-news>div>span{color:#fff000;font-size:10px;font-weight:800;letter-spacing:1px}.method-news h3{font-size:34px;margin:10px 0}.method-news p{font-size:14px;max-width:530px;margin:0;color:#d6dce4}.method-news .button{font-size:13px;flex-shrink:0}.nxg-method{scroll-margin-top:90px}@media(max-width:950px){.method-news{flex-wrap:wrap}.method-news .button{margin-left:78px}}@media(max-width:760px){.method-steps{grid-template-columns:1fr;gap:18px;margin:30px 0}.method-news{padding:22px;gap:16px}.method-news>img{width:44px;height:44px}.method-news .button{margin-left:0;width:100%}.method-intro{font-size:16px}.method-news h3{font-size:28px}}
+</style>
