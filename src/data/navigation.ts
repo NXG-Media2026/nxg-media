@@ -1,4 +1,4 @@
-import type { Locale } from './site';
+import { siteConfig, type Locale } from './site';
 
 export interface NavItem {
   label: string;
@@ -21,6 +21,7 @@ export const navigation: Record<Locale, NavItem[]> = {
     { label: 'Over Joost', href: '/over-joost/' },
     { label: 'Kennis', href: '/guides/' },
     { label: 'Contact', href: '/contact/' },
+    { label: 'Gratis AI-scan', href: siteConfig.external.scannerUrl },
     { label: 'Plan een gratis gesprek', href: '/contact/', isButton: true },
   ],
   en: [
@@ -28,12 +29,14 @@ export const navigation: Record<Locale, NavItem[]> = {
     { label: 'Cases', href: '/en/cases/' },
     { label: 'About', href: '/en/about-joost/' },
     { label: 'Knowledge', href: '/en/guides/' },
+    { label: 'Free AI scan (NL)', href: siteConfig.external.scannerUrl },
     { label: 'Contact', href: '/en/contact/', isButton: true },
   ],
   es: [
     { label: 'Servicios', href: '/es/', children: [{label:'MKB · NXG Growth (NL)',href:'/landermkb/'},{label:'Coach Accelerator',href:'/es/coach-accelerator/'}] },
     { label: 'Casos', href: '/es/casos/' },
     { label: 'Sobre Joost', href: '/es/sobre-joost/' },
+    { label: 'Escáner IA gratis (NL)', href: siteConfig.external.scannerUrl },
     { label: 'Contacto', href: '/es/contacto/', isButton: true },
   ],
 };
