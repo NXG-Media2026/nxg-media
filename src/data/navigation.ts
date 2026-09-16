@@ -7,13 +7,16 @@ export interface NavItem {
   isButton?: boolean;
 }
 
+// Tijdelijk verborgen op de homepage; zet terug op true om te herstellen.
+export const SHOW_HOME_PRICING = false;
+
 export const navigation: Record<Locale, NavItem[]> = {
   nl: [
     { label: 'Diensten', href: '/#diensten', children: [
       { label: 'MKB · NXG Growth', href: '/landermkb/' },
       { label: 'Coach Accelerator', href: '/coach-accelerator/' },
     ]},
-    { label: 'Pakketten', href: '/#pakketten' },
+    ...(SHOW_HOME_PRICING ? [{ label: 'Pakketten', href: '/#pakketten' }] : []),
     { label: 'Cases', href: '/cases/' },
     { label: 'Over Joost', href: '/over-joost/' },
     { label: 'Kennis', href: '/guides/' },

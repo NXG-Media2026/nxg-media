@@ -3,8 +3,8 @@
 
 /diensten /#diensten 301
 /diensten/ /#diensten 301
-/pakketten /#pakketten 301
-/pakketten/ /#pakketten 301
+/pakketten /landermkb/#investering 302
+/pakketten/ /landermkb/#investering 302
 /en/services /en/ 301
 /en/services/ /en/ 301
 /es/servicios /es/ 301
