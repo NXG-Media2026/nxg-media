@@ -26,7 +26,7 @@ export const navigation: Record<Locale, NavItem[]> = {
   ],
   en: [
     { label: 'Services', href: '/en/', children: [
-      { label: 'SMB · NXG AI Search System', href: '/landermkb/' },
+      { label: 'SMB · NXG AI Search System', href: '/en/nxg-growth/' },
       { label: 'Coach Accelerator', href: '/en/coach-accelerator/' },
     ]},
     ...(SHOW_HOME_PRICING ? [{ label: 'Packages', href: '/en/#packages' }] : []),
@@ -39,7 +39,7 @@ export const navigation: Record<Locale, NavItem[]> = {
   ],
   es: [
     { label: 'Servicios', href: '/es/', children: [
-      { label: 'PYMES · Sistema NXG AI Search', href: '/landermkb/' },
+      { label: 'PYMES · Sistema NXG AI Search', href: '/es/nxg-growth/' },
       { label: 'Coach Accelerator', href: '/es/coach-accelerator/' },
     ]},
     ...(SHOW_HOME_PRICING ? [{ label: 'Paquetes', href: '/es/#paquetes' }] : []),

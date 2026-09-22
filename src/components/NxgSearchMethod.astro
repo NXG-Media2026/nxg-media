@@ -1,18 +1,25 @@
 ---
-interface Props { ctaHref: string }
-const { ctaHref } = Astro.props;
+import type { Locale } from '../data/site';
+interface Props { ctaHref: string; locale?: Locale }
+const { ctaHref, locale = 'nl' } = Astro.props;
+
+const i18n = {
+  nl: { eyebrow: 'ONZE METHODE. JOUW VOLGENDE AANVRAGEN.', heading: 'HET NXG', headingSpan: 'AI-SEARCH-SYSTEEM.', intro: 'Jouw klant zoekt. Wij zorgen dat alles samenwerkt om van die zoektocht een aanvraag te maken.', step1: 'IN BEELD KOMEN.', step1p: 'AI-vindbaarheid in Google, ChatGPT, Gemini, Perplexity, Claude, Grok en Bing. Aangevuld met AI Search Ads waar die jouw doelgroep bereiken.', step2: 'GEKOZEN WORDEN.', step2p: 'Een website die laat zien waarom jij de juiste keuze bent. Met jouw expertise, bewijs en een duidelijke stap naar contact.', step3: 'AANVRAGEN BINNENHALEN.', step3p: 'We meten de aanvragen en verbeteren je website en campagnes. Alles gericht op het afgesproken resultaat.', newsLabel: 'NIEUW IN NEDERLAND', newsHeading: 'OOK CHATGPT ADS.', newsBody: 'We zetten ChatGPT Ads in als het past bij jouw bedrijf. Als onderdeel van het NXG AI-Search-systeem.', cta: 'Bekijk mijn AI-Search-kansen' },
+  en: { eyebrow: 'OUR METHOD. YOUR NEXT ENQUIRIES.', heading: 'THE NXG', headingSpan: 'AI SEARCH SYSTEM.', intro: 'Your client is searching. We make sure everything works together to turn that search into an enquiry.', step1: 'GET FOUND.', step1p: 'AI visibility in Google, ChatGPT, Gemini, Perplexity, Claude, Grok and Bing. Supplemented with AI Search Ads where they reach your target audience.', step2: 'GET CHOSEN.', step2p: 'A website that shows why you are the right choice. With your expertise, proof and a clear step to get in touch.', step3: 'WIN ENQUIRIES.', step3p: 'We measure the enquiries and improve your website and campaigns. Everything focused on the agreed result.', newsLabel: 'NEW IN THE NETHERLANDS', newsHeading: 'ALSO CHATGPT ADS.', newsBody: 'We deploy ChatGPT Ads when it fits your business. As part of the NXG AI Search system.', cta: 'View my AI Search opportunities' },
+  es: { eyebrow: 'NUESTRO MÉTODO. TUS PRÓXIMAS SOLICITUDES.', heading: 'EL SISTEMA', headingSpan: 'NXG AI SEARCH.', intro: 'Tu cliente está buscando. Nosotros nos aseguramos de que todo trabaje en conjunto para convertir esa búsqueda en una solicitud.', step1: 'SER ENCONTRADO.', step1p: 'Visibilidad IA en Google, ChatGPT, Gemini, Perplexity, Claude, Grok y Bing. Complementado con AI Search Ads donde alcancen a tu público objetivo.', step2: 'SER ELEGIDO.', step2p: 'Una web que muestra por qué tú eres la opción correcta. Con tu experiencia, pruebas y un paso claro hacia el contacto.', step3: 'GANAR SOLICITUDES.', step3p: 'Medimos las solicitudes y mejoramos tu web y campañas. Todo enfocado en el resultado acordado.', newsLabel: 'NUEVO EN LOS PAÍSES BAJOS', newsHeading: 'TAMBIÉN CHATGPT ADS.', newsBody: 'Desplegamos ChatGPT Ads cuando encaja con tu negocio. Como parte del sistema NXG AI Search.', cta: 'Ver mis oportunidades en AI Search' },
+}[locale];
 ---
 <section class="nxg-method section" id="nxg-systeem">
   <div class="wrap">
-    <p class="eyebrow">ONZE METHODE. JOUW VOLGENDE AANVRAGEN.</p>
-    <h2>HET NXG<br /><span>AI-SEARCH-SYSTEEM.</span></h2>
-    <p class="method-intro">Jouw klant zoekt. Wij zorgen dat alles samenwerkt om van die zoektocht een aanvraag te maken.</p>
+    <p class="eyebrow">{i18n.eyebrow}</p>
+    <h2>{i18n.heading}<br /><span>{i18n.headingSpan}</span></h2>
+    <p class="method-intro">{i18n.intro}</p>
     <div class="method-steps">
-      <article><b>01</b><h3>IN BEELD KOMEN.</h3><p>AI-vindbaarheid in Google, ChatGPT, Gemini, Perplexity, Claude, Grok en Bing. Aangevuld met AI Search Ads waar die jouw doelgroep bereiken.</p></article>
-      <article><b>02</b><h3>GEKOZEN WORDEN.</h3><p>Een website die laat zien waarom jij de juiste keuze bent. Met jouw expertise, bewijs en een duidelijke stap naar contact.</p></article>
-      <article><b>03</b><h3>AANVRAGEN BINNENHALEN.</h3><p>We meten de aanvragen en verbeteren je website en campagnes. Alles gericht op het afgesproken resultaat.</p></article>
+      <article><b>01</b><h3>{i18n.step1}</h3><p>{i18n.step1p}</p></article>
+      <article><b>02</b><h3>{i18n.step2}</h3><p>{i18n.step2p}</p></article>
+      <article><b>03</b><h3>{i18n.step3}</h3><p>{i18n.step3p}</p></article>
     </div>
-    <div class="method-news" id="chatgpt-ads"><img src="/lander-assets/platforms/openai.svg" alt="ChatGPT" width="54" height="54" loading="lazy" /><div><span>NIEUW IN NEDERLAND</span><h3>OOK CHATGPT ADS.</h3><p>We zetten ChatGPT Ads in als het past bij jouw bedrijf. Als onderdeel van het NXG AI-Search-systeem.</p></div><a class="button yellow" href={ctaHref}>Bekijk mijn AI-Search-kansen <span aria-hidden="true">↗</span></a></div>
+    <div class="method-news" id="chatgpt-ads"><img src="/lander-assets/platforms/openai.svg" alt="ChatGPT" width="54" height="54" loading="lazy" /><div><span>{i18n.newsLabel}</span><h3>{i18n.newsHeading}</h3><p>{i18n.newsBody}</p></div><a class="button yellow" href={ctaHref}>{i18n.cta} <span aria-hidden="true">↗</span></a></div>
   </div>
 </section>
 <style>
