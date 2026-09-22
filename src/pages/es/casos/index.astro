@@ -3,11 +3,10 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import BreadcrumbNav from '../../../components/BreadcrumbNav.astro';
 import ClientResults from '../../../components/ClientResults.astro';
+import MkbCaseProof from '../../../components/MkbCaseProof.astro';
 import VideoTestimonialCarousel from '../../../components/VideoTestimonialCarousel.astro';
-import CTABand from '../../../components/CTABand.astro';
-import ScannerChooser from '../../../components/ScannerChooser.astro';
 import { siteConfig } from '../../../data/site';
-import { t } from '../../../i18n/utils';
+import { t, localizePath } from '../../../i18n/utils';
 import { buildHreflangTrilingual } from '../../../i18n/hreflang';
 import { getTestimonials } from '../../../data/testimonials';
 import { videoTestimonials } from '../../../data/videoTestimonials';
@@ -15,14 +14,10 @@ import { videoTestimonials } from '../../../data/videoTestimonials';
 const locale = 'es';
 const hreflang = buildHreflangTrilingual('/cases/', '/en/cases/', '/es/casos/');
 const cases = (await getCollection('cases')).filter((c) => c.data.locale === locale).sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
-const nlCases = cases.length === 0 ? (await getCollection('cases')).filter((c) => c.data.locale === 'nl').sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99)) : [];
-const displayCases = cases.length > 0 ? cases : nlCases;
-const casesBasePath = cases.length > 0 ? '/es/casos' : '/cases';
-
 const testimonials = getTestimonials({ locale: 'es' });
 
 const breadcrumbs = [
-  { label: t('breadcrumb.home', locale), href: '/es/' },
+  { label: t('breadcrumb.home', locale), href: localizePath('/', locale) },
   { label: t('breadcrumb.cases', locale) },
 ];
 ---
@@ -36,19 +31,20 @@ const breadcrumbs = [
   <BreadcrumbNav items={breadcrumbs} />
 
   {/* ── Page Intro ── */}
-  <section class="py-16 md:py-24">
-    <div class="max-w-[1260px] mx-auto px-5 md:px-8">
-      <p class="eyebrow text-primary mb-4">RESULTADOS PROBADOS</p>
-      <h1 class="font-heading font-extrabold text-4xl md:text-[3.5rem] lg:text-[4rem] leading-[0.98] text-text mb-6 uppercase">Casos y Resultados</h1>
+  <section class="py-12 md:py-16 lg:py-20">
+    <div class="max-w-4xl mx-auto px-4 md:px-6">
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl text-text mb-4">TRABAJO REAL.<br /><span>RESULTADOS REALES.</span></h1>
       <p class="text-lg text-text-muted leading-relaxed max-w-2xl">
-        Sin promesas vagas — solo números concretos. Esto es lo que pasa cuando dejas de hacer campañas aisladas y construyes un sistema que trabaja para ti.
+        Sin promesas vagas, solo números concretos. Esto es lo que pasa cuando dejas de hacer campañas aisladas y construyes un sistema que trabaja para ti.
       </p>
     </div>
   </section>
 
+  <MkbCaseProof />
+
   {/* ── Featured Cases (same visual style as homepage) ── */}
   <ClientResults
-    title="Casos destacados"
+    title="Coaches y expertos"
     featuredCases={[
       {
         testimonial: testimonials.find((t) => t.id === 'rolf-happywithyoga')!,
@@ -117,14 +113,14 @@ const breadcrumbs = [
     locale="es"
   />
 
-  {/* ── All Case Studies ── */}
-  {displayCases.length > 0 && (
-    <section class="py-16 md:py-24">
-      <div class="max-w-[1260px] mx-auto px-5 md:px-8">
-        <h2 class="font-heading font-extrabold text-3xl md:text-[2.5rem] leading-[0.98] text-text mb-10 uppercase">Todos los casos</h2>
+  {/* ── All Case Studies (if there are more beyond featured) ── */}
+  {cases.length > 0 && (
+    <section class="py-12 md:py-16">
+      <div class="max-w-4xl mx-auto px-4 md:px-6">
+        <h2 class="font-heading text-2xl md:text-3xl text-text mb-8">Explora los casos de coaches</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {displayCases.map((c) => (
-            <a href={`${casesBasePath}/${c.data.pageSlug}/`} class="group block bg-white border border-border rounded-card p-6 hover:border-accent/30 hover:shadow-lg transition-all duration-300">
+          {cases.map((c) => (
+            <a href={`/es/casos/${c.data.pageSlug}/`} class="group block bg-white border border-border rounded-card p-6 hover:border-accent/30 hover:shadow-lg transition-all duration-300">
               <span class="text-xs font-medium text-accent uppercase tracking-wider mb-2 block">{c.data.clientType}</span>
               <h3 class="font-heading text-lg text-text mb-2 group-hover:text-accent transition-colors">{c.data.title}</h3>
               {c.data.proofStats.length > 0 && (
@@ -147,22 +143,10 @@ const breadcrumbs = [
   <VideoTestimonialCarousel
     title="Lo que dicen los clientes sobre trabajar con Joost"
     subtitle="Experiencias reales de emprendedores que colaboran exitosamente con Joost"
-    eyebrow="LO QUE DICEN LOS CLIENTES"
     testimonials={videoTestimonials}
   />
 
   {/* ── CTA ── */}
-  <CTABand
-    title="¿Listo para construir tu sistema de crecimiento?"
-    subtitle="Empieza con el análisis gratuito y descubre lo que es posible."
-    ctaText="Haz el análisis de crecimiento"
-    openChooser
-    eventName="scanner_request_submitted"
-    locale={locale}
-    pageType="overview"
-    pageSlug="casos"
-  />
-
-  <ScannerChooser locale="es" />
+  <section class="py-12 md:py-16 bg-bg-alt"><div class="max-w-4xl mx-auto px-4 md:px-6"><h2 class="font-heading mb-6">¿Qué se adapta a tu negocio?</h2><div class="grid md:grid-cols-2 gap-6"><a class="p-6 bg-white border border-border rounded-card" href="/landermkb/"><h3 class="font-heading mb-3">PYMES, consultorios y proveedores de servicios</h3><p class="text-text-muted">Descubre NXG Growth: AI Search, tu web y campañas como un solo enfoque.</p></a><a class="p-6 bg-white border border-border rounded-card" href="/es/coach-accelerator/"><h3 class="font-heading mb-3">Coaches y expertos</h3><p class="text-text-muted">Descubre Coach Accelerator: de experiencia y oferta a productos de entrada y clientes.</p></a></div></div></section>
 
 </BaseLayout>
