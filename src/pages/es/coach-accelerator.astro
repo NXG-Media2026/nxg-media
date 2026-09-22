@@ -25,8 +25,6 @@ import rolfWhatsApp from '../../assets/images/cases/rolf-happywithyoga-whatsapp-
 
 const locale = 'es';
 
-const hreflang = buildHreflangTrilingual('/coach-accelerator/', '/en/coach-accelerator/', '/es/coach-accelerator/');
-
 const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
 const logos = Object.entries(logoFiles)
   .filter(([path]) => /logo/i.test(path.split('/').pop()!))
@@ -44,11 +42,15 @@ const breadcrumbs = [
 const faqItems = [
   {
     question: '¿Esto es solo visibilidad en IA?',
-    answer: 'La visibilidad en IA es el punto de entrada y diagnóstico. El programa trata sobre el fundamento detrás: posicionamiento, pruebas, contenido, ruta de entrada y seguimiento. Ser encontrado más fácilmente tiene poco valor si los visitantes no entienden por qué tú eres la opción lógica.',
+    answer: 'La visibilidad en IA es el punto de entrada. El programa trata sobre el fundamento detrás: posicionamiento, pruebas, contenido, ruta de entrada y seguimiento. Ser encontrado más fácilmente tiene poco valor si los visitantes no entienden por qué tú eres la opción lógica.',
+  },
+  {
+    question: '¿El fundamento web está incluido en Coach Accelerator?',
+    answer: 'Sí. Tu sitio web, posición de experto y visibilidad forman la base de Coach Accelerator. Sobre eso construimos la ruta de entrada, seguimiento por email, estrategia publicitaria, test de leads y optimización hacia clientes. El fundamento es parte del programa.',
   },
   {
     question: '¿Necesito construir una plataforma online de inmediato?',
-    answer: 'La primera fase es deliberadamente pequeña: un posicionamiento claro, una primera ruta de entrada y pruebas de que las personas están dispuestas a dar el primer paso. Solo cuando eso funciona, seguimos construyendo. Muchos coaches nunca inician la fase 3 — comienzan con una ruta compacta que genera pruebas.',
+    answer: 'La primera fase es deliberadamente pequeña: un posicionamiento claro, una primera ruta de entrada y pruebas de que las personas están dispuestas a dar el primer paso. Solo cuando eso funciona, seguimos construyendo. Muchos coaches no inician la fase 3 — comienzan con una ruta compacta que genera pruebas.',
   },
   {
     question: '¿La publicidad todavía funciona para coaches?',
@@ -62,183 +64,242 @@ const faqItems = [
     question: '¿Esto es adecuado si aún no tengo una gran audiencia?',
     answer: 'Una gran audiencia no es un requisito, siempre que tu expertise y oferta sean suficientemente claras. Con una ruta pequeña probamos a qué responden las personas. A menudo el crecimiento no comienza con más alcance, sino con un posicionamiento más afilado y un primer paso más claro.',
   },
+  {
+    question: '¿Puedo recibir solo algunos consejos sueltos?',
+    answer: 'No como un programa de asesoramiento extenso. Este análisis está pensado para coaches y expertos que quieren saber qué ruta tiene más potencial comercial. Si solo buscas consejos gratuitos para quizá usarlos algún día, este programa no es el adecuado.',
+  },
+  {
+    question: '¿Qué pasa si resulta que hay poco potencial de crecimiento?',
+    answer: 'Entonces lo decimos honestamente. No todos los expertos o nichos son adecuados para este modelo. Preferimos no empezar a hacer un programa donde hay poca oportunidad comercial.',
+  },
 ];
 
 const faqForSchema = faqItems.map((item) => ({ question: item.question, answer: item.answer }));
 const faqForComponent = faqItems.map((item) => ({ q: item.question, a: item.answer }));
 
+const hreflang = buildHreflangTrilingual(
+  '/coach-accelerator/',
+  '/en/coach-accelerator/',
+  '/es/coach-accelerator/',
+);
+
 const serviceSchema = generateService({
-  name: 'Programa de Crecimiento Experto IA',
-  description: 'Construye una base de experto AI-ready alrededor de tu expertise. Para coaches y expertos que quieren ser encontrados y construir una ruta hacia consultas, productos y clientes de coaching.',
+  name: 'Coach Accelerator',
+  description: 'De expertise a consultas, inscripciones y clientes. Coach Accelerator Growth System desde €500/mes. Para coaches, terapeutas y expertos en conocimiento.',
   url: `${siteConfig.url}/es/coach-accelerator/`,
   serviceType: 'Expert Growth System',
 });
 ---
 
 <BaseLayout
-  title="Programa de Crecimiento para Coaches y Expertos | NXG Media"
-  description="Construye una base de experto AI-ready alrededor de tu expertise. Para coaches y expertos que quieren ser encontrados y construir una ruta hacia consultas, productos y clientes de coaching."
+  title="Coach Accelerator para Coaches y Expertos | NXG Media"
+  description="Tu expertise no es el problema. Tu sistema hacia clientes sí. Coach Accelerator desde €500/mes."
   canonical={`${siteConfig.url}/es/coach-accelerator/`}
   schemas={[
     generateBreadcrumbs(breadcrumbs.map((b) => ({ name: b.label, url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}/es/coach-accelerator/` }))),
     generateFAQPage(faqForSchema),
     serviceSchema,
   ]}
-  hreflang={hreflang}
   locale={locale}
+  hreflang={hreflang}
+  hideNewsletter={true}
+  hideStickyMobileCTA={true}
 >
   <BreadcrumbNav items={breadcrumbs} />
 
+
   {/* ── 1. HERO ── */}
-  <section class="relative py-16 md:py-24 lg:py-32 overflow-hidden">
-    <div class="absolute inset-0">
-      <Image
-        src={heroPhoto}
-        alt="Joost van Putten — estratega de crecimiento online para coaches y expertos"
-        widths={[800, 1200, 1600]}
-        sizes="100vw"
-        class="w-full h-full object-cover"
-        loading="eager"
-        decoding="async"
-      />
-      <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/40"></div>
+  <section class="refresh-sales-hero relative overflow-hidden bg-primary">
+    <div class="absolute inset-0 hidden md:block">
+      <Image src={heroPhoto} alt="" width={800} class="absolute right-0 top-0 h-full w-auto object-cover object-top opacity-[0.15]" loading="eager" />
     </div>
-    <div class="relative max-w-4xl mx-auto px-4 md:px-6">
-      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl text-text mb-5 leading-tight max-w-2xl">
-        Tu scan revela d&oacute;nde tu fundamento de experto tiene fugas. <em class="text-accent not-italic">Ahora construimos la ruta hacia consultas.</em>
-      </h1>
-      <p class="text-text-muted leading-relaxed mb-8 max-w-xl">
-        La visibilidad en IA es el punto de entrada. Pero cuando la IA no te entiende bien, suele ser el mismo problema que sienten los clientes potenciales: tu posicionamiento, pruebas, ruta de entrada y seguimiento a&uacute;n no est&aacute;n conectados de forma l&oacute;gica.
-      </p>
-      <div class="flex flex-col sm:flex-row items-start gap-3">
-        <a
-          href="#analyse"
-          class="inline-flex items-center px-8 py-4 text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-lg"
-        >
-          Que Joost determine mi ruta de crecimiento
-          <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
-        </a>
-        <a
-          href="#cases"
-          class="inline-flex items-center px-8 py-4 text-base font-medium text-primary border-2 border-primary hover:bg-primary/5 transition-colors rounded-button"
-        >
-          Ver los casos
-        </a>
-      </div>
-      <p class="text-xs text-text-muted mt-4">
-        Para coaches, terapeutas y expertos que quieren convertir su expertise en consultas, productos y clientes de coaching.
-      </p>
-    </div>
-  </section>
 
-  {/* ── 2. PROOF STRIP ── */}
-  <section class="bg-bg-alt border-y border-border">
-    <div class="max-w-4xl mx-auto px-4 md:px-6 py-8 md:py-10">
-      <p class="text-xs uppercase tracking-widest text-text-muted font-medium text-center mb-5">Lo que esto ya gener&oacute; para otros expertos</p>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-        <div>
-          <div class="font-heading text-2xl md:text-3xl text-primary">2 &rarr; 19</div>
-          <p class="text-xs text-text-muted mt-1">consultas/mes</p>
-          <p class="text-xs text-accent font-medium mt-0.5">Dr. Verena Mann</p>
-        </div>
-        <div>
-          <div class="font-heading text-2xl md:text-3xl text-primary">600+</div>
-          <p class="text-xs text-text-muted mt-1">gu&iacute;as vendidas</p>
-          <p class="text-xs text-accent font-medium mt-0.5">Coach Josine</p>
-        </div>
-        <div>
-          <div class="font-heading text-2xl md:text-3xl text-primary">&plusmn;&euro;10k/mes</div>
-          <p class="text-xs text-text-muted mt-1">ingresos por productos online</p>
-          <p class="text-xs text-accent font-medium mt-0.5">Tessa / Youlife</p>
-        </div>
-        <div>
-          <div class="font-heading text-2xl md:text-3xl text-primary">2.000</div>
-          <p class="text-xs text-text-muted mt-1">miembros de pago</p>
-          <p class="text-xs text-accent font-medium mt-0.5">Happy With Yoga</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    <div class="relative px-5 md:px-6 pt-10 pb-10 md:pt-14 md:pb-16">
+      <div class="max-w-2xl mx-auto">
+        <h1 class="font-heading text-[1.75rem] leading-[1.15] md:text-[2.75rem] md:leading-[1.1] text-white mb-4">
+          Tu expertise no es el problema.<br />
+          <em class="text-accent not-italic">Tu sistema hacia clientes sí.</em>
+        </h1>
 
-  {/* ── 3. REFRAME: FUNDAMENTO DE EXPERTO ── */}
-  <section class="py-14 md:py-20">
-    <div class="max-w-4xl mx-auto px-4 md:px-6">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-3">
-        Tu problema normalmente no es solo visibilidad. Es tu fundamento de experto.
-      </h2>
-      <p class="text-text-muted leading-relaxed mb-10 max-w-3xl">
-        Tu expertise puede ser fuerte, pero si tu fundamento online no muestra claramente por qu&eacute; eres la opci&oacute;n l&oacute;gica, qu&eacute; puede hacer alguien como primer paso y c&oacute;mo se construye la confianza, pierdes inter&eacute;s c&aacute;lido.
-      </p>
+        <p class="text-white/70 leading-relaxed mb-2 text-[0.9rem] md:text-base max-w-xl">
+          Para coaches, terapeutas y expertos que quieren más consultas, inscripciones y clientes a partir de su conocimiento &mdash; sin depender de publicaciones sueltas, DMs o llamadas de ventas directas.
+        </p>
+        <p class="text-white/90 font-medium mb-5 text-[0.9rem] md:text-base max-w-xl">
+          Construimos tu sistema de crecimiento completo: sitio web de experto, posicionamiento, ruta de entrada, seguimiento por email, publicidad y un camino desde el primer clic hasta el cliente que paga.
+        </p>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
-        <div class="bg-white rounded-card p-5 border border-border">
-          <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-3">
-            <span class="font-heading text-primary text-lg">1</span>
+        <p class="text-accent text-xs font-medium uppercase tracking-widest mb-3">Este modelo ya generó:</p>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6 max-w-lg">
+          <div class="bg-white/[0.08] border border-white/15 rounded-lg px-3 py-2 text-center">
+            <p class="font-heading text-lg text-white">2 &rarr; 19</p>
+            <p class="text-white/50 text-[0.6rem]">consultas/mes</p>
           </div>
-          <h3 class="font-heading text-lg text-text mb-1">Ser encontrado</h3>
-          <p class="text-sm text-text-muted leading-relaxed">IA, Google y visitantes entienden en qu&eacute; eres el experto.</p>
-        </div>
-        <div class="bg-white rounded-card p-5 border border-border">
-          <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center mb-3">
-            <span class="font-heading text-accent text-lg">2</span>
+          <div class="bg-white/[0.08] border border-white/15 rounded-lg px-3 py-2 text-center">
+            <p class="font-heading text-lg text-white">600+</p>
+            <p class="text-white/50 text-[0.6rem]">guías vendidas</p>
           </div>
-          <h3 class="font-heading text-lg text-text mb-1">Construir confianza</h3>
-          <p class="text-sm text-text-muted leading-relaxed">Tu m&eacute;todo, historia, pruebas y resultados est&aacute;n en el lugar correcto.</p>
-        </div>
-        <div class="bg-white rounded-card p-5 border border-border">
-          <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-3">
-            <span class="font-heading text-primary text-lg">3</span>
+          <div class="bg-white/[0.08] border border-white/15 rounded-lg px-3 py-2 text-center">
+            <p class="font-heading text-lg text-white">&euro;10k/mes</p>
+            <p class="text-white/50 text-[0.6rem]">ingresos por productos</p>
           </div>
-          <h3 class="font-heading text-lg text-text mb-1">Que las personas den el primer paso</h3>
-          <p class="text-sm text-text-muted leading-relaxed">Una gu&iacute;a, scan, masterclass o mini-producto hace que el primer paso sea f&aacute;cil.</p>
+          <div class="bg-white/[0.08] border border-white/15 rounded-lg px-3 py-2 text-center">
+            <p class="font-heading text-lg text-white">2.000</p>
+            <p class="text-white/50 text-[0.6rem]">miembros de pago</p>
+          </div>
         </div>
+
+        <div class="flex flex-col sm:flex-row items-start gap-3">
+          <a href="#analyse" class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-white bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg w-full sm:w-auto justify-center">
+            Comprueba mi potencial de crecimiento
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          </a>
+          <a href="#cases" class="inline-flex items-center px-8 py-4 text-base font-medium text-white/80 border border-white/20 hover:bg-white/5 transition-colors rounded-button w-full sm:w-auto justify-center">
+            Ver los casos de coaches
+          </a>
+        </div>
+
+        <p class="text-white/40 text-xs mt-4">Un programa de 90 días. Fecha de inicio a convenir.</p>
       </div>
     </div>
   </section>
 
-  {/* ── 4. RUTA DE 90 D&Iacute;AS ── */}
-  <section class="py-14 md:py-20 bg-bg-alt">
-    <div class="max-w-4xl mx-auto px-4 md:px-6">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-3">En los primeros 90 d&iacute;as construimos tu primera ruta de crecimiento</h2>
-      <p class="text-text-muted leading-relaxed mb-10 max-w-3xl">
-        No una gran plataforma de inmediato. Primero una ruta compacta que demuestre que las personas est&aacute;n dispuestas a dar el primer paso.
-      </p>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 mb-8">
-        <div class="bg-white rounded-card p-5 border border-border">
-          <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-primary/10 text-primary rounded-full mb-3">Fase 1</span>
-          <h3 class="font-heading text-lg text-text mb-2">Posici&oacute;n de experto + p&aacute;ginas de nicho</h3>
-          <p class="text-sm text-text-muted leading-relaxed">&iquest;Para qui&eacute;n eres la opci&oacute;n l&oacute;gica, qu&eacute; problema resuelves y c&oacute;mo se hace visible para IA, Google y visitantes?</p>
+  {/* ── 2. DOLOR — BLOQUE OSCURO DE CONTRASTE ── */}
+  <section class="px-4 md:px-6 py-14 md:py-20 bg-primary-dark">
+    <div class="max-w-2xl mx-auto">
+      <p class="text-accent text-xs font-semibold uppercase tracking-[0.2em] mb-6 text-center">Cómo se siente ahora mismo</p>
+
+      <div class="space-y-6 mb-10">
+        {[
+          'Vives de referencias y boca a boca. Funciona… hasta que se detiene.',
+          'Sabes que "deberías hacer algo con el marketing", pero el trabajo con clientes siempre va primero.',
+          'Recibes reacciones a tu contenido, pero no suficientes consultas.',
+          'Tu sitio web cuenta quién eres, pero no construye una ruta hacia inscripción, confianza y consulta.',
+          'Cuando todo se queda en silencio, en realidad ya es demasiado tarde para construir con calma.',
+        ].map((line) => (
+          <div class="flex items-start gap-3">
+            <span class="shrink-0 w-1.5 h-1.5 rounded-full bg-accent mt-2"></span>
+            <p class="text-white/80 text-[0.95rem] md:text-base leading-relaxed">{line}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="border-t border-white/10 pt-8">
+        <p class="text-white font-heading text-xl md:text-2xl leading-snug text-center">
+          No eres malo en los negocios. Solo te falta un sistema que trabaje para ti, incluso cuando estás ocupado con clientes.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  {/* ── 3. EL VIEJO ENFOQUE YA NO FUNCIONA ── */}
+  <section class="px-4 md:px-6 py-12 md:py-16">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-8 text-center">El viejo enfoque ya no funciona</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <div class="bg-white rounded-card p-5 border border-border shadow-sm">
+          <div class="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center mb-3">
+            <svg class="w-4 h-4 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+          </div>
+          <p class="font-heading text-base text-text mb-2">E-books y descargas gratuitas</p>
+          <p class="text-sm text-text-muted leading-relaxed">Compartes tus mejores consejos en un PDF. La gente lo descarga, pero la mayoría de los leads luego desaparecen.</p>
         </div>
-        <div class="bg-white rounded-card p-5 border border-border">
-          <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/10 text-accent rounded-full mb-3">Fase 2</span>
-          <h3 class="font-heading text-lg text-text mb-2">Ruta de entrada + landing page</h3>
-          <p class="text-sm text-text-muted leading-relaxed">Una gu&iacute;a, scan, masterclass o mini-producto con una p&aacute;gina que lleva a las personas al siguiente paso.</p>
+        <div class="bg-white rounded-card p-5 border border-border shadow-sm">
+          <div class="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center mb-3">
+            <svg class="w-4 h-4 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+          </div>
+          <p class="font-heading text-base text-text mb-2">&lsquo;Reserva una llamada gratuita&rsquo;</p>
+          <p class="text-sm text-text-muted leading-relaxed">Atraes personas que solo quieren charlar, aún no tienen confianza o no se presentan.</p>
         </div>
-        <div class="bg-white rounded-card p-5 border border-border">
-          <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-primary/10 text-primary rounded-full mb-3">Fase 3</span>
-          <h3 class="font-heading text-lg text-text mb-2">Seguimiento por email + test de tr&aacute;fico</h3>
-          <p class="text-sm text-text-muted leading-relaxed">Un flujo corto que construye confianza y una primera prueba con publicidad o canales existentes.</p>
+        <div class="bg-white rounded-card p-5 border border-border shadow-sm">
+          <div class="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center mb-3">
+            <svg class="w-4 h-4 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+          </div>
+          <p class="font-heading text-base text-text mb-2">Esperar referencias</p>
+          <p class="text-sm text-text-muted leading-relaxed">Funciona mientras la gente te recomienda. Pero no tienes control sobre cuándo llega el próximo cliente.</p>
         </div>
       </div>
 
-      <p class="text-accent font-medium text-center">
-        Los primeros 90 d&iacute;as est&aacute;n dise&ntilde;ados para crear pruebas &mdash; no para construir una gran plataforma de inmediato.
+      <p class="text-text font-medium text-center text-[0.95rem]">
+        Por eso no construimos una descarga suelta o una llamada sin compromiso. Construimos una ruta de interés a inscripción a consulta.
       </p>
     </div>
   </section>
 
-  {/* ── 5. CASOS / PRUEBAS ── */}
+
+  {/* ── 3b. UNA RUTA DE CLIC A CLIENTE ── */}
+  <section class="px-4 md:px-6 py-12 md:py-16">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-3 text-center">Una ruta de clic a cliente</h2>
+      <p class="text-text-muted text-center mb-8 max-w-2xl mx-auto text-[0.95rem]">
+        Sin campañas aisladas. Sin &lsquo;más visibilidad&rsquo; sin seguimiento. Un sistema donde contenido, productos, emails y anuncios trabajan juntos como un camino &mdash; desde el primer clic hasta el cliente que paga.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+        <div class="bg-white rounded-card p-5 border border-border">
+          <p class="font-heading text-base text-text mb-2">Una entrada que puede pagarse sola</p>
+          <p class="text-sm text-text-muted leading-relaxed">Una guía, mini-curso, quiz o masterclass puede hacer más pequeño el paso hacia tu oferta y recuperar parcialmente los costes publicitarios.</p>
+        </div>
+        <div class="bg-white rounded-card p-5 border border-border">
+          <p class="font-heading text-base text-text mb-2">Leads que se califican solos</p>
+          <p class="text-sm text-text-muted leading-relaxed">Las personas muestran a través de su elección, quiz, producto o inscripción dónde están y qué necesitan.</p>
+        </div>
+        <div class="bg-white rounded-card p-5 border border-border">
+          <p class="font-heading text-base text-text mb-2">Seguimiento que construye confianza</p>
+          <p class="text-sm text-text-muted leading-relaxed">Después del primer paso, los leads reciben una serie que genera confianza antes de que ofrezcas un programa o coaching.</p>
+        </div>
+        <div class="bg-white rounded-card p-5 border border-border">
+          <p class="font-heading text-base text-text mb-2">Crecimiento predecible, sin picos y valles</p>
+          <p class="text-sm text-text-muted leading-relaxed">Contenido, productos, emails y anuncios forman una ruta. Esa es la diferencia entre visibilidad y crecimiento.</p>
+        </div>
+      </div>
+
+      {/* Compact flow */}
+      <div class="bg-bg-alt rounded-card p-4 border border-border max-w-2xl mx-auto mb-8">
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-0 text-center">
+          {[
+            { label: 'Atención', sub: 'Contenido / IA / anuncios' },
+            { label: 'Ruta de entrada', sub: 'Guía / scan / masterclass' },
+            { label: 'Confianza', sub: 'Email / pruebas' },
+            { label: 'Cliente', sub: 'Consulta / producto / programa' },
+          ].map((step, i) => (
+            <>
+              <div class="flex-1 px-2 py-1">
+                <p class="text-xs font-medium text-text">{step.label}</p>
+                <p class="text-[0.6rem] text-text-muted">{step.sub}</p>
+              </div>
+              {i < 3 && <span class="hidden sm:block text-accent text-sm shrink-0">&rarr;</span>}
+            </>
+          ))}
+        </div>
+      </div>
+
+      <div class="max-w-2xl mx-auto text-center">
+        <p class="text-text text-sm leading-relaxed mb-2">
+          <strong>doc.veri</strong> es el ejemplo de lo que sucede cuando un experto ya no solo tiene un sitio web, sino un sistema online que puede construir confianza y generar consultas.
+        </p>
+        <p class="text-text font-medium text-sm">
+          Esa es la diferencia entre estar presente online y ser elegido online.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  {/* ── 4. CASOS / PRUEBAS ── */}
   <section id="cases" class="py-16 md:py-24 bg-primary">
     <div class="max-w-4xl mx-auto px-4 md:px-6">
-      <h2 class="font-heading text-3xl md:text-4xl text-white mb-3">Esto es lo que puede suceder cuando el fundamento es correcto</h2>
-      <p class="text-white/60 mb-12 max-w-3xl">
-        No todos los coaches construyen una gran plataforma de inmediato. A menudo comienza m&aacute;s peque&ntilde;o: empaquetar la expertise de forma m&aacute;s afilada, construir una primera ruta de entrada y demostrar que las personas est&aacute;n dispuestas a dar el primer paso.
+      <h2 class="font-heading text-3xl md:text-4xl text-white mb-3">El mismo patrón. Diferentes fases.</h2>
+      <p class="text-white/60 mb-4 max-w-3xl">
+        Estos no son historias de éxito aisladas. Es el mismo patrón en diferentes fases: empaquetar expertise de forma más afilada, construir una primera ruta de entrada, dar seguimiento con confianza y luego dirigir hacia consulta, producto o cliente.
+      </p>
+      <p class="text-accent text-sm font-medium mb-12">
+        Estos éxitos no vinieron de un truco. Vinieron de un sistema: posicionamiento, oferta, ruta de entrada, seguimiento, tráfico y optimización.
       </p>
 
-      {/* ── Caso 1: Dr. Verena Mann ── */}
+      {/* Caso 1: Dr. Verena Mann */}
       <div class="bg-white/5 backdrop-blur border border-white/10 rounded-card p-5 md:p-8 mb-8">
         <div class="flex items-center gap-4 mb-5">
           <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-accent/30 shrink-0">
@@ -248,8 +309,8 @@ const serviceSchema = generateService({
             <p class="text-white font-medium text-sm">Dr. Verena Mann</p>
             <a href="https://doc-veri.pages.dev" target="_blank" rel="noopener" class="text-accent/70 hover:text-accent text-xs transition-colors">doc-veri.pages.dev</a>
           </div>
-          <div class="ml-auto flex items-center gap-3">
-            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full">Plataforma de experto</span>
+          <div class="ml-auto">
+            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full">De posición de experto a consultas</span>
           </div>
         </div>
 
@@ -269,10 +330,7 @@ const serviceSchema = generateService({
         </div>
 
         <p class="text-white/70 text-sm leading-relaxed mb-3">
-          Fuerte expertise y una comunidad activa, pero apenas consultas de personas que a&uacute;n no la conoc&iacute;an. Al empaquetar su expertise de forma m&aacute;s concreta alrededor de temas, problemas de clientes y pruebas, no solo se hizo m&aacute;s visible sino tambi&eacute;n m&aacute;s l&oacute;gica para contactar.
-        </p>
-        <p class="text-accent text-sm font-medium italic">
-          &ldquo;De una mejor presencia online a consultas de personas que a&uacute;n no la conoc&iacute;an.&rdquo;
+          Fuerte expertise y una comunidad activa, pero apenas consultas de personas que aún no la conocían. Al empaquetar su expertise de forma más concreta alrededor de temas, problemas de clientes y pruebas, no solo se hizo más visible sino también más lógica para contactar.
         </p>
 
         <div class="grid grid-cols-2 gap-3 mt-5">
@@ -280,18 +338,16 @@ const serviceSchema = generateService({
             <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
               <Image src={proofVerenaAi} alt="ChatGPT menciona a Dr. Verena Mann como experta adecuada" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
             </div>
-            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">Respuesta de IA: &ldquo;eine passende Expertin&rdquo;</p>
           </div>
           <div class="lightbox-trigger cursor-zoom-in group">
             <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
-              <Image src={proofVerenaChatgpt} alt="ChatGPT recomienda a Dr. Verena Mann con enlace directo" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
+              <Image src={proofVerenaChatgpt} alt="ChatGPT con enlace directo a Dr. Verena Mann" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
             </div>
-            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">ChatGPT con enlace directo a su sitio</p>
           </div>
         </div>
       </div>
 
-      {/* ── Caso 2: Coach Josine ── */}
+      {/* Caso 2: Coach Josine */}
       <div class="bg-white/5 backdrop-blur border border-white/10 rounded-card p-5 md:p-8 mb-8">
         <div class="flex items-center gap-4 mb-5">
           <div>
@@ -299,14 +355,14 @@ const serviceSchema = generateService({
             <a href="https://www.coachjosine.nl" target="_blank" rel="noopener" class="text-accent/70 hover:text-accent text-xs transition-colors">coachjosine.nl</a>
           </div>
           <div class="ml-auto">
-            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full">Primera tracci&oacute;n</span>
+            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full">De guía a interés en programa</span>
           </div>
         </div>
 
         <div class="grid grid-cols-3 gap-3 mb-5">
           <div class="bg-white/5 rounded-lg p-3 text-center">
             <p class="font-heading text-xl text-accent">600+</p>
-            <p class="text-[10px] text-white/50">gu&iacute;as vendidas</p>
+            <p class="text-[10px] text-white/50">guías vendidas</p>
           </div>
           <div class="bg-white/5 rounded-lg p-3 text-center">
             <p class="font-heading text-xl text-accent">80</p>
@@ -314,41 +370,36 @@ const serviceSchema = generateService({
           </div>
           <div class="bg-white/5 rounded-lg p-3 text-center">
             <p class="font-heading text-xl text-accent">18</p>
-            <p class="text-[10px] text-white/50">quer&iacute;an el programa directamente</p>
+            <p class="text-[10px] text-white/50">querían el programa directamente</p>
           </div>
         </div>
 
         <p class="text-white/70 text-sm leading-relaxed mb-3">
-          Ten&iacute;a expertise, pero ninguna ruta de entrada digital. Hicimos su primera gu&iacute;a concreta, construimos la landing page y la conectamos a una ruta de masterclass. Las personas compraron la gu&iacute;a, asistieron a la masterclass y preguntaron por el programa.
-        </p>
-        <p class="text-accent text-sm font-medium italic">
-          &ldquo;No una plataforma de inmediato, sino primero pruebas de que las personas est&aacute;n dispuestas a dar el primer paso.&rdquo;
+          Tenía expertise, pero ninguna ruta de entrada digital. Hicimos su primera guía concreta, construimos la landing page y la conectamos a una ruta de masterclass. Las personas compraron la guía, asistieron a la masterclass y preguntaron por el programa.
         </p>
 
         <div class="grid grid-cols-2 gap-3 mt-5">
           <div class="lightbox-trigger cursor-zoom-in group">
             <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
-              <Image src={josineProduct} alt="Gu&iacute;a alimentaria Coach Josine — p&aacute;gina de producto" width={600} quality={80} class="w-full h-auto" loading="lazy" />
+              <Image src={josineProduct} alt="Guía alimentaria Coach Josine" width={600} quality={80} class="w-full h-auto" loading="lazy" />
             </div>
-            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">La gu&iacute;a alimentaria que gener&oacute; las pruebas</p>
           </div>
           <div class="lightbox-trigger cursor-zoom-in group">
             <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
               <Image src={josineWhatsApp} alt="Mensaje de WhatsApp de Josine sobre resultados" width={600} quality={80} class="w-full h-auto" loading="lazy" />
             </div>
-            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">Respuesta de Josine</p>
           </div>
         </div>
       </div>
 
-      {/* ── Caso 3: Tessa / Youlife ── */}
+      {/* Caso 3: Tessa / Youlife */}
       <div class="bg-white/5 backdrop-blur border border-white/10 rounded-card p-5 md:p-8 mb-8">
         <div class="flex items-center gap-4 mb-5">
           <div>
             <p class="text-white font-medium text-sm">Tessa &mdash; Youlife</p>
           </div>
           <div class="ml-auto">
-            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full">Crecimiento de producto</span>
+            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full">De productos sueltos a ingresos por productos</span>
           </div>
         </div>
 
@@ -368,18 +419,17 @@ const serviceSchema = generateService({
         </div>
 
         <p class="text-white/70 text-sm leading-relaxed mb-3">
-          No comenz&oacute; con una gran plataforma, sino con productos individuales y la pregunta: &iquest;c&oacute;mo hacemos esto predecible? Desde un producto construimos hacia m&uacute;ltiples productos, flujos de email y consultas de coaching.
+          No comenzó con una gran plataforma, sino con productos individuales y la pregunta: ¿cómo hacemos esto predecible? Desde un producto construimos hacia múltiples productos, flujos de email y consultas de coaching.
         </p>
         <p class="text-accent text-sm font-medium italic">
-          &ldquo;La Gu&iacute;a se vende muy bien. Ya es rentable.&rdquo;
+          &ldquo;La Guía se vende muy bien. Ya es rentable.&rdquo;
         </p>
 
         <div class="grid grid-cols-2 gap-3 mt-5">
           <div class="lightbox-trigger cursor-zoom-in group">
             <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
-              <Image src={tessaWhatsApp} alt="Mensaje de WhatsApp de Tessa — resultados Youlife" width={600} quality={80} class="w-full h-auto" loading="lazy" />
+              <Image src={tessaWhatsApp} alt="Mensaje de WhatsApp de Tessa" width={600} quality={80} class="w-full h-auto" loading="lazy" />
             </div>
-            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">Respuesta de Tessa</p>
           </div>
           <div class="bg-white/5 rounded-lg p-4 flex items-center justify-center">
             <a href="/es/casos/tessa-youlife/" class="text-accent hover:text-accent-dark text-sm font-medium transition-colors">Ver el caso completo &rarr;</a>
@@ -387,14 +437,14 @@ const serviceSchema = generateService({
         </div>
       </div>
 
-      {/* ── Caso 4: Happy With Yoga ── */}
+      {/* Caso 4: Happy With Yoga */}
       <div class="bg-white/5 backdrop-blur border border-white/10 rounded-card p-5 md:p-8 mb-8">
         <div class="flex items-center gap-4 mb-5">
           <div>
             <p class="text-white font-medium text-sm">Rolf &mdash; Happy With Yoga</p>
           </div>
           <div class="ml-auto">
-            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full">Plataforma madura</span>
+            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full">De funnel a plataforma de experto</span>
           </div>
         </div>
 
@@ -414,18 +464,14 @@ const serviceSchema = generateService({
         </div>
 
         <p class="text-white/70 text-sm leading-relaxed mb-3">
-          Muestra hacia d&oacute;nde puede crecer este modelo a largo plazo. No una campa&ntilde;a, sino un sistema con quiz funnels, mini-cursos, webinars y una plataforma con miembros recurrentes.
-        </p>
-        <p class="text-accent text-sm font-medium italic">
-          &ldquo;Esto no es una promesa de 90 d&iacute;as, sino la imagen final cuando una marca de experto sigue construyendo.&rdquo;
+          Muestra hacia dónde puede crecer este modelo a largo plazo. No una campaña, sino un sistema con quiz funnels, mini-cursos, webinars y una plataforma con miembros recurrentes.
         </p>
 
         <div class="grid grid-cols-2 gap-3 mt-5">
           <div class="lightbox-trigger cursor-zoom-in group">
             <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
-              <Image src={rolfWhatsApp} alt="Mensaje de WhatsApp de Rolf — resultados Happy With Yoga" width={600} quality={80} class="w-full h-auto" loading="lazy" />
+              <Image src={rolfWhatsApp} alt="Mensaje de WhatsApp de Rolf" width={600} quality={80} class="w-full h-auto" loading="lazy" />
             </div>
-            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">Respuesta de Rolf</p>
           </div>
           <div class="bg-white/5 rounded-lg p-4 flex items-center justify-center">
             <a href="/es/casos/happy-with-yoga/" class="text-accent hover:text-accent-dark text-sm font-medium transition-colors">Ver el caso completo &rarr;</a>
@@ -433,7 +479,7 @@ const serviceSchema = generateService({
         </div>
       </div>
 
-      {/* ── Caso 5: CBMC ── */}
+      {/* Caso 5: CBMC */}
       <div class="bg-white/5 backdrop-blur border-2 border-accent/30 rounded-card p-5 md:p-8">
         <div class="flex items-center gap-4 mb-5">
           <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-accent/30 shrink-0">
@@ -444,7 +490,7 @@ const serviceSchema = generateService({
             <a href="https://www.costablancamovement.com" target="_blank" rel="noopener" class="text-accent/70 hover:text-accent text-xs transition-colors">costablancamovement.com</a>
           </div>
           <div class="ml-auto">
-            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full">Fundamento AI-ready</span>
+            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full">Nuevo fundamento, visibilidad rápida</span>
           </div>
         </div>
 
@@ -459,185 +505,262 @@ const serviceSchema = generateService({
           </div>
           <div class="bg-white/5 rounded-lg p-3 text-center">
             <p class="font-heading text-xl text-accent">#1</p>
-            <p class="text-[10px] text-white/50">opci&oacute;n local en ChatGPT</p>
+            <p class="text-[10px] text-white/50">opción local en ChatGPT</p>
           </div>
         </div>
 
         <p class="text-white/70 text-sm leading-relaxed mb-3">
-          Menos espec&iacute;fico para coaches, pero demuestra lo r&aacute;pido que un nuevo fundamento puede ganar tracci&oacute;n. Sin sitio existente, sin historial, sin backlinks. Sin embargo, r&aacute;pidamente visible en Google e IA.
-        </p>
-        <p class="text-accent text-sm font-medium italic">
-          &ldquo;Cuando el fundamento es correcto, la visibilidad puede arrancar m&aacute;s r&aacute;pido de lo que esperas.&rdquo;
+          Demuestra lo rápido que un nuevo fundamento puede ganar tracción. Sin sitio existente, sin historial, sin backlinks. Sin embargo, rápidamente visible en Google e IA.
         </p>
 
         <div class="grid grid-cols-2 gap-3 mt-5">
           <div class="lightbox-trigger cursor-zoom-in group">
             <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
-              <Image src={proofGoogle} alt="Google posici&oacute;n 4 para quiropr&aacute;ctico Torrevieja despu&eacute;s de 2 semanas" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
+              <Image src={proofGoogle} alt="Google página 1 después de 2 semanas" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
             </div>
-            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">Google p&aacute;gina 1 &mdash; despu&eacute;s de 2 semanas</p>
           </div>
           <div class="lightbox-trigger cursor-zoom-in group">
             <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
-              <Image src={proofChatgpt} alt="ChatGPT recomienda CBMC como quiropr&aacute;ctico local n&uacute;mero 1" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
+              <Image src={proofChatgpt} alt="ChatGPT recomendación #1" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
             </div>
-            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">ChatGPT #1 recomendaci&oacute;n local</p>
           </div>
         </div>
       </div>
 
       <p class="text-xs text-white/30 italic mt-6">
-        *Todos los resultados mencionados est&aacute;n verificados. Los resultados var&iacute;an seg&uacute;n la situaci&oacute;n, mercado y cooperaci&oacute;n.
+        *Todos los resultados mencionados están verificados. Los resultados varían según la situación, mercado y cooperación.
       </p>
+
+      <div class="mt-10 text-center">
+        <p class="text-white font-medium text-sm mb-2">
+          Estos casos muestran por qué Coach Accelerator va más allá de un sitio web. El sitio web es el fundamento. El crecimiento viene del sistema.
+        </p>
+        <p class="text-white/50 text-sm">
+          Por eso construimos tu fundamento de experto y ruta de crecimiento juntos dentro de Coach Accelerator.
+        </p>
+      </div>
     </div>
   </section>
 
-  {/* ── 6. POR QU&Eacute; NO UNA LLAMADA DE VENTAS DIRECTA ── */}
-  <section class="py-14 md:py-20">
-    <div class="max-w-3xl mx-auto px-4 md:px-6">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">
-        Por qu&eacute; ir directamente a una llamada de ventas suele ser un paso demasiado grande
-      </h2>
-      <p class="text-text-muted leading-relaxed mb-8">
-        Enviar personas fr&iacute;as directamente a un programa caro funciona cada vez menos. Un paso intermedio como una gu&iacute;a, scan, masterclass o mini-producto permite que alguien primero experimente tu visi&oacute;n, m&eacute;todo y estilo.
-      </p>
 
-      {/* Flujo visual */}
-      <div class="bg-bg-alt rounded-card p-5 md:p-6 border border-border">
-        <div class="flex flex-col md:flex-row items-stretch gap-3 md:gap-0">
-          <div class="flex-1 bg-white rounded-lg p-3 text-center border border-border">
-            <p class="text-xs font-medium text-text">Contenido / IA / anuncio</p>
-            <p class="text-[10px] text-text-muted mt-0.5">Alguien te descubre</p>
+  {/* ── 5. OFERTA ── */}
+  <section class="px-4 md:px-6 py-14 md:py-20 bg-bg-alt">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-3">
+        <h2 class="font-heading text-2xl md:text-3xl text-text mb-2">Coach Accelerator. De expertise a clientes.</h2>
+        <p class="text-text-muted text-[0.95rem] max-w-2xl mx-auto">
+          Un sistema de crecimiento completo para coaches y expertos: desde tu sitio web hasta tu ruta de entrada y seguimiento.
+        </p>
+      </div>
+
+      <p class="text-sm text-text-muted text-center mb-8 max-w-2xl mx-auto">
+        Tu sitio web de experto AI-ready forma la base. Sobre eso construimos tu sistema de crecimiento con ruta de entrada, email y publicidad.
+      </p>
+<div class="max-w-2xl mx-auto mb-10">
+{/* ── OFERTA — Coach Accelerator ── */}
+        <div class="bg-gradient-to-b from-white to-accent/[0.03] border-2 border-accent/40 rounded-card p-5 md:p-6 shadow-xl relative flex flex-col ring-1 ring-accent/10">
+          <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 inline-block px-4 py-1 text-[0.6rem] font-bold tracking-[0.15em] uppercase bg-accent text-white rounded-full shadow-md whitespace-nowrap">Recomendado &mdash; sistema de crecimiento completo</span>
+
+          <span class="inline-block self-start px-2.5 py-0.5 text-[0.55rem] font-medium tracking-widest uppercase bg-accent/10 text-accent rounded-full mb-3 mt-1">Crecimiento completo</span>
+
+          <p class="font-heading text-lg text-text mb-0.5">Coach Accelerator Growth System</p>
+          <div class="flex items-baseline gap-1 mb-0.5">
+            <p class="font-heading text-3xl text-accent">Desde &euro;500<span class="text-sm text-text-muted font-body">/mes</span></p>
           </div>
-          <div class="hidden md:flex items-center px-2 text-accent">&rarr;</div>
-          <div class="flex-1 bg-white rounded-lg p-3 text-center border-2 border-accent/30">
-            <p class="text-xs font-medium text-text">Ruta de entrada</p>
-            <p class="text-[10px] text-text-muted mt-0.5">Gu&iacute;a, scan o masterclass</p>
+          <p class="text-text-muted text-xs mb-3">90 días</p>
+
+          <div class="bg-accent/8 border border-accent/20 rounded-lg px-3 py-2.5 mb-4 flex items-start gap-2">
+            <svg class="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <div>
+              <p class="text-xs text-accent font-bold">Sitio web de experto AI-ready + sistema de crecimiento incluido</p>
+              <p class="text-[0.6rem] text-text-muted">Valor normal del fundamento web: &euro;2.000&ndash;&euro;4.000</p>
+            </div>
           </div>
-          <div class="hidden md:flex items-center px-2 text-accent">&rarr;</div>
-          <div class="flex-1 bg-white rounded-lg p-3 text-center border border-border">
-            <p class="text-xs font-medium text-text">Seguimiento por email</p>
-            <p class="text-[10px] text-text-muted mt-0.5">La confianza crece</p>
+
+          <p class="text-text font-medium text-sm mb-3">Construye el sistema que convierte tu expertise en leads y clientes.</p>
+
+          <p class="text-xs uppercase tracking-widest text-accent font-medium mb-1">Resultado después de 90 días</p>
+          <p class="text-text text-sm leading-relaxed mb-4">
+            No solo tienes un fundamento de experto, sino también una ruta de crecimiento concreta: ruta de entrada, landing page, seguimiento por email, ángulo publicitario y primer test de leads.
+          </p>
+
+          <p class="text-xs uppercase tracking-widest text-accent font-medium mb-1">Mejor opción si</p>
+          <p class="text-text-muted text-sm leading-relaxed mb-4">
+            Quieres construir seriamente hacia leads, inscripciones, ventas de productos, registros de masterclass o consultas de coaching.
+          </p>
+
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-[0.6rem] uppercase tracking-widest text-accent font-semibold">Impacto</span>
+            <div class="flex gap-0.5">
+              <span class="w-5 h-1.5 rounded-full bg-accent"></span>
+              <span class="w-5 h-1.5 rounded-full bg-accent"></span>
+              <span class="w-5 h-1.5 rounded-full bg-accent"></span>
+            </div>
+            <span class="text-[0.6rem] text-accent font-semibold">Mayor potencial de resultados</span>
           </div>
-          <div class="hidden md:flex items-center px-2 text-accent">&rarr;</div>
-          <div class="flex-1 bg-white rounded-lg p-3 text-center border border-border">
-            <p class="text-xs font-medium text-text">Consulta o cliente</p>
-            <p class="text-[10px] text-text-muted mt-0.5">C&aacute;lido y cualificado</p>
-          </div>
+
+          <a href="#analyse" class="inline-flex items-center justify-center gap-2 px-6 py-4 text-base font-semibold text-white bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg w-full mt-auto mb-4">
+            Empieza con Coach Accelerator
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          </a>
+
+          <details class="group border-t border-accent/15 pt-3">
+            <summary class="flex items-center justify-between cursor-pointer text-xs text-accent font-medium select-none">
+              ¿Qué incluye?
+              <svg class="w-3.5 h-3.5 text-accent transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <ul class="mt-3 space-y-1.5">
+              {[
+                'Sitio web de experto AI-ready, posicionamiento y páginas de oferta',
+                'SEO/GEO, datos estructurados y hosting',
+                'Elección y desarrollo de la ruta de entrada correcta',
+                'AI quiz / scan / lead magnet',
+                'Posicionamiento de mini-producto',
+                'Estrategia de masterclass',
+                'Landing pages',
+                'Flujo de email',
+                'Estrategia de Meta Ads',
+                'Hooks / ángulos publicitarios',
+                'Guía de campaña de prueba',
+                'Análisis de calidad de leads',
+                'Optimización hacia consultas, ventas de productos o clientes de coaching',
+              ].map((item) => (
+                <li class="flex items-start gap-2 text-xs text-text font-medium">
+                  <svg class="w-3 h-3 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </details>
         </div>
       </div>
-    </div>
-  </section>
 
-  {/* ── 7. INVERSI&Oacute;N ── */}
-  <section class="py-14 md:py-18 bg-bg-alt">
-    <div class="max-w-3xl mx-auto px-4 md:px-6 text-center">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">Empieza peque&ntilde;o. Construye sobre lo que funciona.</h2>
-      <div class="inline-block bg-white rounded-card px-8 py-6 border border-border mb-4">
-        <p class="text-text-muted text-sm mb-1">Desde</p>
-        <p class="font-heading text-4xl text-text">&euro;500<span class="text-lg text-text-muted font-normal">/mes</span></p>
+      {/* Comparison block */}
+      <div class="max-w-3xl mx-auto">
+        <p class="text-xs uppercase tracking-widest text-accent font-medium text-center mb-4">La diferencia en una frase</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+          <div class="bg-bg-alt rounded-lg px-4 py-3">
+            <p class="text-xs text-accent font-medium mb-1">Fundamento Web de Experto</p>
+            <p class="text-sm text-text">Te presentas online seriamente como experto.</p>
+          </div>
+          <div class="bg-accent/5 border border-accent/15 rounded-lg px-4 py-3">
+            <p class="text-xs text-accent font-medium mb-1">Coach Accelerator</p>
+            <p class="text-sm text-text font-medium">Construimos el sistema que puede convertir tu expertise en leads, inscripciones y clientes.</p>
+          </div>
+        </div>
+        <p class="text-sm text-text-muted text-center max-w-xl mx-auto">
+          Los casos de esta página no vinieron solo de un sitio web bonito. Vinieron de la combinación de posicionamiento, oferta, funnel, producto de entrada/masterclass, email, publicidad y optimización. Por eso el mayor potencial de resultados pertenece principalmente a Coach Accelerator.
+        </p>
       </div>
-      <p class="text-sm text-text-muted">
-        Coach Accelerator incluye tu sitio web y tu ruta de crecimiento. Acordamos el alcance antes de empezar.
-      </p>
     </div>
   </section>
 
-  {/* ── Fundador ── */}
-  <section class="py-14 md:py-20">
+
+  {/* ── 6. FUNDADOR ── */}
+  <section class="py-12 md:py-16">
     <div class="max-w-4xl mx-auto px-4 md:px-6">
-      <div class="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-10 md:gap-14 items-center">
+      <div class="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-8 md:gap-12 items-center">
         <div class="flex justify-center md:justify-start">
-          <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden shadow-lg ring-4 ring-white shrink-0">
-            <Image
-              src={founderPhoto}
-              alt="Joost van Putten — construye sistemas de crecimiento para coaches y expertos"
-              widths={[224, 320]}
-              sizes="(max-width: 768px) 192px, 224px"
-              class="w-full h-full object-cover"
-              loading="lazy"
-              decoding="async"
-            />
+          <div class="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden shadow-lg ring-4 ring-white shrink-0">
+            <Image src={founderPhoto} alt="Joost van Putten" widths={[192, 256]} sizes="(max-width: 768px) 160px, 192px" class="w-full h-full object-cover" loading="lazy" decoding="async" />
           </div>
         </div>
         <div>
-          <div class="w-12 h-1 bg-accent rounded-full mb-4"></div>
-          <h2 class="font-heading text-2xl md:text-3xl text-text mb-1">Joost van Putten</h2>
-          <p class="text-sm text-text-muted mb-4">Founder &amp; Online Growth Strategist</p>
-          <p class="text-text-muted leading-relaxed mb-6">
-            8 a&ntilde;os de experiencia con sistemas de crecimiento online para coaches y expertos. Desde quiz funnels y mini-productos hasta plataformas completas &mdash; sistemas que convierten expertise en crecimiento predecible.
+          <h2 class="font-heading text-2xl text-text mb-3">Joost van Putten</h2>
+          <p class="text-text-muted leading-relaxed text-sm">
+            8 años de experiencia con sistemas de crecimiento online para coaches y expertos. Desde quiz funnels y mini-productos hasta plataformas completas. Sistemas que convierten expertise en crecimiento predecible.
           </p>
-          <a
-            href="/es/sobre-joost/"
-            class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium"
-          >
-            M&aacute;s sobre Joost
-            <svg class="ml-1 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </a>
         </div>
       </div>
     </div>
   </section>
 
-  {/* ── FAQ ── */}
-  <section class="py-14 md:py-20 bg-bg-alt">
-    <div class="max-w-3xl mx-auto px-4 md:px-6">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-8 text-center">Preguntas frecuentes</h2>
-      <FAQAccordion items={faqForComponent} />
+
+  {/* ── 7. FAQ ── */}
+  <FAQAccordion
+    title="Preguntas frecuentes"
+    items={faqForComponent}
+    locale={locale}
+    pageType="service"
+    pageSlug="ai-expert-groei-traject"
+    compact={true}
+  />
+
+
+  <LogoMarquee logos={logos} />
+
+
+  {/* ── 8. CUALIFICACIÓN + CTA ── */}
+  <section class="px-4 md:px-6 py-10 md:py-14">
+    <div class="max-w-2xl mx-auto text-center mb-10">
+      <h2 class="font-heading text-xl md:text-2xl text-text mb-3">Este análisis no es para consejos gratuitos</h2>
+      <p class="text-text-muted text-sm leading-relaxed mb-3">
+        Si podemos mostrarte dónde tu fundamento de experto actualmente deja consultas, inscripciones o clientes sobre la mesa, ¿estás dispuesto a trabajar seriamente en tu ruta de crecimiento durante 90 días?
+      </p>
+      <p class="text-text-muted text-sm leading-relaxed mb-3">
+        ¿Solo buscas algunos consejos sueltos para quizá usarlos algún día? Entonces probablemente este no sea el paso correcto. Este análisis está pensado para coaches y expertos que quieren saber qué ruta tiene más potencial comercial.
+      </p>
+      <p class="text-text-muted text-sm leading-relaxed">
+        Si hay suficiente potencial de crecimiento y estás abierto a un programa, discutimos el enfoque y una fecha de inicio adecuada.
+      </p>
     </div>
   </section>
 
-  {/* ── Logo marquee ── */}
-  <LogoMarquee logos={logos} />
-
-  {/* ── CTA ── */}
   <section id="analyse" class="py-16 md:py-20 bg-primary">
     <div class="max-w-lg mx-auto px-4 md:px-6">
-      <h2 class="font-heading text-3xl md:text-4xl text-white mb-4 text-center">
-        &iquest;Quieres saber qu&eacute; ruta de crecimiento encaja con tu expertise?
+      <h2 class="font-heading text-2xl md:text-3xl text-white mb-3 text-center">
+        Comprueba si hay potencial de crecimiento en tu expertise
       </h2>
-      <p class="text-white/80 mb-8 max-w-2xl mx-auto text-center">
-        Deja que revise tu scan, sitio web u oferta. No recibir&aacute;s un informe t&eacute;cnico, sino una evaluaci&oacute;n personal: &iquest;tu mayor oportunidad est&aacute; en visibilidad, posicionamiento, ruta de entrada o seguimiento?
+      <p class="text-white/50 text-center text-sm mb-3">
+        Para coaches, terapeutas y expertos que quieren crecer seriamente.
+      </p>
+      <p class="text-accent text-center text-sm font-medium mb-8">
+        Enfoque personal &middot; Fecha de inicio a convenir
       </p>
 
       <form id="groei-form" class="space-y-3">
         <input type="hidden" name="bron" value="expert-groei-traject-es" />
         <input type="text" name="naam" placeholder="Tu nombre" required autocomplete="name" class="w-full px-4 py-3.5 rounded-button border border-white/20 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white/10 backdrop-blur" />
         <input type="email" name="email" placeholder="tu@email.com" required autocomplete="email" class="w-full px-4 py-3.5 rounded-button border border-white/20 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white/10 backdrop-blur" />
+        <input type="tel" name="telefoon" placeholder="+34 612 345 678" autocomplete="tel" class="w-full px-4 py-3.5 rounded-button border border-white/20 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white/10 backdrop-blur" />
         <input type="url" name="website" placeholder="https://tusitio.com" autocomplete="url" class="w-full px-4 py-3.5 rounded-button border border-white/20 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white/10 backdrop-blur" />
 
-        <p class="text-white/60 text-xs pt-2 pb-1">&iquest;En qu&eacute; quieres m&aacute;s informaci&oacute;n? (opcional)</p>
+        <p class="text-white/60 text-xs pt-2 pb-1">¿En qué quieres más información? (opcional)</p>
         <div class="grid grid-cols-2 gap-2">
-          <label class="flex items-center gap-2.5 bg-white/5 border border-white/15 rounded-lg px-3 py-2.5 cursor-pointer hover:bg-white/10 transition-colors">
-            <input type="checkbox" name="interesse" value="ai-vindbaarheid" class="accent-accent w-3.5 h-3.5 shrink-0" />
-            <span class="text-white text-sm">Visibilidad en IA</span>
-          </label>
-          <label class="flex items-center gap-2.5 bg-white/5 border border-white/15 rounded-lg px-3 py-2.5 cursor-pointer hover:bg-white/10 transition-colors">
-            <input type="checkbox" name="interesse" value="positionering" class="accent-accent w-3.5 h-3.5 shrink-0" />
-            <span class="text-white text-sm">Posicionamiento</span>
-          </label>
-          <label class="flex items-center gap-2.5 bg-white/5 border border-white/15 rounded-lg px-3 py-2.5 cursor-pointer hover:bg-white/10 transition-colors">
-            <input type="checkbox" name="interesse" value="instaproute" class="accent-accent w-3.5 h-3.5 shrink-0" />
-            <span class="text-white text-sm">Ruta de entrada</span>
-          </label>
-          <label class="flex items-center gap-2.5 bg-white/5 border border-white/15 rounded-lg px-3 py-2.5 cursor-pointer hover:bg-white/10 transition-colors">
-            <input type="checkbox" name="interesse" value="email" class="accent-accent w-3.5 h-3.5 shrink-0" />
-            <span class="text-white text-sm">Seguimiento por email</span>
-          </label>
-          <label class="flex items-center gap-2.5 bg-white/5 border border-white/15 rounded-lg px-3 py-2.5 cursor-pointer hover:bg-white/10 transition-colors">
-            <input type="checkbox" name="interesse" value="groeilek" class="accent-accent w-3.5 h-3.5 shrink-0" />
-            <span class="text-white text-sm">Mayor fuga de crecimiento</span>
-          </label>
-          <label class="flex items-center gap-2.5 bg-white/5 border border-white/15 rounded-lg px-3 py-2.5 cursor-pointer hover:bg-white/10 transition-colors">
-            <input type="checkbox" name="interesse" value="weet-niet" class="accent-accent w-3.5 h-3.5 shrink-0" />
-            <span class="text-white text-sm">No s&eacute; por d&oacute;nde empezar</span>
-          </label>
+          {[
+            { value: 'ai-vindbaarheid', label: 'Visibilidad en IA' },
+            { value: 'positionering', label: 'Posicionamiento' },
+            { value: 'instaproute', label: 'Ruta de entrada' },
+            { value: 'email', label: 'Seguimiento por email' },
+            { value: 'groeilek', label: 'Mayor fuga de crecimiento' },
+            { value: 'weet-niet', label: 'No sé por dónde empezar' },
+          ].map((opt) => (
+            <label class="flex items-center gap-2.5 bg-white/5 border border-white/15 rounded-lg px-3 py-2.5 cursor-pointer hover:bg-white/10 transition-colors">
+              <input type="checkbox" name="interesse" value={opt.value} class="accent-accent w-3.5 h-3.5 shrink-0" />
+              <span class="text-white text-sm">{opt.label}</span>
+            </label>
+          ))}
         </div>
 
-        <button type="submit" class="w-full mt-2 px-8 py-4 text-base font-medium bg-accent hover:bg-accent-dark text-white transition-all duration-300 rounded-button shadow-lg shadow-accent/25 hover:shadow-xl flex items-center justify-center gap-2">
-          Que Joost determine mi ruta de crecimiento
+        {/* Pregunta de cualificación */}
+        <fieldset class="pt-4">
+          <legend class="text-sm font-medium text-white/80 mb-3">Si del análisis resulta que hay oportunidades concretas de crecimiento, ¿estarías abierto a un programa desde &euro;500 al mes?</legend>
+          <div class="space-y-2">
+            {[
+              'Sí, si las oportunidades tienen sentido',
+              'Quizá, primero quiero entender qué aporta',
+              'No, busco principalmente consejos gratuitos',
+            ].map((opt) => (
+              <label class="flex items-center gap-3 cursor-pointer">
+                <input type="radio" name="commitment" value={opt} required class="text-accent focus:ring-accent" />
+                <span class="text-sm text-white/70">{opt}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <button type="submit" class="w-full mt-2 px-8 py-4 text-base font-medium bg-accent hover:bg-accent-dark text-white transition-all duration-300 rounded-button shadow-lg flex items-center justify-center gap-2">
+          Comprueba mi potencial de crecimiento
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
         </button>
       </form>
@@ -646,19 +769,19 @@ const serviceSchema = generateService({
         <svg class="w-12 h-12 text-accent mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
-        <p class="font-heading text-xl text-white mb-2">&iexcl;Gracias!</p>
+        <p class="font-heading text-xl text-white mb-2">¡Gracias!</p>
         <p class="text-white/70 text-[0.95rem]">
-          Revisar&eacute; tu situaci&oacute;n y te informar&eacute; en 24 horas qu&eacute; ruta de crecimiento tiene m&aacute;s sentido.
+          Revisaré tu situación y te informaré en 24 horas si hay suficiente potencial de crecimiento.
         </p>
       </div>
 
       <p id="groei-microcopy" class="text-xs text-white/40 text-center mt-4">
-        Sin pago ahora. Recibir&aacute;s una evaluaci&oacute;n personal, no un discurso de ventas.
+        Sin pago ahora. Primero comprobamos si hay suficiente potencial y si el programa es adecuado para ti.
       </p>
     </div>
   </section>
 
-  {/* ── Lightbox script ── */}
+  {/* Lightbox */}
   <script is:inline>
   document.addEventListener('DOMContentLoaded', function() {
     var triggers = document.querySelectorAll('.lightbox-trigger');
@@ -713,6 +836,7 @@ const serviceSchema = generateService({
       var data = new FormData(form);
       var naam = data.get('naam');
       var email = data.get('email');
+      var telefoon = data.get('telefoon');
       var website = data.get('website') || '';
 
       if (!naam || !email) return;
@@ -722,26 +846,31 @@ const serviceSchema = generateService({
 
       var checked = Array.from(form.querySelectorAll('input[name="interesse"]:checked')).map(function(cb) { return cb.value; });
       var interesse = checked.length > 0 ? checked.join(', ') : 'niet ingevuld';
+      var commitment = data.get('commitment') || '';
+
+      var vraagParts = ['Expert Groei Traject aanvraag', 'Interesse: ' + interesse];
+      if (commitment) vraagParts.push('Commitment: ' + commitment);
 
       var payload = {
         naam: naam,
         email: email,
+        telefoon: telefoon || '',
         websiteUrl: website || 'niet ingevuld',
-        vraag: 'Expert Groei Traject aanvraag — Interesse: ' + interesse,
+        vraag: vraagParts.join(' — '),
         source: 'expert-groei-traject-es',
       };
 
       var leadId = typeof nxgCapiEventId === 'function' ? nxgCapiEventId() : '';
       if (typeof fbq === 'function') {
-        fbq('track', 'Lead', { content_name: 'expert-groei-traject-es', content_category: 'crecimiento-experto-ia' }, { eventID: leadId });
+        fbq('track', 'Lead', { content_name: 'expert-groei-traject-es', content_category: 'ai-expert-groei-traject' }, { eventID: leadId });
       }
       if (leadId && typeof nxgCapiSend === 'function') {
-        nxgCapiSend('Lead', leadId, { content_name: 'expert-groei-traject-es', content_category: 'crecimiento-experto-ia' });
+        nxgCapiSend('Lead', leadId, { content_name: 'expert-groei-traject-es', content_category: 'ai-expert-groei-traject' });
       }
       if (typeof trackEvent === 'function') {
         trackEvent('scanner_request_submitted', {
           page_type: 'page',
-          page_slug: 'crecimiento-experto-ia',
+          page_slug: 'ai-expert-groei-traject',
           locale: 'es',
           cta_location: 'inline',
         });

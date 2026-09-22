@@ -8,7 +8,7 @@
  */
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
-import { siteConfig } from '../data/site';
+import { siteConfig, type Locale } from '../data/site';
 
 export interface VideoTestimonial {
   id: string;
@@ -17,23 +17,29 @@ export interface VideoTestimonial {
   quote: string;
   rating: number;
   thumbnail: ImageMetadata;
-  videoUrl?: string; // YouTube/Vimeo URL or local path — empty = thumbnail only
-  uploadDate?: string; // ISO date e.g. '2024-06-15'
+  videoUrl?: string;
+  uploadDate?: string;
 }
 
 interface Props {
   title?: string;
   subtitle?: string;
   eyebrow?: string;
+  locale?: Locale;
   testimonials: VideoTestimonial[];
 }
 
-const {
-  title = 'Wat Klanten Zeggen Over Werken met Joost',
-  subtitle = 'Echte ervaringen van ondernemers die succesvol samenwerken met Joost',
-  eyebrow = 'WAT KLANTEN ZEGGEN',
-  testimonials,
-} = Astro.props;
+const i18n = {
+  nl: { title: 'Wat Klanten Zeggen Over Werken met Joost', subtitle: 'Echte ervaringen van ondernemers die succesvol samenwerken met Joost', eyebrow: 'WAT KLANTEN ZEGGEN', prev: 'Vorige', next: 'Volgende', close: 'Sluiten', videoAlt: (n:string,c:string)=>`Video testimonial van ${n}, ${c}`, stars: (r:number)=>`${r} van 5 sterren`, goTo: (i:number)=>`Ga naar testimonial ${i}` },
+  en: { title: 'What Clients Say About Working with Joost', subtitle: 'Real experiences from entrepreneurs who successfully collaborate with Joost', eyebrow: 'WHAT CLIENTS SAY', prev: 'Previous', next: 'Next', close: 'Close', videoAlt: (n:string,c:string)=>`Video testimonial of ${n}, ${c}`, stars: (r:number)=>`${r} out of 5 stars`, goTo: (i:number)=>`Go to testimonial ${i}` },
+  es: { title: 'Lo Que Dicen Los Clientes Sobre Trabajar con Joost', subtitle: 'Experiencias reales de emprendedores que colaboran exitosamente con Joost', eyebrow: 'LO QUE DICEN LOS CLIENTES', prev: 'Anterior', next: 'Siguiente', close: 'Cerrar', videoAlt: (n:string,c:string)=>`Vídeo testimonio de ${n}, ${c}`, stars: (r:number)=>`${r} de 5 estrellas`, goTo: (i:number)=>`Ir al testimonio ${i}` },
+};
+
+const { locale = 'nl', testimonials } = Astro.props;
+const loc = i18n[locale];
+const title = Astro.props.title ?? loc.title;
+const subtitle = Astro.props.subtitle ?? loc.subtitle;
+const eyebrow = Astro.props.eyebrow ?? loc.eyebrow;
 
 function renderStars(rating: number): string {
   return '★'.repeat(Math.min(rating, 5)) + '☆'.repeat(Math.max(0, 5 - rating));
@@ -76,7 +82,7 @@ const videoSchemaScripts = testimonials
       <button
         type="button"
         class="vtc-prev hidden md:flex absolute -left-4 lg:-left-6 top-1/2 -translate-y-1/2 z-10 w-10 h-10 items-center justify-center rounded-full bg-white border border-border shadow-md hover:shadow-lg hover:border-accent/40 transition-all disabled:opacity-30 disabled:cursor-default"
-        aria-label="Vorige"
+        aria-label={loc.prev}
       >
         <svg class="w-5 h-5 text-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
@@ -85,7 +91,7 @@ const videoSchemaScripts = testimonials
       <button
         type="button"
         class="vtc-next hidden md:flex absolute -right-4 lg:-right-6 top-1/2 -translate-y-1/2 z-10 w-10 h-10 items-center justify-center rounded-full bg-white border border-border shadow-md hover:shadow-lg hover:border-accent/40 transition-all disabled:opacity-30 disabled:cursor-default"
-        aria-label="Volgende"
+        aria-label={loc.next}
       >
         <svg class="w-5 h-5 text-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
@@ -101,7 +107,7 @@ const videoSchemaScripts = testimonials
             <div class="relative aspect-video bg-text/5 overflow-hidden group cursor-pointer" data-video-url={t.videoUrl ?? ''} data-video-title={`Testimonial ${t.name} — ${t.company}`}>
               <Image
                 src={t.thumbnail}
-                alt={`Video testimonial van ${t.name}, ${t.company}`}
+                alt={loc.videoAlt(t.name, t.company)}
                 widths={[300, 450]}
                 sizes="300px"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -123,7 +129,7 @@ const videoSchemaScripts = testimonials
             {/* Content */}
             <div class="p-5 flex flex-col flex-1">
               {/* Stars */}
-              <div class="text-accent text-lg tracking-wide mb-3" aria-label={`${t.rating} van 5 sterren`}>
+              <div class="text-accent text-lg tracking-wide mb-3" aria-label={loc.stars(t.rating)}>
                 {renderStars(t.rating)}
               </div>
 
@@ -146,7 +152,7 @@ const videoSchemaScripts = testimonials
           <button
             type="button"
             class={`w-2.5 h-2.5 rounded-full transition-colors ${i === 0 ? 'bg-accent' : 'bg-border hover:bg-accent/50'}`}
-            aria-label={`Ga naar testimonial ${i + 1}`}
+            aria-label={loc.goTo(i + 1)}
             data-dot-index={i}
           />
         ))}
@@ -161,7 +167,7 @@ const videoSchemaScripts = testimonials
 
 {/* Video lightbox */}
 <div id="vtc-lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-  <button id="vtc-close" type="button" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors" aria-label="Sluiten">
+  <button id="vtc-close" type="button" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors" aria-label={loc.close}>
     <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
       <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
     </svg>

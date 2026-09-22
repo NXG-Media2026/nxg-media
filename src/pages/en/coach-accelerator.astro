@@ -25,8 +25,6 @@ import rolfWhatsApp from '../../assets/images/cases/rolf-happywithyoga-whatsapp-
 
 const locale = 'en';
 
-const hreflang = buildHreflangTrilingual('/coach-accelerator/', '/en/coach-accelerator/', '/es/coach-accelerator/');
-
 const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
 const logos = Object.entries(logoFiles)
   .filter(([path]) => /logo/i.test(path.split('/').pop()!))
@@ -44,7 +42,11 @@ const breadcrumbs = [
 const faqItems = [
   {
     question: 'Is this just AI visibility?',
-    answer: 'AI visibility is the entry point and diagnosis. The programme is about the foundation behind it: positioning, proof, content, entry route and follow-up. Being found more easily has little value if visitors don\'t understand why you are the obvious choice.',
+    answer: 'AI visibility is the entry point. The programme is about the foundation behind it: positioning, proof, content, entry route and follow-up. Being found more easily has little value if visitors don\'t understand why you are the obvious choice.',
+  },
+  {
+    question: 'Is the website foundation included in Coach Accelerator?',
+    answer: 'Yes. Your website, expert positioning and visibility form the basis of Coach Accelerator. On top of that we build the entry route, email follow-up, advertising strategy, lead test and optimisation towards clients. The foundation is part of the programme.',
   },
   {
     question: 'Do I need to build an online platform straight away?',
@@ -62,14 +64,28 @@ const faqItems = [
     question: 'Is this suitable if I don\'t have a large audience yet?',
     answer: 'A large audience is not a requirement, as long as your expertise and offer are clear enough. With a small route we test what people respond to. Often growth doesn\'t start with more reach, but with sharper positioning and a clearer first step.',
   },
+  {
+    question: 'Can I just get some loose tips?',
+    answer: 'Not as an extensive advisory programme. This analysis is meant for coaches and experts who want to know which route has the most commercial potential. If you are just looking for free tips to maybe use someday, this programme is not the right fit.',
+  },
+  {
+    question: 'What if there turns out to be little growth potential?',
+    answer: 'Then we say that honestly. Not every expert or niche is suited for this model. We would rather not start than run a programme where there is little commercial opportunity.',
+  },
 ];
 
 const faqForSchema = faqItems.map((item) => ({ question: item.question, answer: item.answer }));
 const faqForComponent = faqItems.map((item) => ({ q: item.question, a: item.answer }));
 
+const hreflang = buildHreflangTrilingual(
+  '/coach-accelerator/',
+  '/en/coach-accelerator/',
+  '/es/coach-accelerator/',
+);
+
 const serviceSchema = generateService({
   name: 'Coach Accelerator',
-  description: 'Build an AI-ready expert foundation around your expertise. For coaches and experts who want to be found and build a route to enquiries, products and coaching clients.',
+  description: 'From expertise to enquiries, sign-ups and clients. Coach Accelerator Growth System from €500/mo. For coaches, therapists and knowledge experts.',
   url: `${siteConfig.url}/en/coach-accelerator/`,
   serviceType: 'Expert Growth System',
 });
@@ -77,168 +93,213 @@ const serviceSchema = generateService({
 
 <BaseLayout
   title="Coach Accelerator for Coaches & Experts | NXG Media"
-  description="Build an AI-ready expert foundation around your expertise. For coaches and experts who want to be found and build a route to enquiries, products and coaching clients."
+  description="Your expertise is not the problem. Your system to clients is. Coach Accelerator from €500/mo."
   canonical={`${siteConfig.url}/en/coach-accelerator/`}
   schemas={[
     generateBreadcrumbs(breadcrumbs.map((b) => ({ name: b.label, url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}/en/coach-accelerator/` }))),
     generateFAQPage(faqForSchema),
     serviceSchema,
   ]}
-  hreflang={hreflang}
   locale={locale}
+  hreflang={hreflang}
+  hideNewsletter={true}
+  hideStickyMobileCTA={true}
 >
   <BreadcrumbNav items={breadcrumbs} />
 
+
   {/* ── 1. HERO ── */}
-  <section class="relative py-16 md:py-24 lg:py-32 overflow-hidden">
-    <div class="absolute inset-0">
-      <Image
-        src={heroPhoto}
-        alt="Joost van Putten — online growth strategist for coaches and experts"
-        widths={[800, 1200, 1600]}
-        sizes="100vw"
-        class="w-full h-full object-cover"
-        loading="eager"
-        decoding="async"
-      />
-      <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/40"></div>
+  <section class="refresh-sales-hero relative overflow-hidden bg-primary">
+    <div class="absolute inset-0 hidden md:block">
+      <Image src={heroPhoto} alt="" width={800} class="absolute right-0 top-0 h-full w-auto object-cover object-top opacity-[0.15]" loading="eager" />
     </div>
-    <div class="relative max-w-4xl mx-auto px-4 md:px-6">
-      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl text-text mb-5 leading-tight max-w-2xl">
-        Your scan reveals where your expert foundation leaks. <em class="text-accent not-italic">Now we build the route to enquiries.</em>
-      </h1>
-      <p class="text-text-muted leading-relaxed mb-8 max-w-xl">
-        AI visibility is the entry point. But when AI doesn&rsquo;t fully understand you, that is often the same problem potential clients feel: your positioning, proof, entry route and follow-up are not yet connected logically enough.
-      </p>
-      <div class="flex flex-col sm:flex-row items-start gap-3">
-        <a
-          href="#analyse"
-          class="inline-flex items-center px-8 py-4 text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-lg"
-        >
-          Let Joost map my growth route
-          <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
-        </a>
-        <a
-          href="#cases"
-          class="inline-flex items-center px-8 py-4 text-base font-medium text-primary border-2 border-primary hover:bg-primary/5 transition-colors rounded-button"
-        >
-          View the cases
-        </a>
-      </div>
-      <p class="text-xs text-text-muted mt-4">
-        For coaches, therapists and experts who want to turn their expertise into enquiries, products and coaching clients.
-      </p>
-    </div>
-  </section>
 
-  {/* ── 2. PROOF STRIP ── */}
-  <section class="bg-bg-alt border-y border-border">
-    <div class="max-w-4xl mx-auto px-4 md:px-6 py-8 md:py-10">
-      <p class="text-xs uppercase tracking-widest text-text-muted font-medium text-center mb-5">What this already delivered for other experts</p>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-        <div>
-          <div class="font-heading text-2xl md:text-3xl text-primary">2 &rarr; 19</div>
-          <p class="text-xs text-text-muted mt-1">enquiries/month</p>
-          <p class="text-xs text-accent font-medium mt-0.5">Dr. Verena Mann</p>
-        </div>
-        <div>
-          <div class="font-heading text-2xl md:text-3xl text-primary">600+</div>
-          <p class="text-xs text-text-muted mt-1">guides sold</p>
-          <p class="text-xs text-accent font-medium mt-0.5">Coach Josine</p>
-        </div>
-        <div>
-          <div class="font-heading text-2xl md:text-3xl text-primary">&plusmn;&euro;10k/mo</div>
-          <p class="text-xs text-text-muted mt-1">online product revenue</p>
-          <p class="text-xs text-accent font-medium mt-0.5">Tessa / Youlife</p>
-        </div>
-        <div>
-          <div class="font-heading text-2xl md:text-3xl text-primary">2,000</div>
-          <p class="text-xs text-text-muted mt-1">paying members</p>
-          <p class="text-xs text-accent font-medium mt-0.5">Happy With Yoga</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    <div class="relative px-5 md:px-6 pt-10 pb-10 md:pt-14 md:pb-16">
+      <div class="max-w-2xl mx-auto">
+        <h1 class="font-heading text-[1.75rem] leading-[1.15] md:text-[2.75rem] md:leading-[1.1] text-white mb-4">
+          Your expertise is not the problem.<br />
+          <em class="text-accent not-italic">Your system to clients is.</em>
+        </h1>
 
-  {/* ── 3. REFRAME: EXPERT FOUNDATION ── */}
-  <section class="py-14 md:py-20">
-    <div class="max-w-4xl mx-auto px-4 md:px-6">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-3">
-        Your problem is usually not just visibility. It is your expert foundation.
-      </h2>
-      <p class="text-text-muted leading-relaxed mb-10 max-w-3xl">
-        Your expertise may be strong, but if your online foundation does not clearly show why you are the obvious choice, what someone can do as a first step and how trust is built, you lose warm interest.
-      </p>
+        <p class="text-white/70 leading-relaxed mb-2 text-[0.9rem] md:text-base max-w-xl">
+          For coaches, therapists and experts who want more enquiries, sign-ups and clients from their knowledge &mdash; without staying dependent on random posts, DMs or direct sales calls.
+        </p>
+        <p class="text-white/90 font-medium mb-5 text-[0.9rem] md:text-base max-w-xl">
+          We build your complete growth system: expert website, positioning, entry route, email follow-up, advertising and a path from first click to paying client.
+        </p>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
-        <div class="bg-white rounded-card p-5 border border-border">
-          <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-3">
-            <span class="font-heading text-primary text-lg">1</span>
+        <p class="text-accent text-xs font-medium uppercase tracking-widest mb-3">This model already delivered:</p>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-6 max-w-lg">
+          <div class="bg-white/[0.08] border border-white/15 rounded-lg px-3 py-2 text-center">
+            <p class="font-heading text-lg text-white">2 &rarr; 19</p>
+            <p class="text-white/50 text-[0.6rem]">enquiries/mo</p>
           </div>
-          <h3 class="font-heading text-lg text-text mb-1">Get found</h3>
-          <p class="text-sm text-text-muted leading-relaxed">AI, Google and visitors understand what you are the expert in.</p>
-        </div>
-        <div class="bg-white rounded-card p-5 border border-border">
-          <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center mb-3">
-            <span class="font-heading text-accent text-lg">2</span>
+          <div class="bg-white/[0.08] border border-white/15 rounded-lg px-3 py-2 text-center">
+            <p class="font-heading text-lg text-white">600+</p>
+            <p class="text-white/50 text-[0.6rem]">guides sold</p>
           </div>
-          <h3 class="font-heading text-lg text-text mb-1">Build trust</h3>
-          <p class="text-sm text-text-muted leading-relaxed">Your method, story, proof and results are in the right place.</p>
-        </div>
-        <div class="bg-white rounded-card p-5 border border-border">
-          <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-3">
-            <span class="font-heading text-primary text-lg">3</span>
+          <div class="bg-white/[0.08] border border-white/15 rounded-lg px-3 py-2 text-center">
+            <p class="font-heading text-lg text-white">&euro;10k/mo</p>
+            <p class="text-white/50 text-[0.6rem]">product revenue</p>
           </div>
-          <h3 class="font-heading text-lg text-text mb-1">Get people to take the first step</h3>
-          <p class="text-sm text-text-muted leading-relaxed">A guide, scan, masterclass or mini-product makes the first step easy.</p>
+          <div class="bg-white/[0.08] border border-white/15 rounded-lg px-3 py-2 text-center">
+            <p class="font-heading text-lg text-white">2,000</p>
+            <p class="text-white/50 text-[0.6rem]">paying members</p>
+          </div>
         </div>
+
+        <div class="flex flex-col sm:flex-row items-start gap-3">
+          <a href="#analyse" class="inline-flex items-center gap-2 px-8 py-4 text-base font-medium text-white bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg w-full sm:w-auto justify-center">
+            Check my growth potential
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          </a>
+          <a href="#cases" class="inline-flex items-center px-8 py-4 text-base font-medium text-white/80 border border-white/20 hover:bg-white/5 transition-colors rounded-button w-full sm:w-auto justify-center">
+            View the coach cases
+          </a>
+        </div>
+
+        <p class="text-white/40 text-xs mt-4">A 90-day programme. Start date by arrangement.</p>
       </div>
     </div>
   </section>
 
-  {/* ── 4. 90-DAY ROUTE ── */}
-  <section class="py-14 md:py-20 bg-bg-alt">
-    <div class="max-w-4xl mx-auto px-4 md:px-6">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-3">In the first 90 days we build your first growth route</h2>
-      <p class="text-text-muted leading-relaxed mb-10 max-w-3xl">
-        Not a big platform straight away. First a compact route that proves people are willing to take the first step.
-      </p>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 mb-8">
-        <div class="bg-white rounded-card p-5 border border-border">
-          <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-primary/10 text-primary rounded-full mb-3">Phase 1</span>
-          <h3 class="font-heading text-lg text-text mb-2">Expert position + niche pages</h3>
-          <p class="text-sm text-text-muted leading-relaxed">Who are you the obvious choice for, what problem do you solve, and how does that become visible to AI, Google and visitors?</p>
+  {/* ── 2. PAIN — DARK CONTRAST BLOCK ── */}
+  <section class="px-4 md:px-6 py-14 md:py-20 bg-primary-dark">
+    <div class="max-w-2xl mx-auto">
+      <p class="text-accent text-xs font-semibold uppercase tracking-[0.2em] mb-6 text-center">How it feels right now</p>
+
+      <div class="space-y-6 mb-10">
+        {[
+          'You live off referrals and word of mouth. It works… until it stops.',
+          'You know you "should do something about marketing", but client work always comes first.',
+          'You get reactions to your content, but not enough enquiries.',
+          'Your website tells people who you are, but doesn\'t build a route to sign-up, trust and enquiry.',
+          'When things go quiet, it\'s actually already too late to build calmly.',
+        ].map((line) => (
+          <div class="flex items-start gap-3">
+            <span class="shrink-0 w-1.5 h-1.5 rounded-full bg-accent mt-2"></span>
+            <p class="text-white/80 text-[0.95rem] md:text-base leading-relaxed">{line}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="border-t border-white/10 pt-8">
+        <p class="text-white font-heading text-xl md:text-2xl leading-snug text-center">
+          You are not bad at business. You just lack a system that works for you, even when you are busy with clients.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  {/* ── 3. THE OLD APPROACH NO LONGER WORKS ── */}
+  <section class="px-4 md:px-6 py-12 md:py-16">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-8 text-center">The old approach no longer works</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <div class="bg-white rounded-card p-5 border border-border shadow-sm">
+          <div class="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center mb-3">
+            <svg class="w-4 h-4 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+          </div>
+          <p class="font-heading text-base text-text mb-2">Free e-books and downloads</p>
+          <p class="text-sm text-text-muted leading-relaxed">You share your best tips in a PDF. People download it, but most leads then disappear from view.</p>
         </div>
-        <div class="bg-white rounded-card p-5 border border-border">
-          <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/10 text-accent rounded-full mb-3">Phase 2</span>
-          <h3 class="font-heading text-lg text-text mb-2">Entry route + landing page</h3>
-          <p class="text-sm text-text-muted leading-relaxed">A guide, scan, masterclass or mini-product with a page that takes people to the next step.</p>
+        <div class="bg-white rounded-card p-5 border border-border shadow-sm">
+          <div class="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center mb-3">
+            <svg class="w-4 h-4 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+          </div>
+          <p class="font-heading text-base text-text mb-2">&lsquo;Book a free call&rsquo;</p>
+          <p class="text-sm text-text-muted leading-relaxed">You attract people who just want to chat, don&rsquo;t have trust yet or don&rsquo;t show up.</p>
         </div>
-        <div class="bg-white rounded-card p-5 border border-border">
-          <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-primary/10 text-primary rounded-full mb-3">Phase 3</span>
-          <h3 class="font-heading text-lg text-text mb-2">Email follow-up + traffic test</h3>
-          <p class="text-sm text-text-muted leading-relaxed">A short flow that builds trust and an initial test with ads or existing channels.</p>
+        <div class="bg-white rounded-card p-5 border border-border shadow-sm">
+          <div class="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center mb-3">
+            <svg class="w-4 h-4 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+          </div>
+          <p class="font-heading text-base text-text mb-2">Waiting for referrals</p>
+          <p class="text-sm text-text-muted leading-relaxed">It works as long as people recommend you. But you have no control over when the next client comes.</p>
         </div>
       </div>
 
-      <p class="text-accent font-medium text-center">
-        The first 90 days are designed to create proof &mdash; not to build a big platform straight away.
+      <p class="text-text font-medium text-center text-[0.95rem]">
+        That is why we don&rsquo;t build a loose download or a no-obligation call. We build a route from interest to sign-up to enquiry.
       </p>
     </div>
   </section>
 
-  {/* ── 5. CASES / PROOF ── */}
+
+  {/* ── 3b. A ROUTE FROM CLICK TO CLIENT ── */}
+  <section class="px-4 md:px-6 py-12 md:py-16">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="font-heading text-2xl md:text-3xl text-text mb-3 text-center">A route from click to client</h2>
+      <p class="text-text-muted text-center mb-8 max-w-2xl mx-auto text-[0.95rem]">
+        No isolated campaigns. No &lsquo;more visibility&rsquo; without follow-through. A system where content, products, emails and ads work together as a path &mdash; from first click to paying client.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+        <div class="bg-white rounded-card p-5 border border-border">
+          <p class="font-heading text-base text-text mb-2">An entry that can pay for itself</p>
+          <p class="text-sm text-text-muted leading-relaxed">A guide, mini-course, quiz or masterclass can make the step to your offer smaller and partly recoup your ad costs.</p>
+        </div>
+        <div class="bg-white rounded-card p-5 border border-border">
+          <p class="font-heading text-base text-text mb-2">Leads that qualify themselves</p>
+          <p class="text-sm text-text-muted leading-relaxed">People show through their choice, quiz, product or sign-up where they stand and what they need.</p>
+        </div>
+        <div class="bg-white rounded-card p-5 border border-border">
+          <p class="font-heading text-base text-text mb-2">Follow-up that builds trust</p>
+          <p class="text-sm text-text-muted leading-relaxed">After the first step, leads receive a series that builds trust before you offer a programme or coaching.</p>
+        </div>
+        <div class="bg-white rounded-card p-5 border border-border">
+          <p class="font-heading text-base text-text mb-2">Predictable growth, no peaks and valleys</p>
+          <p class="text-sm text-text-muted leading-relaxed">Content, products, emails and ads form a route. That is the difference between visibility and growth.</p>
+        </div>
+      </div>
+
+      {/* Compact flow */}
+      <div class="bg-bg-alt rounded-card p-4 border border-border max-w-2xl mx-auto mb-8">
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-0 text-center">
+          {[
+            { label: 'Attention', sub: 'Content / AI / ads' },
+            { label: 'Entry route', sub: 'Guide / scan / masterclass' },
+            { label: 'Trust', sub: 'Email / proof' },
+            { label: 'Client', sub: 'Enquiry / product / programme' },
+          ].map((step, i) => (
+            <>
+              <div class="flex-1 px-2 py-1">
+                <p class="text-xs font-medium text-text">{step.label}</p>
+                <p class="text-[0.6rem] text-text-muted">{step.sub}</p>
+              </div>
+              {i < 3 && <span class="hidden sm:block text-accent text-sm shrink-0">&rarr;</span>}
+            </>
+          ))}
+        </div>
+      </div>
+
+      <div class="max-w-2xl mx-auto text-center">
+        <p class="text-text text-sm leading-relaxed mb-2">
+          <strong>doc.veri</strong> is the example of what happens when an expert no longer just has a website, but an online system that can build trust and generate enquiries.
+        </p>
+        <p class="text-text font-medium text-sm">
+          That is the difference between being present online and being chosen online.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  {/* ── 4. CASES / PROOF ── */}
   <section id="cases" class="py-16 md:py-24 bg-primary">
     <div class="max-w-4xl mx-auto px-4 md:px-6">
-      <h2 class="font-heading text-3xl md:text-4xl text-white mb-3">This is what can happen when the foundation is right</h2>
-      <p class="text-white/60 mb-12 max-w-3xl">
-        Not every coach builds a large platform straight away. Often it starts smaller: packaging expertise more sharply, building a first entry route and proving that people are willing to take the first step.
+      <h2 class="font-heading text-3xl md:text-4xl text-white mb-3">The same pattern. Different stages.</h2>
+      <p class="text-white/60 mb-4 max-w-3xl">
+        These are not isolated success stories. This is the same pattern at different stages: packaging expertise more sharply, building a first entry route, following up with trust and then directing towards enquiry, product or client.
+      </p>
+      <p class="text-accent text-sm font-medium mb-12">
+        These successes did not come from a trick. They came from a system: positioning, offer, entry route, follow-up, traffic and optimisation.
       </p>
 
-      {/* ── Case 1: Dr. Verena Mann ── */}
+      {/* Case 1: Dr. Verena Mann */}
       <div class="bg-white/5 backdrop-blur border border-white/10 rounded-card p-5 md:p-8 mb-8">
         <div class="flex items-center gap-4 mb-5">
           <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-accent/30 shrink-0">
@@ -248,15 +309,15 @@ const serviceSchema = generateService({
             <p class="text-white font-medium text-sm">Dr. Verena Mann</p>
             <a href="https://doc-veri.pages.dev" target="_blank" rel="noopener" class="text-accent/70 hover:text-accent text-xs transition-colors">doc-veri.pages.dev</a>
           </div>
-          <div class="ml-auto flex items-center gap-3">
-            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full">Expert platform</span>
+          <div class="ml-auto">
+            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full">From expert position to enquiries</span>
           </div>
         </div>
 
         <div class="grid grid-cols-3 gap-3 mb-5">
           <div class="bg-white/5 rounded-lg p-3 text-center">
             <p class="font-heading text-xl text-accent">2 &rarr; 19</p>
-            <p class="text-[10px] text-white/50">enquiries/month</p>
+            <p class="text-[10px] text-white/50">enquiries/mo</p>
           </div>
           <div class="bg-white/5 rounded-lg p-3 text-center">
             <p class="font-heading text-xl text-accent">0 &rarr; 15</p>
@@ -271,27 +332,22 @@ const serviceSchema = generateService({
         <p class="text-white/70 text-sm leading-relaxed mb-3">
           Strong expertise and an active community, but barely any enquiries from people who didn&rsquo;t already know her. By packaging her expertise more concretely around themes, client problems and proof, she became not only more visible but also more logical to contact.
         </p>
-        <p class="text-accent text-sm font-medium italic">
-          &ldquo;From a better online presence to enquiries from people who didn&rsquo;t know her yet.&rdquo;
-        </p>
 
         <div class="grid grid-cols-2 gap-3 mt-5">
           <div class="lightbox-trigger cursor-zoom-in group">
             <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
               <Image src={proofVerenaAi} alt="ChatGPT names Dr. Verena Mann as a fitting expert" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
             </div>
-            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">AI answer: &ldquo;eine passende Expertin&rdquo;</p>
           </div>
           <div class="lightbox-trigger cursor-zoom-in group">
             <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
-              <Image src={proofVerenaChatgpt} alt="ChatGPT recommends Dr. Verena Mann with a direct link" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
+              <Image src={proofVerenaChatgpt} alt="ChatGPT with a direct link to Dr. Verena Mann" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
             </div>
-            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">ChatGPT with a direct link to her site</p>
           </div>
         </div>
       </div>
 
-      {/* ── Case 2: Coach Josine ── */}
+      {/* Case 2: Coach Josine */}
       <div class="bg-white/5 backdrop-blur border border-white/10 rounded-card p-5 md:p-8 mb-8">
         <div class="flex items-center gap-4 mb-5">
           <div>
@@ -299,7 +355,7 @@ const serviceSchema = generateService({
             <a href="https://www.coachjosine.nl" target="_blank" rel="noopener" class="text-accent/70 hover:text-accent text-xs transition-colors">coachjosine.nl</a>
           </div>
           <div class="ml-auto">
-            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full">First traction</span>
+            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full">From guide to programme interest</span>
           </div>
         </div>
 
@@ -321,34 +377,29 @@ const serviceSchema = generateService({
         <p class="text-white/70 text-sm leading-relaxed mb-3">
           Had expertise, but no digital entry route. We made her first guide concrete, built the landing page and connected this to a masterclass route. People bought the guide, attended the masterclass and asked about the programme.
         </p>
-        <p class="text-accent text-sm font-medium italic">
-          &ldquo;Not a platform straight away, but first proof that people are willing to take the first step.&rdquo;
-        </p>
 
         <div class="grid grid-cols-2 gap-3 mt-5">
           <div class="lightbox-trigger cursor-zoom-in group">
             <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
-              <Image src={josineProduct} alt="Eating guide Coach Josine — product page" width={600} quality={80} class="w-full h-auto" loading="lazy" />
+              <Image src={josineProduct} alt="Eating guide Coach Josine" width={600} quality={80} class="w-full h-auto" loading="lazy" />
             </div>
-            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">The eating guide that delivered the proof</p>
           </div>
           <div class="lightbox-trigger cursor-zoom-in group">
             <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
               <Image src={josineWhatsApp} alt="WhatsApp message from Josine about results" width={600} quality={80} class="w-full h-auto" loading="lazy" />
             </div>
-            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">Response from Josine</p>
           </div>
         </div>
       </div>
 
-      {/* ── Case 3: Tessa / Youlife ── */}
+      {/* Case 3: Tessa / Youlife */}
       <div class="bg-white/5 backdrop-blur border border-white/10 rounded-card p-5 md:p-8 mb-8">
         <div class="flex items-center gap-4 mb-5">
           <div>
             <p class="text-white font-medium text-sm">Tessa &mdash; Youlife</p>
           </div>
           <div class="ml-auto">
-            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full">Product growth</span>
+            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full">From loose products to product revenue</span>
           </div>
         </div>
 
@@ -377,9 +428,8 @@ const serviceSchema = generateService({
         <div class="grid grid-cols-2 gap-3 mt-5">
           <div class="lightbox-trigger cursor-zoom-in group">
             <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
-              <Image src={tessaWhatsApp} alt="WhatsApp message from Tessa — Youlife results" width={600} quality={80} class="w-full h-auto" loading="lazy" />
+              <Image src={tessaWhatsApp} alt="WhatsApp message from Tessa" width={600} quality={80} class="w-full h-auto" loading="lazy" />
             </div>
-            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">Response from Tessa</p>
           </div>
           <div class="bg-white/5 rounded-lg p-4 flex items-center justify-center">
             <a href="/en/cases/tessa-youlife/" class="text-accent hover:text-accent-dark text-sm font-medium transition-colors">View the full case &rarr;</a>
@@ -387,14 +437,14 @@ const serviceSchema = generateService({
         </div>
       </div>
 
-      {/* ── Case 4: Happy With Yoga ── */}
+      {/* Case 4: Happy With Yoga */}
       <div class="bg-white/5 backdrop-blur border border-white/10 rounded-card p-5 md:p-8 mb-8">
         <div class="flex items-center gap-4 mb-5">
           <div>
             <p class="text-white font-medium text-sm">Rolf &mdash; Happy With Yoga</p>
           </div>
           <div class="ml-auto">
-            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full">Mature platform</span>
+            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full">From funnel to expert platform</span>
           </div>
         </div>
 
@@ -416,16 +466,12 @@ const serviceSchema = generateService({
         <p class="text-white/70 text-sm leading-relaxed mb-3">
           Shows where this model can grow over time. Not one campaign, but a system with quiz funnels, mini-courses, webinars and a platform with recurring members.
         </p>
-        <p class="text-accent text-sm font-medium italic">
-          &ldquo;This is not a 90-day promise, but the end picture when an expert brand keeps building.&rdquo;
-        </p>
 
         <div class="grid grid-cols-2 gap-3 mt-5">
           <div class="lightbox-trigger cursor-zoom-in group">
             <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
-              <Image src={rolfWhatsApp} alt="WhatsApp message from Rolf — Happy With Yoga results" width={600} quality={80} class="w-full h-auto" loading="lazy" />
+              <Image src={rolfWhatsApp} alt="WhatsApp message from Rolf" width={600} quality={80} class="w-full h-auto" loading="lazy" />
             </div>
-            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">Response from Rolf</p>
           </div>
           <div class="bg-white/5 rounded-lg p-4 flex items-center justify-center">
             <a href="/en/cases/happy-with-yoga/" class="text-accent hover:text-accent-dark text-sm font-medium transition-colors">View the full case &rarr;</a>
@@ -433,7 +479,7 @@ const serviceSchema = generateService({
         </div>
       </div>
 
-      {/* ── Case 5: CBMC ── */}
+      {/* Case 5: CBMC */}
       <div class="bg-white/5 backdrop-blur border-2 border-accent/30 rounded-card p-5 md:p-8">
         <div class="flex items-center gap-4 mb-5">
           <div class="w-12 h-12 rounded-full overflow-hidden ring-2 ring-accent/30 shrink-0">
@@ -444,7 +490,7 @@ const serviceSchema = generateService({
             <a href="https://www.costablancamovement.com" target="_blank" rel="noopener" class="text-accent/70 hover:text-accent text-xs transition-colors">costablancamovement.com</a>
           </div>
           <div class="ml-auto">
-            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full">AI-ready foundation</span>
+            <span class="inline-flex items-center px-2.5 py-0.5 text-[10px] font-medium bg-accent/20 text-accent rounded-full">New foundation, fast visibility</span>
           </div>
         </div>
 
@@ -464,24 +510,19 @@ const serviceSchema = generateService({
         </div>
 
         <p class="text-white/70 text-sm leading-relaxed mb-3">
-          Less coach-specific, but proves how quickly a new foundation can gain traction. No existing site, no history, no backlinks. Yet quickly visible in Google and AI.
-        </p>
-        <p class="text-accent text-sm font-medium italic">
-          &ldquo;When the foundation is right, visibility can pick up faster than you expect.&rdquo;
+          Proves how quickly a new foundation can gain traction. No existing site, no history, no backlinks. Yet quickly visible in Google and AI.
         </p>
 
         <div class="grid grid-cols-2 gap-3 mt-5">
           <div class="lightbox-trigger cursor-zoom-in group">
             <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
-              <Image src={proofGoogle} alt="Google position 4 for chiropractor Torrevieja after 2 weeks" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
+              <Image src={proofGoogle} alt="Google page 1 after 2 weeks" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
             </div>
-            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">Google page 1 &mdash; after 2 weeks</p>
           </div>
           <div class="lightbox-trigger cursor-zoom-in group">
             <div class="bg-black/40 border border-white/10 rounded-lg overflow-hidden">
-              <Image src={proofChatgpt} alt="ChatGPT recommends CBMC as number 1 local chiropractor" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
+              <Image src={proofChatgpt} alt="ChatGPT #1 recommendation" width={1200} quality={85} class="w-full h-auto" loading="lazy" />
             </div>
-            <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">ChatGPT #1 local recommendation</p>
           </div>
         </div>
       </div>
@@ -489,155 +530,237 @@ const serviceSchema = generateService({
       <p class="text-xs text-white/30 italic mt-6">
         *All results mentioned are verified. Results vary by situation, market and cooperation.
       </p>
+
+      <div class="mt-10 text-center">
+        <p class="text-white font-medium text-sm mb-2">
+          These cases show why Coach Accelerator goes beyond a website. The website is the foundation. The growth comes from the system.
+        </p>
+        <p class="text-white/50 text-sm">
+          That is why we build your expert foundation and growth route together within Coach Accelerator.
+        </p>
+      </div>
     </div>
   </section>
 
-  {/* ── 6. WHY NOT A DIRECT SALES CALL ── */}
-  <section class="py-14 md:py-20">
-    <div class="max-w-3xl mx-auto px-4 md:px-6">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">
-        Why going straight to a sales call is often too big a step
-      </h2>
-      <p class="text-text-muted leading-relaxed mb-8">
-        Sending cold people directly to an expensive programme works less and less. An intermediate step such as a guide, scan, masterclass or mini-product lets someone first experience your vision, method and style.
-      </p>
 
-      {/* Visual flow */}
-      <div class="bg-bg-alt rounded-card p-5 md:p-6 border border-border">
-        <div class="flex flex-col md:flex-row items-stretch gap-3 md:gap-0">
-          <div class="flex-1 bg-white rounded-lg p-3 text-center border border-border">
-            <p class="text-xs font-medium text-text">Content / AI / ad</p>
-            <p class="text-[10px] text-text-muted mt-0.5">Someone discovers you</p>
+  {/* ── 5. OFFER ── */}
+  <section class="px-4 md:px-6 py-14 md:py-20 bg-bg-alt">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-3">
+        <h2 class="font-heading text-2xl md:text-3xl text-text mb-2">Coach Accelerator. From expertise to clients.</h2>
+        <p class="text-text-muted text-[0.95rem] max-w-2xl mx-auto">
+          A complete growth system for coaches and experts: from your website to your entry route and follow-up.
+        </p>
+      </div>
+
+      <p class="text-sm text-text-muted text-center mb-8 max-w-2xl mx-auto">
+        Your AI-ready expert website forms the basis. On top of that we build your growth system with entry route, email and advertising.
+      </p>
+<div class="max-w-2xl mx-auto mb-10">
+{/* ── OFFER — Coach Accelerator ── */}
+        <div class="bg-gradient-to-b from-white to-accent/[0.03] border-2 border-accent/40 rounded-card p-5 md:p-6 shadow-xl relative flex flex-col ring-1 ring-accent/10">
+          <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 inline-block px-4 py-1 text-[0.6rem] font-bold tracking-[0.15em] uppercase bg-accent text-white rounded-full shadow-md whitespace-nowrap">Recommended &mdash; complete growth system</span>
+
+          <span class="inline-block self-start px-2.5 py-0.5 text-[0.55rem] font-medium tracking-widest uppercase bg-accent/10 text-accent rounded-full mb-3 mt-1">Full growth</span>
+
+          <p class="font-heading text-lg text-text mb-0.5">Coach Accelerator Growth System</p>
+          <div class="flex items-baseline gap-1 mb-0.5">
+            <p class="font-heading text-3xl text-accent">From &euro;500<span class="text-sm text-text-muted font-body">/mo</span></p>
           </div>
-          <div class="hidden md:flex items-center px-2 text-accent">&rarr;</div>
-          <div class="flex-1 bg-white rounded-lg p-3 text-center border-2 border-accent/30">
-            <p class="text-xs font-medium text-text">Entry route</p>
-            <p class="text-[10px] text-text-muted mt-0.5">Guide, scan or masterclass</p>
+          <p class="text-text-muted text-xs mb-3">90 days</p>
+
+          <div class="bg-accent/8 border border-accent/20 rounded-lg px-3 py-2.5 mb-4 flex items-start gap-2">
+            <svg class="w-4 h-4 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <div>
+              <p class="text-xs text-accent font-bold">AI-ready expert website + growth system included</p>
+              <p class="text-[0.6rem] text-text-muted">Normal value website foundation: &euro;2,000&ndash;&euro;4,000</p>
+            </div>
           </div>
-          <div class="hidden md:flex items-center px-2 text-accent">&rarr;</div>
-          <div class="flex-1 bg-white rounded-lg p-3 text-center border border-border">
-            <p class="text-xs font-medium text-text">Email follow-up</p>
-            <p class="text-[10px] text-text-muted mt-0.5">Trust grows</p>
+
+          <p class="text-text font-medium text-sm mb-3">Build the system that turns your expertise into leads and clients.</p>
+
+          <p class="text-xs uppercase tracking-widest text-accent font-medium mb-1">Outcome after 90 days</p>
+          <p class="text-text text-sm leading-relaxed mb-4">
+            You don&rsquo;t just have an expert foundation, but also a concrete growth route: entry route, landing page, email follow-up, advertising angle and first lead test.
+          </p>
+
+          <p class="text-xs uppercase tracking-widest text-accent font-medium mb-1">Best choice if</p>
+          <p class="text-text-muted text-sm leading-relaxed mb-4">
+            You seriously want to build towards leads, sign-ups, product sales, masterclass registrations or coaching enquiries.
+          </p>
+
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-[0.6rem] uppercase tracking-widest text-accent font-semibold">Impact</span>
+            <div class="flex gap-0.5">
+              <span class="w-5 h-1.5 rounded-full bg-accent"></span>
+              <span class="w-5 h-1.5 rounded-full bg-accent"></span>
+              <span class="w-5 h-1.5 rounded-full bg-accent"></span>
+            </div>
+            <span class="text-[0.6rem] text-accent font-semibold">Highest result potential</span>
           </div>
-          <div class="hidden md:flex items-center px-2 text-accent">&rarr;</div>
-          <div class="flex-1 bg-white rounded-lg p-3 text-center border border-border">
-            <p class="text-xs font-medium text-text">Enquiry or client</p>
-            <p class="text-[10px] text-text-muted mt-0.5">Warm and qualified</p>
-          </div>
+
+          <a href="#analyse" class="inline-flex items-center justify-center gap-2 px-6 py-4 text-base font-semibold text-white bg-accent hover:bg-accent-dark transition-colors rounded-button shadow-lg w-full mt-auto mb-4">
+            Start with Coach Accelerator
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          </a>
+
+          <details class="group border-t border-accent/15 pt-3">
+            <summary class="flex items-center justify-between cursor-pointer text-xs text-accent font-medium select-none">
+              What&rsquo;s included?
+              <svg class="w-3.5 h-3.5 text-accent transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            </summary>
+            <ul class="mt-3 space-y-1.5">
+              {[
+                'AI-ready expert website, positioning and offer pages',
+                'SEO/GEO, structured data and hosting',
+                'Choice and development of the right entry route',
+                'AI quiz / scan / lead magnet',
+                'Mini-product positioning',
+                'Masterclass strategy',
+                'Landing pages',
+                'Email flow',
+                'Meta Ads strategy',
+                'Ad hooks / angles',
+                'Test campaign guidance',
+                'Lead quality analysis',
+                'Optimisation towards enquiries, product sales or coaching clients',
+              ].map((item) => (
+                <li class="flex items-start gap-2 text-xs text-text font-medium">
+                  <svg class="w-3 h-3 text-accent shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </details>
         </div>
       </div>
-    </div>
-  </section>
 
-  {/* ── 7. INVESTMENT ── */}
-  <section class="py-14 md:py-18 bg-bg-alt">
-    <div class="max-w-3xl mx-auto px-4 md:px-6 text-center">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">Start small. Build on what works.</h2>
-      <div class="inline-block bg-white rounded-card px-8 py-6 border border-border mb-4">
-        <p class="text-text-muted text-sm mb-1">Starting from</p>
-        <p class="font-heading text-4xl text-text">&euro;500<span class="text-lg text-text-muted font-normal">/mo</span></p>
+      {/* Comparison block */}
+      <div class="max-w-3xl mx-auto">
+        <p class="text-xs uppercase tracking-widest text-accent font-medium text-center mb-4">The difference in one sentence</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+          <div class="bg-bg-alt rounded-lg px-4 py-3">
+            <p class="text-xs text-accent font-medium mb-1">Expert Website Foundation</p>
+            <p class="text-sm text-text">You are presented online seriously as an expert.</p>
+          </div>
+          <div class="bg-accent/5 border border-accent/15 rounded-lg px-4 py-3">
+            <p class="text-xs text-accent font-medium mb-1">Coach Accelerator</p>
+            <p class="text-sm text-text font-medium">We build the system that can turn your expertise into leads, sign-ups and clients.</p>
+          </div>
+        </div>
+        <p class="text-sm text-text-muted text-center max-w-xl mx-auto">
+          The cases on this page did not come only from a nice website. They came from the combination of positioning, offer, funnel, entry product/masterclass, email, advertising and optimisation. That is why the full result potential belongs mainly to Coach Accelerator.
+        </p>
       </div>
-      <p class="text-sm text-text-muted">
-        Coach Accelerator includes your website foundation and growth route. We agree the scope together before starting.
-      </p>
     </div>
   </section>
 
-  {/* ── Founder ── */}
-  <section class="py-14 md:py-20">
+
+  {/* ── 6. FOUNDER ── */}
+  <section class="py-12 md:py-16">
     <div class="max-w-4xl mx-auto px-4 md:px-6">
-      <div class="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-10 md:gap-14 items-center">
+      <div class="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-8 md:gap-12 items-center">
         <div class="flex justify-center md:justify-start">
-          <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden shadow-lg ring-4 ring-white shrink-0">
-            <Image
-              src={founderPhoto}
-              alt="Joost van Putten — builds growth systems for coaches and experts"
-              widths={[224, 320]}
-              sizes="(max-width: 768px) 192px, 224px"
-              class="w-full h-full object-cover"
-              loading="lazy"
-              decoding="async"
-            />
+          <div class="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden shadow-lg ring-4 ring-white shrink-0">
+            <Image src={founderPhoto} alt="Joost van Putten" widths={[192, 256]} sizes="(max-width: 768px) 160px, 192px" class="w-full h-full object-cover" loading="lazy" decoding="async" />
           </div>
         </div>
         <div>
-          <div class="w-12 h-1 bg-accent rounded-full mb-4"></div>
-          <h2 class="font-heading text-2xl md:text-3xl text-text mb-1">Joost van Putten</h2>
-          <p class="text-sm text-text-muted mb-4">Founder &amp; Online Growth Strategist</p>
-          <p class="text-text-muted leading-relaxed mb-6">
-            8 years of experience with online growth systems for coaches and experts. From quiz funnels and mini-products to full platforms &mdash; systems that turn expertise into predictable growth.
+          <h2 class="font-heading text-2xl text-text mb-3">Joost van Putten</h2>
+          <p class="text-text-muted leading-relaxed text-sm">
+            8 years of experience with online growth systems for coaches and experts. From quiz funnels and mini-products to full platforms. Systems that turn expertise into predictable growth.
           </p>
-          <a
-            href="/en/about-joost/"
-            class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium"
-          >
-            More about Joost
-            <svg class="ml-1 w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </a>
         </div>
       </div>
     </div>
   </section>
 
-  {/* ── FAQ ── */}
-  <section class="py-14 md:py-20 bg-bg-alt">
-    <div class="max-w-3xl mx-auto px-4 md:px-6">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-8 text-center">Frequently asked questions</h2>
-      <FAQAccordion items={faqForComponent} />
+
+  {/* ── 7. FAQ ── */}
+  <FAQAccordion
+    title="Frequently asked questions"
+    items={faqForComponent}
+    locale={locale}
+    pageType="service"
+    pageSlug="ai-expert-groei-traject"
+    compact={true}
+  />
+
+
+  <LogoMarquee logos={logos} />
+
+
+  {/* ── 8. QUALIFICATION + CTA ── */}
+  <section class="px-4 md:px-6 py-10 md:py-14">
+    <div class="max-w-2xl mx-auto text-center mb-10">
+      <h2 class="font-heading text-xl md:text-2xl text-text mb-3">This analysis is not meant for free tips</h2>
+      <p class="text-text-muted text-sm leading-relaxed mb-3">
+        If we can show you where your expert foundation is currently leaving enquiries, sign-ups or clients on the table, are you then willing to work seriously on your growth route for 90 days?
+      </p>
+      <p class="text-text-muted text-sm leading-relaxed mb-3">
+        Just looking for some loose tips to maybe use someday? Then this is probably not the right step. This analysis is meant for coaches and experts who want to know which route has the most commercial potential.
+      </p>
+      <p class="text-text-muted text-sm leading-relaxed">
+        If there is enough growth potential and you are open to a programme, we discuss the approach and a suitable start date.
+      </p>
     </div>
   </section>
 
-  {/* ── Logo marquee ── */}
-  <LogoMarquee logos={logos} />
-
-  {/* ── CTA ── */}
   <section id="analyse" class="py-16 md:py-20 bg-primary">
     <div class="max-w-lg mx-auto px-4 md:px-6">
-      <h2 class="font-heading text-3xl md:text-4xl text-white mb-4 text-center">
-        Want to know which growth route fits your expertise?
+      <h2 class="font-heading text-2xl md:text-3xl text-white mb-3 text-center">
+        Check if there is growth potential in your expertise
       </h2>
-      <p class="text-white/80 mb-8 max-w-2xl mx-auto text-center">
-        Have your scan, website or offer reviewed. You won&rsquo;t receive a technical report, but a personal assessment: is your biggest opportunity in visibility, positioning, entry route or follow-up?
+      <p class="text-white/50 text-center text-sm mb-3">
+        For coaches, therapists and experts who seriously want to grow.
+      </p>
+      <p class="text-accent text-center text-sm font-medium mb-8">
+        Personal approach &middot; Start date by arrangement
       </p>
 
       <form id="groei-form" class="space-y-3">
         <input type="hidden" name="bron" value="expert-groei-traject-en" />
         <input type="text" name="naam" placeholder="Your name" required autocomplete="name" class="w-full px-4 py-3.5 rounded-button border border-white/20 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white/10 backdrop-blur" />
         <input type="email" name="email" placeholder="you@email.com" required autocomplete="email" class="w-full px-4 py-3.5 rounded-button border border-white/20 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white/10 backdrop-blur" />
+        <input type="tel" name="telefoon" placeholder="+1 234 567 890" autocomplete="tel" class="w-full px-4 py-3.5 rounded-button border border-white/20 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white/10 backdrop-blur" />
         <input type="url" name="website" placeholder="https://yourwebsite.com" autocomplete="url" class="w-full px-4 py-3.5 rounded-button border border-white/20 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent bg-white/10 backdrop-blur" />
 
         <p class="text-white/60 text-xs pt-2 pb-1">What would you like the most insight into? (optional)</p>
         <div class="grid grid-cols-2 gap-2">
-          <label class="flex items-center gap-2.5 bg-white/5 border border-white/15 rounded-lg px-3 py-2.5 cursor-pointer hover:bg-white/10 transition-colors">
-            <input type="checkbox" name="interesse" value="ai-vindbaarheid" class="accent-accent w-3.5 h-3.5 shrink-0" />
-            <span class="text-white text-sm">AI visibility</span>
-          </label>
-          <label class="flex items-center gap-2.5 bg-white/5 border border-white/15 rounded-lg px-3 py-2.5 cursor-pointer hover:bg-white/10 transition-colors">
-            <input type="checkbox" name="interesse" value="positionering" class="accent-accent w-3.5 h-3.5 shrink-0" />
-            <span class="text-white text-sm">Positioning</span>
-          </label>
-          <label class="flex items-center gap-2.5 bg-white/5 border border-white/15 rounded-lg px-3 py-2.5 cursor-pointer hover:bg-white/10 transition-colors">
-            <input type="checkbox" name="interesse" value="instaproute" class="accent-accent w-3.5 h-3.5 shrink-0" />
-            <span class="text-white text-sm">Entry route</span>
-          </label>
-          <label class="flex items-center gap-2.5 bg-white/5 border border-white/15 rounded-lg px-3 py-2.5 cursor-pointer hover:bg-white/10 transition-colors">
-            <input type="checkbox" name="interesse" value="email" class="accent-accent w-3.5 h-3.5 shrink-0" />
-            <span class="text-white text-sm">Email follow-up</span>
-          </label>
-          <label class="flex items-center gap-2.5 bg-white/5 border border-white/15 rounded-lg px-3 py-2.5 cursor-pointer hover:bg-white/10 transition-colors">
-            <input type="checkbox" name="interesse" value="groeilek" class="accent-accent w-3.5 h-3.5 shrink-0" />
-            <span class="text-white text-sm">Biggest growth leak</span>
-          </label>
-          <label class="flex items-center gap-2.5 bg-white/5 border border-white/15 rounded-lg px-3 py-2.5 cursor-pointer hover:bg-white/10 transition-colors">
-            <input type="checkbox" name="interesse" value="weet-niet" class="accent-accent w-3.5 h-3.5 shrink-0" />
-            <span class="text-white text-sm">Don&rsquo;t know where to start</span>
-          </label>
+          {[
+            { value: 'ai-vindbaarheid', label: 'AI visibility' },
+            { value: 'positionering', label: 'Positioning' },
+            { value: 'instaproute', label: 'Entry route' },
+            { value: 'email', label: 'Email follow-up' },
+            { value: 'groeilek', label: 'Biggest growth leak' },
+            { value: 'weet-niet', label: 'Don\'t know where to start' },
+          ].map((opt) => (
+            <label class="flex items-center gap-2.5 bg-white/5 border border-white/15 rounded-lg px-3 py-2.5 cursor-pointer hover:bg-white/10 transition-colors">
+              <input type="checkbox" name="interesse" value={opt.value} class="accent-accent w-3.5 h-3.5 shrink-0" />
+              <span class="text-white text-sm">{opt.label}</span>
+            </label>
+          ))}
         </div>
 
-        <button type="submit" class="w-full mt-2 px-8 py-4 text-base font-medium bg-accent hover:bg-accent-dark text-white transition-all duration-300 rounded-button shadow-lg shadow-accent/25 hover:shadow-xl flex items-center justify-center gap-2">
-          Let Joost map my growth route
+        {/* Qualification question */}
+        <fieldset class="pt-4">
+          <legend class="text-sm font-medium text-white/80 mb-3">If the analysis shows concrete growth opportunities, would you be open to a programme starting from &euro;500 per month?</legend>
+          <div class="space-y-2">
+            {[
+              'Yes, if the opportunities make sense',
+              'Maybe, I first want to understand what it delivers',
+              'No, I am mainly looking for free tips',
+            ].map((opt) => (
+              <label class="flex items-center gap-3 cursor-pointer">
+                <input type="radio" name="commitment" value={opt} required class="text-accent focus:ring-accent" />
+                <span class="text-sm text-white/70">{opt}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <button type="submit" class="w-full mt-2 px-8 py-4 text-base font-medium bg-accent hover:bg-accent-dark text-white transition-all duration-300 rounded-button shadow-lg flex items-center justify-center gap-2">
+          Check my growth potential
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
         </button>
       </form>
@@ -648,17 +771,17 @@ const serviceSchema = generateService({
         </svg>
         <p class="font-heading text-xl text-white mb-2">Thank you!</p>
         <p class="text-white/70 text-[0.95rem]">
-          I will review your situation and let you know within 24 hours which growth route makes the most sense.
+          I will review your situation and let you know within 24 hours whether there is enough growth potential.
         </p>
       </div>
 
       <p id="groei-microcopy" class="text-xs text-white/40 text-center mt-4">
-        No payment now. You will receive a personal assessment, not a sales pitch.
+        No payment now. We first check if there is enough potential and if the programme is a good fit for you.
       </p>
     </div>
   </section>
 
-  {/* ── Lightbox script ── */}
+  {/* Lightbox */}
   <script is:inline>
   document.addEventListener('DOMContentLoaded', function() {
     var triggers = document.querySelectorAll('.lightbox-trigger');
@@ -713,6 +836,7 @@ const serviceSchema = generateService({
       var data = new FormData(form);
       var naam = data.get('naam');
       var email = data.get('email');
+      var telefoon = data.get('telefoon');
       var website = data.get('website') || '';
 
       if (!naam || !email) return;
@@ -722,26 +846,31 @@ const serviceSchema = generateService({
 
       var checked = Array.from(form.querySelectorAll('input[name="interesse"]:checked')).map(function(cb) { return cb.value; });
       var interesse = checked.length > 0 ? checked.join(', ') : 'niet ingevuld';
+      var commitment = data.get('commitment') || '';
+
+      var vraagParts = ['Expert Groei Traject aanvraag', 'Interesse: ' + interesse];
+      if (commitment) vraagParts.push('Commitment: ' + commitment);
 
       var payload = {
         naam: naam,
         email: email,
+        telefoon: telefoon || '',
         websiteUrl: website || 'niet ingevuld',
-        vraag: 'Expert Groei Traject aanvraag — Interesse: ' + interesse,
+        vraag: vraagParts.join(' — '),
         source: 'expert-groei-traject-en',
       };
 
       var leadId = typeof nxgCapiEventId === 'function' ? nxgCapiEventId() : '';
       if (typeof fbq === 'function') {
-        fbq('track', 'Lead', { content_name: 'expert-groei-traject-en', content_category: 'ai-expert-growth' }, { eventID: leadId });
+        fbq('track', 'Lead', { content_name: 'expert-groei-traject-en', content_category: 'ai-expert-groei-traject' }, { eventID: leadId });
       }
       if (leadId && typeof nxgCapiSend === 'function') {
-        nxgCapiSend('Lead', leadId, { content_name: 'expert-groei-traject-en', content_category: 'ai-expert-growth' });
+        nxgCapiSend('Lead', leadId, { content_name: 'expert-groei-traject-en', content_category: 'ai-expert-groei-traject' });
       }
       if (typeof trackEvent === 'function') {
         trackEvent('scanner_request_submitted', {
           page_type: 'page',
-          page_slug: 'ai-expert-growth',
+          page_slug: 'ai-expert-groei-traject',
           locale: 'en',
           cta_location: 'inline',
         });
