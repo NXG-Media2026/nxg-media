@@ -73,11 +73,9 @@ const trustItems = [
       />
       <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/40"></div>
     </div>
-    <div class="relative max-w-4xl mx-auto px-4 md:px-6">
-      <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full mb-6">
-        Early adopter voordeel
-      </span>
-      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl text-text mb-6 leading-tight max-w-2xl">
+    <div class="relative max-w-[1260px] mx-auto px-5 md:px-8">
+      <p class="eyebrow text-primary mb-4">EARLY ADOPTER VOORDEEL</p>
+      <h1 class="font-heading font-extrabold text-4xl md:text-[3.5rem] lg:text-[4rem] leading-[0.98] text-text mb-6 uppercase max-w-2xl">
         Word aanbevolen door ChatGPT, Gemini & Perplexity
       </h1>
       <p class="text-lg md:text-xl text-text-muted leading-relaxed mb-10 max-w-xl">
@@ -87,16 +85,14 @@ const trustItems = [
         <button
           type="button"
           data-scanner-open
-          class="inline-flex items-center px-8 py-4 text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-lg cursor-pointer"
+          class="inline-flex items-center gap-2 px-6 py-[15px] text-[15px] font-extrabold text-white bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-lg cursor-pointer"
         >
           Doe de gratis AI-scan
-          <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
+          <span aria-hidden="true">↗</span>
         </button>
         <a
-          href="/contact/"
-          class="inline-flex items-center px-8 py-4 text-base font-medium text-primary border-2 border-primary hover:bg-primary/5 transition-colors rounded-button"
+          href="/contact"
+          class="inline-flex items-center gap-2 px-6 py-[15px] text-[15px] font-extrabold text-primary border-2 border-primary hover:bg-primary/5 transition-colors rounded-button"
         >
           Plan een kennismaking
         </a>
@@ -106,15 +102,16 @@ const trustItems = [
 
   {/* ── Trust Bar ── */}
   <section class="bg-bg-alt border-y border-border">
-    <div class="max-w-4xl mx-auto px-4 md:px-6">
+    <div class="max-w-[1260px] mx-auto px-5 md:px-8">
       <TrustBar items={trustItems} />
     </div>
   </section>
 
   {/* ── Recognition / Pain ── */}
-  <section class="py-16 md:py-20 bg-primary">
-    <div class="max-w-3xl mx-auto px-4 md:px-6">
-      <h2 class="font-heading text-2xl md:text-3xl text-white mb-8">Herken je dit?</h2>
+  <section class="py-16 md:py-24 bg-primary">
+    <div class="max-w-[1260px] mx-auto px-5 md:px-8">
+      <p class="eyebrow light mb-4">HERKENBAAR?</p>
+      <h2 class="font-heading font-extrabold text-3xl md:text-[2.5rem] leading-[0.98] text-white mb-8 uppercase">Herken je dit?</h2>
       <div class="space-y-4">
         <div class="flex items-start gap-3">
           <span class="text-white/60 text-lg mt-0.5">&ldquo;</span>
@@ -137,10 +134,11 @@ const trustItems = [
   </section>
 
   {/* ── FOMO / Early Adopter ── */}
-  <section class="py-16 md:py-20">
-    <div class="max-w-4xl mx-auto px-4 md:px-6">
+  <section class="py-[104px]">
+    <div class="max-w-[1260px] mx-auto px-5 md:px-8">
       <div class="max-w-3xl">
-        <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">
+        <p class="eyebrow text-primary mb-4">DE VERSCHUIVING</p>
+        <h2 class="font-heading font-extrabold text-3xl md:text-[2.5rem] leading-[0.98] text-text mb-6 uppercase">
           De verschuiving is al begonnen
         </h2>
         <p class="text-lg text-text-muted leading-relaxed mb-6">
@@ -193,9 +191,9 @@ const trustItems = [
   </section>
 
   {/* ── Google vs AI Comparison ── */}
-  <section class="py-16 md:py-20 bg-bg-alt">
-    <div class="max-w-4xl mx-auto px-4 md:px-6">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4 text-center">
+  <section class="py-16 md:py-24 bg-bg-alt">
+    <div class="max-w-[1260px] mx-auto px-5 md:px-8">
+      <h2 class="font-heading font-extrabold text-3xl md:text-[2.5rem] leading-[0.98] text-text mb-4 text-center uppercase">
         Google zoeken vs. AI zoeken
       </h2>
       <p class="text-text-muted text-center mb-10 max-w-2xl mx-auto">
@@ -249,31 +247,30 @@ const trustItems = [
   </section>
 
   {/* ── Mid-page CTA ── */}
-  <section class="py-16 md:py-20 bg-accent">
-    <div class="max-w-4xl mx-auto px-4 md:px-6 text-center">
-      <h2 class="font-heading text-3xl md:text-4xl text-white mb-4">
-        Check of AI-tools jouw bedrijf al aanbevelen
-      </h2>
-      <p class="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
-        Onze gratis scan controleert je zichtbaarheid in ChatGPT, Gemini, Perplexity en Google. In 2 minuten weet je waar je staat.
-      </p>
+  <section class="bg-accent py-16 md:py-20">
+    <div class="max-w-[1260px] mx-auto px-5 md:px-8 flex flex-col md:flex-row items-center justify-between gap-8">
+      <div>
+        <h2 class="font-heading font-extrabold text-3xl md:text-[2.5rem] leading-[0.98] text-text uppercase">
+          Check of AI-tools jouw bedrijf<br />
+          <span class="text-primary">al aanbevelen.</span>
+        </h2>
+      </div>
       <button
         type="button"
         data-scanner-open
-        class="inline-flex items-center px-8 py-4 text-base font-medium bg-white text-accent hover:bg-bg-alt transition-colors rounded-button cursor-pointer"
+        class="inline-flex items-center gap-2 px-6 py-[15px] text-[15px] font-extrabold text-white bg-text hover:bg-primary transition-colors rounded-button shrink-0 cursor-pointer"
       >
         Doe de gratis AI-scan
-        <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-        </svg>
+        <span aria-hidden="true">↗</span>
       </button>
     </div>
   </section>
 
   {/* ── Van onzichtbaar naar aanbevolen ── */}
-  <section class="py-16 md:py-20">
-    <div class="max-w-4xl mx-auto px-4 md:px-6">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">Van onzichtbaar naar aanbevolen</h2>
+  <section class="py-[104px]">
+    <div class="max-w-[1260px] mx-auto px-5 md:px-8">
+      <p class="eyebrow text-primary mb-4">HET TRAJECT</p>
+      <h2 class="font-heading font-extrabold text-3xl md:text-[2.5rem] leading-[0.98] text-text mb-6 uppercase">Van onzichtbaar naar aanbevolen</h2>
       <p class="text-lg text-text-muted leading-relaxed mb-10 max-w-3xl">
         Drie stappen — van je eerste scan tot het moment dat AI-tools jouw bedrijf aanbevelen aan hun gebruikers.
       </p>
@@ -304,9 +301,10 @@ const trustItems = [
   </section>
 
   {/* ── Resultaat ── */}
-  <section class="py-16 md:py-20 bg-primary">
-    <div class="max-w-4xl mx-auto px-4 md:px-6 text-center">
-      <h2 class="font-heading text-2xl md:text-3xl text-white mb-10">
+  <section class="py-16 md:py-24 bg-primary">
+    <div class="max-w-[1260px] mx-auto px-5 md:px-8 text-center">
+      <p class="eyebrow light mb-4">RESULTAAT</p>
+      <h2 class="font-heading font-extrabold text-3xl md:text-[2.5rem] leading-[0.98] text-white mb-10 uppercase">
         Resultaat dat telt
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -331,8 +329,8 @@ const trustItems = [
 
   {/* ── Testimonial — Claire ── */}
   {claireTestimonial && (
-    <section class="py-16 md:py-20 bg-bg-alt">
-      <div class="max-w-3xl mx-auto px-4 md:px-6">
+    <section class="py-16 md:py-24 bg-bg-alt">
+      <div class="max-w-[1260px] mx-auto px-5 md:px-8">
         <div class="bg-white rounded-card p-8 md:p-10 border border-border">
           <div class="flex items-center gap-4 mb-6">
             <div class="w-14 h-14 rounded-full overflow-hidden bg-bg-alt shrink-0">
@@ -371,8 +369,8 @@ const trustItems = [
   )}
 
   {/* ── Founder ── */}
-  <section class="py-16 md:py-20">
-    <div class="max-w-4xl mx-auto px-4 md:px-6">
+  <section class="py-[104px]">
+    <div class="max-w-[1260px] mx-auto px-5 md:px-8">
       <div class="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-10 md:gap-14 items-center">
         <div class="flex justify-center md:justify-start">
           <div class="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden shadow-lg ring-4 ring-bg-alt shrink-0">
@@ -388,8 +386,8 @@ const trustItems = [
           </div>
         </div>
         <div>
-          <div class="w-12 h-1 bg-accent rounded-full mb-4"></div>
-          <h2 class="font-heading text-2xl md:text-3xl text-text mb-1">Joost van Putten</h2>
+          <p class="eyebrow text-primary mb-4">JOOST VAN PUTTEN</p>
+          <h2 class="font-heading font-extrabold text-3xl md:text-[2.5rem] leading-[0.98] text-text mb-1 uppercase">Joost van Putten</h2>
           <p class="text-sm text-text-muted mb-4">Founder & Online Growth Strategist</p>
           <p class="text-text-muted leading-relaxed mb-6">
             7+ jaar ervaring met online groeisystemen. Meer dan €5 miljoen aan advertentiebudget beheerd. Ik help coaches en MKB-bedrijven niet alleen zichtbaar te zijn op Google, maar ook in de AI-tools die Google steeds vaker gaan vervangen.
@@ -431,28 +429,27 @@ const trustItems = [
   )}
 
   {/* ── Final CTA ── */}
-  <section class="py-16 md:py-20 bg-primary">
-    <div class="max-w-4xl mx-auto px-4 md:px-6 text-center">
-      <h2 class="font-heading text-3xl md:text-4xl text-white mb-4">
+  <section class="bg-bg-dark text-white py-16 md:py-24">
+    <div class="max-w-[1260px] mx-auto px-5 md:px-8 text-center">
+      <p class="eyebrow light mb-4">NU BEGINNEN</p>
+      <h2 class="font-heading font-extrabold text-3xl md:text-[2.5rem] leading-[0.98] text-white mb-4 uppercase">
         Wacht niet tot je concurrenten het ontdekken
       </h2>
-      <p class="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+      <p class="text-lg text-white/70 mb-8 max-w-2xl mx-auto">
         De bedrijven die nu investeren in AI-vindbaarheid, worden straks als eerste aanbevolen. Start vandaag met de gratis scan.
       </p>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
         <button
           type="button"
           data-scanner-open
-          class="inline-flex items-center px-8 py-4 text-base font-medium bg-accent hover:bg-accent-dark text-white transition-all duration-300 rounded-button shadow-lg shadow-accent/25 hover:shadow-xl cursor-pointer"
+          class="inline-flex items-center gap-2 px-6 py-[15px] text-[15px] font-extrabold bg-accent hover:bg-accent-dark text-white transition-all rounded-button cursor-pointer"
         >
           Doe de gratis AI-scan
-          <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
+          <span aria-hidden="true">↗</span>
         </button>
         <a
-          href="/ai-vindbaarheid-traject-b/"
-          class="inline-flex items-center px-8 py-4 text-base font-medium text-white border-2 border-white/30 hover:bg-white/10 transition-colors rounded-button"
+          href="/ai-vindbaarheid-traject-b"
+          class="inline-flex items-center gap-2 px-6 py-[15px] text-[15px] font-extrabold text-white border-2 border-white/30 hover:bg-white/10 transition-colors rounded-button"
         >
           Bekijk het 90-dagen traject
         </a>

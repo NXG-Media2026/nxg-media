@@ -60,10 +60,10 @@ const checkoutLabel = isPlaceholder ? t('cta.contact', locale) : t('cta.buyNow',
 >
   <BreadcrumbNav items={breadcrumbs} />
 
-  <header class="py-12 md:py-16 lg:py-20">
-    <div class="max-w-3xl mx-auto px-4 md:px-6 text-center">
-      <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full mb-4">{product.cluster}</span>
-      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl text-text mb-4">{product.title}</h1>
+  <header class="py-16 md:py-24">
+    <div class="max-w-[1260px] mx-auto px-5 md:px-8 text-center">
+      <p class="eyebrow text-primary mb-4">{product.cluster.toUpperCase()}</p>
+      <h1 class="font-heading font-extrabold text-4xl md:text-[3.5rem] lg:text-[4rem] leading-[0.98] text-text mb-4 uppercase">{product.title}</h1>
       <p class="text-lg text-text-muted leading-relaxed mb-8 max-w-2xl mx-auto">{product.shortDescription}</p>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
         <span class="text-3xl font-heading font-bold text-text">&euro;{product.price}</span>
@@ -71,10 +71,11 @@ const checkoutLabel = isPlaceholder ? t('cta.contact', locale) : t('cta.buyNow',
           href={checkoutHref}
           target={isPlaceholder ? '_self' : '_blank'}
           rel={isPlaceholder ? undefined : 'noopener noreferrer'}
-          class="inline-flex items-center px-8 py-4 text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-lg"
+          class="inline-flex items-center gap-2 px-6 py-[15px] text-[15px] font-extrabold text-white bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-lg"
           onclick={trackOnClick('product_checkout_click', { page_type: 'product', page_slug: product.pageSlug, locale, cluster: product.cluster })}
         >
           {checkoutLabel}
+          <span aria-hidden="true">↗</span>
         </a>
       </div>
       <p class="text-sm text-text-muted mt-4">{product.format}</p>
@@ -93,15 +94,15 @@ const checkoutLabel = isPlaceholder ? t('cta.contact', locale) : t('cta.buyNow',
     </div>
   </header>
 
-  <article class="py-12 md:py-16">
-    <div class="max-w-3xl mx-auto px-4 md:px-6">
+  <article class="py-16 md:py-24">
+    <div class="max-w-[1260px] mx-auto px-5 md:px-8">
       <div class="prose prose-lg max-w-none mb-12">
         <Content />
       </div>
 
       {product.whatsInside.length > 0 && (
         <section class="mb-12">
-          <h2 class="font-heading text-2xl text-text mb-6">{t('product.whatIsInside', locale)}</h2>
+          <h2 class="font-heading font-extrabold text-2xl md:text-3xl text-text mb-6 uppercase">{t('product.whatIsInside', locale)}</h2>
           <ul class="space-y-3">
             {product.whatsInside.map((item) => (
               <li class="flex items-start gap-3 text-text-muted">
@@ -117,7 +118,7 @@ const checkoutLabel = isPlaceholder ? t('cta.contact', locale) : t('cta.buyNow',
 
       {product.forWhom.length > 0 && (
         <section class="mb-12">
-          <h2 class="font-heading text-2xl text-text mb-6">{t('product.whoIsThisFor', locale)}</h2>
+          <h2 class="font-heading font-extrabold text-2xl md:text-3xl text-text mb-6 uppercase">{t('product.whoIsThisFor', locale)}</h2>
           <ul class="space-y-3">
             {product.forWhom.map((item) => (
               <li class="flex items-start gap-3 text-text-muted">
@@ -149,28 +150,30 @@ const checkoutLabel = isPlaceholder ? t('cta.contact', locale) : t('cta.buyNow',
   {/* ── Testimonials ── */}
   {testimonials.length > 0 && (
     <div>
-      <div class="max-w-4xl mx-auto px-4 md:px-6 pt-16 md:pt-20">
-        <h2 class="font-heading text-2xl md:text-3xl text-text text-center">Wat klanten zeggen</h2>
+      <div class="max-w-[1260px] mx-auto px-5 md:px-8 pt-16 md:pt-20">
+        <h2 class="font-heading font-extrabold text-3xl md:text-[2.5rem] leading-[0.98] text-text text-center uppercase">Wat klanten zeggen</h2>
       </div>
       <TestimonialSlider testimonials={testimonials} locale={locale} />
     </div>
   )}
 
   {/* ── Bottom CTA ── */}
-  <section class="py-16 md:py-20 bg-bg-alt">
-    <div class="max-w-2xl mx-auto px-4 md:px-6 text-center">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-4">Direct aan de slag?</h2>
-      <p class="text-text-muted mb-8">{product.shortDescription}</p>
+  <section class="py-16 md:py-24 bg-bg-alt">
+    <div class="max-w-[1260px] mx-auto px-5 md:px-8 text-center">
+      <p class="eyebrow text-primary mb-4">DIRECT AAN DE SLAG</p>
+      <h2 class="font-heading font-extrabold text-3xl md:text-[2.5rem] leading-[0.98] text-text mb-4 uppercase">Direct aan de slag?</h2>
+      <p class="text-text-muted mb-8 max-w-2xl mx-auto">{product.shortDescription}</p>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
         <span class="text-3xl font-heading font-bold text-text">&euro;{product.price}</span>
         <a
           href={checkoutHref}
           target={isPlaceholder ? '_self' : '_blank'}
           rel={isPlaceholder ? undefined : 'noopener noreferrer'}
-          class="inline-flex items-center px-8 py-4 text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-lg"
+          class="inline-flex items-center gap-2 px-6 py-[15px] text-[15px] font-extrabold text-white bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-lg"
           onclick={trackOnClick('product_checkout_click', { page_type: 'product', page_slug: product.pageSlug, locale, cluster: product.cluster })}
         >
           {checkoutLabel}
+          <span aria-hidden="true">↗</span>
         </a>
       </div>
     </div>

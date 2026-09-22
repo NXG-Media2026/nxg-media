@@ -36,9 +36,10 @@ const breadcrumbs = [
   <BreadcrumbNav items={breadcrumbs} />
 
   {/* ── Page Intro ── */}
-  <section class="py-12 md:py-16 lg:py-20">
-    <div class="max-w-4xl mx-auto px-4 md:px-6">
-      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl text-text mb-4">Casos y Resultados</h1>
+  <section class="py-16 md:py-24">
+    <div class="max-w-[1260px] mx-auto px-5 md:px-8">
+      <p class="eyebrow text-primary mb-4">RESULTADOS PROBADOS</p>
+      <h1 class="font-heading font-extrabold text-4xl md:text-[3.5rem] lg:text-[4rem] leading-[0.98] text-text mb-6 uppercase">Casos y Resultados</h1>
       <p class="text-lg text-text-muted leading-relaxed max-w-2xl">
         Sin promesas vagas — solo números concretos. Esto es lo que pasa cuando dejas de hacer campañas aisladas y construyes un sistema que trabaja para ti.
       </p>
@@ -118,9 +119,9 @@ const breadcrumbs = [
 
   {/* ── All Case Studies ── */}
   {displayCases.length > 0 && (
-    <section class="py-12 md:py-16">
-      <div class="max-w-4xl mx-auto px-4 md:px-6">
-        <h2 class="font-heading text-2xl md:text-3xl text-text mb-8">Todos los casos</h2>
+    <section class="py-16 md:py-24">
+      <div class="max-w-[1260px] mx-auto px-5 md:px-8">
+        <h2 class="font-heading font-extrabold text-3xl md:text-[2.5rem] leading-[0.98] text-text mb-10 uppercase">Todos los casos</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           {displayCases.map((c) => (
             <a href={`${casesBasePath}/${c.data.pageSlug}/`} class="group block bg-white border border-border rounded-card p-6 hover:border-accent/30 hover:shadow-lg transition-all duration-300">
@@ -146,6 +147,7 @@ const breadcrumbs = [
   <VideoTestimonialCarousel
     title="Lo que dicen los clientes sobre trabajar con Joost"
     subtitle="Experiencias reales de emprendedores que colaboran exitosamente con Joost"
+    eyebrow="LO QUE DICEN LOS CLIENTES"
     testimonials={videoTestimonials}
   />
 

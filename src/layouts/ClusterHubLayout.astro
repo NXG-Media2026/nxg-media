@@ -71,12 +71,13 @@ const seoDescription = citableDefinition.trim().slice(0, 155);
   <BreadcrumbNav items={breadcrumbs} />
 
   {/* Hero / Citable Definition */}
-  <section class="py-12 md:py-16 lg:py-20">
-    <div class="max-w-3xl mx-auto px-4 md:px-6">
-      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl text-text mb-6">
+  <section class="py-16 md:py-24">
+    <div class="max-w-[1260px] mx-auto px-5 md:px-8">
+      <p class="eyebrow text-primary mb-4">{(cluster.shortTitle || cluster.title).toUpperCase()}</p>
+      <h1 class="font-heading font-extrabold text-4xl md:text-[3.5rem] lg:text-[4rem] leading-[0.98] text-text mb-6 uppercase">
         {cluster.title}
       </h1>
-      <p class="text-lg text-text-muted leading-relaxed mb-8">
+      <p class="text-lg text-text-muted leading-relaxed mb-8 max-w-3xl">
         {citableDefinition}
       </p>
     </div>
@@ -84,8 +85,8 @@ const seoDescription = citableDefinition.trim().slice(0, 155);
 
   {/* Hub Intro */}
   {hubIntro && hubIntro.trim() !== '' && (
-    <section class="py-12 md:py-16 bg-bg-alt">
-      <div class="max-w-3xl mx-auto px-4 md:px-6">
+    <section class="py-16 md:py-24 bg-bg-alt">
+      <div class="max-w-[1260px] mx-auto px-5 md:px-8">
         <div class="prose prose-lg max-w-none">
           <p set:html={hubIntro} />
         </div>
@@ -95,9 +96,9 @@ const seoDescription = citableDefinition.trim().slice(0, 155);
 
   {/* Featured Cases */}
   {cases.length > 0 && (
-    <section class="py-12 md:py-16 lg:py-20">
-      <div class="max-w-4xl mx-auto px-4 md:px-6">
-        <h2 class="font-heading text-2xl md:text-3xl text-text mb-8 md:mb-12">
+    <section class="py-16 md:py-24">
+      <div class="max-w-[1260px] mx-auto px-5 md:px-8">
+        <h2 class="font-heading font-extrabold text-3xl md:text-[2.5rem] leading-[0.98] text-text mb-10 uppercase">
           {t('proof.heading', locale)}
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
@@ -137,9 +138,9 @@ const seoDescription = citableDefinition.trim().slice(0, 155);
 
   {/* Featured Guides */}
   {guides.length > 0 && (
-    <section class="py-12 md:py-16 bg-bg-alt">
-      <div class="max-w-4xl mx-auto px-4 md:px-6">
-        <h2 class="font-heading text-2xl md:text-3xl text-text mb-8">
+    <section class="py-16 md:py-24 bg-bg-alt">
+      <div class="max-w-[1260px] mx-auto px-5 md:px-8">
+        <h2 class="font-heading font-extrabold text-3xl md:text-[2.5rem] leading-[0.98] text-text mb-8 uppercase">
           {t('cluster.guidesAbout', locale)} {cluster.shortTitle}
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -160,9 +161,9 @@ const seoDescription = citableDefinition.trim().slice(0, 155);
 
   {/* Cross-Cluster Bridges */}
   {resolvedBridges.length > 0 && (
-    <section class="py-12 md:py-16">
-      <div class="max-w-3xl mx-auto px-4 md:px-6">
-        <h2 class="font-heading text-2xl md:text-3xl text-text mb-8">
+    <section class="py-16 md:py-24">
+      <div class="max-w-[1260px] mx-auto px-5 md:px-8">
+        <h2 class="font-heading font-extrabold text-3xl md:text-[2.5rem] leading-[0.98] text-text mb-8 uppercase">
           {t('cluster.relatedTopics', locale)}
         </h2>
         <div class="space-y-4">

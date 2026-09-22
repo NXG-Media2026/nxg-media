@@ -1,361 +1,441 @@
 ---
-import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import TrustBar from '../../components/TrustBar.astro';
-import ClientResults from '../../components/ClientResults.astro';
-import VideoTestimonialCarousel from '../../components/VideoTestimonialCarousel.astro';
 import LogoMarquee from '../../components/LogoMarquee.astro';
-import SocialStorytellingGrid from '../../components/SocialStorytellingGrid.astro';
-import FounderPreview from '../../components/FounderPreview.astro';
+import VideoTestimonialCarousel from '../../components/VideoTestimonialCarousel.astro';
 import FAQAccordion from '../../components/FAQAccordion.astro';
-import ScannerChooser from '../../components/ScannerChooser.astro';
-import AIPlatformBar from '../../components/AIPlatformBar.astro';
+import SocialStorytellingGrid from '../../components/SocialStorytellingGrid.astro';
 import { siteConfig } from '../../data/site';
 import { generateOrganization, generateWebSite, generateFounderPerson, generateFAQPage } from '../../data/schema';
 import { buildHreflangTrilingual } from '../../i18n/hreflang';
-import { getTestimonials } from '../../data/testimonials';
-import { getSocialPosts } from '../../data/socialPosts';
 import { videoTestimonials } from '../../data/videoTestimonials';
+import { getSocialPosts } from '../../data/socialPosts';
 
-import heroPhoto from '../../assets/images/founder/joost-profielfoto-portrait.webp';
+import heroPhoto from '../../assets/images/founder/joost-standing-relaxed.webp';
 import founderPhoto from '../../assets/images/founder/joost-sitting-laptop-looking-working.webp';
 
 const locale = 'en';
 const hreflang = buildHreflangTrilingual('/', '/en/', '/es/');
 
-const testimonials = getTestimonials({ locale: 'en' });
-const socialPosts = getSocialPosts(6, 'en');
-
-const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
+/* Client logos — auto-import all from Client-logos folder */
+const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/Client-logos/*.{webp,avif,png,jpg}', { eager: true });
 const logos = Object.entries(logoFiles)
-  .filter(([path]) => /logo/i.test(path.split('/').pop()!))
   .map(([path, mod]) => {
     const filename = path.split('/').pop()!.replace(/\.(webp|avif|png|jpg)$/, '');
     const name = filename.replace(/[-_]?logo[-_]?/gi, '').replace(/[-_]/g, ' ').trim();
     return { src: mod.default, alt: name };
   });
 
-const guides = (await getCollection('guides'))
-  .filter((g) => g.data.locale === locale)
-  .sort((a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime())
-  .slice(0, 4);
-
-const trustItems = [
-  { value: '50+', label: 'Coaches guided' },
-  { value: '€5M+', label: 'Ad spend managed' },
-  { value: '5-7×', label: 'Average ROAS' },
-  { value: '7+', label: 'Years experience' },
-];
-
+/* FAQ — SMB positioning */
 const homepageFaq = [
   {
-    q: 'What does it cost to work with NXG Media?',
-    a: 'NXG Media offers micro-products starting at €6.99 for entrepreneurs who want to get started themselves. The Coach Accelerator is a fixed programme with setup + monthly optimisation. <a href="/en/contact/">Get in touch</a> for a no-obligation conversation about the right investment for your situation.',
+    q: 'What type of business is NXG Media for?',
+    a: 'We work with hands-on SMBs: plumbers, roofers, contractors, installers, cleaning companies and other service providers who want to be found locally. No fluff — just more clients.',
   },
   {
-    q: 'Do you only work with coaches?',
-    a: 'NXG Media works with two clusters: Coach Accelerator (coaches, knowledge entrepreneurs, experts) and AI Visibility (local practices, SMBs). The approach differs, but the principle is the same: build a system, not isolated campaigns.',
+    q: 'What does it cost to work with NXG Media?',
+    a: 'Our packages start at €299 per month (Found). The most popular package is Growth (€599/mo) which includes ads and landing pages. <a href="/en/contact/">Book a free call</a> and we\'ll figure out what fits your situation.',
   },
   {
     q: 'How quickly will I see results?',
-    a: 'The first Coach Accelerator results typically appear within 2-4 weeks — first leads, first product sales. A fully running system takes 2-3 months. With AI Visibility, you can rescan immediately after applying the kits and see the difference.',
+    a: 'With the Found package, you typically see better Google rankings within 4-6 weeks. With the Growth package (incl. ads), the first leads often come in within the first 2 weeks.',
   },
   {
     q: "What makes NXG Media different from a regular marketing agency?",
-    a: 'We build complete growth systems — not standalone campaigns or websites. Storytelling, products, email flows, ads and AI visibility work together as one machine. That\'s the difference between "more visibility" and "predictable growth".',
+    a: 'We combine visibility in Google and AI search engines (ChatGPT, Gemini) with ads that deliver clients directly. No waffle, just a system that works. And you always have personal contact — no ticket system.',
   },
   {
-    q: 'Do I need a large audience already?',
-    a: 'No. The system is designed to build your audience and your lead flow at the same time. With a small ad budget (€5-10/day) you attract 20-50 qualified followers daily.',
+    q: 'What is AI visibility?',
+    a: 'More and more people search via ChatGPT, Google AI and other AI tools. We make sure your business gets found there too. <a href="' + siteConfig.external.scannerUrl + '" target="_blank" rel="noopener">Check for free how you score now</a>.',
+  },
+  {
+    q: 'Am I locked into a contract?',
+    a: 'No. Our packages are cancellable monthly. We believe you stay because it works, not because you\'re tied to a contract.',
   },
 ];
 
+const socialPosts = getSocialPosts(6, 'en');
+
 const faqForSchema = homepageFaq.map((f) => ({ question: f.q, answer: f.a }));
+
+const schemas = [
+  generateOrganization(locale),
+  generateWebSite(locale),
+  generateFounderPerson(locale),
+  generateFAQPage(faqForSchema, locale),
+];
 ---
 
 <BaseLayout
-  title={`${siteConfig.name} — ${siteConfig.tagline.en}`}
-  description="Build an online growth system around your expertise. Coach Accelerator for coaches and experts. AI visibility for local practices."
-  hreflang={hreflang}
-  schemas={[generateOrganization(), generateWebSite(locale), generateFounderPerson(locale), generateFAQPage(faqForSchema)]}
+  title="NXG Media — Get found. Get chosen. Get more enquiries."
+  description="NXG Media helps SMBs become more visible in Google, ChatGPT and other AI search engines — and combines that with ads that deliver clients."
   locale={locale}
+  hreflang={hreflang}
+  schemas={schemas}
+  hideNewsletter={true}
 >
 
-  {/* ── Hero ── */}
-  <section class="relative py-20 md:py-28 lg:py-36 overflow-hidden">
-    <div class="absolute inset-0">
-      <Image
-        src={heroPhoto}
-        alt="Joost van Putten building online growth systems for coaches and experts — NXG Media"
-        widths={[800, 1200, 1600]}
-        sizes="100vw"
-        class="w-full h-full object-cover object-top"
-        loading="eager"
-        decoding="async"
-      />
-      <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-white/40"></div>
-    </div>
-    <div class="relative max-w-4xl mx-auto px-4 md:px-6">
-      <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl text-text mb-6 leading-tight max-w-2xl">
-        Build an online growth system around your expertise
-      </h1>
-      <p class="text-lg md:text-xl text-text-muted leading-relaxed mb-10 max-w-xl">
-        For coaches and experts who want to turn their knowledge into predictable leads, product sales and coaching enquiries. And for local practices that want to be visible in AI tools.
-      </p>
-      <div class="flex flex-col sm:flex-row items-start gap-4">
-        <button
-          type="button"
-          data-scanner-open
-          class="inline-flex items-center px-8 py-4 text-base font-medium text-text-inverse bg-primary hover:bg-primary-dark transition-colors rounded-button shadow-lg cursor-pointer"
-        >
-          Take the AI Visibility Scan
-          <svg class="ml-2 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
-        </button>
-        <a
-          href="/en/ai-expert-growth/"
-          class="inline-flex items-center px-8 py-4 text-base font-medium text-primary border-2 border-primary hover:bg-primary/5 transition-colors rounded-button"
-        >
-          Explore Expert Growth
-        </a>
-        <a
-          href="/en/ai-visibility/"
-          class="inline-flex items-center px-8 py-4 text-base font-medium text-primary border-2 border-primary hover:bg-primary/5 transition-colors rounded-button"
-        >
-          Explore AI Visibility
-        </a>
-      </div>
-    </div>
-  </section>
+  {/* ══════════════════════════════════════════════════
+      HERO — blue, big, impactful
+      ══════════════════════════════════════════════════ */}
+  <section class="bg-primary text-white relative overflow-hidden">
+    <div class="max-w-[1260px] mx-auto px-5 md:px-8 py-14 md:py-20 lg:py-24">
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
-  {/* ── Trust Bar ── */}
-  <section class="bg-bg-alt border-y border-border">
-    <div class="max-w-4xl mx-auto px-4 md:px-6">
-      <TrustBar items={trustItems} />
-    </div>
-  </section>
+        {/* Left: copy */}
+        <div class="relative z-10">
+          <p class="eyebrow light mb-5">NXG MEDIA · ONLINE MARKETING FOR SMBS</p>
 
-  {/* ── Recognition ── */}
-  <section class="py-16 md:py-20 bg-primary">
-    <div class="max-w-3xl mx-auto px-4 md:px-6">
-      <h2 class="font-heading text-2xl md:text-3xl text-white mb-8">Does this sound familiar?</h2>
-      <div class="space-y-6">
-        <p class="text-white/80 leading-relaxed">You already have a solid coaching programme, but your lead flow peaks and dips. Three new clients one month, zero the next — and you don't know why.</p>
-        <p class="text-white/80 leading-relaxed">Or your practice is doing well, but when someone asks ChatGPT for a specialist in your area, you don't come up.</p>
-      </div>
-    </div>
-  </section>
+          <h1 class="font-heading font-extrabold text-[2.75rem] leading-[0.98] md:text-[3.5rem] lg:text-[4rem] text-white mb-6 uppercase">
+            Get found.<br />
+            Get chosen.<br />
+            <span class="marker">Get more enquiries.</span>
+          </h1>
 
-  {/* ── AI Platform Bar ── */}
-  <AIPlatformBar locale="en" />
-
-  {/* ── What NXG Media builds ── */}
-  <section class="py-12 md:py-16 bg-bg-alt">
-    <div class="max-w-4xl mx-auto px-4 md:px-6">
-      <h2 class="font-heading text-2xl md:text-3xl text-text mb-6">Not loose campaigns — one route from click to client</h2>
-      <p class="text-lg text-text-muted leading-relaxed mb-8 max-w-3xl">
-        You're not missing marketing. You're missing a system that works for you, even when you're busy with clients.
-      </p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <div class="bg-white rounded-card p-6 border border-border">
-          <h3 class="font-heading text-lg text-text mb-2">An entry point that pays for itself</h3>
-          <p class="text-sm text-text-muted">Your first online product — a guide, mini-course or masterclass — covers your ad spend from day 1. No months of waiting for returns.</p>
-        </div>
-        <div class="bg-white rounded-card p-6 border border-border">
-          <h3 class="font-heading text-lg text-text mb-2">Leads that qualify themselves</h3>
-          <p class="text-sm text-text-muted">Visitors follow an interactive route and show you what they need. You know exactly who's ready — without cold calling or endless DMs.</p>
-        </div>
-        <div class="bg-white rounded-card p-6 border border-border">
-          <h3 class="font-heading text-lg text-text mb-2">Follow-up that builds trust</h3>
-          <p class="text-sm text-text-muted">After the first signup, leads receive a personal series. By the time they see your programme, you don't need to convince them anymore.</p>
-        </div>
-        <div class="bg-white rounded-card p-6 border border-border">
-          <h3 class="font-heading text-lg text-text mb-2">One route, not loose campaigns</h3>
-          <p class="text-sm text-text-muted">Content, products, emails and ads form one path: from first click to paying client. That's the difference between "more visibility" and predictable growth.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {/* ── Two clusters ── */}
-  <section class="py-16 md:py-20">
-    <div class="max-w-4xl mx-auto px-4 md:px-6">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="bg-white rounded-card p-8 border border-border hover:border-accent/30 hover:shadow-lg transition-all">
-          <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full mb-4">expert-growth</span>
-          <h2 class="font-heading text-xl text-text mb-3">Expert Growth</h2>
-          <p class="text-text-muted text-sm leading-relaxed mb-6">
-            A complete growth system for coaches and experts — from a fast, AI-visible website to storytelling, micro-products, email flows and ads. Everything works together as one machine that delivers visibility, leads and clients.
+          <p class="text-white/75 text-base leading-relaxed mb-8 max-w-lg">
+            <strong class="text-white font-semibold">NXG Media</strong> helps SMBs become more visible
+            in Google, ChatGPT and other AI search engines
+            — and combines that with ads that deliver clients.
           </p>
-          <a href="/en/ai-expert-growth/" class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium text-sm">
-            Learn about Expert Growth
-            <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
-          </a>
+
+          <div class="flex flex-wrap gap-3 mb-6">
+            <a
+              href="/en/contact/"
+              class="inline-flex items-center gap-2 px-6 py-[15px] text-[15px] font-extrabold text-text bg-accent hover:brightness-95 transition-all rounded-button"
+            >
+              Book a free call
+              <span aria-hidden="true">↗</span>
+            </a>
+            <a
+              href="#packages"
+              class="inline-flex items-center gap-2 px-6 py-[15px] text-[15px] font-extrabold text-white border-2 border-white/30 hover:border-white/60 transition-colors rounded-button"
+            >
+              View our packages
+            </a>
+          </div>
         </div>
-        <div class="bg-white rounded-card p-8 border border-border hover:border-accent/30 hover:shadow-lg transition-all">
-          <span class="inline-flex items-center px-3 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full mb-4">ai-visibility</span>
-          <h2 class="font-heading text-xl text-text mb-3">AI Visibility</h2>
-          <p class="text-text-muted text-sm leading-relaxed mb-6">
-            AI visibility is still a new playing field. That's why we start with a practical scan: where do you stand, what's missing and which improvements make sense? From scan to kits to full audit.
-          </p>
-          <a href="/en/ai-visibility/" class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium text-sm">
-            Learn about AI Visibility
-            <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
-          </a>
+
+        {/* Right: hero photo */}
+        <div class="relative flex justify-center lg:justify-end">
+          <div class="relative">
+            <Image
+              src={heroPhoto}
+              alt="Joost van Putten — founder NXG Media"
+              width={520}
+              height={640}
+              class="relative z-10 max-h-[500px] md:max-h-[580px] w-auto object-contain drop-shadow-2xl"
+              loading="eager"
+            />
+
+            {/* Sticky note: testimonial */}
+            <div class="absolute top-4 right-0 md:-right-4 z-20 sticky-note text-base md:text-lg max-w-[200px] rotate-2">
+              "More enquiries.<br />That's real work."
+            </div>
+
+            {/* Sticky note: SMB badge */}
+            <div class="absolute bottom-16 -right-2 md:right-0 z-20 sticky-note text-lg md:text-xl font-black uppercase -rotate-3">
+              SMBs just<br />get it done.
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  {/* ── Client Results (merged proof wall + testimonials) ── */}
-  <ClientResults
-    title="Client results"
-    featuredCases={[
-      {
-        testimonial: testimonials.find((t) => t.id === 'rolf-happywithyoga')!,
-        period: 'Since 2022',
-        stats: [
-          { value: '30,000+', label: 'webinar leads' },
-          { value: '1,700+', label: 'mini-course sales' },
-          { value: '2,000', label: 'paying members' },
-        ],
-        caseHref: '/en/cases/happy-with-yoga/',
-      },
-      {
-        testimonial: testimonials.find((t) => t.id === 'tessa-youlife')!,
-        period: 'Since Feb 2025',
-        stats: [
-          { value: '~€10k/mo', label: 'online products' },
-          { value: '6', label: 'products launched' },
-          { value: '~10/mo', label: 'coaching clients' },
-        ],
-        caseHref: '/en/cases/tessa-youlife/',
-      },
-      {
-        testimonial: testimonials.find((t) => t.id === 'josine-coachjosine')!,
-        period: 'Since Oct 2025',
-        stats: [
-          { value: '600×', label: 'guide sold' },
-          { value: '80', label: 'masterclass signups' },
-        ],
-        caseHref: '/en/cases/coach-josine/',
-      },
-    ]}
-    smallResults={[
-      {
-        name: 'Manon — Vrouw & Mindset coach',
-        period: 'First month',
-        stats: [
-          { value: '120', label: 'signups in 2 weeks' },
-          { value: '~10%', label: 'conversion to programmes' },
-        ],
-      },
-      {
-        name: 'Kim — Human Design coach',
-        period: '2 months',
-        stats: [
-          { value: '90', label: 'masterclass signups' },
-          { value: '350×', label: 'guide sold' },
-          { value: '8%', label: 'conversion' },
-        ],
-      },
-      {
-        name: 'MCM Research',
-        logo: 'mcm-research-logo.webp',
-        period: 'Client since 2022',
-        stats: [
-          { value: '2,500+', label: 'leads in Netherlands' },
-          { value: '500', label: 'applicants NL' },
-          { value: '1,500+', label: 'leads in Belgium' },
-          { value: '250', label: 'applicants BE' },
-        ],
-      },
-    ]}
-    otherTestimonials={testimonials.filter((t) => ['claire-ikrouwvanje', 'andrew-coreprogression'].includes(t.id))}
-    caseLabel="Read the case"
-    allCasesHref="/en/cases/"
-    allCasesLabel="View all cases"
-    locale="en"
+
+  {/* ══════════════════════════════════════════════════
+      LOGO MARQUEE — client logos
+      ══════════════════════════════════════════════════ */}
+  <LogoMarquee
+    logos={logos}
+    label="MARKETING WORK FOR AMONG OTHERS"
+    speed={35}
   />
 
-  {/* ── Client logos marquee ── */}
-  {logos.length > 0 && (
-    <LogoMarquee
-      logos={logos}
-      label="Trusted by coaches, experts and businesses"
-      speed={35}
-    />
-  )}
 
-  {/* ── Video Testimonials Carousel ── */}
+  {/* ══════════════════════════════════════════════════
+      TRUST STRIP — 3 key points
+      ══════════════════════════════════════════════════ */}
+  <section class="py-14 md:py-20 border-b border-border">
+    <div class="max-w-[1260px] mx-auto px-5 md:px-8">
+      <div class="grid md:grid-cols-3 gap-8 md:gap-10">
+
+        <div class="flex items-start gap-4">
+          <div class="shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+          </div>
+          <div>
+            <h3 class="font-heading font-extrabold text-lg mb-1">Google + AI</h3>
+            <p class="text-text-muted text-sm leading-relaxed">More visible in Google, ChatGPT and other AI search engines.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <div class="shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+          </div>
+          <div>
+            <h3 class="font-heading font-extrabold text-lg mb-1">Clear pricing</h3>
+            <p class="text-text-muted text-sm leading-relaxed">Transparent packages. No surprises.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <div class="shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+          </div>
+          <div>
+            <h3 class="font-heading font-extrabold text-lg mb-1">No fluff</h3>
+            <p class="text-text-muted text-sm leading-relaxed">Practical, personal and results-driven.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      VIDEO TESTIMONIALS
+      ══════════════════════════════════════════════════ */}
   <VideoTestimonialCarousel
-    title="What Clients Say About Working with Joost"
-    subtitle="Real experiences from entrepreneurs who successfully collaborate with Joost"
+    title="What clients say"
+    subtitle="Real entrepreneurs on their collaboration with NXG Media"
+    eyebrow="WHAT CLIENTS SAY"
     testimonials={videoTestimonials}
   />
 
-  {/* ── Blog / Guides preview ── */}
-  {guides.length > 0 && (
-    <section class="py-16 md:py-20">
-      <div class="max-w-4xl mx-auto px-4 md:px-6">
-        <h2 class="font-heading text-2xl md:text-3xl text-text mb-10 text-center">Latest articles</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {guides.map((g) => (
-            <a href={`/en/guides/${g.data.pageSlug}/`} class="group block bg-white border border-border rounded-card p-6 hover:border-accent/30 hover:shadow-lg transition-all">
-              {g.data.cluster && (
-                <span class="text-xs font-medium text-accent uppercase tracking-wider mb-2 block">{g.data.cluster}</span>
-              )}
-              <h3 class="font-heading text-lg text-text group-hover:text-accent transition-colors mb-2">{g.data.title}</h3>
-              <p class="text-sm text-text-muted">{g.data.contentSchema.primaryAnswer.slice(0, 120)}...</p>
-            </a>
-          ))}
+
+  {/* ══════════════════════════════════════════════════
+      AI SCANNER CTA — dark section
+      ══════════════════════════════════════════════════ */}
+  <section class="bg-bg-dark text-white py-[104px]">
+    <div class="max-w-[1260px] mx-auto px-5 md:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div>
+          <p class="eyebrow light mb-4">FREE AI VISIBILITY CHECK</p>
+          <h2 class="font-heading font-extrabold text-4xl md:text-[3.5rem] lg:text-[4rem] leading-[0.98] text-white mb-6 uppercase">
+            How visible<br />
+            <span class="text-accent">is your business?</span>
+          </h2>
         </div>
-        <div class="text-center mt-8">
-          <a href="/en/guides/" class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium">
-            View all articles
-            <svg class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" /></svg>
+        <div>
+          <p class="text-white/70 text-base leading-relaxed mb-8">
+            Discover in 30 seconds how visible your business is in Google and AI search engines
+            like ChatGPT. No hassle, no account needed.
+          </p>
+          <a
+            href={siteConfig.external.scannerUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-6 py-[15px] text-[15px] font-extrabold text-text bg-accent hover:brightness-95 transition-all rounded-button"
+          >
+            Check your visibility
+            <span aria-hidden="true">↗</span>
+          </a>
+          <p class="mt-4 text-white/40 text-sm">Free · No account · Results in 30 seconds</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      PACKAGES — pricing
+      ══════════════════════════════════════════════════ */}
+  <section id="packages" class="py-[104px]">
+    <div class="max-w-[1260px] mx-auto px-5 md:px-8">
+
+      <div class="mb-12 md:mb-16">
+        <p class="eyebrow text-primary mb-4">CLEAR BEFORE YOU COMMIT</p>
+        <h2 class="font-heading font-extrabold text-4xl md:text-[3.5rem] lg:text-[4rem] leading-[0.98] text-text uppercase">
+          Pick your package.
+        </h2>
+        <p class="text-text-muted mt-4 max-w-2xl text-base leading-relaxed">
+          Whether you're just getting started or ready to scale — we have a package that fits your ambitions.
+          Every package is focused on more visibility, more traffic and more clients.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+
+        {/* Found — €299 */}
+        <div class="relative border-2 border-border rounded-xl p-6 md:p-8 flex flex-col">
+          <h3 class="font-heading font-extrabold text-2xl mb-1 uppercase">Found</h3>
+          <p class="text-text-muted text-sm mb-4">Start with visibility.</p>
+          <p class="font-heading font-extrabold text-5xl md:text-6xl text-text mb-1">&euro;299</p>
+          <p class="text-text-muted text-sm mb-6">per month</p>
+
+          <ul class="space-y-3 mb-8 flex-1">
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Website optimisation</li>
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Better local rankings</li>
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Google Business profile</li>
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Monthly report</li>
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Personal support</li>
+          </ul>
+
+          <a href="/en/contact/" class="block w-full py-[15px] text-center text-[15px] font-extrabold text-text border-2 border-text rounded-button hover:bg-text hover:text-white transition-colors">
+            Start with Found ↗
+          </a>
+        </div>
+
+        {/* Growth — €599 (highlighted) */}
+        <div class="relative border-2 border-primary rounded-xl p-6 md:p-8 flex flex-col shadow-lg">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
+            <span class="sticky-note text-sm font-black uppercase px-4 py-1.5 rotate-[-2deg]">Most popular</span>
+          </div>
+
+          <h3 class="font-heading font-extrabold text-2xl mb-1 uppercase">Growth</h3>
+          <p class="text-text-muted text-sm mb-4">More traffic. More clients.</p>
+          <p class="font-heading font-extrabold text-5xl md:text-6xl text-text mb-1">&euro;599</p>
+          <p class="text-text-muted text-sm mb-6">per month</p>
+
+          <ul class="space-y-3 mb-8 flex-1">
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Everything in the Found package</li>
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Ads (Google &amp; Social)</li>
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Landing pages that convert</li>
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Monthly content</li>
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Strategy &amp; optimisation</li>
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Personal support</li>
+          </ul>
+
+          <a href="/en/contact/" class="block w-full py-[15px] text-center text-[15px] font-extrabold text-text bg-accent hover:brightness-95 rounded-button transition-all">
+            Start with Growth ↗
+          </a>
+        </div>
+
+        {/* Full diary — €999 */}
+        <div class="relative border-2 border-border rounded-xl p-6 md:p-8 flex flex-col">
+          <h3 class="font-heading font-extrabold text-2xl mb-1 uppercase">Full diary</h3>
+          <p class="text-text-muted text-sm mb-4">Maximum growth. No empty days.</p>
+          <p class="font-heading font-extrabold text-5xl md:text-6xl text-text mb-1">&euro;999</p>
+          <p class="text-text-muted text-sm mb-6">per month</p>
+
+          <ul class="space-y-3 mb-8 flex-1">
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Everything in the Growth package</li>
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Advanced ad campaigns</li>
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Multiple landing pages</li>
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Content creation (photo, video, copy)</li>
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Continuous optimisation</li>
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Strategic advice</li>
+            <li class="flex items-start gap-2 text-sm"><svg class="w-5 h-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>Priority support</li>
+          </ul>
+
+          <a href="/en/contact/" class="block w-full py-[15px] text-center text-[15px] font-extrabold text-text border-2 border-text rounded-button hover:bg-text hover:text-white transition-colors">
+            Start with Full diary ↗
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      ABOUT JOOST — founder
+      ══════════════════════════════════════════════════ */}
+  <section class="bg-primary text-white py-[104px]">
+    <div class="max-w-[1260px] mx-auto px-5 md:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div class="flex justify-center lg:justify-start">
+          <div class="relative">
+            <Image
+              src={founderPhoto}
+              alt="Joost van Putten — founder NXG Media"
+              width={480}
+              height={480}
+              class="w-full max-w-[400px] rounded-xl shadow-2xl"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-sm rounded-lg px-4 py-3">
+              <p class="text-white font-extrabold text-sm">Joost van Putten · Founder NXG Media</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="eyebrow light mb-4">THE PERSON BEHIND NXG MEDIA</p>
+          <h2 class="font-heading font-extrabold text-4xl md:text-[3.5rem] leading-[0.98] text-white mb-6 uppercase">
+            Hi, I'm Joost.<br />
+            <span class="text-accent">I build with you.</span>
+          </h2>
+          <p class="text-white/70 text-base leading-relaxed mb-6">
+            For over 7 years I've been helping business owners with online marketing. From campaigns to websites: I want to know what it actually delivers for the business behind it.
+          </p>
+          <p class="text-white/70 text-base leading-relaxed mb-8">
+            <strong class="text-white">You want clients. We make a concrete plan to get your next enquiries.</strong>
+          </p>
+          <a
+            href="/en/about-joost/"
+            class="inline-flex items-center gap-2 px-6 py-[15px] text-[15px] font-extrabold text-text bg-accent hover:brightness-95 transition-all rounded-button"
+          >
+            More about Joost
+            <span aria-hidden="true">↗</span>
           </a>
         </div>
       </div>
-    </section>
-  )}
-
-  {/* ── Instagram / Social Grid ── */}
-  <div class="bg-bg-alt">
-    <div class="max-w-5xl mx-auto px-4 md:px-6 pt-16 md:pt-20">
-      <h2 class="font-heading text-2xl md:text-3xl text-text text-center mb-2">Follow the journey</h2>
-      <p class="text-text-muted text-center">Behind-the-scenes, results and growth system tips on Instagram.</p>
     </div>
-    <SocialStorytellingGrid posts={socialPosts} instagramUrl={siteConfig.socials.instagram} locale="en" />
-  </div>
+  </section>
 
-  {/* ── Founder Preview (EEAT) ── */}
-  <FounderPreview
-    name={siteConfig.founder.name}
-    role={siteConfig.founder.role}
-    bio={siteConfig.founder.bio[locale]}
-    image={founderPhoto}
-    credentials={siteConfig.founder.credentials.map((c) => ({ name: c.name, issuer: c.issuer }))}
-    knowsAbout={siteConfig.founder.knowsAbout[locale]}
-    aboutHref="/en/about-joost/"
-    aboutLabel="More about Joost"
+
+  {/* ══════════════════════════════════════════════════
+      FAQ
+      ══════════════════════════════════════════════════ */}
+  <section class="py-[104px]">
+    <div class="max-w-[1260px] mx-auto px-5 md:px-8">
+      <div class="grid lg:grid-cols-[1fr_2fr] gap-12 lg:gap-20">
+        <div>
+          <p class="eyebrow text-primary mb-4">JUST A STRAIGHT ANSWER</p>
+          <h2 class="font-heading font-extrabold text-4xl md:text-[3.5rem] lg:text-[4rem] leading-[0.98] text-text uppercase">
+            Good<br />
+            <span class="marker">questions.</span>
+          </h2>
+        </div>
+        <div>
+          <FAQAccordion
+            items={homepageFaq}
+            locale="en"
+            pageType="homepage"
+            pageSlug="/en/"
+            minimal={true}
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  {/* ══════════════════════════════════════════════════
+      INSTAGRAM GRID — personal
+      ══════════════════════════════════════════════════ */}
+  <SocialStorytellingGrid
+    posts={socialPosts}
+    instagramUrl={siteConfig.socials.instagram}
     locale="en"
   />
 
-  {/* ── Homepage FAQ ── */}
-  <div class="bg-bg-alt">
-    <FAQAccordion
-      title="Frequently asked questions"
-      items={homepageFaq}
-      locale="en"
-      pageType="homepage"
-      pageSlug="/en/"
-    />
-  </div>
 
-  <ScannerChooser locale="en" />
+  {/* ══════════════════════════════════════════════════
+      FOOTER CTA — yellow accent band
+      ══════════════════════════════════════════════════ */}
+  <section class="bg-accent py-16 md:py-20">
+    <div class="max-w-[1260px] mx-auto px-5 md:px-8 flex flex-col md:flex-row items-center justify-between gap-8">
+      <div>
+        <h2 class="font-heading font-extrabold text-3xl md:text-[2.5rem] leading-[0.98] text-text uppercase">
+          Get found. Get chosen.<br />
+          <span class="text-primary">Get more enquiries.</span>
+        </h2>
+      </div>
+      <a
+        href="/en/contact/"
+        class="inline-flex items-center gap-2 px-6 py-[15px] text-[15px] font-extrabold text-white bg-text hover:bg-primary transition-colors rounded-button shrink-0"
+      >
+        Book a free call
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </section>
 
 </BaseLayout>

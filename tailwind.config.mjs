@@ -5,36 +5,40 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#0033CC',
-          dark: '#002299',
-          light: '#3366FF',
+          DEFAULT: '#0756ef',
+          dark: '#0544c0',
+          light: '#3b7af5',
         },
         bg: {
           DEFAULT: '#FFFFFF',
-          alt: '#F5F5F5',
+          alt: '#f3f5f8',
+          dark: '#111316',
           white: '#FFFFFF',
         },
         text: {
-          DEFAULT: '#111111',
+          DEFAULT: '#111316',
           muted: '#555555',
           inverse: '#FFFFFF',
         },
         border: '#E0E0E0',
         accent: {
-          DEFAULT: '#FFE600',
-          dark: '#E6CF00',
+          DEFAULT: '#fff000',
+          dark: '#e6d900',
           light: '#FFF9C4',
         },
       },
       fontFamily: {
-        heading: ['"Poppins"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'sans-serif'],
-        body: ['"Inter Variable"', '"Inter"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'sans-serif'],
+        heading: ['"Barlow Condensed"', '"Arial Narrow"', 'Impact', 'sans-serif'],
+        body: ['"DM Sans"', 'Arial', 'sans-serif'],
         script: ['"Caveat"', '"Segoe Print"', 'cursive'],
       },
       borderRadius: {
         card: '12px',
-        button: '8px',
+        button: '5px',
         image: '16px',
+      },
+      spacing: {
+        'section': '104px',
       },
       typography: ({ theme }) => ({
         DEFAULT: {
@@ -49,8 +53,8 @@ export default {
             '--tw-prose-quotes': theme('colors.text.DEFAULT'),
             '--tw-prose-quote-borders': theme('colors.primary.DEFAULT'),
             maxWidth: 'none',
-            lineHeight: '1.8',
-            fontSize: '1.0625rem',
+            lineHeight: '1.65',
+            fontSize: '1rem',
             p: {
               marginTop: '1.25em',
               marginBottom: '1.25em',
@@ -58,7 +62,7 @@ export default {
             a: {
               textDecoration: 'underline',
               textUnderlineOffset: '3px',
-              textDecorationColor: 'rgba(0, 51, 204, 0.3)',
+              textDecorationColor: 'rgba(7, 86, 239, 0.3)',
               transition: 'text-decoration-color 200ms',
               '&:hover': {
                 textDecorationColor: theme('colors.primary.dark'),
@@ -70,7 +74,8 @@ export default {
               fontSize: '1.75em',
               marginTop: '2.5em',
               marginBottom: '0.75em',
-              lineHeight: '1.2',
+              lineHeight: '1.05',
+              letterSpacing: '-0.5px',
             },
             h3: {
               fontFamily: theme('fontFamily.heading').join(', '),
@@ -78,7 +83,8 @@ export default {
               fontSize: '1.375em',
               marginTop: '2em',
               marginBottom: '0.6em',
-              lineHeight: '1.25',
+              lineHeight: '1.1',
+              letterSpacing: '-0.5px',
             },
             h4: {
               fontFamily: theme('fontFamily.heading').join(', '),
@@ -111,8 +117,8 @@ export default {
         },
         lg: {
           css: {
-            fontSize: '1.125rem',
-            lineHeight: '1.8',
+            fontSize: '1.0625rem',
+            lineHeight: '1.75',
             p: {
               marginTop: '1.35em',
               marginBottom: '1.35em',

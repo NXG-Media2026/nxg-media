@@ -18,7 +18,7 @@ const typeLabels: Record<SocialPost['type'], string> = {
   story: 'Story',
 };
 
-const ctaLabel = locale === 'en' ? 'Follow on Instagram' : 'Volg op Instagram';
+const ctaLabel = locale === 'en' ? 'Follow on Instagram' : locale === 'es' ? 'Síguenos en Instagram' : 'Volg op Instagram';
 ---
 
 <section class="py-16 md:py-24">

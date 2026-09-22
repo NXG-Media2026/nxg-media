@@ -40,9 +40,10 @@ const breadcrumbs = [
   <BreadcrumbNav items={breadcrumbs} />
 
   {/* ── Page Intro ── */}
-  <section class="py-12 md:py-16 lg:py-20">
-    <div class="max-w-4xl mx-auto px-4 md:px-6">
-      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl text-text mb-4">Productos</h1>
+  <section class="py-16 md:py-24">
+    <div class="max-w-[1260px] mx-auto px-5 md:px-8">
+      <p class="eyebrow text-primary mb-4">HAZLO TÚ MISMO</p>
+      <h1 class="font-heading font-extrabold text-4xl md:text-[3.5rem] lg:text-[4rem] leading-[0.98] text-text mb-6 uppercase">Productos</h1>
       <p class="text-lg text-text-muted leading-relaxed max-w-2xl">
         No todo el mundo necesita un programa completo de inmediato. Estos mini-productos te dan la estructura adecuada para empezar por tu cuenta — con el mismo enfoque que usan nuestros clientes.
       </p>
@@ -51,7 +52,7 @@ const breadcrumbs = [
 
   {/* ── Product Cards ── */}
   <section class="pb-16 md:pb-24">
-    <div class="max-w-4xl mx-auto px-4 md:px-6">
+    <div class="max-w-[1260px] mx-auto px-5 md:px-8">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
         {displayProducts.map((p) => {
           const cover = getCover(p.data.cover);

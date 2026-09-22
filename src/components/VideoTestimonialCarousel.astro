@@ -24,12 +24,14 @@ export interface VideoTestimonial {
 interface Props {
   title?: string;
   subtitle?: string;
+  eyebrow?: string;
   testimonials: VideoTestimonial[];
 }
 
 const {
   title = 'Wat Klanten Zeggen Over Werken met Joost',
   subtitle = 'Echte ervaringen van ondernemers die succesvol samenwerken met Joost',
+  eyebrow = 'WAT KLANTEN ZEGGEN',
   testimonials,
 } = Astro.props;
 
@@ -58,13 +60,14 @@ const videoSchemaScripts = testimonials
   .join('\n');
 ---
 
-<section class="py-16 md:py-24">
-  <div class="max-w-6xl mx-auto px-4 md:px-6">
+<section class="py-[104px]">
+  <div class="max-w-[1260px] mx-auto px-5 md:px-8">
 
     {/* Heading */}
-    <div class="text-center mb-10">
-      <h2 class="font-heading text-2xl md:text-3xl lg:text-4xl text-text mb-3">{title}</h2>
-      {subtitle && <p class="text-text-muted max-w-xl mx-auto">{subtitle}</p>}
+    <div class="mb-12">
+      <p class="eyebrow text-primary mb-4">{eyebrow}</p>
+      <h2 class="font-heading font-extrabold text-3xl md:text-[2.5rem] lg:text-[3rem] leading-[0.98] text-text mb-3 uppercase">{title}</h2>
+      {subtitle && <p class="text-text-muted max-w-xl">{subtitle}</p>}
     </div>
 
     {/* Carousel wrapper with nav arrows */}
