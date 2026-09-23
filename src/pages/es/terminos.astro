@@ -6,7 +6,7 @@ import { t, localizePath } from '../../i18n/utils';
 import { buildHreflangTrilingual } from '../../i18n/hreflang';
 
 const locale = 'es';
-const hreflang = buildHreflangTrilingual('/voorwaarden/', '/en/terms/', '/es/terminos/');
+const hreflang = buildHreflangTrilingual('/voorwaarden', '/en/terms', '/es/terminos');
 const breadcrumbs = [
   { label: t('breadcrumb.home', locale), href: localizePath('/', locale) },
   { label: 'T&eacute;rminos' },
@@ -45,7 +45,7 @@ const breadcrumbs = [
       <p>Estos t&eacute;rminos se rigen por la legislaci&oacute;n neerlandesa. Los tribunales de Utrecht (Pa&iacute;ses Bajos) tienen jurisdicci&oacute;n exclusiva.</p>
 
       <h2>Versi&oacute;n vinculante</h2>
-      <p>Los t&eacute;rminos jur&iacute;dicamente vinculantes est&aacute;n disponibles en neerland&eacute;s en <a href="/voorwaarden/">/voorwaarden/</a>.</p>
+      <p>Los t&eacute;rminos jur&iacute;dicamente vinculantes est&aacute;n disponibles en neerland&eacute;s en <a href="/voorwaarden">/voorwaarden</a>.</p>
     </div>
   </article>
 </BaseLayout>

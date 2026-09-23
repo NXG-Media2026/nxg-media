@@ -25,7 +25,7 @@ const faqItems = getClusterFaqLocalized(cluster, locale);
 const faqForComponent = faqItems.map((item) => ({ q: item.question, a: item.answer }));
 
 const testimonials = getTestimonials({ locale: 'nl' });
-const hreflang = buildHreflangTrilingual('/ai-vindbaarheid/', '/en/ai-visibility/', '/es/visibilidad-ia/');
+const hreflang = buildHreflangTrilingual('/ai-vindbaarheid', '/en/ai-visibility', '/es/visibilidad-ia');
 const claireTestimonial = testimonials.find((t) => t.id === 'claire-ikrouwvanje');
 
 const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
@@ -393,7 +393,7 @@ const trustItems = [
             7+ jaar ervaring met online groeisystemen. Meer dan €5 miljoen aan advertentiebudget beheerd. Ik help coaches en MKB-bedrijven niet alleen zichtbaar te zijn op Google, maar ook in de AI-tools die Google steeds vaker gaan vervangen.
           </p>
           <a
-            href="/over-joost/"
+            href="/over-joost"
             class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium"
           >
             Meer over Joost

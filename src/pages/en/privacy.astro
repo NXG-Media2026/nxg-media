@@ -6,7 +6,7 @@ import { t, localizePath } from '../../i18n/utils';
 import { buildHreflangTrilingual } from '../../i18n/hreflang';
 
 const locale = 'en';
-const hreflang = buildHreflangTrilingual('/privacy/', '/en/privacy/', '/es/privacidad/');
+const hreflang = buildHreflangTrilingual('/privacy', '/en/privacy', '/es/privacidad');
 const breadcrumbs = [
   { label: t('breadcrumb.home', locale), href: localizePath('/', locale) },
   { label: 'Privacy' },
@@ -61,7 +61,7 @@ const breadcrumbs = [
       <p>Under GDPR you have the right to access, rectification, erasure, restriction, objection, portability, and withdrawal of consent. Contact <a href="mailto:info@nxg-media.com">info@nxg-media.com</a> — we respond within 30 days. You may also file a complaint with the <a href="https://autoriteitpersoonsgegevens.nl" target="_blank" rel="noopener noreferrer">Dutch Data Protection Authority (AP)</a>.</p>
 
       <h2>Full version</h2>
-      <p>The legally binding privacy policy is available in Dutch at <a href="/privacy/">/privacy/</a>.</p>
+      <p>The legally binding privacy policy is available in Dutch at <a href="/privacy">/privacy</a>.</p>
     </div>
   </article>
 </BaseLayout>

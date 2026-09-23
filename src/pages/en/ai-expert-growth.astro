@@ -25,7 +25,7 @@ import rolfWhatsApp from '../../assets/images/cases/rolf-happywithyoga-whatsapp-
 
 const locale = 'en';
 
-const hreflang = buildHreflangTrilingual('/ai-expert-groei-traject/', '/en/ai-expert-growth/', '/es/crecimiento-experto-ia/');
+const hreflang = buildHreflangTrilingual('/ai-expert-groei-traject', '/en/ai-expert-growth', '/es/crecimiento-experto-ia');
 
 const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
 const logos = Object.entries(logoFiles)
@@ -37,7 +37,7 @@ const logos = Object.entries(logoFiles)
   });
 
 const breadcrumbs = [
-  { label: 'Home', href: '/en/' },
+  { label: 'Home', href: '/en' },
   { label: 'AI Expert Growth' },
 ];
 
@@ -70,7 +70,7 @@ const faqForComponent = faqItems.map((item) => ({ q: item.question, a: item.answ
 const serviceSchema = generateService({
   name: 'AI Expert Growth Programme',
   description: 'Build an AI-ready expert foundation around your expertise. For coaches and experts who want to be found and build a route to enquiries, products and coaching clients.',
-  url: `${siteConfig.url}/en/ai-expert-growth/`,
+  url: `${siteConfig.url}/en/ai-expert-growth`,
   serviceType: 'Expert Growth System',
 });
 ---
@@ -78,9 +78,9 @@ const serviceSchema = generateService({
 <BaseLayout
   title="AI Expert Growth Programme for Coaches & Experts | NXG Media"
   description="Build an AI-ready expert foundation around your expertise. For coaches and experts who want to be found and build a route to enquiries, products and coaching clients."
-  canonical={`${siteConfig.url}/en/ai-expert-growth/`}
+  canonical={`${siteConfig.url}/en/ai-expert-growth`}
   schemas={[
-    generateBreadcrumbs(breadcrumbs.map((b) => ({ name: b.label, url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}/en/ai-expert-growth/` }))),
+    generateBreadcrumbs(breadcrumbs.map((b) => ({ name: b.label, url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}/en/ai-expert-growth` }))),
     generateFAQPage(faqForSchema),
     serviceSchema,
   ]}
@@ -383,7 +383,7 @@ const serviceSchema = generateService({
             <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">Response from Tessa</p>
           </div>
           <div class="bg-white/5 rounded-lg p-4 flex items-center justify-center">
-            <a href="/en/cases/tessa-youlife/" class="text-accent hover:text-accent-dark text-sm font-medium transition-colors">View the full case &rarr;</a>
+            <a href="/en/cases/tessa-youlife" class="text-accent hover:text-accent-dark text-sm font-medium transition-colors">View the full case &rarr;</a>
           </div>
         </div>
       </div>
@@ -429,7 +429,7 @@ const serviceSchema = generateService({
             <p class="text-white/30 text-[10px] mt-1 text-center group-hover:text-white/50 transition-colors">Response from Rolf</p>
           </div>
           <div class="bg-white/5 rounded-lg p-4 flex items-center justify-center">
-            <a href="/en/cases/happy-with-yoga/" class="text-accent hover:text-accent-dark text-sm font-medium transition-colors">View the full case &rarr;</a>
+            <a href="/en/cases/happy-with-yoga" class="text-accent hover:text-accent-dark text-sm font-medium transition-colors">View the full case &rarr;</a>
           </div>
         </div>
       </div>
@@ -570,7 +570,7 @@ const serviceSchema = generateService({
             8 years of experience with online growth systems for coaches and experts. From quiz funnels and mini-products to full platforms &mdash; systems that turn expertise into predictable growth.
           </p>
           <a
-            href="/en/about-joost/"
+            href="/en/about-joost"
             class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium"
           >
             More about Joost

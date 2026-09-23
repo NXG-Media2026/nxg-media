@@ -78,15 +78,15 @@ const faqForSchema = faqItems.map((item) => ({ question: item.question, answer: 
 const faqForComponent = faqItems.map((item) => ({ q: item.question, a: item.answer }));
 
 const hreflang = buildHreflangTrilingual(
-  '/ai-expert-groei-traject/',
-  '/en/ai-expert-growth/',
-  '/es/crecimiento-experto-ia/',
+  '/ai-expert-groei-traject',
+  '/en/ai-expert-growth',
+  '/es/crecimiento-experto-ia',
 );
 
 const serviceSchema = generateService({
   name: 'AI Expert Groei Traject',
   description: 'Van expertise naar aanvragen, instappers en klanten. Expert Website Fundament vanaf €299/mnd of Coach Accelerator Growth System vanaf €500/mnd. Voor coaches, therapeuten en kennisexperts.',
-  url: `${siteConfig.url}/ai-expert-groei-traject/`,
+  url: `${siteConfig.url}/ai-expert-groei-traject`,
   serviceType: 'Expert Growth System',
 });
 ---
@@ -94,9 +94,9 @@ const serviceSchema = generateService({
 <BaseLayout
   title="Expert Groei Traject voor Coaches & Experts | NXG Media"
   description="Je expertise is niet het probleem. Je systeem naar klanten wel. Expert Website Fundament vanaf €299/mnd of Coach Accelerator vanaf €500/mnd."
-  canonical={`${siteConfig.url}/ai-expert-groei-traject/`}
+  canonical={`${siteConfig.url}/ai-expert-groei-traject`}
   schemas={[
-    generateBreadcrumbs(breadcrumbs.map((b) => ({ name: b.label, url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}/ai-expert-groei-traject/` }))),
+    generateBreadcrumbs(breadcrumbs.map((b) => ({ name: b.label, url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}/ai-expert-groei-traject` }))),
     generateFAQPage(faqForSchema),
     serviceSchema,
   ]}
@@ -434,7 +434,7 @@ const serviceSchema = generateService({
             </div>
           </div>
           <div class="bg-white/5 rounded-lg p-4 flex items-center justify-center">
-            <a href="/cases/tessa-youlife/" class="text-accent hover:text-accent-dark text-sm font-medium transition-colors">Bekijk de volledige case &rarr;</a>
+            <a href="/cases/tessa-youlife" class="text-accent hover:text-accent-dark text-sm font-medium transition-colors">Bekijk de volledige case &rarr;</a>
           </div>
         </div>
       </div>
@@ -476,7 +476,7 @@ const serviceSchema = generateService({
             </div>
           </div>
           <div class="bg-white/5 rounded-lg p-4 flex items-center justify-center">
-            <a href="/cases/happy-with-yoga/" class="text-accent hover:text-accent-dark text-sm font-medium transition-colors">Bekijk de volledige case &rarr;</a>
+            <a href="/cases/happy-with-yoga" class="text-accent hover:text-accent-dark text-sm font-medium transition-colors">Bekijk de volledige case &rarr;</a>
           </div>
         </div>
       </div>

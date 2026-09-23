@@ -7,7 +7,7 @@ import { t, localizePath } from '../../../i18n/utils';
 import { buildHreflangTrilingual } from '../../../i18n/hreflang';
 
 const locale = 'es';
-const hreflang = buildHreflangTrilingual('/guides/', '/en/guides/', '/es/guias/');
+const hreflang = buildHreflangTrilingual('/guides', '/en/guides', '/es/guias');
 const guides = (await getCollection('guides')).filter((g) => g.data.locale === locale);
 
 const breadcrumbs = [
@@ -23,7 +23,7 @@ const breadcrumbs = [
       <h1 class="font-heading text-3xl md:text-4xl text-text mb-10">CONOCIMIENTO QUE TE<br /><span class="text-accent">LLEVA MÁS LEJOS.</span></h1>
       </div></section><section class="refresh-guides"><div class="max-w-6xl mx-auto px-4 md:px-6"><div class="grid md:grid-cols-2 gap-6">
         {guides.map((g) => (
-          <a href={`/es/guias/${g.data.pageSlug}/`} class="group block bg-white border border-border rounded-card p-6 hover:border-accent/30 hover:shadow-lg transition-all">
+          <a href={`/es/guias/${g.data.pageSlug}`} class="group block bg-white border border-border rounded-card p-6 hover:border-accent/30 hover:shadow-lg transition-all">
             {g.data.cluster && <span class="text-xs font-medium text-accent uppercase tracking-wider mb-2 block">{g.data.cluster}</span>}
             <h2 class="font-heading text-lg text-text group-hover:text-accent transition-colors">{g.data.title}</h2>
           </a>

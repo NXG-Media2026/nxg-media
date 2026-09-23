@@ -35,7 +35,7 @@ const logos = Object.entries(logoFiles)
   });
 
 const breadcrumbs = [
-  { label: 'Home', href: '/en/' },
+  { label: 'Home', href: '/en' },
   { label: 'Coach Accelerator' },
 ];
 
@@ -78,15 +78,15 @@ const faqForSchema = faqItems.map((item) => ({ question: item.question, answer: 
 const faqForComponent = faqItems.map((item) => ({ q: item.question, a: item.answer }));
 
 const hreflang = buildHreflangTrilingual(
-  '/coach-accelerator/',
-  '/en/coach-accelerator/',
-  '/es/coach-accelerator/',
+  '/coach-accelerator',
+  '/en/coach-accelerator',
+  '/es/coach-accelerator',
 );
 
 const serviceSchema = generateService({
   name: 'Coach Accelerator',
   description: 'From expertise to enquiries, sign-ups and clients. Coach Accelerator Growth System from €500/mo. For coaches, therapists and knowledge experts.',
-  url: `${siteConfig.url}/en/coach-accelerator/`,
+  url: `${siteConfig.url}/en/coach-accelerator`,
   serviceType: 'Expert Growth System',
 });
 ---
@@ -94,9 +94,9 @@ const serviceSchema = generateService({
 <BaseLayout
   title="Coach Accelerator for Coaches & Experts | NXG Media"
   description="Your expertise is not the problem. Your system to clients is. Coach Accelerator from €500/mo."
-  canonical={`${siteConfig.url}/en/coach-accelerator/`}
+  canonical={`${siteConfig.url}/en/coach-accelerator`}
   schemas={[
-    generateBreadcrumbs(breadcrumbs.map((b) => ({ name: b.label, url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}/en/coach-accelerator/` }))),
+    generateBreadcrumbs(breadcrumbs.map((b) => ({ name: b.label, url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}/en/coach-accelerator` }))),
     generateFAQPage(faqForSchema),
     serviceSchema,
   ]}
@@ -432,7 +432,7 @@ const serviceSchema = generateService({
             </div>
           </div>
           <div class="bg-white/5 rounded-lg p-4 flex items-center justify-center">
-            <a href="/en/cases/tessa-youlife/" class="text-accent hover:text-accent-dark text-sm font-medium transition-colors">View the full case &rarr;</a>
+            <a href="/en/cases/tessa-youlife" class="text-accent hover:text-accent-dark text-sm font-medium transition-colors">View the full case &rarr;</a>
           </div>
         </div>
       </div>
@@ -474,7 +474,7 @@ const serviceSchema = generateService({
             </div>
           </div>
           <div class="bg-white/5 rounded-lg p-4 flex items-center justify-center">
-            <a href="/en/cases/happy-with-yoga/" class="text-accent hover:text-accent-dark text-sm font-medium transition-colors">View the full case &rarr;</a>
+            <a href="/en/cases/happy-with-yoga" class="text-accent hover:text-accent-dark text-sm font-medium transition-colors">View the full case &rarr;</a>
           </div>
         </div>
       </div>

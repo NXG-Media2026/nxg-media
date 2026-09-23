@@ -9,7 +9,7 @@ import { t, localizePath } from '../../../i18n/utils';
 import { buildHreflangTrilingual } from '../../../i18n/hreflang';
 
 const locale = 'es';
-const hreflang = buildHreflangTrilingual('/producten/', '/en/products/', '/es/productos/');
+const hreflang = buildHreflangTrilingual('/producten', '/en/products', '/es/productos');
 const products = (await getCollection('products')).filter((p) => p.data.locale === locale);
 const nlProducts = products.length === 0 ? (await getCollection('products')).filter((p) => p.data.locale === 'nl') : [];
 const displayProducts = products.length > 0 ? products : nlProducts;

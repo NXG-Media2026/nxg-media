@@ -6,11 +6,11 @@ interface Props { locale?: Locale; currentPath?: string; hreflang?: Array<{lang:
 const {locale='nl',currentPath='/',hreflang=[]}=Astro.props;
 const items=navigation[locale].filter(item=>!item.isButton);
 const cta=navigation[locale].find(item=>item.isButton);
-const home=locale==='nl'?'/':`/${locale}/`;
+const home=locale==='nl'?'/':`/${locale}`;
 const normalize=(path:string)=>path.replace(/\/+$/,'')||'/';
 const active=(href:string)=>!href.includes('#')&&(normalize(currentPath)===normalize(href)||normalize(currentPath).startsWith(normalize(href)+'/'));
 const words={nl:{nav:'Hoofdnavigatie',menu:'Menu',all:'Alle diensten',languages:'Taal'},en:{nav:'Main navigation',menu:'Menu',all:'All services',languages:'Language'},es:{nav:'Navegación principal',menu:'Menú',all:'Todos los servicios',languages:'Idioma'}}[locale];
-const languages=siteConfig.locales.map(lang=>({lang,href:hreflang.find(h=>h.lang===lang)?.href.replace(siteConfig.url,'')||(lang==='nl'?'/':`/${lang}/`)}));
+const languages=siteConfig.locales.map(lang=>({lang,href:hreflang.find(h=>h.lang===lang)?.href.replace(siteConfig.url,'')||(lang==='nl'?'/':`/${lang}`)}));
 ---
 <header class="site-header" data-site-header><div class="site-header-row">
 <a class="site-brand" href={home}><strong>NXG-media</strong><span>AI Search Agency</span></a>

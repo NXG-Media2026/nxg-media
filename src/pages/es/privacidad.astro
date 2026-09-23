@@ -6,7 +6,7 @@ import { t, localizePath } from '../../i18n/utils';
 import { buildHreflangTrilingual } from '../../i18n/hreflang';
 
 const locale = 'es';
-const hreflang = buildHreflangTrilingual('/privacy/', '/en/privacy/', '/es/privacidad/');
+const hreflang = buildHreflangTrilingual('/privacy', '/en/privacy', '/es/privacidad');
 const breadcrumbs = [
   { label: t('breadcrumb.home', locale), href: localizePath('/', locale) },
   { label: 'Privacidad' },
@@ -39,7 +39,7 @@ const breadcrumbs = [
       <p>Bajo el RGPD tienes derecho a acceso, rectificaci&oacute;n, supresi&oacute;n, limitaci&oacute;n, oposici&oacute;n, portabilidad y retirada del consentimiento. Contacta con <a href="mailto:info@nxg-media.com">info@nxg-media.com</a> — respondemos en 30 d&iacute;as.</p>
 
       <h2>Versi&oacute;n completa</h2>
-      <p>La pol&iacute;tica de privacidad jur&iacute;dicamente vinculante est&aacute; disponible en neerland&eacute;s en <a href="/privacy/">/privacy/</a>.</p>
+      <p>La pol&iacute;tica de privacidad jur&iacute;dicamente vinculante est&aacute; disponible en neerland&eacute;s en <a href="/privacy">/privacy</a>.</p>
     </div>
   </article>
 </BaseLayout>

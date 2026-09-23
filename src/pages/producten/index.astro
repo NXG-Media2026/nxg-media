@@ -9,7 +9,7 @@ import { t, localizePath } from '../../i18n/utils';
 import { buildHreflangTrilingual } from '../../i18n/hreflang';
 
 const locale = 'nl';
-const hreflang = buildHreflangTrilingual('/producten/', '/en/products/', '/es/productos/');
+const hreflang = buildHreflangTrilingual('/producten', '/en/products', '/es/productos');
 const products = (await getCollection('products')).filter((p) => p.data.locale === locale);
 
 const coverFiles = import.meta.glob<{ default: ImageMetadata }>(
@@ -56,7 +56,7 @@ const breadcrumbs = [
           const cover = getCover(p.data.cover);
           return (
             <a
-              href={`/producten/${p.data.pageSlug}/`}
+              href={`/producten/${p.data.pageSlug}`}
               class="group block bg-white border border-border rounded-card overflow-hidden hover:border-accent/30 hover:shadow-lg transition-all duration-300"
             >
               {cover && (

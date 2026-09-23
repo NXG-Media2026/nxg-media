@@ -12,7 +12,7 @@ import { getTestimonials } from '../../../data/testimonials';
 import { videoTestimonials } from '../../../data/videoTestimonials';
 
 const locale = 'en';
-const hreflang = buildHreflangTrilingual('/cases/', '/en/cases/', '/es/casos/');
+const hreflang = buildHreflangTrilingual('/cases', '/en/cases', '/es/casos');
 const cases = (await getCollection('cases')).filter((c) => c.data.locale === locale).sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 const testimonials = getTestimonials({ locale: 'en' });
 
@@ -54,7 +54,7 @@ const breadcrumbs = [
           { value: '1,700+', label: 'mini-course sales' },
           { value: '2,000', label: 'paying members' },
         ],
-        caseHref: '/en/cases/happy-with-yoga/',
+        caseHref: '/en/cases/happy-with-yoga',
       },
       {
         testimonial: testimonials.find((t) => t.id === 'tessa-youlife')!,
@@ -64,7 +64,7 @@ const breadcrumbs = [
           { value: '6', label: 'products launched' },
           { value: '~10/mo', label: 'coaching clients' },
         ],
-        caseHref: '/en/cases/tessa-youlife/',
+        caseHref: '/en/cases/tessa-youlife',
       },
       {
         testimonial: testimonials.find((t) => t.id === 'josine-coachjosine')!,
@@ -73,7 +73,7 @@ const breadcrumbs = [
           { value: '600×', label: 'guides sold' },
           { value: '80', label: 'masterclass signups' },
         ],
-        caseHref: '/en/cases/coach-josine/',
+        caseHref: '/en/cases/coach-josine',
       },
     ]}
     smallResults={[
@@ -120,7 +120,7 @@ const breadcrumbs = [
         <h2 class="font-heading text-2xl md:text-3xl text-text mb-8">Explore the coach cases</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           {cases.map((c) => (
-            <a href={`/en/cases/${c.data.pageSlug}/`} class="group block bg-white border border-border rounded-card p-6 hover:border-accent/30 hover:shadow-lg transition-all duration-300">
+            <a href={`/en/cases/${c.data.pageSlug}`} class="group block bg-white border border-border rounded-card p-6 hover:border-accent/30 hover:shadow-lg transition-all duration-300">
               <span class="text-xs font-medium text-accent uppercase tracking-wider mb-2 block">{c.data.clientType}</span>
               <h3 class="font-heading text-lg text-text mb-2 group-hover:text-accent transition-colors">{c.data.title}</h3>
               {c.data.proofStats.length > 0 && (
@@ -148,6 +148,6 @@ const breadcrumbs = [
   />
 
   {/* ── CTA ── */}
-  <section class="py-12 md:py-16 bg-bg-alt"><div class="max-w-4xl mx-auto px-4 md:px-6"><h2 class="font-heading mb-6">What fits your business?</h2><div class="grid md:grid-cols-2 gap-6"><a class="p-6 bg-white border border-border rounded-card" href="/en/nxg-growth/"><h3 class="font-heading mb-3">SMBs, practices and service providers</h3><p class="text-text-muted">Explore NXG Growth: AI Search, your website and campaigns as one approach.</p></a><a class="p-6 bg-white border border-border rounded-card" href="/en/coach-accelerator/"><h3 class="font-heading mb-3">Coaches and experts</h3><p class="text-text-muted">Explore Coach Accelerator: from expertise and offerings to entry products and clients.</p></a></div></div></section>
+  <section class="py-12 md:py-16 bg-bg-alt"><div class="max-w-4xl mx-auto px-4 md:px-6"><h2 class="font-heading mb-6">What fits your business?</h2><div class="grid md:grid-cols-2 gap-6"><a class="p-6 bg-white border border-border rounded-card" href="/en/nxg-growth"><h3 class="font-heading mb-3">SMBs, practices and service providers</h3><p class="text-text-muted">Explore NXG Growth: AI Search, your website and campaigns as one approach.</p></a><a class="p-6 bg-white border border-border rounded-card" href="/en/coach-accelerator"><h3 class="font-heading mb-3">Coaches and experts</h3><p class="text-text-muted">Explore Coach Accelerator: from expertise and offerings to entry products and clients.</p></a></div></div></section>
 
 </BaseLayout>

@@ -6,7 +6,7 @@ import { t, localizePath } from '../i18n/utils';
 import { buildHreflangTrilingual } from '../i18n/hreflang';
 
 const locale = 'nl';
-const hreflang = buildHreflangTrilingual('/voorwaarden/', '/en/terms/', '/es/terminos/');
+const hreflang = buildHreflangTrilingual('/voorwaarden', '/en/terms', '/es/terminos');
 const breadcrumbs = [
   { label: t('breadcrumb.home', locale), href: localizePath('/', locale) },
   { label: 'Voorwaarden' },

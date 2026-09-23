@@ -31,19 +31,19 @@ const testimonials = getProductTestimonials(product.pageSlug, 4, locale);
 
 const breadcrumbs = [
   { label: t('breadcrumb.home', locale), href: localizePath('/', locale) },
-  { label: t('breadcrumb.producten', locale), href: '/producten/' },
+  { label: t('breadcrumb.producten', locale), href: '/producten' },
   { label: product.title },
 ];
 
 const breadcrumbSchema = breadcrumbs.map((b) => ({
   name: b.label,
-  url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}/producten/${product.pageSlug}/`,
+  url: b.href ? `${siteConfig.url}${b.href}` : `${siteConfig.url}/producten/${product.pageSlug}`,
 }));
 
 const faqForSchema = product.faq.map((f) => ({ question: f.q, answer: f.a }));
 
 const isPlaceholder = !product.checkoutUrl || product.checkoutUrl.includes('TBD');
-const checkoutHref = isPlaceholder ? '/contact/' : product.checkoutUrl;
+const checkoutHref = isPlaceholder ? '/contact' : product.checkoutUrl;
 const checkoutLabel = isPlaceholder ? t('cta.contact', locale) : t('cta.buyNow', locale);
 ---
 
@@ -52,7 +52,7 @@ const checkoutLabel = isPlaceholder ? t('cta.contact', locale) : t('cta.buyNow',
   description={product.shortDescription}
   ogType="product"
   schemas={[
-    generateProduct({ name: product.title, description: product.shortDescription, url: `${siteConfig.url}/producten/${product.pageSlug}/`, price: product.price, image: coverImage?.src }),
+    generateProduct({ name: product.title, description: product.shortDescription, url: `${siteConfig.url}/producten/${product.pageSlug}`, price: product.price, image: coverImage?.src }),
     generateBreadcrumbs(breadcrumbSchema),
     ...(faqForSchema.length > 0 ? [generateFAQPage(faqForSchema)] : []),
   ]}

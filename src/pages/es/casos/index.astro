@@ -12,7 +12,7 @@ import { getTestimonials } from '../../../data/testimonials';
 import { videoTestimonials } from '../../../data/videoTestimonials';
 
 const locale = 'es';
-const hreflang = buildHreflangTrilingual('/cases/', '/en/cases/', '/es/casos/');
+const hreflang = buildHreflangTrilingual('/cases', '/en/cases', '/es/casos');
 const cases = (await getCollection('cases')).filter((c) => c.data.locale === locale).sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 const testimonials = getTestimonials({ locale: 'es' });
 
@@ -54,7 +54,7 @@ const breadcrumbs = [
           { value: '1.700+', label: 'ventas de mini-curso' },
           { value: '2.000', label: 'miembros de pago' },
         ],
-        caseHref: '/es/casos/happy-with-yoga/',
+        caseHref: '/es/casos/happy-with-yoga',
       },
       {
         testimonial: testimonials.find((t) => t.id === 'tessa-youlife')!,
@@ -64,7 +64,7 @@ const breadcrumbs = [
           { value: '6', label: 'productos lanzados' },
           { value: '±10/mes', label: 'clientes de coaching' },
         ],
-        caseHref: '/es/casos/tessa-youlife/',
+        caseHref: '/es/casos/tessa-youlife',
       },
       {
         testimonial: testimonials.find((t) => t.id === 'josine-coachjosine')!,
@@ -73,7 +73,7 @@ const breadcrumbs = [
           { value: '600×', label: 'guías vendidas' },
           { value: '80', label: 'inscripciones masterclass' },
         ],
-        caseHref: '/es/casos/coach-josine/',
+        caseHref: '/es/casos/coach-josine',
       },
     ]}
     smallResults={[
@@ -120,7 +120,7 @@ const breadcrumbs = [
         <h2 class="font-heading text-2xl md:text-3xl text-text mb-8">Explora los casos de coaches</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           {cases.map((c) => (
-            <a href={`/es/casos/${c.data.pageSlug}/`} class="group block bg-white border border-border rounded-card p-6 hover:border-accent/30 hover:shadow-lg transition-all duration-300">
+            <a href={`/es/casos/${c.data.pageSlug}`} class="group block bg-white border border-border rounded-card p-6 hover:border-accent/30 hover:shadow-lg transition-all duration-300">
               <span class="text-xs font-medium text-accent uppercase tracking-wider mb-2 block">{c.data.clientType}</span>
               <h3 class="font-heading text-lg text-text mb-2 group-hover:text-accent transition-colors">{c.data.title}</h3>
               {c.data.proofStats.length > 0 && (
@@ -148,6 +148,6 @@ const breadcrumbs = [
   />
 
   {/* ── CTA ── */}
-  <section class="py-12 md:py-16 bg-bg-alt"><div class="max-w-4xl mx-auto px-4 md:px-6"><h2 class="font-heading mb-6">¿Qué se adapta a tu negocio?</h2><div class="grid md:grid-cols-2 gap-6"><a class="p-6 bg-white border border-border rounded-card" href="/es/nxg-growth/"><h3 class="font-heading mb-3">PYMES, consultorios y proveedores de servicios</h3><p class="text-text-muted">Descubre NXG Growth: AI Search, tu web y campañas como un solo enfoque.</p></a><a class="p-6 bg-white border border-border rounded-card" href="/es/coach-accelerator/"><h3 class="font-heading mb-3">Coaches y expertos</h3><p class="text-text-muted">Descubre Coach Accelerator: de experiencia y oferta a productos de entrada y clientes.</p></a></div></div></section>
+  <section class="py-12 md:py-16 bg-bg-alt"><div class="max-w-4xl mx-auto px-4 md:px-6"><h2 class="font-heading mb-6">¿Qué se adapta a tu negocio?</h2><div class="grid md:grid-cols-2 gap-6"><a class="p-6 bg-white border border-border rounded-card" href="/es/nxg-growth"><h3 class="font-heading mb-3">PYMES, consultorios y proveedores de servicios</h3><p class="text-text-muted">Descubre NXG Growth: AI Search, tu web y campañas como un solo enfoque.</p></a><a class="p-6 bg-white border border-border rounded-card" href="/es/coach-accelerator"><h3 class="font-heading mb-3">Coaches y expertos</h3><p class="text-text-muted">Descubre Coach Accelerator: de experiencia y oferta a productos de entrada y clientes.</p></a></div></div></section>
 
 </BaseLayout>

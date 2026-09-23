@@ -25,7 +25,7 @@ const faqItems = getClusterFaqLocalized(cluster, locale);
 const faqForComponent = faqItems.map((item) => ({ q: item.question, a: item.answer }));
 
 const testimonials = getTestimonials({ locale: 'es' });
-const hreflang = buildHreflangTrilingual('/ai-vindbaarheid/', '/en/ai-visibility/', '/es/visibilidad-ia/');
+const hreflang = buildHreflangTrilingual('/ai-vindbaarheid', '/en/ai-visibility', '/es/visibilidad-ia');
 const claireTestimonial = testimonials.find((t) => t.id === 'claire-ikrouwvanje');
 
 const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
@@ -38,7 +38,7 @@ const logos = Object.entries(logoFiles)
   });
 
 const breadcrumbs = [
-  { label: 'Inicio', href: '/es/' },
+  { label: 'Inicio', href: '/es' },
   { label: 'Visibilidad IA' },
 ];
 
@@ -91,7 +91,7 @@ const trustItems = [
           <span aria-hidden="true">↗</span>
         </button>
         <a
-          href="/es/contacto/"
+          href="/es/contacto"
           class="inline-flex items-center px-8 py-4 text-base font-medium text-primary border-2 border-primary hover:bg-primary/5 transition-colors rounded-button"
         >
           Reserva una llamada
@@ -395,7 +395,7 @@ const trustItems = [
             7+ años de experiencia construyendo sistemas de crecimiento online. Más de €5 millones en inversión publicitaria gestionada. Ayudo a coaches y PYMES a ser visibles no solo en Google, sino también en las herramientas de IA que lo están reemplazando rápidamente.
           </p>
           <a
-            href="/es/sobre-joost/"
+            href="/es/sobre-joost"
             class="inline-flex items-center text-accent hover:text-accent-dark transition-colors font-medium"
           >
             Más sobre Joost
