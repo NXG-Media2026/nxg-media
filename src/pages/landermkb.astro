@@ -6,7 +6,7 @@ import '../styles/lander.css';
 import landerScriptUrl from '../scripts/lander.js?url';
 import type { ImageMetadata } from 'astro';
 import CookieConsent from '../components/CookieConsent.astro';
-import { getTrackingScript } from '../lib/analytics';
+import { getTrackingScript, getMetaPixelScript, getCapiHelperScript } from '../lib/analytics';
 const clientLogoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/Client-logos/*.{webp,avif,png,jpg}', { eager: true });
 const clientLogos = Object.entries(clientLogoFiles).map(([file, mod]) => ({ src: mod.default, alt: file.split('/').pop()!.replace(/\.(webp|avif|png|jpg)$/i, '').replace(/[-_]?logo[-_]?/gi, '').replace(/[-_]/g, ' ').trim() }));
 ---
@@ -64,5 +64,18 @@ const clientLogos = Object.entries(clientLogoFiles).map(([file, mod]) => ({ src:
 .lander-languages{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;margin-left:auto}.lander-languages a{color:#666;text-decoration:none;padding:4px 6px;border-radius:4px;transition:color .2s}.lander-languages a:hover{color:#0756ef}.lander-languages span[aria-current]{color:#0756ef;padding:4px 6px}@media(max-width:760px){.lander-languages{margin:0 auto;justify-content:center;padding:8px 0}}
 </style>
 <script is:inline set:html={getTrackingScript()} />
+<script is:inline set:html={getCapiHelperScript()} />
+<Fragment set:html={getMetaPixelScript(siteConfig.analytics.metaPixelId)} />
+<script is:inline>
+window.addEventListener('message',function(e){
+  if(e.origin.indexOf('calendly')===-1)return;
+  try{var d=typeof e.data==='string'?JSON.parse(e.data):e.data}catch(x){return}
+  if(!d||d.event!=='calendly.event_scheduled')return;
+  var eid=typeof nxgCapiEventId==='function'?nxgCapiEventId():'';
+  if(typeof fbq==='function'){fbq('track','Schedule',{content_name:'landermkb',content_category:'mkb-lander'},{eventID:eid})}
+  if(eid&&typeof nxgCapiSend==='function'){nxgCapiSend('Schedule',eid,{content_name:'landermkb',content_category:'mkb-lander'})}
+  if(typeof trackEvent==='function'){trackEvent('ai_vindbaarheid_call_booked',{page_type:'page',page_slug:'landermkb',locale:'nl',provider:'calendly'})}
+});
+</script>
 <script is:inline src={landerScriptUrl}></script>
 </body></html>

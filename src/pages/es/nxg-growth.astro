@@ -6,7 +6,7 @@ import '../../styles/lander.css';
 import landerScriptUrl from '../../scripts/lander.js?url';
 import type { ImageMetadata } from 'astro';
 import CookieConsent from '../../components/CookieConsent.astro';
-import { getTrackingScript } from '../../lib/analytics';
+import { getTrackingScript, getMetaPixelScript, getCapiHelperScript } from '../../lib/analytics';
 const clientLogoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/Client-logos/*.{webp,avif,png,jpg}', { eager: true });
 const clientLogos = Object.entries(clientLogoFiles).map(([file, mod]) => ({ src: mod.default, alt: file.split('/').pop()!.replace(/\.(webp|avif|png|jpg)$/i, '').replace(/[-_]?logo[-_]?/gi, '').replace(/[-_]/g, ' ').trim() }));
 ---
@@ -63,5 +63,18 @@ const clientLogos = Object.entries(clientLogoFiles).map(([file, mod]) => ({ src:
 .lander-languages{display:flex;align-items:center;gap:4px;font-size:13px;font-weight:700}.lander-languages a{color:var(--text-muted,#6b7280);text-decoration:none;padding:4px 6px;border-radius:4px}.lander-languages a:hover{color:var(--blue,#0756ef);background:#edf3ff}.lander-languages span[aria-current]{color:var(--blue,#0756ef);padding:4px 6px;border-radius:4px;background:#edf3ff}
 </style>
 <script is:inline set:html={getTrackingScript()} />
+<script is:inline set:html={getCapiHelperScript()} />
+<Fragment set:html={getMetaPixelScript(siteConfig.analytics.metaPixelId)} />
+<script is:inline>
+window.addEventListener('message',function(e){
+  if(e.origin.indexOf('calendly')===-1)return;
+  try{var d=typeof e.data==='string'?JSON.parse(e.data):e.data}catch(x){return}
+  if(!d||d.event!=='calendly.event_scheduled')return;
+  var eid=typeof nxgCapiEventId==='function'?nxgCapiEventId():'';
+  if(typeof fbq==='function'){fbq('track','Schedule',{content_name:'nxg-growth-es',content_category:'mkb-lander'},{eventID:eid})}
+  if(eid&&typeof nxgCapiSend==='function'){nxgCapiSend('Schedule',eid,{content_name:'nxg-growth-es',content_category:'mkb-lander'})}
+  if(typeof trackEvent==='function'){trackEvent('ai_vindbaarheid_call_booked',{page_type:'page',page_slug:'es/nxg-growth',locale:'es',provider:'calendly'})}
+});
+</script>
 <script is:inline src={landerScriptUrl}></script>
 </body></html>
