@@ -25,7 +25,7 @@ export const navigation: Record<Locale, NavItem[]> = {
     { label: 'Plan een gratis gesprek', href: '/contact', isButton: true },
   ],
   en: [
-    { label: 'Services', href: '/en', children: [
+    { label: 'Services', href: '/en#diensten', children: [
       { label: 'SMB · NXG AI Search System', href: '/en/nxg-growth' },
       { label: 'Coach Accelerator', href: '/en/coach-accelerator' },
     ]},
@@ -38,7 +38,7 @@ export const navigation: Record<Locale, NavItem[]> = {
     { label: 'Book a free call', href: '/en/contact', isButton: true },
   ],
   es: [
-    { label: 'Servicios', href: '/es', children: [
+    { label: 'Servicios', href: '/es#diensten', children: [
       { label: 'PYMES · Sistema NXG AI Search', href: '/es/nxg-growth' },
       { label: 'Coach Accelerator', href: '/es/coach-accelerator' },
     ]},
