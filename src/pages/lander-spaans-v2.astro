@@ -87,26 +87,20 @@ document.querySelectorAll('.logos-toggle').forEach(button => button.addEventList
   button.setAttribute('aria-pressed', String(paused));
   button.textContent = paused ? 'Reanudar logos' : 'Pausar logos';
 }));
-document.querySelectorAll('[data-booking-card]').forEach(card => {
-  const button = card.querySelector('[data-load-calendar]');
-  button.addEventListener('click', () => {
-    button.hidden = true;
-    const namespace = card.id;
-    const target = card.querySelector('[data-calendar-target]');
-    target.classList.add('is-loaded');
-    card.querySelector('[role="status"]').textContent = 'Elige tu horario. Si la agenda no aparece, utiliza el enlace de abajo.';
-    (function(C,A,L){let p=function(a,ar){a.q.push(ar)};let d=C.document;C.Cal=C.Cal||function(){let cal=C.Cal;let ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement('script')).src=A;cal.loaded=true}if(ar[0]===L){const api=function(){p(api,arguments)};const namespace=ar[1];api.q=api.q||[];if(typeof namespace==='string'){cal.ns[namespace]=cal.ns[namespace]||api;p(cal.ns[namespace],ar);p(cal,['initNamespace',namespace])}else p(cal,ar);return}p(cal,ar)}})(window,'https://app.cal.com/embed/embed.js','init');
-    Cal('init',namespace,{origin:'https://cal.com'});
-    Cal.ns[namespace]('inline',{elementOrSelector:'#'+target.id,config:{layout:'month_view',useSlotsViewOnSmallScreen:'true',theme:'light',locale:'es'},calLink:'joost-van-putten-iegf5p/cita-de-40-minutos'});
-    Cal.ns[namespace]('ui',{hideEventTypeDetails:false,layout:'month_view',theme:'light'});
-    Cal.ns[namespace]('on',{action:'bookingSuccessful',callback:function(){
-      let consent={};try{consent=JSON.parse(localStorage.getItem('nxg_cookie_consent')||'{}')||{}}catch{}
-      const eid=typeof nxgCapiEventId==='function'?nxgCapiEventId():'';
-      if(consent.marketing&&typeof fbq==='function')fbq('track','Schedule',{content_name:'lander-spaans-v2',content_category:'mkb-lander'},{eventID:eid});
-      if(consent.marketing&&eid&&typeof nxgCapiSend==='function')nxgCapiSend('Schedule',eid,{content_name:'lander-spaans-v2',content_category:'mkb-lander'});
-      if(consent.analytics&&typeof trackEvent==='function')trackEvent('ai_vindbaarheid_call_booked',{page_type:'page',page_slug:'lander-spaans-v2',locale:'es',provider:'cal.com'});
-    }});
-  }, { once: true });
+(function(C,A,L){let p=function(a,ar){a.q.push(ar)};let d=C.document;C.Cal=C.Cal||function(){let cal=C.Cal;let ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement('script')).src=A;cal.loaded=true}if(ar[0]===L){const api=function(){p(api,arguments)};const namespace=ar[1];api.q=api.q||[];if(typeof namespace==='string'){cal.ns[namespace]=cal.ns[namespace]||api;p(cal.ns[namespace],ar);p(cal,['initNamespace',namespace])}else p(cal,ar);return}p(cal,ar)}})(window,'https://app.cal.com/embed/embed.js','init');
+document.querySelectorAll('[data-booking-card]').forEach(function(card){
+  var namespace=card.id;
+  var target=card.querySelector('[data-calendar-target]');
+  Cal('init',namespace,{origin:'https://cal.com'});
+  Cal.ns[namespace]('inline',{elementOrSelector:'#'+target.id,config:{layout:'month_view',useSlotsViewOnSmallScreen:'true',theme:'light',locale:'es'},calLink:'joost-van-putten-iegf5p/cita-de-40-minutos'});
+  Cal.ns[namespace]('ui',{hideEventTypeDetails:false,layout:'month_view',theme:'light'});
+  Cal.ns[namespace]('on',{action:'bookingSuccessful',callback:function(){
+    let consent={};try{consent=JSON.parse(localStorage.getItem('nxg_cookie_consent')||'{}')||{}}catch{}
+    const eid=typeof nxgCapiEventId==='function'?nxgCapiEventId():'';
+    if(consent.marketing&&typeof fbq==='function')fbq('track','Schedule',{content_name:'lander-spaans-v2',content_category:'mkb-lander'},{eventID:eid});
+    if(consent.marketing&&eid&&typeof nxgCapiSend==='function')nxgCapiSend('Schedule',eid,{content_name:'lander-spaans-v2',content_category:'mkb-lander'});
+    if(consent.analytics&&typeof trackEvent==='function')trackEvent('ai_vindbaarheid_call_booked',{page_type:'page',page_slug:'lander-spaans-v2',locale:'es',provider:'cal.com'});
+  }});
 });
 document.querySelectorAll('.v2-video video').forEach(video => video.addEventListener('play', () => {
   document.querySelectorAll('.v2-video video').forEach(other => { if (other !== video) other.pause(); });

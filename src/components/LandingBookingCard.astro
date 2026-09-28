@@ -4,8 +4,7 @@ const { id } = Astro.props;
 ---
 <div class="v2-booking-card" id={id} data-booking-card>
   <div class="v2-booking-card-header"><span aria-hidden="true">↗</span><div><h3>ELIGE TU MOMENTO.</h3><p>Sesión gratuita con Joost · En español</p></div></div>
-  <button class="button yellow" type="button" data-load-calendar aria-controls={id + '-embed'}>Ver horarios disponibles ↗</button>
-  <p class="v2-booking-status" role="status">Abre la agenda para elegir el día y la hora que te vengan bien.</p>
+  <p class="v2-booking-status" role="status">Elige tu horario. Si la agenda no aparece, utiliza el enlace de abajo.</p>
+  <div class="v2-booking-embed is-loaded" id={id + '-embed'} data-calendar-target></div>
   <a class="v2-booking-fallback" href="https://cal.com/joost-van-putten-iegf5p/cita-de-40-minutos" target="_blank" rel="noopener noreferrer">Abrir directamente en Cal.com ↗</a>
-  <div class="v2-booking-embed" id={id + '-embed'} data-calendar-target></div>
 </div>
