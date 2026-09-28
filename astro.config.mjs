@@ -15,6 +15,7 @@ export default defineConfig({
       filter: (page) =>
         !hiddenOfferPaths.includes(new URL(page).pathname.replace(/\/+$/, '')) &&
         !page.includes('/lander-spaans-v2') &&
+        !page.includes('/landermkb-v2') &&
         !page.includes('/_backups_') &&
         !page.includes('/archetypen/') &&
         !page.includes('/groeiscan') &&

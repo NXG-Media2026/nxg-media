@@ -1,0 +1,105 @@
+---
+import { Image, getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import CookieConsent from '../components/CookieConsent.astro';
+import { getTrackingScript, getCapiHelperScript, getMetaPixelScript } from '../lib/analytics';
+import { siteConfig } from '../data/site';
+import '../styles/lander.css';
+import '../styles/lander-spaans-v2.css';
+const logos = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/Client-logos/*.{webp,avif,png,jpg}', { eager: true });
+const clientLogos = Object.entries(logos).map(([file, mod]) => ({ src: mod.default, alt: file.split('/').pop()!.replace(/\.(webp|avif|png|jpg)$/i, '').replace(/[-_]?logo[-_]?/gi, '').replace(/[-_]/g, ' ').trim() }));
+const thumbs = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/testimonials/*-thumb.webp', { eager: true });
+const videos = await Promise.all([
+  ['stekkies', 'Stekkies'], ['somnox', 'Somnox'], ['narayan-eetclubnl', 'Eetclub.nl'],
+  ['mcm-research', 'MCM Research'], ['cathowell-8loops', 'Cat Howell · 8loops'],
+].map(async ([id, name]) => ({ id, name, poster: (await getImage({ src: thumbs['/src/assets/images/testimonials/' + id + '-thumb.webp'].default, width: 600 })).src })));
+const faqs = [
+  ['Wat is een gekwalificeerde aanvraag?', 'Een unieke aanvraag van iemand uit de afgesproken doelgroep, met geldige contactgegevens en aantoonbare interesse in je dienst. Spam, duplicaten en irrelevante contacten tellen niet mee.'],
+  ['Hoe werkt de garantie?', 'De garantie dekt minimaal 15 gekwalificeerde aanvragen in 90 dagen na livegang. Vooraf leggen we schriftelijk vast wat meetelt, het budget en de terugbetalingsvoorwaarden.'],
+  ['Moet ik altijd advertenties inkopen?', 'Het budget hangt af van het doel en je uitgangspunt. We spreken elke investering in advertenties vooraf af.'],
+  ['Wat gebeurt er na de eerste 90 dagen?', 'We evalueren de resultaten samen en bespreken het vervolg. De website, content en optimalisaties die we voor je bouwen blijven van jou.'],
+];
+---
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>15 gekwalificeerde aanvragen in 90 dagen | NXG AI Search</title>
+<meta name="description" content="Minimaal 15 gekwalificeerde aanvragen in 90 dagen na livegang. Of je geld terug. Met het NXG AI-Search-systeem: vindbaarheid, Search Ads en een website die converteert." />
+<meta name="robots" content="noindex, follow" />
+<link rel="canonical" href="https://nxg-media.com/landermkb-v2" />
+<meta name="theme-color" content="#0756ef" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230756ef'/%3E%3Cpath d='M15 48V16h8l18 20V16h8v32h-8L23 28v20z' fill='%23fff000'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:wght@400;500;600;650;700;800&display=swap" rel="stylesheet">
+
+</head>
+<body class="v2">
+<a class="skip" href="#main">Naar inhoud</a>
+<header><div class="nav wrap">
+<a class="brand" href="/" aria-label="NXG-media, naar de homepage">NXG<span>-media</span><small>AI Search Agency</small></a>
+<nav aria-label="Hoofdnavigatie"><a href="#cases">Resultaten</a><a href="#nxg-systeem">AI-Search-methode</a><a href="#garantia">Garantie</a></nav>
+<a class="button yellow compact" href="#groeisessie">Plan mijn sessie ↗</a>
+</div></header>
+<main id="main">
+<section class="hero"><div class="wrap v2-hero-grid">
+<div><p class="eyebrow light">HET NXG AI-SEARCH-SYSTEEM</p>
+<h1>MINIMAAL <span class="v2-yellow">15 GEKWALIFICEERDE AANVRAGEN</span> IN 90 DAGEN.</h1>
+<p class="v2-refund">Of je geld terug.</p>
+<p class="v2-hero-text">Wij zorgen dat jouw klanten je vinden in Google, ChatGPT, Gemini en Perplexity. Met het NXG AI-Search-systeem maken we van die zoekopdrachten gekwalificeerde aanvragen.</p>
+<a class="button yellow" href="#groeisessie">Plan mijn gratis sessie <span aria-hidden="true">↗</span></a>
+<p class="v2-hero-note">Met Joost · Vrijblijvend · 90 dagen na livegang</p>
+<div class="v2-search-formula" aria-label="De drie pijlers van het NXG AI-Search-systeem"><span>AI-vindbaarheid</span><b aria-hidden="true">+</b><span>AI Search Ads</span><b aria-hidden="true">+</b><span>Een website die converteert</span></div>
+<a class="v2-ai-teaser" href="#chatgpt-ads"><img src="/lander-assets/platforms/openai.svg" alt="" width="30" height="30" /><span><small>DE NIEUWE GENERATIE ZOEKEN</small><strong>Ook ChatGPT Ads.</strong></span><span aria-hidden="true">↗</span></a>
+</div>
+<figure class="v2-hero-photo v2-hero-team"><img src="/lander-assets/proof/joost-fleur-equipo-nxg.avif" alt="Joost en Fleur, team NXG-media" width="454" height="322" loading="eager" fetchpriority="high" /><figcaption><span>Joost en Fleur · Team NXG-media</span></figcaption></figure>
+</div></section>
+<div class="promise-strip" id="confianza"><div class="wrap strip-grid" aria-label="Waarom NXG">
+<div><span class="check" aria-hidden="true">✓</span><p><strong>Meer dan 50 bedrijven geholpen</strong><span>Ervaring met bedrijven zoals het jouwe.</span></p></div>
+<div><span class="check" aria-hidden="true">✓</span><p><strong>Persoonlijke aanpak</strong><span>Je werkt rechtstreeks met Joost.</span></p></div>
+<div><span class="check" aria-hidden="true">✓</span><p><strong>Aanvragen 100% gekwalificeerd</strong><span>Alleen contacten die voldoen aan de afgesproken criteria tellen mee.</span></p></div>
+</div></div>
+<section class="section results" id="cases"><div class="wrap"><p class="eyebrow">AI SEARCH IN DE PRAKTIJK</p><h2>VAN GOOGLE EN CHATGPT<br><span class="blue">NAAR ECHTE AANVRAGEN.</span></h2><p class="results-intro">Vindbaarheid in zoekmachines, vermeldingen in ChatGPT en een website die converteert. Dit zijn twee echte projecten.</p><div class="case-grid"><article class="result-card"><div class="case-person"><img src="/lander-assets/proof/james.webp" alt="Dr. James Mitchell" width="80" height="80" loading="lazy"><div><strong>Costa Blanca Movement Centre</strong><a href="https://www.costablancamovement.com/" target="_blank" rel="noopener noreferrer">costablancamovement.com ↗</a></div></div><h3>VAN NUL NAAR<br>12–15 PATIËNTEN PER MAAND.</h3><p>Begon vanaf nul, zonder website en zonder Google-historie. In 14 dagen stond de nieuwe website op pagina 1. Na 2 maanden: 12–15 patiënten per maand via internet.</p><div class="case-metrics"><div><strong>12–15</strong><span>patiënten per maand via online</span></div><div><strong>800+</strong><span>organische bezoekers per maand</span></div></div><div class="case-proof"><a href="/lander-assets/proof/google-proof.webp" target="_blank" rel="noopener"><img src="/lander-assets/proof/google-proof.webp" alt="Google-resultaat van Costa Blanca Movement Centre" width="600" height="360" loading="lazy"><span>Pagina 1 van Google in 14 dagen · bekijk bewijs ↗</span></a><a href="/lander-assets/proof/chatgpt-proof.webp" target="_blank" rel="noopener"><img src="/lander-assets/proof/chatgpt-proof.webp" alt="ChatGPT noemt Costa Blanca Movement Centre als lokale optie" width="600" height="360" loading="lazy"><span>Genoemd door ChatGPT · bekijk bewijs ↗</span></a></div></article><article class="result-card"><div class="case-person"><img src="/lander-assets/proof/verena.webp" alt="Dr. Verena Mann" width="80" height="80" loading="lazy"><div><strong>Dr. Verena Mann</strong><a href="https://doc-veri.pages.dev/" target="_blank" rel="noopener noreferrer">doc-veri.pages.dev ↗</a></div></div><h3>VAN 2 NAAR 19<br>AANVRAGEN PER MAAND.</h3><p>Een website die haar expertise toont en contact makkelijk maakt. Van 2 naar 19 aanvragen per maand, met vermeldingen als expert in ChatGPT.</p><div class="case-metrics"><div><strong>2 → 19</strong><span>aanvragen per maand</span></div><div><strong>0 → 15</strong><span>AI-vermeldingen</span></div></div><div class="case-proof single"><a href="/lander-assets/proof/verena-proof.webp" target="_blank" rel="noopener"><img src="/lander-assets/proof/verena-proof.webp" alt="ChatGPT-vermelding van Dr. Verena Mann" width="1200" height="360" loading="lazy"><span>Genoemd als expert door ChatGPT · bekijk bewijs ↗</span></a></div></article></div><p class="v2-note">Resultaten van concrete projecten. Elk bedrijf heeft een eigen startpunt.</p></div></section>
+<section class="section v2-method" id="nxg-systeem"><div class="wrap"><p class="eyebrow">ONZE METHODE. JOUW VOLGENDE KLANTEN.</p><h2>HET NXG<br><span class="v2-yellow">AI-SEARCH-SYSTEEM.</span></h2><p class="v2-method-intro">Jouw klanten vragen AI al welk bedrijf ze moeten kiezen. Wij zorgen dat jouw bedrijf in die antwoorden verschijnt.</p><div class="v2-three"><article><span>01</span><h3>GEVONDEN WORDEN.</h3><p>We verbeteren je vindbaarheid in Google en in de antwoorden van ChatGPT, Gemini en Perplexity. Aangevuld met Search Ads om je doelgroep te bereiken.</p></article><article><span>02</span><h3>GEKOZEN WORDEN.</h3><p>Een website die jouw expertise toont, twijfels wegneemt en contact makkelijk maakt.</p></article><article><span>03</span><h3>AANVRAGEN BINNENHALEN.</h3><p>We meten de gekwalificeerde aanvragen en verbeteren je website en campagnes om het afgesproken doel te halen.</p></article></div><div class="v2-search-news" id="chatgpt-ads"><img src="/lander-assets/platforms/openai.svg" alt="ChatGPT" width="48" height="48" loading="lazy" /><div><p class="eyebrow">EEN NIEUW KANAAL VOOR JOUW BEDRIJF</p><h3>OOK CHATGPT ADS.</h3><p>We beoordelen ChatGPT Ads als onderdeel van jouw NXG AI-Search-systeem, op basis van beschikbaarheid, je doelgroep en je budget.</p></div><a class="button yellow" href="#groeisessie">Bekijk mijn kansen ↗</a></div></div></section>
+<section class="section v2-team" id="equipo"><div class="wrap v2-team-intro"><img class="v2-team-photo" src="/lander-assets/proof/joost.webp" alt="Joost van Putten, oprichter van NXG-media" width="720" height="900" loading="lazy" decoding="async" /><div><p class="eyebrow">JOUW TEAM BIJ NXG</p><h2>JOOST EN FLEUR.</h2><p>We werken persoonlijk met je samen. Geen account manager, geen helpdesk. Direct contact met de mensen die jouw systeem bouwen en je aanvragen realiseren.</p></div></div></section>
+<section class="section session v2-booking-section" id="groeisessie"><div class="wrap session-grid"><div><p class="eyebrow light">JOUW GRATIS SESSIE</p><h2>ONTDEK JOUW<br><span class="v2-yellow">KANSEN MET AI SEARCH.</span></h2><p>We bekijken je vindbaarheid in Google en ChatGPT, de kansen voor jouw bedrijf en hoe je aan gekwalificeerde aanvragen komt.</p><p><strong>Persoonlijk. Met Joost. Vrijblijvend.</strong></p></div><div class="v2-booking-card"><div class="v2-booking-card-header"><span aria-hidden="true">↗</span><div><h3>KIES JOUW MOMENT.</h3><p>Gratis sessie met Joost · Persoonlijk</p></div></div><p class="v2-booking-status" role="status">Kies een dag en tijd die je uitkomen.</p><iframe class="calendly-inline-frame" src="https://calendly.com/nxgmedia/gratis-15-minuten-strategiegesprek?embed_domain=nxg-media.com&amp;embed_type=Inline&amp;hide_event_type_details=1&amp;hide_gdpr_banner=1" title="Plan je gratis AI Search-kennismaking van 35 minuten met NXG-media" loading="eager"></iframe><a class="v2-booking-fallback" href="https://calendly.com/nxgmedia/gratis-15-minuten-strategiegesprek" target="_blank" rel="noopener noreferrer">Agenda niet zichtbaar? Open Calendly ↗</a></div></div></section>
+<section class="section" id="videos"><div class="wrap"><p class="eyebrow">KLANTEN AAN HET WOORD</p><h2>ECHTE ERVARINGEN.<br><span class="blue">DRUK OP PLAY.</span></h2><p class="v2-note">Testimonials van marketingprojecten van NXG.</p>
+<div class="v2-video-grid">{videos.map(video => <figure class="v2-video"><video controls playsinline preload="none" poster={video.poster} aria-label={'Testimonial van ' + video.name}><source src={'/videos/testimonials/' + video.id + '-testimonial-video.mp4'} type="video/mp4" /><a href={'/videos/testimonials/' + video.id + '-testimonial-video.mp4'}>Bekijk de video van {video.name}</a></video><figcaption>{video.name}</figcaption></figure>)}
+</div></div></section>
+<section class="section v2-booking-section v2-booking-bottom" id="reservar"><div class="wrap"><div class="v2-booking-heading"><p class="eyebrow">NU JOUW BEDRIJF</p><h2>LATEN WE HET HEBBEN OVER<br><span class="blue">JOUW VOLGENDE KLANTEN.</span></h2><p>Kies een moment voor je gratis sessie met Joost. Persoonlijk en vrijblijvend.</p></div><div class="v2-booking-card"><div class="v2-booking-card-header"><span aria-hidden="true">↗</span><div><h3>KIES JOUW MOMENT.</h3><p>Gratis sessie met Joost · Persoonlijk</p></div></div><p class="v2-booking-status" role="status">Kies een dag en tijd die je uitkomen.</p><iframe class="calendly-inline-frame" src="https://calendly.com/nxgmedia/gratis-15-minuten-strategiegesprek?embed_domain=nxg-media.com&amp;embed_type=Inline&amp;hide_event_type_details=1&amp;hide_gdpr_banner=1" title="Plan je gratis AI Search-kennismaking van 35 minuten met NXG-media" loading="eager"></iframe><a class="v2-booking-fallback" href="https://calendly.com/nxgmedia/gratis-15-minuten-strategiegesprek" target="_blank" rel="noopener noreferrer">Agenda niet zichtbaar? Open Calendly ↗</a></div></div></section>
+<section class="client-proof" aria-label="Bedrijven waarvoor we marketingwerk hebben gedaan">
+  <div class="wrap proof-heading"><p>BEDRIJVEN DIE AL MET JOOST HEBBEN GEWERKT</p><button class="logos-toggle" type="button" aria-pressed="false" aria-controls="v2-logo-track">Logo's pauzeren</button></div>
+  <div class="client-window"><div class="client-track" id="v2-logo-track">{[0, 1].map(copy => <div class="client-group" aria-hidden={copy === 1 ? 'true' : undefined}>{clientLogos.map(logo => <div class="client-logo"><Image src={logo.src} alt={copy === 0 ? logo.alt : ''} height={48} loading="lazy" decoding="async" /></div>)}</div>)}</div></div>
+</section>
+<section class="section v2-guarantee" id="garantia"><div class="wrap v2-guarantee-grid"><div><p class="eyebrow">DE NXG-BELOFTE</p><h2>15 GEKWALIFICEERDE AANVRAGEN.<br>90 DAGEN.<br><span class="blue">OF JE GELD TERUG.</span></h2></div><div><p>De termijn begint bij livegang. Vooraf leggen we schriftelijk vast wat meetelt, het budget en de terugbetalingsvoorwaarden.</p><p><strong>De website en content die we bouwen blijven van jou.</strong></p><a class="button black" href="#groeisessie">Bespreek mijn doel ↗</a></div></div></section>
+<section class="section faq"><div class="wrap faq-grid"><div><p class="eyebrow">GEEN KLEINE LETTERTJES</p><h2>GOEDE<br><span class="blue">VRAGEN.</span></h2></div><div class="questions">{faqs.map(([question, answer]) => <details><summary>{question}</summary><p>{answer}</p></details>)}</div></div></section>
+<section class="last-call"><div class="wrap"><h2>JOUW VOLGENDE KLANT<br>IS JE AL AAN HET ZOEKEN.</h2><a class="button black" href="#reservar">Plan mijn gratis sessie ↗</a></div></section>
+</main>
+<footer><div class="wrap footer-main"><a class="brand" href="/">NXG<span>-media</span><small>AI Search Agency</small></a><p>Echte mensen.<br>Gekwalificeerde aanvragen.</p><a href="#garantia">Lees hoe de garantie werkt ↗</a></div><div class="wrap footer-bottom"><span>© {new Date().getFullYear()} NXG-media · KVK 78318122</span><span><a href="/privacy">Privacy</a> · <a href="/voorwaarden">Voorwaarden</a></span></div></footer>
+<div class="mobile-cta"><a class="button yellow" href="#groeisessie">Plan mijn gratis sessie ↗</a></div>
+<script is:inline set:html={getTrackingScript()} />
+<script is:inline set:html={getCapiHelperScript()} />
+<Fragment set:html={getMetaPixelScript(siteConfig.analytics.metaPixelId)} />
+<CookieConsent locale="nl" />
+<script is:inline>
+document.querySelectorAll('.logos-toggle').forEach(button => button.addEventListener('click', () => {
+  const paused = button.closest('.client-proof').classList.toggle('is-paused');
+  button.setAttribute('aria-pressed', String(paused));
+  button.textContent = paused ? "Logo's afspelen" : "Logo's pauzeren";
+}));
+window.addEventListener('message',function(e){
+  if(e.origin.indexOf('calendly')===-1)return;
+  try{var d=typeof e.data==='string'?JSON.parse(e.data):e.data}catch(x){return}
+  if(!d||d.event!=='calendly.event_scheduled')return;
+  var eid=typeof nxgCapiEventId==='function'?nxgCapiEventId():'';
+  if(typeof fbq==='function'){fbq('track','Schedule',{content_name:'landermkb-v2',content_category:'mkb-lander'},{eventID:eid})}
+  if(eid&&typeof nxgCapiSend==='function'){nxgCapiSend('Schedule',eid,{content_name:'landermkb-v2',content_category:'mkb-lander'})}
+  if(typeof trackEvent==='function'){trackEvent('ai_vindbaarheid_call_booked',{page_type:'page',page_slug:'landermkb-v2',locale:'nl',provider:'calendly'})}
+});
+document.querySelectorAll('.v2-video video').forEach(video => video.addEventListener('play', () => {
+  document.querySelectorAll('.v2-video video').forEach(other => { if (other !== video) other.pause(); });
+}));
+</script>
+</body>
+</html>
