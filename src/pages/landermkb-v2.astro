@@ -15,9 +15,9 @@ const videos = await Promise.all([
 ].map(async ([id, name]) => ({ id, name, poster: (await getImage({ src: thumbs['/src/assets/images/testimonials/' + id + '-thumb.webp'].default, width: 600 })).src })));
 const faqs = [
   ['Wat is een gekwalificeerde aanvraag?', 'Een unieke aanvraag van iemand uit de afgesproken doelgroep, met geldige contactgegevens en aantoonbare interesse in je dienst. Spam, duplicaten en irrelevante contacten tellen niet mee.'],
-  ['Hoe werkt de garantie?', 'De garantie dekt minimaal 15 gekwalificeerde aanvragen in 90 dagen na livegang. Vooraf leggen we schriftelijk vast wat meetelt, het budget en de terugbetalingsvoorwaarden.'],
+  ['Hoe werkt de garantie?', 'De garantie dekt minimaal 15 gekwalificeerde aanvragen in 30 dagen na livegang. Vooraf leggen we schriftelijk vast wat meetelt, het budget en de voorwaarden.'],
   ['Moet ik altijd advertenties inkopen?', 'Het budget hangt af van het doel en je uitgangspunt. We spreken elke investering in advertenties vooraf af.'],
-  ['Wat gebeurt er na de eerste 90 dagen?', 'We evalueren de resultaten samen en bespreken het vervolg. De website, content en optimalisaties die we voor je bouwen blijven van jou.'],
+  ['Wat gebeurt er na de eerste 30 dagen?', 'We evalueren de resultaten samen en bespreken het vervolg. De website, content en optimalisaties die we voor je bouwen blijven van jou.'],
 ];
 ---
 <!doctype html>
@@ -25,8 +25,8 @@ const faqs = [
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>15 gekwalificeerde aanvragen in 90 dagen | NXG AI Search</title>
-<meta name="description" content="Minimaal 15 gekwalificeerde aanvragen in 90 dagen na livegang. Of je geld terug. Met het NXG AI-Search-systeem: vindbaarheid, Search Ads en een website die converteert." />
+<title>15 gekwalificeerde aanvragen in 30 dagen | NXG AI Search</title>
+<meta name="description" content="Minimaal 15 gekwalificeerde aanvragen in 30 dagen na livegang. Of je betaalt ons niet. Met het NXG AI-Search-systeem: vindbaarheid, Search Ads en een website die converteert." />
 <meta name="robots" content="noindex, follow" />
 <link rel="canonical" href="https://nxg-media.com/landermkb-v2" />
 <meta name="theme-color" content="#0756ef" />
@@ -45,11 +45,11 @@ const faqs = [
 <main id="main">
 <section class="hero"><div class="wrap v2-hero-grid">
 <div><p class="eyebrow light">HET NXG AI-SEARCH-SYSTEEM</p>
-<h1>MINIMAAL <span class="v2-yellow">15 GEKWALIFICEERDE AANVRAGEN</span> IN 90 DAGEN.</h1>
-<p class="v2-refund">Of je geld terug.</p>
+<h1>MINIMAAL <span class="v2-yellow">15 GEKWALIFICEERDE AANVRAGEN</span> IN 30 DAGEN.</h1>
+<p class="v2-refund">Of je betaalt ons niet.</p>
 <p class="v2-hero-text">Wij zorgen dat jouw klanten je vinden in Google, ChatGPT, Gemini en Perplexity. Met het NXG AI-Search-systeem maken we van die zoekopdrachten gekwalificeerde aanvragen.</p>
 <a class="button yellow" href="#groeisessie">Plan mijn gratis sessie <span aria-hidden="true">↗</span></a>
-<p class="v2-hero-note">Met Joost · Vrijblijvend · 90 dagen na livegang</p>
+<p class="v2-hero-note">Met Joost · Vrijblijvend · 30 dagen na livegang</p>
 <div class="v2-search-formula" aria-label="De drie pijlers van het NXG AI-Search-systeem"><span>AI-vindbaarheid</span><b aria-hidden="true">+</b><span>AI Search Ads</span><b aria-hidden="true">+</b><span>Een website die converteert</span></div>
 <a class="v2-ai-teaser" href="#chatgpt-ads"><img src="/lander-assets/platforms/openai.svg" alt="" width="30" height="30" /><span><small>DE NIEUWE GENERATIE ZOEKEN</small><strong>Ook ChatGPT Ads.</strong></span><span aria-hidden="true">↗</span></a>
 </div>
@@ -72,7 +72,7 @@ const faqs = [
   <div class="wrap proof-heading"><p>BEDRIJVEN DIE AL MET JOOST HEBBEN GEWERKT</p><button class="logos-toggle" type="button" aria-pressed="false" aria-controls="v2-logo-track">Logo's pauzeren</button></div>
   <div class="client-window"><div class="client-track" id="v2-logo-track">{[0, 1].map(copy => <div class="client-group" aria-hidden={copy === 1 ? 'true' : undefined}>{clientLogos.map(logo => <div class="client-logo"><Image src={logo.src} alt={copy === 0 ? logo.alt : ''} height={48} loading="lazy" decoding="async" /></div>)}</div>)}</div></div>
 </section>
-<section class="section v2-guarantee" id="garantia"><div class="wrap v2-guarantee-grid"><div><p class="eyebrow">DE NXG-BELOFTE</p><h2>15 GEKWALIFICEERDE AANVRAGEN.<br>90 DAGEN.<br><span class="blue">OF JE GELD TERUG.</span></h2></div><div><p>De termijn begint bij livegang. Vooraf leggen we schriftelijk vast wat meetelt, het budget en de terugbetalingsvoorwaarden.</p><p><strong>De website en content die we bouwen blijven van jou.</strong></p><a class="button black" href="#groeisessie">Bespreek mijn doel ↗</a></div></div></section>
+<section class="section v2-guarantee" id="garantia"><div class="wrap v2-guarantee-grid"><div><p class="eyebrow">DE NXG-BELOFTE</p><h2>15 GEKWALIFICEERDE AANVRAGEN.<br>30 DAGEN.<br><span class="blue">OF JE BETAALT ONS NIET.</span></h2></div><div><p>De termijn begint bij livegang. Vooraf leggen we schriftelijk vast wat meetelt, het budget en de voorwaarden.</p><p><strong>De website en content die we bouwen blijven van jou.</strong></p><a class="button black" href="#groeisessie">Bespreek mijn doel ↗</a></div></div></section>
 <section class="section faq"><div class="wrap faq-grid"><div><p class="eyebrow">GEEN KLEINE LETTERTJES</p><h2>GOEDE<br><span class="blue">VRAGEN.</span></h2></div><div class="questions">{faqs.map(([question, answer]) => <details><summary>{question}</summary><p>{answer}</p></details>)}</div></div></section>
 <section class="last-call"><div class="wrap"><h2>JOUW VOLGENDE KLANT<br>IS JE AL AAN HET ZOEKEN.</h2><a class="button black" href="#reservar">Plan mijn gratis sessie ↗</a></div></section>
 </main>

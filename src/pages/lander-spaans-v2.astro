@@ -15,9 +15,9 @@ const videos = await Promise.all([
 ].map(async ([id, name]) => ({ id, name, poster: (await getImage({ src: thumbs['/src/assets/images/testimonials/' + id + '-thumb.webp'].default, width: 600 })).src })));
 const faqs = [
   ['¿Qué cuenta como solicitud cualificada?', 'Una solicitud única del público acordado, con datos válidos e interés en tu servicio. El spam, los duplicados y los contactos irrelevantes no cuentan.'],
-  ['¿Cómo funciona la garantía?', 'La garantía cubre un mínimo de 15 solicitudes cualificadas en 90 días desde el lanzamiento. Antes de empezar, dejamos por escrito qué cuenta, el presupuesto y las condiciones de devolución.'],
+  ['¿Cómo funciona la garantía?', 'La garantía cubre un mínimo de 15 solicitudes cualificadas en 30 días desde el lanzamiento. Antes de empezar, dejamos por escrito qué cuenta, el presupuesto y las condiciones.'],
   ['¿Necesito invertir en anuncios?', 'El presupuesto depende del objetivo y del punto de partida. Acordamos cualquier inversión publicitaria antes de activarla.'],
-  ['¿Qué pasa después de los 90 días?', 'Los resultados se revisan juntos para decidir cómo continuar. La web, el contenido y las optimizaciones que construimos para ti siguen siendo tuyos.'],
+  ['¿Qué pasa después de los 30 días?', 'Los resultados se revisan juntos para decidir cómo continuar. La web, el contenido y las optimizaciones que construimos para ti siguen siendo tuyos.'],
 ];
 ---
 <!doctype html>
@@ -25,8 +25,8 @@ const faqs = [
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>15 solicitudes cualificadas en 90 días | NXG AI Search</title>
-<meta name="description" content="Mínimo 15 solicitudes cualificadas en 90 días desde el lanzamiento. O te devolvemos tu dinero. Con el sistema NXG AI Search: visibilidad, Search Ads y una web que convierte." />
+<title>15 solicitudes cualificadas en 30 días | NXG AI Search</title>
+<meta name="description" content="Mínimo 15 solicitudes cualificadas en 30 días desde el lanzamiento. O no nos pagas. Con el sistema NXG AI Search: visibilidad, Search Ads y una web que convierte." />
 <meta name="robots" content="noindex, follow" />
 <link rel="canonical" href="https://nxg-media.com/lander-spaans-v2" />
 <meta name="theme-color" content="#0756ef" />
@@ -45,11 +45,11 @@ const faqs = [
 <main id="main">
 <section class="hero"><div class="wrap v2-hero-grid">
 <div><p class="eyebrow light">EL SISTEMA NXG AI SEARCH</p>
-<h1>MÍNIMO <span class="v2-yellow">15 SOLICITUDES CUALIFICADAS</span> EN 90 DÍAS.</h1>
-<p class="v2-refund">O te devolvemos tu dinero.</p>
+<h1>MÍNIMO <span class="v2-yellow">15 SOLICITUDES CUALIFICADAS</span> EN 30 DÍAS.</h1>
+<p class="v2-refund">O no nos pagas.</p>
 <p class="v2-hero-text">Hacemos que tus clientes te encuentren en Google, ChatGPT, Gemini y Perplexity. Con el sistema NXG AI Search, convertimos esas búsquedas en solicitudes cualificadas.</p>
 <a class="button yellow" href="#groeisessie">Reservar mi sesión gratuita <span aria-hidden="true">↗</span></a>
-<p class="v2-hero-note">Con Joost · Sin compromiso · 90 días desde el lanzamiento</p>
+<p class="v2-hero-note">Con Joost · Sin compromiso · 30 días desde el lanzamiento</p>
 <div class="v2-search-formula" aria-label="Los tres pilares del sistema NXG AI Search"><span>Visibilidad en IA</span><b aria-hidden="true">+</b><span>AI Search Ads</span><b aria-hidden="true">+</b><span>Una web que convierte</span></div>
 <a class="v2-ai-teaser" href="#chatgpt-ads"><img src="/lander-assets/platforms/openai.svg" alt="" width="30" height="30" /><span><small>LA NUEVA GENERACIÓN DE BÚSQUEDA</small><strong>También ChatGPT Ads.</strong></span><span aria-hidden="true">↗</span></a>
 </div>
@@ -72,7 +72,7 @@ const faqs = [
   <div class="wrap proof-heading"><p>EMPRESAS QUE YA HAN TRABAJADO CON JOOST</p><button class="logos-toggle" type="button" aria-pressed="false" aria-controls="v2-logo-track">Pausar logos</button></div>
   <div class="client-window"><div class="client-track" id="v2-logo-track">{[0, 1].map(copy => <div class="client-group" aria-hidden={copy === 1 ? 'true' : undefined}>{clientLogos.map(logo => <div class="client-logo"><Image src={logo.src} alt={copy === 0 ? logo.alt : ''} height={48} loading="lazy" decoding="async" /></div>)}</div>)}</div></div>
 </section>
-<section class="section v2-guarantee" id="garantia"><div class="wrap v2-guarantee-grid"><div><p class="eyebrow">EL COMPROMISO NXG</p><h2>15 SOLICITUDES CUALIFICADAS.<br>90 DÍAS.<br><span class="blue">O TE DEVOLVEMOS TU DINERO.</span></h2></div><div><p>El plazo empieza cuando lanzamos. Antes de empezar, dejamos por escrito los criterios, el presupuesto y las condiciones de devolución.</p><p><strong>La web y el contenido que construimos siguen siendo tuyos.</strong></p><a class="button black" href="#groeisessie">Hablar de mi objetivo ↗</a></div></div></section>
+<section class="section v2-guarantee" id="garantia"><div class="wrap v2-guarantee-grid"><div><p class="eyebrow">EL COMPROMISO NXG</p><h2>15 SOLICITUDES CUALIFICADAS.<br>30 DÍAS.<br><span class="blue">O NO NOS PAGAS.</span></h2></div><div><p>El plazo empieza cuando lanzamos. Antes de empezar, dejamos por escrito los criterios, el presupuesto y las condiciones.</p><p><strong>La web y el contenido que construimos siguen siendo tuyos.</strong></p><a class="button black" href="#groeisessie">Hablar de mi objetivo ↗</a></div></div></section>
 <section class="section faq"><div class="wrap faq-grid"><div><p class="eyebrow">SIN LETRA PEQUEÑA ESCONDIDA</p><h2>PREGUNTAS<br><span class="blue">FRECUENTES.</span></h2></div><div class="questions">{faqs.map(([question, answer]) => <details><summary>{question}</summary><p>{answer}</p></details>)}</div></div></section>
 <section class="last-call"><div class="wrap"><h2>TU PRÓXIMO CLIENTE<br>YA TE ESTÁ BUSCANDO.</h2><a class="button black" href="#reservar">Reservar mi sesión gratuita ↗</a></div></section>
 </main>
