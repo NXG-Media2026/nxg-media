@@ -493,7 +493,11 @@ const personSchema = JSON.stringify({
 
     <div class="wrap">
       <section class="glance" aria-labelledby="glance-title">
-        <h2 id="glance-title" class="glance-title">Expertise at a glance</h2>
+              <details class="portfolio-fold">
+        <summary class="fold-summary">
+          <h2 id="glance-title"><span class="fold-title">Expertise at a glance</span><span class="fold-preview">Paid social, creative strategy, campaign management and CRO.</span></h2>
+          <span class="fold-icon" aria-hidden="true"></span>
+        </summary>
         <div class="glance-grid">
           <div class="glance-col glance-platforms">
             <p class="glance-label">Advertising platforms</p>
@@ -518,22 +522,24 @@ const personSchema = JSON.stringify({
             <ul class="glance-list">{glance.background.map((b) => <li>{b}</li>)}</ul>
           </div>
         </div>
+        </details>
       </section>
     </div>
 
     {/* Work: flagship cases */}
-    <section id="work" class="section">
+    <section id="work" class="fold-section section">
+      <details class="portfolio-fold">
+        <summary class="wrap fold-summary">
+          <h2><span class="sec-index">01 · Work</span><span class="fold-title">Selected work</span><span class="fold-preview">Three client cases, the ads I made and the results behind them.</span></h2>
+          <span class="fold-icon" aria-hidden="true"></span>
+        </summary>
       <div class="wrap">
-        <header class="sec-head">
-          <p class="sec-index">01 · Work</p>
-          <h2>Selected work</h2>
-          <p class="sec-intro">For my direct clients, I often make the ads myself, from the first concept to the final cut. I use CapCut for video editing and Canva AI for ad design.</p>
+        <p class="sec-intro">For my direct clients, I often make the ads myself, from the first concept to the final cut. I use CapCut for video editing and Canva AI for ad design.</p>
           <ul class="scope-legend" aria-label="How figures are labelled">
             <li><span class="scope scope-client">Client total</span></li>
             <li><span class="scope scope-campaign">Campaign</span></li>
             <li><span class="scope scope-ad">This ad</span></li>
           </ul>
-        </header>
       </div>
 
       {/* Flagship 1: Happy with Yoga */}
@@ -701,15 +707,18 @@ const personSchema = JSON.stringify({
           ))}
         </ul>
       </div>
+      </details>
     </section>
 
     {/* Testimonials */}
-    <section class="section" aria-labelledby="voices-title">
+    <section class="fold-section section" aria-labelledby="voices-title">
+      <details class="portfolio-fold">
+        <summary class="wrap fold-summary">
+          <h2 id="voices-title"><span class="sec-index">02 · Clients</span><span class="fold-title">In their words</span><span class="fold-preview">Hear from clients at Somnox, Stekkies, MCM Research and Nederland Eet Groep.</span></h2>
+          <span class="fold-icon" aria-hidden="true"></span>
+        </summary>
       <div class="wrap">
-        <header class="sec-head">
-          <p class="sec-index">02 · Clients</p>
-          <h2 id="voices-title">In their words</h2>
-        </header>
+
         <div class="voices">
           {testimonials.map((t, i) => (
             <figure class:list={['voice', { 'voice-lead': i === 0 }]}>
@@ -737,17 +746,19 @@ const personSchema = JSON.stringify({
           ))}
         </div>
       </div>
+      </details>
     </section>
 
 
     {/* AI systems */}
-    <section id="ai" class="section section-dark">
+    <section id="ai" class="fold-section section section-dark">
+      <details class="portfolio-fold">
+        <summary class="wrap fold-summary">
+          <h2><span class="sec-index">03 · AI Systems</span><span class="fold-title">Built and launched</span><span class="fold-preview">An AI search scanner that won 8 B2B clients, plus two tools for creative research and campaign decisions.</span></h2>
+          <span class="fold-icon" aria-hidden="true"></span>
+        </summary>
       <div class="wrap">
-        <header class="sec-head">
-          <p class="sec-index">03 · AI Systems</p>
-          <h2>Built and launched</h2>
-          <p class="sec-intro">One product I sell and two systems I use to plan and run ad campaigns.</p>
-        </header>
+
 
         <noscript><style>.ai-panel[hidden] { display: block; } .ai-toggle { display: none; }</style></noscript>
 
@@ -882,18 +893,18 @@ const personSchema = JSON.stringify({
 
         <p class="pilot-note"><strong>In development · Creative Strategy Agent</strong> — uses the Meta Marketing API and LLM APIs to suggest ad tests and draft briefs for my review.</p>
       </div>
+      </details>
     </section>
 
     {/* Experience / CV */}
-    <section id="experience" class="section">
+    <section id="experience" class="fold-section section">
+      <details class="portfolio-fold">
+        <summary class="wrap fold-summary">
+          <h2><span class="sec-index">04 · Experience</span><span class="fold-title">Career</span><span class="fold-preview">Independent since 2018, with freelance roles at Vos Marketing and Rocket Leads. View experience, skills and CV.</span></h2>
+          <span class="fold-icon" aria-hidden="true"></span>
+        </summary>
       <div class="wrap">
-        <header class="sec-head sec-head-row">
-          <div>
-            <p class="sec-index">04 · Experience</p>
-            <h2>Career</h2>
-          </div>
-          <a class="btn btn-line" href={cvUrl} download>Download full CV <span class="btn-meta">PDF</span></a>
-        </header>
+        <a class="btn btn-line" href={cvUrl} download>Download full CV <span class="btn-meta">PDF</span></a>
 
         <ol class="timeline">
           {experience.map((e) => (
@@ -948,6 +959,7 @@ const personSchema = JSON.stringify({
           </div>
         </div>
       </div>
+      </details>
     </section>
 
     {/* Contact */}
@@ -970,6 +982,26 @@ const personSchema = JSON.stringify({
   <footer class="pf-foot wrap">Joost van Putten · Valencia, Spain</footer>
 
   <script is:inline>
+    function openLinkedSection(hash) {
+      var target = document.getElementById(hash.slice(1));
+      if (!target) return;
+      var fold = target.closest('.portfolio-fold') || target.querySelector(':scope > .portfolio-fold');
+      if (fold) fold.open = true;
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+      link.addEventListener('click', function () { openLinkedSection(link.hash); });
+    });
+    window.addEventListener('hashchange', function () { openLinkedSection(location.hash); });
+    if (location.hash) openLinkedSection(location.hash);
+    document.querySelectorAll('.portfolio-fold').forEach(function (fold) {
+      fold.addEventListener('toggle', function () {
+        if (fold.open) return;
+        fold.querySelectorAll('video').forEach(function (video) { video.pause(); });
+        fold.querySelectorAll('iframe[data-vimeo-player]').forEach(function (frame) {
+          frame.contentWindow.postMessage({ method: 'pause' }, 'https://player.vimeo.com');
+        });
+      });
+    });
     document.querySelectorAll('.facade[data-video]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var v = document.createElement('video');
@@ -990,6 +1022,7 @@ const personSchema = JSON.stringify({
         iframe.src = 'https://player.vimeo.com/video/' + btn.dataset.vimeo + '?autoplay=1&dnt=1&title=0&byline=0&portrait=0';
         iframe.allow = 'autoplay; fullscreen; picture-in-picture';
         iframe.allowFullscreen = true;
+        iframe.dataset.vimeoPlayer = '';
         iframe.title = btn.getAttribute('aria-label') || 'Video';
         iframe.className = btn.className.replace('facade', 'facade-frame');
         btn.replaceWith(iframe);
@@ -1113,6 +1146,21 @@ const personSchema = JSON.stringify({
     .btn-line:hover { background: var(--ink); color: #fff; }
     .btn-meta { font-size: 11px; font-weight: 800; letter-spacing: 0.06em; opacity: 0.6; }
 
+    .pf .fold-section { padding: 0; border-top: 1px solid var(--line); scroll-margin-top: 72px; }
+    .pf .glance { padding: 0; border-bottom: 0; }
+    .fold-summary { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: clamp(18px, 2.3vw, 30px); cursor: pointer; list-style: none; }
+    .fold-summary::-webkit-details-marker { display: none; }
+    .fold-summary h2 { margin: 0; }
+    .fold-summary h2 span { display: block; }
+    .fold-title { font-size: clamp(1.45rem, 3vw, 2.1rem); line-height: 1.15; font-weight: 800; }
+    .fold-summary .sec-index { margin-bottom: 4px; }
+    .fold-preview { margin-top: 5px; font-size: 0.96rem; line-height: 1.4; font-weight: 400; letter-spacing: normal; color: var(--muted); }
+    .section-dark .fold-preview { color: #c9cbcf; }
+    .fold-icon { flex: none; display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid currentColor; border-radius: 50%; }
+    .fold-icon::before { content: '+'; font: 22px/1 Arial, sans-serif; }
+    .portfolio-fold[open] > summary .fold-icon::before { content: '−'; }
+    .fold-summary:hover .fold-icon, .fold-summary:focus-visible .fold-icon { background: var(--yellow); color: var(--ink); }
+    .portfolio-fold[open] { padding-bottom: 36px; }
     /* Sections */
     .section { padding: 72px 0; }
     @media (min-width: 900px) { .section { padding: 112px 0; } }
