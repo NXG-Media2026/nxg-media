@@ -16,6 +16,11 @@ import logoIrvj from '../assets/images/logos/ikrouwvanje-logo.webp';
 import logoStekkies from '../assets/images/logos/stekkies-logo.webp';
 import logoMcm from '../assets/images/logos/mcm-research-logo.webp';
 import logoSomnox from '../assets/images/logos/somnox-logo.webp';
+import logoNederlandEet from '../assets/images/logos/nederlandeet-logo.webp';
+import logoYoulife from '../assets/images/logos/youlife-logo.avif';
+import { videoTestimonials } from '../data/videoTestimonials';
+import logoSomnoxDark from '../assets/images/portfolio/logo-somnox-dark.png';
+import logoMcmDark from '../assets/images/portfolio/logo-mcm-dark.png';
 
 // Drop real creative files here as <slug>.jpg/.png/.webp; tiles switch from link card to image automatically.
 const creativeFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/portfolio/*.{jpg,jpeg,png,webp}', { eager: true });
@@ -52,7 +57,7 @@ const languages = [
 
 const heroFigures = [
   { value: '€8M+', label: 'Meta ad spend managed' },
-  { value: '50+', label: 'clients across NL and BE' },
+  { value: '50+', label: 'clients in NL, BE, UK, Germany and Spain' },
   { value: '8 yrs', label: 'hands-on performance marketing' },
   { value: '2018', label: 'independent since' },
 ];
@@ -137,7 +142,8 @@ const depri = {
     { value: '~50,000', label: 'books sold by the business overall, all channels' },
   ],
   creatives: [
-    { slug: 'depri-lowfi-review', format: 'Low-fi book review', postUrl: fb(PAGE_DEPRI, '1127679238947419'), size: 'lg', ratio: '45', metrics: [{ value: '1,962', label: 'purchases' }, { value: '€10.36', label: 'cost per purchase' }] },
+    { slug: 'depri-top-video', format: 'Author-to-camera video', postUrl: fb(PAGE_DEPRI, '768126854902661'), size: 'lg', ratio: '11', featured: true, metrics: [{ value: '2,535+', label: 'purchases' }, { value: '€10.53', label: 'cost per purchase' }] },
+    { slug: 'depri-lowfi-review', format: 'Low-fi book review', postUrl: fb(PAGE_DEPRI, '1127679238947419'), size: 'lg', ratio: '45', featured: true, metrics: [{ value: '1,962', label: 'purchases' }, { value: '€10.36', label: 'cost per purchase' }] },
     { format: 'Social-proof video mashup', vimeo: { id: '879784334', thumb: vimeoThumb('1746470391-a8c3962d85191eee6e3a777de24fe2fc63231ddcde5e3f7a717b80fe6dd7d531') }, metrics: [{ value: '~450', label: 'purchases' }, { value: '~€10', label: 'cost per purchase' }, { value: '45%', label: 'hook rate' }, { value: '20%', label: 'hold rate' }, { value: '2.8%+', label: 'CTR' }], note: 'Ran in the Netherlands and, as HeyAreYouOkay, in the UK.' },
     { slug: 'depri-statistic-static', format: 'Statistic hook static', postUrl: fb(PAGE_DEPRI, '734187768296570'), ratio: '34', metrics: [{ value: '471', label: 'purchases' }, { value: '€10.76', label: 'cost per purchase' }] },
     { slug: 'depri-feature-static', format: 'Product feature static', postUrl: fb(PAGE_DEPRI, '1543449290703743'), ratio: '45', metrics: [{ value: '422', label: 'purchases' }, { value: '€9.76', label: 'cost per purchase' }] },
@@ -166,25 +172,25 @@ const irvj = {
 };
 
 const moreWork = [
-  { brand: 'Stekkies', logo: logoStekkies, format: 'Creator video, "Ruby"', vimeo: { id: '879779883', thumb: vimeoThumb('1746464431-b361b0ea64f584f9c3f98509ea2787fdc8961a29d4f2bb3620de4c818d83bdf0') }, metrics: [{ value: '€17', label: 'CPA on Meta' }, { value: '~€21', label: 'CPA on TikTok' }, { value: '32%', label: 'hook rate' }, { value: '18%', label: 'hold rate' }, { value: '2.4%', label: 'CTR' }] },
-  { brand: 'Stekkies', logo: logoStekkies, format: 'Creator video, "Raphaella"', vimeo: { id: '879783232', thumb: vimeoThumb('1746468935-854ca36667954722c5be77923bb0b67e8c42efc4d97ae47447ffd55883b358d2') }, metrics: [{ value: '€19', label: 'CPA on Meta' }, { value: '~€22', label: 'CPA on TikTok' }, { value: '29%', label: 'hook rate' }, { value: '15%', label: 'hold rate' }, { value: '2.5%', label: 'CTR' }] },
-  { brand: 'MCM Research', logo: logoMcm, format: 'Recruitment video', vimeo: { id: '879782682', thumb: vimeoThumb('1746467737-ffbd319f522e6753576797f0b103f080ffddc65a893c2b77955638fdaf03dfec') }, metrics: [{ value: '80+', label: 'registrations' }, { value: '€12', label: 'per registration' }, { value: '35%', label: 'hook rate' }, { value: '2.8%', label: 'CTR' }], note: 'Client-wide, across all ads: 4,000+ leads and 750 applicants in NL and BE.' },
+  { brand: 'Stekkies', logo: logoStekkies, url: 'https://www.stekkies.com', format: 'Creator video, "Ruby"', vimeo: { id: '879779883', thumb: vimeoThumb('1746464431-b361b0ea64f584f9c3f98509ea2787fdc8961a29d4f2bb3620de4c818d83bdf0') }, metrics: [{ value: '€17', label: 'CPA on Meta' }, { value: '~€21', label: 'CPA on TikTok' }, { value: '32%', label: 'hook rate' }, { value: '18%', label: 'hold rate' }, { value: '2.4%', label: 'CTR' }] },
+  { brand: 'Stekkies', logo: logoStekkies, url: 'https://www.stekkies.com', format: 'Creator video, "Raphaella"', vimeo: { id: '879783232', thumb: vimeoThumb('1746468935-854ca36667954722c5be77923bb0b67e8c42efc4d97ae47447ffd55883b358d2') }, metrics: [{ value: '€19', label: 'CPA on Meta' }, { value: '~€22', label: 'CPA on TikTok' }, { value: '29%', label: 'hook rate' }, { value: '15%', label: 'hold rate' }, { value: '2.5%', label: 'CTR' }] },
+  { brand: 'MCM Research', logo: logoMcmDark, format: 'Recruitment video', vimeo: { id: '879782682', thumb: vimeoThumb('1746467737-ffbd319f522e6753576797f0b103f080ffddc65a893c2b77955638fdaf03dfec') }, metrics: [{ value: '80+', label: 'registrations' }, { value: '€12', label: 'per registration' }, { value: '35%', label: 'hook rate' }, { value: '2.8%', label: 'CTR' }], note: 'Client-wide, across all ads: 4,000+ leads and 750 applicants in NL and BE.' },
   { brand: 'Posivino', format: 'B2B corporate gifting video', vimeo: { id: '879781428', thumb: vimeoThumb('1746466363-5db09dba52cb1068a9ef88722c6054866d7d97c749602315c03d960c213456d6') }, metrics: [{ value: '34%', label: 'hook rate' }, { value: '2.1%', label: 'CTR' }], note: 'Aimed at companies buying corporate gifts in bulk.' },
 ];
 
 const earlierCases = [
-  { client: 'Somnox', logo: logoSomnox, meta: 'Sleep tech, DTC · 2018 to 2021', text: 'Acquisition funnel, Facebook and Instagram campaigns, creative testing and e-mail growth, plus a recruitment funnel that helped hire 5+ engineers.', figures: [{ value: '€0 → €20k', label: 'monthly ad spend' }, { value: '4.0x', label: 'average ROAS, final year' }, { value: '20,000+', label: 'e-mail subscribers' }] },
-  { client: 'Real Estate Masterclass', meta: 'Online education · 2021 to 2022', text: 'Funnel design and paid strategy on Facebook, Instagram and TikTok for lead generation and online sales.', figures: [{ value: '€30k', label: 'monthly ad spend' }, { value: '6.5x', label: 'average ROAS' }, { value: '12.5x', label: 'peak ROAS, two weeks' }] },
+  { client: 'Somnox', logo: logoSomnoxDark, url: 'https://somnox.com', meta: 'Sleep tech, DTC · 2018 to 2021', text: 'Acquisition funnel, Facebook and Instagram campaigns, creative testing and e-mail growth, plus a recruitment funnel that helped hire 5+ engineers.', figures: [{ value: '€0 → €20k', label: 'monthly ad spend' }, { value: '4.0x', label: 'average ROAS, final year' }, { value: '20,000+', label: 'e-mail subscribers' }] },
+  { client: 'Real Estate Masterclass', url: 'https://realestatemasterclass.nl', meta: 'Online education · 2021 to 2022', text: 'Funnel design and paid strategy on Facebook, Instagram and TikTok for lead generation and online sales.', figures: [{ value: '€30k', label: 'monthly ad spend' }, { value: '6.5x', label: 'average ROAS' }, { value: '12.5x', label: 'peak ROAS, two weeks' }] },
 ];
 
 const scale = [
-  { name: 'Vos Marketing', value: '~€40k', label: 'per month combined, across up to 7 e-commerce accounts at once' },
-  { name: 'Real Estate Masterclass', value: '~€30k', label: 'per month for a large part of the engagement' },
-  { name: 'Somnox', value: '€20k', label: 'per month, scaled up from €0' },
-  { name: 'Stekkies', value: '~€20k', label: 'per month at its highest' },
-  { name: 'MCM Research', value: '~€7.5k', label: 'per month, for an extended period' },
-  { name: 'Nederland Eet Groep', value: '~€5k', label: 'per month' },
-  { name: 'YouLife', value: '~€5k', label: 'per month' },
+  { name: 'Vos Marketing', url: 'https://vosmarketing.nl', value: '~€40k', label: 'per month combined, across up to 7 e-commerce accounts at once' },
+  { name: 'Real Estate Masterclass', url: 'https://realestatemasterclass.nl', value: '~€30k', label: 'per month for a large part of the engagement' },
+  { name: 'Somnox', logo: logoSomnoxDark, wordmark: true, url: 'https://somnox.com', value: '€20k', label: 'per month, scaled up from €0' },
+  { name: 'Stekkies', logo: logoStekkies, wordmark: true, url: 'https://www.stekkies.com', value: '~€20k', label: 'per month at its highest' },
+  { name: 'MCM Research', logo: logoMcmDark, wordmark: true, value: '~€7.5k', label: 'per month, for an extended period' },
+  { name: 'Nederland Eet Groep', logo: logoNederlandEet, url: 'https://www.eetclub.nl', value: '~€5k', label: 'per month' },
+  { name: 'YouLife', logo: logoYoulife, wordmark: true, url: 'https://www.youlife.nl', value: '~€5k', label: 'per month' },
 ];
 
 const alsoWorked = [
@@ -195,10 +201,14 @@ const alsoWorked = [
   'EasyZZP (since 2018)',
 ];
 
+const portraitTestimonials = videoTestimonials
+  .filter((v) => v.id === 'bart-jenezon' || v.id === 'jeroen-stekkies')
+  .map((v) => ({ ...v, logo: v.id === 'bart-jenezon' ? logoMcmDark : logoStekkies, role: v.company, wide: v.id === 'bart-jenezon' }));
+
 const testimonials = [
   { id: '879049102', name: 'Cat Howell', role: 'Author and agency owner', thumb: thumbCat },
-  { id: '879049149', name: 'Julian Jagtenberg', role: 'Somnox', thumb: thumbSomnox },
-  { id: '879049124', name: 'Narayan', role: 'Nederland Eet Groep, now eetclub.nl', thumb: thumbNarayan },
+  { id: '879049149', name: 'Julian Jagtenberg', role: 'Somnox', thumb: thumbSomnox, logo: logoSomnoxDark },
+  { id: '879049124', name: 'Narayan', role: 'Nederland Eet Groep, now eetclub.nl', thumb: thumbNarayan, logo: logoNederlandEet },
 ];
 
 const geo = {
@@ -280,7 +290,7 @@ const experience = [
     period: '2018 to now',
     role: 'Freelance Performance & Growth Marketer',
     org: 'Independent, trading as NXG Media',
-    summary: 'Independent since 2018, started alongside my studies. I work hands-on for brands in the Netherlands and Belgium and take ownership of their paid acquisition, from strategy and creatives to budgets and reporting.',
+    summary: 'Independent since 2018, started alongside my studies. I work hands-on for brands in the Netherlands, Belgium, the UK, Germany and Spain, and take ownership of their paid acquisition, from strategy and creatives to budgets and reporting.',
     points: [
       'Own the end-to-end growth process: acquisition strategy, budget allocation, funnel development, conversion optimisation, reporting and long-term account management.',
       'Plan, launch and scale paid campaigns for 50+ B2C and B2B clients, scaling or cutting spend on CPA and ROAS targets. Meta is the core channel; Google, TikTok, Pinterest and LinkedIn where they fit.',
@@ -291,9 +301,10 @@ const experience = [
   },
   {
     period: '2022 to 2024',
-    role: 'Performance Marketer',
+    role: 'Performance Marketer (freelance)',
     org: 'Vos Marketing, e-commerce agency, Rotterdam',
-    summary: 'Agency-side role next to my independent work: paid social and acquisition for e-commerce brands in the Netherlands, Germany and the UK.',
+    orgUrl: 'https://vosmarketing.nl',
+    summary: 'Freelance specialist inside the Vos Marketing team, next to my independent work. I ran paid social and acquisition for their e-commerce clients in the Netherlands, Germany and the UK.',
     points: [
       'Managed up to 7 e-commerce ad accounts at the same time, with roughly €40,000 in combined monthly media spend, for about 18 to 24 months.',
       'Presented monthly performance reviews to clients (spend, revenue, ROAS, CPA, AOV, conversion rate) and set the testing plan for the next month.',
@@ -509,9 +520,14 @@ const personSchema = JSON.stringify({
               ))}
             </dl>
           </div>
-          <p class="wall-label"><span class="scope scope-ad">This ad</span> Four formats, four results</p>
+          <p class="wall-label"><span class="scope scope-ad">This ad</span> Five ads, each with its own results</p>
+          <div class="wall-top">
+            {depri.creatives.filter((c) => c.featured).map((c) => (
+              <CreativeTile brand={depri.client} logo={depri.logo} format={c.format} vimeo={c.vimeo} {...media(c.slug)} ratio={c.ratio} postUrl={c.postUrl} metrics={c.metrics} note={c.note} size="lg" />
+            ))}
+          </div>
           <div class="wall">
-            {depri.creatives.map((c) => (
+            {depri.creatives.filter((c) => !c.featured).map((c) => (
               <CreativeTile brand={depri.client} logo={depri.logo} format={c.format} vimeo={c.vimeo} {...media(c.slug)} ratio={c.ratio} postUrl={c.postUrl} metrics={c.metrics} note={c.note} size={c.size === 'lg' ? 'lg' : 'md'} />
             ))}
           </div>
@@ -560,7 +576,7 @@ const personSchema = JSON.stringify({
         <div class="more-grid">
           {moreWork.map((w) => (
             <div class="more-item">
-              <p class="more-brand">{w.logo ? <Image src={w.logo} alt={w.brand} height={28} class="more-logo" /> : <strong>{w.brand}</strong>}</p>
+              <p class="more-brand">{w.url ? <a href={w.url} target="_blank" rel="noopener noreferrer" aria-label={w.brand + ' website'}>{w.logo ? <Image src={w.logo} alt={w.brand} height={28} class="more-logo" /> : <strong>{w.brand}</strong>}</a> : w.logo ? <Image src={w.logo} alt={w.brand} height={28} class="more-logo" /> : <strong>{w.brand}</strong>}</p>
               <CreativeTile brand={w.brand} format={w.format} vimeo={w.vimeo} metrics={w.metrics} note={w.note} />
             </div>
           ))}
@@ -573,7 +589,7 @@ const personSchema = JSON.stringify({
         <div class="earlier-grid">
           {earlierCases.map((c) => (
             <article class="earlier-item">
-              <h4>{c.client}</h4>
+              <h4 class="earlier-head">{c.logo ? <a class="logo-link" href={c.url} target="_blank" rel="noopener noreferrer"><Image src={c.logo} alt={c.client} height={60} class="earlier-logo" /></a> : c.url ? <a class="ext" href={c.url} target="_blank" rel="noopener noreferrer">{c.client}</a> : c.client}</h4>
               <p class="flag-meta">{c.meta}</p>
               <p class="earlier-text">{c.text}</p>
               <dl class="earlier-figures">
@@ -591,7 +607,7 @@ const personSchema = JSON.stringify({
           </div>
           <dl class="scale-list">
             {scale.map((r) => (
-              <div><dt>{r.name}</dt><dd><span class="num">{r.value}</span> {r.label}</dd></div>
+              <div><dt>{r.wordmark ? (r.url ? <a class="logo-link" href={r.url} target="_blank" rel="noopener noreferrer"><Image src={r.logo!} alt={r.name} height={48} class="scale-logo" /></a> : <Image src={r.logo!} alt={r.name} height={48} class="scale-logo" />) : <>{r.logo && <Image src={r.logo} alt="" height={48} class="scale-logo scale-icon" />}{r.url ? <a class="ext" href={r.url} target="_blank" rel="noopener noreferrer">{r.name}</a> : r.name}</>}</dt><dd><span class="num">{r.value}</span> {r.label}</dd></div>
             ))}
           </dl>
         </div>
@@ -615,7 +631,22 @@ const personSchema = JSON.stringify({
                 <Image src={t.thumb} alt="" width={i === 0 ? 960 : 640} loading="lazy" />
                 <span class="play" aria-hidden="true"></span>
               </button>
-              <figcaption><strong>{t.name}</strong> · {t.role}</figcaption>
+              <figcaption>{t.logo && <Image src={t.logo} alt="" height={40} class="voice-logo" />}<span><strong>{t.name}</strong> · {t.role}</span></figcaption>
+            </figure>
+          ))}
+        </div>
+        <div class="voices-portrait">
+          {portraitTestimonials.map((t) => (
+            <figure class:list={['voice-p', { 'voice-p-wide': t.wide }]}>
+              <button type="button" class:list={['facade', t.wide ? 'ratio-169' : 'ratio-916']} data-video={t.videoUrl} aria-label={'Play video from ' + t.name}>
+                <Image src={t.thumbnail} alt="" width={360} loading="lazy" />
+                <span class="play" aria-hidden="true"></span>
+              </button>
+              <figcaption>
+                <Image src={t.logo} alt="" height={40} class="voice-logo" />
+                <blockquote>"{t.quote}"</blockquote>
+                <p><strong>{t.name}</strong> · {t.role}</p>
+              </figcaption>
             </figure>
           ))}
         </div>
@@ -804,7 +835,7 @@ const personSchema = JSON.stringify({
               <p class="tl-period">{e.period}</p>
               <div>
                 <h3>{e.role}</h3>
-                <p class="tl-org">{e.org}</p>
+                <p class="tl-org">{e.orgUrl ? <a class="ext" href={e.orgUrl} target="_blank" rel="noopener noreferrer">{e.org}</a> : e.org}</p>
                 <p class="tl-summary">{e.summary}</p>
                 {e.points.length > 0 && (
                   <ul class="ticks">
@@ -1100,9 +1131,11 @@ const personSchema = JSON.stringify({
     @media (max-width: 559px) { .flag-video { grid-template-columns: 1fr 1fr; align-items: start; } }
 
     .wall-label { margin: 40px 0 14px; display: flex; align-items: center; gap: 10px; font-weight: 800; }
-    .wall { display: grid; gap: 16px; grid-template-columns: repeat(2, 1fr); }
-    @media (min-width: 1100px) { .wall { grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 22px; align-items: start; } }
-    @media (max-width: 1099px) { .wall .ct-lg { grid-column: span 2; } }
+    .wall-top { display: grid; gap: 20px; grid-template-columns: 1fr; }
+    @media (min-width: 640px) { .wall-top { grid-template-columns: 1fr 0.8fr; align-items: start; } }
+    @media (min-width: 1100px) { .wall-top { max-width: 920px; gap: 28px; } }
+    .wall { margin-top: 28px; display: grid; gap: 16px; grid-template-columns: repeat(2, 1fr); }
+    @media (min-width: 900px) { .wall { grid-template-columns: 0.7fr 1fr 1fr; gap: 22px; align-items: start; } }
 
     .rail { display: grid; grid-auto-flow: column; grid-auto-columns: 58%; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; }
     .rail > * { scroll-snap-align: start; }
@@ -1275,6 +1308,30 @@ const personSchema = JSON.stringify({
     .scale-list dt { font-weight: 800; }
     .scale-list dd { margin: 0; color: var(--muted); font-size: 14.5px; }
     .scale-list .num { font-size: 1.5rem; color: var(--ink); margin-right: 6px; }
+
+    /* Logos and links */
+    a.ext { color: inherit; text-decoration: underline; text-decoration-color: rgba(7, 86, 239, 0.35); text-underline-offset: 3px; transition: text-decoration-color 150ms; }
+    a.ext:hover { text-decoration-color: var(--blue); }
+    a.ext::after { content: ' ↗'; font-size: 0.75em; color: var(--blue); }
+    .earlier-head { display: flex; align-items: center; gap: 10px; }
+    .earlier-logo { height: 26px; width: auto; max-width: 140px; object-fit: contain; display: block; }
+    a.logo-link { display: inline-flex; align-items: center; gap: 4px; text-decoration: none; }
+    a.logo-link::after { content: '↗'; font-size: 11px; color: var(--blue); }
+    .scale-list dt { display: flex; align-items: center; gap: 8px; }
+    .scale-logo { height: 26px; width: auto; max-width: 140px; object-fit: contain; display: block; }
+    .scale-icon { height: 22px; max-width: 22px; }
+    .voice figcaption { display: flex; align-items: center; gap: 10px; }
+    .voice-logo { height: 20px; width: auto; max-width: 84px; object-fit: contain; flex-shrink: 0; }
+    .voices-portrait { margin-top: 28px; display: grid; gap: 24px; }
+    @media (min-width: 900px) { .voices-portrait { grid-template-columns: 1fr 1fr; gap: 32px; } }
+    .voice-p { margin: 0; display: grid; grid-template-columns: 140px 1fr; gap: 18px; align-items: center; }
+    @media (min-width: 640px) { .voice-p { grid-template-columns: 180px 1fr; gap: 24px; } }
+    .voice-p-wide { grid-template-columns: 1fr; }
+    @media (min-width: 640px) { .voice-p-wide { grid-template-columns: 300px 1fr; } }
+    .voice-p figcaption { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+    .voice-p blockquote { margin: 0; font-size: 1.0625rem; line-height: 1.5; font-weight: 600; color: var(--ink); }
+    .voice-p p { font-size: 14px; color: var(--muted); }
+    .voice-p p strong { color: var(--ink); }
   </style>
 </body>
 </html>
