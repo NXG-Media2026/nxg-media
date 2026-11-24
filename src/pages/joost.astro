@@ -347,6 +347,7 @@ const experience = [
     period: '2022 to 2024',
     role: 'Performance Marketer (freelance)',
     org: 'Vos Marketing, e-commerce agency, Rotterdam',
+    platforms: ['Meta Ads', 'TikTok Ads'],
     orgUrl: 'https://vosmarketing.nl',
     focus: 'Agency-side e-commerce',
     summary: 'I joined the Vos Marketing team alongside my independent work. I ran paid social and acquisition for their e-commerce clients in the Netherlands, Germany and the UK.',
@@ -360,6 +361,7 @@ const experience = [
     period: '~2024 · 6 months',
     role: 'Performance Marketer (freelance)',
     org: 'Rocket Leads, lead generation agency',
+    platforms: ['Meta Ads'],
     orgUrl: 'https://www.rocketleads.com/',
     focus: 'Around 9 to 10 client accounts',
     summary: 'This short agency assignment spanned several industries, including dental care (AltaDent Clinic), DJs and entertainment, coffee businesses, solar energy and other local services.',
@@ -911,7 +913,13 @@ const personSchema = JSON.stringify({
             <li>
               <p class="tl-period">{e.period}</p>
               <div>
-                <h3>{e.role}</h3>
+                <div class="tl-role">
+                  <h3>{e.role}</h3>
+                  {e.platforms?.map((name) => {
+                    const icon = platIcon(name);
+                    return icon && <span class="plat-icon" role="img" aria-label={name} title={name} style={`color:${icon.color}`} set:html={icon.svg} />;
+                  })}
+                </div>
                 <p class="tl-org">{e.orgUrl ? <a class="ext" href={e.orgUrl} target="_blank" rel="noopener noreferrer">{e.org}</a> : e.org}</p>
                 <p class="tl-summary"><mark class="marker">{e.focus}</mark> · {e.summary}</p>
                 {e.points.length > 0 && (
@@ -1347,6 +1355,8 @@ const personSchema = JSON.stringify({
     .timeline > li { display: grid; gap: 8px; padding: 32px 0; border-bottom: 1px solid var(--line); }
     @media (min-width: 900px) { .timeline > li { grid-template-columns: 200px 1fr; gap: 48px; } }
     .tl-period { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.35rem; color: var(--blue); }
+    .tl-role { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+    .tl-role .plat-icon { width: 20px; height: 20px; }
     .timeline h3 { font-size: 1.5rem; font-weight: 800; line-height: 1.15; }
     .tl-org { margin-top: 4px; font-weight: 600; color: var(--muted); }
     .tl-summary { margin: 12px 0 14px; line-height: 1.6; max-width: 46em; }
