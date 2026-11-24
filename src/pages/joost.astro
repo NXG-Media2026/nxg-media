@@ -225,6 +225,8 @@ const irvj = {
 };
 
 const moreWork = [
+  { brand: 'Stil B.V.', logo: logoAsset('stil-logo.webp'), url: 'https://stilorthosis.com/', format: 'A drink at the bar', slug: 'stil-at-the-bar' },
+  { brand: 'Stil B.V.', logo: logoAsset('stil-logo.webp'), url: 'https://stilorthosis.com/', format: 'Living with tremor', slug: 'stil-living-with-tremor' },
   { brand: 'Stekkies', logo: logoStekkies, url: 'https://www.stekkies.com', format: 'Creator video, "Ruby"', vimeo: { id: '879779883', thumb: vimeoThumb('1746464431-b361b0ea64f584f9c3f98509ea2787fdc8961a29d4f2bb3620de4c818d83bdf0') }, metrics: [{ value: '€17', label: 'CPA on Meta' }, { value: '~€21', label: 'CPA on TikTok' }, { value: '32%', label: 'hook rate' }, { value: '18%', label: 'hold rate' }, { value: '2.4%', label: 'CTR' }] },
   { brand: 'Stekkies', logo: logoStekkies, url: 'https://www.stekkies.com', format: 'Creator video, "Raphaella"', vimeo: { id: '879783232', thumb: vimeoThumb('1746468935-854ca36667954722c5be77923bb0b67e8c42efc4d97ae47447ffd55883b358d2') }, metrics: [{ value: '€19', label: 'CPA on Meta' }, { value: '~€22', label: 'CPA on TikTok' }, { value: '29%', label: 'hook rate' }, { value: '15%', label: 'hold rate' }, { value: '2.5%', label: 'CTR' }] },
   { brand: 'MCM Research', logo: logoMcmDark, format: 'Recruitment video', vimeo: { id: '879782682', thumb: vimeoThumb('1746467737-ffbd319f522e6753576797f0b103f080ffddc65a893c2b77955638fdaf03dfec') }, metrics: [{ value: '80+', label: 'registrations' }, { value: '€12', label: 'per registration' }, { value: '35%', label: 'hook rate' }, { value: '2.8%', label: 'CTR' }], note: 'Client-wide, across all ads: 4,000+ leads and 750 applicants in NL and BE.' },
@@ -537,7 +539,7 @@ const personSchema = JSON.stringify({
         <header class="sec-head">
           <p class="sec-index">01 · Work</p>
           <h2>Selected work</h2>
-          <p class="sec-intro">Three long-term clients, shown through the actual ads.</p>
+          <p class="sec-intro">For my direct clients, I often make the ads myself, from the first concept to the final cut. I use CapCut for video editing and Canva AI for ad design.</p>
           <ul class="scope-legend" aria-label="How figures are labelled">
             <li><span class="scope scope-client">Client total</span></li>
             <li><span class="scope scope-campaign">Campaign</span></li>
@@ -676,13 +678,13 @@ const personSchema = JSON.stringify({
       <div class="wrap more">
         <header class="more-head">
           <h3>More creative work</h3>
-          <p>Subscriptions, recruitment and B2B. The two Stekkies videos ran on both Meta and TikTok.</p>
+          <p>Over three years of advertising for Stil, these two videos became top performers. I came up with both concepts and briefed the Stil team on what to film. They shot the footage, I edited both ads, and each ran for nearly a year. The two Stekkies videos ran on both Meta and TikTok.</p>
         </header>
         <div class="more-grid">
           {moreWork.map((w) => (
             <div class="more-item">
               <p class="more-brand">{w.url ? <a href={w.url} target="_blank" rel="noopener noreferrer" aria-label={w.brand + ' website'}>{w.logo ? <Image src={w.logo} alt={w.brand} height={28} class="more-logo" /> : <strong>{w.brand}</strong>}</a> : w.logo ? <Image src={w.logo} alt={w.brand} height={28} class="more-logo" /> : <strong>{w.brand}</strong>}</p>
-              <CreativeTile brand={w.brand} format={w.format} vimeo={w.vimeo} metrics={w.metrics} note={w.note} />
+              <CreativeTile brand={w.brand} format={w.format} vimeo={w.vimeo} {...media(w.slug)} metrics={w.metrics} note={w.note} />
             </div>
           ))}
         </div>
@@ -1286,7 +1288,7 @@ const personSchema = JSON.stringify({
     .more-head h3, .earlier-title { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; }
     .more-head p { margin-top: 8px; color: var(--muted); }
     .more-grid { margin-top: 24px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 16px; }
-    @media (min-width: 1024px) { .more-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; } }
+    @media (min-width: 1024px) { .more-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; } }
     .more-brand { height: 28px; margin-bottom: 10px; display: flex; align-items: center; }
     .more-logo { height: 26px; width: auto; max-width: 110px; object-fit: contain; }
     .earlier { padding-top: 72px; }
