@@ -1,0 +1,89 @@
+---
+export type NodeKind = 'source' | 'ai' | 'output' | 'human';
+
+export interface DiagramNode {
+  title: string;
+  text?: string;
+  kind: NodeKind;
+}
+
+interface Props {
+  rows: DiagramNode[][];
+  loop?: string;
+  compact?: boolean;
+  label: string;
+}
+
+const { rows, loop, compact = false, label } = Astro.props;
+---
+
+<figure class:list={['dg', { 'dg-compact': compact, 'dg-has-loop': !!loop }]} aria-label={label}>
+  <div class="dg-flow">
+    {rows.map((row, i) => (
+      <>
+        {i > 0 && <span class="dg-arrow" aria-hidden="true"></span>}
+        <div class="dg-row" style={`--cols:${row.length}`}>
+          {row.map((n) => (
+            <div class:list={['dg-node', `dg-${n.kind}`]}>
+              <strong>{n.title}</strong>
+              {!compact && n.text && <span>{n.text}</span>}
+            </div>
+          ))}
+        </div>
+      </>
+    ))}
+  </div>
+  {loop && (
+    <div class="dg-loop" aria-label={loop}>
+      <span class="dg-loop-line" aria-hidden="true"></span>
+      {!compact && <span class="dg-loop-label">{loop}</span>}
+    </div>
+  )}
+  {!compact && (
+    <figcaption class="dg-legend">
+      <span><i class="dg-key dg-source"></i>Input</span>
+      <span><i class="dg-key dg-ai"></i>AI step</span>
+      <span><i class="dg-key dg-output"></i>Output</span>
+      <span><i class="dg-key dg-human"></i>My decision</span>
+      {loop && <span><i class="dg-key dg-planned"></i>Planned</span>}
+    </figcaption>
+  )}
+</figure>
+
+<style>
+  .dg { margin: 0; position: relative; display: grid; grid-template-columns: 1fr; gap: 0; color: #fff; }
+  .dg-has-loop { grid-template-columns: 1fr 28px; }
+  .dg-flow { display: flex; flex-direction: column; align-items: stretch; }
+  .dg-row { display: grid; grid-template-columns: repeat(var(--cols), 1fr); gap: 10px; }
+  .dg-arrow { align-self: center; width: 2px; height: 22px; margin: 4px 0; background: #5b5f66; position: relative; }
+  .dg-arrow::after { content: ''; position: absolute; left: 50%; bottom: -2px; transform: translateX(-50%); border: 6px solid transparent; border-top-color: #5b5f66; border-bottom: 0; }
+  .dg-node { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-align: center; padding: 14px 12px; border-radius: 12px; border: 1.5px solid transparent; min-height: 64px; }
+  .dg-node strong { font-size: 15px; line-height: 1.25; }
+  .dg-node span { font-size: 13px; line-height: 1.4; opacity: 0.8; }
+  .dg-source { background: #23262c; border-color: #3a3e46; }
+  .dg-ai { background: #5b55d6; }
+  .dg-output { background: rgba(31, 143, 95, 0.18); border-color: #1f8f5f; color: #b9efd4; }
+  .dg-human { background: var(--yellow, #fff000); color: #111316; }
+  .dg-human span { opacity: 0.75; }
+  .dg-loop { position: relative; }
+  .dg-loop-line { position: absolute; top: 44%; bottom: 30%; left: 10px; width: 14px; border: 2px dashed #6b6f77; border-left: 0; border-radius: 0 10px 10px 0; }
+  .dg-loop-label { position: absolute; top: 57%; left: 36px; transform: translate(-50%, -50%) rotate(90deg); transform-origin: center; white-space: nowrap; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; color: #8d9097; }
+  .dg-has-loop:not(.dg-compact) { grid-template-columns: 1fr 44px; }
+  .dg-legend { grid-column: 1 / -1; margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 12.5px; color: #b7b9be; }
+  .dg-legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .dg-key { display: inline-block; width: 14px; height: 14px; border-radius: 4px; border: 1.5px solid transparent; }
+  .dg-key.dg-planned { background: transparent; border: 2px dashed #6b6f77; }
+
+  .dg-compact .dg-row { gap: 6px; }
+  .dg-compact .dg-node { padding: 8px 6px; min-height: 38px; border-radius: 9px; }
+  .dg-compact .dg-node strong { font-size: 12px; }
+  .dg-compact .dg-arrow { height: 12px; margin: 3px 0; }
+  .dg-compact .dg-arrow::after { border-width: 4px; border-bottom: 0; }
+  .dg-compact .dg-loop-line { left: 6px; width: 10px; }
+
+  @media (max-width: 520px) {
+    .dg:not(.dg-compact) .dg-node strong { font-size: 13.5px; }
+    .dg:not(.dg-compact) .dg-node span { font-size: 12px; }
+    .dg:not(.dg-compact) .dg-node { padding: 10px 8px; }
+  }
+</style>

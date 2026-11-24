@@ -10,6 +10,8 @@ import thumbCat from '../assets/images/testimonials/cathowell-8loops-thumb.webp'
 import thumbSomnox from '../assets/images/testimonials/somnox-thumb.webp';
 import thumbNarayan from '../assets/images/testimonials/narayan-eetclubnl-thumb.webp';
 import CreativeTile from '../components/portfolio/CreativeTile.astro';
+import SystemDiagram from '../components/portfolio/SystemDiagram.astro';
+import type { DiagramNode } from '../components/portfolio/SystemDiagram.astro';
 import logoHwy from '../assets/images/logos/happywithyoga-logo.webp';
 import logoDepri from '../assets/images/logos/grotedepridoeboek-logo.webp';
 import logoIrvj from '../assets/images/logos/ikrouwvanje-logo.webp';
@@ -21,6 +23,20 @@ import logoYoulife from '../assets/images/logos/youlife-logo.avif';
 import { videoTestimonials } from '../data/videoTestimonials';
 import logoSomnoxDark from '../assets/images/portfolio/logo-somnox-dark.png';
 import logoMcmDark from '../assets/images/portfolio/logo-mcm-dark.png';
+import brandBellobox from '../assets/images/portfolio/brands/bellobox.png';
+import brandMemoryFrame from '../assets/images/portfolio/brands/mymemoryframe.png';
+import brandPetFrame from '../assets/images/portfolio/brands/mypetframe.png';
+import brandAltaDent from '../assets/images/portfolio/brands/altadent.png';
+import brandRem from '../assets/images/portfolio/brands/realestatemasterclass.png';
+import brandJdo from '../assets/images/portfolio/brands/jouwdroomoverkapping.png';
+import brandYogaPracht from '../assets/images/portfolio/brands/yogapracht.png';
+import eduHu from '../assets/images/portfolio/brands/hu.png';
+import eduVu from '../assets/images/portfolio/brands/vu.png';
+import svgMeta from '../assets/images/portfolio/platforms/meta.svg?raw';
+import svgGoogleAds from '../assets/images/portfolio/platforms/googleads.svg?raw';
+import svgTiktok from '../assets/images/portfolio/platforms/tiktok.svg?raw';
+import svgPinterest from '../assets/images/portfolio/platforms/pinterest.svg?raw';
+import svgLinkedin from '../assets/images/portfolio/platforms/linkedin.svg?raw';
 
 // Drop real creative files here as <slug>.jpg/.png/.webp; tiles switch from link card to image automatically.
 const creativeFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/portfolio/*.{jpg,jpeg,png,webp}', { eager: true });
@@ -35,13 +51,41 @@ const creativeImage = (slug: string) =>
   Object.entries(creativeFiles).find(([p]) => p.split('/').pop()!.replace(/\.\w+$/, '') === slug)?.[1].default;
 
 const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
-const logos = Object.entries(logoFiles)
-  .filter(([path]) => /logo/i.test(path.split('/').pop()!))
-  .map(([path, mod]) => {
-    const filename = path.split('/').pop()!.replace(/\.(webp|avif|png|jpg)$/, '');
-    const name = filename.replace(/[-_]?logo[-_]?/gi, '').replace(/[-_]/g, ' ').trim();
-    return { src: mod.default, alt: name };
-  });
+const logoAsset = (file: string) => logoFiles['/src/assets/images/logos/' + file].default;
+const logos = [
+  { src: logoSomnoxDark, alt: 'Somnox' },
+  { src: logoAsset('ANWB-verkeershulp-logo.webp'), alt: 'ANWB (via a partner agency)' },
+  { src: logoAsset('happywithyoga-logo.webp'), alt: 'Happy with Yoga' },
+  { src: logoAsset('stekkies-logo.webp'), alt: 'Stekkies' },
+  { src: brandBellobox, alt: 'Bellobox (via Vos Marketing)' },
+  { src: logoMcmDark, alt: 'MCM Research' },
+  { src: logoAsset('grotedepridoeboek-logo.webp'), alt: 'Het Grote Depri Doeboek' },
+  { src: brandMemoryFrame, alt: 'My Memory Frame, formerly My Family Frame (via Vos Marketing)' },
+  { src: logoAsset('ikrouwvanje-logo.webp'), alt: 'Ik Rouw Van Je' },
+  { src: brandRem, alt: 'Real Estate Masterclass' },
+  { src: logoAsset('nederlandeet-logo.webp'), alt: 'Nederland Eet Groep' },
+  { src: brandAltaDent, alt: 'AltaDent Clinic (via Rocket Leads)' },
+  { src: logoAsset('youlife-logo.avif'), alt: 'YouLife' },
+  { src: brandPetFrame, alt: 'My Pet Frame (via Vos Marketing)' },
+  { src: logoAsset('kvbm-logo.webp'), alt: 'Keuzevrij bij Mij' },
+  { src: logoAsset('easyzzp-logo.webp'), alt: 'EasyZZP' },
+  { src: logoAsset('timetowing-logo.webp'), alt: 'Time 2 Wing' },
+  { src: brandYogaPracht, alt: 'Yogapracht' },
+  { src: brandJdo, alt: 'Jouw Droom Overkapping' },
+  { src: logoAsset('wearepioneers-logo.webp'), alt: 'We Are Pioneers' },
+];
+
+const platformIcons: Record<string, { svg: string; color: string }> = {
+  meta: { svg: svgMeta, color: '#0081FB' },
+  google: { svg: svgGoogleAds, color: '#4285F4' },
+  tiktok: { svg: svgTiktok, color: '#000000' },
+  pinterest: { svg: svgPinterest, color: '#BD081C' },
+  linkedin: { svg: svgLinkedin, color: '#0A66C2' },
+};
+const platIcon = (name: string) => {
+  const key = Object.keys(platformIcons).find((k) => name.toLowerCase().includes(k));
+  return key ? platformIcons[key] : undefined;
+};
 
 const email = 'joost_117@live.nl';
 const linkedinUrl = 'https://www.linkedin.com/in/joost-van-putten/';
@@ -72,7 +116,8 @@ const PAGE_IRVJ = '100088935638435';
 const hwy = {
   client: 'Happy with Yoga',
   logo: logoHwy,
-  meta: 'Online yoga programmes · 2022 to now · Meta, Google and Pinterest',
+  meta: 'Online yoga programmes · 2022 to now',
+  platforms: ['Meta', 'Google Ads', 'Pinterest'],
   lead: 'Long-term growth partner across the whole customer journey: free lead acquisition, a low-ticket paid product, retargeting, annual memberships and higher-priced courses.',
   totals: [
     { value: '~€180k', label: 'managed media spend since 2022, all platforms' },
@@ -135,7 +180,8 @@ const depri = {
   client: 'Het Grote Depri Doeboek',
   alias: 'HeyAreYouOkay in the UK',
   logo: logoDepri,
-  meta: 'Book · 2022 to October 2026 · Meta and Google',
+  meta: 'Book · 2022 to October 2026',
+  platforms: ['Meta', 'Google Ads'],
   lead: 'A long-term performance partnership selling a book in the Netherlands and, as HeyAreYouOkay, in the UK, plus related courses through retargeting. Meta performed substantially better than Google and was the main paid channel.',
   totals: [
     { value: '~€180k', label: 'managed ad spend, Meta and Google' },
@@ -156,6 +202,7 @@ const irvj = {
   client: 'Ik Rouw Van Je',
   logo: logoIrvj,
   meta: 'Book · October 2023 to November 2026',
+  platforms: ['Meta'],
   lead: 'A long-running book campaign with a wide creative mix: founder-led storytelling, customer reviews, organic-looking low-fi ads, and AI-assisted static and animated formats.',
   totals: [
     { value: '€150k', label: 'ad spend' },
@@ -178,27 +225,14 @@ const moreWork = [
   { brand: 'Posivino', format: 'B2B corporate gifting video', vimeo: { id: '879781428', thumb: vimeoThumb('1746466363-5db09dba52cb1068a9ef88722c6054866d7d97c749602315c03d960c213456d6') }, metrics: [{ value: '34%', label: 'hook rate' }, { value: '2.1%', label: 'CTR' }], note: 'Aimed at companies buying corporate gifts in bulk.' },
 ];
 
-const earlierCases = [
-  { client: 'Somnox', logo: logoSomnoxDark, url: 'https://somnox.com', meta: 'Sleep tech, DTC · 2018 to 2021', text: 'Acquisition funnel, Facebook and Instagram campaigns, creative testing and e-mail growth, plus a recruitment funnel that helped hire 5+ engineers.', figures: [{ value: '€0 → €20k', label: 'monthly ad spend' }, { value: '4.0x', label: 'average ROAS, final year' }, { value: '20,000+', label: 'e-mail subscribers' }] },
-  { client: 'Real Estate Masterclass', url: 'https://realestatemasterclass.nl', meta: 'Online education · 2021 to 2022', text: 'Funnel design and paid strategy on Facebook, Instagram and TikTok for lead generation and online sales.', figures: [{ value: '€30k', label: 'monthly ad spend' }, { value: '6.5x', label: 'average ROAS' }, { value: '12.5x', label: 'peak ROAS, two weeks' }] },
-];
-
-const scale = [
-  { name: 'Vos Marketing', url: 'https://vosmarketing.nl', value: '~€40k', label: 'per month combined, across up to 7 e-commerce accounts at once' },
-  { name: 'Real Estate Masterclass', url: 'https://realestatemasterclass.nl', value: '~€30k', label: 'per month for a large part of the engagement' },
-  { name: 'Somnox', logo: logoSomnoxDark, wordmark: true, url: 'https://somnox.com', value: '€20k', label: 'per month, scaled up from €0' },
-  { name: 'Stekkies', logo: logoStekkies, wordmark: true, url: 'https://www.stekkies.com', value: '~€20k', label: 'per month at its highest' },
-  { name: 'MCM Research', logo: logoMcmDark, wordmark: true, value: '~€7.5k', label: 'per month, for an extended period' },
-  { name: 'Nederland Eet Groep', logo: logoNederlandEet, url: 'https://www.eetclub.nl', value: '~€5k', label: 'per month' },
-  { name: 'YouLife', logo: logoYoulife, wordmark: true, url: 'https://www.youlife.nl', value: '~€5k', label: 'per month' },
-];
-
-const alsoWorked = [
-  'ANWB (recruitment campaign, via a partner agency)',
-  'MCM Research (recruitment, ~€7.5k/month, automated lead routing)',
-  'Nederland Eet Groep (B2C orders, B2B restaurant partners, staff recruitment)',
-  'PixelBros (IT recruitment, website services)',
-  'EasyZZP (since 2018)',
+const previous = [
+  { name: 'Somnox', logo: logoSomnoxDark, url: 'https://somnox.com', period: '2018 to 2021', role: 'Meta Ads · Creative Strategy', platforms: ['Meta'], spend: '~€20k', spendLabel: 'monthly ad spend at its highest', result: '4.0x average ROAS in the final year' },
+  { name: 'Real Estate Masterclass', logo: brandRem, url: 'https://realestatemasterclass.nl', period: '2021 to 2022', role: 'Meta Ads · Creative Strategy · Funnels', platforms: ['Meta', 'TikTok'], spend: '~€30k', spendLabel: 'monthly ad spend for a large part of the engagement', result: '6.5x average ROAS, 12.5x peak over two weeks' },
+  { name: 'Vos Marketing', url: 'https://vosmarketing.nl', period: '2022 to 2024', role: 'Freelance performance marketer in the agency team', platforms: ['Meta'], spend: '~€40k', spendLabel: 'combined monthly ad spend across up to 7 e-commerce accounts' },
+  { name: 'Stekkies', logo: logoStekkies, url: 'https://www.stekkies.com', role: 'Meta Ads · TikTok Ads · Creative Strategy', platforms: ['Meta', 'TikTok'], spend: 'up to ~€20k', spendLabel: 'monthly ad spend' },
+  { name: 'MCM Research', logo: logoMcmDark, role: 'Meta Ads · Recruitment advertising', platforms: ['Meta'], spend: '~€5k', spendLabel: 'monthly ad spend' },
+  { name: 'Nederland Eet Groep', logo: logoNederlandEet, iconOnly: true, url: 'https://www.eetclub.nl', role: 'Meta Ads · B2C and B2B', platforms: ['Meta'], spend: '~€5k B2C · ~€3k B2B', spendLabel: 'monthly ad spend, two separate activities' },
+  { name: 'YouLife', logo: logoYoulife, url: 'https://www.youlife.nl', role: 'Meta Ads · E-commerce', platforms: ['Meta'], spend: '~€5k to €7k', spendLabel: 'monthly ad spend' },
 ];
 
 const portraitTestimonials = videoTestimonials
@@ -247,12 +281,18 @@ const aiShots = (prefix: string) =>
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([, m]) => m.default);
 
-const videoFlow = [
-  { step: 'Original video', text: 'A saved video ad is the input.' },
-  { step: 'Gemini analysis', text: 'Breaks down the hook, creative structure and CTA.' },
-  { step: 'Notion research', text: 'Findings are stored in my research workflow.' },
-  { step: 'Claude script', text: 'Drafts a rewritten script based on my own experiences and examples.' },
-  { step: 'Human review', text: 'I review and edit before anything goes into production.' },
+const researchRows: DiagramNode[][] = [
+  [
+    { title: 'My winning ads', text: 'best-performing videos and ads', kind: 'source' },
+    { title: 'Inspiration', text: 'top videos and ads from other brands', kind: 'source' },
+  ],
+  [{ title: 'Gemini', text: 'watches each video: hook, structure, script, claims', kind: 'ai' }],
+  [{ title: 'Claude + my library', text: 'creative strategy with my stories and cases, under my direction', kind: 'ai' }],
+  [
+    { title: 'Scripts', text: 'ready to record', kind: 'output' },
+    { title: 'New briefs', text: 'for ads and AI creatives', kind: 'output' },
+  ],
+  [{ title: 'I review, record and publish', kind: 'human' }],
 ];
 
 const strategistFlow = [
@@ -269,11 +309,21 @@ const strategistPrinciples = [
   'The agent proposes. People approve before production and publishing; it never publishes itself.',
 ];
 
-const osFlow = [
-  { step: 'Inputs', text: 'Meta ads data via the Meta API, e-mail, WhatsApp and calls.' },
-  { step: 'n8n on my VPS', text: 'Workflows that file, summarise and route everything per client.' },
-  { step: 'Client hub', text: 'One overview per client in Notion: KPIs, status, communication and creatives.' },
-  { step: 'Outputs', text: 'A daily prioritised task mail, performance updates and per-ad creative dashboards.' },
+const osRows: DiagramNode[][] = [
+  [
+    { title: 'Meta ads data', text: 'via the Meta API', kind: 'source' },
+    { title: 'E-mail', kind: 'source' },
+    { title: 'WhatsApp', kind: 'source' },
+    { title: 'Calls', kind: 'source' },
+  ],
+  [{ title: 'n8n on my server', text: 'files, summarises and routes everything per client', kind: 'ai' }],
+  [{ title: 'Client hub in Notion', text: 'KPIs, status, communication and creatives', kind: 'ai' }],
+  [
+    { title: 'Daily task mail', kind: 'output' },
+    { title: 'Performance updates', kind: 'output' },
+    { title: 'Creative dashboards', kind: 'output' },
+  ],
+  [{ title: 'I decide and act', kind: 'human' }],
 ];
 
 const osFeatures = [
@@ -292,11 +342,11 @@ const experience = [
     org: 'Independent, trading as NXG Media',
     summary: 'Independent since 2018, started alongside my studies. I work hands-on for brands in the Netherlands, Belgium, the UK, Germany and Spain, and take ownership of their paid acquisition, from strategy and creatives to budgets and reporting.',
     points: [
-      'Own the end-to-end growth process: acquisition strategy, budget allocation, funnel development, conversion optimisation, reporting and long-term account management.',
-      'Plan, launch and scale paid campaigns for 50+ B2C and B2B clients, scaling or cutting spend on CPA and ROAS targets. Meta is the core channel; Google, TikTok, Pinterest and LinkedIn where they fit.',
-      'Run structured creative testing (hooks, angles, formats, copy) and brief designers and content creators on new creatives.',
-      'Build complete acquisition funnels: landing pages, tracking, CRM, e-mail sequences and CRO.',
-      'Built my own products and marketing technology: the NXG AI Visibility Scanner, a client hub on the Meta API, WhatsApp and e-mail, creative dashboards, an AI creative workflow and n8n automations.',
+      'Own paid acquisition end to end: strategy, budget allocation, creative testing, funnels, CRO and reporting, scaling or cutting spend on CPA and ROAS targets.',
+      'Meta is the core channel; Google, TikTok, Pinterest and LinkedIn where they fit. B2C and B2B, for 50+ clients.',
+      'Brief designers and content creators on hooks, angles, formats and copy.',
+      'Commercial side of working independently: client acquisition and proposals, pricing and profitability, multi-year relationships (EasyZZP since 2018, Happy with Yoga since 2022) and launching new propositions, such as an AI-search service in 2026 that brought in 8 new B2B clients.',
+      'Built my own tools: the NXG AI Visibility Scanner, a client hub, creative dashboards and AI workflows.',
     ],
   },
   {
@@ -306,34 +356,48 @@ const experience = [
     orgUrl: 'https://vosmarketing.nl',
     summary: 'Freelance specialist inside the Vos Marketing team, next to my independent work. I ran paid social and acquisition for their e-commerce clients in the Netherlands, Germany and the UK.',
     points: [
-      'Managed up to 7 e-commerce ad accounts at the same time, with roughly €40,000 in combined monthly media spend, for about 18 to 24 months.',
+      'Managed up to 7 e-commerce ad accounts at the same time (more brands over the whole engagement), with roughly €40,000 in combined monthly ad spend, for about 18 to 24 months.',
       'Presented monthly performance reviews to clients (spend, revenue, ROAS, CPA, AOV, conversion rate) and set the testing plan for the next month.',
       "Worked inside another agency's team, processes and client structure.",
     ],
   },
   {
-    period: '2016 to 2019',
-    role: 'Event Security Officer',
-    org: 'Powerplay People',
-    summary: 'Attendee contact at live events across the Netherlands.',
-    points: [],
+    period: '~2024 · 6 months',
+    role: 'Performance Marketer (freelance)',
+    org: 'Rocket Leads, lead generation agency',
+    orgUrl: 'https://www.rocketleads.com/',
+    summary: 'Short, high-volume agency-side assignment: around 9 to 10 client accounts across very different industries, including dental care (AltaDent Clinic), DJs and entertainment, coffee businesses, solar energy and other local services.',
+    points: ['Also served end clients through the agency Cordital, including TopTuinen.nl.'],
   },
 ];
 
-const commercial = [
-  { title: 'Commercial responsibility', text: 'Working independently means I set my own pricing, keep an eye on profitability per client and find new clients myself.' },
-  { title: 'Launching and selling a service', text: 'In 2026 I developed and commercialised an AI-search (GEO) service, built its acquisition infrastructure, ran the sales process and personally closed 8 new B2B clients.' },
-  { title: 'Multi-year client relationships', text: 'I present monthly results and strategy to founders and in-house marketing teams. EasyZZP has worked with me since 2018, Happy with Yoga since 2022.' },
-  { title: 'B2B as well as consumer', text: 'Next to my own scanner funnel: self-employed entrepreneurs for EasyZZP, restaurant partners for Nederland Eet Groep, website services for PixelBros, yoga teachers for Happy with Yoga and corporate gifting for Posivino. Not every test worked; a LinkedIn Ads campaign for Buitink BV underperformed.' },
+const channels = [
+  { name: 'Meta Ads', core: true },
+  { name: 'Google Ads' },
+  { name: 'TikTok Ads' },
+  { name: 'Pinterest Ads' },
+  { name: 'LinkedIn Ads' },
 ];
 
-const skills = [
-  { group: 'Channels', items: 'Core: Meta Ads and paid social, creative strategy · Also: Google Ads (Happy with Yoga, Het Grote Depri Doeboek), TikTok Ads (Stekkies, Real Estate Masterclass), Pinterest Ads (Happy with Yoga), LinkedIn Ads (selected B2B campaigns)' },
-  { group: 'Paid media craft', items: 'Campaign structure, audience strategy, creative testing, budget pacing' },
-  { group: 'Growth', items: 'Full-funnel strategy · landing pages and CRO · e-mail and CRM · lead generation · tracking and attribution · copywriting' },
-  { group: 'Data & AI', items: 'Meta Ads Manager, Google Analytics, custom dashboards, n8n, APIs, Gemini, Claude, AI agents · KPI reporting (CPA, ROAS, CPL, CR)' },
-  { group: 'Business', items: 'B2B sales and closing · proposition development · account management · client retention · stakeholder communication' },
+const skillGroups = [
+  { group: 'Creative', items: ['Hooks and angles', 'UGC and creator briefs', 'Social proof', 'Creative testing'] },
+  { group: 'Growth', items: ['Funnels', 'Landing pages and CRO', 'E-mail and CRM', 'Tracking and attribution'] },
+  { group: 'Data and AI', items: ['Google Analytics', 'Dashboards', 'n8n', 'Gemini', 'Claude'] },
+  { group: 'Business', items: ['Client acquisition', 'Proposals and pricing', 'Account management'] },
 ];
+
+const glance = {
+  platforms: [
+    { name: 'Meta Ads', tier: 'Primary specialisation' },
+    { name: 'Google Ads', tier: 'Hands-on' },
+    { name: 'TikTok Ads', tier: 'Additional' },
+    { name: 'Pinterest Ads', tier: 'Additional' },
+    { name: 'LinkedIn Ads', tier: 'Additional' },
+  ],
+  business: ['B2C and e-commerce', 'B2B lead generation', 'Recruitment advertising', 'Digital products, courses and subscriptions'],
+  capabilities: ['Performance creative strategy', 'Campaign management and optimisation', 'Funnels and CRO', 'AI-assisted creative workflows'],
+  background: ['Independent freelance specialist since 2018', 'Worked inside agency teams: Vos Marketing, Rocket Leads, Cordital', 'Clients in NL, BE, UK, DE and ES'],
+};
 
 const personSchema = JSON.stringify({
   '@context': 'https://schema.org',
@@ -394,6 +458,7 @@ const personSchema = JSON.stringify({
             8+ years turning creative ideas into measurable growth.
             From Meta Ads and creative testing to building AI-powered marketing systems.
           </p>
+          <p class="availability"><span class="availability-dot" aria-hidden="true"></span>Available for freelance collaborations · Open to in-house opportunities</p>
           <div class="hero-actions">
             <a class="btn btn-dark" href="#work">Selected work</a>
             <a class="btn btn-line" href="#ai">AI systems</a>
@@ -427,7 +492,38 @@ const personSchema = JSON.stringify({
       </div>
     </section>
 
-    <LogoMarquee logos={logos} label="Brands I have worked with" variant="light" />
+    <LogoMarquee logos={logos} label="Selected brands I've worked with" variant="light" />
+    <p class="marquee-note wrap">Includes brands I worked on through Vos Marketing, Rocket Leads and other agency partners.</p>
+
+    <div class="wrap">
+      <section class="glance" aria-labelledby="glance-title">
+        <h2 id="glance-title" class="glance-title">Expertise at a glance</h2>
+        <div class="glance-grid">
+          <div class="glance-col glance-platforms">
+            <p class="glance-label">Advertising platforms</p>
+            <ul>
+              {glance.platforms.map((p, i) => (
+                <li class:list={['glance-plat', { 'glance-primary': i === 0, 'glance-second': i === 1 }]}>
+                  <span class="glance-plat-name">{platIcon(p.name) && <span class="plat-icon" style={`color:${i === 0 ? '#fff' : platIcon(p.name)!.color}`} set:html={platIcon(p.name)!.svg} aria-hidden="true" />}{p.name}</span><span class="glance-tier">{p.tier}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="glance-col">
+            <p class="glance-label">Business types</p>
+            <ul class="glance-list">{glance.business.map((b) => <li>{b}</li>)}</ul>
+          </div>
+          <div class="glance-col">
+            <p class="glance-label">Core capabilities</p>
+            <ul class="glance-list">{glance.capabilities.map((c, i) => <li class:list={{ 'glance-strong': i === 0 }}>{c}</li>)}</ul>
+          </div>
+          <div class="glance-col">
+            <p class="glance-label">Background</p>
+            <ul class="glance-list">{glance.background.map((b) => <li>{b}</li>)}</ul>
+          </div>
+        </div>
+      </section>
+    </div>
 
     {/* Work: flagship cases */}
     <section id="work" class="section">
@@ -435,7 +531,7 @@ const personSchema = JSON.stringify({
         <header class="sec-head">
           <p class="sec-index">01 · Work</p>
           <h2>Selected work</h2>
-          <p class="sec-intro">Three long-term clients, shown through the actual ads. Figures are labelled by level, so client totals, campaign results and single-ad results are never mixed.</p>
+          <p class="sec-intro">Three long-term clients, shown through the actual ads.</p>
           <ul class="scope-legend" aria-label="How figures are labelled">
             <li><span class="scope scope-client">Client total</span></li>
             <li><span class="scope scope-campaign">Campaign</span></li>
@@ -453,6 +549,7 @@ const personSchema = JSON.stringify({
               <p class="flag-no">Case 01</p>
               <h3 id="flag-hwy">{hwy.client}</h3>
               <p class="flag-meta">{hwy.meta}</p>
+              <ul class="plats" aria-label="Ad platforms">{hwy.platforms.map((p) => <li class="plat">{platIcon(p) && <span class="plat-icon" style={`color:${platIcon(p)!.color}`} set:html={platIcon(p)!.svg} aria-hidden="true" />}{p}</li>)}</ul>
             </div>
           </div>
           <div class="flag-intro">
@@ -510,6 +607,7 @@ const personSchema = JSON.stringify({
               <p class="flag-no">Case 02</p>
               <h3 id="flag-depri">{depri.client} <span class="flag-alias">/ {depri.alias}</span></h3>
               <p class="flag-meta">{depri.meta}</p>
+              <ul class="plats" aria-label="Ad platforms">{depri.platforms.map((p) => <li class="plat">{platIcon(p) && <span class="plat-icon" style={`color:${platIcon(p)!.color}`} set:html={platIcon(p)!.svg} aria-hidden="true" />}{p}</li>)}</ul>
             </div>
           </div>
           <div class="flag-intro">
@@ -544,6 +642,7 @@ const personSchema = JSON.stringify({
               <p class="flag-no">Case 03</p>
               <h3 id="flag-irvj">{irvj.client}</h3>
               <p class="flag-meta">{irvj.meta}</p>
+              <ul class="plats" aria-label="Ad platforms">{irvj.platforms.map((p) => <li class="plat">{platIcon(p) && <span class="plat-icon" style={`color:${platIcon(p)!.color}`} set:html={platIcon(p)!.svg} aria-hidden="true" />}{p}</li>)}</ul>
             </div>
           </div>
           <div class="flag-intro">
@@ -583,37 +682,32 @@ const personSchema = JSON.stringify({
         </div>
       </div>
 
-      {/* Earlier cases */}
-      <div class="wrap earlier">
-        <h3 class="earlier-title">Earlier results</h3>
-        <div class="earlier-grid">
-          {earlierCases.map((c) => (
-            <article class="earlier-item">
-              <h4 class="earlier-head">{c.logo ? <a class="logo-link" href={c.url} target="_blank" rel="noopener noreferrer"><Image src={c.logo} alt={c.client} height={60} class="earlier-logo" /></a> : c.url ? <a class="ext" href={c.url} target="_blank" rel="noopener noreferrer">{c.client}</a> : c.client}</h4>
-              <p class="flag-meta">{c.meta}</p>
-              <p class="earlier-text">{c.text}</p>
-              <dl class="earlier-figures">
-                {c.figures.map((f) => (
-                  <div><dt class="num">{f.value}</dt><dd>{f.label}</dd></div>
-                ))}
-              </dl>
-            </article>
+      {/* Previous results and campaign scale */}
+      <div class="wrap prev">
+        <h3 class="earlier-title">Previous results and campaign scale</h3>
+        <ul class="prev-list">
+          {previous.map((r) => (
+            <li class="prev-row">
+              <div class="prev-brand">
+                {r.logo && r.iconOnly ? (
+                  <span class="prev-icon-name"><Image src={r.logo} alt="" height={56} class="prev-icon" />{r.url ? <a class="ext prev-name" href={r.url} target="_blank" rel="noopener noreferrer">{r.name}</a> : <span class="prev-name">{r.name}</span>}</span>
+                ) : r.logo ? (
+                  r.url ? <a class="logo-link" href={r.url} target="_blank" rel="noopener noreferrer"><Image src={r.logo} alt={r.name} height={56} class="prev-logo" /></a>
+                        : <Image src={r.logo} alt={r.name} height={56} class="prev-logo" />
+                ) : (
+                  r.url ? <a class="ext prev-name" href={r.url} target="_blank" rel="noopener noreferrer">{r.name}</a> : <span class="prev-name">{r.name}</span>
+                )}
+                <p class="prev-role">{r.role}{r.period && <span> · {r.period}</span>}</p>
+              </div>
+              <ul class="plats" aria-label="Ad platforms">
+                {r.platforms.map((p) => <li class="plat">{platIcon(p) && <span class="plat-icon" style={`color:${platIcon(p)!.color}`} set:html={platIcon(p)!.svg} aria-hidden="true" />}{p}</li>)}
+              </ul>
+              <p class="prev-spend"><span class="num">{r.spend}</span><span class="prev-spend-label">{r.spendLabel}</span></p>
+              <p class="prev-result">{r.result}</p>
+            </li>
           ))}
-        </div>
-        <div class="scale">
-          <div class="scale-intro">
-            <h3 class="earlier-title">Scale</h3>
-            <p>50+ businesses, as an independent marketer and inside agency teams. These are approximate monthly media budgets I was responsible for at their highest or typical level.</p>
-          </div>
-          <dl class="scale-list">
-            {scale.map((r) => (
-              <div><dt>{r.wordmark ? (r.url ? <a class="logo-link" href={r.url} target="_blank" rel="noopener noreferrer"><Image src={r.logo!} alt={r.name} height={48} class="scale-logo" /></a> : <Image src={r.logo!} alt={r.name} height={48} class="scale-logo" />) : <>{r.logo && <Image src={r.logo} alt="" height={48} class="scale-logo scale-icon" />}{r.url ? <a class="ext" href={r.url} target="_blank" rel="noopener noreferrer">{r.name}</a> : r.name}</>}</dt><dd><span class="num">{r.value}</span> {r.label}</dd></div>
-            ))}
-          </dl>
-        </div>
-        <p class="fine">Monthly figures, not cumulative totals. Historical estimates, not audited, and not a breakdown of the €8M+ lifetime figure.</p>
-        <p class="also"><span>Also:</span> {alsoWorked.join(' · ')}</p>
-        <p class="fine integrity">About these numbers: all figures come from my own campaign reporting and have not been independently audited. Calculated returns and estimates are marked as such and are not Meta-attributed ROAS.</p>
+        </ul>
+        <p class="fine">Monthly ad spend figures are approximate historical estimates. Calculated returns are labelled separately from platform-reported results.</p>
       </div>
     </section>
 
@@ -660,32 +754,29 @@ const personSchema = JSON.stringify({
         <header class="sec-head">
           <p class="sec-index">03 · AI Systems</p>
           <h2>Built and launched</h2>
-          <p class="sec-intro">A product I took from idea to paying customers, and the AI systems I use in my daily work. Each has a status, so it is clear what runs today and what is still being tested.</p>
-          <ul class="legend" aria-label="Status legend">
-            <li><span class="status status-live">Live</span><span class="status status-live">In use</span> running in real work</li>
-            <li><span class="status status-pilot">Pilot</span> tested on real work, reviewed manually</li>
-          </ul>
+          <p class="sec-intro">A product I took from idea to paying customers, and the AI systems I use in my daily work. Open a project for the full workflow, screenshots and stack.</p>
         </header>
 
-        {/* Product: GEO scanner */}
-        <article class="product" aria-labelledby="geo-title">
-          <div class="project-head">
-            <span class="status status-live">Live</span>
-            <p class="product-kicker">{geo.kicker}</p>
-            <h3 id="geo-title">{geo.title}</h3>
-            <p class="project-lead">{geo.lead}</p>
-          </div>
+        <noscript><style>.ai-panel[hidden] { display: block; } .ai-toggle { display: none; }</style></noscript>
 
+        {/* Featured: scanner */}
+        <article class="ai-card ai-card-feature">
           {geo.landing && (
-            <figure class="browser browser-lg">
+            <div class="ai-card-media browser">
               <div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span></div>
-              <Image src={geo.landing} alt="Scanner landing page with the free AI visibility scan form" widths={[640, 960, 1280]} sizes="(min-width: 1120px) 1056px, 92vw" loading="lazy" />
-            </figure>
+              <Image src={geo.landing} alt="AI Visibility Scanner landing page" widths={[480, 720, 960]} sizes="(min-width: 900px) 560px, 92vw" loading="lazy" />
+            </div>
           )}
-          {geo.landing && (
-            <p class="geo-step-title geo-step-first"><span>1</span>Landing page <em>The proposition and the scan entry point.</em></p>
-          )}
-
+          <div class="ai-card-body">
+            <span class="status status-live">Live</span>
+            <p class="product-kicker">From idea to paying customers · 2026</p>
+            <h3>{geo.title}</h3>
+            <p class="ai-card-text">A free AI search scan, a gated personal report and a sales process for website projects. I built the proposition, the product, the ads and the sales follow-up.</p>
+            <p class="ai-outcome"><span class="num">8</span> new B2B clients from <strong>€3,209</strong> in ad spend</p>
+            <button type="button" class="ai-toggle" aria-expanded="false" aria-controls="ai-panel-geo" data-label="Explore project">Explore project <span aria-hidden="true">+</span></button>
+          </div>
+        </article>
+        <div class="ai-panel" id="ai-panel-geo" hidden>
           <ol class="geo-steps">
             {geo.steps.filter((st) => st.image).map((st, i) => (
               <li>
@@ -700,8 +791,7 @@ const personSchema = JSON.stringify({
               </li>
             ))}
           </ol>
-          <p class="shot-note">Real product screenshots. Client and competitor names are blurred.</p>
-
+          <p class="shot-note">Step 1 is the landing page above. Real product screenshots; client and competitor names are blurred.</p>
           <div class="geo-results">
             <div>
               <span class="scope scope-campaign">Campaign</span>
@@ -722,56 +812,57 @@ const personSchema = JSON.stringify({
               </ul>
             </div>
           </div>
-          <p class="fine fine-dark">Lead results are summed per campaign and not deduplicated to unique people; the cost per lead is calculated. No revenue total or ROAS is shown.</p>
-        </article>
+          <p class="fine fine-dark">Lead results are summed per campaign and not deduplicated to unique people; the cost per lead is calculated.</p>
+        </div>
 
-        {/* Operational AI workflow */}
-        <article class="project">
-          <div class="project-head">
-            <span class="status status-live">In use</span>
-            <h3>Creative research system</h3>
-            <p class="project-lead">
-              Turns a saved video ad into research and a new script. It runs in my daily creative work.
-            </p>
+        {/* Working systems */}
+        <div class="ai-grid">
+          <article class="ai-card">
+            <div class="ai-card-media ai-mini">
+              <SystemDiagram rows={researchRows} loop="Feedback loop · planned" compact label="Preview of the Creative Research and Strategy System" />
+            </div>
+            <div class="ai-card-body">
+              <span class="status status-live">In use</span>
+              <h3>Creative Research & Strategy System</h3>
+              <p class="ai-card-text">Turns winning ads, my own and other brands', into the next round of creatives.</p>
+              <p class="ai-outcome-text">Output: structured creative analysis, new scripts and ad briefs</p>
+              <button type="button" class="ai-toggle" aria-expanded="false" aria-controls="ai-panel-research" data-label="Explore project">Explore project <span aria-hidden="true">+</span></button>
+            </div>
+          </article>
+          <article class="ai-card">
+            <div class="ai-card-media ai-mini">
+              <SystemDiagram rows={osRows} compact label="Preview of NXG Creative OS" />
+            </div>
+            <div class="ai-card-body">
+              <span class="status status-live">In use</span>
+              <h3>NXG Creative OS</h3>
+              <p class="ai-card-text">One hub per client that brings together ad performance, communication and creatives.</p>
+              <p class="ai-outcome-text">Output: a daily task mail, performance updates and creative dashboards</p>
+              <button type="button" class="ai-toggle" aria-expanded="false" aria-controls="ai-panel-os" data-label="Explore project">Explore project <span aria-hidden="true">+</span></button>
+            </div>
+          </article>
+        </div>
+
+        <div class="ai-panel" id="ai-panel-research" hidden>
+          <div class="ai-panel-diagram">
+            <SystemDiagram rows={researchRows} loop="Feedback loop · planned" label="Creative Research and Strategy System" />
           </div>
-          <ol class="flow flow-5" aria-label="How the creative research system works">
-            {videoFlow.map((s, i) => (
-              <li>
-                <span class="flow-no">{i + 1}</span>
-                <strong>{s.step}</strong>
-                <span>{s.text}</span>
-              </li>
-            ))}
-          </ol>
+          <p class="ai-panel-lead">AI does the watching and preparing. I give direction, review every output, and decide what gets recorded and published. Feeding live campaign results back automatically is planned, not running yet.</p>
           {aiShots('ai-research').length > 0 && (
             <div class="ai-shots">
               {aiShots('ai-research').map((img) => (
-                <figure class="browser"><div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span></div><Image src={img} alt="Creative research system screenshot" width={900} loading="lazy" /></figure>
+                <figure class="browser"><div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span></div><Image src={img} alt="Creative research system example" width={900} loading="lazy" /></figure>
               ))}
             </div>
           )}
-          <p class="stack mt">Gemini · Notion · Claude · n8n (self-hosted)</p>
-        </article>
+          <p class="stack mt">Gemini · Claude · Notion · n8n (self-hosted)</p>
+        </div>
 
-        {/* Client OS */}
-        <article class="project">
-          <div class="project-head">
-            <span class="status status-live">In use</span>
-            <h3>NXG Creative OS</h3>
-            <p class="project-lead">
-              My operating system for client work: one hub per client that brings together ad performance,
-              communication and creatives, and turns them into a clear daily plan. Not fully autonomous: I make the decisions.
-            </p>
+        <div class="ai-panel" id="ai-panel-os" hidden>
+          <div class="ai-panel-diagram">
+            <SystemDiagram rows={osRows} label="NXG Creative OS" />
           </div>
-          <ol class="flow flow-4" aria-label="How NXG Creative OS works">
-            {osFlow.map((s, i) => (
-              <li>
-                <span class="flow-no">{i + 1}</span>
-                <strong>{s.step}</strong>
-                <span>{s.text}</span>
-              </li>
-            ))}
-          </ol>
+          <p class="ai-panel-lead">Not fully autonomous: the system collects and prepares, I make the decisions.</p>
           {aiShots('ai-os').length > 0 && (
             <div class="ai-shots">
               {aiShots('ai-os').map((img) => (
@@ -788,18 +879,18 @@ const personSchema = JSON.stringify({
             ))}
           </dl>
           <p class="stack mt">n8n (self-hosted) · Meta API · Notion · e-mail · WhatsApp</p>
-        </article>
+        </div>
 
-        {/* Pilot */}
-        <article class="project">
-          <div class="project-head">
+        {/* Pilot: deliberately less prominent */}
+        <article class="ai-card ai-card-slim">
+          <div class="ai-card-body">
             <span class="status status-pilot">Pilot</span>
-            <h3>Creative Research & Strategy Agent</h3>
-            <p class="project-lead">
-              Combines my hook library and angle bank with live Meta ad performance to suggest the next ads to test,
-              then writes a ready-to-use brief for a designer or content creator. Runs manually on real client work; every output is reviewed before use.
-            </p>
+            <h3>Creative Strategy Agent</h3>
+            <p class="ai-card-text">A separate, more autonomous project: an agent that proposes the next tests from live Meta performance and writes creator briefs. Runs manually; every output is reviewed.</p>
           </div>
+          <button type="button" class="ai-toggle" aria-expanded="false" aria-controls="ai-panel-agent" data-label="Explore project">Explore project <span aria-hidden="true">+</span></button>
+        </article>
+        <div class="ai-panel" id="ai-panel-agent" hidden>
           <ol class="flow" aria-label="How the agent works">
             {strategistFlow.map((s, i) => (
               <li>
@@ -814,7 +905,7 @@ const personSchema = JSON.stringify({
             {strategistPrinciples.map((p) => <li>{p}</li>)}
           </ul>
           <p class="stack mt">n8n (self-hosted) · Meta Marketing API · Notion · LLM APIs</p>
-        </article>
+        </div>
       </div>
     </section>
 
@@ -847,48 +938,37 @@ const personSchema = JSON.stringify({
           ))}
         </ol>
 
-        <div class="commercial">
-          <div class="commercial-intro">
-            <p class="sec-index">The commercial side</p>
-            <h3>More than the ads manager</h3>
-            <p>Working independently since 2018 means I have also found clients, priced my work, negotiated and kept long-term relationships. It is extra context for how I work, next to the campaign work itself.</p>
-          </div>
-          <dl class="commercial-list">
-            {commercial.map((c) => (
-              <div>
-                <dt>{c.title}</dt>
-                <dd>{c.text}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-
         <div class="cv-grid">
-          <div class="cv-block cv-skills">
-            <p class="case-label">Skills and tools</p>
-            <dl>
-              {skills.map((s) => (
+          <div class="cv-block">
+            <p class="case-label">Channels</p>
+            <ul class="plats plats-lg" aria-label="Advertising channels">
+              {channels.map((c) => <li class:list={['plat', { 'plat-core': c.core }]}>{platIcon(c.name) && <span class="plat-icon" style={`color:${platIcon(c.name)!.color}`} set:html={platIcon(c.name)!.svg} aria-hidden="true" />}{c.name}{c.core && <span class="plat-core-tag">core</span>}</li>)}
+            </ul>
+            <div class="skill-groups">
+              {skillGroups.map((g) => (
                 <div>
-                  <dt>{s.group}</dt>
-                  <dd>{s.items}</dd>
+                  <p class="case-label">{g.group}</p>
+                  <ul class="tags">{g.items.map((i) => <li>{i}</li>)}</ul>
                 </div>
               ))}
-            </dl>
+            </div>
           </div>
           <div class="cv-block">
             <p class="case-label">Education</p>
-            <ul class="plain">
-              <li><strong>Bachelor, Human Resource Management</strong><br />HU University of Applied Sciences Utrecht</li>
-              <li><strong>Psychology, propaedeutic year</strong><br />VU Amsterdam</li>
+            <ul class="edu">
+              <li><Image src={eduHu} alt="" height={64} class="edu-logo" /><div><strong>HU University of Applied Sciences Utrecht</strong><span>Bachelor, Human Resource Management</span></div></li>
+              <li><Image src={eduVu} alt="" height={64} class="edu-logo" /><div><strong>VU Amsterdam</strong><span>Psychology, propaedeutic year</span></div></li>
             </ul>
             <p class="case-label">Certificates</p>
-            <ul class="plain">
+            <ul class="tags">
               <li>Meta Media Buying Professional</li>
               <li>Google Analytics Academy (2019)</li>
             </ul>
             <p class="case-label">Languages</p>
-            <ul class="plain">
-              <li>Dutch (native) · English (C1) · Spanish (B1 to B2) · German (A2)</li>
+            <ul class="langs langs-cv" aria-label="Languages">
+              {languages.map((l) => (
+                <li><span class="lang-flag" aria-hidden="true" set:html={l.flag} />{l.name} <span class="lang-level">{l.level}</span></li>
+              ))}
             </ul>
           </div>
         </div>
@@ -940,6 +1020,29 @@ const personSchema = JSON.stringify({
         btn.replaceWith(iframe);
       }, { once: true });
     });
+
+
+    (function () {
+      var toggles = document.querySelectorAll('.ai-toggle');
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      function set(btn, open) {
+        var panel = document.getElementById(btn.getAttribute('aria-controls'));
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        btn.firstChild.nodeValue = open ? 'Close project ' : 'Explore project ';
+        btn.lastElementChild.textContent = open ? '−' : '+';
+        btn.closest('.ai-card').classList.toggle('is-open', open);
+        if (panel) panel.hidden = !open;
+        return panel;
+      }
+      toggles.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var open = btn.getAttribute('aria-expanded') !== 'true';
+          toggles.forEach(function (other) { if (other !== btn) set(other, false); });
+          var panel = set(btn, open);
+          if (open && panel) panel.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' });
+        });
+      });
+    })();
 
     (function () {
       var links = document.querySelectorAll('.pf-links a');
@@ -1174,24 +1277,12 @@ const personSchema = JSON.stringify({
     .more-brand { height: 28px; margin-bottom: 10px; display: flex; align-items: center; }
     .more-logo { height: 26px; width: auto; max-width: 110px; object-fit: contain; }
     .earlier { padding-top: 72px; }
-    .earlier-grid { margin-top: 20px; display: grid; gap: 0; border-top: 1px solid var(--line); }
-    @media (min-width: 900px) { .earlier-grid { grid-template-columns: repeat(2, 1fr); } .earlier-item + .earlier-item { border-left: 1px solid var(--line); padding-left: 28px; } .earlier-item { padding-right: 28px; } }
-    .earlier-item { padding: 24px 0; border-bottom: 1px solid var(--line); }
-    @media (min-width: 900px) { .earlier-item { border-bottom: 0; } }
-    .earlier-item h4 { font-size: 1.25rem; font-weight: 800; }
-    .earlier-text { margin-top: 10px; font-size: 14.5px; line-height: 1.55; color: #3a3d42; }
-    .earlier-figures { margin: 16px 0 0; display: grid; grid-template-columns: repeat(3, auto); gap: 12px; justify-content: start; }
-    .earlier-figures dt { font-size: 1.6rem; }
-    .earlier-figures dd { margin: 4px 0 0; font-size: 12px; line-height: 1.3; color: var(--muted); max-width: 8em; }
-    .integrity { margin-top: 36px; padding-top: 18px; border-top: 1px solid var(--line); }
     @media (min-width: 900px) { .flow.flow-3 { grid-template-columns: repeat(3, 1fr); } }
     .section-dark .case-label { color: #8d9097; }
     .ticks { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
     .ticks li { position: relative; padding-left: 20px; line-height: 1.55; }
     .ticks li::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 8px; height: 2px; background: var(--blue); }
     .section-dark .ticks li::before { background: var(--yellow); }
-    .also { margin-top: 28px; font-size: 14px; line-height: 1.7; color: var(--muted); }
-    .also span { font-weight: 800; color: var(--ink); }
 
     /* Testimonials */
     .voices { display: grid; gap: 20px; }
@@ -1238,20 +1329,9 @@ const personSchema = JSON.stringify({
     .tl-summary { margin: 12px 0 14px; line-height: 1.6; max-width: 46em; }
     .timeline .ticks { max-width: 50em; color: #2b2e33; }
 
-    .commercial { margin-top: 72px; display: grid; gap: 28px; padding: 36px 24px; background: var(--tint); border-radius: 20px; }
-    @media (min-width: 900px) { .commercial { grid-template-columns: 1fr 1.5fr; gap: 56px; padding: 48px; } }
-    .commercial h3 { margin-top: 10px; font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 800; line-height: 1.05; }
-    .commercial-intro > p:last-child { margin-top: 14px; line-height: 1.6; color: var(--muted); }
-    .commercial-list { margin: 0; display: grid; gap: 22px; }
-    .commercial-list > div { padding-left: 16px; border-left: 3px solid var(--yellow); }
-    .commercial-list dt { font-weight: 800; }
-    .commercial-list dd { margin: 4px 0 0; line-height: 1.55; color: #2b2e33; }
 
     .cv-grid { margin-top: 72px; display: grid; gap: 40px; }
     @media (min-width: 900px) { .cv-grid { grid-template-columns: 1.5fr 1fr; gap: 64px; } }
-    .cv-skills dl { margin: 0; display: grid; gap: 18px; }
-    .cv-skills dt { font-weight: 800; }
-    .cv-skills dd { margin: 4px 0 0; line-height: 1.55; color: #2b2e33; }
     .plain { list-style: none; padding: 0; margin: 0 0 8px; display: grid; gap: 10px; line-height: 1.5; color: #2b2e33; }
 
     /* Contact */
@@ -1298,28 +1378,13 @@ const personSchema = JSON.stringify({
     .principles { margin-top: 24px; max-width: 52em; color: #d9dadd; font-size: 15px; }
     .legend .status + .status { margin-left: -2px; }
 
-    /* Scale */
-    .scale { margin-top: 48px; display: grid; gap: 24px; }
-    @media (min-width: 900px) { .scale { grid-template-columns: 1fr 1.6fr; gap: 56px; } }
-    .scale-intro p { margin-top: 10px; color: var(--muted); line-height: 1.6; }
-    .scale-list { margin: 0; border-top: 1px solid var(--line); }
-    .scale-list > div { display: grid; grid-template-columns: 1fr; gap: 2px; padding: 12px 0; border-bottom: 1px solid var(--line); }
-    @media (min-width: 640px) { .scale-list > div { grid-template-columns: 210px 1fr; gap: 16px; align-items: baseline; } }
-    .scale-list dt { font-weight: 800; }
-    .scale-list dd { margin: 0; color: var(--muted); font-size: 14.5px; }
-    .scale-list .num { font-size: 1.5rem; color: var(--ink); margin-right: 6px; }
 
     /* Logos and links */
     a.ext { color: inherit; text-decoration: underline; text-decoration-color: rgba(7, 86, 239, 0.35); text-underline-offset: 3px; transition: text-decoration-color 150ms; }
     a.ext:hover { text-decoration-color: var(--blue); }
     a.ext::after { content: ' ↗'; font-size: 0.75em; color: var(--blue); }
-    .earlier-head { display: flex; align-items: center; gap: 10px; }
-    .earlier-logo { height: 26px; width: auto; max-width: 140px; object-fit: contain; display: block; }
     a.logo-link { display: inline-flex; align-items: center; gap: 4px; text-decoration: none; }
     a.logo-link::after { content: '↗'; font-size: 11px; color: var(--blue); }
-    .scale-list dt { display: flex; align-items: center; gap: 8px; }
-    .scale-logo { height: 26px; width: auto; max-width: 140px; object-fit: contain; display: block; }
-    .scale-icon { height: 22px; max-width: 22px; }
     .voice figcaption { display: flex; align-items: center; gap: 10px; }
     .voice-logo { height: 20px; width: auto; max-width: 84px; object-fit: contain; flex-shrink: 0; }
     .voices-portrait { margin-top: 28px; display: grid; gap: 24px; }
@@ -1332,6 +1397,117 @@ const personSchema = JSON.stringify({
     .voice-p blockquote { margin: 0; font-size: 1.0625rem; line-height: 1.5; font-weight: 600; color: var(--ink); }
     .voice-p p { font-size: 14px; color: var(--muted); }
     .voice-p p strong { color: var(--ink); }
+
+    /* Refinement: availability, expertise, platforms, previous results, CV */
+    .availability { margin-top: 18px; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--ink); }
+    .availability-dot { width: 8px; height: 8px; border-radius: 999px; background: #1f8f5f; box-shadow: 0 0 0 4px rgba(31, 143, 95, 0.15); flex-shrink: 0; }
+    .hero-actions { margin-top: 18px; }
+    .plats { list-style: none; padding: 0; margin: 10px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
+    .plat { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border: 1px solid var(--line); border-radius: 999px; font-size: 12px; font-weight: 700; color: var(--ink); background: var(--paper); }
+    .plats-lg .plat { font-size: 13px; padding: 5px 12px; }
+    .plat-core { border-color: var(--ink); }
+    .plat-core-tag { font-size: 10px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--blue); }
+    .prev { padding-top: 72px; }
+    .prev-list { list-style: none; padding: 0; margin: 20px 0 0; border-top: 1px solid var(--line); }
+    .prev-row { display: grid; gap: 8px 24px; padding: 18px 0; border-bottom: 1px solid var(--line); grid-template-columns: 1fr; align-items: center; }
+    @media (min-width: 900px) { .prev-row { grid-template-columns: 1.3fr 0.8fr 1.2fr 1fr; } }
+    .prev-brand { display: flex; flex-direction: column; gap: 4px; }
+    .prev-logo { height: 24px; width: auto; max-width: 140px; object-fit: contain; display: block; }
+    .prev-name { font-weight: 800; font-size: 1.05rem; }
+    .prev-icon-name { display: inline-flex; align-items: center; gap: 8px; }
+    .prev-icon { height: 26px; width: 26px; object-fit: contain; }
+    .prev-role { font-size: 13px; color: var(--muted); }
+    .prev-row .plats { margin: 0; }
+    .prev-spend { display: flex; flex-direction: column; }
+    .prev-spend .num { font-size: 1.6rem; }
+    .prev-spend-label { font-size: 12.5px; line-height: 1.35; color: var(--muted); }
+    .prev-result { font-size: 14px; font-weight: 600; line-height: 1.4; }
+    .prev-result:empty { display: none; }
+    .tags { list-style: none; padding: 0; margin: 0 0 6px; display: flex; flex-wrap: wrap; gap: 6px; }
+    .tags li { padding: 4px 10px; border-radius: 6px; background: var(--tint); font-size: 13px; color: #2b2e33; }
+    .skill-groups { margin-top: 8px; display: grid; gap: 4px 28px; }
+    @media (min-width: 640px) { .skill-groups { grid-template-columns: 1fr 1fr; } }
+    .edu { list-style: none; padding: 0; margin: 0 0 8px; display: grid; gap: 12px; }
+    .edu li { display: flex; flex-direction: column; padding-left: 14px; border-left: 3px solid var(--blue); }
+    .edu strong { font-size: 15px; }
+    .edu span { font-size: 14px; color: var(--muted); }
+    .langs-cv li { color: var(--ink); }
+
+    /* AI cards with progressive disclosure */
+    .ai-card { display: grid; gap: 0; border-radius: 16px; overflow: hidden; background: #1a1d22; border: 1px solid #2c2f35; transition: border-color 150ms; }
+    .ai-card.is-open { border-color: var(--yellow); }
+    .ai-card-body { padding: 24px; display: flex; flex-direction: column; align-items: flex-start; }
+    .ai-card h3 { margin-top: 10px; font-size: clamp(1.4rem, 2.6vw, 1.9rem); font-weight: 800; line-height: 1.1; color: #fff; }
+    .ai-card .product-kicker { margin-top: 12px; }
+    .ai-card .product-kicker + h3 { margin-top: 4px; }
+    .ai-card-text { margin-top: 10px; font-size: 15px; line-height: 1.55; color: #c9cbcf; max-width: 34em; }
+    .ai-outcome { margin-top: 16px; font-size: 15px; color: #fff; }
+    .ai-outcome .num { font-size: 2.2rem; color: var(--yellow); margin-right: 6px; vertical-align: -4px; }
+    .ai-outcome-text { margin-top: 14px; padding-left: 12px; border-left: 3px solid var(--yellow); font-size: 14px; font-weight: 600; color: #fff; }
+    .ai-toggle { margin-top: 20px; display: inline-flex; align-items: center; gap: 10px; padding: 9px 16px; border-radius: 999px; border: 1.5px solid #fff; background: transparent; color: #fff; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; transition: background 150ms, color 150ms; }
+    .ai-toggle:hover, .ai-toggle[aria-expanded="true"] { background: var(--yellow); border-color: var(--yellow); color: var(--ink); }
+    .ai-toggle span { font-size: 18px; line-height: 1; }
+    .ai-card-feature { margin-top: 8px; }
+    @media (min-width: 900px) { .ai-card-feature { grid-template-columns: 1.15fr 1fr; align-items: center; } }
+    .ai-card-feature .ai-card-media { border-radius: 0; border: 0; box-shadow: none; }
+    @media (min-width: 900px) { .ai-card-feature .ai-card-body { padding: 32px 36px; } }
+    .ai-grid { margin-top: 20px; display: grid; gap: 20px; }
+    @media (min-width: 900px) { .ai-grid { grid-template-columns: 1fr 1fr; } }
+    .ai-mini { padding: 22px; background: #14161a; border-bottom: 1px solid #2c2f35; display: flex; align-items: center; }
+    @media (min-width: 900px) { .ai-mini { min-height: 118px; } .ai-grid .ai-card { grid-template-rows: auto 1fr; } }
+    .ai-card-slim { margin-top: 20px; background: transparent; border-style: dashed; }
+    @media (min-width: 900px) { .ai-card-slim { grid-template-columns: 1fr auto; align-items: center; padding-right: 24px; } }
+    .ai-card-slim .ai-card-body { padding-bottom: 8px; }
+    @media (min-width: 900px) { .ai-card-slim .ai-card-body { padding-bottom: 24px; } }
+    .ai-card-slim > .ai-toggle { margin: 0 24px 24px; justify-self: start; }
+    @media (min-width: 900px) { .ai-card-slim > .ai-toggle { margin: 0; } }
+    .ai-card-slim h3 { font-size: 1.3rem; }
+    .ai-panel { margin-top: 16px; padding: 28px 0 8px; border-top: 2px solid var(--yellow); animation: ai-fade 200ms ease; }
+    .ai-panel[hidden] { display: none; }
+    .ai-panel .flow { margin-top: 18px; }
+    .ai-panel-lead { font-size: 15px; line-height: 1.6; color: #c9cbcf; max-width: 52em; }
+    .ai-panel-lead strong { color: #fff; }
+    @keyframes ai-fade { from { opacity: 0; } to { opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) { .ai-panel { animation: none; } }
+
+    /* Expertise at a glance */
+    .glance { padding: 28px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .glance-title { font-size: 13px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); }
+    .glance-grid { margin-top: 18px; display: grid; gap: 24px 32px; grid-template-columns: 1fr; }
+    @media (min-width: 640px) { .glance-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .glance-grid { grid-template-columns: 1.25fr 1fr 1fr 1fr; } }
+    .glance-label { font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+    .glance-col ul { list-style: none; padding: 0; margin: 0; }
+    .glance-platforms ul { display: grid; gap: 6px; }
+    .glance-plat { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 6px 0; border-bottom: 1px dashed var(--line); font-size: 14px; }
+    .glance-plat-name { font-weight: 600; color: #3a3d42; }
+    .glance-tier { font-size: 12px; color: var(--muted); white-space: nowrap; }
+    .glance-primary { padding: 8px 12px; border: 0; border-radius: 10px; background: var(--ink); }
+    .glance-primary .glance-plat-name { color: #fff; font-weight: 800; font-size: 15px; }
+    .glance-primary .glance-tier { color: var(--yellow); font-weight: 700; }
+    .glance-second .glance-plat-name { color: var(--ink); font-weight: 700; }
+    .glance-list { display: grid; gap: 7px; }
+    .glance-list li { position: relative; padding-left: 16px; font-size: 14px; line-height: 1.4; color: #2b2e33; }
+    .glance-list li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 7px; height: 7px; border-radius: 2px; background: var(--blue); }
+    .glance-list .glance-strong { font-weight: 800; color: var(--ink); }
+    .glance-list .glance-strong::before { background: var(--yellow); box-shadow: 0 0 0 1px var(--ink); }
+
+    /* Final logo and platform polish */
+    .marquee-note { margin: -18px auto 0; padding-bottom: 8px; text-align: center; font-size: 12.5px; color: var(--muted); }
+    .plat-icon { display: inline-flex; width: 14px; height: 14px; flex-shrink: 0; }
+    .plat-icon svg { width: 100%; height: 100%; fill: currentColor; }
+    .plats-lg .plat-icon { width: 15px; height: 15px; }
+    .glance-plat-name { display: inline-flex; align-items: center; gap: 8px; }
+    .edu li { flex-direction: row; align-items: center; gap: 14px; padding-left: 0; border-left: 0; }
+    .edu li > div { display: flex; flex-direction: column; }
+    .edu-logo { height: 30px; width: auto; max-width: 120px; object-fit: contain; flex-shrink: 0; }
+    .tl-period { font-size: 1.2rem; }
+
+    /* System diagrams in AI cards */
+    .ai-mini { display: block; padding: 18px 20px; }
+    @media (min-width: 900px) { .ai-mini { min-height: 0; } }
+    .ai-panel-diagram { max-width: 760px; padding: 24px; border-radius: 16px; background: #1a1d22; border: 1px solid #2c2f35; }
+    .ai-panel-diagram + .ai-panel-lead { margin-top: 18px; }
   </style>
 </body>
 </html>
