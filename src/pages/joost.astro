@@ -11,6 +11,9 @@ import thumbSomnox from '../assets/images/testimonials/somnox-thumb.webp';
 import thumbNarayan from '../assets/images/testimonials/narayan-eetclubnl-thumb.webp';
 import CreativeTile from '../components/portfolio/CreativeTile.astro';
 import SystemDiagram from '../components/portfolio/SystemDiagram.astro';
+import osOverview from '../assets/images/portfolio/ai-os-01-overview.png';
+import osWorkflow from '../assets/images/portfolio/ai-os-02-workflow.png';
+import osAnalysis from '../assets/images/portfolio/ai-os-03-analysis.png';
 import type { DiagramNode } from '../components/portfolio/SystemDiagram.astro';
 import logoHwy from '../assets/images/logos/happywithyoga-logo.webp';
 import logoDepri from '../assets/images/logos/grotedepridoeboek-logo.webp';
@@ -58,6 +61,7 @@ const logos = [
   { src: logoAsset('happywithyoga-logo.webp'), alt: 'Happy with Yoga' },
   { src: logoAsset('stekkies-logo.webp'), alt: 'Stekkies' },
   { src: brandBellobox, alt: 'Bellobox (via Vos Marketing)' },
+  { src: logoAsset('diabetesplus-logo.png'), alt: 'Diabetes+' },
   { src: logoMcmDark, alt: 'MCM Research' },
   { src: logoAsset('grotedepridoeboek-logo.webp'), alt: 'Het Grote Depri Doeboek' },
   { src: brandMemoryFrame, alt: 'My Memory Frame, formerly My Family Frame (via Vos Marketing)' },
@@ -68,6 +72,7 @@ const logos = [
   { src: logoAsset('youlife-logo.avif'), alt: 'YouLife' },
   { src: brandPetFrame, alt: 'My Pet Frame (via Vos Marketing)' },
   { src: logoAsset('kvbm-logo.webp'), alt: 'Keuzevrij bij Mij' },
+  { src: logoAsset('fietsveilignl-logo.png'), alt: 'Stichting FietsVeiligNL' },
   { src: logoAsset('easyzzp-logo.webp'), alt: 'EasyZZP' },
   { src: logoAsset('timetowing-logo.webp'), alt: 'Time 2 Wing' },
   { src: brandYogaPracht, alt: 'Yogapracht' },
@@ -492,7 +497,7 @@ const personSchema = JSON.stringify({
       </div>
     </section>
 
-    <LogoMarquee logos={logos} label="Selected brands I've worked with" variant="light" />
+    <LogoMarquee logos={logos} speed={42} label="Selected brands I've worked with" variant="light" />
     <p class="marquee-note wrap">Includes brands I worked on through Vos Marketing, Rocket Leads and other agency partners.</p>
 
     <div class="wrap">
@@ -830,8 +835,11 @@ const personSchema = JSON.stringify({
             </div>
           </article>
           <article class="ai-card">
-            <div class="ai-card-media ai-mini">
-              <SystemDiagram rows={osRows} compact label="Preview of NXG Creative OS" />
+            <div class="ai-card-media ai-shot-preview">
+              <div class="browser">
+                <div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+                <Image src={osOverview} alt="Anonymised client dashboard from NXG Creative OS with illustrative KPIs" widths={[480, 720, 960]} sizes="(min-width: 900px) 520px, 92vw" loading="lazy" />
+              </div>
             </div>
             <div class="ai-card-body">
               <span class="status status-live">In use</span>
@@ -863,13 +871,17 @@ const personSchema = JSON.stringify({
             <SystemDiagram rows={osRows} label="NXG Creative OS" />
           </div>
           <p class="ai-panel-lead">Not fully autonomous: the system collects and prepares, I make the decisions.</p>
-          {aiShots('ai-os').length > 0 && (
-            <div class="ai-shots">
-              {aiShots('ai-os').map((img) => (
-                <figure class="browser"><div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span></div><Image src={img} alt="NXG Creative OS screenshot" width={900} loading="lazy" /></figure>
-              ))}
-            </div>
-          )}
+          <div class="os-evidence">
+            <figure>
+              <div class="browser"><div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span></div><Image src={osWorkflow} alt="Task board per person: open actions this week and items that need attention" width={900} loading="lazy" /></div>
+              <figcaption><strong>Task board</strong> Actions per person, prioritised by what needs attention now.</figcaption>
+            </figure>
+            <figure>
+              <div class="browser"><div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span></div><div class="os-crop"><Image src={osAnalysis} alt="Creative results table with illustrative figures: spend, CPA, CTR and hook rate per ad, with a decision status" width={1200} loading="lazy" /></div></div>
+              <figcaption><strong>Creative results</strong> Spend, CPA, CTR and hook rate per ad, with a decision status: winner, too early, not active.</figcaption>
+            </figure>
+          </div>
+          <p class="shot-note">Anonymised client board with illustrative figures. This snapshot shows how I track creative performance and decide what to test next.</p>
           <dl class="features">
             {osFeatures.map((f) => (
               <div>
@@ -1508,6 +1520,17 @@ const personSchema = JSON.stringify({
     @media (min-width: 900px) { .ai-mini { min-height: 0; } }
     .ai-panel-diagram { max-width: 760px; padding: 24px; border-radius: 16px; background: #1a1d22; border: 1px solid #2c2f35; }
     .ai-panel-diagram + .ai-panel-lead { margin-top: 18px; }
+
+    /* Creative OS screenshots */
+    .ai-shot-preview { padding: 18px 20px 0; background: #14161a; border-bottom: 1px solid #2c2f35; }
+    .ai-shot-preview .browser { border-radius: 10px 10px 0 0; border-bottom: 0; box-shadow: none; max-height: 220px; overflow: hidden; }
+    .os-evidence { margin-top: 22px; display: grid; gap: 22px; }
+    @media (min-width: 900px) { .os-evidence { grid-template-columns: 0.85fr 1.15fr; align-items: start; } }
+    .os-evidence figure { margin: 0; }
+    .os-evidence figcaption { margin-top: 10px; font-size: 14px; line-height: 1.5; color: #b7b9be; }
+    .os-evidence figcaption strong { display: block; color: #fff; }
+    .os-crop { aspect-ratio: 16 / 9; overflow: hidden; background: #191919; }
+    .os-crop img { width: 100%; height: 100%; object-fit: cover; object-position: left top; }
   </style>
 </body>
 </html>
