@@ -5,10 +5,29 @@ import type { ImageMetadata } from 'astro';
 import SEOHead from '../components/SEOHead.astro';
 import LogoMarquee from '../components/LogoMarquee.astro';
 import { siteConfig } from '../data/site';
-import portrait from '../assets/images/founder/joost-profielfoto-portrait.webp';
+import portrait from '../assets/images/founder/joost-standing-relaxed.webp';
 import thumbCat from '../assets/images/testimonials/cathowell-8loops-thumb.webp';
 import thumbSomnox from '../assets/images/testimonials/somnox-thumb.webp';
 import thumbNarayan from '../assets/images/testimonials/narayan-eetclubnl-thumb.webp';
+import CreativeTile from '../components/portfolio/CreativeTile.astro';
+import logoHwy from '../assets/images/logos/happywithyoga-logo.webp';
+import logoDepri from '../assets/images/logos/grotedepridoeboek-logo.webp';
+import logoIrvj from '../assets/images/logos/ikrouwvanje-logo.webp';
+import logoStekkies from '../assets/images/logos/stekkies-logo.webp';
+import logoMcm from '../assets/images/logos/mcm-research-logo.webp';
+import logoSomnox from '../assets/images/logos/somnox-logo.webp';
+
+// Drop real creative files here as <slug>.jpg/.png/.webp; tiles switch from link card to image automatically.
+const creativeFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/portfolio/*.{jpg,jpeg,png,webp}', { eager: true });
+const media = (slug?: string) => {
+  if (!slug) return {};
+  const poster = creativeImage(slug + '-poster');
+  if (poster) return { video: { src: '/portfolio/video/' + slug + '.mp4', poster } };
+  const image = creativeImage(slug);
+  return image ? { image } : {};
+};
+const creativeImage = (slug: string) =>
+  Object.entries(creativeFiles).find(([p]) => p.split('/').pop()!.replace(/\.\w+$/, '') === slug)?.[1].default;
 
 const logoFiles = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/logos/*.{webp,avif,png,jpg}', { eager: true });
 const logos = Object.entries(logoFiles)
@@ -19,332 +38,746 @@ const logos = Object.entries(logoFiles)
     return { src: mod.default, alt: name };
   });
 
-const PENDING = null;
+const email = 'joost_117@live.nl';
+const linkedinUrl = 'https://www.linkedin.com/in/joost-van-putten/';
+const cvUrl = '/cv/joost-van-putten-cv.pdf';
+const pageUrl = `${siteConfig.url}/joost`;
+
+const heroFigures = [
+  { value: '€8M+', label: 'Meta ad spend managed' },
+  { value: '50+', label: 'clients across NL and BE' },
+  { value: '8 yrs', label: 'hands-on performance marketing' },
+  { value: '2018', label: 'founded my own agency' },
+];
 
 const vimeoThumb = (hash: string) => `https://i.vimeocdn.com/video/${hash}-d_640?region=us`;
 
-const ads = [
-  { id: '879783232', brand: 'Stekkies', goal: 'Subscriptions', metric: PENDING, thumb: vimeoThumb('1746468935-854ca36667954722c5be77923bb0b67e8c42efc4d97ae47447ffd55883b358d2') },
-  { id: '879781428', brand: 'Posivino', goal: 'Unboxing / sales', metric: PENDING, thumb: vimeoThumb('1746466363-5db09dba52cb1068a9ef88722c6054866d7d97c749602315c03d960c213456d6') },
-  { id: '879784334', brand: 'HeyAreYouOkay', goal: 'Sales', metric: PENDING, thumb: vimeoThumb('1746470391-a8c3962d85191eee6e3a777de24fe2fc63231ddcde5e3f7a717b80fe6dd7d531') },
-  { id: '879779883', brand: 'Stekkies', goal: 'Subscriptions', metric: PENDING, thumb: vimeoThumb('1746464431-b361b0ea64f584f9c3f98509ea2787fdc8961a29d4f2bb3620de4c818d83bdf0') },
-  { id: '879780426', brand: 'Happy with Yoga', goal: 'Sales', metric: PENDING, thumb: vimeoThumb('1746465095-2d823b8c6fe2e41dd7120f75cd7121d4675f80aee4ea5fd45f8a326255bdfddd') },
-  { id: '879782682', brand: 'MCM Research', goal: 'Job applicants', metric: PENDING, thumb: vimeoThumb('1746467737-ffbd319f522e6753576797f0b103f080ffddc65a893c2b77955638fdaf03dfec') },
+const fb = (page: string, post: string) => `https://www.facebook.com/${page}/posts/${post}/`;
+const PAGE_HWY = '100063787841752';
+const PAGE_DEPRI = '100051160610070';
+const PAGE_IRVJ = '100088935638435';
+
+const hwy = {
+  client: 'Happy with Yoga',
+  logo: logoHwy,
+  meta: 'Online yoga programmes · 2022 to now · Meta, Google and Pinterest',
+  lead: 'Long-term growth partner across the whole customer journey: free lead acquisition, a low-ticket paid product, retargeting, annual memberships and higher-priced courses.',
+  totals: [
+    { value: '~€180k', label: 'managed media spend since 2022, all platforms' },
+  ],
+  stages: [
+    {
+      tag: 'Free leads',
+      name: 'Morning Yoga Challenge',
+      figures: [
+        { value: '25,806', label: 'leads' },
+        { value: '€0.86', label: 'average cost per lead' },
+        { value: '~€22k', label: 'campaign spend' },
+      ],
+      creatives: [
+        { slug: 'hwy-challenge-hookreel', format: 'Hook reel', ratio: '916', size: 'lg' },
+        { slug: 'hwy-challenge-collage', format: 'Lifestyle collage', ratio: '11' },
+        { slug: 'hwy-challenge-yogamat', format: 'Practice video', ratio: '916' },
+      ],
+    },
+    {
+      tag: 'Paying customers',
+      name: 'Chakra Mini, a €7 product',
+      figures: [
+        { value: '7,000+', label: 'purchases' },
+        { value: '~€5.80', label: 'cost per purchase' },
+        { value: '€7', label: 'front-end price' },
+      ],
+      note: 'Buyers could add order bumps, courses and memberships. I estimate the lifetime return at around 3.5x; that is my own estimate, not a Meta-attributed ROAS.',
+      creatives: [
+        { slug: 'hwy-chakra-01', format: 'Hook video', ratio: '916', size: 'lg' },
+        { slug: 'hwy-chakra-02', format: 'Product visual', ratio: '45' },
+        { slug: 'hwy-chakra-03', format: 'Animated product visual', ratio: '11' },
+      ],
+    },
+    {
+      tag: 'Membership sales',
+      name: 'Annual membership, retargeting',
+      figures: [
+        { value: '50', label: 'paid annual subscriptions' },
+        { value: '€19', label: 'cost per purchase' },
+        { value: '5.26x', label: 'calculated initial return' },
+      ],
+      note: 'January promotion at €100 instead of €120. About €950 spend against €5,000 initial revenue. The return is calculated from these figures, not a dashboard ROAS.',
+      creatives: [],
+    },
+  ],
+  video: {
+    vimeo: { id: '879780426', thumb: vimeoThumb('1746465095-2d823b8c6fe2e41dd7120f75cd7121d4675f80aee4ea5fd45f8a326255bdfddd') },
+    format: 'Video ad',
+    metrics: [
+      { value: '180', label: 'results' },
+      { value: '€5.44', label: 'cost per result' },
+      { value: '36%', label: 'hook rate' },
+      { value: '2.85%', label: 'CTR' },
+    ],
+  },
+};
+
+const depri = {
+  client: 'Het Grote Depri Doeboek',
+  alias: 'HeyAreYouOkay in the UK',
+  logo: logoDepri,
+  meta: 'Book · 2022 to October 2026 · Meta and Google',
+  lead: 'A long-term performance partnership selling a book in the Netherlands and, as HeyAreYouOkay, in the UK, plus related courses through retargeting. Meta performed substantially better than Google and was the main paid channel.',
+  totals: [
+    { value: '~€180k', label: 'managed ad spend, Meta and Google' },
+    { value: '~50,000', label: 'books sold by the business overall, all channels' },
+  ],
+  creatives: [
+    { slug: 'depri-lowfi-review', format: 'Low-fi book review', postUrl: fb(PAGE_DEPRI, '1127679238947419'), size: 'lg', ratio: '45', metrics: [{ value: '1,962', label: 'purchases' }, { value: '€10.36', label: 'cost per purchase' }] },
+    { format: 'Social-proof video mashup', vimeo: { id: '879784334', thumb: vimeoThumb('1746470391-a8c3962d85191eee6e3a777de24fe2fc63231ddcde5e3f7a717b80fe6dd7d531') }, metrics: [{ value: '~450', label: 'purchases' }, { value: '~€10', label: 'cost per purchase' }, { value: '45%', label: 'hook rate' }, { value: '20%', label: 'hold rate' }, { value: '2.8%+', label: 'CTR' }], note: 'Ran in the Netherlands and, as HeyAreYouOkay, in the UK.' },
+    { slug: 'depri-statistic-static', format: 'Statistic hook static', postUrl: fb(PAGE_DEPRI, '734187768296570'), ratio: '34', metrics: [{ value: '471', label: 'purchases' }, { value: '€10.76', label: 'cost per purchase' }] },
+    { slug: 'depri-feature-static', format: 'Product feature static', postUrl: fb(PAGE_DEPRI, '1543449290703743'), ratio: '45', metrics: [{ value: '422', label: 'purchases' }, { value: '€9.76', label: 'cost per purchase' }] },
+  ],
+};
+
+const irvjFeature = { slug: 'irvj-ai-animated', format: 'AI-animated book video', postUrl: fb(PAGE_IRVJ, '911447968496383'), ratio: '916' as const };
+
+const irvj = {
+  client: 'Ik Rouw Van Je',
+  logo: logoIrvj,
+  meta: 'Book · October 2023 to November 2026',
+  lead: 'A long-running book campaign with a wide creative mix: founder-led storytelling, customer reviews, organic-looking low-fi ads, and AI-assisted static and animated formats.',
+  totals: [
+    { value: '€150k', label: 'ad spend' },
+    { value: '€9.60', label: 'average cost per purchase' },
+    { value: '2.56%', label: 'average CTR' },
+    { value: '33,000', label: 'books sold by the business overall, all channels' },
+  ],
+  creatives: [
+    { slug: 'irvj-founder-story', format: 'Founder story', postUrl: fb(PAGE_IRVJ, '499874006320450'), ratio: '11' },
+    { slug: 'irvj-review-quote', format: 'Review quote', postUrl: fb(PAGE_IRVJ, '516879021286615'), ratio: '11' },
+    { slug: 'irvj-lowfi-review', format: 'Low-fi organic review', postUrl: fb(PAGE_IRVJ, '1022802590694253'), ratio: '11' },
+    { slug: 'irvj-ai-book-ad', format: 'AI-created book ad', postUrl: fb(PAGE_IRVJ, '1063308919976953'), ratio: '11' },
+  ],
+};
+
+const moreWork = [
+  { brand: 'Stekkies', logo: logoStekkies, format: 'Creator video, "Ruby"', vimeo: { id: '879779883', thumb: vimeoThumb('1746464431-b361b0ea64f584f9c3f98509ea2787fdc8961a29d4f2bb3620de4c818d83bdf0') }, metrics: [{ value: '€17', label: 'CPA on Meta' }, { value: '~€21', label: 'CPA on TikTok' }, { value: '32%', label: 'hook rate' }, { value: '18%', label: 'hold rate' }, { value: '2.4%', label: 'CTR' }] },
+  { brand: 'Stekkies', logo: logoStekkies, format: 'Creator video, "Raphaella"', vimeo: { id: '879783232', thumb: vimeoThumb('1746468935-854ca36667954722c5be77923bb0b67e8c42efc4d97ae47447ffd55883b358d2') }, metrics: [{ value: '€19', label: 'CPA on Meta' }, { value: '~€22', label: 'CPA on TikTok' }, { value: '29%', label: 'hook rate' }, { value: '15%', label: 'hold rate' }, { value: '2.5%', label: 'CTR' }] },
+  { brand: 'MCM Research', logo: logoMcm, format: 'Recruitment video', vimeo: { id: '879782682', thumb: vimeoThumb('1746467737-ffbd319f522e6753576797f0b103f080ffddc65a893c2b77955638fdaf03dfec') }, metrics: [{ value: '80+', label: 'registrations' }, { value: '€12', label: 'per registration' }, { value: '35%', label: 'hook rate' }, { value: '2.8%', label: 'CTR' }], note: 'Client-wide, across all ads: 4,000+ leads and 750 applicants in NL and BE.' },
+  { brand: 'Posivino', format: 'B2B corporate gifting video', vimeo: { id: '879781428', thumb: vimeoThumb('1746466363-5db09dba52cb1068a9ef88722c6054866d7d97c749602315c03d960c213456d6') }, metrics: [{ value: '34%', label: 'hook rate' }, { value: '2.1%', label: 'CTR' }], note: 'Aimed at companies buying corporate gifts in bulk.' },
 ];
 
-const results = [
-  { client: 'Happy With Yoga', sector: 'Online yoga', result: 'Q4 2025: 4,084 leads at €1.08 CPL, 495 sales at €7.31.', note: 'Client since 2022.', role: PENDING },
-  { client: 'Real Estate Masterclass', sector: 'Real estate education', result: '~€30k/month on Meta and TikTok, average 6.5x ROAS, peak 12.5x.', role: PENDING },
-  { client: 'Somnox', sector: 'Sleep technology', result: 'Meta from €0 to €20k/month at ~4.0x ROAS.', role: PENDING },
-  { client: 'MCM Research', sector: 'Recruitment', result: '4,000+ leads and 750 applicants across NL and BE.', role: PENDING },
-  { client: 'Youlife', sector: PENDING, result: '~€10k/month online product revenue, 6 products launched.', role: PENDING },
+const earlierCases = [
+  { client: 'Somnox', logo: logoSomnox, meta: 'Sleep tech, DTC · 2018 to 2021', text: 'Acquisition funnel, Facebook and Instagram campaigns, creative testing and e-mail growth, plus a recruitment funnel that helped hire 5+ engineers.', figures: [{ value: '€0 → €20k', label: 'monthly ad spend' }, { value: '4.0x', label: 'average ROAS, final year' }, { value: '20,000+', label: 'e-mail subscribers' }] },
+  { client: 'Real Estate Masterclass', meta: 'Online education · 2021 to 2022', text: 'Funnel design and paid strategy on Facebook, Instagram and TikTok for lead generation and online sales.', figures: [{ value: '€30k', label: 'monthly ad spend' }, { value: '6.5x', label: 'average ROAS' }, { value: '12.5x', label: 'peak ROAS, two weeks' }] },
+  { client: 'NXG Media new business', meta: 'Own B2B acquisition · 2026', text: 'Designed and launched an AI-search (GEO) service with its full funnel: paid ads, an AI-visibility scan, sales calls and closing, all run by me.', figures: [{ value: '8', label: 'new B2B clients closed' }, { value: '4 steps', label: 'ads, scan, call, close' }, { value: '1', label: 'new service launched' }] },
+];
+
+const alsoWorked = [
+  'ANWB (recruitment campaign, via a partner agency)',
+  'MCM Research (recruitment, ~€15k/month, automated lead routing)',
+  'Nederland Eet Groep (B2C orders, B2B restaurant partners, staff recruitment)',
+  'PixelBros (IT recruitment)',
+  'EasyZZP (since 2018)',
 ];
 
 const testimonials = [
   { id: '879049102', name: 'Cat Howell', role: 'Author and agency owner', thumb: thumbCat },
   { id: '879049149', name: 'Julian Jagtenberg', role: 'Somnox', thumb: thumbSomnox },
-  { id: '879049124', name: 'Narayan', role: 'Nederland Eet Groep (now eetclub.nl)', thumb: thumbNarayan },
+  { id: '879049124', name: 'Narayan', role: 'Nederland Eet Groep, now eetclub.nl', thumb: thumbNarayan },
 ];
 
-const aiSystems = [
-  { area: 'Client communication', before: 'Scattered mails and notes', now: 'Every mail and call auto-filed per client in Notion, with a summary', result: 'Nothing falls through, full context in a minute', status: 'In use' },
-  { area: 'Daily task mail', before: 'Manual morning triage', now: 'Automatic prioritised task mail', result: 'A clear top 3 each day', status: 'In use' },
-  { area: 'Client status', before: 'Kept in my head', now: 'Auto-updated status per client', result: 'I see who needs attention early', status: 'In use' },
-  { area: 'KPIs', before: 'Vague or shifting', now: 'Fixed at onboarding', result: 'Reporting follows the agreed KPIs', status: 'In use' },
-  { area: 'Creative analysis', before: 'Manual review', now: 'Gemini scores hook and structure next to performance data', result: 'Faster understanding of why winners win', status: 'In use' },
-  { area: 'Creative strategist agent', before: 'Concepts from scratch', now: 'Concepts based on proven winners', result: 'More grounded test variants per week', status: 'In development' },
+const strategistFlow = [
+  { step: 'Research', text: 'Customer language, reviews, own ad results and competitor libraries become sourced insights.' },
+  { step: 'Test proposal', text: 'A hypothesis, a learning question and the variable to test.', gate: 'Strategist review' },
+  { step: 'Briefs', text: 'A creator brief and an editor brief, with script depth matched to the talent.', gate: 'Client review' },
+  { step: 'Measure', text: 'Attention metrics as diagnostics, CPA and ROAS as the decision.' },
+  { step: 'Learn', text: 'Learnings are stored with a status and context, then feed the next brief.' },
 ];
 
-const pillars = [
-  { title: 'Performance Marketing', body: 'Meta Ads, media buying, acquisition, funnels, CRO and optimisation.' },
-  { title: 'Creative & Growth', body: 'Creative strategy, experiments, positioning and offer development.' },
-  { title: 'AI & Automation', body: 'Self-built AI systems, n8n, dashboards and process improvement.' },
-  { title: 'Business & Commercial', body: 'Sales, business development, client relationships, negotiation and entrepreneurship.' },
+const strategistPrinciples = [
+  'Every brief carries a hypothesis and a learning question, otherwise it is rejected.',
+  'Learnings get a status: provisional, supported in this context, contradicted or outdated. Nothing is stored as fact without replication and my sign-off.',
+  'The agent prepares and proposes. People approve before production and before publishing; it never publishes itself.',
 ];
 
-const commercialSkills = [
-  { title: 'Business development & sales', body: 'Prospecting, lead generation, discovery calls, proposals, pitching, negotiation and closing new clients.' },
-  { title: 'Client relationship management', body: 'Long-term partnerships, client communication, expectation management, reporting and retention.' },
-  { title: 'Commercial strategy', body: 'Developing service offerings and pricing, spotting growth opportunities and connecting marketing decisions to profitability.' },
-  { title: 'Entrepreneurship', body: 'Running an independent business, balancing client delivery with sales and deciding where time and budget go.' },
-  { title: 'Project & stakeholder management', body: 'Coordinating campaigns and projects with clients, developers, creatives and external collaborators.' },
-  { title: 'Consultative problem solving', body: 'Understanding the business problem first, then turning it into a practical marketing and acquisition plan.' },
+const osFlow = [
+  { step: 'Inputs', text: 'Meta ads data via the Meta API, e-mail, WhatsApp and calls.' },
+  { step: 'n8n on my VPS', text: 'Workflows that file, summarise and route everything per client.' },
+  { step: 'Client hub', text: 'One overview per client in Notion: KPIs, status, communication and creatives.' },
+  { step: 'Outputs', text: 'A daily prioritised task mail, performance updates and per-ad creative dashboards.' },
 ];
 
-const commercialHighlights = [
-  'Personally closed 8 new client deals in 2026.',
-  'Long-term client partnerships, including Happy With Yoga since 2022.',
+const osFeatures = [
+  { title: 'Client cockpit', text: 'Meta performance, WhatsApp and e-mail in one place per client, so I can answer questions and send performance updates without switching tools.' },
+  { title: 'Creative dashboards', text: 'Per-ad overviews of spend, CTR, CPA and hook performance, so winning angles and formats are visible at a glance.' },
+  { title: 'Communication log', text: 'Every mail and call filed per client with a summary, so full context is available in a minute.' },
+  { title: 'Daily task mail', text: 'An automatic, prioritised task mail each morning instead of manual triage.' },
+  { title: 'KPIs from day one', text: 'KPIs are fixed at onboarding and reporting follows them.' },
 ];
 
-const linkedinUrl: string | null = null;
+const videoFlow = [
+  { step: 'Gemini analysis', text: 'Gemini analyses video ads and scores the hook and structure.' },
+  { step: 'Notion', text: 'The analysis is stored per ad in Notion, next to its performance data.' },
+  { step: 'Claude scripts', text: 'Claude drafts new scripts based on the analysed ads.' },
+];
+
+const supporting = [
+  { title: 'Automation layer', status: 'In use', text: 'Self-hosted n8n workflows that route new leads to the right person, generate reports and sync data between Meta, Notion, e-mail and WhatsApp.' },
+  { title: 'AI-visibility scan', status: 'In use', text: 'An automated scan of how visible a business is in AI search, used for lead qualification before the sales call in my 2026 B2B funnel.' },
+];
+
+const experience = [
+  {
+    period: '2018 to now',
+    role: 'Founder & Performance Marketing Lead',
+    org: 'NXG Media',
+    summary: 'Growth marketing agency for Dutch and Belgian brands, started alongside my studies. I run the campaigns, the client relationships and the business itself.',
+    points: [
+      'Own the end-to-end growth process: acquisition strategy, budget allocation, funnel development, conversion optimisation, reporting and long-term account management.',
+      'Plan, launch and scale paid campaigns on Meta, Google, TikTok, Pinterest and LinkedIn for 50+ B2C and B2B clients, scaling or cutting spend on CPA and ROAS targets.',
+      'Run structured creative testing (hooks, angles, formats, copy) and brief designers and content creators on new creatives.',
+      'Build complete acquisition funnels: landing pages, tracking, CRM, e-mail sequences and CRO.',
+      'Built my own marketing technology: an AI creative-strategist agent, a client hub on the Meta API, WhatsApp and e-mail, creative dashboards and n8n automations.',
+    ],
+  },
+  {
+    period: '2022 to 2024',
+    role: 'Performance Marketer',
+    org: 'Vos Marketing, e-commerce agency, Rotterdam',
+    summary: 'Paid social and acquisition campaigns for e-commerce brands in the Netherlands, Germany and the UK.',
+    points: [
+      'Presented monthly performance reviews to clients (spend, revenue, ROAS, CPA, AOV, conversion rate) and set the testing plan for the next month.',
+    ],
+  },
+  {
+    period: '2016 to 2019',
+    role: 'Event Security Officer',
+    org: 'Powerplay People',
+    summary: 'Attendee contact at live events across the Netherlands.',
+    points: [],
+  },
+];
+
+const commercial = [
+  { title: 'Owning the P&L', text: 'Running my own agency means I set pricing, watch client profitability and do new-business sales and closing myself.' },
+  { title: 'Launching and selling a service', text: 'In 2026 I developed and commercialised an AI-search (GEO) service, built its acquisition infrastructure, ran the sales process and personally closed 8 new B2B clients.' },
+  { title: 'Multi-year client relationships', text: 'I present monthly results and strategy to founders and in-house marketing teams. EasyZZP has worked with me since 2018, Happy with Yoga since 2022.' },
+  { title: 'Working with creatives and teams', text: 'I brief designers and content creators on new creatives. At Vos Marketing I presented monthly performance reviews to clients and set the testing plan for the next month.' },
+];
+
+const skills = [
+  { group: 'Paid media', items: 'Meta Ads (expert), Google Ads, TikTok Ads, Pinterest Ads, LinkedIn Ads · campaign structure, audience strategy, creative testing, budget pacing' },
+  { group: 'Growth', items: 'Full-funnel strategy · landing pages and CRO · e-mail and CRM · lead generation · tracking and attribution · copywriting' },
+  { group: 'Data & AI', items: 'Meta Ads Manager, Google Analytics, custom dashboards, n8n, APIs, AI agents · KPI reporting (CPA, ROAS, CPL, CR)' },
+  { group: 'Business', items: 'B2B sales and closing · account management · client retention · stakeholder communication' },
+];
+
+const personSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Joost van Putten',
+  jobTitle: 'Performance & Growth Marketer',
+  url: pageUrl,
+  email: `mailto:${email}`,
+  sameAs: [linkedinUrl],
+  address: { '@type': 'PostalAddress', addressLocality: 'Valencia', addressCountry: 'ES' },
+  alumniOf: { '@type': 'CollegeOrUniversity', name: 'Hogeschool Utrecht' },
+  knowsLanguage: ['nl', 'en', 'es'],
+});
 ---
 
 <!doctype html>
 <html lang="en">
 <head>
   <SEOHead
-    title="Joost van Putten | Performance Marketer"
-    description="Performance marketer focused on Meta Ads, creative strategy and AI systems. Selected ads, results and client feedback."
-    canonical={`${siteConfig.url}/joost`}
-    noindex={true}
+    title="Joost van Putten | Performance & Growth Marketer"
+    description="Performance marketer with 8+ years in paid social, €8M+ in managed Meta spend and 50+ clients. Selected ads, case studies, self-built AI systems and full CV."
+    canonical={pageUrl}
+    ogImage="/images/og/default.jpg"
     locale="en"
+    schemas={[personSchema]}
   />
 </head>
-<body class="bg-bg text-text font-body antialiased">
+<body class="pf">
+  <a class="skip" href="#main">Skip to content</a>
 
-  <header class="border-b border-border">
-    <div class="max-w-5xl mx-auto px-4 md:px-6 h-14 flex items-center">
-      <span class="font-heading text-xl font-extrabold tracking-tight uppercase">Joost van Putten</span>
+  <header class="pf-nav" data-nav>
+    <div class="wrap pf-nav-inner">
+      <a href="#top" class="pf-brand" aria-label="Joost van Putten, back to top">
+        <span class="pf-brand-full">Joost van Putten</span>
+        <span class="pf-brand-short" aria-hidden="true">JvP</span>
+      </a>
+      <nav aria-label="Sections">
+        <ul class="pf-links">
+          <li><a href="#work">Work</a></li>
+          <li><a href="#ai">AI Systems</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a class="pf-cv-btn" href={cvUrl} download>CV <span aria-hidden="true">↓</span></a>
     </div>
   </header>
 
-  <main>
-    {/* 1. Hero */}
-    <section class="py-12 md:py-20">
-      <div class="max-w-5xl mx-auto px-4 md:px-6 grid gap-8 md:grid-cols-[1fr_280px] md:items-center">
-        <div>
-          <h1 class="font-heading uppercase text-5xl md:text-7xl leading-[0.95]">Joost van Putten</h1>
-          <p class="mt-4 text-lg md:text-xl font-semibold text-primary">
-            Performance Marketer · Meta Ads · Creative Strategy · AI Systems
+  <main id="main">
+    {/* Hero */}
+    <section id="top" class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="kicker">Performance & Growth Marketer · Paid Social</p>
+          <h1 class="hero-name">Joost<br />van Putten</h1>
+          <p class="hero-lead">
+            I scale paid campaigns, mostly on Meta, for brands in the Netherlands and Belgium.
+            I also run my own agency, so I own budgets, pricing and client profitability.
+            And I build the systems I work with: n8n, APIs and AI agents on my own server.
           </p>
-          <p class="mt-5 max-w-xl text-lg leading-relaxed">
-            I combine hands-on marketing expertise with the commercial judgment of an entrepreneur
-            and the technical curiosity to build practical AI systems.
-          </p>
-          <ul class="mt-6 flex flex-wrap gap-2 text-sm font-semibold">
-            <li class="stat">8+ years</li>
-            <li class="stat">Founder since 2018</li>
-            <li class="stat"><span class="pending">Metric pending</span> in managed Meta spend</li>
-            <li class="stat">50+ clients</li>
-          </ul>
-          <p class="mt-6 text-text-muted">Based in Valencia, working remotely for NL/EU teams.</p>
-        </div>
-        <Image
-          src={portrait}
-          alt="Joost van Putten"
-          width={560}
-          class="w-48 md:w-full aspect-[4/5] object-cover rounded-image"
-          loading="eager"
-        />
-      </div>
-    </section>
-
-    {/* Expertise pillars */}
-    <section class="pb-12 md:pb-16" aria-labelledby="pillars-title">
-      <div class="max-w-5xl mx-auto px-4 md:px-6">
-        <p class="eyebrow text-primary">Expertise</p>
-        <h2 id="pillars-title" class="section-title">What I bring</h2>
-        <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {pillars.map((p, i) => (
-            <article class="card p-5">
-              <span class="text-sm font-extrabold text-primary">0{i + 1}</span>
-              <h3 class="mt-1 font-heading uppercase text-xl leading-tight">{p.title}</h3>
-              <p class="mt-2 text-sm text-text-muted">{p.body}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    {/* 2. Selected ads */}
-    <section class="py-12 md:py-16 bg-bg-alt" aria-labelledby="ads-title">
-      <div class="max-w-5xl mx-auto px-4 md:px-6">
-        <p class="eyebrow text-primary">Work</p>
-        <h2 id="ads-title" class="section-title">Selected ads</h2>
-        <div class="mt-8 grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-          {ads.map((ad) => (
-            <article class="card overflow-hidden">
-              <button
-                type="button"
-                class="facade aspect-[9/16]"
-                data-vimeo={ad.id}
-                aria-label={`Play ${ad.brand} ad`}
-              >
-                <img src={ad.thumb} alt="" width="640" height="1138" loading="lazy" decoding="async" />
-                <span class="play" aria-hidden="true"></span>
-              </button>
-              <div class="p-3 md:p-4">
-                <h3 class="font-heading uppercase text-lg leading-tight">{ad.brand}</h3>
-                <p class="text-sm text-text-muted">{ad.goal}</p>
-                <p class="mt-2 text-sm font-semibold">
-                  {ad.metric ?? <span class="pending">Metric pending</span>}
-                </p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    {/* 3. Selected results */}
-    <section class="py-12 md:py-16" aria-labelledby="results-title">
-      <div class="max-w-5xl mx-auto px-4 md:px-6">
-        <p class="eyebrow text-primary">Results</p>
-        <h2 id="results-title" class="section-title">Selected results</h2>
-        <div class="mt-8 grid gap-4 md:grid-cols-2">
-          {results.map((r) => (
-            <article class="card p-5 md:p-6">
-              <div class="flex flex-wrap items-baseline justify-between gap-2">
-                <h3 class="font-heading uppercase text-2xl leading-tight">{r.client}</h3>
-                <span class="text-xs font-semibold uppercase tracking-wide text-text-muted">
-                  {r.sector ?? <span class="pending">Sector pending</span>}
-                </span>
-              </div>
-              <p class="mt-3 font-semibold">{r.result}</p>
-              {r.note && <p class="mt-1 text-sm text-text-muted">{r.note}</p>}
-              <p class="mt-3 text-sm">
-                <span class="text-text-muted">My role: </span>
-                {r.role ?? <span class="pending">Role pending</span>}
-              </p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    {/* Experience: entrepreneurship */}
-    <section class="py-12 md:py-16 border-t border-border" aria-labelledby="experience-title">
-      <div class="max-w-5xl mx-auto px-4 md:px-6">
-        <p class="eyebrow text-primary">Experience</p>
-        <h2 id="experience-title" class="section-title">Running my own business</h2>
-
-        <div class="mt-8 grid gap-8 md:grid-cols-[1fr_1.4fr]">
-          <div>
-            <h3 class="font-heading uppercase text-2xl leading-tight">Founder, NXG Media</h3>
-            <p class="text-sm font-semibold text-text-muted">2018 to now · Independent marketing business</p>
-            <p class="mt-4 leading-relaxed">
-              I founded NXG Media in 2018 and have built and run it for more than eight years.
-              Next to running campaigns myself, I bring in clients, write proposals, set pricing
-              and carry the commercial results of the business. That puts every campaign decision
-              in the context of the client's revenue, margins and business model.
-            </p>
-            <ul class="mt-6 space-y-2">
-              {commercialHighlights.map((h) => (
-                <li class="highlight">{h}</li>
-              ))}
-            </ul>
+          <div class="hero-actions">
+            <a class="btn btn-dark" href="#work">Selected work</a>
+            <a class="btn btn-line" href="#ai">AI systems</a>
+            <a class="btn btn-line" href={cvUrl} download>Download CV <span class="btn-meta">PDF</span></a>
           </div>
-          <dl class="grid gap-4 sm:grid-cols-2">
-            {commercialSkills.map((s) => (
-              <div class="card p-4">
-                <dt class="font-heading uppercase text-lg leading-tight">{s.title}</dt>
-                <dd class="mt-1 text-sm text-text-muted">{s.body}</dd>
-              </div>
-            ))}
-          </dl>
+          <p class="hero-loc">Valencia, Spain, relocating to Madrid · Dutch (native), English (C1), Spanish (B1 to B2)</p>
         </div>
+        <figure class="hero-photo">
+          <Image src={portrait} alt="Joost van Putten" widths={[480, 720, 960]} sizes="(min-width: 900px) 40vw, 90vw" loading="eager" fetchpriority="high" />
+        </figure>
+      </div>
+      <div class="wrap">
+        <dl class="figures">
+          {heroFigures.map((f) => (
+            <div>
+              <dt class="num">{f.value}</dt>
+              <dd>{f.label}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
 
-    {/* 4. What clients say */}
-    <section class="py-12 md:py-16 bg-bg-alt" aria-labelledby="clients-title">
-      <div class="max-w-5xl mx-auto px-4 md:px-6">
-        <p class="eyebrow text-primary">Feedback</p>
-        <h2 id="clients-title" class="section-title">What clients say</h2>
-        <div class="mt-8 grid gap-6 md:grid-cols-3">
-          {testimonials.map((t) => (
-            <article class="card overflow-hidden">
-              <button
-                type="button"
-                class="facade aspect-video"
-                data-vimeo={t.id}
-                aria-label={`Play testimonial from ${t.name}`}
-              >
-                <Image src={t.thumb} alt="" width={640} loading="lazy" />
-                <span class="play" aria-hidden="true"></span>
-              </button>
-              <div class="p-4">
-                <h3 class="font-heading uppercase text-lg leading-tight">{t.name}</h3>
-                <p class="text-sm text-text-muted">{t.role}</p>
-              </div>
-            </article>
+    {/* Work: flagship cases */}
+    <section id="work" class="section">
+      <div class="wrap">
+        <header class="sec-head">
+          <p class="sec-index">01 · Work</p>
+          <h2>Selected work</h2>
+          <p class="sec-intro">Three long-term clients, shown through the actual ads. Figures are labelled by level, so client totals, campaign results and single-ad results are never mixed.</p>
+          <ul class="scope-legend" aria-label="How figures are labelled">
+            <li><span class="scope scope-client">Client total</span></li>
+            <li><span class="scope scope-campaign">Campaign</span></li>
+            <li><span class="scope scope-ad">This ad</span></li>
+          </ul>
+        </header>
+      </div>
+
+      {/* Flagship 1: Happy with Yoga */}
+      <article class="flag" aria-labelledby="flag-hwy">
+        <div class="wrap">
+          <div class="flag-head">
+            <Image src={hwy.logo} alt="" height={56} class="flag-logo" />
+            <div>
+              <p class="flag-no">Case 01</p>
+              <h3 id="flag-hwy">{hwy.client}</h3>
+              <p class="flag-meta">{hwy.meta}</p>
+            </div>
+          </div>
+          <div class="flag-intro">
+            <p class="flag-lead">{hwy.lead}</p>
+            <dl class="totals">
+              {hwy.totals.map((t) => (
+                <div><dt class="num">{t.value}</dt><dd><span class="scope scope-client">Client total</span>{t.label}</dd></div>
+              ))}
+            </dl>
+          </div>
+
+          <div class="bands">
+            {hwy.stages.map((s, i) => (
+              <section class:list={['band', { 'band-compact': s.creatives.length === 0 }]} aria-label={s.name}>
+                <div class="band-text">
+                  <p class="stage-tag"><span>{String.fromCharCode(65 + i)}</span>{s.tag}</p>
+                  <h4>{s.name}</h4>
+                  <dl class="stage-figures">
+                    {s.figures.map((f) => (
+                      <div><dt class="num">{f.value}</dt><dd>{f.label}</dd></div>
+                    ))}
+                  </dl>
+                  <span class="scope scope-campaign">Campaign</span>
+                  {s.note && s.creatives.length > 0 && <p class="stage-note">{s.note}</p>}
+                </div>
+                {s.creatives.length === 0 && s.note && <p class="band-side-note">{s.note}</p>}
+                {s.creatives.length > 0 && (
+                  <div class="band-gallery">
+                    {s.creatives.map((c) => (
+                      <CreativeTile brand={hwy.client} format={c.format} ratio={c.ratio} size={c.size === 'lg' ? 'lg' : 'sm'} {...media(c.slug)} />
+                    ))}
+                  </div>
+                )}
+              </section>
+            ))}
+          </div>
+          <p class="fine">These are three separate campaigns, not one proven sequential funnel. Their spend is part of the ~€180k total, not on top of it.</p>
+
+          <div class="flag-video">
+            <CreativeTile brand={hwy.client} format={hwy.video.format} vimeo={hwy.video.vimeo} metrics={hwy.video.metrics} />
+            <div class="flag-video-text">
+              <span class="scope scope-ad">This ad</span>
+              <p>A video ad from the same account, with its own results. "Results" is the conversion event the campaign optimised for.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      {/* Flagship 2: Het Grote Depri Doeboek */}
+      <article class="flag flag-tint" aria-labelledby="flag-depri">
+        <div class="wrap">
+          <div class="flag-head">
+            <Image src={depri.logo} alt="" height={56} class="flag-logo" />
+            <div>
+              <p class="flag-no">Case 02</p>
+              <h3 id="flag-depri">{depri.client} <span class="flag-alias">/ {depri.alias}</span></h3>
+              <p class="flag-meta">{depri.meta}</p>
+            </div>
+          </div>
+          <div class="flag-intro">
+            <p class="flag-lead">{depri.lead}</p>
+            <dl class="totals">
+              {depri.totals.map((t) => (
+                <div><dt class="num">{t.value}</dt><dd><span class="scope scope-client">Client total</span>{t.label}</dd></div>
+              ))}
+            </dl>
+          </div>
+          <p class="wall-label"><span class="scope scope-ad">This ad</span> Four formats, four results</p>
+          <div class="wall">
+            {depri.creatives.map((c) => (
+              <CreativeTile brand={depri.client} logo={depri.logo} format={c.format} vimeo={c.vimeo} {...media(c.slug)} ratio={c.ratio} postUrl={c.postUrl} metrics={c.metrics} note={c.note} size={c.size === 'lg' ? 'lg' : 'md'} />
+            ))}
+          </div>
+          <p class="fine">The ~50,000 books are business-wide sales through all channels, not purchases attributed to ads.</p>
+        </div>
+      </article>
+
+      {/* Flagship 3: Ik Rouw Van Je */}
+      <article class="flag" aria-labelledby="flag-irvj">
+        <div class="wrap">
+          <div class="flag-head">
+            <Image src={irvj.logo} alt="" height={56} class="flag-logo" />
+            <div>
+              <p class="flag-no">Case 03</p>
+              <h3 id="flag-irvj">{irvj.client}</h3>
+              <p class="flag-meta">{irvj.meta}</p>
+            </div>
+          </div>
+          <div class="flag-intro">
+            <p class="flag-lead">{irvj.lead}</p>
+            <dl class="totals totals-4">
+              {irvj.totals.map((t) => (
+                <div><dt class="num">{t.value}</dt><dd><span class="scope scope-client">Client total</span>{t.label}</dd></div>
+              ))}
+            </dl>
+          </div>
+          <p class="wall-label">Five creative approaches</p>
+          <div class="irvj-grid">
+            <CreativeTile brand={irvj.client} format={irvjFeature.format} ratio={irvjFeature.ratio} size="lg" postUrl={irvjFeature.postUrl} {...media(irvjFeature.slug)} />
+            <div class="irvj-squares">
+              {irvj.creatives.map((c) => (
+                <CreativeTile brand={irvj.client} logo={irvj.logo} format={c.format} ratio={c.ratio} size="sm" postUrl={c.postUrl} {...media(c.slug)} />
+              ))}
+            </div>
+          </div>
+          <p class="fine">Purchase cost and CTR are campaign-wide averages and are not assigned to individual ads. The 33,000 books are business-wide sales through all channels.</p>
+        </div>
+      </article>
+
+      {/* More creative work */}
+      <div class="wrap more">
+        <header class="more-head">
+          <h3>More creative work</h3>
+          <p>Subscriptions, recruitment and B2B. The two Stekkies videos ran on both Meta and TikTok.</p>
+        </header>
+        <div class="more-grid">
+          {moreWork.map((w) => (
+            <div class="more-item">
+              <p class="more-brand">{w.logo ? <Image src={w.logo} alt={w.brand} height={28} class="more-logo" /> : <strong>{w.brand}</strong>}</p>
+              <CreativeTile brand={w.brand} format={w.format} vimeo={w.vimeo} metrics={w.metrics} note={w.note} />
+            </div>
           ))}
         </div>
       </div>
-    </section>
 
-    {/* 5. Logo row */}
-    <LogoMarquee logos={logos} label="Brands I have worked with" />
-
-    {/* 6. How I work with AI */}
-    <section class="py-12 md:py-16" aria-labelledby="ai-title">
-      <div class="max-w-5xl mx-auto px-4 md:px-6">
-        <p class="eyebrow text-primary">Systems</p>
-        <h2 id="ai-title" class="section-title">How I work with AI</h2>
-        <p class="mt-3 max-w-2xl text-text-muted">
-          Systems I use day to day for client work and creative analysis.
-        </p>
-
-        <div class="mt-8 grid gap-4">
-          {aiSystems.map((s) => (
-            <article class="card p-5 md:p-6">
-              <div class="flex flex-wrap items-center justify-between gap-2">
-                <h3 class="font-heading uppercase text-xl leading-tight">{s.area}</h3>
-                <span class={s.status === 'In use' ? 'badge badge-live' : 'badge badge-dev'}>{s.status}</span>
-              </div>
-              <dl class="mt-4 grid gap-3 md:grid-cols-3 text-sm">
-                <div><dt class="flow-label">Before</dt><dd>{s.before}</dd></div>
-                <div><dt class="flow-label">Now</dt><dd>{s.now}</dd></div>
-                <div><dt class="flow-label">Result</dt><dd class="font-semibold">{s.result}</dd></div>
+      {/* Earlier cases */}
+      <div class="wrap earlier">
+        <h3 class="earlier-title">Earlier results</h3>
+        <div class="earlier-grid">
+          {earlierCases.map((c) => (
+            <article class="earlier-item">
+              <h4>{c.client}</h4>
+              <p class="flag-meta">{c.meta}</p>
+              <p class="earlier-text">{c.text}</p>
+              <dl class="earlier-figures">
+                {c.figures.map((f) => (
+                  <div><dt class="num">{f.value}</dt><dd>{f.label}</dd></div>
+                ))}
               </dl>
             </article>
           ))}
         </div>
+        <p class="also"><span>Also:</span> {alsoWorked.join(' · ')}</p>
+        <p class="fine integrity">About these numbers: all figures come from my own campaign reporting and have not been independently audited. Calculated returns and estimates are marked as such and are not Meta-attributed ROAS.</p>
+      </div>
+    </section>
 
-        <p class="mt-6 font-semibold">
-          Measured impact: <span class="pending">Metric pending</span> hours saved per week.
-        </p>
-
-        <div class="mt-6 grid gap-4 md:grid-cols-3">
-          {[1, 2, 3].map((n) => (
-            <div class="screenshot-slot aspect-video">Screenshot {n} pending</div>
+    {/* Testimonials */}
+    <section class="section" aria-labelledby="voices-title">
+      <div class="wrap">
+        <header class="sec-head">
+          <p class="sec-index">02 · Clients</p>
+          <h2 id="voices-title">In their words</h2>
+        </header>
+        <div class="voices">
+          {testimonials.map((t, i) => (
+            <figure class:list={['voice', { 'voice-lead': i === 0 }]}>
+              <button type="button" class="facade ratio-169" data-vimeo={t.id} aria-label={`Play video from ${t.name}`}>
+                <Image src={t.thumb} alt="" width={i === 0 ? 960 : 640} loading="lazy" />
+                <span class="play" aria-hidden="true"></span>
+              </button>
+              <figcaption><strong>{t.name}</strong> · {t.role}</figcaption>
+            </figure>
           ))}
         </div>
       </div>
     </section>
 
-    {/* 7. About + contact */}
-    <section class="py-12 md:py-16 bg-bg-dark text-text-inverse" aria-labelledby="about-title" id="contact">
-      <div class="max-w-3xl mx-auto px-4 md:px-6">
-        <p class="eyebrow light">About</p>
-        <h2 id="about-title" class="section-title">About and contact</h2>
-        <div class="mt-6 space-y-4 text-white/85 leading-relaxed">
-          <p>
-            I am a hands-on performance marketer with 8+ years of experience in paid social, mostly Meta Ads.
-            Since founding NXG Media in 2018 I have also handled sales, proposals, pricing and long-term client relationships myself.
-            I have worked with 50+ clients, including subscription and e-commerce brands, education companies and recruitment.
-            I am happy to build and optimise campaigns myself, and I bring the commercial view of someone who has run a business.
-            I am based in Valencia and work remotely with teams in the Netherlands and across Europe.
-          </p>
-        </div>
-        <ul class="mt-8 grid gap-3 sm:grid-cols-2">
-          <li>
-            <a class="contact-link" href="mailto:info@nxg-media.com">
-              <span class="flow-label text-white/60">Email</span>
-              info@nxg-media.com
-            </a>
-          </li>
-          <li>
-            {linkedinUrl ? (
-              <a class="contact-link" href={linkedinUrl} target="_blank" rel="noopener noreferrer">
-                <span class="flow-label text-white/60">LinkedIn</span>
-                View profile
-              </a>
-            ) : (
-              <div class="contact-link">
-                <span class="flow-label text-white/60">LinkedIn</span>
-                <span class="pending">Link pending</span>
+    <LogoMarquee logos={logos} label="Brands I have worked with" variant="light" />
+
+    {/* AI systems */}
+    <section id="ai" class="section section-dark">
+      <div class="wrap">
+        <header class="sec-head">
+          <p class="sec-index">03 · AI Systems</p>
+          <h2>Systems I built</h2>
+          <p class="sec-intro">Self-hosted on my own VPS with n8n, APIs and AI models. Each one has a status, so it is clear what runs today and what is still being tested.</p>
+          <ul class="legend" aria-label="Status legend">
+            <li><span class="status status-live">In use</span> runs in my daily client work</li>
+            <li><span class="status status-pilot">Pilot</span> tested on real work, reviewed manually</li>
+          </ul>
+        </header>
+
+        <article class="project">
+          <div class="project-head">
+            <span class="status status-pilot">Pilot</span>
+            <h3>Creative Research & Strategy Agent</h3>
+            <p class="project-lead">
+              Combines my hook library and angle bank with live Meta ad performance to suggest the next ads to test,
+              then writes a ready-to-use brief for a designer or content creator. Its design is based on a research report into how
+              leading creative strategists run research, briefing and testing.
+            </p>
+          </div>
+
+          <ol class="flow" aria-label="How the agent works">
+            {strategistFlow.map((s, i) => (
+              <li>
+                <span class="flow-no">{i + 1}</span>
+                <strong>{s.step}</strong>
+                <span>{s.text}</span>
+                {s.gate && <em class="gate">Human gate: {s.gate}</em>}
+              </li>
+            ))}
+          </ol>
+
+          <div class="project-cols">
+            <div>
+              <p class="case-label">Design principles</p>
+              <ul class="ticks">
+                {strategistPrinciples.map((p) => <li>{p}</li>)}
+              </ul>
+            </div>
+            <div>
+              <p class="case-label">Stack</p>
+              <p class="stack">n8n (self-hosted) · Meta Marketing API · Notion · LLM APIs</p>
+              <p class="case-label">Where it is now</p>
+              <p>Running as a manually triggered pilot on real client boards. Every output is reviewed by me before it is used.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-head">
+            <span class="status status-live">In use</span>
+            <h3>NXG Creative OS</h3>
+            <p class="project-lead">
+              My operating system for client work: one hub per client that brings together ad performance,
+              communication and creatives, and turns them into a clear daily plan.
+            </p>
+          </div>
+
+          <ol class="flow flow-4" aria-label="How NXG Creative OS works">
+            {osFlow.map((s, i) => (
+              <li>
+                <span class="flow-no">{i + 1}</span>
+                <strong>{s.step}</strong>
+                <span>{s.text}</span>
+              </li>
+            ))}
+          </ol>
+
+          <dl class="features">
+            {osFeatures.map((f) => (
+              <div>
+                <dt>{f.title}</dt>
+                <dd>{f.text}</dd>
               </div>
-            )}
-          </li>
+            ))}
+          </dl>
+          <p class="stack mt">n8n (self-hosted) · Meta API · Notion · e-mail · WhatsApp</p>
+        </article>
+
+        <article class="project">
+          <div class="project-head">
+            <span class="status status-live">In use</span>
+            <h3>Video analysis to script</h3>
+            <p class="project-lead">
+              The operational part of my creative workflow today. Video ads are analysed for hook and structure,
+              stored next to their performance data, and used as input for new scripts.
+            </p>
+          </div>
+          <ol class="flow flow-3" aria-label="How the video analysis workflow works">
+            {videoFlow.map((s, i) => (
+              <li>
+                <span class="flow-no">{i + 1}</span>
+                <strong>{s.step}</strong>
+                <span>{s.text}</span>
+              </li>
+            ))}
+          </ol>
+          <p class="stack mt">Gemini · Notion · Claude · n8n (self-hosted)</p>
+        </article>
+
+        <div class="supporting">
+          <p class="case-label">Supporting projects</p>
+          <ul>
+            {supporting.map((s) => (
+              <li>
+                <div class="supporting-head">
+                  <strong>{s.title}</strong>
+                  <span class:list={['status', s.status === 'In use' ? 'status-live' : 'status-pilot']}>{s.status}</span>
+                </div>
+                <p>{s.text}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    {/* Experience / CV */}
+    <section id="experience" class="section">
+      <div class="wrap">
+        <header class="sec-head sec-head-row">
+          <div>
+            <p class="sec-index">04 · Experience</p>
+            <h2>Career</h2>
+          </div>
+          <a class="btn btn-line" href={cvUrl} download>Download full CV <span class="btn-meta">PDF</span></a>
+        </header>
+
+        <ol class="timeline">
+          {experience.map((e) => (
+            <li>
+              <p class="tl-period">{e.period}</p>
+              <div>
+                <h3>{e.role}</h3>
+                <p class="tl-org">{e.org}</p>
+                <p class="tl-summary">{e.summary}</p>
+                {e.points.length > 0 && (
+                  <ul class="ticks">
+                    {e.points.map((p) => <li>{p}</li>)}
+                  </ul>
+                )}
+              </div>
+            </li>
+          ))}
+        </ol>
+
+        <div class="commercial">
+          <div class="commercial-intro">
+            <p class="sec-index">The commercial side</p>
+            <h3>More than the ads manager</h3>
+            <p>Eight years of running my own business means I have also sold, priced, negotiated and kept clients. A few concrete examples.</p>
+          </div>
+          <dl class="commercial-list">
+            {commercial.map((c) => (
+              <div>
+                <dt>{c.title}</dt>
+                <dd>{c.text}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+
+        <div class="cv-grid">
+          <div class="cv-block cv-skills">
+            <p class="case-label">Skills and tools</p>
+            <dl>
+              {skills.map((s) => (
+                <div>
+                  <dt>{s.group}</dt>
+                  <dd>{s.items}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+          <div class="cv-block">
+            <p class="case-label">Education</p>
+            <ul class="plain">
+              <li><strong>Bachelor, Human Resource Management</strong><br />HU University of Applied Sciences Utrecht</li>
+              <li><strong>Psychology, propaedeutic year</strong><br />VU Amsterdam</li>
+            </ul>
+            <p class="case-label">Certificates</p>
+            <ul class="plain">
+              <li>Meta Media Buying Professional</li>
+              <li>Google Analytics Academy (2019)</li>
+            </ul>
+            <p class="case-label">Languages</p>
+            <ul class="plain">
+              <li>Dutch (native) · English (C1) · Spanish (B1 to B2)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Contact */}
+    <section id="contact" class="section section-dark contact">
+      <div class="wrap contact-grid">
+        <div>
+          <p class="sec-index">05 · Contact</p>
+          <h2>Let's talk</h2>
+          <p class="sec-intro">I want to bring the ownership of running my own agency into an ambitious international team.</p>
+        </div>
+        <ul class="contact-list">
+          <li><a href={`mailto:${email}`}><span>E-mail</span>{email}</a></li>
+          <li><a href={linkedinUrl} target="_blank" rel="noopener noreferrer"><span>LinkedIn</span>linkedin.com/in/joost-van-putten</a></li>
+          <li><a href={cvUrl} download><span>CV</span>Download PDF</a></li>
         </ul>
       </div>
     </section>
   </main>
 
-  <footer class="py-6 text-center text-xs text-text-muted">© {new Date().getFullYear()} Joost van Putten</footer>
+  <footer class="pf-foot wrap">Joost van Putten · Valencia, Spain</footer>
 
   <script is:inline>
+    document.querySelectorAll('.facade[data-video]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var v = document.createElement('video');
+        v.src = btn.dataset.video;
+        v.controls = true;
+        v.autoplay = true;
+        v.playsInline = true;
+        v.setAttribute('aria-label', btn.getAttribute('aria-label') || 'Video');
+        v.className = btn.className.replace('facade', 'facade-frame');
+        btn.replaceWith(v);
+        v.play().catch(function () {});
+      }, { once: true });
+    });
+
     document.querySelectorAll('.facade[data-vimeo]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var iframe = document.createElement('iframe');
@@ -356,126 +789,326 @@ const linkedinUrl: string | null = null;
         btn.replaceWith(iframe);
       }, { once: true });
     });
+
+    (function () {
+      var links = document.querySelectorAll('.pf-links a');
+      var map = {};
+      links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+      if (!('IntersectionObserver' in window)) return;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          links.forEach(function (a) { a.removeAttribute('aria-current'); });
+          var a = map[e.target.id];
+          if (a) a.setAttribute('aria-current', 'true');
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      Object.keys(map).concat('top').forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) io.observe(el);
+      });
+    })();
   </script>
 
   <style is:global>
-    .section-title {
-      font-family: 'Barlow Condensed', 'Arial Narrow', Impact, sans-serif;
-      text-transform: uppercase;
-      font-size: clamp(2rem, 5vw, 3rem);
-      line-height: 1;
-      margin-top: 0.25rem;
+    .pf {
+      --ink: #111316;
+      --muted: #5b5f66;
+      --line: #e4e4e0;
+      --paper: #ffffff;
+      --tint: #f5f5f2;
+      --blue: #0756ef;
+      --yellow: #fff000;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'DM Sans', Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
     }
-    .stat {
-      border: 1px solid var(--color-border);
-      border-radius: 999px;
-      padding: 0.35rem 0.85rem;
-      background: var(--color-bg);
-    }
-    .card {
-      background: var(--color-bg);
-      border: 1px solid var(--color-border);
-      border-radius: 12px;
-    }
-    .facade,
-    .facade-frame {
-      position: relative;
-      display: block;
-      width: 100%;
-      border: 0;
-      padding: 0;
-      background: var(--color-bg-dark);
-    }
+    .pf h1, .pf h2, .pf h3 { font-family: 'DM Sans', Arial, sans-serif; letter-spacing: -0.02em; }
+    .pf .num { font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 800; letter-spacing: -0.01em; line-height: 1; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+    @media (min-width: 768px) { .wrap { padding: 0 32px; } }
+
+    .skip { position: absolute; left: -9999px; top: 8px; z-index: 100; background: var(--ink); color: #fff; padding: 8px 12px; border-radius: 6px; }
+    .skip:focus { left: 8px; }
+    .pf a:focus-visible, .pf button:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
+    html { scroll-padding-top: 72px; }
+
+    /* Nav */
+    .pf-nav { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.88); backdrop-filter: saturate(1.4) blur(12px); -webkit-backdrop-filter: saturate(1.4) blur(12px); border-bottom: 1px solid var(--line); }
+    .pf-nav-inner { display: flex; align-items: center; gap: 12px; height: 56px; }
+    .pf-brand { font-weight: 800; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; white-space: nowrap; }
+    .pf-brand-full { display: none; }
+    @media (min-width: 640px) { .pf-brand-full { display: inline; } .pf-brand-short { display: none; } }
+    .pf nav { margin-left: auto; overflow-x: auto; scrollbar-width: none; }
+    .pf-links { display: flex; gap: 2px; list-style: none; margin: 0; padding: 0; }
+    .pf-links a { display: block; padding: 6px 6px; font-size: 13px; font-weight: 600; color: var(--muted); text-decoration: none; border-radius: 999px; white-space: nowrap; transition: color 150ms, background 150ms; }
+    .pf-links a:hover { color: var(--ink); }
+    .pf-links a[aria-current] { color: var(--ink); background: var(--tint); }
+    .pf-cv-btn { display: none; padding: 7px 14px; border-radius: 999px; background: var(--ink); color: #fff; font-size: 14px; font-weight: 700; text-decoration: none; }
+    @media (min-width: 768px) { .pf-cv-btn { display: inline-block; } .pf-links a { padding: 6px 12px; font-size: 14px; } }
+
+    /* Hero */
+    .hero { padding: 40px 0 0; }
+    .hero-grid { display: grid; gap: 32px; align-items: end; }
+    @media (min-width: 900px) { .hero { padding-top: 72px; } .hero-grid { grid-template-columns: 1.25fr 1fr; gap: 56px; } }
+    .kicker { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); }
+    .hero-name { margin-top: 14px; font-size: clamp(3rem, 11vw, 6.5rem); line-height: 0.92; font-weight: 800; letter-spacing: -0.045em; }
+    .hero-lead { margin-top: 24px; max-width: 34em; font-size: 1.125rem; line-height: 1.6; color: #2b2e33; }
+    .hero-actions { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 10px; }
+    .hero-loc { margin-top: 22px; font-size: 14px; color: var(--muted); }
+    .hero-photo { margin: 0; border-radius: 20px; overflow: hidden; background: var(--tint); aspect-ratio: 4 / 5; max-height: 640px; }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; }
+    @media (max-width: 899px) { .hero-photo { order: -1; aspect-ratio: 5 / 4; } }
+
+    .figures { margin: 48px 0 0; display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--line); }
+    @media (min-width: 768px) { .figures { grid-template-columns: repeat(4, 1fr); } }
+    .figures > div { padding: 22px 0 24px; border-bottom: 1px solid var(--line); }
+    @media (min-width: 768px) { .figures > div { border-bottom: 0; padding-right: 16px; } .figures > div + div { padding-left: 20px; border-left: 1px solid var(--line); } }
+    .figures dt { font-size: clamp(2.25rem, 5vw, 3.25rem); }
+    .figures dd { margin: 6px 0 0; font-size: 14px; color: var(--muted); }
+
+    /* Buttons */
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px; border-radius: 999px; font-weight: 700; font-size: 15px; text-decoration: none; transition: transform 150ms, background 150ms, border-color 150ms; }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-dark { background: var(--ink); color: #fff; }
+    .btn-line { border: 1.5px solid var(--ink); color: var(--ink); }
+    .btn-line:hover { background: var(--ink); color: #fff; }
+    .btn-meta { font-size: 11px; font-weight: 800; letter-spacing: 0.06em; opacity: 0.6; }
+
+    /* Sections */
+    .section { padding: 72px 0; }
+    @media (min-width: 900px) { .section { padding: 112px 0; } }
+    .section-tint { background: var(--tint); }
+    .section-dark { background: var(--ink); color: #f1f1ee; }
+    .sec-head { max-width: 720px; margin-bottom: 40px; }
+    .sec-head-row { max-width: none; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 20px; }
+    .sec-index { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); }
+    .section-dark .sec-index { color: #8db0ff; }
+    .sec-head h2 { margin-top: 10px; font-size: clamp(2.1rem, 5vw, 3.5rem); line-height: 1; font-weight: 800; }
+    .sec-intro { margin-top: 14px; font-size: 1.0625rem; line-height: 1.6; color: var(--muted); }
+    .section-dark .sec-intro { color: #b7b9be; }
+
+    /* Gallery */
+    @media (min-width: 1024px) {
+        }
+
+    .facade, .facade-frame { position: relative; display: block; width: 100%; border: 0; padding: 0; background: #0d0f12; border-radius: 14px; overflow: hidden; }
     .facade { cursor: pointer; }
-    .facade img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .ratio-916 { aspect-ratio: 9 / 16; }
+    .ratio-169 { aspect-ratio: 16 / 9; }
+    .facade img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 400ms ease; }
+    .facade:hover img { transform: scale(1.03); }
+    .play { position: absolute; left: 50%; top: 50%; width: 56px; height: 56px; transform: translate(-50%, -50%); border-radius: 999px; background: var(--yellow); box-shadow: 0 6px 20px rgba(0,0,0,0.35); transition: transform 150ms; }
+    .play::after { content: ''; position: absolute; left: 22px; top: 17px; border-style: solid; border-width: 11px 0 11px 17px; border-color: transparent transparent transparent var(--ink); }
+    .facade:hover .play { transform: translate(-50%, -50%) scale(1.08); }
+    @media (prefers-reduced-motion: reduce) { .facade img, .play, .btn { transition: none; } }
+
+    /* Cases */
+    .case-label { font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 18px 0 6px; }
+    .case-label:first-child { margin-top: 0; }
+    .ratio-45 { aspect-ratio: 4 / 5; }
+
+    /* Figure scopes */
+    .scope-legend { list-style: none; padding: 0; margin: 18px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+    .scope { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10.5px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.6; white-space: nowrap; }
+    .scope-client { background: var(--ink); color: #fff; }
+    .scope-campaign { background: #e6eeff; color: #0544c0; }
+    .scope-ad { background: var(--yellow); color: var(--ink); }
+
+    /* Flagship cases */
+    .flag { padding: 56px 0; border-top: 1px solid var(--line); }
+    @media (min-width: 900px) { .flag { padding: 88px 0; } }
+    .flag-tint { background: var(--tint); border-top: 0; }
+    .flag-head { display: flex; align-items: center; gap: 18px; }
+    .flag-logo { width: auto; height: 44px; max-width: 120px; object-fit: contain; flex-shrink: 0; }
+    @media (min-width: 768px) { .flag-logo { height: 56px; max-width: 150px; } }
+    .flag-no { font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); }
+    .flag h3 { margin-top: 2px; font-size: clamp(1.75rem, 4.5vw, 3rem); font-weight: 800; line-height: 1.02; }
+    .flag-alias { color: var(--muted); font-weight: 700; font-size: 0.6em; letter-spacing: -0.01em; }
+    .flag-meta { margin-top: 6px; font-size: 14px; color: var(--muted); }
+    .flag-intro { margin-top: 28px; display: grid; gap: 28px; }
+    @media (min-width: 900px) { .flag-intro { grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: start; } }
+    .flag-lead { font-size: 1.125rem; line-height: 1.6; color: #2b2e33; max-width: 36em; }
+    .totals { margin: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px 24px; }
+    .totals dt { font-size: clamp(2.25rem, 5vw, 3.25rem); }
+    .totals dd { margin: 8px 0 0; font-size: 13.5px; line-height: 1.4; color: var(--muted); display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+    .fine { margin-top: 18px; font-size: 13px; line-height: 1.55; color: var(--muted); max-width: 60em; }
+
+    .ratio-34 { aspect-ratio: 3 / 4; }
+    .ratio-11 { aspect-ratio: 1 / 1; }
+    video.facade-frame { object-fit: cover; }
+
+    .bands { margin-top: 40px; display: grid; gap: 16px; }
+    .band { display: grid; gap: 24px; padding: 22px; border-radius: 18px; background: var(--tint); }
+    @media (min-width: 1024px) { .band { grid-template-columns: 330px 1fr; gap: 40px; padding: 32px; align-items: start; } }
+    .band-text { display: flex; flex-direction: column; align-items: flex-start; }
+    .band-compact { background: transparent; border: 1.5px solid var(--line); }
+    .band-side-note { font-size: 15px; line-height: 1.6; color: #3a3d42; max-width: 34em; }
+    @media (min-width: 1024px) { .band-side-note { align-self: center; padding-left: 40px; border-left: 1px solid var(--line); } }
+    @media (min-width: 1024px) { .band-compact { grid-template-columns: 330px 1fr; } }
+    .band-gallery { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; align-items: flex-start; }
+    .band-gallery > .ct { flex: 0 0 44%; scroll-snap-align: start; }
+    .band-gallery > .ct-lg { flex-basis: 60%; }
+    @media (min-width: 1024px) { .band-gallery { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 18px; overflow: visible; } }
+    .band .ct figcaption { margin-top: 8px; }
+    .band .ct-format { font-size: 13.5px; }
+
+    .irvj-grid { display: grid; gap: 20px; }
+    @media (min-width: 900px) { .irvj-grid { grid-template-columns: 0.62fr 1fr; gap: 28px; align-items: start; } }
+    @media (max-width: 899px) { .irvj-grid > .ct { width: 72%; } }
+    .irvj-squares { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px 18px; }
+
+    .stage-tag { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .stage-tag span { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 999px; background: var(--ink); color: #fff; font-size: 11px; letter-spacing: 0; }
+    .band h4 { margin-top: 10px; font-size: 1.3rem; font-weight: 800; line-height: 1.2; }
+    .stage-figures { margin: 18px 0 12px; display: grid; grid-template-columns: repeat(3, auto); gap: 14px; justify-content: start; }
+    .stage-figures dt { font-size: clamp(1.6rem, 3.2vw, 2.1rem); }
+    .stage-figures dd { margin: 4px 0 0; font-size: 12.5px; line-height: 1.3; color: var(--muted); max-width: 9em; }
+    .stage-note { margin-top: 12px; font-size: 13.5px; line-height: 1.55; color: #3a3d42; }
+
+    .flag-video { margin-top: 36px; display: grid; gap: 20px; align-items: center; grid-template-columns: minmax(0, 220px) 1fr; }
+    .flag-video-text p { margin-top: 8px; font-size: 14px; line-height: 1.55; color: var(--muted); max-width: 30em; }
+    @media (max-width: 559px) { .flag-video { grid-template-columns: 1fr 1fr; align-items: start; } }
+
+    .wall-label { margin: 40px 0 14px; display: flex; align-items: center; gap: 10px; font-weight: 800; }
+    .wall { display: grid; gap: 16px; grid-template-columns: repeat(2, 1fr); }
+    @media (min-width: 1100px) { .wall { grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 22px; align-items: start; } }
+    @media (max-width: 1099px) { .wall .ct-lg { grid-column: span 2; } }
+
+    .rail { display: grid; grid-auto-flow: column; grid-auto-columns: 58%; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; }
+    .rail > * { scroll-snap-align: start; }
+    @media (min-width: 640px) { .rail { grid-auto-columns: 34%; } }
+    @media (min-width: 1024px) { .rail { grid-auto-flow: row; grid-template-columns: repeat(5, 1fr); overflow: visible; } }
+
+    /* Creative tile */
+    .ct { margin: 0; min-width: 0; }
+    .ct-media { position: relative; display: block; border-radius: 14px; overflow: hidden; background: #e9e9e4; }
+    .ct-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .ct-media.ct-fallback { aspect-ratio: 1 / 1; }
+    .ct-fallback + figcaption .ct-format { display: none; }
+    .ct-fallback + figcaption .ct-metrics { margin-top: 0; }
+    .ct-fallback { display: flex; flex-direction: column; justify-content: space-between; padding: 16px; text-decoration: none; color: var(--ink); background: #fff; border: 1px solid var(--line); transition: border-color 150ms, transform 150ms; }
+    .ct-fallback:hover { border-color: var(--ink); transform: translateY(-2px); }
+    .ct-fallback .ct-fallback-logo { position: static; width: auto; height: 36px; max-width: 70%; object-fit: contain; object-position: left; }
+    .ct-fallback-format { font-size: clamp(1rem, 2vw, 1.25rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.01em; }
+    .ct-fallback-cta { font-size: 12.5px; font-weight: 700; color: var(--blue); }
+    .ct-lg .ct-fallback-format { font-size: clamp(1.4rem, 3vw, 2rem); }
+    .ct figcaption { margin-top: 10px; }
+    .ct-format { display: block; font-weight: 800; font-size: 15px; line-height: 1.3; }
+    .ct-metrics { margin: 10px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
+    .ct-metrics > div { display: flex; align-items: baseline; gap: 5px; padding: 4px 9px; border-radius: 6px; background: var(--yellow); }
+    .ct-metrics dt { font-weight: 800; font-size: 14px; }
+    .ct-metrics dd { margin: 0; font-size: 12px; color: #3a3d42; }
+    .ct-lg .ct-metrics dt { font-size: 18px; }
+    .ct-note { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--muted); }
+    .ct-link { display: inline-block; margin-top: 8px; font-size: 13px; font-weight: 700; color: var(--blue); text-decoration: none; }
+
+    /* More work + earlier */
+    .more { padding-top: 72px; }
+    .more-head h3, .earlier-title { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; }
+    .more-head p { margin-top: 8px; color: var(--muted); }
+    .more-grid { margin-top: 24px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 16px; }
+    @media (min-width: 1024px) { .more-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; } }
+    .more-brand { height: 28px; margin-bottom: 10px; display: flex; align-items: center; }
+    .more-logo { height: 26px; width: auto; max-width: 110px; object-fit: contain; }
+    .earlier { padding-top: 72px; }
+    .earlier-grid { margin-top: 20px; display: grid; gap: 0; border-top: 1px solid var(--line); }
+    @media (min-width: 900px) { .earlier-grid { grid-template-columns: repeat(3, 1fr); } .earlier-item + .earlier-item { border-left: 1px solid var(--line); padding-left: 28px; } .earlier-item { padding-right: 28px; } }
+    .earlier-item { padding: 24px 0; border-bottom: 1px solid var(--line); }
+    @media (min-width: 900px) { .earlier-item { border-bottom: 0; } }
+    .earlier-item h4 { font-size: 1.25rem; font-weight: 800; }
+    .earlier-text { margin-top: 10px; font-size: 14.5px; line-height: 1.55; color: #3a3d42; }
+    .earlier-figures { margin: 16px 0 0; display: grid; grid-template-columns: repeat(3, auto); gap: 12px; justify-content: start; }
+    .earlier-figures dt { font-size: 1.6rem; }
+    .earlier-figures dd { margin: 4px 0 0; font-size: 12px; line-height: 1.3; color: var(--muted); max-width: 8em; }
+    .integrity { margin-top: 36px; padding-top: 18px; border-top: 1px solid var(--line); }
+    @media (min-width: 900px) { .flow.flow-3 { grid-template-columns: repeat(3, 1fr); } }
+    .section-dark .case-label { color: #8d9097; }
+    .ticks { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+    .ticks li { position: relative; padding-left: 20px; line-height: 1.55; }
+    .ticks li::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 8px; height: 2px; background: var(--blue); }
+    .section-dark .ticks li::before { background: var(--yellow); }
+    .also { margin-top: 28px; font-size: 14px; line-height: 1.7; color: var(--muted); }
+    .also span { font-weight: 800; color: var(--ink); }
+
+    /* Testimonials */
+    .voices { display: grid; gap: 20px; }
+    @media (min-width: 900px) { .voices { grid-template-columns: 1.6fr 1fr; } .voice-lead { grid-row: span 2; } }
+    .voice { margin: 0; }
+    .voice figcaption { margin-top: 10px; font-size: 15px; color: var(--muted); }
+    .voice figcaption strong { color: var(--ink); }
+
+    /* AI */
+    .legend { list-style: none; padding: 0; margin: 20px 0 0; display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 14px; color: #b7b9be; }
+    .status { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; margin-right: 6px; }
+    .status-live { background: #1f8f5f; color: #fff; }
+    .status-pilot { background: var(--yellow); color: var(--ink); }
+    .project { padding: 40px 0; border-top: 1px solid #2c2f35; }
+    .project-head h3 { margin-top: 14px; font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 800; line-height: 1.05; color: #fff; }
+    .project-lead { margin-top: 14px; max-width: 46em; font-size: 1.0625rem; line-height: 1.6; color: #c9cbcf; }
+    .flow { list-style: none; padding: 0; margin: 32px 0 0; display: grid; gap: 12px; counter-reset: none; }
+    @media (min-width: 900px) { .flow { grid-template-columns: repeat(5, 1fr); gap: 0; } .flow-4 { grid-template-columns: repeat(4, 1fr); } }
+    .flow li { position: relative; display: flex; flex-direction: column; gap: 6px; padding: 18px; background: #1a1d22; border-radius: 12px; font-size: 14px; line-height: 1.5; color: #b7b9be; }
+    @media (min-width: 900px) {
+      .flow li { border-radius: 0; border-right: 1px solid #2c2f35; }
+      .flow li:first-child { border-radius: 12px 0 0 12px; }
+      .flow li:last-child { border-radius: 0 12px 12px 0; border-right: 0; }
+      .flow li:not(:last-child)::after { content: '→'; position: absolute; right: -9px; top: 50%; transform: translateY(-50%); z-index: 1; color: var(--yellow); font-weight: 800; background: #1a1d22; line-height: 1; }
     }
-    .play {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 56px;
-      height: 56px;
-      transform: translate(-50%, -50%);
-      border-radius: 999px;
-      background: var(--color-accent);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-      transition: transform 150ms;
-    }
-    .play::after {
-      content: '';
-      position: absolute;
-      left: 22px;
-      top: 17px;
-      border-style: solid;
-      border-width: 11px 0 11px 17px;
-      border-color: transparent transparent transparent var(--color-text);
-    }
-    .facade:hover .play,
-    .facade:focus-visible .play { transform: translate(-50%, -50%) scale(1.08); }
-    .facade:focus-visible { outline: 3px solid var(--color-primary); outline-offset: -3px; }
-    .pending {
-      display: inline-block;
-      padding: 0.05rem 0.45rem;
-      border: 1px dashed #c2410c;
-      border-radius: 4px;
-      background: #fff7ed;
-      color: #9a3412;
-      font-size: 0.8em;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-    }
-    .badge {
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      padding: 0.25rem 0.6rem;
-      border-radius: 999px;
-    }
-    .badge-live { background: var(--color-primary); color: #fff; }
-    .badge-dev { background: var(--color-accent); color: var(--color-text); }
-    .flow-label {
-      display: block;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--color-text-muted);
-      margin-bottom: 0.15rem;
-    }
-    .screenshot-slot {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 2px dashed var(--color-border);
-      border-radius: 12px;
-      color: var(--color-text-muted);
-      font-size: 0.875rem;
-      font-weight: 600;
-    }
-    .contact-link {
-      display: block;
-      padding: 1rem 1.25rem;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 12px;
-      color: #fff;
-      font-weight: 600;
-      text-decoration: none;
-      transition: border-color 150ms;
-    }
-    a.contact-link:hover { border-color: var(--color-accent); }
-    .highlight {
-      padding: 0.6rem 0.9rem;
-      border-left: 4px solid var(--color-accent);
-      background: var(--color-bg-alt);
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
+    .flow strong { color: #fff; font-size: 15px; }
+    .flow-no { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; color: var(--yellow); font-size: 15px; }
+    .gate { margin-top: auto; padding-top: 6px; font-style: normal; font-size: 12px; font-weight: 700; color: #8db0ff; }
+    .project-cols { margin-top: 32px; display: grid; gap: 28px; color: #d9dadd; line-height: 1.6; }
+    @media (min-width: 900px) { .project-cols { grid-template-columns: 1.4fr 1fr; gap: 56px; } }
+    .stack { font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace; font-size: 13px; color: #c9cbcf; }
+    .stack.mt { margin-top: 24px; }
+    .features { margin: 32px 0 0; display: grid; gap: 22px 40px; }
+    @media (min-width: 768px) { .features { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .features { grid-template-columns: repeat(3, 1fr); } }
+    .features dt { font-weight: 800; color: #fff; }
+    .features dd { margin: 4px 0 0; font-size: 15px; line-height: 1.55; color: #b7b9be; }
+    .supporting { padding-top: 40px; border-top: 1px solid #2c2f35; }
+    .supporting ul { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 24px; }
+    @media (min-width: 900px) { .supporting ul { grid-template-columns: repeat(3, 1fr); gap: 40px; } }
+    .supporting-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; color: #fff; }
+    .supporting p { margin-top: 6px; font-size: 15px; line-height: 1.55; color: #b7b9be; }
+
+    /* Experience */
+    .timeline { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
+    .timeline > li { display: grid; gap: 8px; padding: 32px 0; border-bottom: 1px solid var(--line); }
+    @media (min-width: 900px) { .timeline > li { grid-template-columns: 200px 1fr; gap: 48px; } }
+    .tl-period { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 1.35rem; color: var(--blue); }
+    .timeline h3 { font-size: 1.5rem; font-weight: 800; line-height: 1.15; }
+    .tl-org { margin-top: 4px; font-weight: 600; color: var(--muted); }
+    .tl-summary { margin: 12px 0 14px; line-height: 1.6; max-width: 46em; }
+    .timeline .ticks { max-width: 50em; color: #2b2e33; }
+
+    .commercial { margin-top: 72px; display: grid; gap: 28px; padding: 36px 24px; background: var(--tint); border-radius: 20px; }
+    @media (min-width: 900px) { .commercial { grid-template-columns: 1fr 1.5fr; gap: 56px; padding: 48px; } }
+    .commercial h3 { margin-top: 10px; font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 800; line-height: 1.05; }
+    .commercial-intro > p:last-child { margin-top: 14px; line-height: 1.6; color: var(--muted); }
+    .commercial-list { margin: 0; display: grid; gap: 22px; }
+    .commercial-list > div { padding-left: 16px; border-left: 3px solid var(--yellow); }
+    .commercial-list dt { font-weight: 800; }
+    .commercial-list dd { margin: 4px 0 0; line-height: 1.55; color: #2b2e33; }
+
+    .cv-grid { margin-top: 72px; display: grid; gap: 40px; }
+    @media (min-width: 900px) { .cv-grid { grid-template-columns: 1.5fr 1fr; gap: 64px; } }
+    .cv-skills dl { margin: 0; display: grid; gap: 18px; }
+    .cv-skills dt { font-weight: 800; }
+    .cv-skills dd { margin: 4px 0 0; line-height: 1.55; color: #2b2e33; }
+    .plain { list-style: none; padding: 0; margin: 0 0 8px; display: grid; gap: 10px; line-height: 1.5; color: #2b2e33; }
+
+    /* Contact */
+    .contact-grid { display: grid; gap: 36px; }
+    @media (min-width: 900px) { .contact-grid { grid-template-columns: 1fr 1fr; align-items: end; } }
+    .contact h2 { color: #fff; margin-top: 10px; font-size: clamp(2.5rem, 7vw, 4.5rem); line-height: 0.95; font-weight: 800; }
+    .contact-list { list-style: none; padding: 0; margin: 0; border-top: 1px solid #2c2f35; }
+    .contact-list a { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; padding: 18px 0; border-bottom: 1px solid #2c2f35; color: #fff; font-weight: 700; font-size: 1.0625rem; text-decoration: none; word-break: break-word; transition: color 150ms; }
+    .contact-list a:hover { color: var(--yellow); }
+    .contact-list span { font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #8d9097; align-self: center; }
+    .pf-foot { padding: 28px 20px; font-size: 13px; color: var(--muted); }
   </style>
 </body>
 </html>

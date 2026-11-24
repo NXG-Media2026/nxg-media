@@ -16,27 +16,31 @@ interface Props {
   logos: LogoItem[];
   label?: string;
   speed?: number; // seconds for one full loop — lower = faster
+  variant?: 'primary' | 'light';
 }
 
 const {
   logos,
   label = 'Vertrouwd door coaches, experts en bedrijven',
   speed = 35,
+  variant = 'primary',
 } = Astro.props;
+
+const light = variant === 'light';
 
 // We need at least 2 copies for seamless loop
 const trackLogos = [...logos, ...logos];
 ---
 
-<section class="py-10 md:py-14 overflow-hidden bg-primary">
+<section class:list={['py-10 md:py-14 overflow-hidden', light ? 'bg-bg' : 'bg-primary']}>
   <div class="max-w-5xl mx-auto px-4 md:px-6">
-    {label && <p class="eyebrow light text-center mb-8">{label}</p>}
+    {label && <p class:list={['eyebrow text-center mb-8', light ? 'text-text-muted' : 'light']}>{label}</p>}
   </div>
 
-  <div class="marquee-wrapper relative">
+  <div class:list={['marquee-wrapper relative', { 'marquee-light': light }]}>
     {/* Fade edges */}
-    <div class="pointer-events-none absolute inset-y-0 left-0 w-16 md:w-24 z-10 bg-gradient-to-r from-primary to-transparent"></div>
-    <div class="pointer-events-none absolute inset-y-0 right-0 w-16 md:w-24 z-10 bg-gradient-to-l from-primary to-transparent"></div>
+    <div class:list={['pointer-events-none absolute inset-y-0 left-0 w-16 md:w-24 z-10 bg-gradient-to-r to-transparent', light ? 'from-bg' : 'from-primary']}></div>
+    <div class:list={['pointer-events-none absolute inset-y-0 right-0 w-16 md:w-24 z-10 bg-gradient-to-l to-transparent', light ? 'from-bg' : 'from-primary']}></div>
 
     <div
       class="marquee-track flex items-center gap-12 md:gap-16 w-max"
@@ -70,6 +74,11 @@ const trackLogos = [...logos, ...logos];
     100% {
       transform: translateX(-50%);
     }
+  }
+
+  .marquee-light :global(img) {
+    filter: grayscale(1);
+    opacity: 0.6;
   }
 
   /* Pause on hover for accessibility */

@@ -1,0 +1,68 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+export interface CreativeMetric {
+  value: string;
+  label: string;
+}
+
+type Ratio = '916' | '45' | '34' | '11';
+
+interface Props {
+  brand: string;
+  format: string;
+  logo?: ImageMetadata;
+  vimeo?: { id: string; thumb: string };
+  video?: { src: string; poster: ImageMetadata };
+  image?: ImageMetadata;
+  ratio?: Ratio;
+  postUrl?: string;
+  metrics?: CreativeMetric[];
+  note?: string;
+  size?: 'sm' | 'md' | 'lg';
+}
+
+const { brand, format, logo, vimeo, video, image, ratio, postUrl, metrics = [], note, size = 'md' } = Astro.props;
+const mediaRatio = `ratio-${ratio ?? (vimeo || video ? '916' : '45')}`;
+const imgWidth = size === 'lg' ? 720 : size === 'sm' ? 360 : 540;
+const label = `${brand} ad: ${format}`;
+---
+
+<figure class:list={['ct', `ct-${size}`]}>
+  {vimeo ? (
+    <button type="button" class:list={['facade', mediaRatio]} data-vimeo={vimeo.id} aria-label={`Play ${label}`}>
+      <img src={vimeo.thumb} alt="" width="640" height="1138" loading="lazy" decoding="async" />
+      <span class="play" aria-hidden="true"></span>
+    </button>
+  ) : video ? (
+    <button type="button" class:list={['facade', mediaRatio]} data-video={video.src} aria-label={`Play ${label}`}>
+      <Image src={video.poster} alt="" width={imgWidth} loading="lazy" />
+      <span class="play" aria-hidden="true"></span>
+    </button>
+  ) : image ? (
+    <div class:list={['ct-media', mediaRatio]}>
+      <Image src={image} alt={label} width={imgWidth} loading="lazy" />
+    </div>
+  ) : (
+    <a class:list={['ct-media', mediaRatio, 'ct-fallback']} href={postUrl} target="_blank" rel="noopener noreferrer" aria-label={`View the original ${label} on Facebook`}>
+      {logo && <Image src={logo} alt="" height={48} class="ct-fallback-logo" />}
+      <span class="ct-fallback-format">{format}</span>
+      <span class="ct-fallback-cta">View original ad ↗</span>
+    </a>
+  )}
+  <figcaption>
+    <span class="ct-format">{format}</span>
+    {metrics.length > 0 && (
+      <dl class="ct-metrics" aria-label="Results for this ad">
+        {metrics.map((m) => (
+          <div><dt>{m.value}</dt><dd>{m.label}</dd></div>
+        ))}
+      </dl>
+    )}
+    {note && <p class="ct-note">{note}</p>}
+    {postUrl && (vimeo || video || image) && (
+      <a class="ct-link" href={postUrl} target="_blank" rel="noopener noreferrer">Original ad ↗</a>
+    )}
+  </figcaption>
+</figure>
