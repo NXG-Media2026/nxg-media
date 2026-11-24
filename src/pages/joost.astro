@@ -43,11 +43,18 @@ const linkedinUrl = 'https://www.linkedin.com/in/joost-van-putten/';
 const cvUrl = '/cv/joost-van-putten-cv.pdf';
 const pageUrl = `${siteConfig.url}/joost`;
 
+const languages = [
+  { name: 'Dutch', level: 'native', flag: '<svg viewBox="0 0 3 2" preserveAspectRatio="none"><rect width="3" height="2" fill="#21468B"/><rect width="3" height="1.333" fill="#fff"/><rect width="3" height="0.667" fill="#AE1C28"/></svg>' },
+  { name: 'English', level: 'C1', flag: '<svg viewBox="0 0 60 30" preserveAspectRatio="none"><clipPath id="gb-clip"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#gb-clip)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></svg>' },
+  { name: 'Spanish', level: 'B1 to B2', flag: '<svg viewBox="0 0 3 2" preserveAspectRatio="none"><rect width="3" height="2" fill="#AA151B"/><rect y="0.5" width="3" height="1" fill="#F1BF00"/></svg>' },
+  { name: 'German', level: 'A2', flag: '<svg viewBox="0 0 3 2" preserveAspectRatio="none"><rect width="3" height="2" fill="#FFCE00"/><rect width="3" height="1.333" fill="#DD0000"/><rect width="3" height="0.667" fill="#000"/></svg>' },
+];
+
 const heroFigures = [
   { value: '€8M+', label: 'Meta ad spend managed' },
   { value: '50+', label: 'clients across NL and BE' },
   { value: '8 yrs', label: 'hands-on performance marketing' },
-  { value: '2018', label: 'founded my own agency' },
+  { value: '2018', label: 'independent since' },
 ];
 
 const vimeoThumb = (hash: string) => `https://i.vimeocdn.com/video/${hash}-d_640?region=us`;
@@ -271,9 +278,9 @@ const osFeatures = [
 const experience = [
   {
     period: '2018 to now',
-    role: 'Founder & Performance Marketing Lead',
-    org: 'NXG Media',
-    summary: 'Growth marketing agency for Dutch and Belgian brands, started alongside my studies. I run the campaigns, the client relationships and the business itself.',
+    role: 'Freelance Performance & Growth Marketer',
+    org: 'Independent, trading as NXG Media',
+    summary: 'Independent since 2018, started alongside my studies. I work hands-on for brands in the Netherlands and Belgium and take ownership of their paid acquisition, from strategy and creatives to budgets and reporting.',
     points: [
       'Own the end-to-end growth process: acquisition strategy, budget allocation, funnel development, conversion optimisation, reporting and long-term account management.',
       'Plan, launch and scale paid campaigns for 50+ B2C and B2B clients, scaling or cutting spend on CPA and ROAS targets. Meta is the core channel; Google, TikTok, Pinterest and LinkedIn where they fit.',
@@ -286,7 +293,7 @@ const experience = [
     period: '2022 to 2024',
     role: 'Performance Marketer',
     org: 'Vos Marketing, e-commerce agency, Rotterdam',
-    summary: 'Agency-side role next to running NXG Media: paid social and acquisition for e-commerce brands in the Netherlands, Germany and the UK.',
+    summary: 'Agency-side role next to my independent work: paid social and acquisition for e-commerce brands in the Netherlands, Germany and the UK.',
     points: [
       'Managed up to 7 e-commerce ad accounts at the same time, with roughly €40,000 in combined monthly media spend, for about 18 to 24 months.',
       'Presented monthly performance reviews to clients (spend, revenue, ROAS, CPA, AOV, conversion rate) and set the testing plan for the next month.',
@@ -303,7 +310,7 @@ const experience = [
 ];
 
 const commercial = [
-  { title: 'Owning the P&L', text: 'Running my own agency means I set pricing, watch client profitability and do new-business sales and closing myself.' },
+  { title: 'Commercial responsibility', text: 'Working independently means I set my own pricing, keep an eye on profitability per client and find new clients myself.' },
   { title: 'Launching and selling a service', text: 'In 2026 I developed and commercialised an AI-search (GEO) service, built its acquisition infrastructure, ran the sales process and personally closed 8 new B2B clients.' },
   { title: 'Multi-year client relationships', text: 'I present monthly results and strategy to founders and in-house marketing teams. EasyZZP has worked with me since 2018, Happy with Yoga since 2022.' },
   { title: 'B2B as well as consumer', text: 'Next to my own scanner funnel: self-employed entrepreneurs for EasyZZP, restaurant partners for Nederland Eet Groep, website services for PixelBros, yoga teachers for Happy with Yoga and corporate gifting for Posivino. Not every test worked; a LinkedIn Ads campaign for Buitink BV underperformed.' },
@@ -321,13 +328,13 @@ const personSchema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Joost van Putten',
-  jobTitle: 'Performance & Growth Marketer',
+  jobTitle: 'Performance Marketer & Creative Strategist',
   url: pageUrl,
   email: `mailto:${email}`,
   sameAs: [linkedinUrl],
   address: { '@type': 'PostalAddress', addressLocality: 'Valencia', addressCountry: 'ES' },
   alumniOf: { '@type': 'CollegeOrUniversity', name: 'Hogeschool Utrecht' },
-  knowsLanguage: ['nl', 'en', 'es'],
+  knowsLanguage: ['nl', 'en', 'es', 'de'],
 });
 ---
 
@@ -335,8 +342,8 @@ const personSchema = JSON.stringify({
 <html lang="en">
 <head>
   <SEOHead
-    title="Joost van Putten | Performance & Growth Marketer"
-    description="Performance marketer with 8+ years in paid social, €8M+ in managed Meta spend and 50+ clients. Selected ads, case studies, self-built AI systems and full CV."
+    title="Joost van Putten | Performance Marketer & Creative Strategist"
+    description="Freelance performance marketer and creative strategist with 8+ years in paid social, €8M+ in managed Meta spend and 50+ clients. Selected ads, case studies, AI systems and full CV."
     canonical={pageUrl}
     ogImage="/images/og/default.jpg"
     locale="en"
@@ -369,19 +376,30 @@ const personSchema = JSON.stringify({
     <section id="top" class="hero">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <p class="kicker">Performance & Growth Marketer · Paid Social</p>
+          <p class="kicker">Performance Marketer & Creative Strategist</p>
+          <p class="kicker-sub">Paid Social · Growth Marketing · AI Systems</p>
           <h1 class="hero-name">Joost<br />van Putten</h1>
           <p class="hero-lead">
-            I scale paid campaigns, mostly on Meta, for brands in the Netherlands and Belgium.
-            I also run my own agency, so I own budgets, pricing and client profitability.
-            And I build the systems I work with: n8n, APIs and AI agents on my own server.
+            I plan, launch and scale paid campaigns, mostly on Meta, and shape the creative strategy behind them.
+            Independent since 2018, I have worked with 50+ businesses in the Netherlands and Belgium,
+            directly and inside agency teams. I also build the AI systems I work with.
           </p>
           <div class="hero-actions">
             <a class="btn btn-dark" href="#work">Selected work</a>
             <a class="btn btn-line" href="#ai">AI systems</a>
             <a class="btn btn-line" href={cvUrl} download>Download CV <span class="btn-meta">PDF</span></a>
           </div>
-          <p class="hero-loc">Valencia, Spain, relocating to Madrid · Dutch (native), English (C1), Spanish (B1 to B2)</p>
+          <div class="hero-meta">
+            <ul class="hero-places" aria-label="Locations">
+              <li>Valencia, Spain</li>
+              <li>Hooglanderveen, The Netherlands</li>
+            </ul>
+            <ul class="langs" aria-label="Languages">
+              {languages.map((l) => (
+                <li><span class="lang-flag" aria-hidden="true" set:html={l.flag} />{l.name} <span class="lang-level">{l.level}</span></li>
+              ))}
+            </ul>
+          </div>
         </div>
         <figure class="hero-photo">
           <Image src={portrait} alt="Joost van Putten" widths={[480, 720, 960]} sizes="(min-width: 900px) 40vw, 90vw" loading="eager" fetchpriority="high" />
@@ -398,6 +416,8 @@ const personSchema = JSON.stringify({
         </dl>
       </div>
     </section>
+
+    <LogoMarquee logos={logos} label="Brands I have worked with" variant="light" />
 
     {/* Work: flagship cases */}
     <section id="work" class="section">
@@ -568,7 +588,7 @@ const personSchema = JSON.stringify({
         <div class="scale">
           <div class="scale-intro">
             <h3 class="earlier-title">Scale</h3>
-            <p>Around 50 businesses through NXG Media and agency work. These are approximate monthly media budgets I was responsible for at their highest or typical level.</p>
+            <p>50+ businesses, as an independent marketer and inside agency teams. These are approximate monthly media budgets I was responsible for at their highest or typical level.</p>
           </div>
           <dl class="scale-list">
             {scale.map((r) => (
@@ -603,7 +623,6 @@ const personSchema = JSON.stringify({
       </div>
     </section>
 
-    <LogoMarquee logos={logos} label="Brands I have worked with" variant="light" />
 
     {/* AI systems */}
     <section id="ai" class="section section-dark">
@@ -802,7 +821,7 @@ const personSchema = JSON.stringify({
           <div class="commercial-intro">
             <p class="sec-index">The commercial side</p>
             <h3>More than the ads manager</h3>
-            <p>Eight years of running my own business means I have also sold, priced, negotiated and kept clients. A few concrete examples.</p>
+            <p>Working independently since 2018 means I have also found clients, priced my work, negotiated and kept long-term relationships. It is extra context for how I work, next to the campaign work itself.</p>
           </div>
           <dl class="commercial-list">
             {commercial.map((c) => (
@@ -839,7 +858,7 @@ const personSchema = JSON.stringify({
             </ul>
             <p class="case-label">Languages</p>
             <ul class="plain">
-              <li>Dutch (native) · English (C1) · Spanish (B1 to B2)</li>
+              <li>Dutch (native) · English (C1) · Spanish (B1 to B2) · German (A2)</li>
             </ul>
           </div>
         </div>
@@ -852,7 +871,7 @@ const personSchema = JSON.stringify({
         <div>
           <p class="sec-index">05 · Contact</p>
           <h2>Let's talk</h2>
-          <p class="sec-intro">I want to bring the ownership of running my own agency into an ambitious international team.</p>
+          <p class="sec-intro">Open to in-house roles, part-time freelance work and agency teams that need a hands-on performance specialist.</p>
         </div>
         <ul class="contact-list">
           <li><a href={`mailto:${email}`}><span>E-mail</span>{email}</a></li>
@@ -954,11 +973,19 @@ const personSchema = JSON.stringify({
     .hero { padding: 40px 0 0; }
     .hero-grid { display: grid; gap: 32px; align-items: end; }
     @media (min-width: 900px) { .hero { padding-top: 72px; } .hero-grid { grid-template-columns: 1.25fr 1fr; gap: 56px; } }
+    .kicker-sub { margin-top: 6px; font-size: 14px; font-weight: 600; color: var(--muted); }
     .kicker { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); }
     .hero-name { margin-top: 14px; font-size: clamp(3rem, 11vw, 6.5rem); line-height: 0.92; font-weight: 800; letter-spacing: -0.045em; }
     .hero-lead { margin-top: 24px; max-width: 34em; font-size: 1.125rem; line-height: 1.6; color: #2b2e33; }
     .hero-actions { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 10px; }
-    .hero-loc { margin-top: 22px; font-size: 14px; color: var(--muted); }
+    .hero-meta { margin-top: 24px; display: grid; gap: 10px; font-size: 14px; color: var(--muted); }
+    .hero-places, .langs { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px 18px; }
+    .hero-places li { position: relative; padding-left: 14px; }
+    .hero-places li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 6px; height: 6px; border-radius: 999px; background: var(--blue); }
+    .langs li { display: inline-flex; align-items: center; gap: 7px; color: var(--ink); font-weight: 600; }
+    .lang-level { font-weight: 400; color: var(--muted); }
+    .lang-flag { display: inline-flex; width: 20px; height: 14px; border-radius: 3px; overflow: hidden; box-shadow: 0 0 0 1px rgba(0,0,0,0.08); flex-shrink: 0; }
+    .lang-flag svg { width: 100%; height: 100%; display: block; }
     .hero-photo { margin: 0; border-radius: 20px; overflow: hidden; background: var(--tint); aspect-ratio: 4 / 5; max-height: 640px; }
     .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; }
     @media (max-width: 899px) { .hero-photo { order: -1; aspect-ratio: 5 / 4; } }
