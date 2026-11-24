@@ -234,9 +234,9 @@ const moreWork = [
 ];
 
 const previous = [
-  { name: 'Somnox', logo: logoSomnoxDark, url: 'https://somnox.com', period: '2018 to 2021', role: 'Meta Ads · Creative Strategy', platforms: ['Meta'], spend: '~€20k', spendLabel: 'monthly ad spend at its highest', result: '4.0x average ROAS in the final year' },
-  { name: 'Real Estate Masterclass', logo: brandRem, url: 'https://realestatemasterclass.nl', period: '2021 to 2022', role: 'Meta Ads · Creative Strategy · Funnels', platforms: ['Meta', 'TikTok'], spend: '~€30k', spendLabel: 'monthly ad spend for a large part of the engagement', result: '6.5x average ROAS, 12.5x peak over two weeks' },
-  { name: 'Vos Marketing', url: 'https://vosmarketing.nl', period: '2022 to 2024', role: 'Freelance performance marketer in the agency team', platforms: ['Meta'], spend: '~€40k', spendLabel: 'combined monthly ad spend across up to 7 e-commerce accounts' },
+  { name: 'Somnox', logo: logoSomnoxDark, url: 'https://somnox.com', period: '2018 to 2021', role: 'Meta Ads · Creative Strategy', platforms: ['Meta'], spend: '~€20k', spendLabel: 'monthly ad spend at its highest', resultHighlight: '4.0x average ROAS', result: ' in the final year' },
+  { name: 'Real Estate Masterclass', logo: brandRem, url: 'https://realestatemasterclass.nl', period: '2021 to 2022', role: 'Meta Ads · Creative Strategy · Funnels', platforms: ['Meta', 'TikTok'], spend: '~€30k', spendLabel: 'monthly ad spend for a large part of the engagement', resultHighlight: '6.5x average ROAS', result: ', 12.5x peak over two weeks' },
+  { name: 'Vos Marketing', url: 'https://vosmarketing.nl', period: '2022 to 2024', role: 'Freelance performance marketer in the agency team', platforms: ['Meta'], spend: '~€40k', highlightSpend: true, spendLabel: 'combined monthly ad spend across up to 7 e-commerce accounts' },
   { name: 'Stekkies', logo: logoStekkies, url: 'https://www.stekkies.com', role: 'Meta Ads · TikTok Ads · Creative Strategy', platforms: ['Meta', 'TikTok'], spend: 'up to ~€20k', spendLabel: 'monthly ad spend' },
   { name: 'MCM Research', logo: logoMcmDark, role: 'Meta Ads · Recruitment advertising', platforms: ['Meta'], spend: '~€5k', spendLabel: 'monthly ad spend' },
   { name: 'Nederland Eet Groep', logo: logoNederlandEet, iconOnly: true, url: 'https://www.eetclub.nl', role: 'Meta Ads · B2C and B2B', platforms: ['Meta'], spend: '~€5k B2C · ~€3k B2B', spendLabel: 'monthly ad spend, two separate activities' },
@@ -303,20 +303,6 @@ const researchRows: DiagramNode[][] = [
   [{ title: 'I review, record and publish', kind: 'human' }],
 ];
 
-const strategistFlow = [
-  { step: 'Research', text: 'Customer language, reviews, own ad results and competitor libraries become sourced insights.' },
-  { step: 'Test proposal', text: 'A hypothesis, a learning question and the variable to test.', gate: 'Strategist review' },
-  { step: 'Briefs', text: 'A creator brief and an editor brief, with script depth matched to the talent.', gate: 'Client review' },
-  { step: 'Measure', text: 'Attention metrics as diagnostics, CPA and ROAS as the decision.' },
-  { step: 'Learn', text: 'Learnings are stored with a status and context, then feed the next brief.' },
-];
-
-const strategistPrinciples = [
-  'Every brief carries a hypothesis and a learning question, otherwise it is rejected.',
-  'Learnings get a status (provisional, supported, contradicted or outdated) and are never stored as fact without my sign-off.',
-  'The agent proposes. People approve before production and publishing; it never publishes itself.',
-];
-
 const osRows: DiagramNode[][] = [
   [
     { title: 'Meta ads data', text: 'via the Meta API', kind: 'source' },
@@ -340,7 +326,6 @@ const osFeatures = [
   { title: 'Communication log', status: 'In use', text: 'Every mail and call filed per client with a summary, so full context is available in a minute.' },
   { title: 'Daily task mail', status: 'In use', text: 'An automatic, prioritised task mail each morning instead of manual triage.' },
   { title: 'Lead routing and sync', status: 'In use', text: 'n8n workflows route new leads to the right person and sync data between Meta, Notion, e-mail and WhatsApp.' },
-  { title: 'Creative strategist agent', status: 'Pilot', text: 'Proposes the next tests and writes briefs. Shown in detail below.' },
 ];
 
 const experience = [
@@ -348,7 +333,8 @@ const experience = [
     period: '2018 to now',
     role: 'Freelance Performance & Growth Marketer',
     org: 'Independent, trading as NXG Media',
-    summary: 'Independent since 2018, started alongside my studies. I work hands-on for brands in the Netherlands, Belgium, the UK, Germany and Spain, and take ownership of their paid acquisition, from strategy and creatives to budgets and reporting.',
+    focus: 'Independent since 2018',
+    summary: 'I started alongside my studies. I work hands-on for brands in the Netherlands, Belgium, the UK, Germany and Spain, and take ownership of their paid acquisition, from strategy and creatives to budgets and reporting.',
     points: [
       'Own paid acquisition end to end: strategy, budget allocation, creative testing, funnels, CRO and reporting, scaling or cutting spend on CPA and ROAS targets.',
       'Meta is the core channel; Google, TikTok, Pinterest and LinkedIn where they fit. B2C and B2B, for 50+ clients.',
@@ -362,7 +348,8 @@ const experience = [
     role: 'Performance Marketer (freelance)',
     org: 'Vos Marketing, e-commerce agency, Rotterdam',
     orgUrl: 'https://vosmarketing.nl',
-    summary: 'Freelance specialist inside the Vos Marketing team, next to my independent work. I ran paid social and acquisition for their e-commerce clients in the Netherlands, Germany and the UK.',
+    focus: 'Agency-side e-commerce',
+    summary: 'I joined the Vos Marketing team alongside my independent work. I ran paid social and acquisition for their e-commerce clients in the Netherlands, Germany and the UK.',
     points: [
       'Managed up to 7 e-commerce ad accounts at the same time (more brands over the whole engagement), with roughly €40,000 in combined monthly ad spend, for about 18 to 24 months.',
       'Presented monthly performance reviews to clients (spend, revenue, ROAS, CPA, AOV, conversion rate) and set the testing plan for the next month.',
@@ -374,7 +361,8 @@ const experience = [
     role: 'Performance Marketer (freelance)',
     org: 'Rocket Leads, lead generation agency',
     orgUrl: 'https://www.rocketleads.com/',
-    summary: 'Short, high-volume agency-side assignment: around 9 to 10 client accounts across very different industries, including dental care (AltaDent Clinic), DJs and entertainment, coffee businesses, solar energy and other local services.',
+    focus: 'Around 9 to 10 client accounts',
+    summary: 'This short agency assignment spanned several industries, including dental care (AltaDent Clinic), DJs and entertainment, coffee businesses, solar energy and other local services.',
     points: ['Also served end clients through the agency Cordital, including TopTuinen.nl.'],
   },
 ];
@@ -459,6 +447,7 @@ const personSchema = JSON.stringify({
     <section id="top" class="hero">
       <div class="wrap hero-grid">
         <div class="hero-copy">
+          <p class="availability"><span class="availability-dot" aria-hidden="true"></span><span>Available for freelance collaborations<br class="availability-break" /> <span class="availability-divider" aria-hidden="true">·</span> Open to in-house opportunities</span></p>
           <p class="kicker">Performance Creative Strategist</p>
           <p class="kicker-sub">Paid Social · Growth Marketing · AI Systems</p>
           <h1 class="hero-name">Joost<br />van Putten</h1>
@@ -466,7 +455,6 @@ const personSchema = JSON.stringify({
             8+ years turning creative ideas into measurable growth.
             From Meta Ads and creative testing to building AI-powered marketing systems.
           </p>
-          <p class="availability"><span class="availability-dot" aria-hidden="true"></span>Available for freelance collaborations · Open to in-house opportunities</p>
           <div class="hero-actions">
             <a class="btn btn-dark" href="#work">Selected work</a>
             <a class="btn btn-line" href="#ai">AI systems</a>
@@ -710,8 +698,8 @@ const personSchema = JSON.stringify({
               <ul class="plats" aria-label="Ad platforms">
                 {r.platforms.map((p) => <li class="plat">{platIcon(p) && <span class="plat-icon" style={`color:${platIcon(p)!.color}`} set:html={platIcon(p)!.svg} aria-hidden="true" />}{p}</li>)}
               </ul>
-              <p class="prev-spend"><span class="num">{r.spend}</span><span class="prev-spend-label">{r.spendLabel}</span></p>
-              <p class="prev-result">{r.result}</p>
+              <p class="prev-spend"><span class:list={['num', { marker: r.highlightSpend }]}>{r.spend}</span><span class="prev-spend-label">{r.spendLabel}</span></p>
+              <p class="prev-result">{r.resultHighlight && <mark class="marker">{r.resultHighlight}</mark>}{r.result}</p>
             </li>
           ))}
         </ul>
@@ -762,7 +750,7 @@ const personSchema = JSON.stringify({
         <header class="sec-head">
           <p class="sec-index">03 · AI Systems</p>
           <h2>Built and launched</h2>
-          <p class="sec-intro">A product I took from idea to paying customers, and the AI systems I use in my daily work. Open a project for the full workflow, screenshots and stack.</p>
+          <p class="sec-intro">One product I sell and two systems I use to plan and run ad campaigns.</p>
         </header>
 
         <noscript><style>.ai-panel[hidden] { display: block; } .ai-toggle { display: none; }</style></noscript>
@@ -777,11 +765,11 @@ const personSchema = JSON.stringify({
           )}
           <div class="ai-card-body">
             <span class="status status-live">Live</span>
-            <p class="product-kicker">From idea to paying customers · 2026</p>
             <h3>{geo.title}</h3>
-            <p class="ai-card-text">A free AI search scan, a gated personal report and a sales process for website projects. I built the proposition, the product, the ads and the sales follow-up.</p>
-            <p class="ai-outcome"><span class="num">8</span> new B2B clients from <strong>€3,209</strong> in ad spend</p>
-            <button type="button" class="ai-toggle" aria-expanded="false" aria-controls="ai-panel-geo" data-label="Explore project">Explore project <span aria-hidden="true">+</span></button>
+            <p class="ai-card-text">Enter a website to see where it appears in AI search, which competitors show up and what to improve. I built the scanner and used it to win website and advertising clients.</p>
+            <p class="ai-outcome"><mark class="marker">8 new B2B clients</mark> from <strong>€3,209</strong> in ad spend</p>
+            <p class="stack card-stack">Scan API · MailerLite · Calendly</p>
+            <button type="button" class="ai-toggle" aria-expanded="false" aria-controls="ai-panel-geo" data-label="See the scan and results">See the scan and results <span aria-hidden="true">+</span></button>
           </div>
         </article>
         <div class="ai-panel" id="ai-panel-geo" hidden>
@@ -832,9 +820,9 @@ const personSchema = JSON.stringify({
             <div class="ai-card-body">
               <span class="status status-live">In use</span>
               <h3>Creative Research & Strategy System</h3>
-              <p class="ai-card-text">Turns winning ads, my own and other brands', into the next round of creatives.</p>
-              <p class="ai-outcome-text">Output: structured creative analysis, new scripts and ad briefs</p>
-              <button type="button" class="ai-toggle" aria-expanded="false" aria-controls="ai-panel-research" data-label="Explore project">Explore project <span aria-hidden="true">+</span></button>
+              <p class="ai-card-text">Gemini analyses the hook and structure of winning ads. I use Claude to turn those findings into <mark class="marker">scripts and briefs</mark> for the next shoot.</p>
+              <p class="stack card-stack">Gemini · Claude · Notion · self-hosted n8n</p>
+              <button type="button" class="ai-toggle" aria-expanded="false" aria-controls="ai-panel-research" data-label="Follow an ad from analysis to brief">Follow an ad from analysis to brief <span aria-hidden="true">+</span></button>
             </div>
           </article>
           <article class="ai-card">
@@ -847,9 +835,9 @@ const personSchema = JSON.stringify({
             <div class="ai-card-body">
               <span class="status status-live">In use</span>
               <h3>NXG Creative OS</h3>
-              <p class="ai-card-text">One hub per client that brings together ad performance, communication and creatives.</p>
-              <p class="ai-outcome-text">Output: a daily task mail, performance updates and creative dashboards</p>
-              <button type="button" class="ai-toggle" aria-expanded="false" aria-controls="ai-panel-os" data-label="Explore project">Explore project <span aria-hidden="true">+</span></button>
+              <p class="ai-card-text">A client dashboard that brings Meta ad results and client messages into Notion. Each morning it shows me <mark class="marker">which ads need attention</mark> and what to do next.</p>
+              <p class="stack card-stack">Meta Marketing API · self-hosted n8n · Notion</p>
+              <button type="button" class="ai-toggle" aria-expanded="false" aria-controls="ai-panel-os" data-label="View the dashboard and task board">View the dashboard and task board <span aria-hidden="true">+</span></button>
             </div>
           </article>
         </div>
@@ -888,7 +876,7 @@ const personSchema = JSON.stringify({
           <dl class="features">
             {osFeatures.map((f) => (
               <div>
-                <dt>{f.title} <span class:list={['status', f.status === 'Pilot' ? 'status-pilot' : 'status-live']}>{f.status}</span></dt>
+                <dt>{f.title} <span class:list={['status', 'status-live']}>{f.status}</span></dt>
                 <dd>{f.text}</dd>
               </div>
             ))}
@@ -896,31 +884,7 @@ const personSchema = JSON.stringify({
           <p class="stack mt">n8n (self-hosted) · Meta API · Notion · e-mail · WhatsApp</p>
         </div>
 
-        {/* Pilot: deliberately less prominent */}
-        <article class="ai-card ai-card-slim">
-          <div class="ai-card-body">
-            <span class="status status-pilot">Pilot</span>
-            <h3>Creative Strategy Agent</h3>
-            <p class="ai-card-text">A separate, more autonomous project: an agent that proposes the next tests from live Meta performance and writes creator briefs. Runs manually; every output is reviewed.</p>
-          </div>
-          <button type="button" class="ai-toggle" aria-expanded="false" aria-controls="ai-panel-agent" data-label="Explore project">Explore project <span aria-hidden="true">+</span></button>
-        </article>
-        <div class="ai-panel" id="ai-panel-agent" hidden>
-          <ol class="flow" aria-label="How the agent works">
-            {strategistFlow.map((s, i) => (
-              <li>
-                <span class="flow-no">{i + 1}</span>
-                <strong>{s.step}</strong>
-                <span>{s.text}</span>
-                {s.gate && <em class="gate">Human gate: {s.gate}</em>}
-              </li>
-            ))}
-          </ol>
-          <ul class="ticks principles">
-            {strategistPrinciples.map((p) => <li>{p}</li>)}
-          </ul>
-          <p class="stack mt">n8n (self-hosted) · Meta Marketing API · Notion · LLM APIs</p>
-        </div>
+        <p class="pilot-note"><strong>In development · Creative Strategy Agent</strong> — uses the Meta Marketing API and LLM APIs to suggest ad tests and draft briefs for my review.</p>
       </div>
     </section>
 
@@ -942,7 +906,7 @@ const personSchema = JSON.stringify({
               <div>
                 <h3>{e.role}</h3>
                 <p class="tl-org">{e.orgUrl ? <a class="ext" href={e.orgUrl} target="_blank" rel="noopener noreferrer">{e.org}</a> : e.org}</p>
-                <p class="tl-summary">{e.summary}</p>
+                <p class="tl-summary"><mark class="marker">{e.focus}</mark> · {e.summary}</p>
                 {e.points.length > 0 && (
                   <ul class="ticks">
                     {e.points.map((p) => <li>{p}</li>)}
@@ -1043,7 +1007,7 @@ const personSchema = JSON.stringify({
       function set(btn, open) {
         var panel = document.getElementById(btn.getAttribute('aria-controls'));
         btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-        btn.firstChild.nodeValue = open ? 'Close project ' : 'Explore project ';
+        btn.firstChild.nodeValue = open ? 'Close project ' : btn.dataset.label + ' ';
         btn.lastElementChild.textContent = open ? '−' : '+';
         btn.closest('.ai-card').classList.toggle('is-open', open);
         if (panel) panel.hidden = !open;
@@ -1414,7 +1378,9 @@ const personSchema = JSON.stringify({
     .voice-p p strong { color: var(--ink); }
 
     /* Refinement: availability, expertise, platforms, previous results, CV */
-    .availability { margin-top: 18px; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--ink); }
+    .availability-break { display: none; }
+    @media (max-width: 600px) { .availability-break { display: inline; } .availability-divider { display: none; } }
+    .availability { margin-bottom: 20px; padding: 9px 14px; background: var(--yellow); border-radius: 6px; line-height: 1.4; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--ink); }
     .availability-dot { width: 8px; height: 8px; border-radius: 999px; background: #1f8f5f; box-shadow: 0 0 0 4px rgba(31, 143, 95, 0.15); flex-shrink: 0; }
     .hero-actions { margin-top: 18px; }
     .plats { list-style: none; padding: 0; margin: 10px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
@@ -1470,13 +1436,11 @@ const personSchema = JSON.stringify({
     @media (min-width: 900px) { .ai-grid { grid-template-columns: 1fr 1fr; } }
     .ai-mini { padding: 22px; background: #14161a; border-bottom: 1px solid #2c2f35; display: flex; align-items: center; }
     @media (min-width: 900px) { .ai-mini { min-height: 118px; } .ai-grid .ai-card { grid-template-rows: auto 1fr; } }
-    .ai-card-slim { margin-top: 20px; background: transparent; border-style: dashed; }
-    @media (min-width: 900px) { .ai-card-slim { grid-template-columns: 1fr auto; align-items: center; padding-right: 24px; } }
-    .ai-card-slim .ai-card-body { padding-bottom: 8px; }
-    @media (min-width: 900px) { .ai-card-slim .ai-card-body { padding-bottom: 24px; } }
-    .ai-card-slim > .ai-toggle { margin: 0 24px 24px; justify-self: start; }
-    @media (min-width: 900px) { .ai-card-slim > .ai-toggle { margin: 0; } }
-    .ai-card-slim h3 { font-size: 1.3rem; }
+    .card-stack { margin-top: 14px; line-height: 1.55; }
+    .pilot-note { margin-top: 24px; padding-top: 16px; border-top: 1px solid #41444a; color: #c9cbcf; font-size: 14px; }
+    .pilot-note strong { color: #fff; }
+    .marker { background: linear-gradient(transparent 56%, var(--yellow) 56%); color: inherit; font-weight: 700; }
+    .section-dark .marker { color: var(--ink); background: var(--yellow); padding-inline: 0.12em; box-decoration-break: clone; }
     .ai-panel { margin-top: 16px; padding: 28px 0 8px; border-top: 2px solid var(--yellow); animation: ai-fade 200ms ease; }
     .ai-panel[hidden] { display: none; }
     .ai-panel .flow { margin-top: 18px; }
