@@ -168,14 +168,23 @@ const moreWork = [
 const earlierCases = [
   { client: 'Somnox', logo: logoSomnox, meta: 'Sleep tech, DTC · 2018 to 2021', text: 'Acquisition funnel, Facebook and Instagram campaigns, creative testing and e-mail growth, plus a recruitment funnel that helped hire 5+ engineers.', figures: [{ value: '€0 → €20k', label: 'monthly ad spend' }, { value: '4.0x', label: 'average ROAS, final year' }, { value: '20,000+', label: 'e-mail subscribers' }] },
   { client: 'Real Estate Masterclass', meta: 'Online education · 2021 to 2022', text: 'Funnel design and paid strategy on Facebook, Instagram and TikTok for lead generation and online sales.', figures: [{ value: '€30k', label: 'monthly ad spend' }, { value: '6.5x', label: 'average ROAS' }, { value: '12.5x', label: 'peak ROAS, two weeks' }] },
-  { client: 'NXG Media new business', meta: 'Own B2B acquisition · 2026', text: 'Designed and launched an AI-search (GEO) service with its full funnel: paid ads, an AI-visibility scan, sales calls and closing, all run by me.', figures: [{ value: '8', label: 'new B2B clients closed' }, { value: '4 steps', label: 'ads, scan, call, close' }, { value: '1', label: 'new service launched' }] },
+];
+
+const scale = [
+  { name: 'Vos Marketing', value: '~€40k', label: 'per month combined, across up to 7 e-commerce accounts at once' },
+  { name: 'Real Estate Masterclass', value: '~€30k', label: 'per month for a large part of the engagement' },
+  { name: 'Somnox', value: '€20k', label: 'per month, scaled up from €0' },
+  { name: 'Stekkies', value: '~€20k', label: 'per month at its highest' },
+  { name: 'MCM Research', value: '~€7.5k', label: 'per month, for an extended period' },
+  { name: 'Nederland Eet Groep', value: '~€5k', label: 'per month' },
+  { name: 'YouLife', value: '~€5k', label: 'per month' },
 ];
 
 const alsoWorked = [
   'ANWB (recruitment campaign, via a partner agency)',
-  'MCM Research (recruitment, ~€15k/month, automated lead routing)',
+  'MCM Research (recruitment, ~€7.5k/month, automated lead routing)',
   'Nederland Eet Groep (B2C orders, B2B restaurant partners, staff recruitment)',
-  'PixelBros (IT recruitment)',
+  'PixelBros (IT recruitment, website services)',
   'EasyZZP (since 2018)',
 ];
 
@@ -183,6 +192,50 @@ const testimonials = [
   { id: '879049102', name: 'Cat Howell', role: 'Author and agency owner', thumb: thumbCat },
   { id: '879049149', name: 'Julian Jagtenberg', role: 'Somnox', thumb: thumbSomnox },
   { id: '879049124', name: 'Narayan', role: 'Nederland Eet Groep, now eetclub.nl', thumb: thumbNarayan },
+];
+
+const geo = {
+  title: 'NXG AI Visibility Scanner',
+  kicker: 'From idea to paying customers · 2026',
+  lead: 'I saw an emerging opportunity around AI search visibility and turned it into a product: a free scanner, a gated personal report and a sales process for website projects. I designed, built, marketed and sold it myself.',
+  landing: creativeImage('geo-01-landing'),
+  steps: [
+    { image: creativeImage('geo-02-scan'), title: 'Five-step scan', text: 'Site analysis, AI search queries, competitor check, citability score, report.' },
+    { image: creativeImage('geo-03-unlock'), title: 'Lead capture', text: 'An e-mail address unlocks the personal result.' },
+    { image: creativeImage('geo-04-report'), title: 'Personal report', text: 'Visibility scores, the competitors that come up, and recommended next steps.' },
+  ],
+  campaign: [
+    { value: '€3,209', label: 'ad spend' },
+    { value: '1,781', label: 'lead results, summed across campaigns' },
+    { value: '~€1.80', label: 'calculated cost per lead result' },
+  ],
+  outcome: [
+    { value: '8', label: 'new B2B clients: 5 website projects, 3 ads clients' },
+    { value: '€1.2k to €3.5k', label: 'recent website projects' },
+    { value: '~€500', label: 'direct audit and advice sales' },
+  ],
+  role: [
+    'Proposition and positioning',
+    'Landing page and scanner experience',
+    'Lead capture and personal report',
+    'Ad campaigns',
+    'Sales calls and closing',
+    'Website delivery with Astro, Keystatic CMS and AI-assisted development',
+  ],
+};
+
+const aiShots = (prefix: string) =>
+  Object.entries(creativeFiles)
+    .filter(([p]) => p.split('/').pop()!.startsWith(prefix))
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([, m]) => m.default);
+
+const videoFlow = [
+  { step: 'Original video', text: 'A saved video ad is the input.' },
+  { step: 'Gemini analysis', text: 'Breaks down the hook, creative structure and CTA.' },
+  { step: 'Notion research', text: 'Findings are stored in my research workflow.' },
+  { step: 'Claude script', text: 'Drafts a rewritten script based on my own experiences and examples.' },
+  { step: 'Human review', text: 'I review and edit before anything goes into production.' },
 ];
 
 const strategistFlow = [
@@ -195,8 +248,8 @@ const strategistFlow = [
 
 const strategistPrinciples = [
   'Every brief carries a hypothesis and a learning question, otherwise it is rejected.',
-  'Learnings get a status: provisional, supported in this context, contradicted or outdated. Nothing is stored as fact without replication and my sign-off.',
-  'The agent prepares and proposes. People approve before production and before publishing; it never publishes itself.',
+  'Learnings get a status (provisional, supported, contradicted or outdated) and are never stored as fact without my sign-off.',
+  'The agent proposes. People approve before production and publishing; it never publishes itself.',
 ];
 
 const osFlow = [
@@ -207,22 +260,12 @@ const osFlow = [
 ];
 
 const osFeatures = [
-  { title: 'Client cockpit', text: 'Meta performance, WhatsApp and e-mail in one place per client, so I can answer questions and send performance updates without switching tools.' },
-  { title: 'Creative dashboards', text: 'Per-ad overviews of spend, CTR, CPA and hook performance, so winning angles and formats are visible at a glance.' },
-  { title: 'Communication log', text: 'Every mail and call filed per client with a summary, so full context is available in a minute.' },
-  { title: 'Daily task mail', text: 'An automatic, prioritised task mail each morning instead of manual triage.' },
-  { title: 'KPIs from day one', text: 'KPIs are fixed at onboarding and reporting follows them.' },
-];
-
-const videoFlow = [
-  { step: 'Gemini analysis', text: 'Gemini analyses video ads and scores the hook and structure.' },
-  { step: 'Notion', text: 'The analysis is stored per ad in Notion, next to its performance data.' },
-  { step: 'Claude scripts', text: 'Claude drafts new scripts based on the analysed ads.' },
-];
-
-const supporting = [
-  { title: 'Automation layer', status: 'In use', text: 'Self-hosted n8n workflows that route new leads to the right person, generate reports and sync data between Meta, Notion, e-mail and WhatsApp.' },
-  { title: 'AI-visibility scan', status: 'In use', text: 'An automated scan of how visible a business is in AI search, used for lead qualification before the sales call in my 2026 B2B funnel.' },
+  { title: 'Client cockpit', status: 'In use', text: 'Meta performance, WhatsApp and e-mail in one place per client, so I can answer questions and send updates without switching tools.' },
+  { title: 'Creative dashboards', status: 'In use', text: 'Per-ad overviews of spend, CTR, CPA and hook performance, so winning angles and formats are visible at a glance.' },
+  { title: 'Communication log', status: 'In use', text: 'Every mail and call filed per client with a summary, so full context is available in a minute.' },
+  { title: 'Daily task mail', status: 'In use', text: 'An automatic, prioritised task mail each morning instead of manual triage.' },
+  { title: 'Lead routing and sync', status: 'In use', text: 'n8n workflows route new leads to the right person and sync data between Meta, Notion, e-mail and WhatsApp.' },
+  { title: 'Creative strategist agent', status: 'Pilot', text: 'Proposes the next tests and writes briefs. Shown in detail below.' },
 ];
 
 const experience = [
@@ -233,19 +276,21 @@ const experience = [
     summary: 'Growth marketing agency for Dutch and Belgian brands, started alongside my studies. I run the campaigns, the client relationships and the business itself.',
     points: [
       'Own the end-to-end growth process: acquisition strategy, budget allocation, funnel development, conversion optimisation, reporting and long-term account management.',
-      'Plan, launch and scale paid campaigns on Meta, Google, TikTok, Pinterest and LinkedIn for 50+ B2C and B2B clients, scaling or cutting spend on CPA and ROAS targets.',
+      'Plan, launch and scale paid campaigns for 50+ B2C and B2B clients, scaling or cutting spend on CPA and ROAS targets. Meta is the core channel; Google, TikTok, Pinterest and LinkedIn where they fit.',
       'Run structured creative testing (hooks, angles, formats, copy) and brief designers and content creators on new creatives.',
       'Build complete acquisition funnels: landing pages, tracking, CRM, e-mail sequences and CRO.',
-      'Built my own marketing technology: an AI creative-strategist agent, a client hub on the Meta API, WhatsApp and e-mail, creative dashboards and n8n automations.',
+      'Built my own products and marketing technology: the NXG AI Visibility Scanner, a client hub on the Meta API, WhatsApp and e-mail, creative dashboards, an AI creative workflow and n8n automations.',
     ],
   },
   {
     period: '2022 to 2024',
     role: 'Performance Marketer',
     org: 'Vos Marketing, e-commerce agency, Rotterdam',
-    summary: 'Paid social and acquisition campaigns for e-commerce brands in the Netherlands, Germany and the UK.',
+    summary: 'Agency-side role next to running NXG Media: paid social and acquisition for e-commerce brands in the Netherlands, Germany and the UK.',
     points: [
+      'Managed up to 7 e-commerce ad accounts at the same time, with roughly €40,000 in combined monthly media spend, for about 18 to 24 months.',
       'Presented monthly performance reviews to clients (spend, revenue, ROAS, CPA, AOV, conversion rate) and set the testing plan for the next month.',
+      "Worked inside another agency's team, processes and client structure.",
     ],
   },
   {
@@ -261,14 +306,15 @@ const commercial = [
   { title: 'Owning the P&L', text: 'Running my own agency means I set pricing, watch client profitability and do new-business sales and closing myself.' },
   { title: 'Launching and selling a service', text: 'In 2026 I developed and commercialised an AI-search (GEO) service, built its acquisition infrastructure, ran the sales process and personally closed 8 new B2B clients.' },
   { title: 'Multi-year client relationships', text: 'I present monthly results and strategy to founders and in-house marketing teams. EasyZZP has worked with me since 2018, Happy with Yoga since 2022.' },
-  { title: 'Working with creatives and teams', text: 'I brief designers and content creators on new creatives. At Vos Marketing I presented monthly performance reviews to clients and set the testing plan for the next month.' },
+  { title: 'B2B as well as consumer', text: 'Next to my own scanner funnel: self-employed entrepreneurs for EasyZZP, restaurant partners for Nederland Eet Groep, website services for PixelBros, yoga teachers for Happy with Yoga and corporate gifting for Posivino. Not every test worked; a LinkedIn Ads campaign for Buitink BV underperformed.' },
 ];
 
 const skills = [
-  { group: 'Paid media', items: 'Meta Ads (expert), Google Ads, TikTok Ads, Pinterest Ads, LinkedIn Ads · campaign structure, audience strategy, creative testing, budget pacing' },
+  { group: 'Channels', items: 'Core: Meta Ads and paid social, creative strategy · Also: Google Ads (Happy with Yoga, Het Grote Depri Doeboek), TikTok Ads (Stekkies, Real Estate Masterclass), Pinterest Ads (Happy with Yoga), LinkedIn Ads (selected B2B campaigns)' },
+  { group: 'Paid media craft', items: 'Campaign structure, audience strategy, creative testing, budget pacing' },
   { group: 'Growth', items: 'Full-funnel strategy · landing pages and CRO · e-mail and CRM · lead generation · tracking and attribution · copywriting' },
-  { group: 'Data & AI', items: 'Meta Ads Manager, Google Analytics, custom dashboards, n8n, APIs, AI agents · KPI reporting (CPA, ROAS, CPL, CR)' },
-  { group: 'Business', items: 'B2B sales and closing · account management · client retention · stakeholder communication' },
+  { group: 'Data & AI', items: 'Meta Ads Manager, Google Analytics, custom dashboards, n8n, APIs, Gemini, Claude, AI agents · KPI reporting (CPA, ROAS, CPL, CR)' },
+  { group: 'Business', items: 'B2B sales and closing · proposition development · account management · client retention · stakeholder communication' },
 ];
 
 const personSchema = JSON.stringify({
@@ -519,6 +565,18 @@ const personSchema = JSON.stringify({
             </article>
           ))}
         </div>
+        <div class="scale">
+          <div class="scale-intro">
+            <h3 class="earlier-title">Scale</h3>
+            <p>Around 50 businesses through NXG Media and agency work. These are approximate monthly media budgets I was responsible for at their highest or typical level.</p>
+          </div>
+          <dl class="scale-list">
+            {scale.map((r) => (
+              <div><dt>{r.name}</dt><dd><span class="num">{r.value}</span> {r.label}</dd></div>
+            ))}
+          </dl>
+        </div>
+        <p class="fine">Monthly figures, not cumulative totals. Historical estimates, not audited, and not a breakdown of the €8M+ lifetime figure.</p>
         <p class="also"><span>Also:</span> {alsoWorked.join(' · ')}</p>
         <p class="fine integrity">About these numbers: all figures come from my own campaign reporting and have not been independently audited. Calculated returns and estimates are marked as such and are not Meta-attributed ROAS.</p>
       </div>
@@ -552,25 +610,147 @@ const personSchema = JSON.stringify({
       <div class="wrap">
         <header class="sec-head">
           <p class="sec-index">03 · AI Systems</p>
-          <h2>Systems I built</h2>
-          <p class="sec-intro">Self-hosted on my own VPS with n8n, APIs and AI models. Each one has a status, so it is clear what runs today and what is still being tested.</p>
+          <h2>Built and launched</h2>
+          <p class="sec-intro">A product I took from idea to paying customers, and the AI systems I use in my daily work. Each has a status, so it is clear what runs today and what is still being tested.</p>
           <ul class="legend" aria-label="Status legend">
-            <li><span class="status status-live">In use</span> runs in my daily client work</li>
+            <li><span class="status status-live">Live</span><span class="status status-live">In use</span> running in real work</li>
             <li><span class="status status-pilot">Pilot</span> tested on real work, reviewed manually</li>
           </ul>
         </header>
 
+        {/* Product: GEO scanner */}
+        <article class="product" aria-labelledby="geo-title">
+          <div class="project-head">
+            <span class="status status-live">Live</span>
+            <p class="product-kicker">{geo.kicker}</p>
+            <h3 id="geo-title">{geo.title}</h3>
+            <p class="project-lead">{geo.lead}</p>
+          </div>
+
+          {geo.landing && (
+            <figure class="browser browser-lg">
+              <div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+              <Image src={geo.landing} alt="Scanner landing page with the free AI visibility scan form" widths={[640, 960, 1280]} sizes="(min-width: 1120px) 1056px, 92vw" loading="lazy" />
+            </figure>
+          )}
+          {geo.landing && (
+            <p class="geo-step-title geo-step-first"><span>1</span>Landing page <em>The proposition and the scan entry point.</em></p>
+          )}
+
+          <ol class="geo-steps">
+            {geo.steps.filter((st) => st.image).map((st, i) => (
+              <li>
+                <figure class="browser">
+                  <div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+                  <div class="browser-shot">
+                    <Image src={st.image!} alt={`Scanner screenshot: ${st.title}`} width={720} loading="lazy" />
+                  </div>
+                </figure>
+                <p class="geo-step-title"><span>{i + 2}</span>{st.title}</p>
+                <p class="geo-step-text">{st.text}</p>
+              </li>
+            ))}
+          </ol>
+          <p class="shot-note">Real product screenshots. Client and competitor names are blurred.</p>
+
+          <div class="geo-results">
+            <div>
+              <span class="scope scope-campaign">Campaign</span>
+              <dl class="geo-figures">
+                {geo.campaign.map((f) => <div><dt class="num">{f.value}</dt><dd>{f.label}</dd></div>)}
+              </dl>
+            </div>
+            <div>
+              <span class="scope scope-outcome">Business outcome</span>
+              <dl class="geo-figures">
+                {geo.outcome.map((f) => <div><dt class="num">{f.value}</dt><dd>{f.label}</dd></div>)}
+              </dl>
+            </div>
+            <div>
+              <p class="case-label">My role</p>
+              <ul class="ticks">
+                {geo.role.map((r) => <li>{r}</li>)}
+              </ul>
+            </div>
+          </div>
+          <p class="fine fine-dark">Lead results are summed per campaign and not deduplicated to unique people; the cost per lead is calculated. No revenue total or ROAS is shown.</p>
+        </article>
+
+        {/* Operational AI workflow */}
+        <article class="project">
+          <div class="project-head">
+            <span class="status status-live">In use</span>
+            <h3>Creative research system</h3>
+            <p class="project-lead">
+              Turns a saved video ad into research and a new script. It runs in my daily creative work.
+            </p>
+          </div>
+          <ol class="flow flow-5" aria-label="How the creative research system works">
+            {videoFlow.map((s, i) => (
+              <li>
+                <span class="flow-no">{i + 1}</span>
+                <strong>{s.step}</strong>
+                <span>{s.text}</span>
+              </li>
+            ))}
+          </ol>
+          {aiShots('ai-research').length > 0 && (
+            <div class="ai-shots">
+              {aiShots('ai-research').map((img) => (
+                <figure class="browser"><div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span></div><Image src={img} alt="Creative research system screenshot" width={900} loading="lazy" /></figure>
+              ))}
+            </div>
+          )}
+          <p class="stack mt">Gemini · Notion · Claude · n8n (self-hosted)</p>
+        </article>
+
+        {/* Client OS */}
+        <article class="project">
+          <div class="project-head">
+            <span class="status status-live">In use</span>
+            <h3>NXG Creative OS</h3>
+            <p class="project-lead">
+              My operating system for client work: one hub per client that brings together ad performance,
+              communication and creatives, and turns them into a clear daily plan. Not fully autonomous: I make the decisions.
+            </p>
+          </div>
+          <ol class="flow flow-4" aria-label="How NXG Creative OS works">
+            {osFlow.map((s, i) => (
+              <li>
+                <span class="flow-no">{i + 1}</span>
+                <strong>{s.step}</strong>
+                <span>{s.text}</span>
+              </li>
+            ))}
+          </ol>
+          {aiShots('ai-os').length > 0 && (
+            <div class="ai-shots">
+              {aiShots('ai-os').map((img) => (
+                <figure class="browser"><div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span></div><Image src={img} alt="NXG Creative OS screenshot" width={900} loading="lazy" /></figure>
+              ))}
+            </div>
+          )}
+          <dl class="features">
+            {osFeatures.map((f) => (
+              <div>
+                <dt>{f.title} <span class:list={['status', f.status === 'Pilot' ? 'status-pilot' : 'status-live']}>{f.status}</span></dt>
+                <dd>{f.text}</dd>
+              </div>
+            ))}
+          </dl>
+          <p class="stack mt">n8n (self-hosted) · Meta API · Notion · e-mail · WhatsApp</p>
+        </article>
+
+        {/* Pilot */}
         <article class="project">
           <div class="project-head">
             <span class="status status-pilot">Pilot</span>
             <h3>Creative Research & Strategy Agent</h3>
             <p class="project-lead">
               Combines my hook library and angle bank with live Meta ad performance to suggest the next ads to test,
-              then writes a ready-to-use brief for a designer or content creator. Its design is based on a research report into how
-              leading creative strategists run research, briefing and testing.
+              then writes a ready-to-use brief for a designer or content creator. Runs manually on real client work; every output is reviewed before use.
             </p>
           </div>
-
           <ol class="flow" aria-label="How the agent works">
             {strategistFlow.map((s, i) => (
               <li>
@@ -581,89 +761,11 @@ const personSchema = JSON.stringify({
               </li>
             ))}
           </ol>
-
-          <div class="project-cols">
-            <div>
-              <p class="case-label">Design principles</p>
-              <ul class="ticks">
-                {strategistPrinciples.map((p) => <li>{p}</li>)}
-              </ul>
-            </div>
-            <div>
-              <p class="case-label">Stack</p>
-              <p class="stack">n8n (self-hosted) · Meta Marketing API · Notion · LLM APIs</p>
-              <p class="case-label">Where it is now</p>
-              <p>Running as a manually triggered pilot on real client boards. Every output is reviewed by me before it is used.</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="project">
-          <div class="project-head">
-            <span class="status status-live">In use</span>
-            <h3>NXG Creative OS</h3>
-            <p class="project-lead">
-              My operating system for client work: one hub per client that brings together ad performance,
-              communication and creatives, and turns them into a clear daily plan.
-            </p>
-          </div>
-
-          <ol class="flow flow-4" aria-label="How NXG Creative OS works">
-            {osFlow.map((s, i) => (
-              <li>
-                <span class="flow-no">{i + 1}</span>
-                <strong>{s.step}</strong>
-                <span>{s.text}</span>
-              </li>
-            ))}
-          </ol>
-
-          <dl class="features">
-            {osFeatures.map((f) => (
-              <div>
-                <dt>{f.title}</dt>
-                <dd>{f.text}</dd>
-              </div>
-            ))}
-          </dl>
-          <p class="stack mt">n8n (self-hosted) · Meta API · Notion · e-mail · WhatsApp</p>
-        </article>
-
-        <article class="project">
-          <div class="project-head">
-            <span class="status status-live">In use</span>
-            <h3>Video analysis to script</h3>
-            <p class="project-lead">
-              The operational part of my creative workflow today. Video ads are analysed for hook and structure,
-              stored next to their performance data, and used as input for new scripts.
-            </p>
-          </div>
-          <ol class="flow flow-3" aria-label="How the video analysis workflow works">
-            {videoFlow.map((s, i) => (
-              <li>
-                <span class="flow-no">{i + 1}</span>
-                <strong>{s.step}</strong>
-                <span>{s.text}</span>
-              </li>
-            ))}
-          </ol>
-          <p class="stack mt">Gemini · Notion · Claude · n8n (self-hosted)</p>
-        </article>
-
-        <div class="supporting">
-          <p class="case-label">Supporting projects</p>
-          <ul>
-            {supporting.map((s) => (
-              <li>
-                <div class="supporting-head">
-                  <strong>{s.title}</strong>
-                  <span class:list={['status', s.status === 'In use' ? 'status-live' : 'status-pilot']}>{s.status}</span>
-                </div>
-                <p>{s.text}</p>
-              </li>
-            ))}
+          <ul class="ticks principles">
+            {strategistPrinciples.map((p) => <li>{p}</li>)}
           </ul>
-        </div>
+          <p class="stack mt">n8n (self-hosted) · Meta Marketing API · Notion · LLM APIs</p>
+        </article>
       </div>
     </section>
 
@@ -1014,7 +1116,7 @@ const personSchema = JSON.stringify({
     .more-logo { height: 26px; width: auto; max-width: 110px; object-fit: contain; }
     .earlier { padding-top: 72px; }
     .earlier-grid { margin-top: 20px; display: grid; gap: 0; border-top: 1px solid var(--line); }
-    @media (min-width: 900px) { .earlier-grid { grid-template-columns: repeat(3, 1fr); } .earlier-item + .earlier-item { border-left: 1px solid var(--line); padding-left: 28px; } .earlier-item { padding-right: 28px; } }
+    @media (min-width: 900px) { .earlier-grid { grid-template-columns: repeat(2, 1fr); } .earlier-item + .earlier-item { border-left: 1px solid var(--line); padding-left: 28px; } .earlier-item { padding-right: 28px; } }
     .earlier-item { padding: 24px 0; border-bottom: 1px solid var(--line); }
     @media (min-width: 900px) { .earlier-item { border-bottom: 0; } }
     .earlier-item h4 { font-size: 1.25rem; font-weight: 800; }
@@ -1059,8 +1161,6 @@ const personSchema = JSON.stringify({
     .flow strong { color: #fff; font-size: 15px; }
     .flow-no { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; color: var(--yellow); font-size: 15px; }
     .gate { margin-top: auto; padding-top: 6px; font-style: normal; font-size: 12px; font-weight: 700; color: #8db0ff; }
-    .project-cols { margin-top: 32px; display: grid; gap: 28px; color: #d9dadd; line-height: 1.6; }
-    @media (min-width: 900px) { .project-cols { grid-template-columns: 1.4fr 1fr; gap: 56px; } }
     .stack { font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace; font-size: 13px; color: #c9cbcf; }
     .stack.mt { margin-top: 24px; }
     .features { margin: 32px 0 0; display: grid; gap: 22px 40px; }
@@ -1068,11 +1168,6 @@ const personSchema = JSON.stringify({
     @media (min-width: 1024px) { .features { grid-template-columns: repeat(3, 1fr); } }
     .features dt { font-weight: 800; color: #fff; }
     .features dd { margin: 4px 0 0; font-size: 15px; line-height: 1.55; color: #b7b9be; }
-    .supporting { padding-top: 40px; border-top: 1px solid #2c2f35; }
-    .supporting ul { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 24px; }
-    @media (min-width: 900px) { .supporting ul { grid-template-columns: repeat(3, 1fr); gap: 40px; } }
-    .supporting-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; color: #fff; }
-    .supporting p { margin-top: 6px; font-size: 15px; line-height: 1.55; color: #b7b9be; }
 
     /* Experience */
     .timeline { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
@@ -1109,6 +1204,51 @@ const personSchema = JSON.stringify({
     .contact-list a:hover { color: var(--yellow); }
     .contact-list span { font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #8d9097; align-self: center; }
     .pf-foot { padding: 28px 20px; font-size: 13px; color: var(--muted); }
+
+    /* Product case + AI */
+    .product { padding: 40px 0 56px; border-top: 1px solid #2c2f35; }
+    .product-kicker { margin-top: 14px; font-size: 13px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--yellow); }
+    .product .project-head h3 { margin-top: 6px; }
+    .browser { margin: 0; border-radius: 12px; overflow: hidden; background: #1a1d22; border: 1px solid #2c2f35; box-shadow: 0 20px 50px rgba(0,0,0,0.35); }
+    .browser-bar { height: 26px; display: flex; align-items: center; gap: 6px; padding: 0 12px; background: #23262c; }
+    .browser-bar span { width: 9px; height: 9px; border-radius: 999px; background: #3a3e46; }
+    .browser img { display: block; width: 100%; height: auto; }
+    .browser-lg { margin-top: 32px; }
+    .browser-shot { aspect-ratio: 16 / 10; overflow: hidden; background: #fff; }
+    .browser-shot img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .geo-steps { list-style: none; padding: 0; margin: 24px 0 0; display: grid; grid-auto-flow: column; grid-auto-columns: 78%; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; }
+    .geo-steps > li { scroll-snap-align: start; }
+    @media (min-width: 900px) { .geo-steps { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); gap: 24px; overflow: visible; } }
+    .geo-step-title { margin-top: 14px; display: flex; align-items: center; gap: 8px; font-weight: 800; color: #fff; }
+    .geo-step-title span { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 999px; background: var(--yellow); color: var(--ink); font-size: 12px; }
+    .geo-step-text { margin-top: 4px; font-size: 14px; line-height: 1.5; color: #b7b9be; }
+    .geo-step-first { flex-wrap: wrap; }
+    .geo-step-first em { flex-basis: 100%; padding-left: 30px; font-style: normal; font-weight: 400; font-size: 14px; color: #b7b9be; }
+    .shot-note { margin-top: 14px; font-size: 12.5px; color: #8d9097; }
+    .geo-results { margin-top: 40px; display: grid; gap: 32px; padding: 28px; border-radius: 16px; background: #1a1d22; }
+    @media (min-width: 900px) { .geo-results { grid-template-columns: 1fr 1fr 1.1fr; gap: 40px; } }
+    .geo-figures { margin: 14px 0 0; display: grid; gap: 14px; }
+    .geo-figures dt { font-size: clamp(1.9rem, 4vw, 2.5rem); color: #fff; }
+    .geo-figures dd { margin: 4px 0 0; font-size: 13.5px; color: #b7b9be; }
+    .geo-results .ticks { color: #d9dadd; font-size: 15px; }
+    .scope-outcome { background: #1f8f5f; color: #fff; }
+    .fine-dark { color: #8d9097; }
+    .ai-shots { margin-top: 24px; display: grid; gap: 20px; }
+    @media (min-width: 900px) { .ai-shots { grid-template-columns: repeat(2, 1fr); } }
+    .features dt .status { margin-left: 6px; vertical-align: 2px; font-size: 9.5px; padding: 2px 7px; }
+    .principles { margin-top: 24px; max-width: 52em; color: #d9dadd; font-size: 15px; }
+    .legend .status + .status { margin-left: -2px; }
+
+    /* Scale */
+    .scale { margin-top: 48px; display: grid; gap: 24px; }
+    @media (min-width: 900px) { .scale { grid-template-columns: 1fr 1.6fr; gap: 56px; } }
+    .scale-intro p { margin-top: 10px; color: var(--muted); line-height: 1.6; }
+    .scale-list { margin: 0; border-top: 1px solid var(--line); }
+    .scale-list > div { display: grid; grid-template-columns: 1fr; gap: 2px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+    @media (min-width: 640px) { .scale-list > div { grid-template-columns: 210px 1fr; gap: 16px; align-items: baseline; } }
+    .scale-list dt { font-weight: 800; }
+    .scale-list dd { margin: 0; color: var(--muted); font-size: 14.5px; }
+    .scale-list .num { font-size: 1.5rem; color: var(--ink); margin-right: 6px; }
   </style>
 </body>
 </html>
