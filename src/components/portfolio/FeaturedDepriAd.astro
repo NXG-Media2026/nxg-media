@@ -1,0 +1,51 @@
+---
+import poster from '../../assets/images/portfolio/depri-top-video-poster.jpg';
+
+interface Props {
+  dutch: boolean;
+}
+const { dutch } = Astro.props;
+---
+
+<section class="wrap featured-ad" aria-labelledby="featured-ad-title">
+  <div class="featured-layout">
+    <video
+      src="/portfolio/video/depri-top-video.mp4"
+      poster={poster.src}
+      width="720"
+      height="720"
+      controls
+      playsinline
+      preload="none"
+      aria-label={dutch ? 'Video-advertentie voor Het Grote Depri Doeboek' : 'Video ad for Het Grote Depri Doeboek'}
+    ></video>
+    <div class="featured-copy">
+      <p class="sec-index">{dutch ? 'Uitgelichte advertentie' : 'Featured ad'}</p>
+      <h2 id="featured-ad-title">Het Grote Depri Doeboek</h2>
+      <p>{dutch ? 'In deze advertentie vertelt de auteur zelf over het boek.' : 'In this ad, the author introduces the book on camera.'}</p>
+      <ul aria-label={dutch ? 'Resultaten van deze video-advertentie' : 'Results for this video ad'}>
+        <li>{dutch ? '2.535+ aankopen' : '2,535+ purchases'}</li>
+        <li>{dutch ? '€ 10,53 per aankoop' : '€10.53 per purchase'}</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .featured-layout {
+    display: grid;
+    grid-template-columns: clamp(116px, 28vw, 186px) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(16px, 4vw, 42px);
+    padding-block: 22px;
+  }
+  video { display: block; width: 100%; height: auto; border-radius: 10px; background: #111316; }
+  h2 { font-size: clamp(1.15rem, 3vw, 2rem); font-weight: 800; line-height: 1.15; margin: 5px 0 8px; }
+  .featured-copy > p:not(.sec-index) { font-size: 0.96rem; line-height: 1.45; color: var(--muted); }
+  ul { display: flex; flex-wrap: wrap; gap: 6px 12px; list-style: none; padding: 0; margin: 12px 0 0; }
+  li { font-weight: 700; font-size: clamp(.9rem, 1.8vw, 1.12rem); background: linear-gradient(transparent 62%, var(--yellow) 62%); }
+  @media (max-width: 540px) {
+    .featured-layout { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+    video { width: min(100%, 220px); }
+  }
+</style>

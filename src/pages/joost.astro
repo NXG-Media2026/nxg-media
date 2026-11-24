@@ -10,6 +10,7 @@ import portrait from '../assets/images/founder/joost-standing-relaxed.webp';
 import thumbCat from '../assets/images/testimonials/cathowell-8loops-thumb.webp';
 import thumbSomnox from '../assets/images/testimonials/somnox-thumb.webp';
 import thumbNarayan from '../assets/images/testimonials/narayan-eetclubnl-thumb.webp';
+import FeaturedDepriAd from '../components/portfolio/FeaturedDepriAd.astro';
 import CreativeTile from '../components/portfolio/CreativeTile.astro';
 import SystemDiagram from '../components/portfolio/SystemDiagram.astro';
 import osOverview from '../assets/images/portfolio/ai-os-01-overview.png';
@@ -35,7 +36,6 @@ import brandRem from '../assets/images/portfolio/brands/realestatemasterclass.pn
 import brandJdo from '../assets/images/portfolio/brands/jouwdroomoverkapping.png';
 import brandYogaPracht from '../assets/images/portfolio/brands/yogapracht.png';
 import eduHu from '../assets/images/portfolio/brands/hu.png';
-import eduVu from '../assets/images/portfolio/brands/vu.png';
 import svgMeta from '../assets/images/portfolio/platforms/meta.svg?raw';
 import svgGoogleAds from '../assets/images/portfolio/platforms/googleads.svg?raw';
 import svgTiktok from '../assets/images/portfolio/platforms/tiktok.svg?raw';
@@ -125,7 +125,7 @@ const hwy = {
   logo: logoHwy,
   meta: 'Online yoga programmes · 2022 to now',
   platforms: ['Meta', 'Google Ads', 'Pinterest'],
-  lead: 'Long-term growth partner across the whole customer journey: free lead acquisition, a low-ticket paid product, retargeting, annual memberships and higher-priced courses.',
+  lead: 'Since 2022 I have helped Happy with Yoga decide which offer to promote to whom. The free Morning Yoga Challenge attracts new leads. Chakra Mini lets people try a paid course for €7. For people already familiar with the brand, we tested retargeting with an annual membership offer.',
   totals: [
     { value: '~€180k', label: 'managed media spend since 2022, all platforms' },
   ],
@@ -210,7 +210,7 @@ const irvj = {
   logo: logoIrvj,
   meta: 'Book · October 2023 to November 2026',
   platforms: ['Meta'],
-  lead: 'A long-running book campaign with a wide creative mix: founder-led storytelling, customer reviews, organic-looking low-fi ads, and AI-assisted static and animated formats.',
+  lead: 'From the early days of the book campaign, I advised on complementary products and average order value. We discussed a sympathy gift bundle and a set of cards to accompany the book. For the ads, we tested the author’s story, reader reviews and AI-assisted creative.',
   totals: [
     { value: '€150k', label: 'ad spend' },
     { value: '€9.60', label: 'cost per purchase, campaign average' },
@@ -237,10 +237,11 @@ const moreWork = [
 const previous = [
   { name: 'Somnox', logo: logoSomnoxDark, url: 'https://somnox.com', period: '2018 to 2021', role: 'Meta Ads · Creative Strategy', platforms: ['Meta'], spend: '~€20k', spendLabel: 'monthly ad spend at its highest', resultHighlight: '4.0x average ROAS', result: ' in the final year' },
   { name: 'Real Estate Masterclass', logo: brandRem, url: 'https://realestatemasterclass.nl', period: '2021 to 2022', role: 'Meta Ads · Creative Strategy · Funnels', platforms: ['Meta', 'TikTok'], spend: '~€30k', spendLabel: 'monthly ad spend for a large part of the engagement', resultHighlight: '6.5x average ROAS', result: ', 12.5x peak over two weeks' },
-  { name: 'Vos Marketing', url: 'https://vosmarketing.nl', period: '2022 to 2024', role: 'Freelance performance marketer in the agency team', platforms: ['Meta'], spend: '~€40k', highlightSpend: true, spendLabel: 'combined monthly ad spend across up to 7 e-commerce accounts' },
+  { name: 'Vos Marketing', url: 'https://vosmarketing.nl', period: '2022 to 2024', role: 'Freelance performance marketer in the agency team', platforms: ['Meta', 'TikTok'], spend: '~€40k', highlightSpend: true, spendLabel: 'combined monthly ad spend across up to 7 e-commerce accounts' },
   { name: 'Stekkies', logo: logoStekkies, url: 'https://www.stekkies.com', role: 'Meta Ads · TikTok Ads · Creative Strategy', platforms: ['Meta', 'TikTok'], spend: 'up to ~€20k', spendLabel: 'monthly ad spend' },
   { name: 'MCM Research', logo: logoMcmDark, role: 'Meta Ads · Recruitment advertising', platforms: ['Meta'], spend: '~€5k', spendLabel: 'monthly ad spend' },
   { name: 'Nederland Eet Groep', logo: logoNederlandEet, iconOnly: true, url: 'https://www.eetclub.nl', role: 'Meta Ads · B2C and B2B', platforms: ['Meta'], spend: '~€5k B2C · ~€3k B2B', spendLabel: 'monthly ad spend, two separate activities' },
+  { name: 'Time 2 Wing', logo: logoAsset('timetowing-logo.webp'), role: 'Google Ads for a wingfoiling webshop', platforms: ['Google Ads'] },
   { name: 'YouLife', logo: logoYoulife, url: 'https://www.youlife.nl', role: 'Meta Ads · E-commerce', platforms: ['Meta'], spend: '~€5k to €7k', spendLabel: 'monthly ad spend' },
 ];
 
@@ -270,7 +271,9 @@ const geo = {
     { value: '~€1.80', label: 'calculated cost per lead result' },
   ],
   outcome: [
-    { value: '8', label: 'new B2B clients: 5 website projects, 3 ads clients' },
+    { value: '8', label: 'website and advertising clients in 2026' },
+    { value: '5', label: 'additional audits sold' },
+    { value: '~5', label: 'additional entry-level products sold' },
     { value: '€1.2k to €3.5k', label: 'recent website projects' },
     { value: '~€500', label: 'direct audit and advice sales' },
   ],
@@ -280,7 +283,7 @@ const geo = {
     'Lead capture and personal report',
     'Ad campaigns',
     'Sales calls and closing',
-    'Website delivery with Astro, Keystatic CMS and AI-assisted development',
+    'I build websites in Astro and Keystatic CMS and deploy them on Cloudflare. For technical SEO, I set up sitemaps, canonical URLs and language links so search engines can find the right page for each market.',
   ],
 };
 
@@ -340,7 +343,7 @@ const experience = [
       'Own paid acquisition end to end: strategy, budget allocation, creative testing, funnels, CRO and reporting, scaling or cutting spend on CPA and ROAS targets.',
       'Meta is the core channel; Google, TikTok, Pinterest and LinkedIn where they fit. B2C and B2B, for 50+ clients.',
       'Brief designers and content creators on hooks, angles, formats and copy.',
-      'Commercial side of working independently: client acquisition and proposals, pricing and profitability, multi-year relationships (EasyZZP since 2018, Happy with Yoga since 2022) and launching new propositions, such as an AI-search service in 2026 that brought in 8 new B2B clients.',
+      'I find my own clients, lead sales conversations, write proposals and negotiate scope and pricing. I stay involved after the sale: I have worked with EasyZZP since 2018 and Happy with Yoga since 2022.',
       'Built my own tools: the NXG AI Visibility Scanner, a client hub, creative dashboards and AI workflows.',
     ],
   },
@@ -390,7 +393,8 @@ const channels = [
 const skillGroups = [
   { group: 'Creative', items: ['Hooks and angles', 'UGC and creator briefs', 'Social proof', 'Creative testing'] },
   { group: 'Growth', items: ['Funnels', 'Landing pages and CRO', 'E-mail and CRM', 'Tracking and attribution'] },
-  { group: 'Data and AI', items: ['Google Analytics', 'Dashboards', 'n8n', 'Gemini', 'Claude'] },
+  { group: 'Search and conversion tracking', items: ['Technical SEO', 'AI search visibility (GEO)', 'Google Tag Manager', 'Meta Pixel', 'Consent-based tracking'] },
+  { group: 'Data and AI', items: ['Google Analytics 4', 'Dashboards', 'n8n', 'Gemini', 'Claude'] },
   { group: 'Business', items: ['Client acquisition', 'Proposals and pricing', 'Account management'] },
 ];
 
@@ -403,7 +407,7 @@ const glance = {
     { name: 'LinkedIn Ads', tier: 'Additional' },
   ],
   business: ['B2C and e-commerce', 'B2B lead generation', 'Recruitment advertising', 'Digital products, courses and subscriptions'],
-  capabilities: ['Performance creative strategy', 'Campaign management and optimisation', 'Funnels and CRO', 'AI-assisted creative workflows'],
+  capabilities: ['Performance creative strategy', 'Campaign management and optimisation', 'Funnels and CRO', 'Website development, SEO and AI search (GEO)', 'Client acquisition, proposals and account management', 'AI-assisted creative workflows'],
   background: ['Freelance marketing specialist since 2018', 'Worked inside agency teams: Vos Marketing, Rocket Leads, Cordital', 'Client markets: NL, BE, UK, DE, ES and AU'],
 };
 
@@ -411,7 +415,7 @@ const personSchema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Joost van Putten',
-  jobTitle: 'Performance Creative Strategist',
+  jobTitle: 'Performance & Growth Marketer',
   url: pageUrl,
   email: `mailto:${email}`,
   sameAs: [linkedinUrl],
@@ -425,8 +429,8 @@ const personSchema = JSON.stringify({
 <html lang={dutch ? "nl" : "en"}>
 <head>
   <SEOHead
-    title="Joost van Putten | Performance Creative Strategist · Paid Social & Meta Ads"
-    description={dutch ? "Portfolio en cv van Joost van Putten: ruim acht jaar ervaring met betaalde acquisitie, creatieve strategie, videomontage en AI voor advertentiecampagnes." : "Performance creative strategist with 8+ years in paid social and Meta Ads: creative strategy and testing, €8M+ in managed Meta spend, 50+ clients and self-built AI marketing systems. Ad creatives, case studies and full CV."}
+    title="Joost van Putten | Performance & Growth Marketer · Paid Social & Meta Ads"
+    description={dutch ? "Joost van Putten, performance- en growthmarketeer. Bekijk mijn campagnes, commerciële klantcases en werk in technische SEO, GEO en AI." : "Joost van Putten, Performance & Growth Marketer. Explore paid campaigns, commercial client work, technical SEO and AI search projects."}
     canonical={pageUrl}
     ogImage={dutch ? "/images/og/joost-portfolio-nl.jpg" : "/images/og/joost-portfolio-en.jpg"}
     hreflang={[{ lang: "en", href: siteConfig.url + "/joost" }, { lang: "nl", href: siteConfig.url + "/nl/joost" }]}
@@ -462,13 +466,13 @@ const personSchema = JSON.stringify({
       <div class="wrap hero-grid">
         <div class="hero-copy">
           <p class="availability"><span class="availability-dot" aria-hidden="true"></span><span>Available for freelance collaborations<br class="availability-break" /> <span class="availability-divider" aria-hidden="true">·</span> Open to in-house opportunities</span></p>
-          <p class="kicker">Performance Creative Strategist</p>
-          <p class="kicker-sub">Paid Social · Growth Marketing · AI Systems</p>
+          <p class="kicker">Performance & Growth Marketer</p>
+          <p class="kicker-sub">Paid Social · Creative Strategy · AI Systems</p>
           <h1 class="hero-name">Joost<br />van Putten</h1>
           <p class="hero-lead">
-            8+ years turning creative ideas into measurable growth.
-            From Meta Ads and creative testing to building AI-powered marketing systems.
+            I help businesses win customers through paid campaigns. I develop ad concepts, edit videos and manage the budget. With clients, I also work on the offer, landing page and follow-up that turn interest into sales.
           </p>
+          <p class="hero-commercial">I also acquire clients for my own services. For my AI search scanner, I built the product, ran the campaigns and handled sales.</p>
           <div class="hero-actions">
             <a class="btn btn-dark" href="#work">Selected work</a>
             <a class="btn btn-line" href="#ai">AI systems</a>
@@ -534,6 +538,8 @@ const personSchema = JSON.stringify({
         </div>
       </section>
     </div>
+
+    <FeaturedDepriAd dutch={dutch} />
 
     {/* Work: flagship cases */}
     <section id="work" class="fold-section section">
@@ -710,7 +716,7 @@ const personSchema = JSON.stringify({
               <ul class="plats" aria-label="Ad platforms">
                 {r.platforms.map((p) => <li class="plat">{platIcon(p) && <span class="plat-icon" style={`color:${platIcon(p)!.color}`} set:html={platIcon(p)!.svg} aria-hidden="true" />}{p}</li>)}
               </ul>
-              <p class="prev-spend"><span class:list={['num', { marker: r.highlightSpend }]}>{r.spend}</span><span class="prev-spend-label">{r.spendLabel}</span></p>
+              {r.spend && <p class="prev-spend"><span class:list={['num', { marker: r.highlightSpend }]}>{r.spend}</span><span class="prev-spend-label">{r.spendLabel}</span></p>}
               <p class="prev-result">{r.resultHighlight && <mark class="marker">{r.resultHighlight}</mark>}{r.result}</p>
             </li>
           ))}
@@ -782,8 +788,8 @@ const personSchema = JSON.stringify({
           <div class="ai-card-body">
             <span class="status status-live">Live</span>
             <h3>{geo.title}</h3>
-            <p class="ai-card-text">Enter a website to see where it appears in AI search, which competitors show up and what to improve. I built the scanner and used it to win website and advertising clients.</p>
-            <p class="ai-outcome"><mark class="marker">8 new B2B clients</mark> from <strong>€3,209</strong> in ad spend</p>
+            <p class="ai-card-text">My GEO scanner shows businesses when AI search engines mention them, which competitors appear and what to improve on their website. I built the product and landing page, ran the ads and personally closed the resulting website and advertising projects.</p>
+            <p class="ai-outcome"><mark class="marker">8 website and advertising clients</mark> in 2026</p>
             <p class="stack card-stack">Scan API · MailerLite · Calendly</p>
             <button type="button" class="ai-toggle" aria-expanded="false" aria-controls="ai-panel-geo" data-label="See the scan and results">See the scan and results <span aria-hidden="true">+</span></button>
           </div>
@@ -960,7 +966,6 @@ const personSchema = JSON.stringify({
             <p class="case-label">Education</p>
             <ul class="edu">
               <li><Image src={eduHu} alt="" height={64} class="edu-logo" /><div><strong>HU University of Applied Sciences Utrecht</strong><span>Bachelor, Human Resource Management</span></div></li>
-              <li><Image src={eduVu} alt="" height={64} class="edu-logo" /><div><strong>VU Amsterdam</strong><span>Psychology, propaedeutic year</span></div></li>
             </ul>
             <p class="case-label">Certificates</p>
             <ul class="tags">
@@ -984,7 +989,7 @@ const personSchema = JSON.stringify({
         <div>
           <p class="sec-index">05 · Contact</p>
           <h2>Let's talk</h2>
-          <p class="sec-intro">Open to in-house roles, part-time freelance work and agency teams that need a hands-on performance specialist.</p>
+          <p class="sec-intro">Based in Valencia and open to in-house roles, freelance projects and agency collaborations. I am also interested in opportunities in Madrid.</p>
         </div>
         <ul class="contact-list">
           <li><a href={`mailto:${email}`}><span>E-mail</span>{email}</a></li>
@@ -1134,6 +1139,7 @@ const personSchema = JSON.stringify({
     .kicker-sub { margin-top: 6px; font-size: 14px; font-weight: 600; color: var(--muted); }
     .kicker { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); }
     .hero-name { margin-top: 14px; font-size: clamp(3rem, 11vw, 6.5rem); line-height: 0.92; font-weight: 800; letter-spacing: -0.045em; }
+    .hero-commercial { margin-top: 12px; max-width: 40em; line-height: 1.5; }
     .hero-lead { margin-top: 24px; max-width: 34em; font-size: 1.125rem; line-height: 1.6; color: #2b2e33; }
     .hero-actions { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 10px; }
     .hero-meta { margin-top: 24px; display: grid; gap: 10px; font-size: 14px; color: var(--muted); }
