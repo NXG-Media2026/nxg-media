@@ -151,7 +151,7 @@ const hwy = {
         { value: '~€5.80', label: 'cost per purchase' },
         { value: '€7', label: 'front-end price' },
       ],
-      note: 'Buyers could add order bumps, courses and memberships. I estimate the lifetime return at around 3.5x; that is my own estimate, not a Meta-attributed ROAS.',
+      note: 'The €7 offer led into checkout add-ons, courses and memberships. Including those purchases, I estimate lifetime revenue at 3.5 times ad spend.',
       creatives: [
         { slug: 'hwy-chakra-01', format: 'Hook video', ratio: '916', size: 'lg' },
         { slug: 'hwy-chakra-02', format: 'Product visual', ratio: '45' },
@@ -166,7 +166,7 @@ const hwy = {
         { value: '€19', label: 'cost per purchase' },
         { value: '5.26x', label: 'calculated initial return' },
       ],
-      note: 'January promotion at €100 instead of €120. About €950 spend against €5,000 initial revenue. The return is calculated from these figures, not a dashboard ROAS.',
+      note: 'In January, 50 people bought an annual membership for €100 each (regular price €120). That brought in €5,000 upfront on roughly €950 in ad spend.',
       creatives: [],
     },
   ],
@@ -191,7 +191,7 @@ const depri = {
   lead: 'A long-term performance partnership selling a book in the Netherlands and, as HeyAreYouOkay, in the UK, plus related courses through retargeting. Meta performed substantially better than Google and was the main paid channel.',
   totals: [
     { value: '~€180k', label: 'managed ad spend, Meta and Google' },
-    { value: '~50,000', label: 'books sold by the business overall, all channels' },
+    { value: '~50,000', label: 'books sold across all channels' },
   ],
   creatives: [
     { slug: 'depri-top-video', format: 'Author-to-camera video', postUrl: fb(PAGE_DEPRI, '768126854902661'), size: 'lg', ratio: '11', featured: true, metrics: [{ value: '2,535+', label: 'purchases' }, { value: '€10.53', label: 'cost per purchase' }] },
@@ -212,9 +212,9 @@ const irvj = {
   lead: 'A long-running book campaign with a wide creative mix: founder-led storytelling, customer reviews, organic-looking low-fi ads, and AI-assisted static and animated formats.',
   totals: [
     { value: '€150k', label: 'ad spend' },
-    { value: '€9.60', label: 'average cost per purchase' },
-    { value: '2.56%', label: 'average CTR' },
-    { value: '33,000', label: 'books sold by the business overall, all channels' },
+    { value: '€9.60', label: 'cost per purchase, campaign average' },
+    { value: '2.56%', label: 'click-through rate, campaign average' },
+    { value: '33,000', label: 'books sold across all channels' },
   ],
   creatives: [
     { slug: 'irvj-founder-story', format: 'Founder story', postUrl: fb(PAGE_IRVJ, '499874006320450'), ratio: '11' },
@@ -582,7 +582,6 @@ const personSchema = JSON.stringify({
               </section>
             ))}
           </div>
-          <p class="fine">These are three separate campaigns, not one proven sequential funnel. Their spend is part of the ~€180k total, not on top of it.</p>
 
           <div class="flag-video">
             <CreativeTile brand={hwy.client} format={hwy.video.format} vimeo={hwy.video.vimeo} metrics={hwy.video.metrics} />
@@ -625,7 +624,6 @@ const personSchema = JSON.stringify({
               <CreativeTile brand={depri.client} logo={depri.logo} format={c.format} vimeo={c.vimeo} {...media(c.slug)} ratio={c.ratio} postUrl={c.postUrl} metrics={c.metrics} note={c.note} size={c.size === 'lg' ? 'lg' : 'md'} />
             ))}
           </div>
-          <p class="fine">The ~50,000 books are business-wide sales through all channels, not purchases attributed to ads.</p>
         </div>
       </article>
 
@@ -658,7 +656,6 @@ const personSchema = JSON.stringify({
               ))}
             </div>
           </div>
-          <p class="fine">Purchase cost and CTR are campaign-wide averages and are not assigned to individual ads. The 33,000 books are business-wide sales through all channels.</p>
         </div>
       </article>
 
@@ -703,7 +700,6 @@ const personSchema = JSON.stringify({
             </li>
           ))}
         </ul>
-        <p class="fine">Monthly ad spend figures are approximate historical estimates. Calculated returns are labelled separately from platform-reported results.</p>
       </div>
     </section>
 
