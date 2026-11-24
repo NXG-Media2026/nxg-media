@@ -1,0 +1,27 @@
+---
+import { parseFragment, serialize, type DefaultTreeAdapterTypes } from 'parse5';
+import copy from '../../data/portfolio-nl.json';
+const { dutch } = Astro.props;
+const content = await Astro.slots.render('default');
+const translations: Record<string, string> = copy;
+function translate(value: string) {
+  const key = value.trim().replace(/\s+/g, ' ');
+  const translated = translations[key] ?? (/^[~€\d.,%+×x\s]+$/.test(key) ? key.replace(/[.,]/g, c => c === ',' ? '.' : ',') : undefined);
+  return translated === undefined ? value : value.replace(/\S[\s\S]*\S|\S/, () => translated);
+}
+function localise(node: DefaultTreeAdapterTypes['node']) {
+  if ('value' in node && node.nodeName === '#text') node.value = translate(node.value);
+  if ('tagName' in node && ['script', 'style', 'svg', 'noscript'].includes(node.tagName)) return;
+  if ('attrs' in node) for (const attr of node.attrs) {
+    if (['alt', 'aria-label', 'data-label', 'title'].includes(attr.name)) attr.value = translate(attr.value);
+  }
+  if ('childNodes' in node) node.childNodes.forEach(localise);
+}
+let html = content;
+if (dutch) {
+  const fragment = parseFragment(content);
+  localise(fragment);
+  html = serialize(fragment);
+}
+---
+<Fragment set:html={html} />

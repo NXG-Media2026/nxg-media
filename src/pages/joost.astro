@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
+import PortfolioCopy from '../components/portfolio/PortfolioCopy.astro';
 import SEOHead from '../components/SEOHead.astro';
 import LogoMarquee from '../components/LogoMarquee.astro';
 import { siteConfig } from '../data/site';
@@ -95,8 +96,9 @@ const platIcon = (name: string) => {
 
 const email = 'joost_117@live.nl';
 const linkedinUrl = 'https://www.linkedin.com/in/joost-van-putten/';
-const cvUrl = '/cv/joost-van-putten-cv.pdf';
-const pageUrl = `${siteConfig.url}/joost`;
+const dutch = Astro.props.locale === 'nl';
+const cvUrl = dutch ? '/cv/joost-van-putten-cv-nl.pdf' : '/cv/joost-van-putten-cv.pdf';
+const pageUrl = siteConfig.url + (dutch ? "/nl/joost" : "/joost");
 
 const languages = [
   { name: 'Dutch', level: 'native', flag: '<svg viewBox="0 0 3 2" preserveAspectRatio="none"><rect width="3" height="2" fill="#21468B"/><rect width="3" height="1.333" fill="#fff"/><rect width="3" height="0.667" fill="#AE1C28"/></svg>' },
@@ -107,7 +109,7 @@ const languages = [
 
 const heroFigures = [
   { value: '€8M+', label: 'Meta ad spend managed' },
-  { value: '50+', label: 'clients in NL, BE, UK, Germany and Spain' },
+  { value: '50+', label: 'clients across six markets' },
   { value: '8 yrs', label: 'hands-on performance marketing' },
   { value: '2018', label: 'independent since' },
 ];
@@ -403,7 +405,7 @@ const glance = {
   ],
   business: ['B2C and e-commerce', 'B2B lead generation', 'Recruitment advertising', 'Digital products, courses and subscriptions'],
   capabilities: ['Performance creative strategy', 'Campaign management and optimisation', 'Funnels and CRO', 'AI-assisted creative workflows'],
-  background: ['Independent freelance specialist since 2018', 'Worked inside agency teams: Vos Marketing, Rocket Leads, Cordital', 'Clients in NL, BE, UK, DE and ES'],
+  background: ['Independent freelance specialist since 2018', 'Worked inside agency teams: Vos Marketing, Rocket Leads, Cordital', 'Client markets: NL, BE, UK, DE, ES and AU'],
 };
 
 const personSchema = JSON.stringify({
@@ -421,18 +423,20 @@ const personSchema = JSON.stringify({
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={dutch ? "nl" : "en"}>
 <head>
   <SEOHead
     title="Joost van Putten | Performance Creative Strategist · Paid Social & Meta Ads"
-    description="Performance creative strategist with 8+ years in paid social and Meta Ads: creative strategy and testing, €8M+ in managed Meta spend, 50+ clients and self-built AI marketing systems. Ad creatives, case studies and full CV."
+    description={dutch ? "Portfolio en cv van Joost van Putten: ruim acht jaar ervaring met betaalde acquisitie, creatieve strategie, videomontage en AI voor advertentiecampagnes." : "Performance creative strategist with 8+ years in paid social and Meta Ads: creative strategy and testing, €8M+ in managed Meta spend, 50+ clients and self-built AI marketing systems. Ad creatives, case studies and full CV."}
     canonical={pageUrl}
     ogImage="/images/og/default.jpg"
-    locale="en"
+    hreflang={[{ lang: "en", href: siteConfig.url + "/joost" }, { lang: "nl", href: siteConfig.url + "/nl/joost" }]}
+    locale={dutch ? "nl" : "en"}
     schemas={[personSchema]}
   />
 </head>
 <body class="pf">
+  <PortfolioCopy dutch={dutch}>
   <a class="skip" href="#main">Skip to content</a>
 
   <header class="pf-nav" data-nav>
@@ -449,6 +453,7 @@ const personSchema = JSON.stringify({
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
+      <a class="pf-language" href={dutch ? "/joost/" : "/nl/joost/"} hreflang={dutch ? "en" : "nl"} lang={dutch ? "en" : "nl"} aria-label={dutch ? "English portfolio" : "Nederlands portfolio"}>{dutch ? "EN" : "NL"}</a>
       <a class="pf-cv-btn" href={cvUrl} download>CV <span aria-hidden="true">↓</span></a>
     </div>
   </header>
@@ -676,7 +681,7 @@ const personSchema = JSON.stringify({
       <div class="wrap more">
         <header class="more-head">
           <h3>More creative work</h3>
-          <p>Over three years of advertising for Stil, these two videos became top performers. I came up with both concepts and briefed the Stil team on what to film. They shot the footage, I edited both ads, and each ran for nearly a year. The two Stekkies videos ran on both Meta and TikTok.</p>
+          <p>Over three years of advertising for Stil in the Netherlands, Germany and Australia, these two videos became top performers. I came up with both concepts and briefed the Stil team on what to film. They shot the footage, I edited both ads, and each ran for nearly a year. The two Stekkies videos ran on both Meta and TikTok.</p>
         </header>
         <div class="more-grid">
           {moreWork.map((w) => (
@@ -996,6 +1001,7 @@ const personSchema = JSON.stringify({
 
   <footer class="pf-foot wrap">Joost van Putten · Valencia, Spain</footer>
 
+  </PortfolioCopy>
   <script is:inline>
     function openLinkedSection(hash) {
       var target = document.getElementById(hash.slice(1));
@@ -1051,7 +1057,7 @@ const personSchema = JSON.stringify({
       function set(btn, open) {
         var panel = document.getElementById(btn.getAttribute('aria-controls'));
         btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-        btn.firstChild.nodeValue = open ? 'Close project ' : btn.dataset.label + ' ';
+        btn.firstChild.nodeValue = open ? (document.documentElement.lang === 'nl' ? 'Sluit project ' : 'Close project ') : btn.dataset.label + ' ';
         btn.lastElementChild.textContent = open ? '−' : '+';
         btn.closest('.ai-card').classList.toggle('is-open', open);
         if (panel) panel.hidden = !open;
@@ -1102,6 +1108,7 @@ const personSchema = JSON.stringify({
       -webkit-font-smoothing: antialiased;
     }
     .pf h1, .pf h2, .pf h3 { font-family: 'DM Sans', Arial, sans-serif; letter-spacing: -0.02em; }
+    .pf-language { font-size: 14px; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
     .pf .num { font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 800; letter-spacing: -0.01em; line-height: 1; }
     .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
     @media (min-width: 768px) { .wrap { padding: 0 32px; } }
