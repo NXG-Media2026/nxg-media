@@ -504,11 +504,8 @@ const personSchema = JSON.stringify({
 
     <div class="wrap">
       <section class="glance" aria-labelledby="glance-title">
-              <details class="portfolio-fold">
-        <summary class="fold-summary">
-          <h2 id="glance-title"><span class="fold-title">Expertise at a glance</span><span class="fold-preview">Paid social, creative strategy, campaign management and CRO.</span></h2>
-          <span class="fold-icon" aria-hidden="true"></span>
-        </summary>
+        <h2 id="glance-title" class="fold-title">Expertise at a glance</h2>
+        <p class="fold-preview">Paid social, creative strategy, campaign management and CRO.</p>
         <div class="glance-grid">
           <div class="glance-col glance-platforms">
             <p class="glance-label">Advertising platforms</p>
@@ -533,7 +530,6 @@ const personSchema = JSON.stringify({
             <ul class="glance-list">{glance.background.map((b) => <li>{b}</li>)}</ul>
           </div>
         </div>
-        </details>
       </section>
     </div>
 
@@ -911,7 +907,7 @@ const personSchema = JSON.stringify({
     <section id="experience" class="fold-section section">
       <details class="portfolio-fold">
         <summary class="wrap fold-summary">
-          <h2><span class="sec-index">04 · Experience</span><span class="fold-title">Career</span><span class="fold-preview">Independent since 2018, with freelance roles at Cordital, Vos Marketing and Rocket Leads. View experience, skills and CV.</span></h2>
+          <h2><span class="sec-index">04 · Experience</span><span class="fold-title">Career</span><span class="fold-preview">Independent since 2018, with freelance roles at Cordital, Vos Marketing and Rocket Leads. View experience and CV.</span></h2>
           <span class="fold-icon" aria-hidden="true"></span>
         </summary>
       <div class="wrap">
@@ -941,6 +937,9 @@ const personSchema = JSON.stringify({
           ))}
         </ol>
 
+      </div>
+      </details>
+      <div class="wrap">
         <div class="cv-grid">
           <div class="cv-block">
             <p class="case-label">Channels</p>
@@ -976,7 +975,6 @@ const personSchema = JSON.stringify({
           </div>
         </div>
       </div>
-      </details>
     </section>
 
     {/* Contact */}
@@ -1164,7 +1162,6 @@ const personSchema = JSON.stringify({
     .btn-meta { font-size: 11px; font-weight: 800; letter-spacing: 0.06em; opacity: 0.6; }
 
     .pf .fold-section { padding: 0; border-top: 1px solid var(--line); scroll-margin-top: 72px; }
-    .pf .glance { padding: 0; border-bottom: 0; }
     .fold-summary { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: clamp(18px, 2.3vw, 30px); cursor: pointer; list-style: none; }
     .fold-summary::-webkit-details-marker { display: none; }
     .fold-summary h2 { margin: 0; }
@@ -1372,7 +1369,7 @@ const personSchema = JSON.stringify({
     .timeline .ticks { max-width: 50em; color: #2b2e33; }
 
 
-    .cv-grid { margin-top: 72px; display: grid; gap: 40px; }
+    .cv-grid { padding-block: 16px 48px; display: grid; gap: 40px; }
     @media (min-width: 900px) { .cv-grid { grid-template-columns: 1.5fr 1fr; gap: 64px; } }
     .plain { list-style: none; padding: 0; margin: 0 0 8px; display: grid; gap: 10px; line-height: 1.5; color: #2b2e33; }
 
