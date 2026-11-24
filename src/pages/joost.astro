@@ -97,7 +97,6 @@ const platIcon = (name: string) => {
 const email = 'joost_117@live.nl';
 const linkedinUrl = 'https://www.linkedin.com/in/joost-van-putten/';
 const dutch = Astro.props.locale === 'nl';
-const cvUrl = dutch ? '/cv/joost-van-putten-cv-nl.pdf' : '/cv/joost-van-putten-cv.pdf';
 const pageUrl = siteConfig.url + (dutch ? "/nl/joost" : "/joost");
 
 const languages = [
@@ -429,7 +428,7 @@ const personSchema = JSON.stringify({
     title="Joost van Putten | Performance Creative Strategist · Paid Social & Meta Ads"
     description={dutch ? "Portfolio en cv van Joost van Putten: ruim acht jaar ervaring met betaalde acquisitie, creatieve strategie, videomontage en AI voor advertentiecampagnes." : "Performance creative strategist with 8+ years in paid social and Meta Ads: creative strategy and testing, €8M+ in managed Meta spend, 50+ clients and self-built AI marketing systems. Ad creatives, case studies and full CV."}
     canonical={pageUrl}
-    ogImage="/images/og/default.jpg"
+    ogImage={dutch ? "/images/og/joost-portfolio-nl.jpg" : "/images/og/joost-portfolio-en.jpg"}
     hreflang={[{ lang: "en", href: siteConfig.url + "/joost" }, { lang: "nl", href: siteConfig.url + "/nl/joost" }]}
     locale={dutch ? "nl" : "en"}
     schemas={[personSchema]}
@@ -454,7 +453,6 @@ const personSchema = JSON.stringify({
         </ul>
       </nav>
       <a class="pf-language" href={dutch ? "/joost/" : "/nl/joost/"} hreflang={dutch ? "en" : "nl"} lang={dutch ? "en" : "nl"} aria-label={dutch ? "English portfolio" : "Nederlands portfolio"}>{dutch ? "EN" : "NL"}</a>
-      <a class="pf-cv-btn" href={cvUrl} download>CV <span aria-hidden="true">↓</span></a>
     </div>
   </header>
 
@@ -474,7 +472,6 @@ const personSchema = JSON.stringify({
           <div class="hero-actions">
             <a class="btn btn-dark" href="#work">Selected work</a>
             <a class="btn btn-line" href="#ai">AI systems</a>
-            <a class="btn btn-line" href={cvUrl} download>Download CV <span class="btn-meta">PDF</span></a>
           </div>
           <div class="hero-meta">
             <ul class="hero-places" aria-label="Locations">
@@ -912,11 +909,10 @@ const personSchema = JSON.stringify({
     <section id="experience" class="fold-section section">
       <details class="portfolio-fold">
         <summary class="wrap fold-summary">
-          <h2><span class="sec-index">04 · Experience</span><span class="fold-title">Career</span><span class="fold-preview">Independent since 2018, with freelance roles at Cordital, Vos Marketing and Rocket Leads. View experience and CV.</span></h2>
+          <h2><span class="sec-index">04 · Experience</span><span class="fold-title">Career</span><span class="fold-preview">Independent since 2018, with freelance roles at Cordital, Vos Marketing and Rocket Leads.</span></h2>
           <span class="fold-icon" aria-hidden="true"></span>
         </summary>
       <div class="wrap">
-        <a class="btn btn-line" href={cvUrl} download>Download full CV <span class="btn-meta">PDF</span></a>
 
         <ol class="timeline">
           {experience.map((e) => (
@@ -993,7 +989,6 @@ const personSchema = JSON.stringify({
         <ul class="contact-list">
           <li><a href={`mailto:${email}`}><span>E-mail</span>{email}</a></li>
           <li><a href={linkedinUrl} target="_blank" rel="noopener noreferrer"><span>LinkedIn</span>linkedin.com/in/joost-van-putten</a></li>
-          <li><a href={cvUrl} download><span>CV</span>Download PDF</a></li>
         </ul>
       </div>
     </section>
