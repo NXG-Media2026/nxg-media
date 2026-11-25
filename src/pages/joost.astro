@@ -1,4 +1,6 @@
 ---
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
 import '../styles/global.css';
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
@@ -105,7 +107,9 @@ const platIcon = (name: string) => {
 const email = 'joost_117@live.nl';
 const linkedinUrl = 'https://www.linkedin.com/in/joost-van-putten/';
 const dutch = Astro.props.locale === 'nl';
-const cvUrl = dutch ? '/cv/joost-van-putten-cv-nl.pdf' : '/cv/joost-van-putten-cv.pdf';
+const cvPath = dutch ? '/cv/joost-van-putten-cv-nl.pdf' : '/cv/joost-van-putten-cv.pdf';
+const cvRevision = createHash('sha256').update(readFileSync('public' + cvPath)).digest('hex').slice(0, 10);
+const cvUrl = cvPath + '?v=' + cvRevision;
 const pageUrl = siteConfig.url + (dutch ? "/nl/joost" : "/joost");
 
 const languages = [
