@@ -1,21 +1,28 @@
 ---
 interface Props {
   steps: string[];
-  note: string;
+  note?: string;
+  separate?: boolean;
+  audience?: string;
 }
-const { steps, note } = Astro.props;
+const { steps, note, separate, audience } = Astro.props;
 ---
 <figure class="book-funnel">
+  <div class="funnel-row">
   <ol role="list">
     {steps.map((step, index) => (
-      <li>{index > 0 && <span aria-hidden="true">→</span>}{step}</li>
+      <li>{index > 0 && !separate && <span aria-hidden="true">→</span>}{step}</li>
     ))}
   </ol>
-  <figcaption>{note}</figcaption>
+  {audience && <span class="audience">{audience}</span>}
+  </div>
+  {note && <figcaption>{note}</figcaption>}
 </figure>
 
 <style>
   .book-funnel { margin: 20px 0; padding: 4px 0 4px 14px; border-left: 2px solid var(--blue); }
+  .funnel-row { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 14px; }
+  .audience { font-size: 14px; color: var(--muted); }
   ol { display: flex; flex-wrap: wrap; gap: 4px 8px; list-style: none; margin: 0; padding: 0; }
   li { display: flex; align-items: baseline; gap: 8px; font-size: 14px; font-weight: 700; }
   li span { color: var(--blue); }

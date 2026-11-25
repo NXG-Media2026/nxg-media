@@ -609,6 +609,8 @@ const personSchema = JSON.stringify({
             </dl>
           </div>
 
+          <BookFunnel steps={["A · Free Morning Yoga Challenge","B · Chakra Mini (€7)","C · Annual membership via retargeting"]} separate />
+
           <div class="bands">
             {hwy.stages.map((s, i) => (
               <section class:list={['band', { 'band-compact': s.creatives.length === 0 }]} aria-label={s.name}>
@@ -666,7 +668,7 @@ const personSchema = JSON.stringify({
             </dl>
           </div>
           <BookFunnel
-            steps={["Book purchase","Email audience","Courses (about €85)","Long-term customer value"]}
+            steps={["Book purchase","Nearly 40,000 email subscribers","Courses (about €85)","Long-term customer value"]}
             note="Book sales helped grow a large email list. Through that list, Marieke could offer readers a course when they were ready for a next step."
           />
           <p class="wall-label"><span class="scope scope-ad">This ad</span> Five ads, each with its own results</p>
@@ -705,6 +707,7 @@ const personSchema = JSON.stringify({
           </div>
           <BookFunnel
             steps={["Book purchase","Care bundles and cards","Potential for a higher order value"]}
+            audience="Claire’s email list: about 20,000 subscribers"
             note="In my advice, I focused on what someone buying the book as a gift might want to send with it."
           />
           <p class="wall-label">Five creative approaches</p>
