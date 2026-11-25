@@ -1,0 +1,9 @@
+---
+import copy from '../../data/portfolio-nl.json';
+interface Props { text: string; dutch: boolean }
+const { text, dutch } = Astro.props;
+const translations: Record<string, string> = copy;
+const label = dutch ? translations[text] ?? text : text;
+const parts = label.split(/(\bB2B\b|\brecruitment(?:marketing| marketing)?\b)/gi);
+---
+{parts.map((part, i) => i % 2 ? <mark class="marker">{part}</mark> : part)}

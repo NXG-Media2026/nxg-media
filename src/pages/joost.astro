@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
+import MarketHighlight from '../components/portfolio/MarketHighlight.astro';
 import PortfolioCopy from '../components/portfolio/PortfolioCopy.astro';
 import SEOHead from '../components/SEOHead.astro';
 import LogoMarquee from '../components/LogoMarquee.astro';
@@ -263,15 +264,15 @@ const moreWork = [
 ];
 
 const previous = [
-  { name: 'Somnox', logo: logoSomnoxDark, url: 'https://somnox.com', period: '2018 to 2021', role: 'Meta Ads · Creative Strategy', platforms: ['Meta'], spend: '~€20k', spendLabel: 'monthly ad spend at its highest', resultHighlight: '4.0x average ROAS', result: ' in the final year' },
-  { name: 'Real Estate Masterclass', logo: brandRem, url: 'https://realestatemasterclass.nl', period: '2021 to 2022', role: 'Meta Ads · Creative Strategy · Funnels', platforms: ['Meta', 'TikTok'], spend: '~€30k', spendLabel: 'monthly ad spend for a large part of the engagement', resultHighlight: '6.5x average ROAS', result: ', 12.5x peak over two weeks' },
-  { name: 'Vos Marketing', url: 'https://vosmarketing.nl', period: '2022 to 2024', role: 'Freelance performance marketer in the agency team', platforms: ['Meta', 'TikTok'], spend: '~€40k', highlightSpend: true, spendLabel: 'combined monthly ad spend across up to 7 e-commerce accounts' },
-  { name: 'Stekkies', logo: logoStekkies, url: 'https://www.stekkies.com', period: 'August 2022 to November 2023', role: 'Meta Ads · TikTok Ads · Creative Strategy', platforms: ['Meta', 'TikTok'], spend: 'up to ~€20k', spendLabel: 'monthly ad spend' },
-  { name: 'MCM Research', logo: logoMcmDark, period: 'December 2022 to early 2026', role: 'Meta Ads · Recruitment marketing · Employer branding', platforms: ['Meta'], spend: '~€3k–€7k', spendLabel: 'monthly ad spend, varying across the engagement', resultHighlight: '4,000+ leads and 750 applicants', result: ' across the engagement. I set the employer content strategy, filmed and photographed employees on site, produced videos, planned social posts and coordinated creators and influencers. I also improved the website, set up tracking and optimised the Meta campaigns.' },
-  { name: 'Nederland Eet Groep', logo: logoNederlandEet, iconOnly: true, url: 'https://www.eetclub.nl', period: 'April 2021 to January 2022', role: 'Meta Ads · B2C · B2B restaurant acquisition · Courier recruitment', platforms: ['Meta'], spend: '~€5k B2C · ~€3k B2B', spendLabel: 'monthly ad spend, two separate activities', result: 'Advertised to consumers, recruited restaurant partners and ran recruitment campaigns for delivery drivers.' },
-  { name: 'Buitink Technology', logo: logoAsset('buitink-technology-logo.webp'), period: 'December 2023 to January 2025', role: 'LinkedIn Ads · B2B awareness & lead generation', platforms: ['LinkedIn Ads'], spend: '~€1k', spendLabel: 'monthly ad spend', result: 'I ran awareness campaigns and promoted content such as e-books, which generated downloads.' },
-  { name: 'Time 2 Wing', logo: logoAsset('timetowing-logo.webp'), period: 'May to August 2021', role: 'Google Ads for a wingfoiling webshop', platforms: ['Google Ads'], result: 'Received positive client feedback on the campaign.' },
-  { name: 'YouLife', logo: logoYoulife, url: 'https://www.youlife.nl', period: 'October 2023 to present', role: 'Meta Ads · E-commerce · Commercial growth strategy', platforms: ['Meta'], spend: '~€5k to €7k', spendLabel: 'monthly ad spend' },
+  { name: 'Somnox', logo: logoSomnoxDark, url: 'https://somnox.com', period: '2018 to 2021', role: 'Creative strategy', platforms: ['Meta'], spend: '~€20k', spendLabel: 'monthly ad spend at its highest', resultHighlight: '4.0x average ROAS', result: ' in the final year' },
+  { name: 'Real Estate Masterclass', logo: brandRem, url: 'https://realestatemasterclass.nl', period: '2021 to 2022', role: 'Creative strategy · Funnels', platforms: ['Meta', 'TikTok'], spend: '~€30k', spendLabel: 'monthly ad spend for a large part of the engagement', resultHighlight: '6.5x average ROAS', result: ', 12.5x peak over two weeks' },
+  { name: 'Vos Marketing', url: 'https://vosmarketing.nl', period: '2022 to 2024', role: 'Freelance performance marketer · Hybrid, on site with the agency team and remotely', platforms: ['Meta', 'TikTok'], spend: '~€40k', highlightSpend: true, spendLabel: 'combined monthly ad spend across up to 7 e-commerce accounts' },
+  { name: 'Stekkies', logo: logoStekkies, url: 'https://www.stekkies.com', period: 'August 2022 to November 2023', role: 'Creative strategy', platforms: ['Meta', 'TikTok'], spend: '€0 to ~€20k', spendLabel: 'monthly ad spend' },
+  { name: 'MCM Research', logo: logoMcmDark, period: 'December 2022 to early 2026', role: 'Recruitment marketing · Employer branding', platforms: ['Meta'], spend: '~€3k–€7k', spendLabel: 'monthly ad spend, varying across the engagement', resultHighlight: '4,000+ leads and 750 applicants', result: ' across the engagement. I set the employer content strategy, filmed and photographed employees on site, produced videos, planned social posts and coordinated creators and influencers. I also improved the website, set up tracking and optimised the Meta campaigns.' },
+  { name: 'Nederland Eet Groep', logo: logoNederlandEet, iconOnly: true, url: 'https://www.eetclub.nl', period: 'April 2021 to January 2022', role: 'B2C · B2B restaurant partnerships · Courier recruitment', platforms: ['Meta'], spend: '~€5k B2C · ~€3k B2B', spendLabel: 'monthly ad spend, two separate activities', result: 'Advertised to consumers, recruited restaurant partners and ran recruitment campaigns for delivery drivers.' },
+  { name: 'Buitink Technology', logo: logoAsset('buitink-technology-logo.webp'), period: 'December 2023 to January 2025', role: 'B2B awareness and lead generation', platforms: ['LinkedIn Ads'], spend: '~€1k', spendLabel: 'monthly ad spend', result: 'I ran awareness campaigns and promoted content such as e-books, which generated downloads.' },
+  { name: 'Time 2 Wing', logo: logoAsset('timetowing-logo.webp'), period: 'May to August 2021', role: 'Search campaigns for a wingfoiling webshop', platforms: ['Google Ads'], result: 'Client rating: 5.00/5. “Joost is a great freelancer who knows marketing.”' },
+  { name: 'YouLife', logo: logoYoulife, url: 'https://www.youlife.nl', period: 'October 2023 to present', role: 'E-commerce · Commercial growth strategy', platforms: ['Meta'], spend: '~€5k to €7k', spendLabel: 'monthly ad spend', result: 'Started with no ad budget. ROAS is around 3×. Including coaching revenue, I estimate the return at 3.5× ad spend.' },
 ];
 
 const portraitTestimonials = videoTestimonials
@@ -741,8 +742,8 @@ const personSchema = JSON.stringify({
       {/* Previous results and campaign scale */}
       <div class="wrap prev">
         <h3 class="earlier-title">Previous results and campaign scale</h3>
-        <h4 class="case-label">B2B &amp; Recruitment Marketing</h4>
-        <p class="prev-intro">Alongside B2C advertising, I worked on B2B acquisition for Buitink Technology and Nederland Eet Groep, and recruitment marketing for MCM Research and Nederland Eet Groep. These projects also involved employer branding, content production, website work and conversion tracking.</p>
+        <h4 class="case-label"><MarketHighlight text="B2B &amp; Recruitment Marketing" {dutch} /></h4>
+        <p class="prev-intro"><MarketHighlight text="Alongside B2C advertising, I worked on B2B acquisition for Buitink Technology and Nederland Eet Groep, and recruitment marketing for MCM Research and Nederland Eet Groep. These projects also involved employer branding, content production, website work and conversion tracking." {dutch} /></p>
         <ul class="prev-list">
           {previous.map((r) => (
             <li class="prev-row">
@@ -755,12 +756,12 @@ const personSchema = JSON.stringify({
                 ) : (
                   r.url ? <a class="ext prev-name" href={r.url} target="_blank" rel="noopener noreferrer">{r.name}</a> : <span class="prev-name">{r.name}</span>
                 )}
-                <p class="prev-role">{r.role}{r.period && <span> · {r.period}</span>}</p>
+                <p class="prev-role"><MarketHighlight text={r.role} {dutch} />{r.period && <span> · {r.period}</span>}</p>
               </div>
               <ul class="plats" aria-label="Ad platforms">
-                {r.platforms.map((p) => <li class="plat">{platIcon(p) && <span class="plat-icon" style={`color:${platIcon(p)!.color}`} set:html={platIcon(p)!.svg} aria-hidden="true" />}{p}</li>)}
+                {r.platforms.map((p) => <li class="plat" title={p.endsWith("Ads") ? p : p + " Ads"}><span class="plat-icon" role="img" aria-label={p.endsWith("Ads") ? p : p + " Ads"} style={`color:${platIcon(p)!.color}`} set:html={platIcon(p)!.svg} /></li>)}
               </ul>
-              {r.spend && <p class="prev-spend"><span class:list={['num', { marker: r.highlightSpend }]}>{r.spend}</span><span class="prev-spend-label">{r.spendLabel}</span></p>}
+              {r.spend && <p class="prev-spend"><span class:list={['num', { marker: r.highlightSpend }]}><MarketHighlight text={r.spend} {dutch} /></span><span class="prev-spend-label">{r.spendLabel}</span></p>}
               <p class="prev-result">{r.resultHighlight && <mark class="marker">{r.resultHighlight}</mark>}{r.result}</p>
             </li>
           ))}
