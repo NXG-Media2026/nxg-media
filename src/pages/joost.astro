@@ -257,9 +257,9 @@ const portraitTestimonials = videoTestimonials
   .map((v) => ({ ...v, logo: v.id === 'bart-jenezon' ? logoMcmDark : logoStekkies, role: v.company, wide: v.id === 'bart-jenezon' }));
 
 const testimonials = [
-  { id: '879049102', name: 'Cat Howell', role: 'Author and agency owner', thumb: thumbCat },
-  { id: '879049149', name: 'Julian Jagtenberg', role: 'Somnox', thumb: thumbSomnox, logo: logoSomnoxDark },
-  { id: '879049124', name: 'Narayan', role: 'Nederland Eet Groep, now eetclub.nl', thumb: thumbNarayan, logo: logoNederlandEet },
+  { video: '/videos/testimonials/cathowell-8loops-testimonial-video.mp4', name: 'Cat Howell', role: 'Author and agency owner', thumb: thumbCat },
+  { video: '/videos/testimonials/somnox-testimonial-video.mp4', name: 'Julian Jagtenberg', role: 'Somnox', thumb: thumbSomnox, logo: logoSomnoxDark },
+  { video: '/videos/testimonials/narayan-eetclubnl-testimonial-video.mp4', name: 'Narayan', role: 'Nederland Eet Groep, now eetclub.nl', thumb: thumbNarayan, logo: logoNederlandEet },
 ];
 
 const geo = {
@@ -436,7 +436,7 @@ const personSchema = JSON.stringify({
 <html lang={dutch ? "nl" : "en"}>
 <head>
   <SEOHead
-    title="Joost van Putten | Performance & Growth Marketer · Paid Social & Meta Ads"
+    title={dutch ? "Joost van Putten | Performance- en growthmarketeer · Paid social & Meta Ads" : "Joost van Putten | Performance & Growth Marketer · Paid Social & Meta Ads"}
     description={dutch ? "Joost van Putten, performance- en growthmarketeer. Bekijk mijn campagnes, commerciële klantcases en werk in technische SEO, GEO en AI." : "Joost van Putten, Performance & Growth Marketer. Explore paid campaigns, commercial client work, technical SEO and AI search projects."}
     canonical={pageUrl}
     ogImage={dutch ? "/images/og/joost-portfolio-nl.jpg" : "/images/og/joost-portfolio-en.jpg"}
@@ -476,7 +476,7 @@ const personSchema = JSON.stringify({
           <p class="availability"><span class="availability-dot" aria-hidden="true"></span><span>Available for freelance collaborations<br class="availability-break" /> <span class="availability-divider" aria-hidden="true">·</span> Open to in-house opportunities</span></p>
           <p class="kicker">Performance & Growth Marketer</p>
           <p class="kicker-sub">Paid Social · Creative Strategy · AI Systems</p>
-          <h1 class="hero-name">Joost<br />van Putten</h1>
+          <h1 class="hero-name">Joost <br />van Putten</h1>
           <p class="hero-lead">
             I help businesses win customers through paid campaigns. I develop ad concepts, edit videos and manage the budget. With clients, I also work on the offer, landing page and follow-up that turn interest into sales.
           </p>
@@ -746,7 +746,7 @@ const personSchema = JSON.stringify({
         <div class="voices">
           {testimonials.map((t, i) => (
             <figure class:list={['voice', { 'voice-lead': i === 0 }]}>
-              <button type="button" class="facade ratio-169" data-vimeo={t.id} aria-label={`Play video from ${t.name}`}>
+              <button type="button" class="facade ratio-169" data-video={t.video} aria-label={`Play video from ${t.name}`}>
                 <Image src={t.thumb} alt="" width={i === 0 ? 960 : 640} loading="lazy" />
                 <span class="play" aria-hidden="true"></span>
               </button>
