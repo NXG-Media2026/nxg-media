@@ -48,11 +48,14 @@ const label = `${brand} ad: ${format}`;
   <figcaption>
     <span class="ct-format">{format}</span>
     {metrics.length > 0 && (
-      <dl class="ct-metrics" aria-label="Results for this ad">
-        {metrics.map((m) => (
-          <div><dt>{m.value}</dt><dd>{m.label}</dd></div>
-        ))}
-      </dl>
+      <div class={Astro.slots.has("platforms") ? "creative-stats" : undefined}>
+        <slot name="platforms" />
+        <dl class="ct-metrics" aria-label="Results for this ad">
+          {metrics.map((m) => (
+            <div><dt>{m.value}</dt><dd>{m.label}</dd></div>
+          ))}
+        </dl>
+      </div>
     )}
     {note && <p class="ct-note">{note}</p>}
     {postUrl && (video || image) && (

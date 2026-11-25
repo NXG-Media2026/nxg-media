@@ -255,12 +255,12 @@ const irvj = {
 };
 
 const moreWork = [
-  { brand: 'Stil B.V.', logo: logoAsset('stil-logo.webp'), url: 'https://stilorthosis.com/', format: 'Before After Video', slug: 'stil-at-the-bar', metrics: [{ value: '50%', label: 'hook rate' }, { value: '25%', label: 'hold rate' }, { value: '4.5%', label: 'CTR' }, { value: '~€0.12', label: 'CPC' }] },
-  { brand: 'Stil B.V.', logo: logoAsset('stil-logo.webp'), url: 'https://stilorthosis.com/', format: 'Social Proof Mashup Video Before After', slug: 'stil-living-with-tremor', metrics: [{ value: '~38%', label: 'hook rate' }, { value: '~22%', label: 'hold rate' }, { value: 'Nearly 3%', label: 'CTR' }, { value: '~€0.20', label: 'CPC' }] },
-  { brand: 'Stekkies', logo: logoStekkies, url: 'https://www.stekkies.com', format: 'Creator video, "Ruby"', slug: 'stekkies-ruby', metrics: [{ value: '€17', label: 'CPA on Meta' }, { value: '~€21', label: 'CPA on TikTok' }, { value: '32%', label: 'hook rate' }, { value: '18%', label: 'hold rate' }, { value: '2.4%', label: 'CTR' }] },
-  { brand: 'Stekkies', logo: logoStekkies, url: 'https://www.stekkies.com', format: 'Creator video, "Raphaella"', slug: 'stekkies-raphaella', metrics: [{ value: '€19', label: 'CPA on Meta' }, { value: '~€22', label: 'CPA on TikTok' }, { value: '29%', label: 'hook rate' }, { value: '15%', label: 'hold rate' }, { value: '2.5%', label: 'CTR' }] },
-  { brand: 'MCM Research', logo: logoMcmDark, format: 'Recruitment video', slug: 'mcm-recruitment', metrics: [{ value: '80+', label: 'registrations' }, { value: '€12', label: 'per registration' }, { value: '35%', label: 'hook rate' }, { value: '2.8%', label: 'CTR' }], note: 'Client-wide, across all ads: 4,000+ leads and 750 applicants in NL and BE.' },
-  { brand: 'Posivino', format: 'B2B corporate gifting video', slug: 'posivino-b2b', metrics: [{ value: '34%', label: 'hook rate' }, { value: '2.1%', label: 'CTR' }], note: 'Aimed at companies buying corporate gifts in bulk.' },
+  { brand: 'Stil B.V.', logo: logoAsset('stil-logo.webp'), url: 'https://stilorthosis.com/', format: 'Before After Video', slug: 'stil-at-the-bar', platforms: ["Meta Ads"], metrics: [{ value: '50%', label: 'hook rate' }, { value: '25%', label: 'hold rate' }, { value: '4.5%', label: 'CTR' }, { value: '~€0.12', label: 'CPC' }] },
+  { brand: 'Stil B.V.', logo: logoAsset('stil-logo.webp'), url: 'https://stilorthosis.com/', format: 'Social Proof Mashup Video Before After', slug: 'stil-living-with-tremor', platforms: ["Meta Ads"], metrics: [{ value: '~38%', label: 'hook rate' }, { value: '~22%', label: 'hold rate' }, { value: 'Nearly 3%', label: 'CTR' }, { value: '~€0.20', label: 'CPC' }] },
+  { brand: 'Stekkies', logo: logoStekkies, url: 'https://www.stekkies.com', format: 'Creator video, "Ruby"', slug: 'stekkies-ruby', platforms: ["Meta Ads","TikTok Ads"], metrics: [{ value: '€17', label: 'CPA on Meta' }, { value: '~€21', label: 'CPA on TikTok' }, { value: '32%', label: 'hook rate' }, { value: '18%', label: 'hold rate' }, { value: '2.4%', label: 'CTR' }] },
+  { brand: 'Stekkies', logo: logoStekkies, url: 'https://www.stekkies.com', format: 'Creator video, "Raphaella"', slug: 'stekkies-raphaella', platforms: ["Meta Ads","TikTok Ads"], metrics: [{ value: '€19', label: 'CPA on Meta' }, { value: '~€22', label: 'CPA on TikTok' }, { value: '29%', label: 'hook rate' }, { value: '15%', label: 'hold rate' }, { value: '2.5%', label: 'CTR' }] },
+  { brand: 'MCM Research', logo: logoMcmDark, format: 'Recruitment video', slug: 'mcm-recruitment', platforms: ["Meta Ads"], metrics: [{ value: '80+', label: 'registrations' }, { value: '€12', label: 'per registration' }, { value: '35%', label: 'hook rate' }, { value: '2.8%', label: 'CTR' }], note: 'Client-wide, across all ads: 4,000+ leads and 750 applicants in NL and BE.' },
+  { brand: 'Posivino', format: 'B2B corporate gifting video', slug: 'posivino-b2b', platforms: ["Meta Ads","LinkedIn Ads"], metrics: [{ value: '34%', label: 'hook rate' }, { value: '2.1%', label: 'CTR' }], note: 'Aimed at companies buying corporate gifts in bulk.' },
 ];
 
 const previous = [
@@ -733,7 +733,14 @@ const personSchema = JSON.stringify({
           {moreWork.map((w) => (
             <div class="more-item">
               <p class="more-brand">{w.url ? <a href={w.url} target="_blank" rel="noopener noreferrer" aria-label={w.brand + ' website'}>{w.logo ? <Image src={w.logo} alt={w.brand} height={28} class="more-logo" /> : <strong>{w.brand}</strong>}</a> : w.logo ? <Image src={w.logo} alt={w.brand} height={28} class="more-logo" /> : <strong>{w.brand}</strong>}</p>
-              <CreativeTile brand={w.brand} format={w.format} {...media(w.slug)} metrics={w.metrics} note={w.note} />
+              <CreativeTile brand={w.brand} format={w.format} {...media(w.slug)} metrics={w.metrics} note={w.note}>
+                <span slot="platforms" class="creative-platforms">
+                  {w.platforms.map((name) => {
+                    const icon = platIcon(name)!;
+                    return <span class="plat-icon" role="img" aria-label={name} title={name} style={`color:${icon.color}`} set:html={icon.svg} />;
+                  })}
+                </span>
+              </CreativeTile>
             </div>
           ))}
         </div>
@@ -1339,6 +1346,10 @@ const personSchema = JSON.stringify({
     .ct-format { display: block; font-weight: 800; font-size: 15px; line-height: 1.3; }
     .ct-metrics { margin: 10px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
     .ct-metrics > div { display: flex; align-items: baseline; gap: 5px; padding: 4px 9px; border-radius: 6px; background: var(--yellow); }
+    .creative-stats { display: flex; align-items: flex-start; gap: 8px; margin-top: 10px; }
+    .creative-platforms { display: inline-flex; align-items: center; gap: 6px; min-height: 28px; }
+    .creative-platforms .plat-icon { width: 18px; height: 18px; }
+    .creative-stats .ct-metrics { flex: 1; min-width: 0; margin: 0; }
     .ct-metrics dt { font-weight: 800; font-size: 14px; }
     .ct-metrics dd { margin: 0; font-size: 12px; color: #3a3d42; }
     .ct-lg .ct-metrics dt { font-size: 18px; }
