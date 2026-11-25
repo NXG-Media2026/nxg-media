@@ -218,10 +218,10 @@ const irvj = {
   platforms: ['Meta'],
   lead: 'From the early days of the book campaign, I advised on complementary products and average order value. We discussed a sympathy gift bundle and a set of cards to accompany the book. For the ads, we tested the author’s story, reader reviews and AI-assisted creative.',
   totals: [
-    { value: '€150k', label: 'ad spend' },
-    { value: '€9.60', label: 'cost per purchase, campaign average' },
-    { value: '2.56%', label: 'click-through rate, campaign average' },
-    { value: '33,000', label: 'books sold across all channels' },
+    { value: '€150k', label: 'ad spend', scope: 'Client total' },
+    { value: '€9.60', label: 'cost per purchase, campaign average', scope: 'Campaign' },
+    { value: '2.56%', label: 'click-through rate, campaign average', scope: 'Campaign' },
+    { value: '33,000', label: 'books sold across all channels', scope: 'Client total' },
   ],
   creatives: [
     { slug: 'irvj-founder-story', format: 'Founder story', postUrl: fb(PAGE_IRVJ, '499874006320450'), ratio: '11' },
@@ -245,11 +245,11 @@ const previous = [
   { name: 'Real Estate Masterclass', logo: brandRem, url: 'https://realestatemasterclass.nl', period: '2021 to 2022', role: 'Meta Ads · Creative Strategy · Funnels', platforms: ['Meta', 'TikTok'], spend: '~€30k', spendLabel: 'monthly ad spend for a large part of the engagement', resultHighlight: '6.5x average ROAS', result: ', 12.5x peak over two weeks' },
   { name: 'Vos Marketing', url: 'https://vosmarketing.nl', period: '2022 to 2024', role: 'Freelance performance marketer in the agency team', platforms: ['Meta', 'TikTok'], spend: '~€40k', highlightSpend: true, spendLabel: 'combined monthly ad spend across up to 7 e-commerce accounts' },
   { name: 'Stekkies', logo: logoStekkies, url: 'https://www.stekkies.com', period: 'August 2022 to November 2023', role: 'Meta Ads · TikTok Ads · Creative Strategy', platforms: ['Meta', 'TikTok'], spend: 'up to ~€20k', spendLabel: 'monthly ad spend' },
-  { name: 'MCM Research', logo: logoMcmDark, period: 'December 2022 to early 2026', role: 'Meta Ads · Recruitment marketing · Employer branding', platforms: ['Meta'], spend: '~€3k–€7k', spendLabel: 'monthly ad spend, varying across the engagement', result: 'Client-wide: 4,000+ leads and 750 applicants. Also worked on employer branding, website content, on-site staff photo/video, social planning, creator sourcing and tracking.' },
+  { name: 'MCM Research', logo: logoMcmDark, period: 'December 2022 to early 2026', role: 'Meta Ads · Recruitment marketing · Employer branding', platforms: ['Meta'], spend: '~€3k–€7k', spendLabel: 'monthly ad spend, varying across the engagement', resultHighlight: '4,000+ leads and 750 applicants', result: ' across the engagement. I set the employer content strategy, filmed and photographed employees on site, produced videos, planned social posts and coordinated creators and influencers. I also improved the website, set up tracking and optimised the Meta campaigns.' },
   { name: 'Nederland Eet Groep', logo: logoNederlandEet, iconOnly: true, url: 'https://www.eetclub.nl', period: 'April 2021 to January 2022', role: 'Meta Ads · B2C · B2B restaurant acquisition · Courier recruitment', platforms: ['Meta'], spend: '~€5k B2C · ~€3k B2B', spendLabel: 'monthly ad spend, two separate activities', result: 'Advertised to consumers, recruited restaurant partners and ran recruitment campaigns for delivery drivers.' },
-  { name: 'Buitink Technology', logo: logoAsset('buitink-technology-logo.webp'), period: 'December 2023 to January 2025', role: 'LinkedIn Ads · B2B awareness & lead generation', platforms: ['LinkedIn'], spend: '~€1k', spendLabel: 'monthly ad spend, approximately', result: 'B2B campaigns focused on brand awareness and downloadable content such as e-books. Generated lead-magnet downloads.' },
+  { name: 'Buitink Technology', logo: logoAsset('buitink-technology-logo.webp'), period: 'December 2023 to January 2025', role: 'LinkedIn Ads · B2B awareness & lead generation', platforms: ['LinkedIn Ads'], spend: '~€1k', spendLabel: 'monthly ad spend', result: 'I ran awareness campaigns and promoted content such as e-books, which generated downloads.' },
   { name: 'Time 2 Wing', logo: logoAsset('timetowing-logo.webp'), period: 'May to August 2021', role: 'Google Ads for a wingfoiling webshop', platforms: ['Google Ads'], result: 'Received positive client feedback on the campaign.' },
-  { name: 'YouLife', logo: logoYoulife, url: 'https://www.youlife.nl', period: 'October 2023 to present', role: 'Meta Ads · E-commerce', platforms: ['Meta'], spend: '~€5k to €7k', spendLabel: 'monthly ad spend' },
+  { name: 'YouLife', logo: logoYoulife, url: 'https://www.youlife.nl', period: 'October 2023 to present', role: 'Meta Ads · E-commerce · Commercial growth strategy', platforms: ['Meta'], spend: '~€5k to €7k', spendLabel: 'monthly ad spend' },
 ];
 
 const portraitTestimonials = videoTestimonials
@@ -673,7 +673,7 @@ const personSchema = JSON.stringify({
             <p class="flag-lead">{irvj.lead}</p>
             <dl class="totals totals-4">
               {irvj.totals.map((t) => (
-                <div><dt class="num">{t.value}</dt><dd><span class="scope scope-client">Client total</span>{t.label}</dd></div>
+                <div><dt class="num">{t.value}</dt><dd><span class:list={['scope', t.scope === 'Campaign' ? 'scope-campaign' : 'scope-client']}>{t.scope}</span>{t.label}</dd></div>
               ))}
             </dl>
           </div>
@@ -708,6 +708,7 @@ const personSchema = JSON.stringify({
       {/* Previous results and campaign scale */}
       <div class="wrap prev">
         <h3 class="earlier-title">Previous results and campaign scale</h3>
+        <h4 class="case-label">B2B &amp; Recruitment Marketing</h4>
         <p class="prev-intro">Alongside B2C advertising, I worked on B2B acquisition for Buitink Technology and Nederland Eet Groep, and recruitment marketing for MCM Research and Nederland Eet Groep. These projects also involved employer branding, content production, website work and conversion tracking.</p>
         <ul class="prev-list">
           {previous.map((r) => (
@@ -1454,10 +1455,13 @@ const personSchema = JSON.stringify({
     .plat-core { border-color: var(--ink); }
     .plat-core-tag { font-size: 10px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--blue); }
     .prev { padding-top: 72px; }
-    .prev-intro { margin-top: 14px; max-width: 72em; color: var(--muted); font-size: 14px; line-height: 1.55; }
+    .prev-intro { margin-top: 4px; max-width: 72em; color: var(--muted); font-size: 14px; line-height: 1.55; }
     .prev-list { list-style: none; padding: 0; margin: 20px 0 0; border-top: 1px solid var(--line); }
     .prev-row { display: grid; gap: 8px 24px; padding: 18px 0; border-bottom: 1px solid var(--line); grid-template-columns: 1fr; align-items: center; }
-    @media (min-width: 900px) { .prev-row { grid-template-columns: 1.3fr 0.8fr 1.2fr 1fr; } }
+    @media (min-width: 900px) {
+      .prev-row { grid-template-columns: 1.25fr 0.75fr 1.05fr 1.6fr; }
+      .prev-result { grid-column: 4; }
+    }
     .prev-brand { display: flex; flex-direction: column; gap: 4px; }
     .prev-logo { height: 24px; width: auto; max-width: 140px; object-fit: contain; display: block; }
     .prev-name { font-weight: 800; font-size: 1.05rem; }
