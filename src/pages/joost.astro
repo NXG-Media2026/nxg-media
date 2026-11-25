@@ -209,7 +209,12 @@ const depri = {
   ],
 };
 
-const irvjFeature = { slug: 'irvj-ai-animated', format: 'AI-animated book video', postUrl: fb(PAGE_IRVJ, '911447968496383'), ratio: '916' as const };
+const irvjFeature = { slug: 'irvj-ai-animated', format: 'AI-animated book video', postUrl: fb(PAGE_IRVJ, '911447968496383'), ratio: '916' as const, metrics: [
+  { value: '~2,264', label: 'purchases' },
+  { value: '€8.87', label: 'cost per purchase' },
+  { value: '2.69%', label: 'CTR' },
+  { value: '22.72%', label: 'hook rate' },
+] };
 
 const irvj = {
   client: 'Ik Rouw Van Je',
@@ -224,10 +229,22 @@ const irvj = {
     { value: '33,000', label: 'books sold across all channels', scope: 'Client total' },
   ],
   creatives: [
-    { slug: 'irvj-founder-story', format: 'Founder story', postUrl: fb(PAGE_IRVJ, '499874006320450'), ratio: '11' },
-    { slug: 'irvj-review-quote', format: 'Review quote', postUrl: fb(PAGE_IRVJ, '516879021286615'), ratio: '11' },
+    { slug: 'irvj-founder-story', format: 'Founder story', postUrl: fb(PAGE_IRVJ, '499874006320450'), ratio: '11', metrics: [
+      { value: '539+', label: 'purchases' },
+      { value: '€8.38', label: 'cost per purchase' },
+      { value: '1.78%', label: 'CTR' },
+    ] },
+    { slug: 'irvj-review-quote', format: 'Review quote', postUrl: fb(PAGE_IRVJ, '516879021286615'), ratio: '11', metrics: [
+      { value: '2,093+', label: 'purchases' },
+      { value: '€8.70', label: 'cost per purchase' },
+      { value: '2.58%', label: 'CTR' },
+    ] },
     { slug: 'irvj-lowfi-review', format: 'Low-fi organic review', postUrl: fb(PAGE_IRVJ, '1022802590694253'), ratio: '11' },
-    { slug: 'irvj-ai-book-ad', format: 'AI-created book ad', postUrl: fb(PAGE_IRVJ, '1063308919976953'), ratio: '11' },
+    { slug: 'irvj-ai-book-ad', format: 'AI-created book ad', postUrl: fb(PAGE_IRVJ, '1063308919976953'), ratio: '11', metrics: [
+      { value: '~1,467', label: 'purchases' },
+      { value: '€8.99', label: 'cost per purchase' },
+      { value: '~3%', label: 'CTR' },
+    ] },
   ],
 };
 
@@ -679,10 +696,10 @@ const personSchema = JSON.stringify({
           </div>
           <p class="wall-label">Five creative approaches</p>
           <div class="irvj-grid">
-            <CreativeTile brand={irvj.client} format={irvjFeature.format} ratio={irvjFeature.ratio} size="lg" postUrl={irvjFeature.postUrl} {...media(irvjFeature.slug)} />
+            <CreativeTile brand={irvj.client} format={irvjFeature.format} ratio={irvjFeature.ratio} size="lg" metrics={irvjFeature.metrics} postUrl={irvjFeature.postUrl} {...media(irvjFeature.slug)} />
             <div class="irvj-squares">
               {irvj.creatives.map((c) => (
-                <CreativeTile brand={irvj.client} logo={irvj.logo} format={c.format} ratio={c.ratio} size="sm" postUrl={c.postUrl} {...media(c.slug)} />
+                <CreativeTile brand={irvj.client} logo={irvj.logo} format={c.format} ratio={c.ratio} size="sm" metrics={c.metrics} postUrl={c.postUrl} {...media(c.slug)} />
               ))}
             </div>
           </div>
