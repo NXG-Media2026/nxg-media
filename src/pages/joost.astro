@@ -120,7 +120,6 @@ const heroFigures = [
   { value: '2018', label: 'started freelancing in marketing' },
 ];
 
-const vimeoThumb = (hash: string) => `https://i.vimeocdn.com/video/${hash}-d_640?region=us`;
 
 const fb = (page: string, post: string) => `https://www.facebook.com/${page}/posts/${post}/`;
 const PAGE_HWY = '100063787841752';
@@ -179,7 +178,7 @@ const hwy = {
     },
   ],
   video: {
-    vimeo: { id: '879780426', thumb: vimeoThumb('1746465095-2d823b8c6fe2e41dd7120f75cd7121d4675f80aee4ea5fd45f8a326255bdfddd') },
+    slug: 'hwy-video-ad',
     format: 'Video ad',
     metrics: [
       { value: '180', label: 'results' },
@@ -204,7 +203,7 @@ const depri = {
   creatives: [
     { slug: 'depri-top-video', format: 'Author-to-camera video', postUrl: fb(PAGE_DEPRI, '768126854902661'), size: 'lg', ratio: '11', featured: true, metrics: [{ value: '2,535+', label: 'purchases' }, { value: '€10.53', label: 'cost per purchase' }] },
     { slug: 'depri-lowfi-review', format: 'Low-fi book review', postUrl: fb(PAGE_DEPRI, '1127679238947419'), size: 'lg', ratio: '45', featured: true, metrics: [{ value: '1,962', label: 'purchases' }, { value: '€10.36', label: 'cost per purchase' }] },
-    { format: 'Social-proof video mashup', vimeo: { id: '879784334', thumb: vimeoThumb('1746470391-a8c3962d85191eee6e3a777de24fe2fc63231ddcde5e3f7a717b80fe6dd7d531') }, metrics: [{ value: '~450', label: 'purchases' }, { value: '~€10', label: 'cost per purchase' }, { value: '45%', label: 'hook rate' }, { value: '20%', label: 'hold rate' }, { value: '2.8%+', label: 'CTR' }], note: 'Ran in the Netherlands and, as HeyAreYouOkay, in the UK.' },
+    { format: 'Social-proof video mashup', slug: 'depri-mashup', metrics: [{ value: '~450', label: 'purchases' }, { value: '~€10', label: 'cost per purchase' }, { value: '45%', label: 'hook rate' }, { value: '20%', label: 'hold rate' }, { value: '2.8%+', label: 'CTR' }], note: 'Ran in the Netherlands and, as HeyAreYouOkay, in the UK.' },
     { slug: 'depri-statistic-static', format: 'Statistic hook static', postUrl: fb(PAGE_DEPRI, '734187768296570'), ratio: '34', metrics: [{ value: '471', label: 'purchases' }, { value: '€10.76', label: 'cost per purchase' }] },
     { slug: 'depri-feature-static', format: 'Product feature static', postUrl: fb(PAGE_DEPRI, '1543449290703743'), ratio: '45', metrics: [{ value: '422', label: 'purchases' }, { value: '€9.76', label: 'cost per purchase' }] },
   ],
@@ -235,10 +234,10 @@ const irvj = {
 const moreWork = [
   { brand: 'Stil B.V.', logo: logoAsset('stil-logo.webp'), url: 'https://stilorthosis.com/', format: 'Before After Video', slug: 'stil-at-the-bar', metrics: [{ value: '50%', label: 'hook rate' }, { value: '25%', label: 'hold rate' }, { value: '4.5%', label: 'CTR' }, { value: '~€0.12', label: 'CPC' }] },
   { brand: 'Stil B.V.', logo: logoAsset('stil-logo.webp'), url: 'https://stilorthosis.com/', format: 'Social Proof Mashup Video Before After', slug: 'stil-living-with-tremor', metrics: [{ value: '~38%', label: 'hook rate' }, { value: '~22%', label: 'hold rate' }, { value: 'Nearly 3%', label: 'CTR' }, { value: '~€0.20', label: 'CPC' }] },
-  { brand: 'Stekkies', logo: logoStekkies, url: 'https://www.stekkies.com', format: 'Creator video, "Ruby"', vimeo: { id: '879779883', thumb: vimeoThumb('1746464431-b361b0ea64f584f9c3f98509ea2787fdc8961a29d4f2bb3620de4c818d83bdf0') }, metrics: [{ value: '€17', label: 'CPA on Meta' }, { value: '~€21', label: 'CPA on TikTok' }, { value: '32%', label: 'hook rate' }, { value: '18%', label: 'hold rate' }, { value: '2.4%', label: 'CTR' }] },
-  { brand: 'Stekkies', logo: logoStekkies, url: 'https://www.stekkies.com', format: 'Creator video, "Raphaella"', vimeo: { id: '879783232', thumb: vimeoThumb('1746468935-854ca36667954722c5be77923bb0b67e8c42efc4d97ae47447ffd55883b358d2') }, metrics: [{ value: '€19', label: 'CPA on Meta' }, { value: '~€22', label: 'CPA on TikTok' }, { value: '29%', label: 'hook rate' }, { value: '15%', label: 'hold rate' }, { value: '2.5%', label: 'CTR' }] },
-  { brand: 'MCM Research', logo: logoMcmDark, format: 'Recruitment video', vimeo: { id: '879782682', thumb: vimeoThumb('1746467737-ffbd319f522e6753576797f0b103f080ffddc65a893c2b77955638fdaf03dfec') }, metrics: [{ value: '80+', label: 'registrations' }, { value: '€12', label: 'per registration' }, { value: '35%', label: 'hook rate' }, { value: '2.8%', label: 'CTR' }], note: 'Client-wide, across all ads: 4,000+ leads and 750 applicants in NL and BE.' },
-  { brand: 'Posivino', format: 'B2B corporate gifting video', vimeo: { id: '879781428', thumb: vimeoThumb('1746466363-5db09dba52cb1068a9ef88722c6054866d7d97c749602315c03d960c213456d6') }, metrics: [{ value: '34%', label: 'hook rate' }, { value: '2.1%', label: 'CTR' }], note: 'Aimed at companies buying corporate gifts in bulk.' },
+  { brand: 'Stekkies', logo: logoStekkies, url: 'https://www.stekkies.com', format: 'Creator video, "Ruby"', slug: 'stekkies-ruby', metrics: [{ value: '€17', label: 'CPA on Meta' }, { value: '~€21', label: 'CPA on TikTok' }, { value: '32%', label: 'hook rate' }, { value: '18%', label: 'hold rate' }, { value: '2.4%', label: 'CTR' }] },
+  { brand: 'Stekkies', logo: logoStekkies, url: 'https://www.stekkies.com', format: 'Creator video, "Raphaella"', slug: 'stekkies-raphaella', metrics: [{ value: '€19', label: 'CPA on Meta' }, { value: '~€22', label: 'CPA on TikTok' }, { value: '29%', label: 'hook rate' }, { value: '15%', label: 'hold rate' }, { value: '2.5%', label: 'CTR' }] },
+  { brand: 'MCM Research', logo: logoMcmDark, format: 'Recruitment video', slug: 'mcm-recruitment', metrics: [{ value: '80+', label: 'registrations' }, { value: '€12', label: 'per registration' }, { value: '35%', label: 'hook rate' }, { value: '2.8%', label: 'CTR' }], note: 'Client-wide, across all ads: 4,000+ leads and 750 applicants in NL and BE.' },
+  { brand: 'Posivino', format: 'B2B corporate gifting video', slug: 'posivino-b2b', metrics: [{ value: '34%', label: 'hook rate' }, { value: '2.1%', label: 'CTR' }], note: 'Aimed at companies buying corporate gifts in bulk.' },
 ];
 
 const previous = [
@@ -254,12 +253,12 @@ const previous = [
 
 const portraitTestimonials = videoTestimonials
   .filter((v) => v.id === 'bart-jenezon' || v.id === 'jeroen-stekkies')
-  .map((v) => ({ ...v, logo: v.id === 'bart-jenezon' ? logoMcmDark : logoStekkies, role: v.company, wide: v.id === 'bart-jenezon' }));
+  .map((v) => ({ ...v, videoUrl: v.id === 'bart-jenezon' ? '/portfolio/video/testimonial-bart.mp4' : '/portfolio/video/testimonial-jeroen.mp4', logo: v.id === 'bart-jenezon' ? logoMcmDark : logoStekkies, role: v.company, wide: v.id === 'bart-jenezon' }));
 
 const testimonials = [
-  { video: '/videos/testimonials/cathowell-8loops-testimonial-video.mp4', name: 'Cat Howell', role: 'Author and agency owner', thumb: thumbCat },
-  { video: '/videos/testimonials/somnox-testimonial-video.mp4', name: 'Julian Jagtenberg', role: 'Somnox', thumb: thumbSomnox, logo: logoSomnoxDark },
-  { video: '/videos/testimonials/narayan-eetclubnl-testimonial-video.mp4', name: 'Narayan', role: 'Nederland Eet Groep, now eetclub.nl', thumb: thumbNarayan, logo: logoNederlandEet },
+  { video: '/portfolio/video/testimonial-cat.mp4', name: 'Cat Howell', role: 'Author and agency owner', thumb: thumbCat },
+  { video: '/portfolio/video/testimonial-julian.mp4', name: 'Julian Jagtenberg', role: 'Somnox', thumb: thumbSomnox, logo: logoSomnoxDark },
+  { video: '/portfolio/video/testimonial-narayan.mp4', name: 'Narayan', role: 'Nederland Eet Groep, now eetclub.nl', thumb: thumbNarayan, logo: logoNederlandEet },
 ];
 
 const geo = {
@@ -614,7 +613,7 @@ const personSchema = JSON.stringify({
           </div>
 
           <div class="flag-video">
-            <CreativeTile brand={hwy.client} format={hwy.video.format} vimeo={hwy.video.vimeo} metrics={hwy.video.metrics} />
+            <CreativeTile brand={hwy.client} format={hwy.video.format} {...media(hwy.video.slug)} metrics={hwy.video.metrics} />
             <div class="flag-video-text">
               <span class="scope scope-ad">This ad</span>
               <p>A video ad from the same account, with its own results. "Results" is the conversion event the campaign optimised for.</p>
@@ -646,12 +645,12 @@ const personSchema = JSON.stringify({
           <p class="wall-label"><span class="scope scope-ad">This ad</span> Five ads, each with its own results</p>
           <div class="wall-top">
             {depri.creatives.filter((c) => c.featured).map((c) => (
-              <CreativeTile brand={depri.client} logo={depri.logo} format={c.format} vimeo={c.vimeo} {...media(c.slug)} ratio={c.ratio} postUrl={c.postUrl} metrics={c.metrics} note={c.note} size="lg" />
+              <CreativeTile brand={depri.client} logo={depri.logo} format={c.format} {...media(c.slug)} ratio={c.ratio} postUrl={c.postUrl} metrics={c.metrics} note={c.note} size="lg" />
             ))}
           </div>
           <div class="wall">
             {depri.creatives.filter((c) => !c.featured).map((c) => (
-              <CreativeTile brand={depri.client} logo={depri.logo} format={c.format} vimeo={c.vimeo} {...media(c.slug)} ratio={c.ratio} postUrl={c.postUrl} metrics={c.metrics} note={c.note} size={c.size === 'lg' ? 'lg' : 'md'} />
+              <CreativeTile brand={depri.client} logo={depri.logo} format={c.format} {...media(c.slug)} ratio={c.ratio} postUrl={c.postUrl} metrics={c.metrics} note={c.note} size={c.size === 'lg' ? 'lg' : 'md'} />
             ))}
           </div>
         </div>
@@ -699,7 +698,7 @@ const personSchema = JSON.stringify({
           {moreWork.map((w) => (
             <div class="more-item">
               <p class="more-brand">{w.url ? <a href={w.url} target="_blank" rel="noopener noreferrer" aria-label={w.brand + ' website'}>{w.logo ? <Image src={w.logo} alt={w.brand} height={28} class="more-logo" /> : <strong>{w.brand}</strong>}</a> : w.logo ? <Image src={w.logo} alt={w.brand} height={28} class="more-logo" /> : <strong>{w.brand}</strong>}</p>
-              <CreativeTile brand={w.brand} format={w.format} vimeo={w.vimeo} {...media(w.slug)} metrics={w.metrics} note={w.note} />
+              <CreativeTile brand={w.brand} format={w.format} {...media(w.slug)} metrics={w.metrics} note={w.note} />
             </div>
           ))}
         </div>
@@ -1029,9 +1028,6 @@ const personSchema = JSON.stringify({
       fold.addEventListener('toggle', function () {
         if (fold.open) return;
         fold.querySelectorAll('video').forEach(function (video) { video.pause(); });
-        fold.querySelectorAll('iframe[data-vimeo-player]').forEach(function (frame) {
-          frame.contentWindow.postMessage({ method: 'pause' }, 'https://player.vimeo.com');
-        });
       });
     });
     document.querySelectorAll('.facade[data-video]').forEach(function (btn) {
@@ -1048,18 +1044,6 @@ const personSchema = JSON.stringify({
       }, { once: true });
     });
 
-    document.querySelectorAll('.facade[data-vimeo]').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var iframe = document.createElement('iframe');
-        iframe.src = 'https://player.vimeo.com/video/' + btn.dataset.vimeo + '?autoplay=1&dnt=1&title=0&byline=0&portrait=0';
-        iframe.allow = 'autoplay; fullscreen; picture-in-picture';
-        iframe.allowFullscreen = true;
-        iframe.dataset.vimeoPlayer = '';
-        iframe.title = btn.getAttribute('aria-label') || 'Video';
-        iframe.className = btn.className.replace('facade', 'facade-frame');
-        btn.replaceWith(iframe);
-      }, { once: true });
-    });
 
 
     (function () {

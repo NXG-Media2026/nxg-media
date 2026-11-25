@@ -13,7 +13,6 @@ interface Props {
   brand: string;
   format: string;
   logo?: ImageMetadata;
-  vimeo?: { id: string; thumb: string };
   video?: { src: string; poster: ImageMetadata };
   image?: ImageMetadata;
   ratio?: Ratio;
@@ -23,19 +22,14 @@ interface Props {
   size?: 'sm' | 'md' | 'lg';
 }
 
-const { brand, format, logo, vimeo, video, image, ratio, postUrl, metrics = [], note, size = 'md' } = Astro.props;
-const mediaRatio = `ratio-${ratio ?? (vimeo || video ? '916' : '45')}`;
+const { brand, format, logo, video, image, ratio, postUrl, metrics = [], note, size = 'md' } = Astro.props;
+const mediaRatio = `ratio-${ratio ?? (video ? '916' : '45')}`;
 const imgWidth = size === 'lg' ? 720 : size === 'sm' ? 360 : 540;
 const label = `${brand} ad: ${format}`;
 ---
 
 <figure class:list={['ct', `ct-${size}`]}>
-  {vimeo ? (
-    <button type="button" class:list={['facade', mediaRatio]} data-vimeo={vimeo.id} aria-label={`Play ${label}`}>
-      <img src={vimeo.thumb} alt="" width="640" height="1138" loading="lazy" decoding="async" />
-      <span class="play" aria-hidden="true"></span>
-    </button>
-  ) : video ? (
+  {video ? (
     <button type="button" class:list={['facade', mediaRatio]} data-video={video.src} aria-label={`Play ${label}`}>
       <Image src={video.poster} alt="" width={imgWidth} loading="lazy" />
       <span class="play" aria-hidden="true"></span>
@@ -61,7 +55,7 @@ const label = `${brand} ad: ${format}`;
       </dl>
     )}
     {note && <p class="ct-note">{note}</p>}
-    {postUrl && (vimeo || video || image) && (
+    {postUrl && (video || image) && (
       <a class="ct-link" href={postUrl} target="_blank" rel="noopener noreferrer">Original ad ↗</a>
     )}
   </figcaption>
