@@ -97,6 +97,7 @@ const platIcon = (name: string) => {
 const email = 'joost_117@live.nl';
 const linkedinUrl = 'https://www.linkedin.com/in/joost-van-putten/';
 const dutch = Astro.props.locale === 'nl';
+const cvUrl = dutch ? '/cv/joost-van-putten-cv-nl.pdf' : '/cv/joost-van-putten-cv.pdf';
 const pageUrl = siteConfig.url + (dutch ? "/nl/joost" : "/joost");
 
 const languages = [
@@ -457,6 +458,7 @@ const personSchema = JSON.stringify({
         </ul>
       </nav>
       <a class="pf-language" href={dutch ? "/joost/" : "/nl/joost/"} hreflang={dutch ? "en" : "nl"} lang={dutch ? "en" : "nl"} aria-label={dutch ? "English portfolio" : "Nederlands portfolio"}>{dutch ? "EN" : "NL"}</a>
+      <a class="pf-cv-btn" href={cvUrl} download>Download CV</a>
     </div>
   </header>
 
@@ -476,6 +478,7 @@ const personSchema = JSON.stringify({
           <div class="hero-actions">
             <a class="btn btn-dark" href="#work">Selected work</a>
             <a class="btn btn-line" href="#ai">AI systems</a>
+            <a class="btn btn-line" href={cvUrl} download>Download CV <span class="btn-meta">PDF</span></a>
           </div>
           <div class="hero-meta">
             <ul class="hero-places" aria-label="Locations">
@@ -920,6 +923,7 @@ const personSchema = JSON.stringify({
         </summary>
       <div class="wrap">
 
+        <a class="btn btn-line" href={cvUrl} download>Download full CV <span class="btn-meta">PDF</span></a>
         <ol class="timeline">
           {experience.map((e) => (
             <li>
@@ -992,6 +996,7 @@ const personSchema = JSON.stringify({
           <p class="sec-intro">Based in Valencia and open to in-house roles, freelance projects and agency collaborations. I am also interested in opportunities in Madrid.</p>
         </div>
         <ul class="contact-list">
+          <li><a href={cvUrl} download><span>CV</span>Download PDF</a></li>
           <li><a href={`mailto:${email}`}><span>E-mail</span>{email}</a></li>
           <li><a href={linkedinUrl} target="_blank" rel="noopener noreferrer"><span>LinkedIn</span>linkedin.com/in/joost-van-putten</a></li>
         </ul>
